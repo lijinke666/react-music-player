@@ -1,9 +1,9 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import MusicPlayer from "./player"
+import ReactJkMusicPlayer from "react-jinke-music-player"
 
 const Demo = ()=>(
-    <MusicPlayer
+    <ReactJkMusicPlayer
         mode="mini"                       //music mode           mini or full
         name="demoName"                    //music name
         cover="http://www.thailandballoonfestival.com/tibf2013/images/HugoSlider1.jpg"                     //music cover
