@@ -2,10 +2,13 @@
 react music player component 
 
 
-#### use
+#### if you want run example
  - `yarn`
  - `npm run demo`   run example
  
+####  use
+`npm install react-jinke-music-player`
+
 ```
 import React from "react"
 import ReactDOM from "react-dom"
