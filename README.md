@@ -9,7 +9,7 @@ react music player component
 ```
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "React-Jk-Music-Player"
+import ReactJkMusicPlayer from "react-jinke-music-player"
 
 const Demo = ()=>(
     <MusicPlayer
