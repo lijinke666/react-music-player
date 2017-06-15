@@ -1,5 +1,4 @@
 
-@music-player-height:65px;
 @primary-color: #31c27c; 
 @warning-color: #ffbf00; 
 @error-color: #f04134; 
@@ -7,10 +6,20 @@
 @default-color: #d9d9d9; 
 @disabled-color:#f7f7f7;
 @info-color:#49a9ee;
+@loading-color:darken(@primary-color,10%);
 @bg-color:#f7f8fa;  
 @border-color:#d9d9d9;
-body{
-    background: #dcdcdc;
+@header-height:50px;
+@music-player-height:65px;
+@font-family:"Yuanti SC",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;
+@main-width: 1200px; 
+@font:'iconfont';
+@font-color:#444;
+@article-content-color:#606a77;
+@article-info-color:#999;
+
+body,#root{
+    background:#ccc;
 }
 .clearfix(){
   &::before,&::after{
@@ -29,6 +38,10 @@ body{
 .text-center(){
   text-align: center
 }
+.text-center{
+  text-align: center;
+  color:#fff;
+}
 .transition(@time:.3s){
   transition: all @time cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -36,6 +49,28 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.btn-hover(@color:@default-color,@lighten:3%){
+    color:#fff;
+    background-color: @color;
+    border:1px solid @color;
+    &:hover,&:active{
+        background-color: lighten(@color,@lighten)
+    }
+}
+
+.ellipsis-n(@n:2){
+    -webkit-line-clamp:@n;
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: center;
+}
+.ellipsis-1(){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 @loading-color:darken(@primary-color,10%);
 .music-player{

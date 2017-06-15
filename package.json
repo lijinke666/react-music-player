@@ -1,11 +1,11 @@
 {
   "name": "react-jinke-music-player",
-  "version": "0.0.4",
-  "main": "index.js",
+  "version": "0.1.2",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --config ./example/webpack.config.js",
-    "demo": "webpack-dev-server --config ./example/webpack.config.js"
+    "demo": "webpack-dev-server --progress --config ./example/webpack.config.js"
   },
   "author": "jinke.li",
   "repository": {
@@ -22,41 +22,41 @@
     "component"
   ],
   "dependencies": {
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "babel-plugin-transform-class-properties": "^6.23.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-runtime": "^6.23.0",
-    "classnames": "^2.2.5",
-    "imagemin-webpack-plugin": "^1.4.4",
-    "optimize-css-assets-webpack-plugin": "^1.3.0",
-    "postcss-loader": "^1.3.3",
     "react": "15.x",
     "react-dom": "15.x",
-    "rimraf": "^2.6.0",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "classnames": "^2.2.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "6.x",
     "babel-loader": "6.x",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "6.x",
+    "babel-runtime": "^6.23.0",
     "copy-webpack-plugin": "latest",
     "css-loader": "~0.23.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.28.0",
+    "imagemin-webpack-plugin": "^1.4.4",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "open-browser-webpack-plugin": "0.0.2",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
     "postcss-loader": "^1.2.2",
     "react-hot-loader": "^3.0.0-beta.6",
+    "react-jinke-music-player": "^0.1.2",
     "react-loader": "^2.4.0",
+    "rimraf": "^2.6.0",
     "style-loader": "~0.13.0",
-    "url-loader": "^0.5.8"
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }

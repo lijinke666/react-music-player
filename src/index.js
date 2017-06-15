@@ -19,6 +19,7 @@ export default class MusicPlayer extends React.Component {
     }
     static defaultProps = {
         mode: "mini",   
+        controllerTitle:"Music",
         isUploadAudio:false,
         name:"name"
     }
@@ -26,7 +27,8 @@ export default class MusicPlayer extends React.Component {
         mode: PropTypes.oneOf(['mini', 'full']),     
         name: PropTypes.string,                       
         cover: PropTypes.string,                     
-        musicSrc: PropTypes.string.isRequired,       
+        musicSrc: PropTypes.string.isRequired, 
+        controllerTitle:PropTypes.string,      
         isUploadAudio:PropTypes.bool                    
     }
     constructor(props) {
@@ -41,7 +43,8 @@ export default class MusicPlayer extends React.Component {
             name,
             cover,
             mode,
-            className
+            className,
+            controllerTitle
         } = this.props
 
         const {
@@ -67,7 +70,7 @@ export default class MusicPlayer extends React.Component {
                         ? undefined
                         : (
                             <div key="controller" className="scale music-player-controller" onClick={this.openPanel}>
-                                <span>M</span>
+                                <span>{controllerTitle}</span>
                                 <div key="setting" className="music-player-controller-setting">{toggle ? "关闭" : "展开"}</div>
                             </div>
                         )

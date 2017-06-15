@@ -2,7 +2,7 @@ const path = require('path')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 const HOST = "localhost"
-const PORT = 8080
+const PORT = 1996
 
 module.exports = {
     entry: path.join(__dirname, '../example/example.js'),
@@ -68,5 +68,8 @@ module.exports = {
         }
     },
     plugins: [
+        new OpenBrowserPlugin({
+            url:`http:${HOST}:${PORT}/`
+        })
     ]
 }
