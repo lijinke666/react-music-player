@@ -9,7 +9,7 @@ react music player component
 ####  use
 `npm install react-jinke-music-player`
 
-```
+```javascript
 import React from "react"
 import ReactDOM from "react-dom"
 import ReactJkMusicPlayer from "react-jinke-music-player"
