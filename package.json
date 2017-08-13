@@ -1,6 +1,6 @@
 {
   "name": "react-jinke-music-player",
-  "version": "0.1.2",
+  "version": "0.3.3",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,9 +22,10 @@
     "component"
   ],
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "15.x",
     "react-dom": "15.x",
-    "classnames": "^2.2.5"
+    "react-icons": "^2.2.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

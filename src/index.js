@@ -1,12 +1,21 @@
 
 import React, { PropTypes } from "react"
 import ReactDOM from "react-dom"
+import SettingIcon from "react-icons/lib/fa/cog"
+import FaCircleONotch from "react-icons/lib/fa/circle-o-notch"
+import FaHeadphones from "react-icons/lib/fa/headphones"
+import FaMinusSquareO from "react-icons/lib/fa/minus-square-o"
+import FaPlayCircle from "react-icons/lib/fa/play-circle"
+import FaPauseCircle from "react-icons/lib/fa/pause-circle"
+import Reload from "react-icons/lib/fa/refresh"
+import MdVolumeDown from "react-icons/lib/md/volume-down"
+import MdVolumeMute from "react-icons/lib/md/volume-mute"
 import classNames from "classnames"
 
 import "./styles.less"
 
 
-export default class MusicPlayer extends React.Component {
+export default class MusicPlayer extends React.PureComponent {
     state = {
         toggle: false,       
         playing: false,      
@@ -19,16 +28,19 @@ export default class MusicPlayer extends React.Component {
     }
     static defaultProps = {
         mode: "mini",   
-        controllerTitle:"Music",
+        controllerTitle:<FaHeadphones/>,
         isUploadAudio:false,
-        name:"name"
+        name:"name",
+        closeText:"close",
+        openText:"open"
     }
     static PropTypes = {
         mode: PropTypes.oneOf(['mini', 'full']),     
         name: PropTypes.string,                       
         cover: PropTypes.string,                     
-        musicSrc: PropTypes.string.isRequired, 
-        controllerTitle:PropTypes.string,      
+        musicSrc: PropTypes.string.isRequired,  
+        closeText:PropTypes.string,
+        openText:PropTypes.string,  
         isUploadAudio:PropTypes.bool                    
     }
     constructor(props) {
@@ -44,7 +56,9 @@ export default class MusicPlayer extends React.Component {
             cover,
             mode,
             className,
-            controllerTitle
+            controllerTitle,
+            closeText,
+            openText
         } = this.props
 
         const {
@@ -71,7 +85,7 @@ export default class MusicPlayer extends React.Component {
                         : (
                             <div key="controller" className="scale music-player-controller" onClick={this.openPanel}>
                                 <span>{controllerTitle}</span>
-                                <div key="setting" className="music-player-controller-setting">{toggle ? "关闭" : "展开"}</div>
+                                <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
                             </div>
                         )
                 }
@@ -121,26 +135,26 @@ export default class MusicPlayer extends React.Component {
                                         <span className="play-btn" key="play-btn" onClick={this.onPlay}>
                                             {
                                                 playing
-                                                    ? <span>暂停</span>
-                                                    : <span>播放</span>
+                                                    ? <span><FaPauseCircle/></span>
+                                                    : <span><FaPlayCircle/></span>
                                             }
                                         </span>
                                         <span className="play-setting" key="play-setting">
-                                            <span>设置</span>
+                                            <span><SettingIcon/></span>
                                             <ul className="play-setting-items">
                                                 <li className={classNames("item", { "active": isLoop })} key="setting1" onClick={this.audioLoop}>
-                                                    <span>循环</span>
+                                                    <span><FaCircleONotch/></span>
                                                 </li>
                                                 <li className="item reload-btn" key="setting2" onClick={this.audioReload}>
-                                                    <span>重放</span>
+                                                    <span><Reload/></span>
                                                 </li>
                                             </ul>
                                         </span>
                                         <span className="play-sounds" key="play-sound">
                                             {
                                                 isMute
-                                                    ? <span>静音</span>
-                                                    : <span>音量</span>
+                                                    ? <span><MdVolumeMute/></span>
+                                                    : <span><MdVolumeDown/></span>
                                             }
                                             <input type="range" value={soundValue} className="sound-operation" key="range" onChange={this.audioSoundChange} />
                                         </span>
@@ -148,7 +162,7 @@ export default class MusicPlayer extends React.Component {
                                             mode === 'full'
                                                 ? undefined
                                                 : <span className="hide-panel" key="hide-panel-btn" onClick={this.onHidePanel}>
-                                                    收起
+                                                    <FaMinusSquareO/>
                                                 </span>
                                         }
                                     </div>
