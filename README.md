@@ -8,7 +8,7 @@ npm install react-jinke-music-player --save
 
 ## Example
 ```
-git clone https://github.com/lijinke666/react-3d-gallery.git
+git clone https://github.com/lijinke666/React-Jk-Music-Player.git
 ```
 
 - `yarn`
