@@ -1,8 +1,9 @@
 {
   "name": "react-jinke-music-player",
-  "version": "0.3.3",
+  "version": "1.2.0",
   "main": "src/index.js",
   "scripts": {
+    "start":"npm run demo",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --config ./example/webpack.config.js",
     "demo": "webpack-dev-server --progress --config ./example/webpack.config.js"

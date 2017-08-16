@@ -17,36 +17,46 @@ import "./styles.less"
 
 export default class MusicPlayer extends React.PureComponent {
     state = {
-        toggle: false,       
-        playing: false,      
-        duration: 0,          
-        currentTime: 0,        
-        isLoop: false,         
-        isMute: false,          
+        loading: false,
+        toggle: false,
+        playing: false,
+        duration: 0,
+        currentTime: 0,
+        isLoop: false,
+        isMute: false,
         soundValue: 100,
-        isDown: false,      
+        isDown: false,
+        currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
     }
     static defaultProps = {
-        mode: "mini",   
-        controllerTitle:<FaHeadphones/>,
-        isUploadAudio:false,
-        name:"name",
-        closeText:"close",
-        openText:"open"
+        mode: "mini",
+        controllerTitle: <FaHeadphones />,
+        isUploadAudio: false,
+        name: "name",
+        closeText: "close",
+        openText: "open"
     }
     static PropTypes = {
-        mode: PropTypes.oneOf(['mini', 'full']),     
-        name: PropTypes.string,                       
-        cover: PropTypes.string,                     
-        musicSrc: PropTypes.string.isRequired,  
-        closeText:PropTypes.string,
-        openText:PropTypes.string,  
-        isUploadAudio:PropTypes.bool                    
+        mode: PropTypes.oneOf(['mini', 'full']),
+        name: PropTypes.string.isRequired,
+        cover: PropTypes.string.isRequired,
+        musicSrc: PropTypes.string.isRequired,
+        closeText: PropTypes.string,
+        openText: PropTypes.string,
+        controllerTitle:PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.object
+        ]),
+        audioPlay:PropTypes.func,
+        audioPause:PropTypes.func,
+        audioEnded:PropTypes.func,
+        loadAudioError:PropTypes.func,
+        audioProgress:PropTypes.func
     }
     constructor(props) {
         super(props)
         this.audio = null       //当前播放器
-        this.defaultMusciName = "今日音乐"
+        this.defaultMusciName = "music"
         this.mouseX = 0
     }
     render() {
@@ -62,6 +72,7 @@ export default class MusicPlayer extends React.PureComponent {
         } = this.props
 
         const {
+            loading,
             toggle,
             playing,
             duration,
@@ -73,6 +84,7 @@ export default class MusicPlayer extends React.PureComponent {
             soundValue,
             audioFile,
         } = this.state
+        const loadingText = "Loading."
         //当前播放进度
         const progress = ((currentTime / duration) * 100).toFixed(2)
 
@@ -84,30 +96,29 @@ export default class MusicPlayer extends React.PureComponent {
                         ? undefined
                         : (
                             <div key="controller" className="scale music-player-controller" onClick={this.openPanel}>
-                                <span>{controllerTitle}</span>
+                                <span>{loading ? loadingText : controllerTitle}</span>
                                 <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
                             </div>
                         )
                 }
-                {/*播放器*/}
                 {
                     toggle
                         ? (
                             <div key="panel" className="music-player-panel translate">
                                 <section className="panel-content" key="panel-content">
-                                    <div className={classNames("img-content",{"img-rotate":playing})} key="img-content">
-                                        <img key="img" src={cover} alt="" />
+                                    <div className={classNames("img-content", { "img-rotate": playing })} style={{'backgroundImage':`url(${cover})`}} key="img-content">
                                     </div>
                                     <div className="progressbar-content" key="progressbar-content">
                                         <span>{name}</span>
                                         <section>
                                             <span key="current-time" className="current-time">
-                                                {/*Consider only the following songs for 10 minutes*/}
-                                                {
+                                                {this.formatTime(currentTime)}
+                                                {/* {
                                                     (~~currentTime) < 60
                                                         ? `00:${(~~currentTime) < 10 ? `0${~~currentTime}` : ~~currentTime}`
                                                         : `0${~~(currentTime / 60)}:${(~~(currentTime % 60) < 10) ? `0${~~(currentTime % 60)}` : ~~(currentTime % 60)}`
-                                                }
+                                                } */}
+
                                             </span>
                                             <div className="progressbar" key="progressbar">
                                                 <span key="progress" style={{ width: `${progress}%` }} className="progress">
@@ -123,11 +134,12 @@ export default class MusicPlayer extends React.PureComponent {
                                                 </span>
                                             </div>
                                             <span key="duration" className="duration">
-                                                {
+                                                {this.formatTime(duration)}
+                                                {/* {
                                                     (duration / 60) < 10
                                                         ? `0${(duration / 60).toFixed(2)}`
                                                         : `${(duration / 60).toFixed(2)}`
-                                                }
+                                                } */}
                                             </span>
                                         </section>
                                     </div>
@@ -135,34 +147,34 @@ export default class MusicPlayer extends React.PureComponent {
                                         <span className="play-btn" key="play-btn" onClick={this.onPlay}>
                                             {
                                                 playing
-                                                    ? <span><FaPauseCircle/></span>
-                                                    : <span><FaPlayCircle/></span>
+                                                    ? <span><FaPauseCircle /></span>
+                                                    : <span><FaPlayCircle /></span>
                                             }
                                         </span>
                                         <span className="play-setting" key="play-setting">
-                                            <span><SettingIcon/></span>
+                                            <span><SettingIcon /></span>
                                             <ul className="play-setting-items">
                                                 <li className={classNames("item", { "active": isLoop })} key="setting1" onClick={this.audioLoop}>
-                                                    <span><FaCircleONotch/></span>
+                                                    <span><FaCircleONotch /></span>
                                                 </li>
                                                 <li className="item reload-btn" key="setting2" onClick={this.audioReload}>
-                                                    <span><Reload/></span>
+                                                    <span><Reload /></span>
                                                 </li>
                                             </ul>
                                         </span>
                                         <span className="play-sounds" key="play-sound">
                                             {
                                                 isMute
-                                                    ? <span><MdVolumeMute/></span>
-                                                    : <span><MdVolumeDown/></span>
+                                                    ? <span onClick={this.onSound}><MdVolumeMute /></span>
+                                                    : <span onClick={this.onMute}><MdVolumeDown /></span>
                                             }
-                                            <input type="range" value={soundValue} className="sound-operation" key="range" onChange={this.audioSoundChange} />
+                                            <input type="range" value={soundValue} step="0.01" max="1.0" min="0" className="sound-operation" key="range" onChange={this.audioSoundChange} />
                                         </span>
                                         {
                                             mode === 'full'
                                                 ? undefined
                                                 : <span className="hide-panel" key="hide-panel-btn" onClick={this.onHidePanel}>
-                                                    <FaMinusSquareO/>
+                                                    <FaMinusSquareO />
                                                 </span>
                                         }
                                     </div>
@@ -175,6 +187,34 @@ export default class MusicPlayer extends React.PureComponent {
             </figure>
         )
     }
+    onSound = () => {
+        this.setAudioVolume(this.state.currentAudioVolume)
+    }
+    audioSoundChange = (e) => {
+        this.setAudioVolume(e.target.value)
+    }
+    setAudioVolume = (value) => {
+        this.audio.volume = value
+        this.setState({
+            currentAudioVolume: value,
+            soundValue: value
+        })
+    }
+    //秒转换成 时间格式
+    formatTime(second){
+        var h=0,i=0,s=parseInt(second);
+        if(s>60){
+            i=parseInt(s/60);
+            s=parseInt(s%60);
+            if(i > 60) {
+                h=parseInt(i/60);
+                i = parseInt(i%60);
+            }
+        }
+        // 补零
+        const zero=(v)=> (v>>0)<10?"0"+v:v;
+        return [zero(h),zero(i),zero(s)].join(":");
+    };
     stopAll = (target) => {
         target.stopPropagation()
         target.preventDefault()
@@ -234,6 +274,7 @@ export default class MusicPlayer extends React.PureComponent {
     }
     //播放
     onPlay = () => {
+        this.setState({ loading: true })
         //是否在播放
         const { playing } = this.state
         if (playing === true) {
@@ -241,70 +282,63 @@ export default class MusicPlayer extends React.PureComponent {
         } else {
             this.getAudioLength();
             this.loadAudio();
+            this.props.audioPlay && this.props.audioPlay(this.audio.currentTime,this.audio.duration)
         }
     }
     //暂停
     pauseAudio = () => {
         this.audio.pause()
         this.setState({ playing: false })
+        this.props.audioPause && this.props.audioPause(this.audio.currentTime,this.audio.duration)
     }
     //加载音频
     loadAudio = () => {
         if (this.audio.readyState == 4 && this.audio.networkState != 3) {
-            this.setState({ playing: true })
+            this.setState({ playing: true, loading: false })
             this.audio.play()
         }
     }
     //获取音频长度
     getAudioLength = () => {
         this.setState({
-            duration: this.audio.duration - 11
+            duration: this.audio.duration
         })
     }
-    loadAudioError = () => {
+    loadAudioError = (e) => {
         this.setState({ playing: false })
-        if(confirm('加载音频失败,请刷新重试')){
-           this.onPlay()
-        }
+        this.props.loadAudioError && this.props.loadAudioError(e)
     }
     //音频播放结束
     audioEnd = () => {
         this.setState({ playing: false })
+        this.props.audioEnded && this.props.audioEnded(this.audio.duration)
     }
     //播放进度更新
     audioTimeUpdate = () => {
         const currentTime = this.audio.currentTime
-        this.setState({
-            currentTime
-        })
-    }
-    //音量控制
-    audioSoundChange = (e) => {
-        const value = e.target.value
-        this.audio.volume = value / 100
-        this.setState({
-            soundValue: value
-        })
+        this.setState({currentTime})
+        this.props.audioProgress && this.props.audioProgress(currentTime,this.audio.duration)
     }
     //音量改变
+    audioSoundChange = (e) => {
+        this.setAudioVolume(e.target.value)
+    }
     audioVolumeChange = () => {
         if (this.audio.volume <= 0) {
-            this.setState({
-                isMute: true
-            })
+            this.setState({isMute: true})
         } else {
-            this.setState({
-                isMute: false
-            })
+            this.setState({isMute: false})
         }
     }
     //静音
     onMute = () => {
         this.setState({
             isMute: true,
-            soundValue: 0
+            soundValue: 0,
+            currentAudioVolume: this.audio.volume
+        }, () => {
+            this.audio.volume = 0
         })
-        this.audio.volume = 0
     }
     toggleMode = (mode) => {
         if (mode === "full") {
