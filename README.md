@@ -7,6 +7,7 @@ npm install react-jinke-music-player --save
 ```
 
 ## Example
+### [LIVE DEMO](https://lijinke666.github.io/React-Jk-Music-Player/)
 ```
 git clone https://github.com/lijinke666/React-Jk-Music-Player.git
 ```
