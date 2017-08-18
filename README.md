@@ -19,7 +19,7 @@ git clone https://github.com/lijinke666/React-Jk-Music-Player.git
 ```javascript
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "../src/index"
+import ReactJkMusicPlayer from "react-jinke-music-player"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {

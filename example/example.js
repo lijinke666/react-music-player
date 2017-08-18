@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "../src/index"
+import ReactJkMusicPlayer from "react-jinke-music-player"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {
@@ -27,17 +27,17 @@ const options = {
     
     //audio play handle
     audioPlay(currentTime,duration){
-        console.log(currentTime,duration);
+        console.log('audio playing',currentTime,duration);
     },
 
     //audio pause handle
     audioPause(currentTime,duration){
-        console.log(currentTime,duration);
+        console.log('audio pause',currentTime,duration);
     },
 
     //audio ended handle
     audioEnded(duration){
-        console.log(duration);
+        console.log('audio ended',duration);
     },
 
     //audio play progress handle
@@ -47,7 +47,7 @@ const options = {
     
     //audio load faild error handle
     loadAudioError(e){
-        console.log('err',e);
+        console.log('audio load err',e);
     }
 }
 
