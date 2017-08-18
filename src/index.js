@@ -17,7 +17,6 @@ import "./styles.less"
 
 export default class MusicPlayer extends React.PureComponent {
     state = {
-        loading: false,
         toggle: false,
         playing: false,
         duration: 0,
@@ -72,7 +71,6 @@ export default class MusicPlayer extends React.PureComponent {
         } = this.props
 
         const {
-            loading,
             toggle,
             playing,
             duration,
@@ -84,7 +82,7 @@ export default class MusicPlayer extends React.PureComponent {
             soundValue,
             audioFile,
         } = this.state
-        const loadingText = "Loading."
+
         //当前播放进度
         const progress = ((currentTime / duration) * 100).toFixed(2)
 
@@ -96,7 +94,7 @@ export default class MusicPlayer extends React.PureComponent {
                         ? undefined
                         : (
                             <div key="controller" className="scale music-player-controller" onClick={this.openPanel}>
-                                <span>{loading ? loadingText : controllerTitle}</span>
+                                <span>{controllerTitle}</span>
                                 <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
                             </div>
                         )
@@ -274,7 +272,6 @@ export default class MusicPlayer extends React.PureComponent {
     }
     //播放
     onPlay = () => {
-        this.setState({ loading: true })
         //是否在播放
         const { playing } = this.state
         if (playing === true) {
@@ -294,7 +291,7 @@ export default class MusicPlayer extends React.PureComponent {
     //加载音频
     loadAudio = () => {
         if (this.audio.readyState == 4 && this.audio.networkState != 3) {
-            this.setState({ playing: true, loading: false })
+            this.setState({ playing: true})
             this.audio.play()
         }
     }
