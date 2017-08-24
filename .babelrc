@@ -9,9 +9,7 @@
     "react"
   ],
   "plugins": [
-  //     "transform-decorators-legacy",
-  //     "transform-object-rest-spread",
-      "transform-class-properties"
-  //     "transform-runtime"
+    "transform-object-rest-spread",
+    "transform-class-properties"     
   ]
 }

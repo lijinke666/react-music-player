@@ -29,6 +29,13 @@ module.exports = {
                 ]
             },
             {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },          //loader 倒序执行  先执行 less-laoder
+                    { loader: "css-loader", options: { minimize: false, sourceMap: true } },
+                ]
+            },
+            {
                 test: /\.(eot|ttf|svg|woff|woff2)$/,
                 use: [
                     {
@@ -69,7 +76,7 @@ module.exports = {
     },
     plugins: [
         new OpenBrowserPlugin({
-            url:`http:${HOST}:${PORT}/`
+            url: `http:${HOST}:${PORT}/`
         })
     ]
 }

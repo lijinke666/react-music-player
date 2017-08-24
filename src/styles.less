@@ -74,11 +74,14 @@
     right:20px;
     bottom:50px;
     svg{
-        font-size:35px;
+        font-size:32px;
     }
     @media screen and (max-width:768px){
         right:10px;
         bottom:10px;
+        svg{
+            font-size:28px;
+        }
     }
     &-audio{
         .hidden();
@@ -186,6 +189,9 @@
             .img-rotate{
                     animation: imgRotate 15s linear infinite;
             }
+            .img-rotate-pause{
+                animation-play-state:paused
+            }
             .hide-panel,.upload-music{
                 flex-basis:10%;
                 cursor: pointer;
@@ -219,11 +225,11 @@
                 .progressbar{
                     flex:1;
                     @progress-height:5px;
-                    position: relative;
+                    // position: relative;
                     width:100%;
-                    height:@progress-height;
-                    background-color: #ccc;
-                    margin-top: 10px;
+                    // height:@progress-height;
+                    // background-color: #ccc;
+                    margin-top: 5px;
                     .progress{
                         position: absolute;
                         display: inline-block;
@@ -255,6 +261,7 @@
                 align-content: center;
                 flex-basis: 15%;
                 span{
+                    cursor: pointer;
                     text-align: center;
                     flex:1;
                     padding: 0 10px;
@@ -270,6 +277,11 @@
                 @media screen and (max-width:768px){
                     .play-sounds{
                         .hidden()
+                    }
+                }
+                .loop-btn{
+                    &.active{
+                        color:@primary-color
                     }
                 }
                 .play-sounds{
@@ -338,6 +350,17 @@
             }
         }
     }
+    input[type="range"]::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        height: 15px;
+        width: 15px;
+        margin-top: -2px;
+        background: @primary-color; 
+        border-radius: 50%;
+        box-shadow: 0 .125em .125em #3b4547; 
+        cursor: pointer;
+                            
+    }
     .translate{
         animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }
@@ -346,28 +369,6 @@
     }
 }
 
-.upload-music-content{
-    @audio-show-width:100px;
-    @audio-show-height:@audio-show-width;
-    .audio-img-show{
-        width:    @audio-show-width;
-        height:    @audio-show-height;
-        background-color: @bg-color;
-        border:1px solid @border-color;
-        overflow: hidden;
-        margin:0 auto 10px auto;
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(255,255,255,.4);
-        .audio-img{
-            width:100%;
-        }
-    }
-    .audio-img-size{
-        position: absolute;
-        left:@audio-show-width +20;
-        bottom:0;
-    }
-}
 @keyframes scale{
     from{
         transform: scale(0)
@@ -406,15 +407,4 @@
     to{
         transform: translate3d(0,0,0)
     }
-}
-input[type="range"]::-webkit-slider-thumb{
-    -webkit-appearance: none;
-    height: 15px;
-    width: 15px;
-    margin-top: -2px;
-    background: @primary-color; 
-    border-radius: 50%;
-    box-shadow: 0 .125em .125em #3b4547; 
-    cursor: pointer;
-                        
 }
