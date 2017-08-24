@@ -34,7 +34,7 @@ const options = {
     mode:"mini"   ,            
 
     //audio name     [type `String`  default `name`]
-    name:"music Name"  ,       
+    name:"Canon-Piano-Version"  ,       
 
     //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
     controllerTitle: <FaHeadphones/>, 
@@ -53,6 +53,11 @@ const options = {
     //audio pause handle
     audioPause(currentTime,duration){
         console.log(currentTime,duration);
+    },
+
+    //When the user has moved/jumped to a new location in audio
+    autdioSeeked(currentTime,duration){
+        console.log('audio seeked',currentTime,duration);
     },
 
     //audio ended handle
