@@ -36,10 +36,12 @@ export default class MusicPlayer extends React.PureComponent {
     isUploadAudio: false,
     name: "name",
     closeText: "close",
-    openText: "open"
+    openText: "open",
+    drag:true
   }
   static PropTypes = {
     mode: PropTypes.oneOf(['mini', 'full']),
+    drag:PropTypes.bool,
     name: PropTypes.string.isRequired,
     cover: PropTypes.string.isRequired,
     musicSrc: PropTypes.string.isRequired,
@@ -88,17 +90,18 @@ export default class MusicPlayer extends React.PureComponent {
       audioFile,
     } = this.state
 
-    //当前播放进度
-    const progress = ((currentTime / duration) * 100).toFixed(2)
-
     return (
       <figure className={classNames("music-player", className)} key="music-player" {...style}>
         {
           toggle
             ? undefined
             : (
-              <div key="controller" className="scale music-player-controller" onClick={this.openPanel}>
-                <span>{controllerTitle}</span>
+              <div 
+                key="controller" 
+                className="scale music-player-controller" 
+                onClick={this.openPanel}
+              >
+                <span className="controller-title" key="controller-title">{controllerTitle}</span>
                 <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
               </div>
             )
@@ -111,8 +114,8 @@ export default class MusicPlayer extends React.PureComponent {
                   <div className={classNames("img-content", "img-rotate", { "img-rotate-pause": !playing })} style={{ 'backgroundImage': `url(${cover})` }} key="img-content">
                   </div>
                   <div className="progressbar-content" key="progressbar-content">
-                    <span>{name}</span>
-                    <section>
+                    <span className="audio-title">{name}</span>
+                    <section className="audio-main">
                       <span key="current-time" className="current-time">
                         {this.formatTime(currentTime)}
                       </span>
@@ -165,7 +168,7 @@ export default class MusicPlayer extends React.PureComponent {
             )
             : undefined
         }
-        <audio key="audio" className="music-player-audio" src={musicSrc} controls loop></audio>
+        <audio key="audio" className="music-player-audio" src={musicSrc}></audio>
       </figure>
     )
   }
@@ -347,27 +350,37 @@ export default class MusicPlayer extends React.PureComponent {
       this.setState({ toggle: true })
     }
   }
+  unBindEvnets = (...options)=>{
+    this.bindEvents(...options)
+  }
+  bindEvents = (
+      target=this.audio,
+      eventsNames={
+        warning:this.loadAudio,
+        canplay:this.onPlay,
+        error:this.loadAudioError,
+        ended:this.audioEnd,
+        seeked:this.autdioSeeked,
+        pause:this.pauseAudio,
+        timeupdate:this.audioTimeUpdate,
+        volumechange:this.audioVolumeChange
+    },
+    bind=true
+  )=>{
+    Object.entries(eventsNames).forEach(([name,_events])=>{
+      bind 
+      ? target.addEventListener(name,_events) 
+      : target.removeEventListener(name,_events)
+    })
+  }
   componentWillUnmount() {
-    this.audio.removeEventListener('waiting', this.loadAudio)
-    this.audio.removeEventListener('canplay', this.onPlay)
-    this.audio.removeEventListener('error', this.loadAudioError)
-    this.audio.removeEventListener('ended', this.audioEnd)
-    this.audio.removeEventListener('seeked', this.autdioSeeked)
-    this.audio.removeEventListener('timeupdate', this.audioTimeUpdate)
-    this.audio.removeEventListener('volumechange', this.audioVolumeChange)
+    this.unBindEvnets(this.audio,undefined,false)
   }
   componentDidMount() {
     this.dom = ReactDOM.findDOMNode(this)
     this.progress = this.dom.querySelector('.progress')
     this.audio = this.dom.querySelector('audio')
-    this.audio.addEventListener('waiting', this.loadAudio)
-    this.audio.addEventListener('canplay', this.onPlay)
-    this.audio.addEventListener('error', this.loadAudioError)
-    this.audio.addEventListener('ended', this.audioEnd)
-    this.audio.addEventListener('seeked', this.autdioSeeked)
-    this.audio.addEventListener('pause', this.pauseAudio)
-    this.audio.addEventListener('timeupdate', this.audioTimeUpdate)
-    this.audio.addEventListener('volumechange', this.audioVolumeChange)
     this.toggleMode(this.props.mode)
+    this.bindEvents(this.audio)
   }
 }

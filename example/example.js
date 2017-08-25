@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "react-jinke-music-player"
+import ReactJkMusicPlayer from "../src"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {
@@ -11,7 +11,10 @@ const options = {
     closeText:"CLOSE",       
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode:"mini"   ,            
+    mode:"mini"   ,
+    
+    //audio controller is can be drag of the "mini" mode
+    drag:true,
 
     //audio name     [type `String`  default `name`]
     name:"Canon-Piano-Version"  ,       

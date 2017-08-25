@@ -129,6 +129,9 @@
                 transform: scale(1)
             }
         }
+        .controller-title{
+            font-size:14px;
+        }
         @media screen and (max-width:768px){
             i{
                 font-size:20px;
@@ -206,10 +209,11 @@
             .progressbar-content{
                 flex:1;
                 padding: 0 20px;
-                section{
+                .audio-main{
                     width: 100%;
                     display: inline-flex;
                     justify-content: center;
+                    margin-top:10px;
                     .current-time,
                     .duration{
                         font-size:12px;
@@ -225,11 +229,8 @@
                 .progressbar{
                     flex:1;
                     @progress-height:5px;
-                    // position: relative;
                     width:100%;
-                    // height:@progress-height;
-                    // background-color: #ccc;
-                    margin-top: 5px;
+                    margin-top: 2px;
                     .progress{
                         position: absolute;
                         display: inline-block;
@@ -364,7 +365,7 @@
     .translate{
         animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }
-        .scale{
+    .scale{
         animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }
 }
