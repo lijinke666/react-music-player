@@ -28,6 +28,8 @@ export default class MusicPlayer extends React.PureComponent {
     isMute: false,
     soundValue: 100,
     isDown: false,
+    moveX: 0,
+    moveY: 0,
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
   }
   static defaultProps = {
@@ -37,11 +39,11 @@ export default class MusicPlayer extends React.PureComponent {
     name: "name",
     closeText: "close",
     openText: "open",
-    drag:true
+    drag: true
   }
   static PropTypes = {
     mode: PropTypes.oneOf(['mini', 'full']),
-    drag:PropTypes.bool,
+    drag: PropTypes.bool,
     name: PropTypes.string.isRequired,
     cover: PropTypes.string.isRequired,
     musicSrc: PropTypes.string.isRequired,
@@ -56,13 +58,14 @@ export default class MusicPlayer extends React.PureComponent {
     audioEnded: PropTypes.func,
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
-    autdioSeeked:PropTypes.func
+    autdioSeeked: PropTypes.func
   }
   constructor(props) {
     super(props)
     this.audio = null       //当前播放器
     this.defaultMusciName = "music"
-    this.mouseX = 0
+    this.mouseX = this.mouseY = 0
+    this.mouseDown = false
   }
   render() {
     const {
@@ -74,6 +77,7 @@ export default class MusicPlayer extends React.PureComponent {
       controllerTitle,
       closeText,
       openText,
+      drag,
       style
     } = this.props
 
@@ -88,18 +92,39 @@ export default class MusicPlayer extends React.PureComponent {
       isMute,
       soundValue,
       audioFile,
+      moveX,
+      moveY
     } = this.state
 
+    const bindEvents = drag
+      ? {
+        onMouseDown: this.controllerMouseDown,
+        onMouseMove: this.controllerMouseMove,
+        onMouseUp: this.controllerMouseUp,
+        onMouseOut: this.controllerMouseOut
+      }
+      : {
+        onClick: this.openPanel
+      }
+
     return (
-      <figure className={classNames("music-player", className)} key="music-player" {...style}>
+      <div
+        className={classNames("music-player", className)}
+        key="music-player"
+      >
         {
           toggle
             ? undefined
             : (
-              <div 
-                key="controller" 
-                className="scale music-player-controller" 
-                onClick={this.openPanel}
+              <div
+                key="controller"
+                className="scale music-player-controller"
+                ref={node => this.controller = node}
+                style={{
+                  left: moveX,
+                  top: moveY
+                }}
+                {...bindEvents}
               >
                 <span className="controller-title" key="controller-title">{controllerTitle}</span>
                 <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
@@ -169,8 +194,42 @@ export default class MusicPlayer extends React.PureComponent {
             : undefined
         }
         <audio key="audio" className="music-player-audio" src={musicSrc}></audio>
-      </figure>
+      </div>
     )
+  }
+  controllerMouseDown = (e) => {
+    e.preventDefault()
+    const { left, top } = this.getBoundingClientRect(this.controller)
+    this.mouseX = e.pageX - left
+    this.mouseY = e.pageY - top
+    this.mouseDown = true
+    // this.setState(({isDown})=>({isDown:true}))
+  }
+  controllerMouseMove = (e) => {
+    e.preventDefault()
+    let currentMouseX = e.pageX
+    let currentMouseY = e.pageY
+    let [moveX, moveY] = [0, 0]
+    if (this.mouseDown === true) {
+      moveX = currentMouseX - this.mouseX
+      moveY = currentMouseY - this.mouseY
+
+      let pageWidth = document.documentElement.clientWidth //页面最大宽度
+      let pageHeight = document.documentElement.clientHeight //页面最大高度
+      let maxMoveX = pageWidth - this.controller.offsetWidth
+      let maxMoveY = pageHeight - this.controller.offsetHeight
+      maxMoveX = Math.min(maxMoveX, Math.max(0, moveX))
+      maxMoveY = Math.min(maxMoveY, Math.max(0, moveY))
+      this.setState(() => ({ moveX: maxMoveX, moveY: maxMoveY }))
+    }
+  }
+  controllerMouseUp = (e) => {
+    e.preventDefault()
+    this.mouseDown = false
+  }
+  controllerMouseOut = (e) => {
+    e.preventDefault()
+    this.mouseDown = false
   }
   onHandleProgress = (value) => {
     this.audio.currentTime = value
@@ -207,11 +266,11 @@ export default class MusicPlayer extends React.PureComponent {
     target.stopPropagation()
     target.preventDefault()
   }
-  getBoundingClientRect = () => {
-    const ele = this.dom.querySelector('.progress')
-    const { left } = ele.getBoundingClientRect()
+  getBoundingClientRect = (ele) => {
+    const { left, top } = ele.getBoundingClientRect()
     return {
-      left
+      left,
+      top
     }
   }
   progressClick = (e) => {
@@ -280,10 +339,10 @@ export default class MusicPlayer extends React.PureComponent {
     this.audio.pause()
     this.setState({ playing: false })
   }
-  pauseAudio = ()=>{
+  pauseAudio = () => {
     this.props.audioPause && this.props.audioPause(this.audio.currentTime, this.audio.duration)
   }
-  
+
   //加载音频
   loadAudio = () => {
     if (this.audio.readyState == 4 && this.audio.networkState != 3) {
@@ -311,13 +370,13 @@ export default class MusicPlayer extends React.PureComponent {
       }
       return { playing: false }
     })
-    
+
   }
   //播放进度更新
   audioTimeUpdate = () => {
     const currentTime = this.audio.currentTime
     this.setState({ currentTime })
-    this.props.audioProgress && this.props.audioProgress(currentTime,this.audio.duration)
+    this.props.audioProgress && this.props.audioProgress(currentTime, this.audio.duration)
   }
   //音量改变
   audioSoundChange = (e) => {
@@ -350,31 +409,31 @@ export default class MusicPlayer extends React.PureComponent {
       this.setState({ toggle: true })
     }
   }
-  unBindEvnets = (...options)=>{
+  unBindEvnets = (...options) => {
     this.bindEvents(...options)
   }
   bindEvents = (
-      target=this.audio,
-      eventsNames={
-        warning:this.loadAudio,
-        canplay:this.onPlay,
-        error:this.loadAudioError,
-        ended:this.audioEnd,
-        seeked:this.autdioSeeked,
-        pause:this.pauseAudio,
-        timeupdate:this.audioTimeUpdate,
-        volumechange:this.audioVolumeChange
+    target = this.audio,
+    eventsNames = {
+      warning: this.loadAudio,
+      canplay: this.onPlay,
+      error: this.loadAudioError,
+      ended: this.audioEnd,
+      seeked: this.autdioSeeked,
+      pause: this.pauseAudio,
+      timeupdate: this.audioTimeUpdate,
+      volumechange: this.audioVolumeChange
     },
-    bind=true
-  )=>{
-    Object.entries(eventsNames).forEach(([name,_events])=>{
-      bind 
-      ? target.addEventListener(name,_events) 
-      : target.removeEventListener(name,_events)
+    bind = true
+  ) => {
+    Object.entries(eventsNames).forEach(([name, _events]) => {
+      bind
+        ? target.addEventListener(name, _events)
+        : target.removeEventListener(name, _events)
     })
   }
   componentWillUnmount() {
-    this.unBindEvnets(this.audio,undefined,false)
+    this.unBindEvnets(this.audio, undefined, false)
   }
   componentDidMount() {
     this.dom = ReactDOM.findDOMNode(this)

@@ -70,15 +70,17 @@
 }
 @loading-color:darken(@primary-color,10%);
 .music-player{
-    position: fixed;
-    right:20px;
-    bottom:50px;
+    @player-width:80px;
+    @player-height:@player-width;
+    cursor:pointer;
+    @media screen and (max-width:768px){
+        transform: scale(0.5);
+        @player-width:50px !important;
+    }
     svg{
         font-size:32px;
     }
     @media screen and (max-width:768px){
-        right:10px;
-        bottom:10px;
         svg{
             font-size:28px;
         }
@@ -86,27 +88,22 @@
     &-audio{
         .hidden();
     }
-    &-controller{
-        @player-width:80px;
-        @media screen and (max-width:768px){
-            transform: scale(0.5);
-            @player-width:50px !important;
-        }
-        @player-height:@player-width;
-        padding: 10px;
+    &,&-controller{
         width:@player-width;
         height:@player-height;
+    }
+    &-controller{
         border-radius: 50%;
         border:2px solid #fff;
         background-color: #fff;
         color:@primary-color;
         box-shadow: 0 0 10px rgba(0,0,0,.15);
-        position: relative;
         font-size:20px;
         .text-center();
         .transition(.3s);
-        cursor:pointer;
         z-index: 99;
+        padding: 10px;
+        position: absolute;
         &::before{
             content:"";
             position: absolute;
@@ -122,6 +119,9 @@
         .center();
         i{
             font-size:28px;
+        }
+        &:active{
+            box-shadow: 0 0 30px rgba(0,0,0,.2);
         }
         &:hover{
             font-size:16px;

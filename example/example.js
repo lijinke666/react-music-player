@@ -50,7 +50,7 @@ const options = {
 
     //audio play progress handle
     audioProgress(currentTime,duration){
-        console.log(currentTime,duration);
+        // console.log(currentTime,duration);
     },
     
     //audio load faild error handle
