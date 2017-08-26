@@ -27,7 +27,9 @@ export default class MusicPlayer extends React.PureComponent {
     isLoop: false,
     isMute: false,
     soundValue: 100,
-    isDown: false,
+    isDrag: false,
+    currentX: 0,
+    currentY: 0,
     moveX: 0,
     moveY: 0,
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
@@ -64,8 +66,6 @@ export default class MusicPlayer extends React.PureComponent {
     super(props)
     this.audio = null       //当前播放器
     this.defaultMusciName = "music"
-    this.mouseX = this.mouseY = 0
-    this.mouseDown = false
   }
   render() {
     const {
@@ -108,29 +108,32 @@ export default class MusicPlayer extends React.PureComponent {
       }
 
     return (
-      <div
-        className={classNames("music-player", className)}
-        key="music-player"
-      >
-        {
-          toggle
-            ? undefined
-            : (
-              <div
-                key="controller"
-                className="scale music-player-controller"
-                ref={node => this.controller = node}
-                style={{
-                  left: moveX,
-                  top: moveY
-                }}
-                {...bindEvents}
-              >
-                <span className="controller-title" key="controller-title">{controllerTitle}</span>
-                <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
-              </div>
-            )
-        }
+      <div className="react-jinke-music-player">
+        <div
+          className={classNames("music-player", className)}
+          key="music-player"
+          style={{
+            ...style,
+            transform: `translate3d(${moveX}px,${moveY}px,0)`
+          }}
+        >
+          {
+            toggle
+              ? undefined
+              : (
+                <div
+                  key="controller"
+                  className="scale music-player-controller"
+                  ref={node => this.controller = node}
+                  {...bindEvents}
+                >
+                  <span className="controller-title" key="controller-title">{controllerTitle}</span>
+                  <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
+                </div>
+              )
+          }
+          <audio key="audio" className="music-player-audio" preload="auto" src={musicSrc}></audio>
+        </div>
         {
           toggle
             ? (
@@ -163,16 +166,16 @@ export default class MusicPlayer extends React.PureComponent {
                     </section>
                   </div>
                   <div className="player-content" key="player-content">
-                    <span className="play-btn" key="play-btn" onClick={this.onPlay} title="play">
+                    <span className="group play-btn" key="play-btn" onClick={this.onPlay} title="play">
                       {
                         playing
                           ? <span><FaPauseCircle /></span>
                           : <span><FaPlayCircle /></span>
                       }
                     </span>
-                    <span className="roload-btn" onClick={this.audioReload} key="roload-btn" title="roload"><Reload /></span>
-                    <span className={classNames("loop-btn", { "active": isLoop })} onClick={this.audioLoop} key="loop-btn" title="loop of the song"><FaCircleONotch /></span>
-                    <span className="play-sounds" key="play-sound">
+                    <span className="group roload-btn" onClick={this.audioReload} key="roload-btn" title="roload"><Reload /></span>
+                    <span className={classNames("group loop-btn", { "active": isLoop })} onClick={this.audioLoop} key="loop-btn" title="loop of the song"><FaCircleONotch /></span>
+                    <span className="group play-sounds" key="play-sound">
                       {
                         isMute
                           ? <span onClick={this.onSound}><MdVolumeMute /></span>
@@ -183,7 +186,7 @@ export default class MusicPlayer extends React.PureComponent {
                     {
                       mode === 'full'
                         ? undefined
-                        : <span className="hide-panel" key="hide-panel-btn" onClick={this.onHidePanel}>
+                        : <span className="group hide-panel" key="hide-panel-btn" onClick={this.onHidePanel}>
                           <FaMinusSquareO />
                         </span>
                     }
@@ -193,43 +196,68 @@ export default class MusicPlayer extends React.PureComponent {
             )
             : undefined
         }
-        <audio key="audio" className="music-player-audio" src={musicSrc}></audio>
       </div>
     )
   }
   controllerMouseDown = (e) => {
     e.preventDefault()
+    const _currentX = e.pageX
+    const _currentY = e.pageY
     const { left, top } = this.getBoundingClientRect(this.controller)
-    this.mouseX = e.pageX - left
-    this.mouseY = e.pageY - top
-    this.mouseDown = true
-    // this.setState(({isDown})=>({isDown:true}))
+    this.setState(({ isDrag }) => {
+      return {
+        currentX: _currentX - left,
+        currentY: _currentY - top,
+        isDrag: true
+      }
+    })
   }
   controllerMouseMove = (e) => {
     e.preventDefault()
-    let currentMouseX = e.pageX
-    let currentMouseY = e.pageY
+    let _currentX = e.pageX
+    let _currentY = e.pageY
     let [moveX, moveY] = [0, 0]
-    if (this.mouseDown === true) {
-      moveX = currentMouseX - this.mouseX
-      moveY = currentMouseY - this.mouseY
+    if (!this.state.isDrag) return false
 
-      let pageWidth = document.documentElement.clientWidth //页面最大宽度
-      let pageHeight = document.documentElement.clientHeight //页面最大高度
+    this.setState(({ currentX, currentY }) => {
+      moveX = _currentX - currentX
+      moveY = _currentY - currentY
+
+      let pageWidth = Math.max(        //页面最大宽度
+        document.body.clientWidth,
+        document.documentElement.clientWidth
+      )
+      let pageHeight = Math.max(        //页面最大宽度
+        document.body.clientHeight,
+        document.documentElement.clientHeight
+      )
       let maxMoveX = pageWidth - this.controller.offsetWidth
       let maxMoveY = pageHeight - this.controller.offsetHeight
       maxMoveX = Math.min(maxMoveX, Math.max(0, moveX))
       maxMoveY = Math.min(maxMoveY, Math.max(0, moveY))
-      this.setState(() => ({ moveX: maxMoveX, moveY: maxMoveY }))
-    }
+
+      console.log(maxMoveX, maxMoveY);
+      return {
+        moveX: maxMoveX,
+        moveY: maxMoveY
+      }
+    })
   }
   controllerMouseUp = (e) => {
     e.preventDefault()
-    this.mouseDown = false
+    this.setState({
+      isDrag: false,
+      currentX: 0,
+      currentY: 0
+    })
   }
   controllerMouseOut = (e) => {
     e.preventDefault()
-    this.mouseDown = false
+    // this.setState({
+    //   isDrag: false,
+    //   currentX: 0,
+    //   currentY: 0
+    // })
   }
   onHandleProgress = (value) => {
     this.audio.currentTime = value
@@ -272,35 +300,6 @@ export default class MusicPlayer extends React.PureComponent {
       left,
       top
     }
-  }
-  progressClick = (e) => {
-    this.stopAll(e)
-    const { left } = this.getBoundingClientRect()
-    this.audio.currentTime = ~~(e.pageX - left)
-  }
-  onProgressDown = (e) => {
-    this.stopAll(e)
-    this.setState({ isDown: true })
-    const { left } = this.getBoundingClientRect()
-    this.mouseX = (e.pageX - left) >> 0
-  }
-  onProgressUp = (e) => {
-    this.stopAll(e)
-    this.setState({ isDown: false })
-  }
-  onProgressMove = (e) => {
-    this.stopAll(e)
-    const { isDown } = this.state
-    let moveX = 0
-    const { left } = this.getBoundingClientRect()
-    if (isDown === true) {
-      moveX = (e.pageX - left - this.mouseX) >> 0
-      this.audio.currentTime += moveX
-    }
-  }
-  onProgressOut = (e) => {
-    this.stopAll(e)
-    this.setState({ isDown: false })
   }
   //循环播放
   audioLoop = () => {
@@ -365,8 +364,7 @@ export default class MusicPlayer extends React.PureComponent {
 
     this.setState(({ playing, isLoop }) => {
       if (isLoop === true) {
-        this.onPlay()
-        return { playing: true }
+        return this.loadAudio()
       }
       return { playing: false }
     })
@@ -409,6 +407,12 @@ export default class MusicPlayer extends React.PureComponent {
       this.setState({ toggle: true })
     }
   }
+  bindMobileTouchStartEvents = () => {
+    document.body.addEventListener('touchstart', this.onPlay, false)
+  }
+  unBindMobileTouchStartEvents = () => {
+    document.body.removeEventListener('touchstart', this.onPlay, false)
+  }
   unBindEvnets = (...options) => {
     this.bindEvents(...options)
   }
@@ -422,7 +426,7 @@ export default class MusicPlayer extends React.PureComponent {
       seeked: this.autdioSeeked,
       pause: this.pauseAudio,
       timeupdate: this.audioTimeUpdate,
-      volumechange: this.audioVolumeChange
+      volumechange: this.audioVolumeChange,
     },
     bind = true
   ) => {
@@ -434,6 +438,7 @@ export default class MusicPlayer extends React.PureComponent {
   }
   componentWillUnmount() {
     this.unBindEvnets(this.audio, undefined, false)
+    this.unBindMobileTouchStartEvents()
   }
   componentDidMount() {
     this.dom = ReactDOM.findDOMNode(this)
@@ -441,5 +446,8 @@ export default class MusicPlayer extends React.PureComponent {
     this.audio = this.dom.querySelector('audio')
     this.toggleMode(this.props.mode)
     this.bindEvents(this.audio)
+    this.bindMobileTouchStartEvents()
+    document.addEventListener('mousemove', (e) => this.controllerMouseMove(e), false)
+    document.addEventListener('mouseup', (e) => this.controllerMouseUp(e), false)
   }
 }

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom"
 import ReactJkMusicPlayer from "../src"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
+import "./example.less"
+
 const options = {
     //audio controller open text  [ type `String` default 'open']
     openText:"OPEN",           
