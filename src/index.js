@@ -1,5 +1,5 @@
 
-import React, { PropTypes } from "react"
+import React, { PureComponent, PropTypes } from "react"
 import ReactDOM from "react-dom"
 import SettingIcon from "react-icons/lib/fa/cog"
 import FaCircleONotch from "react-icons/lib/fa/circle-o-notch"
@@ -10,6 +10,7 @@ import FaPauseCircle from "react-icons/lib/fa/pause-circle"
 import Reload from "react-icons/lib/fa/refresh"
 import MdVolumeDown from "react-icons/lib/md/volume-down"
 import MdVolumeMute from "react-icons/lib/md/volume-mute"
+import Download from "react-icons/lib/fa/cloud-download"
 import classNames from "classnames"
 import Slider from 'rc-slider/lib/Slider'
 
@@ -18,7 +19,7 @@ import 'rc-slider/assets/index.css'
 import "./styles.less"
 
 
-export default class MusicPlayer extends React.PureComponent {
+export default class ReactJkMusicPlayer extends PureComponent {
   state = {
     toggle: false,
     playing: false,
@@ -32,25 +33,40 @@ export default class MusicPlayer extends React.PureComponent {
     currentY: 0,
     moveX: 0,
     moveY: 0,
+    isMove: false,
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
   }
   static defaultProps = {
     mode: "mini",
     controllerTitle: <FaHeadphones />,
     isUploadAudio: false,
-    name: "name",
+    name: "",
     closeText: "close",
     openText: "open",
-    drag: true
+    isMove: false,
+    drag: true,
+    showDowload: true,
+    showPlay: true,
+    showReload: true,
+    showLoop: true,
   }
   static PropTypes = {
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
     cover: PropTypes.string.isRequired,
     musicSrc: PropTypes.string.isRequired,
-    closeText: PropTypes.string,
-    openText: PropTypes.string,
+    closeText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    openText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
     controllerTitle: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
@@ -60,12 +76,19 @@ export default class MusicPlayer extends React.PureComponent {
     audioEnded: PropTypes.func,
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
-    autdioSeeked: PropTypes.func
+    autdioSeeked: PropTypes.func,
+    audioDowload: PropTypes.func,
+    showDowload: PropTypes.bool,
+    showPlay: PropTypes.bool,
+    showReload: PropTypes.bool,
+    showLoop: PropTypes.bool,
   }
   constructor(props) {
     super(props)
     this.audio = null       //当前播放器
     this.defaultMusciName = "music"
+    this.targetId = "music-player-controller"
+    this.openPanelPeriphery = 5             //移动差值 在 这之间 认为是点击打开panel
   }
   render() {
     const {
@@ -78,7 +101,11 @@ export default class MusicPlayer extends React.PureComponent {
       closeText,
       openText,
       drag,
-      style
+      style,
+      showDowload,
+      showPlay,
+      showReload,
+      showLoop,
     } = this.props
 
     const {
@@ -93,7 +120,8 @@ export default class MusicPlayer extends React.PureComponent {
       soundValue,
       audioFile,
       moveX,
-      moveY
+      moveY,
+      isMove
     } = this.state
 
     const bindEvents = drag
@@ -106,6 +134,13 @@ export default class MusicPlayer extends React.PureComponent {
       : {
         onClick: this.openPanel
       }
+
+    const sliderBaseOptions = {
+      min: 0,
+      step: 0.01,
+      trackStyle: { backgroundColor: "#31c27c" },
+      handleStyle: { backgroundColor: "#31c27c", "border": "2px solid #fff" }
+    }
 
     return (
       <div className="react-jinke-music-player">
@@ -123,6 +158,7 @@ export default class MusicPlayer extends React.PureComponent {
               : (
                 <div
                   key="controller"
+                  id={this.targetId}
                   className="scale music-player-controller"
                   ref={node => this.controller = node}
                   {...bindEvents}
@@ -149,15 +185,12 @@ export default class MusicPlayer extends React.PureComponent {
                       </span>
                       <div className="progressbar" key="progressbar">
                         <Slider
-                          min={0}
                           max={Math.ceil(duration)}
-                          step={0.01}
                           defaultValue={0}
                           value={currentTime}
                           onChange={this.onHandleProgress}
                           onAfterChange={this.autdioSeeked}
-                          trackStyle={{ backgroundColor: "#31c27c" }}
-                          handleStyle={{ backgroundColor: "#31c27c", "border": "2px solid #fff" }}
+                          {...sliderBaseOptions}
                         />
                       </div>
                       <span key="duration" className="duration">
@@ -166,22 +199,54 @@ export default class MusicPlayer extends React.PureComponent {
                     </section>
                   </div>
                   <div className="player-content" key="player-content">
-                    <span className="group play-btn" key="play-btn" onClick={this.onPlay} title="play">
-                      {
-                        playing
-                          ? <span><FaPauseCircle /></span>
-                          : <span><FaPlayCircle /></span>
-                      }
-                    </span>
-                    <span className="group roload-btn" onClick={this.audioReload} key="roload-btn" title="roload"><Reload /></span>
-                    <span className={classNames("group loop-btn", { "active": isLoop })} onClick={this.audioLoop} key="loop-btn" title="loop of the song"><FaCircleONotch /></span>
-                    <span className="group play-sounds" key="play-sound">
+                    {/*播放按钮*/}
+                    {
+                      showPlay
+                        ? <span className="group play-btn" key="play-btn" onClick={this.onPlay} title="play">
+                          {
+                            playing
+                              ? <span><FaPauseCircle /></span>
+                              : <span><FaPlayCircle /></span>
+                          }
+                        </span>
+                        : undefined
+                    }
+
+                    {/*重播*/}
+                    {
+                      showReload
+                        ? <span className="group roload-btn" onClick={this.audioReload} key="roload-btn" title="roload"><Reload /></span>
+                        : undefined
+                    }
+
+                    {/*单曲循环*/}
+                    {
+                      showLoop
+                        ? <span className={classNames("group loop-btn", { "active": isLoop })} onClick={this.audioLoop} key="loop-btn" title="loop of the song"><FaCircleONotch /></span>
+                        : undefined
+                    }
+
+                    {/*下载歌曲*/}
+                    {
+                      showDowload
+                        ? <span className="group audio-download" onClick={() => this.downloadAudio(name, musicSrc)}><Download /></span>
+                        : undefined
+                    }
+
+                    {/*音量控制*/}
+                    <span className="group play-sounds" key="play-sound" title="sounds">
                       {
                         isMute
-                          ? <span onClick={this.onSound}><MdVolumeMute /></span>
-                          : <span onClick={this.onMute}><MdVolumeDown /></span>
+                          ? <span className="sounds-icon" onClick={this.onSound}><MdVolumeMute /></span>
+                          : <span className="sounds-icon" onClick={this.onMute}><MdVolumeDown /></span>
                       }
-                      <input type="range" value={soundValue} step="0.01" max="1.0" min="0" className="sound-operation" key="range" onChange={this.audioSoundChange} />
+                      <Slider
+                        max={1.0}
+                        value={soundValue}
+                        onChange={this.audioSoundChange}
+                        className="sound-operation"
+                        {...sliderBaseOptions}
+                      />
                     </span>
                     {
                       mode === 'full'
@@ -199,6 +264,15 @@ export default class MusicPlayer extends React.PureComponent {
       </div>
     )
   }
+  downloadAudio = (audioName, audioSrc) => {
+    this.downloadNode = document.createElement('a')
+    this.downloadNode.setAttribute('download', audioName)
+    this.downloadNode.setAttribute('href', audioSrc)
+    this.downloadNode.click()
+    this.downloadNode = undefined
+
+    this.props.audioDowload && this.props.audioDowload(audioName, audioSrc)
+  }
   controllerMouseDown = (e) => {
     e.preventDefault()
     const _currentX = e.pageX
@@ -206,20 +280,24 @@ export default class MusicPlayer extends React.PureComponent {
     const { left, top } = this.getBoundingClientRect(this.controller)
     this.setState(({ isDrag }) => {
       return {
+        x: _currentX,
+        y: _currentY,
         currentX: _currentX - left,
         currentY: _currentY - top,
         isDrag: true
       }
     })
+    return false
   }
   controllerMouseMove = (e) => {
     e.preventDefault()
+    e.stopPropagation()
     let _currentX = e.pageX
     let _currentY = e.pageY
     let [moveX, moveY] = [0, 0]
     if (!this.state.isDrag) return false
 
-    this.setState(({ currentX, currentY }) => {
+    this.setState(({ x, y, currentX, currentY }) => {
       moveX = _currentX - currentX
       moveY = _currentY - currentY
 
@@ -236,37 +314,53 @@ export default class MusicPlayer extends React.PureComponent {
       maxMoveX = Math.min(maxMoveX, Math.max(0, moveX))
       maxMoveY = Math.min(maxMoveY, Math.max(0, moveY))
 
-      console.log(maxMoveX, maxMoveY);
-      return {
-        moveX: maxMoveX,
-        moveY: maxMoveY
+
+      const _moveX = _currentX - x
+      const _moveY = _currentY - y
+
+      if (Math.abs(_moveX) >= this.openPanelPeriphery || Math.abs(_moveY) >= this.openPanelPeriphery) {
+        return{
+          isMove: true,
+          moveX: maxMoveX,
+          moveY: maxMoveY
+        }
+      } else {
+        return{
+          isMove:false,
+          moveX: maxMoveX,
+          moveY: maxMoveY
+        }
       }
     })
+
+    return false
   }
   controllerMouseUp = (e) => {
     e.preventDefault()
-    this.setState({
-      isDrag: false,
-      currentX: 0,
-      currentY: 0
+    e.stopPropagation()
+    this.setState(({ isMove }) => {
+      //body 和 target 都是绑定了 mouseUp 事件  防止 document.body 触发 openPanel 事件
+      const isTarget = this.targetId === e.target.id
+      if (!isMove && isTarget) {
+        this.openPanel()
+      }
+      return {
+        isMove: false,
+        isDrag: false,
+        currentX: 0,
+        currentY: 0
+      }
     })
+    return false
   }
   controllerMouseOut = (e) => {
     e.preventDefault()
-    // this.setState({
-    //   isDrag: false,
-    //   currentX: 0,
-    //   currentY: 0
-    // })
   }
   onHandleProgress = (value) => {
     this.audio.currentTime = value
   }
   onSound = () => {
     this.setAudioVolume(this.state.currentAudioVolume)
-  }
-  audioSoundChange = (e) => {
-    this.setAudioVolume(e.target.value)
   }
   setAudioVolume = (value) => {
     this.audio.volume = value
@@ -315,11 +409,11 @@ export default class MusicPlayer extends React.PureComponent {
     this.onPlay()
   }
   openPanel = () => {
-    this.setState({ toggle: !this.state.toggle })
+    this.setState({ toggle: true })
   }
   //收起播放器
   onHidePanel = () => {
-    this.openPanel()
+    this.setState({ toggle: false })
   }
   //播放
   onPlay = () => {
@@ -377,8 +471,8 @@ export default class MusicPlayer extends React.PureComponent {
     this.props.audioProgress && this.props.audioProgress(currentTime, this.audio.duration)
   }
   //音量改变
-  audioSoundChange = (e) => {
-    this.setAudioVolume(e.target.value)
+  audioSoundChange = (value) => {
+    this.setAudioVolume(value)
   }
   audioVolumeChange = () => {
     if (this.audio.volume <= 0) {
@@ -436,6 +530,10 @@ export default class MusicPlayer extends React.PureComponent {
         : target.removeEventListener(name, _events)
     })
   }
+  shouldComponentUpdate = (nextProps, { isMove }) => {
+    if(this.state.isMove != isMove) return false
+    return true
+  }
   componentWillUnmount() {
     this.unBindEvnets(this.audio, undefined, false)
     this.unBindMobileTouchStartEvents()
@@ -447,7 +545,7 @@ export default class MusicPlayer extends React.PureComponent {
     this.toggleMode(this.props.mode)
     this.bindEvents(this.audio)
     this.bindMobileTouchStartEvents()
-    document.addEventListener('mousemove', (e) => this.controllerMouseMove(e), false)
-    document.addEventListener('mouseup', (e) => this.controllerMouseUp(e), false)
+    document.body.addEventListener('mousemove', (e) => this.controllerMouseMove(e),false)
+    document.body.addEventListener('mouseup', (e) => this.controllerMouseUp(e),false)
   }
 }
