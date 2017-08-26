@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "../src"
+import ReactJkMusicPlayer from "react-jinke-music-player"
 import Message from "rc-message"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
