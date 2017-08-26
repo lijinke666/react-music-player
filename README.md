@@ -3,7 +3,7 @@ react music player component
 
 ## Screenshots
 
-![example](https://github.com/lijinke666/LjkUpLoad/blob/master/ljkUpload.gif)
+![example](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/example.gif)
 
 ## Installation
 ```
