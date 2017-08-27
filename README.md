@@ -27,9 +27,13 @@ import ReactDOM from "react-dom"
 import ReactJkMusicPlayer from "react-jinke-music-player"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
-import "./example.less"
-
 const options = {
+    //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
+    defaultPosition:{
+        top:120,
+        left:120
+    },
+
     //audio controller open text  [ type `String` default 'open']
     openText: "OPEN",
 
@@ -64,7 +68,7 @@ const options = {
     showDowload: true,
 
     //loop button display of the audio player panel   [type `Boolean` default `true`]
-    showLoop: false,
+    showLoop: true,
 
     //Music is downloaded handle
     audioDowload(audioName, audioSrc) {
@@ -104,7 +108,7 @@ const options = {
 }
 
 const Demo = () => (
-    <ReactJkMusicPlayer {...options}/>
+    <ReactJkMusicPlayer {...options} />
 )
 ReactDOM.render(
     <Demo />,

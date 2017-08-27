@@ -12,11 +12,14 @@ import MdVolumeDown from "react-icons/lib/md/volume-down"
 import MdVolumeMute from "react-icons/lib/md/volume-mute"
 import Download from "react-icons/lib/fa/cloud-download"
 import classNames from "classnames"
+import Mobile from "is-mobile"
 import Slider from 'rc-slider/lib/Slider'
 
 
 import 'rc-slider/assets/index.css'
 import "./styles.less"
+
+const ISMOBILE = Mobile()
 
 
 export default class ReactJkMusicPlayer extends PureComponent {
@@ -38,6 +41,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   static defaultProps = {
     mode: "mini",
+    defaultPosition: {
+      left: 0,
+      top: 0
+    },
     controllerTitle: <FaHeadphones />,
     isUploadAudio: false,
     name: "",
@@ -71,6 +78,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.string,
       PropTypes.object
     ]),
+    defaultPosition: PropTypes.object,
     audioPlay: PropTypes.func,
     audioPause: PropTypes.func,
     audioEnded: PropTypes.func,
@@ -88,7 +96,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.audio = null       //当前播放器
     this.defaultMusciName = "music"
     this.targetId = "music-player-controller"
-    this.openPanelPeriphery = 5             //移动差值 在 这之间 认为是点击打开panel
+    this.openPanelPeriphery = 1             //移动差值 在 这之间 认为是点击打开panel
+    this.x = 0
+    this.y = 0
+    this.isDrag = false
   }
   render() {
     const {
@@ -126,10 +137,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const bindEvents = drag
       ? {
-        onMouseDown: this.controllerMouseDown,
-        onMouseMove: this.controllerMouseMove,
-        onMouseUp: this.controllerMouseUp,
-        onMouseOut: this.controllerMouseOut
+        [ISMOBILE ? "onTouchStart" : "onMouseDown"]: this.controllerMouseDown,
+        [ISMOBILE ? "onTouchMove" : "onMouseMove"]: this.controllerMouseMove,
+        [ISMOBILE ? "onTouchEnd" : "onMouseUp"]: this.controllerMouseUp,
+        [ISMOBILE ? "onTouchCancel" : "onMouseOut"]: this.controllerMouseOut,
       }
       : {
         onClick: this.openPanel
@@ -143,14 +154,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
 
     return (
-      <div className="react-jinke-music-player">
+      <div
+        className="react-jinke-music-player"
+        ref={node => this.controller = node}
+        {...bindEvents}
+        style={{
+          ...style,
+          left: moveX,
+          top: moveY
+
+        }}
+      >
         <div
           className={classNames("music-player", className)}
           key="music-player"
-          style={{
-            ...style,
-            transform: `translate3d(${moveX}px,${moveY}px,0)`
-          }}
+
         >
           {
             toggle
@@ -160,8 +178,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   key="controller"
                   id={this.targetId}
                   className="scale music-player-controller"
-                  ref={node => this.controller = node}
-                  {...bindEvents}
                 >
                   <span className="controller-title" key="controller-title">{controllerTitle}</span>
                   <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
@@ -202,7 +218,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     {/*播放按钮*/}
                     {
                       showPlay
-                        ? <span className="group play-btn" key="play-btn" onClick={this.onPlay} title="play">
+                        ? <span
+                          className="group play-btn"
+                          key="play-btn"
+                          ref={node => this.playBtn = node}
+                          {...ISMOBILE ? { onTouchStart: this.onPlay } : { onClick: this.onPlay }}
+                          title="play"
+                        >
                           {
                             playing
                               ? <span><FaPauseCircle /></span>
@@ -215,21 +237,40 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     {/*重播*/}
                     {
                       showReload
-                        ? <span className="group roload-btn" onClick={this.audioReload} key="roload-btn" title="roload"><Reload /></span>
+                        ? <span
+                          className="group roload-btn"
+                          {...ISMOBILE ? { onTouchStart: this.audioReload } : { onClick: this.audioReload }}
+                          key="roload-btn"
+                          title="roload"
+                        >
+                          <Reload />
+                        </span>
                         : undefined
                     }
 
                     {/*单曲循环*/}
                     {
                       showLoop
-                        ? <span className={classNames("group loop-btn", { "active": isLoop })} onClick={this.audioLoop} key="loop-btn" title="loop of the song"><FaCircleONotch /></span>
+                        ? <span
+                          className={classNames("group loop-btn", { "active": isLoop })}
+                          {...ISMOBILE ? { onTouchStart: this.audioLoop } : { onClick: this.audioLoop }}
+                          key="loop-btn"
+                          title="loop of the song"
+                        >
+                          <FaCircleONotch />
+                        </span>
                         : undefined
                     }
 
                     {/*下载歌曲*/}
                     {
                       showDowload
-                        ? <span className="group audio-download" onClick={() => this.downloadAudio(name, musicSrc)}><Download /></span>
+                        ? <span
+                            className="group audio-download"
+                            {...ISMOBILE ? { onTouchStart: () => this.downloadAudio(name, musicSrc) } : { onClick: ()=>this.downloadAudio(name, musicSrc) }}
+                            >
+                            <Download />
+                          </span>
                         : undefined
                     }
 
@@ -237,11 +278,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span className="group play-sounds" key="play-sound" title="sounds">
                       {
                         isMute
-                          ? <span className="sounds-icon" onClick={this.onSound}><MdVolumeMute /></span>
-                          : <span className="sounds-icon" onClick={this.onMute}><MdVolumeDown /></span>
+                          ? <span className="sounds-icon" {...ISMOBILE ? { onTouchStart: this.onSound } : { onClick: this.onSound }}><MdVolumeMute /></span>
+                          : <span className="sounds-icon" {...ISMOBILE ? { onTouchStart: this.onSound } : { onClick: this.onSound }}><MdVolumeDown /></span>
                       }
                       <Slider
-                        max={1.0}
+                        max={1}
                         value={soundValue}
                         onChange={this.audioSoundChange}
                         className="sound-operation"
@@ -251,7 +292,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     {
                       mode === 'full'
                         ? undefined
-                        : <span className="group hide-panel" key="hide-panel-btn" onClick={this.onHidePanel}>
+                        : <span className="group hide-panel" key="hide-panel-btn"{...ISMOBILE ? { onTouchStart: this.onHidePanel } : { onClick: this.onHidePanel }} >
                           <FaMinusSquareO />
                         </span>
                     }
@@ -264,6 +305,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       </div>
     )
   }
+  bindPanelEvnets = () => {
+
+  }
   downloadAudio = (audioName, audioSrc) => {
     this.downloadNode = document.createElement('a')
     this.downloadNode.setAttribute('download', audioName)
@@ -274,87 +318,71 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.audioDowload && this.props.audioDowload(audioName, audioSrc)
   }
   controllerMouseDown = (e) => {
-    e.preventDefault()
-    const _currentX = e.pageX
-    const _currentY = e.pageY
-    const { left, top } = this.getBoundingClientRect(this.controller)
-    this.setState(({ isDrag }) => {
-      return {
-        x: _currentX,
-        y: _currentY,
-        currentX: _currentX - left,
-        currentY: _currentY - top,
-        isDrag: true
-      }
-    })
+    e.preventDefault();
+    const touch = !ISMOBILE ? e : e.targetTouches[0];
+    const _currentX = touch.pageX
+    const _currentY = touch.pageY
+    this.x = _currentX
+    this.y = _currentY
+    this.isDrag = true
     return false
   }
   controllerMouseMove = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     e.stopPropagation()
-    let _currentX = e.pageX
-    let _currentY = e.pageY
+    const touch = !ISMOBILE ? e : e.targetTouches[0];
+    let _currentX = touch.pageX
+    let _currentY = touch.pageY
     let [moveX, moveY] = [0, 0]
-    if (!this.state.isDrag) return false
+    if (!this.isDrag) return false
 
-    this.setState(({ x, y, currentX, currentY }) => {
-      moveX = _currentX - currentX
-      moveY = _currentY - currentY
-
-      let pageWidth = Math.max(        //页面最大宽度
-        document.body.clientWidth,
-        document.documentElement.clientWidth
-      )
-      let pageHeight = Math.max(        //页面最大宽度
-        document.body.clientHeight,
-        document.documentElement.clientHeight
-      )
-      let maxMoveX = pageWidth - this.controller.offsetWidth
-      let maxMoveY = pageHeight - this.controller.offsetHeight
-      maxMoveX = Math.min(maxMoveX, Math.max(0, moveX))
-      maxMoveY = Math.min(maxMoveY, Math.max(0, moveY))
+    const { top, left } = this.getBoundingClientRect(this.controller)
+    moveX = _currentX - this.x
+    moveY = _currentY - this.y
 
 
-      const _moveX = _currentX - x
-      const _moveY = _currentY - y
+    const dragX = moveX + left
+    const dragY = moveY + top
+    let pageWidth = Math.max(        //页面最大宽度
+      document.body.clientWidth,
+      document.documentElement.clientWidth
+    )
+    let pageHeight = Math.max(        //页面最大宽度
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    )
+    let maxMoveX = pageWidth - this.controller.offsetWidth
+    let maxMoveY = pageHeight - this.controller.offsetHeight
+    maxMoveX = Math.min(maxMoveX, Math.max(0, dragX))
+    maxMoveY = Math.min(maxMoveY, Math.max(0, dragY))
+    const peripheryX = _currentX - this.x
+    const peripheryY = _currentY - this.y
 
-      if (Math.abs(_moveX) >= this.openPanelPeriphery || Math.abs(_moveY) >= this.openPanelPeriphery) {
-        return{
-          isMove: true,
-          moveX: maxMoveX,
-          moveY: maxMoveY
-        }
-      } else {
-        return{
-          isMove:false,
-          moveX: maxMoveX,
-          moveY: maxMoveY
-        }
-      }
+    const isMove = Math.abs(peripheryX) >= this.openPanelPeriphery || Math.abs(peripheryY) >= this.openPanelPeriphery
+
+    this.setState({
+      isMove,
+      moveX: maxMoveX,
+      moveY: maxMoveY
     })
 
+    this.x = _currentX
+    this.y = _currentY
     return false
   }
   controllerMouseUp = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    this.setState(({ isMove }) => {
-      //body 和 target 都是绑定了 mouseUp 事件  防止 document.body 触发 openPanel 事件
-      const isTarget = this.targetId === e.target.id
-      if (!isMove && isTarget) {
-        this.openPanel()
-      }
-      return {
-        isMove: false,
-        isDrag: false,
-        currentX: 0,
-        currentY: 0
-      }
-    })
+    this.isDrag = false
+    if (!this.state.isMove) {
+      this.openPanel()
+    }
+    this.setState({ isMove: false })
     return false
   }
   controllerMouseOut = (e) => {
     e.preventDefault()
+    this.isDrag = false
   }
   onHandleProgress = (value) => {
     this.audio.currentTime = value
@@ -412,7 +440,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({ toggle: true })
   }
   //收起播放器
-  onHidePanel = () => {
+  onHidePanel = (e) => {
     this.setState({ toggle: false })
   }
   //播放
@@ -501,11 +529,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState({ toggle: true })
     }
   }
-  bindMobileTouchStartEvents = () => {
-    document.body.addEventListener('touchstart', this.onPlay, false)
-  }
-  unBindMobileTouchStartEvents = () => {
-    document.body.removeEventListener('touchstart', this.onPlay, false)
+  bindMobileAutoPlayerEvents = () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      this.audio.play()
+    })
   }
   unBindEvnets = (...options) => {
     this.bindEvents(...options)
@@ -524,15 +551,27 @@ export default class ReactJkMusicPlayer extends PureComponent {
     },
     bind = true
   ) => {
-    Object.entries(eventsNames).forEach(([name, _events]) => {
+    for (let name in eventsNames) {
+      const _events = eventsNames[name]
       bind
         ? target.addEventListener(name, _events)
         : target.removeEventListener(name, _events)
-    })
+    }
   }
-  shouldComponentUpdate = (nextProps, { isMove }) => {
-    if(this.state.isMove != isMove) return false
-    return true
+  fixDragBug() {
+    //解决拖拽速度过快产生的bug  绑定了但是会导致 Slider 组件拖拽事件无效 暂未想到好的解决办法
+    document.addEventListener(ISMOBILE ? 'touchmove' : 'mousemove', (e) => this.controllerMouseMove(e), false)
+    document.addEventListener(ISMOBILE ? 'touchend' : 'mouseup', (e) => this.controllerMouseUp(e), false)
+  }
+  //合并state 更新初始位置
+  componentWillMount() {
+    const { defaultPosition: { left, top } } = this.props
+    this.setState(() => {
+      return {
+        moveX: left || 0,
+        moveY: top || 0
+      }
+    })
   }
   componentWillUnmount() {
     this.unBindEvnets(this.audio, undefined, false)
@@ -544,8 +583,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.audio = this.dom.querySelector('audio')
     this.toggleMode(this.props.mode)
     this.bindEvents(this.audio)
-    this.bindMobileTouchStartEvents()
-    document.body.addEventListener('mousemove', (e) => this.controllerMouseMove(e),false)
-    document.body.addEventListener('mouseup', (e) => this.controllerMouseUp(e),false)
+    // this.bindMobileAutoPlayerEvents()
   }
 }

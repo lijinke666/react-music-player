@@ -805,7 +805,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(228);
+var _propTypes = __webpack_require__(229);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -1318,7 +1318,7 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(266);
+  var ReactDebugTool = __webpack_require__(267);
   debugTool = ReactDebugTool;
 }
 
@@ -2724,7 +2724,7 @@ module.exports = ReactElement;
 "use strict";
 
 
-module.exports = __webpack_require__(251);
+module.exports = __webpack_require__(252);
 
 /***/ }),
 /* 27 */
@@ -2988,7 +2988,7 @@ module.exports = DOMLazyTree;
 
 
 
-var ReactRef = __webpack_require__(280);
+var ReactRef = __webpack_require__(281);
 var ReactInstrumentation = __webpack_require__(12);
 
 var warning = __webpack_require__(2);
@@ -3163,14 +3163,14 @@ module.exports = ReactReconciler;
 var _assign = __webpack_require__(5);
 
 var ReactBaseClasses = __webpack_require__(141);
-var ReactChildren = __webpack_require__(324);
-var ReactDOMFactories = __webpack_require__(325);
+var ReactChildren = __webpack_require__(325);
+var ReactDOMFactories = __webpack_require__(326);
 var ReactElement = __webpack_require__(25);
-var ReactPropTypes = __webpack_require__(327);
-var ReactVersion = __webpack_require__(329);
+var ReactPropTypes = __webpack_require__(328);
+var ReactVersion = __webpack_require__(330);
 
-var createReactClass = __webpack_require__(331);
-var onlyChild = __webpack_require__(333);
+var createReactClass = __webpack_require__(332);
+var onlyChild = __webpack_require__(334);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
@@ -4539,10 +4539,10 @@ module.exports = EventPluginRegistry;
 var _assign = __webpack_require__(5);
 
 var EventPluginRegistry = __webpack_require__(50);
-var ReactEventEmitterMixin = __webpack_require__(270);
+var ReactEventEmitterMixin = __webpack_require__(271);
 var ViewportMetrics = __webpack_require__(131);
 
-var getVendorPrefixedEventName = __webpack_require__(305);
+var getVendorPrefixedEventName = __webpack_require__(306);
 var isEventSupported = __webpack_require__(93);
 
 /**
@@ -5924,7 +5924,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(224)();
+  module.exports = __webpack_require__(225)();
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -5966,7 +5966,7 @@ module.exports = ReactPropTypesSecret;
 
 
 var DOMLazyTree = __webpack_require__(32);
-var Danger = __webpack_require__(243);
+var Danger = __webpack_require__(244);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(12);
 
@@ -8333,7 +8333,7 @@ var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
 var ReactPropTypesSecret = __webpack_require__(80);
-var checkPropTypes = __webpack_require__(223);
+var checkPropTypes = __webpack_require__(224);
 
 module.exports = function (isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -8859,7 +8859,7 @@ exports.getKeyboardValueMutator = getKeyboardValueMutator;
 
 var _reactDom = __webpack_require__(26);
 
-var _KeyCode = __webpack_require__(237);
+var _KeyCode = __webpack_require__(238);
 
 var _KeyCode2 = _interopRequireDefault(_KeyCode);
 
@@ -9288,7 +9288,7 @@ var DOMProperty = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(12);
 
-var quoteAttributeValueForBrowser = __webpack_require__(306);
+var quoteAttributeValueForBrowser = __webpack_require__(307);
 var warning = __webpack_require__(2);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -9890,7 +9890,7 @@ module.exports = ReactHostComponent;
 
 
 
-var ReactDOMSelection = __webpack_require__(261);
+var ReactDOMSelection = __webpack_require__(262);
 
 var containsNode = __webpack_require__(211);
 var focusNode = __webpack_require__(113);
@@ -10026,12 +10026,12 @@ var React = __webpack_require__(34);
 var ReactBrowserEventEmitter = __webpack_require__(51);
 var ReactCurrentOwner = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactDOMContainerInfo = __webpack_require__(253);
-var ReactDOMFeatureFlags = __webpack_require__(255);
+var ReactDOMContainerInfo = __webpack_require__(254);
+var ReactDOMFeatureFlags = __webpack_require__(256);
 var ReactFeatureFlags = __webpack_require__(125);
 var ReactInstanceMap = __webpack_require__(43);
 var ReactInstrumentation = __webpack_require__(12);
-var ReactMarkupChecksum = __webpack_require__(275);
+var ReactMarkupChecksum = __webpack_require__(276);
 var ReactReconciler = __webpack_require__(33);
 var ReactUpdateQueue = __webpack_require__(88);
 var ReactUpdates = __webpack_require__(14);
@@ -10965,11 +10965,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(5);
 
-var ReactCompositeComponent = __webpack_require__(250);
+var ReactCompositeComponent = __webpack_require__(251);
 var ReactEmptyComponent = __webpack_require__(124);
 var ReactHostComponent = __webpack_require__(126);
 
-var getNextDebugID = __webpack_require__(332);
+var getNextDebugID = __webpack_require__(333);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -11215,9 +11215,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(15);
-var REACT_ELEMENT_TYPE = __webpack_require__(269);
+var REACT_ELEMENT_TYPE = __webpack_require__(270);
 
-var getIteratorFn = __webpack_require__(303);
+var getIteratorFn = __webpack_require__(304);
 var invariant = __webpack_require__(1);
 var KeyEscapeUtils = __webpack_require__(84);
 var warning = __webpack_require__(2);
@@ -11583,7 +11583,7 @@ var ReactCurrentOwner = __webpack_require__(15);
 var ReactComponentTreeHook = __webpack_require__(10);
 var ReactElement = __webpack_require__(25);
 
-var checkReactTypeSpec = __webpack_require__(330);
+var checkReactTypeSpec = __webpack_require__(331);
 
 var canDefineProperty = __webpack_require__(56);
 var getIteratorFn = __webpack_require__(145);
@@ -11981,20 +11981,20 @@ module.exports = __webpack_amd_options__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rc_button__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rc_button__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_check_circle__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_check_circle__ = __webpack_require__(309);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_check_circle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_check_circle__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_icons_lib_ti_delete__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_icons_lib_ti_delete__ = __webpack_require__(320);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_icons_lib_ti_delete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_icons_lib_ti_delete__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_icons_lib_ti_warning__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_icons_lib_ti_warning__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_icons_lib_ti_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_icons_lib_ti_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_icons_lib_ti_pin__ = __webpack_require__(320);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_icons_lib_ti_pin__ = __webpack_require__(321);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_icons_lib_ti_pin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_icons_lib_ti_pin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_icons_lib_md_loop__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_icons_lib_md_loop__ = __webpack_require__(317);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_icons_lib_md_loop___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_icons_lib_md_loop__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_less__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_less__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__styles_less__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -12251,39 +12251,41 @@ Message.renderElement = function (type, params) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_icons_lib_fa_cog__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_icons_lib_fa_cog__ = __webpack_require__(312);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_icons_lib_fa_cog___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_icons_lib_fa_cog__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_icons_lib_fa_circle_o_notch__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_icons_lib_fa_circle_o_notch__ = __webpack_require__(310);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_icons_lib_fa_circle_o_notch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_icons_lib_fa_circle_o_notch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_headphones__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_headphones___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_headphones__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_icons_lib_fa_minus_square_o__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_icons_lib_fa_minus_square_o__ = __webpack_require__(313);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_icons_lib_fa_minus_square_o___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_icons_lib_fa_minus_square_o__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_icons_lib_fa_play_circle__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_icons_lib_fa_play_circle__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_icons_lib_fa_play_circle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_icons_lib_fa_play_circle__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_icons_lib_fa_pause_circle__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_icons_lib_fa_pause_circle__ = __webpack_require__(314);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_icons_lib_fa_pause_circle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_icons_lib_fa_pause_circle__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_icons_lib_fa_refresh__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_icons_lib_fa_refresh__ = __webpack_require__(316);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_icons_lib_fa_refresh___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_icons_lib_fa_refresh__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_icons_lib_md_volume_down__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_icons_lib_md_volume_down__ = __webpack_require__(318);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_icons_lib_md_volume_down___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_react_icons_lib_md_volume_down__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_icons_lib_md_volume_mute__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_icons_lib_md_volume_mute__ = __webpack_require__(319);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_icons_lib_md_volume_mute___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_react_icons_lib_md_volume_mute__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_react_icons_lib_fa_cloud_download__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_react_icons_lib_fa_cloud_download__ = __webpack_require__(311);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_react_icons_lib_fa_cloud_download___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_react_icons_lib_fa_cloud_download__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_classnames__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rc_slider_lib_Slider__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rc_slider_lib_Slider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rc_slider_lib_Slider__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rc_slider_assets_index_css__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rc_slider_assets_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rc_slider_assets_index_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__styles_less__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__styles_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__styles_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_is_mobile__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_is_mobile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_is_mobile__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rc_slider_lib_Slider__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rc_slider_lib_Slider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rc_slider_lib_Slider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rc_slider_assets_index_css__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rc_slider_assets_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rc_slider_assets_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__styles_less__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__styles_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__styles_less__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -12308,6 +12310,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
+var ISMOBILE = __WEBPACK_IMPORTED_MODULE_13_is_mobile___default()();
 
 var ReactJkMusicPlayer = function (_PureComponent) {
   _inherits(ReactJkMusicPlayer, _PureComponent);
@@ -12334,6 +12339,8 @@ var ReactJkMusicPlayer = function (_PureComponent) {
       currentAudioVolume: 0 //当前音量  静音后恢复到之前记录的音量
     };
 
+    _this.bindPanelEvnets = function () {};
+
     _this.downloadAudio = function (audioName, audioSrc) {
       _this.downloadNode = document.createElement('a');
       _this.downloadNode.setAttribute('download', audioName);
@@ -12346,99 +12353,73 @@ var ReactJkMusicPlayer = function (_PureComponent) {
 
     _this.controllerMouseDown = function (e) {
       e.preventDefault();
-      var _currentX = e.pageX;
-      var _currentY = e.pageY;
-
-      var _this$getBoundingClie = _this.getBoundingClientRect(_this.controller),
-          left = _this$getBoundingClie.left,
-          top = _this$getBoundingClie.top;
-
-      _this.setState(function (_ref) {
-        var isDrag = _ref.isDrag;
-
-        return {
-          x: _currentX,
-          y: _currentY,
-          currentX: _currentX - left,
-          currentY: _currentY - top,
-          isDrag: true
-        };
-      });
+      var touch = !ISMOBILE ? e : e.targetTouches[0];
+      var _currentX = touch.pageX;
+      var _currentY = touch.pageY;
+      _this.x = _currentX;
+      _this.y = _currentY;
+      _this.isDrag = true;
       return false;
     };
 
     _this.controllerMouseMove = function (e) {
       e.preventDefault();
       e.stopPropagation();
-      var _currentX = e.pageX;
-      var _currentY = e.pageY;
+      var touch = !ISMOBILE ? e : e.targetTouches[0];
+      var _currentX = touch.pageX;
+      var _currentY = touch.pageY;
       var moveX = 0,
           moveY = 0;
 
-      if (!_this.state.isDrag) return false;
+      if (!_this.isDrag) return false;
 
-      _this.setState(function (_ref2) {
-        var x = _ref2.x,
-            y = _ref2.y,
-            currentX = _ref2.currentX,
-            currentY = _ref2.currentY;
+      var _this$getBoundingClie = _this.getBoundingClientRect(_this.controller),
+          top = _this$getBoundingClie.top,
+          left = _this$getBoundingClie.left;
 
-        moveX = _currentX - currentX;
-        moveY = _currentY - currentY;
+      moveX = _currentX - _this.x;
+      moveY = _currentY - _this.y;
 
-        var pageWidth = Math.max( //页面最大宽度
-        document.body.clientWidth, document.documentElement.clientWidth);
-        var pageHeight = Math.max( //页面最大宽度
-        document.body.clientHeight, document.documentElement.clientHeight);
-        var maxMoveX = pageWidth - _this.controller.offsetWidth;
-        var maxMoveY = pageHeight - _this.controller.offsetHeight;
-        maxMoveX = Math.min(maxMoveX, Math.max(0, moveX));
-        maxMoveY = Math.min(maxMoveY, Math.max(0, moveY));
+      var dragX = moveX + left;
+      var dragY = moveY + top;
+      var pageWidth = Math.max( //页面最大宽度
+      document.body.clientWidth, document.documentElement.clientWidth);
+      var pageHeight = Math.max( //页面最大宽度
+      document.body.clientHeight, document.documentElement.clientHeight);
+      var maxMoveX = pageWidth - _this.controller.offsetWidth;
+      var maxMoveY = pageHeight - _this.controller.offsetHeight;
+      maxMoveX = Math.min(maxMoveX, Math.max(0, dragX));
+      maxMoveY = Math.min(maxMoveY, Math.max(0, dragY));
+      var peripheryX = _currentX - _this.x;
+      var peripheryY = _currentY - _this.y;
 
-        var _moveX = _currentX - x;
-        var _moveY = _currentY - y;
+      var isMove = Math.abs(peripheryX) >= _this.openPanelPeriphery || Math.abs(peripheryY) >= _this.openPanelPeriphery;
 
-        if (Math.abs(_moveX) >= _this.openPanelPeriphery || Math.abs(_moveY) >= _this.openPanelPeriphery) {
-          return {
-            isMove: true,
-            moveX: maxMoveX,
-            moveY: maxMoveY
-          };
-        } else {
-          return {
-            isMove: false,
-            moveX: maxMoveX,
-            moveY: maxMoveY
-          };
-        }
+      _this.setState({
+        isMove: isMove,
+        moveX: maxMoveX,
+        moveY: maxMoveY
       });
 
+      _this.x = _currentX;
+      _this.y = _currentY;
       return false;
     };
 
     _this.controllerMouseUp = function (e) {
       e.preventDefault();
       e.stopPropagation();
-      _this.setState(function (_ref3) {
-        var isMove = _ref3.isMove;
-
-        //body 和 target 都是绑定了 mouseUp 事件  防止 document.body 触发 openPanel 事件
-        var isTarget = _this.targetId === e.target.id;
-        if (!isMove && isTarget) {
-          _this.openPanel();
-        }
-        return {
-          isMove: false,
-          isDrag: false,
-          currentX: 0,
-          currentY: 0
-        };
-      });
+      _this.isDrag = false;
+      if (!_this.state.isMove) {
+        _this.openPanel();
+      }
+      _this.setState({ isMove: false });
       return false;
     };
 
     _this.controllerMouseOut = function (e) {
       e.preventDefault();
+      _this.isDrag = false;
     };
 
     _this.onHandleProgress = function (value) {
@@ -12474,8 +12455,8 @@ var ReactJkMusicPlayer = function (_PureComponent) {
     };
 
     _this.audioLoop = function () {
-      _this.setState(function (_ref4) {
-        var isLoop = _ref4.isLoop;
+      _this.setState(function (_ref) {
+        var isLoop = _ref.isLoop;
 
         return {
           isLoop: !isLoop
@@ -12492,7 +12473,7 @@ var ReactJkMusicPlayer = function (_PureComponent) {
       _this.setState({ toggle: true });
     };
 
-    _this.onHidePanel = function () {
+    _this.onHidePanel = function (e) {
       _this.setState({ toggle: false });
     };
 
@@ -12540,9 +12521,9 @@ var ReactJkMusicPlayer = function (_PureComponent) {
     _this.audioEnd = function () {
       _this.props.audioEnded && _this.props.audioEnded(_this.audio.duration);
 
-      _this.setState(function (_ref5) {
-        var playing = _ref5.playing,
-            isLoop = _ref5.isLoop;
+      _this.setState(function (_ref2) {
+        var playing = _ref2.playing,
+            isLoop = _ref2.isLoop;
 
         if (isLoop === true) {
           return _this.loadAudio();
@@ -12590,12 +12571,10 @@ var ReactJkMusicPlayer = function (_PureComponent) {
       }
     };
 
-    _this.bindMobileTouchStartEvents = function () {
-      document.body.addEventListener('touchstart', _this.onPlay, false);
-    };
-
-    _this.unBindMobileTouchStartEvents = function () {
-      document.body.removeEventListener('touchstart', _this.onPlay, false);
+    _this.bindMobileAutoPlayerEvents = function () {
+      document.addEventListener('DOMContentLoaded', function () {
+        _this.audio.play();
+      });
     };
 
     _this.unBindEvnets = function () {
@@ -12616,33 +12595,27 @@ var ReactJkMusicPlayer = function (_PureComponent) {
       };
       var bind = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-      Object.entries(eventsNames).forEach(function (_ref6) {
-        var _ref7 = _slicedToArray(_ref6, 2),
-            name = _ref7[0],
-            _events = _ref7[1];
-
+      for (var name in eventsNames) {
+        var _events = eventsNames[name];
         bind ? target.addEventListener(name, _events) : target.removeEventListener(name, _events);
-      });
-    };
-
-    _this.shouldComponentUpdate = function (nextProps, _ref8) {
-      var isMove = _ref8.isMove;
-
-      if (_this.state.isMove != isMove) return false;
-      return true;
+      }
     };
 
     _this.audio = null; //当前播放器
     _this.defaultMusciName = "music";
     _this.targetId = "music-player-controller";
-    _this.openPanelPeriphery = 5; //移动差值 在 这之间 认为是点击打开panel
+    _this.openPanelPeriphery = 1; //移动差值 在 这之间 认为是点击打开panel
+    _this.x = 0;
+    _this.y = 0;
+    _this.isDrag = false;
     return _this;
   }
 
   _createClass(ReactJkMusicPlayer, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _ref3,
+          _this2 = this;
 
       var _props = this.props,
           musicSrc = _props.musicSrc,
@@ -12675,12 +12648,7 @@ var ReactJkMusicPlayer = function (_PureComponent) {
           isMove = _state.isMove;
 
 
-      var bindEvents = drag ? {
-        onMouseDown: this.controllerMouseDown,
-        onMouseMove: this.controllerMouseMove,
-        onMouseUp: this.controllerMouseUp,
-        onMouseOut: this.controllerMouseOut
-      } : {
+      var bindEvents = drag ? (_ref3 = {}, _defineProperty(_ref3, ISMOBILE ? "onTouchStart" : "onMouseDown", this.controllerMouseDown), _defineProperty(_ref3, ISMOBILE ? "onTouchMove" : "onMouseMove", this.controllerMouseMove), _defineProperty(_ref3, ISMOBILE ? "onTouchEnd" : "onMouseUp", this.controllerMouseUp), _defineProperty(_ref3, ISMOBILE ? "onTouchCancel" : "onMouseOut", this.controllerMouseOut), _ref3) : {
         onClick: this.openPanel
       };
 
@@ -12693,26 +12661,32 @@ var ReactJkMusicPlayer = function (_PureComponent) {
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
-        { className: "react-jinke-music-player" },
+        _extends({
+          className: "react-jinke-music-player",
+          ref: function ref(node) {
+            return _this2.controller = node;
+          }
+        }, bindEvents, {
+          style: _extends({}, style, {
+            left: moveX,
+            top: moveY
+
+          })
+        }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
           {
             className: __WEBPACK_IMPORTED_MODULE_12_classnames___default()("music-player", className),
-            key: "music-player",
-            style: _extends({}, style, {
-              transform: "translate3d(" + moveX + "px," + moveY + "px,0)"
-            })
+            key: "music-player"
+
           },
           toggle ? undefined : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
-            _extends({
+            {
               key: "controller",
               id: this.targetId,
-              className: "scale music-player-controller",
-              ref: function ref(node) {
-                return _this2.controller = node;
-              }
-            }, bindEvents),
+              className: "scale music-player-controller"
+            },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "span",
               { className: "controller-title", key: "controller-title" },
@@ -12752,7 +12726,7 @@ var ReactJkMusicPlayer = function (_PureComponent) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "div",
                   { className: "progressbar", key: "progressbar" },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13_rc_slider_lib_Slider___default.a, _extends({
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_14_rc_slider_lib_Slider___default.a, _extends({
                     max: Math.ceil(duration),
                     defaultValue: 0,
                     value: currentTime,
@@ -12772,7 +12746,15 @@ var ReactJkMusicPlayer = function (_PureComponent) {
               { className: "player-content", key: "player-content" },
               showPlay ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "span",
-                { className: "group play-btn", key: "play-btn", onClick: this.onPlay, title: "play" },
+                _extends({
+                  className: "group play-btn",
+                  key: "play-btn",
+                  ref: function ref(node) {
+                    return _this2.playBtn = node;
+                  }
+                }, ISMOBILE ? { onTouchStart: this.onPlay } : { onClick: this.onPlay }, {
+                  title: "play"
+                }),
                 playing ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "span",
                   null,
@@ -12785,19 +12767,33 @@ var ReactJkMusicPlayer = function (_PureComponent) {
               ) : undefined,
               showReload ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "span",
-                { className: "group roload-btn", onClick: this.audioReload, key: "roload-btn", title: "roload" },
+                _extends({
+                  className: "group roload-btn"
+                }, ISMOBILE ? { onTouchStart: this.audioReload } : { onClick: this.audioReload }, {
+                  key: "roload-btn",
+                  title: "roload"
+                }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_react_icons_lib_fa_refresh___default.a, null)
               ) : undefined,
               showLoop ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "span",
-                { className: __WEBPACK_IMPORTED_MODULE_12_classnames___default()("group loop-btn", { "active": isLoop }), onClick: this.audioLoop, key: "loop-btn", title: "loop of the song" },
+                _extends({
+                  className: __WEBPACK_IMPORTED_MODULE_12_classnames___default()("group loop-btn", { "active": isLoop })
+                }, ISMOBILE ? { onTouchStart: this.audioLoop } : { onClick: this.audioLoop }, {
+                  key: "loop-btn",
+                  title: "loop of the song"
+                }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_icons_lib_fa_circle_o_notch___default.a, null)
               ) : undefined,
               showDowload ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "span",
-                { className: "group audio-download", onClick: function onClick() {
+                _extends({
+                  className: "group audio-download"
+                }, ISMOBILE ? { onTouchStart: function onTouchStart() {
                     return _this2.downloadAudio(name, musicSrc);
-                  } },
+                  } } : { onClick: function onClick() {
+                    return _this2.downloadAudio(name, musicSrc);
+                  } }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11_react_icons_lib_fa_cloud_download___default.a, null)
               ) : undefined,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -12805,15 +12801,15 @@ var ReactJkMusicPlayer = function (_PureComponent) {
                 { className: "group play-sounds", key: "play-sound", title: "sounds" },
                 isMute ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "span",
-                  { className: "sounds-icon", onClick: this.onSound },
+                  _extends({ className: "sounds-icon" }, ISMOBILE ? { onTouchStart: this.onSound } : { onClick: this.onSound }),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_icons_lib_md_volume_mute___default.a, null)
                 ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "span",
-                  { className: "sounds-icon", onClick: this.onMute },
+                  _extends({ className: "sounds-icon" }, ISMOBILE ? { onTouchStart: this.onSound } : { onClick: this.onSound }),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_icons_lib_md_volume_down___default.a, null)
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13_rc_slider_lib_Slider___default.a, _extends({
-                  max: 1.0,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_14_rc_slider_lib_Slider___default.a, _extends({
+                  max: 1,
                   value: soundValue,
                   onChange: this.audioSoundChange,
                   className: "sound-operation"
@@ -12821,7 +12817,7 @@ var ReactJkMusicPlayer = function (_PureComponent) {
               ),
               mode === 'full' ? undefined : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "span",
-                { className: "group hide-panel", key: "hide-panel-btn", onClick: this.onHidePanel },
+                _extends({ className: "group hide-panel", key: "hide-panel-btn" }, ISMOBILE ? { onTouchStart: this.onHidePanel } : { onClick: this.onHidePanel }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_icons_lib_fa_minus_square_o___default.a, null)
               )
             )
@@ -12877,6 +12873,35 @@ var ReactJkMusicPlayer = function (_PureComponent) {
     //静音
 
   }, {
+    key: "fixDragBug",
+    value: function fixDragBug() {
+      var _this3 = this;
+
+      //解决拖拽速度过快产生的bug  绑定了但是会导致 Slider 组件拖拽事件无效 暂未想到好的解决办法
+      document.addEventListener(ISMOBILE ? 'touchmove' : 'mousemove', function (e) {
+        return _this3.controllerMouseMove(e);
+      }, false);
+      document.addEventListener(ISMOBILE ? 'touchend' : 'mouseup', function (e) {
+        return _this3.controllerMouseUp(e);
+      }, false);
+    }
+    //合并state 更新初始位置
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _props$defaultPositio = this.props.defaultPosition,
+          left = _props$defaultPositio.left,
+          top = _props$defaultPositio.top;
+
+      this.setState(function () {
+        return {
+          moveX: left || 0,
+          moveY: top || 0
+        };
+      });
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.unBindEvnets(this.audio, undefined, false);
@@ -12885,20 +12910,12 @@ var ReactJkMusicPlayer = function (_PureComponent) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this3 = this;
-
       this.dom = __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.findDOMNode(this);
       this.progress = this.dom.querySelector('.progress');
       this.audio = this.dom.querySelector('audio');
       this.toggleMode(this.props.mode);
       this.bindEvents(this.audio);
-      this.bindMobileTouchStartEvents();
-      document.body.addEventListener('mousemove', function (e) {
-        return _this3.controllerMouseMove(e);
-      }, false);
-      document.body.addEventListener('mouseup', function (e) {
-        return _this3.controllerMouseUp(e);
-      }, false);
+      // this.bindMobileAutoPlayerEvents()
     }
   }]);
 
@@ -12907,6 +12924,10 @@ var ReactJkMusicPlayer = function (_PureComponent) {
 
 ReactJkMusicPlayer.defaultProps = {
   mode: "mini",
+  defaultPosition: {
+    left: 0,
+    top: 0
+  },
   controllerTitle: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_icons_lib_fa_headphones___default.a, null),
   isUploadAudio: false,
   name: "",
@@ -12928,6 +12949,7 @@ ReactJkMusicPlayer.PropTypes = {
   closeText: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].oneOfType([__WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].string, __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].object]),
   openText: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].oneOfType([__WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].string, __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].object]),
   controllerTitle: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].oneOfType([__WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].string, __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].object]),
+  defaultPosition: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].object,
   audioPlay: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func,
   audioPause: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func,
   audioEnded: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func,
@@ -12949,7 +12971,7 @@ ReactJkMusicPlayer.PropTypes = {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(335);
+var content = __webpack_require__(336);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(45)(content, {});
@@ -12993,6 +13015,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var options = {
+    //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
+    defaultPosition: {
+        top: 120,
+        left: 120
+    },
+
     //audio controller open text  [ type `String` default 'open']
     openText: "OPEN",
 
@@ -13027,7 +13055,7 @@ var options = {
     showDowload: true,
 
     //loop button display of the audio player panel   [type `Boolean` default `true`]
-    showLoop: false,
+    showLoop: true,
 
     //Music is downloaded handle
     audioDowload: function audioDowload(audioName, audioSrc) {
@@ -13063,7 +13091,7 @@ var options = {
 
     //audio play progress handle
     audioProgress: function audioProgress(currentTime, duration) {
-        // console.log(currentTime,duration);
+        console.log(currentTime, duration);
     },
 
 
@@ -13075,7 +13103,16 @@ var options = {
 };
 
 var Demo = function Demo() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__src__["a" /* default */], options);
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "h2",
+            { className: "title" },
+            "Click or Drag to try"
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__src__["a" /* default */], options)
+    );
 };
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Demo, null), document.getElementById('root'));
 
@@ -16060,6 +16097,23 @@ module.exports = performanceNow;
 
 /***/ }),
 /* 223 */
+/***/ (function(module, exports) {
+
+module.exports = isMobile;
+
+function isMobile(ua) {
+  if (!ua && typeof navigator != 'undefined') ua = navigator.userAgent;
+  if (ua && ua.headers && typeof ua.headers['user-agent'] == 'string') {
+    ua = ua.headers['user-agent'];
+  }
+  if (typeof ua != 'string') return false;
+
+  return (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(ua) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(ua.substr(0, 4))
+  );
+}
+
+/***/ }),
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16129,7 +16183,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16189,7 +16243,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16259,7 +16313,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16314,7 +16368,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16336,7 +16390,7 @@ var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
 var ReactPropTypesSecret = __webpack_require__(117);
-var checkPropTypes = __webpack_require__(225);
+var checkPropTypes = __webpack_require__(226);
 
 module.exports = function (isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -16785,7 +16839,7 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -16809,16 +16863,16 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(227)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(228)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(226)();
+  module.exports = __webpack_require__(227)();
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16828,7 +16882,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_less__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_less__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles_less__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -16900,7 +16954,7 @@ Button.PropTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Button);
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17006,7 +17060,7 @@ Handle.propTypes = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17048,11 +17102,11 @@ var _warning = __webpack_require__(97);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _Track = __webpack_require__(234);
+var _Track = __webpack_require__(235);
 
 var _Track2 = _interopRequireDefault(_Track);
 
-var _createSlider = __webpack_require__(235);
+var _createSlider = __webpack_require__(236);
 
 var _createSlider2 = _interopRequireDefault(_createSlider);
 
@@ -17261,7 +17315,7 @@ module.exports = exports['default'];
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17350,7 +17404,7 @@ exports['default'] = Marks;
 module.exports = exports['default'];
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17434,7 +17488,7 @@ exports['default'] = Steps;
 module.exports = exports['default'];
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17481,7 +17535,7 @@ exports['default'] = Track;
 module.exports = exports['default'];
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17533,7 +17587,7 @@ var _propTypes = __webpack_require__(79);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _addEventListener = __webpack_require__(236);
+var _addEventListener = __webpack_require__(237);
 
 var _addEventListener2 = _interopRequireDefault(_addEventListener);
 
@@ -17545,15 +17599,15 @@ var _warning = __webpack_require__(97);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _Steps = __webpack_require__(233);
+var _Steps = __webpack_require__(234);
 
 var _Steps2 = _interopRequireDefault(_Steps);
 
-var _Marks = __webpack_require__(232);
+var _Marks = __webpack_require__(233);
 
 var _Marks2 = _interopRequireDefault(_Marks);
 
-var _Handle = __webpack_require__(230);
+var _Handle = __webpack_require__(231);
 
 var _Handle2 = _interopRequireDefault(_Handle);
 
@@ -17888,7 +17942,7 @@ module.exports = exports['default'];
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17921,7 +17975,7 @@ function addEventListenerWrap(target, eventType, cb) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18451,7 +18505,7 @@ exports['default'] = KeyCode;
 module.exports = exports['default'];
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18530,7 +18584,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18559,7 +18613,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18579,9 +18633,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var EventPropagators = __webpack_require__(42);
 var ExecutionEnvironment = __webpack_require__(7);
-var FallbackCompositionState = __webpack_require__(246);
-var SyntheticCompositionEvent = __webpack_require__(289);
-var SyntheticInputEvent = __webpack_require__(292);
+var FallbackCompositionState = __webpack_require__(247);
+var SyntheticCompositionEvent = __webpack_require__(290);
+var SyntheticInputEvent = __webpack_require__(293);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -18950,7 +19004,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18971,7 +19025,7 @@ var ExecutionEnvironment = __webpack_require__(7);
 var ReactInstrumentation = __webpack_require__(12);
 
 var camelizeStyleName = __webpack_require__(210);
-var dangerousStyleValue = __webpack_require__(299);
+var dangerousStyleValue = __webpack_require__(300);
 var hyphenateStyleName = __webpack_require__(217);
 var memoizeStringOnly = __webpack_require__(220);
 var warning = __webpack_require__(2);
@@ -19171,7 +19225,7 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19488,7 +19542,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19540,7 +19594,7 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19571,7 +19625,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19674,7 +19728,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19774,7 +19828,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20015,7 +20069,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20174,7 +20228,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20191,7 +20245,7 @@ module.exports = ReactChildReconciler;
 
 
 var DOMChildrenOperations = __webpack_require__(81);
-var ReactDOMIDOperations = __webpack_require__(256);
+var ReactDOMIDOperations = __webpack_require__(257);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -20207,7 +20261,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20238,7 +20292,7 @@ var ReactNodeTypes = __webpack_require__(129);
 var ReactReconciler = __webpack_require__(33);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(298);
+  var checkReactTypeSpec = __webpack_require__(299);
 }
 
 var emptyObject = __webpack_require__(49);
@@ -21115,7 +21169,7 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21134,15 +21188,15 @@ module.exports = ReactCompositeComponent;
 
 
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactDefaultInjection = __webpack_require__(268);
+var ReactDefaultInjection = __webpack_require__(269);
 var ReactMount = __webpack_require__(128);
 var ReactReconciler = __webpack_require__(33);
 var ReactUpdates = __webpack_require__(14);
-var ReactVersion = __webpack_require__(283);
+var ReactVersion = __webpack_require__(284);
 
-var findDOMNode = __webpack_require__(300);
+var findDOMNode = __webpack_require__(301);
 var getHostComponentFromComposite = __webpack_require__(134);
-var renderSubtreeIntoContainer = __webpack_require__(307);
+var renderSubtreeIntoContainer = __webpack_require__(308);
 var warning = __webpack_require__(2);
 
 ReactDefaultInjection.inject();
@@ -21219,9 +21273,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactInstrumentation = __webpack_require__(12);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(265);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(259);
-  var ReactDOMInvalidARIAHook = __webpack_require__(258);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(266);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(260);
+  var ReactDOMInvalidARIAHook = __webpack_require__(259);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -21232,7 +21286,7 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21255,8 +21309,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(5);
 
-var AutoFocusUtils = __webpack_require__(239);
-var CSSPropertyOperations = __webpack_require__(241);
+var AutoFocusUtils = __webpack_require__(240);
+var CSSPropertyOperations = __webpack_require__(242);
 var DOMLazyTree = __webpack_require__(32);
 var DOMNamespaces = __webpack_require__(82);
 var DOMProperty = __webpack_require__(21);
@@ -21266,13 +21320,13 @@ var EventPluginRegistry = __webpack_require__(50);
 var ReactBrowserEventEmitter = __webpack_require__(51);
 var ReactDOMComponentFlags = __webpack_require__(122);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactDOMInput = __webpack_require__(257);
-var ReactDOMOption = __webpack_require__(260);
+var ReactDOMInput = __webpack_require__(258);
+var ReactDOMOption = __webpack_require__(261);
 var ReactDOMSelect = __webpack_require__(123);
-var ReactDOMTextarea = __webpack_require__(263);
+var ReactDOMTextarea = __webpack_require__(264);
 var ReactInstrumentation = __webpack_require__(12);
-var ReactMultiChild = __webpack_require__(276);
-var ReactServerRenderingTransaction = __webpack_require__(281);
+var ReactMultiChild = __webpack_require__(277);
+var ReactServerRenderingTransaction = __webpack_require__(282);
 
 var emptyFunction = __webpack_require__(9);
 var escapeTextContentForBrowser = __webpack_require__(54);
@@ -22250,7 +22304,7 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22289,7 +22343,7 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22354,7 +22408,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22378,7 +22432,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 256 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22416,7 +22470,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 257 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22709,7 +22763,7 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 258 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22808,7 +22862,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22857,7 +22911,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22985,7 +23039,7 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23003,7 +23057,7 @@ module.exports = ReactDOMOption;
 
 var ExecutionEnvironment = __webpack_require__(7);
 
-var getNodeForCharacterOffset = __webpack_require__(304);
+var getNodeForCharacterOffset = __webpack_require__(305);
 var getTextContentAccessor = __webpack_require__(135);
 
 /**
@@ -23202,7 +23256,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23370,7 +23424,7 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23536,7 +23590,7 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 264 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23678,7 +23732,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 265 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23796,7 +23850,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23815,8 +23869,8 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(274);
-var ReactHostOperationHistoryHook = __webpack_require__(272);
+var ReactInvalidSetStateWarningHook = __webpack_require__(275);
+var ReactHostOperationHistoryHook = __webpack_require__(273);
 var ReactComponentTreeHook = __webpack_require__(10);
 var ExecutionEnvironment = __webpack_require__(7);
 
@@ -24165,7 +24219,7 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24238,7 +24292,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24254,25 +24308,25 @@ module.exports = ReactDefaultBatchingStrategy;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(238);
-var BeforeInputEventPlugin = __webpack_require__(240);
-var ChangeEventPlugin = __webpack_require__(242);
-var DefaultEventPluginOrder = __webpack_require__(244);
-var EnterLeaveEventPlugin = __webpack_require__(245);
-var HTMLDOMPropertyConfig = __webpack_require__(247);
-var ReactComponentBrowserEnvironment = __webpack_require__(249);
-var ReactDOMComponent = __webpack_require__(252);
+var ARIADOMPropertyConfig = __webpack_require__(239);
+var BeforeInputEventPlugin = __webpack_require__(241);
+var ChangeEventPlugin = __webpack_require__(243);
+var DefaultEventPluginOrder = __webpack_require__(245);
+var EnterLeaveEventPlugin = __webpack_require__(246);
+var HTMLDOMPropertyConfig = __webpack_require__(248);
+var ReactComponentBrowserEnvironment = __webpack_require__(250);
+var ReactDOMComponent = __webpack_require__(253);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactDOMEmptyComponent = __webpack_require__(254);
-var ReactDOMTreeTraversal = __webpack_require__(264);
-var ReactDOMTextComponent = __webpack_require__(262);
-var ReactDefaultBatchingStrategy = __webpack_require__(267);
-var ReactEventListener = __webpack_require__(271);
-var ReactInjection = __webpack_require__(273);
-var ReactReconcileTransaction = __webpack_require__(279);
-var SVGDOMPropertyConfig = __webpack_require__(284);
-var SelectEventPlugin = __webpack_require__(285);
-var SimpleEventPlugin = __webpack_require__(286);
+var ReactDOMEmptyComponent = __webpack_require__(255);
+var ReactDOMTreeTraversal = __webpack_require__(265);
+var ReactDOMTextComponent = __webpack_require__(263);
+var ReactDefaultBatchingStrategy = __webpack_require__(268);
+var ReactEventListener = __webpack_require__(272);
+var ReactInjection = __webpack_require__(274);
+var ReactReconcileTransaction = __webpack_require__(280);
+var SVGDOMPropertyConfig = __webpack_require__(285);
+var SelectEventPlugin = __webpack_require__(286);
+var SimpleEventPlugin = __webpack_require__(287);
 
 var alreadyInjected = false;
 
@@ -24329,7 +24383,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24354,7 +24408,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24391,7 +24445,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24551,7 +24605,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24590,7 +24644,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24629,7 +24683,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24672,7 +24726,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24688,7 +24742,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 
 
 
-var adler32 = __webpack_require__(297);
+var adler32 = __webpack_require__(298);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -24727,7 +24781,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24751,10 +24805,10 @@ var ReactInstrumentation = __webpack_require__(12);
 
 var ReactCurrentOwner = __webpack_require__(15);
 var ReactReconciler = __webpack_require__(33);
-var ReactChildReconciler = __webpack_require__(248);
+var ReactChildReconciler = __webpack_require__(249);
 
 var emptyFunction = __webpack_require__(9);
-var flattenChildren = __webpack_require__(301);
+var flattenChildren = __webpack_require__(302);
 var invariant = __webpack_require__(1);
 
 /**
@@ -25179,7 +25233,7 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25278,7 +25332,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25309,7 +25363,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25493,7 +25547,7 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25512,7 +25566,7 @@ module.exports = ReactReconcileTransaction;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var ReactOwner = __webpack_require__(277);
+var ReactOwner = __webpack_require__(278);
 
 var ReactRef = {};
 
@@ -25589,7 +25643,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25610,7 +25664,7 @@ var _assign = __webpack_require__(5);
 var PooledClass = __webpack_require__(24);
 var Transaction = __webpack_require__(53);
 var ReactInstrumentation = __webpack_require__(12);
-var ReactServerUpdateQueue = __webpack_require__(282);
+var ReactServerUpdateQueue = __webpack_require__(283);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -25685,7 +25739,7 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25829,7 +25883,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25848,7 +25902,7 @@ module.exports = ReactServerUpdateQueue;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26155,7 +26209,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26348,7 +26402,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26370,17 +26424,17 @@ var _prodInvariant = __webpack_require__(3);
 var EventListener = __webpack_require__(112);
 var EventPropagators = __webpack_require__(42);
 var ReactDOMComponentTree = __webpack_require__(6);
-var SyntheticAnimationEvent = __webpack_require__(287);
-var SyntheticClipboardEvent = __webpack_require__(288);
+var SyntheticAnimationEvent = __webpack_require__(288);
+var SyntheticClipboardEvent = __webpack_require__(289);
 var SyntheticEvent = __webpack_require__(16);
-var SyntheticFocusEvent = __webpack_require__(291);
-var SyntheticKeyboardEvent = __webpack_require__(293);
+var SyntheticFocusEvent = __webpack_require__(292);
+var SyntheticKeyboardEvent = __webpack_require__(294);
 var SyntheticMouseEvent = __webpack_require__(52);
-var SyntheticDragEvent = __webpack_require__(290);
-var SyntheticTouchEvent = __webpack_require__(294);
-var SyntheticTransitionEvent = __webpack_require__(295);
+var SyntheticDragEvent = __webpack_require__(291);
+var SyntheticTouchEvent = __webpack_require__(295);
+var SyntheticTransitionEvent = __webpack_require__(296);
 var SyntheticUIEvent = __webpack_require__(44);
-var SyntheticWheelEvent = __webpack_require__(296);
+var SyntheticWheelEvent = __webpack_require__(297);
 
 var emptyFunction = __webpack_require__(9);
 var getEventCharCode = __webpack_require__(90);
@@ -26580,7 +26634,7 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26624,7 +26678,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26667,7 +26721,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26708,7 +26762,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26749,7 +26803,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26790,7 +26844,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26832,7 +26886,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26851,7 +26905,7 @@ module.exports = SyntheticInputEvent;
 var SyntheticUIEvent = __webpack_require__(44);
 
 var getEventCharCode = __webpack_require__(90);
-var getEventKey = __webpack_require__(302);
+var getEventKey = __webpack_require__(303);
 var getEventModifierState = __webpack_require__(91);
 
 /**
@@ -26921,7 +26975,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26971,7 +27025,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27015,7 +27069,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27071,7 +27125,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27120,7 +27174,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27140,7 +27194,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactPropTypeLocationNames = __webpack_require__(278);
+var ReactPropTypeLocationNames = __webpack_require__(279);
 var ReactPropTypesSecret = __webpack_require__(130);
 
 var invariant = __webpack_require__(1);
@@ -27215,7 +27269,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27300,7 +27354,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27366,7 +27420,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27450,7 +27504,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27567,7 +27621,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27613,7 +27667,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27692,7 +27746,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27798,7 +27852,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27829,7 +27883,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27850,7 +27904,7 @@ var ReactMount = __webpack_require__(128);
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27890,7 +27944,7 @@ exports.default = FaCheckCircle;
 module.exports = exports['default'];
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27930,7 +27984,7 @@ exports.default = FaCircleONotch;
 module.exports = exports['default'];
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27970,7 +28024,7 @@ exports.default = FaCloudDownload;
 module.exports = exports['default'];
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28010,7 +28064,7 @@ exports.default = FaCog;
 module.exports = exports['default'];
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28050,7 +28104,7 @@ exports.default = FaMinusSquareO;
 module.exports = exports['default'];
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28090,7 +28144,7 @@ exports.default = FaPauseCircle;
 module.exports = exports['default'];
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28130,7 +28184,7 @@ exports.default = FaPlayCircle;
 module.exports = exports['default'];
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28170,7 +28224,7 @@ exports.default = FaRefresh;
 module.exports = exports['default'];
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28210,7 +28264,7 @@ exports.default = MdLoop;
 module.exports = exports['default'];
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28250,7 +28304,7 @@ exports.default = MdVolumeDown;
 module.exports = exports['default'];
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28290,7 +28344,7 @@ exports.default = MdVolumeMute;
 module.exports = exports['default'];
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28330,7 +28384,7 @@ exports.default = TiDelete;
 module.exports = exports['default'];
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28370,7 +28424,7 @@ exports.default = TiPin;
 module.exports = exports['default'];
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28410,7 +28464,7 @@ exports.default = TiWarning;
 module.exports = exports['default'];
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28474,7 +28528,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28592,7 +28646,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28608,11 +28662,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(323);
+var PooledClass = __webpack_require__(324);
 var ReactElement = __webpack_require__(25);
 
 var emptyFunction = __webpack_require__(9);
-var traverseAllChildren = __webpack_require__(334);
+var traverseAllChildren = __webpack_require__(335);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -28787,7 +28841,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28962,7 +29016,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28993,7 +29047,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29017,7 +29071,7 @@ var factory = __webpack_require__(115);
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29039,7 +29093,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29058,7 +29112,7 @@ module.exports = ReactPropTypesSecret;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29078,8 +29132,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _prodInvariant = __webpack_require__(35);
 
-var ReactPropTypeLocationNames = __webpack_require__(326);
-var ReactPropTypesSecret = __webpack_require__(328);
+var ReactPropTypeLocationNames = __webpack_require__(327);
+var ReactPropTypesSecret = __webpack_require__(329);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -29153,7 +29207,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29181,7 +29235,7 @@ var factory = __webpack_require__(208);
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29207,7 +29261,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29251,7 +29305,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29276,7 +29330,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(142);
 
 var getIteratorFn = __webpack_require__(145);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(322);
+var KeyEscapeUtils = __webpack_require__(323);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -29435,20 +29489,6 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 335 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(40)();
-// imports
-
-
-// module
-exports.push([module.i, "#root,\nbody,\nhtml {\n  height: 100%;\n}\nbody,\nhtml {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background: #C8C8A9;\n  overflow: hidden;\n}\nh2 {\n  padding: 40px;\n  font-weight: 500;\n}\n", "", {"version":3,"sources":["/./example/d:/file/github/React-Jk-Music-Player/example/example.less","/./example/example.less"],"names":[],"mappings":"AAAA;;;EACI,aAAA;CCGH;ADDD;;EACI,UAAA;EACA,WAAA;CCIH;ADFD;EACI,oBAAA;EACA,iBAAA;CCIH;ADFD;EACI,cAAA;EACA,iBAAA;CCIH","file":"example.less","sourcesContent":["#root,body,html{\n    height:100%\n}\nbody,html{\n    margin:0;\n    padding: 0;\n}\nbody{\n    background: #C8C8A9;\n    overflow:hidden;\n}\nh2{\n    padding: 40px;\n    font-weight: 500\n}","#root,\nbody,\nhtml {\n  height: 100%;\n}\nbody,\nhtml {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background: #C8C8A9;\n  overflow: hidden;\n}\nh2 {\n  padding: 40px;\n  font-weight: 500;\n}\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ }),
 /* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29457,7 +29497,7 @@ exports = module.exports = __webpack_require__(40)();
 
 
 // module
-exports.push([module.i, ".btn {\n  display: inline-block;\n  margin-bottom: 0;\n  font-weight: 500;\n  text-align: center;\n  touch-action: manipulation;\n  cursor: pointer;\n  background-image: none;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  line-height: 1.5;\n  padding: 10px 30px;\n  font-size: 12px;\n  height: 38px;\n  user-select: none;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  position: relative;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border-color: #e8e8e8;\n  border-radius: 5px;\n  outline: none;\n  color: #fff;\n  background-color: #d9d9d9;\n  border: 1px solid #d9d9d9;\n}\n.btn:hover,\n.btn:active {\n  background-color: #e3e3e3;\n}\n.btn.btn-primary {\n  color: #fff;\n  background-color: #108ee9;\n  border: 1px solid #108ee9;\n}\n.btn.btn-primary:hover,\n.btn.btn-primary:active {\n  background-color: #1e98f0;\n}\n.btn.btn-default {\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border: 1px solid #d9d9d9;\n}\n.btn.btn-default:hover,\n.btn.btn-default:active {\n  border: 1px solid #108ee9;\n}\n.btn.btn-warning {\n  color: #fff;\n  background-color: #F7C12A;\n  border: 1px solid #F7C12A;\n}\n.btn.btn-warning:hover,\n.btn.btn-warning:active {\n  background-color: #f8c73e;\n}\n.btn.btn-error {\n  color: #fff;\n  background-color: #E41C1E;\n  border: 1px solid #E41C1E;\n}\n.btn.btn-error:hover,\n.btn.btn-error:active {\n  background-color: #e62e30;\n}\n.btn.btn-success {\n  color: #fff;\n  background-color: #35C613;\n  border: 1px solid #35C613;\n}\n.btn.btn-success:hover,\n.btn.btn-success:active {\n  background-color: #3ad915;\n}\n.btn.btn-orange {\n  color: #fff;\n  background-color: #F67F2F;\n  border: 1px solid #F67F2F;\n}\n.btn.btn-orange:hover,\n.btn.btn-orange:active {\n  background-color: #f78b43;\n}\n.btn.btn-info {\n  color: #fff;\n  background-color: #52b0f3;\n  border: 1px solid #52b0f3;\n}\n.btn.btn-info:hover,\n.btn.btn-info:active {\n  background-color: #65b8f4;\n}\n.btn.btn-disabled {\n  color: #fff;\n  background-color: #f7f7f7;\n  border: 1px solid #f7f7f7;\n  cursor: no-drop;\n  border-style: dashed;\n  color: rgba(0, 0, 0, 0.25);\n  border-color: #d9d9d9;\n}\n.btn.btn-disabled:hover,\n.btn.btn-disabled:active {\n  background-color: #ffffff;\n}\n.btn.btn-block {\n  width: 100%;\n  display: block;\n}\n", "", {"version":3,"sources":["/./node_modules/_rc-button@0.1.5@rc-button/src/d:/file/github/React-Jk-Music-Player/node_modules/_rc-button@0.1.5@rc-button/src/styles.less","/./node_modules/_rc-button@0.1.5@rc-button/src/styles.less"],"names":[],"mappings":"AA8BA;EACI,sBAAA;EACA,iBAAA;EACA,iBAAA;EACA,mBAAA;EACA,2BAAA;EACA,gBAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;EACA,iBAAA;EACA,mBAAA;EACA,gBAAA;EACA,aAAA;EACA,kBAAA;EACA,wDAAA;EACA,mBAAA;EACA,2BAAA;EACA,uBAAA;EACA,sBAAA;EACA,mBAAA;EACA,cAAA;EA7BA,YAAA;EACA,0BAAA;EACA,0BAAA;CCCH;ADAG;;EACI,0BAAA;CCGP;ADwBG;EA/BA,YAAA;EACA,0BAAA;EACA,0BAAA;CCUH;ADTG;;EACI,0BAAA;CCYP;ADkBG;EACI,2BAAA;EACA,uBAAA;EACA,0BAAA;CChBP;ADiBO;;EACI,0BAAA;CCdX;ADiBG;EA1CA,YAAA;EACA,0BAAA;EACA,0BAAA;CC4BH;AD3BG;;EACI,0BAAA;CC8BP;ADWG;EA7CA,YAAA;EACA,0BAAA;EACA,0BAAA;CCqCH;ADpCG;;EACI,0BAAA;CCuCP;ADKG;EAhDA,YAAA;EACA,0BAAA;EACA,0BAAA;CC8CH;AD7CG;;EACI,0BAAA;CCgDP;ADDG;EAnDA,YAAA;EACA,0BAAA;EACA,0BAAA;CCuDH;ADtDG;;EACI,0BAAA;CCyDP;ADPG;EAtDA,YAAA;EACA,0BAAA;EACA,0BAAA;CCgEH;AD/DG;;EACI,0BAAA;CCkEP;ADbG;EAzDA,YAAA;EACA,0BAAA;EACA,0BAAA;EAyDI,gBAAA;EACA,qBAAA;EACA,2BAAA;EACA,sBAAA;CCiBP;AD5EG;;EACI,0BAAA;CC+EP;ADnBG;EACI,YAAA;EACA,eAAA;CCqBP","file":"styles.less","sourcesContent":["@primary-color: #108ee9;\n@orange-color: #F67F2F;\n@warning-color: #F7C12A;\n@error-color: #E41C1E;\n@success-color: #35C613;\n@info-color:lighten(@primary-color,15%);\n@bg-color:#FAFAFA;\n@border-color:#e8e8e8;\n@title-color:#999999;\n@sub-title-color:#7A7A7A;\n@label-color:#333;\n@header-height:80px;\n\n//未修改过的\n@default-color: #d9d9d9; \n@disabled-color:#f7f7f7;\n@loading-color:darken(@info-color,10%);\n@text-color:rgba(0,0,0,.65);\n@font-family:\"Yuanti SC\",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;\n\n\n.btn-hover(@color:@default-color,@lighten:4%,@font-color:#fff){\n    color:@font-color;\n    background-color: @color;\n    border:1px solid @color;\n    &:hover,&:active{\n        background-color: lighten(@color,@lighten)\n    }\n}\n\n.btn{\n    display: inline-block;\n    margin-bottom: 0;\n    font-weight: 500;\n    text-align: center;\n    touch-action: manipulation;\n    cursor: pointer;\n    background-image: none;\n    border: 1px solid transparent;\n    white-space: nowrap;\n    line-height: 1.5;\n    padding: 10px 30px;\n    font-size: 12px;\n    height: 38px;\n    user-select: none;\n    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);\n    position: relative;\n    color: rgba(0,0,0,.65);\n    background-color: #fff;\n    border-color: @border-color;\n    border-radius: 5px;\n    outline: none;\n    .btn-hover(@default-color);\n    &.btn-primary{\n        .btn-hover(@primary-color)\n    }\n    &.btn-default{\n        color:rgba(0,0,0,.65);\n        background-color: #fff;\n        border:1px solid @default-color;\n        &:hover,&:active{\n            border:1px solid @primary-color\n        }\n    }\n    &.btn-warning{\n        .btn-hover(@warning-color)\n    }\n    &.btn-error{\n        .btn-hover(@error-color)\n    }\n    &.btn-success{\n        .btn-hover(@success-color)\n    }\n    &.btn-orange{\n        .btn-hover(@orange-color)\n    }\n    &.btn-info{\n        .btn-hover(@info-color)\n    }\n    &.btn-disabled{\n        .btn-hover(@disabled-color);\n        cursor:no-drop;\n        border-style:dashed;\n        color: rgba(0,0,0,.25);\n        border-color: #d9d9d9;\n    }\n    &.btn-block{\n        width:100%;\n        display: block\n    }\n}\n",".btn {\n  display: inline-block;\n  margin-bottom: 0;\n  font-weight: 500;\n  text-align: center;\n  touch-action: manipulation;\n  cursor: pointer;\n  background-image: none;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  line-height: 1.5;\n  padding: 10px 30px;\n  font-size: 12px;\n  height: 38px;\n  user-select: none;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  position: relative;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border-color: #e8e8e8;\n  border-radius: 5px;\n  outline: none;\n  color: #fff;\n  background-color: #d9d9d9;\n  border: 1px solid #d9d9d9;\n}\n.btn:hover,\n.btn:active {\n  background-color: #e3e3e3;\n}\n.btn.btn-primary {\n  color: #fff;\n  background-color: #108ee9;\n  border: 1px solid #108ee9;\n}\n.btn.btn-primary:hover,\n.btn.btn-primary:active {\n  background-color: #1e98f0;\n}\n.btn.btn-default {\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border: 1px solid #d9d9d9;\n}\n.btn.btn-default:hover,\n.btn.btn-default:active {\n  border: 1px solid #108ee9;\n}\n.btn.btn-warning {\n  color: #fff;\n  background-color: #F7C12A;\n  border: 1px solid #F7C12A;\n}\n.btn.btn-warning:hover,\n.btn.btn-warning:active {\n  background-color: #f8c73e;\n}\n.btn.btn-error {\n  color: #fff;\n  background-color: #E41C1E;\n  border: 1px solid #E41C1E;\n}\n.btn.btn-error:hover,\n.btn.btn-error:active {\n  background-color: #e62e30;\n}\n.btn.btn-success {\n  color: #fff;\n  background-color: #35C613;\n  border: 1px solid #35C613;\n}\n.btn.btn-success:hover,\n.btn.btn-success:active {\n  background-color: #3ad915;\n}\n.btn.btn-orange {\n  color: #fff;\n  background-color: #F67F2F;\n  border: 1px solid #F67F2F;\n}\n.btn.btn-orange:hover,\n.btn.btn-orange:active {\n  background-color: #f78b43;\n}\n.btn.btn-info {\n  color: #fff;\n  background-color: #52b0f3;\n  border: 1px solid #52b0f3;\n}\n.btn.btn-info:hover,\n.btn.btn-info:active {\n  background-color: #65b8f4;\n}\n.btn.btn-disabled {\n  color: #fff;\n  background-color: #f7f7f7;\n  border: 1px solid #f7f7f7;\n  cursor: no-drop;\n  border-style: dashed;\n  color: rgba(0, 0, 0, 0.25);\n  border-color: #d9d9d9;\n}\n.btn.btn-disabled:hover,\n.btn.btn-disabled:active {\n  background-color: #ffffff;\n}\n.btn.btn-block {\n  width: 100%;\n  display: block;\n}\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, "#root,\nbody,\nhtml {\n  height: 100%;\n}\nbody,\nhtml {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background: #C8C8A9;\n  overflow: hidden;\n}\nh2.title {\n  padding: 40px;\n  font-weight: 500;\n}\n", "", {"version":3,"sources":["/./example/d:/file/github/React-Jk-Music-Player/example/example.less","/./example/example.less"],"names":[],"mappings":"AAAA;;;EACI,aAAA;CCGH;ADDD;;EACI,UAAA;EACA,WAAA;CCIH;ADFD;EACI,oBAAA;EACA,iBAAA;CCIH;ADFD;EACI,cAAA;EACA,iBAAA;CCIH","file":"example.less","sourcesContent":["#root,body,html{\n    height:100%\n}\nbody,html{\n    margin:0;\n    padding: 0;\n}\nbody{\n    background: #C8C8A9;\n    overflow:hidden;\n}\nh2.title{\n    padding: 40px;\n    font-weight: 500\n}","#root,\nbody,\nhtml {\n  height: 100%;\n}\nbody,\nhtml {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  background: #C8C8A9;\n  overflow: hidden;\n}\nh2.title {\n  padding: 40px;\n  font-weight: 500;\n}\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -29471,7 +29511,7 @@ exports = module.exports = __webpack_require__(40)();
 
 
 // module
-exports.push([module.i, ".rc-message {\n  position: fixed;\n  z-index: 999;\n  pointer-events: none;\n  top: 0;\n  right: 0;\n  left: 0;\n  bottom: 0;\n  margin: auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.rc-message-notice-content {\n  max-width: 80%;\n  max-height: 80%;\n  min-width: 200px;\n  min-height: 30px;\n  padding: 5px 10px;\n  border-radius: 4px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);\n  display: inline-block;\n  pointer-events: all;\n  text-align: center;\n  animation: messageAnimate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n}\n.rc-message-notice-content .message-loading svg {\n  animation: messageLoadingAnimate 2s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;\n}\n.rc-message-notice-content .icon svg,\n.rc-message-notice-content .icon i {\n  font-size: 30px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .icon svg,\n  .rc-message-notice-content .icon i {\n    font-size: 20px;\n  }\n}\n.rc-message-notice-content .text {\n  font-size: 20px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .text {\n    font-size: 16px;\n  }\n}\n.rc-message-notice-content .text svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content .text svg + .title {\n  font-size: 16px;\n  vertical-align: middle;\n  margin-left: 5px;\n}\n.rc-message-notice-content .prompt-input {\n  position: relative;\n  display: inline-block;\n  padding: 2px 7px;\n  height: 25px;\n  cursor: text;\n  font-size: 14px;\n  line-height: 1.5;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  background-image: none;\n  border: 1px solid #d9d9d9;\n  border-radius: 4px;\n  transition: all .3s;\n}\n.rc-message-notice-content .confirm-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding-bottom: 8px;\n}\n.rc-message-notice-content .confirm-footer .confirm-btn {\n  flex-basis: 40%;\n}\n.rc-message-notice-content.theme-dark {\n  background: rgba(0, 0, 0, 0.5);\n  color: #fff;\n}\n.rc-message-notice-content.theme-dark svg,\n.rc-message-notice-content.theme-dark i,\n.rc-message-notice-content.theme-dark .text {\n  color: #fff;\n}\n.rc-message-notice-content.theme-light {\n  background: #fff;\n}\n.rc-message-notice-content.theme-light .text {\n  color: rgba(0, 0, 0, 0.65);\n}\n.rc-message-notice-content.theme-light .message-info svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content.theme-light .message-error svg {\n  color: #f04134;\n}\n.rc-message-notice-content.theme-light .message-success svg {\n  color: #00a854;\n}\n.rc-message-notice-content.theme-light .message-warning svg,\n.rc-message-notice-content.theme-light .message-confirm svg {\n  color: #ffbf00;\n}\n.rc-message-notice-content.theme-light .message-loading svg {\n  color: #1a93ea;\n}\n.rc-message-notice-content::before,\n.rc-message-notice-content::after {\n  clear: both;\n  content: \"\";\n  display: table;\n  zoom: 1;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content {\n    min-width: 180px;\n  }\n}\n@keyframes messageAnimate {\n  from {\n    opacity: 0;\n    transform: translate3d(0, -100px, 0);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1) translate3d(0, 0, 0);\n  }\n}\n@keyframes messageLoadingAnimate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n", "", {"version":3,"sources":["/./node_modules/_rc-message@1.3.2@rc-message/src/d:/file/github/React-Jk-Music-Player/node_modules/_rc-message@1.3.2@rc-message/src/styles.less","/./node_modules/_rc-message@1.3.2@rc-message/src/styles.less"],"names":[],"mappings":"AAkBA;EACI,gBAAA;EACA,aAAA;EACA,qBAAA;EACA,OAAA;EACA,SAAA;EACA,QAAA;EACA,UAAA;EACA,aAAA;EACA,cAAA;EACA,wBAAA;EACA,oBAAA;CCjBH;ADkBG;EA6FI,eAAA;EACA,gBAAA;EACA,iBAAA;EAIA,iBAAA;EACA,kBAAA;EACA,mBAAA;EACA,yCAAA;EACA,sBAAA;EACA,oBAAA;EACA,mBAAA;EACA,uEAAA;CC/GP;ADKG;EAGY,iFAAA;CCLf;ADEG;;EAQY,gBAAA;CCNf;ADOe;EAuHf;;IAtHmB,gBAAA;GCHjB;CACF;ADRG;EAeQ,gBAAA;CCJX;ADKW;EAgHX;IA/Ge,gBAAA;GCFb;CACF;ADhBG;EAoBY,eAAA;CCDf;ADEe;EACI,gBAAA;EACA,uBAAA;EACA,iBAAA;CCAnB;ADxBG;EA6BQ,mBAAA;EACA,sBAAA;EACA,iBAAA;EACA,aAAA;EACA,aAAA;EACA,gBAAA;EACA,iBAAA;EACA,2BAAA;EACA,uBAAA;EACA,uBAAA;EACA,0BAAA;EACA,mBAAA;EACA,oBAAA;CCFX;ADvCG;EA4CQ,cAAA;EACA,+BAAA;EACA,oBAAA;EACA,oBAAA;CCFX;AD7CG;EAiDY,gBAAA;CCDf;ADIO;EACI,+BAAA;EACA,YAAA;CCFX;ADAO;;;EAIQ,YAAA;CCCf;ADEO;EACI,iBAAA;CCAX;ADDO;EAGQ,2BAAA;CCCf;ADJO;EAOY,eAAA;CCAnB;ADPO;EAYY,eAAA;CCFnB;ADVO;EAiBY,eAAA;CCJnB;ADbO;;EAsBY,eAAA;CCLnB;ADjBO;EA4BY,eAAA;CCRnB;ADlGC;;EACE,YAAA;EACA,YAAA;EACA,eAAA;EACA,QAAA;CCqGH;ADUO;EAgCP;IA/BW,iBAAA;GCPT;CACF;ADoBD;EACI;IACI,WAAA;IACA,qCAAA;GClBL;EDoBC;IACI,WAAA;IACA,yCAAA;GClBL;CACF;ADoBD;EACI;IACI,wBAAA;GClBL;EDoBC;IACI,0BAAA;GClBL;CACF","file":"styles.less","sourcesContent":["@primary-color: #31c27c; \n@warning-color: #ffbf00; \n@error-color: #f04134; \n@success-color: #00a854; \n@default-color: #d9d9d9; \n@disabled-color:#f7f7f7;\n@info-color:#49a9ee;\n@loading-color:darken(@info-color,10%);\n@bg-color:#f7f8fa;  \n@text-color:rgba(0,0,0,.65);\n.clearfix(){\n  &::before,&::after{\n    clear:both;\n    content:\"\";\n    display: table;\n    zoom: 1;\n  }\n}\n.rc-message{\n    position: fixed;\n    z-index: 999;\n    pointer-events:none;\n    top:0;\n    right:0;\n    left:0;\n    bottom:0;\n    margin:auto;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    &-notice-content{\n        .message-loading{\n            svg{\n                animation: messageLoadingAnimate  2s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;\n            }\n        }\n        .icon{\n            svg,i{\n                font-size: 30px;\n                @media screen and (max-width:768px){\n                    font-size:20px\n                }\n            }\n        }\n        .text{\n            font-size: 20px;\n            @media screen and (max-width:768px){\n                font-size:16px\n            }\n            svg{\n                color:@info-color;\n                &+.title{\n                    font-size:16px;\n                    vertical-align: middle;\n                    margin-left: 5px;\n                }\n            }\n        }\n        .prompt-input{\n            position: relative;\n            display: inline-block;\n            padding: 2px 7px;\n            height: 25px;\n            cursor: text;\n            font-size: 14px;\n            line-height: 1.5;\n            color: rgba(0,0,0,.65);\n            background-color: #fff;\n            background-image: none;\n            border: 1px solid #d9d9d9;\n            border-radius: 4px;\n            transition: all .3s;\n        }\n        .confirm-footer{\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            padding-bottom: 8px;\n            .confirm-btn{\n                flex-basis: 40%;\n            }\n        }\n        &.theme-dark{\n            background: rgba(0,0,0,.5);\n            color:#fff;\n            svg,i,.text{\n                color:#fff\n            }\n        }\n        &.theme-light{\n            background: #fff;\n            .text{\n                color:@text-color;\n            }\n            .message-info{\n                svg{\n                    color:@info-color\n                }\n            }\n            .message-error{\n                svg{\n                    color:@error-color\n                }\n            }\n            .message-success{\n                svg{\n                    color:@success-color\n                }\n            }\n            .message-warning,.message-confirm{\n                svg{\n                    color:@warning-color\n                }\n            }\n            \n            .message-loading{\n                svg{\n                    color:@loading-color\n                }\n            }\n \n        }\n        .clearfix();\n        max-width: 80%;\n        max-height:80%;\n        min-width: 200px;\n        @media screen and (max-width:768px){\n            min-width: 180px;\n        }\n        min-height: 30px;\n        padding: 5px 10px;\n        border-radius: 4px;\n        box-shadow: 0 2px 8px rgba(0,0,0,.2);\n        display:inline-block;\n        pointer-events: all;\n        text-align: center;\n        animation: messageAnimate .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n    }\n    \n}\n\n@keyframes messageAnimate{\n    from {\n        opacity: 0;\n        transform: translate3d(0,-100px,0);\n    }\n    to{\n        opacity: 1;\n        transform: scale(1) translate3d(0,0,0); \n    }\n}\n@keyframes messageLoadingAnimate{\n    from{\n        transform: rotate(0deg)\n    }\n    to{\n        transform: rotate(360deg)\n    }\n}",".rc-message {\n  position: fixed;\n  z-index: 999;\n  pointer-events: none;\n  top: 0;\n  right: 0;\n  left: 0;\n  bottom: 0;\n  margin: auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.rc-message-notice-content {\n  max-width: 80%;\n  max-height: 80%;\n  min-width: 200px;\n  min-height: 30px;\n  padding: 5px 10px;\n  border-radius: 4px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);\n  display: inline-block;\n  pointer-events: all;\n  text-align: center;\n  animation: messageAnimate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n}\n.rc-message-notice-content .message-loading svg {\n  animation: messageLoadingAnimate 2s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;\n}\n.rc-message-notice-content .icon svg,\n.rc-message-notice-content .icon i {\n  font-size: 30px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .icon svg,\n  .rc-message-notice-content .icon i {\n    font-size: 20px;\n  }\n}\n.rc-message-notice-content .text {\n  font-size: 20px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .text {\n    font-size: 16px;\n  }\n}\n.rc-message-notice-content .text svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content .text svg + .title {\n  font-size: 16px;\n  vertical-align: middle;\n  margin-left: 5px;\n}\n.rc-message-notice-content .prompt-input {\n  position: relative;\n  display: inline-block;\n  padding: 2px 7px;\n  height: 25px;\n  cursor: text;\n  font-size: 14px;\n  line-height: 1.5;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  background-image: none;\n  border: 1px solid #d9d9d9;\n  border-radius: 4px;\n  transition: all .3s;\n}\n.rc-message-notice-content .confirm-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding-bottom: 8px;\n}\n.rc-message-notice-content .confirm-footer .confirm-btn {\n  flex-basis: 40%;\n}\n.rc-message-notice-content.theme-dark {\n  background: rgba(0, 0, 0, 0.5);\n  color: #fff;\n}\n.rc-message-notice-content.theme-dark svg,\n.rc-message-notice-content.theme-dark i,\n.rc-message-notice-content.theme-dark .text {\n  color: #fff;\n}\n.rc-message-notice-content.theme-light {\n  background: #fff;\n}\n.rc-message-notice-content.theme-light .text {\n  color: rgba(0, 0, 0, 0.65);\n}\n.rc-message-notice-content.theme-light .message-info svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content.theme-light .message-error svg {\n  color: #f04134;\n}\n.rc-message-notice-content.theme-light .message-success svg {\n  color: #00a854;\n}\n.rc-message-notice-content.theme-light .message-warning svg,\n.rc-message-notice-content.theme-light .message-confirm svg {\n  color: #ffbf00;\n}\n.rc-message-notice-content.theme-light .message-loading svg {\n  color: #1a93ea;\n}\n.rc-message-notice-content::before,\n.rc-message-notice-content::after {\n  clear: both;\n  content: \"\";\n  display: table;\n  zoom: 1;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content {\n    min-width: 180px;\n  }\n}\n@keyframes messageAnimate {\n  from {\n    opacity: 0;\n    transform: translate3d(0, -100px, 0);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1) translate3d(0, 0, 0);\n  }\n}\n@keyframes messageLoadingAnimate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, ".btn {\n  display: inline-block;\n  margin-bottom: 0;\n  font-weight: 500;\n  text-align: center;\n  touch-action: manipulation;\n  cursor: pointer;\n  background-image: none;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  line-height: 1.5;\n  padding: 10px 30px;\n  font-size: 12px;\n  height: 38px;\n  user-select: none;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  position: relative;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border-color: #e8e8e8;\n  border-radius: 5px;\n  outline: none;\n  color: #fff;\n  background-color: #d9d9d9;\n  border: 1px solid #d9d9d9;\n}\n.btn:hover,\n.btn:active {\n  background-color: #e3e3e3;\n}\n.btn.btn-primary {\n  color: #fff;\n  background-color: #108ee9;\n  border: 1px solid #108ee9;\n}\n.btn.btn-primary:hover,\n.btn.btn-primary:active {\n  background-color: #1e98f0;\n}\n.btn.btn-default {\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border: 1px solid #d9d9d9;\n}\n.btn.btn-default:hover,\n.btn.btn-default:active {\n  border: 1px solid #108ee9;\n}\n.btn.btn-warning {\n  color: #fff;\n  background-color: #F7C12A;\n  border: 1px solid #F7C12A;\n}\n.btn.btn-warning:hover,\n.btn.btn-warning:active {\n  background-color: #f8c73e;\n}\n.btn.btn-error {\n  color: #fff;\n  background-color: #E41C1E;\n  border: 1px solid #E41C1E;\n}\n.btn.btn-error:hover,\n.btn.btn-error:active {\n  background-color: #e62e30;\n}\n.btn.btn-success {\n  color: #fff;\n  background-color: #35C613;\n  border: 1px solid #35C613;\n}\n.btn.btn-success:hover,\n.btn.btn-success:active {\n  background-color: #3ad915;\n}\n.btn.btn-orange {\n  color: #fff;\n  background-color: #F67F2F;\n  border: 1px solid #F67F2F;\n}\n.btn.btn-orange:hover,\n.btn.btn-orange:active {\n  background-color: #f78b43;\n}\n.btn.btn-info {\n  color: #fff;\n  background-color: #52b0f3;\n  border: 1px solid #52b0f3;\n}\n.btn.btn-info:hover,\n.btn.btn-info:active {\n  background-color: #65b8f4;\n}\n.btn.btn-disabled {\n  color: #fff;\n  background-color: #f7f7f7;\n  border: 1px solid #f7f7f7;\n  cursor: no-drop;\n  border-style: dashed;\n  color: rgba(0, 0, 0, 0.25);\n  border-color: #d9d9d9;\n}\n.btn.btn-disabled:hover,\n.btn.btn-disabled:active {\n  background-color: #ffffff;\n}\n.btn.btn-block {\n  width: 100%;\n  display: block;\n}\n", "", {"version":3,"sources":["/./node_modules/_rc-button@0.1.5@rc-button/src/d:/file/github/React-Jk-Music-Player/node_modules/_rc-button@0.1.5@rc-button/src/styles.less","/./node_modules/_rc-button@0.1.5@rc-button/src/styles.less"],"names":[],"mappings":"AA8BA;EACI,sBAAA;EACA,iBAAA;EACA,iBAAA;EACA,mBAAA;EACA,2BAAA;EACA,gBAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;EACA,iBAAA;EACA,mBAAA;EACA,gBAAA;EACA,aAAA;EACA,kBAAA;EACA,wDAAA;EACA,mBAAA;EACA,2BAAA;EACA,uBAAA;EACA,sBAAA;EACA,mBAAA;EACA,cAAA;EA7BA,YAAA;EACA,0BAAA;EACA,0BAAA;CCCH;ADAG;;EACI,0BAAA;CCGP;ADwBG;EA/BA,YAAA;EACA,0BAAA;EACA,0BAAA;CCUH;ADTG;;EACI,0BAAA;CCYP;ADkBG;EACI,2BAAA;EACA,uBAAA;EACA,0BAAA;CChBP;ADiBO;;EACI,0BAAA;CCdX;ADiBG;EA1CA,YAAA;EACA,0BAAA;EACA,0BAAA;CC4BH;AD3BG;;EACI,0BAAA;CC8BP;ADWG;EA7CA,YAAA;EACA,0BAAA;EACA,0BAAA;CCqCH;ADpCG;;EACI,0BAAA;CCuCP;ADKG;EAhDA,YAAA;EACA,0BAAA;EACA,0BAAA;CC8CH;AD7CG;;EACI,0BAAA;CCgDP;ADDG;EAnDA,YAAA;EACA,0BAAA;EACA,0BAAA;CCuDH;ADtDG;;EACI,0BAAA;CCyDP;ADPG;EAtDA,YAAA;EACA,0BAAA;EACA,0BAAA;CCgEH;AD/DG;;EACI,0BAAA;CCkEP;ADbG;EAzDA,YAAA;EACA,0BAAA;EACA,0BAAA;EAyDI,gBAAA;EACA,qBAAA;EACA,2BAAA;EACA,sBAAA;CCiBP;AD5EG;;EACI,0BAAA;CC+EP;ADnBG;EACI,YAAA;EACA,eAAA;CCqBP","file":"styles.less","sourcesContent":["@primary-color: #108ee9;\n@orange-color: #F67F2F;\n@warning-color: #F7C12A;\n@error-color: #E41C1E;\n@success-color: #35C613;\n@info-color:lighten(@primary-color,15%);\n@bg-color:#FAFAFA;\n@border-color:#e8e8e8;\n@title-color:#999999;\n@sub-title-color:#7A7A7A;\n@label-color:#333;\n@header-height:80px;\n\n//未修改过的\n@default-color: #d9d9d9; \n@disabled-color:#f7f7f7;\n@loading-color:darken(@info-color,10%);\n@text-color:rgba(0,0,0,.65);\n@font-family:\"Yuanti SC\",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;\n\n\n.btn-hover(@color:@default-color,@lighten:4%,@font-color:#fff){\n    color:@font-color;\n    background-color: @color;\n    border:1px solid @color;\n    &:hover,&:active{\n        background-color: lighten(@color,@lighten)\n    }\n}\n\n.btn{\n    display: inline-block;\n    margin-bottom: 0;\n    font-weight: 500;\n    text-align: center;\n    touch-action: manipulation;\n    cursor: pointer;\n    background-image: none;\n    border: 1px solid transparent;\n    white-space: nowrap;\n    line-height: 1.5;\n    padding: 10px 30px;\n    font-size: 12px;\n    height: 38px;\n    user-select: none;\n    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);\n    position: relative;\n    color: rgba(0,0,0,.65);\n    background-color: #fff;\n    border-color: @border-color;\n    border-radius: 5px;\n    outline: none;\n    .btn-hover(@default-color);\n    &.btn-primary{\n        .btn-hover(@primary-color)\n    }\n    &.btn-default{\n        color:rgba(0,0,0,.65);\n        background-color: #fff;\n        border:1px solid @default-color;\n        &:hover,&:active{\n            border:1px solid @primary-color\n        }\n    }\n    &.btn-warning{\n        .btn-hover(@warning-color)\n    }\n    &.btn-error{\n        .btn-hover(@error-color)\n    }\n    &.btn-success{\n        .btn-hover(@success-color)\n    }\n    &.btn-orange{\n        .btn-hover(@orange-color)\n    }\n    &.btn-info{\n        .btn-hover(@info-color)\n    }\n    &.btn-disabled{\n        .btn-hover(@disabled-color);\n        cursor:no-drop;\n        border-style:dashed;\n        color: rgba(0,0,0,.25);\n        border-color: #d9d9d9;\n    }\n    &.btn-block{\n        width:100%;\n        display: block\n    }\n}\n",".btn {\n  display: inline-block;\n  margin-bottom: 0;\n  font-weight: 500;\n  text-align: center;\n  touch-action: manipulation;\n  cursor: pointer;\n  background-image: none;\n  border: 1px solid transparent;\n  white-space: nowrap;\n  line-height: 1.5;\n  padding: 10px 30px;\n  font-size: 12px;\n  height: 38px;\n  user-select: none;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  position: relative;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border-color: #e8e8e8;\n  border-radius: 5px;\n  outline: none;\n  color: #fff;\n  background-color: #d9d9d9;\n  border: 1px solid #d9d9d9;\n}\n.btn:hover,\n.btn:active {\n  background-color: #e3e3e3;\n}\n.btn.btn-primary {\n  color: #fff;\n  background-color: #108ee9;\n  border: 1px solid #108ee9;\n}\n.btn.btn-primary:hover,\n.btn.btn-primary:active {\n  background-color: #1e98f0;\n}\n.btn.btn-default {\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  border: 1px solid #d9d9d9;\n}\n.btn.btn-default:hover,\n.btn.btn-default:active {\n  border: 1px solid #108ee9;\n}\n.btn.btn-warning {\n  color: #fff;\n  background-color: #F7C12A;\n  border: 1px solid #F7C12A;\n}\n.btn.btn-warning:hover,\n.btn.btn-warning:active {\n  background-color: #f8c73e;\n}\n.btn.btn-error {\n  color: #fff;\n  background-color: #E41C1E;\n  border: 1px solid #E41C1E;\n}\n.btn.btn-error:hover,\n.btn.btn-error:active {\n  background-color: #e62e30;\n}\n.btn.btn-success {\n  color: #fff;\n  background-color: #35C613;\n  border: 1px solid #35C613;\n}\n.btn.btn-success:hover,\n.btn.btn-success:active {\n  background-color: #3ad915;\n}\n.btn.btn-orange {\n  color: #fff;\n  background-color: #F67F2F;\n  border: 1px solid #F67F2F;\n}\n.btn.btn-orange:hover,\n.btn.btn-orange:active {\n  background-color: #f78b43;\n}\n.btn.btn-info {\n  color: #fff;\n  background-color: #52b0f3;\n  border: 1px solid #52b0f3;\n}\n.btn.btn-info:hover,\n.btn.btn-info:active {\n  background-color: #65b8f4;\n}\n.btn.btn-disabled {\n  color: #fff;\n  background-color: #f7f7f7;\n  border: 1px solid #f7f7f7;\n  cursor: no-drop;\n  border-style: dashed;\n  color: rgba(0, 0, 0, 0.25);\n  border-color: #d9d9d9;\n}\n.btn.btn-disabled:hover,\n.btn.btn-disabled:active {\n  background-color: #ffffff;\n}\n.btn.btn-block {\n  width: 100%;\n  display: block;\n}\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -29485,7 +29525,7 @@ exports = module.exports = __webpack_require__(40)();
 
 
 // module
-exports.push([module.i, ".react-jinke-music-player .hidden {\n  display: none !important;\n}\n.react-jinke-music-player .text-center {\n  text-align: center;\n}\n.react-jinke-music-player svg {\n  font-size: 24px;\n  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player svg:hover,\n.react-jinke-music-player svg:active {\n  color: #31c27c;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player svg {\n    font-size: 28px;\n  }\n}\n.react-jinke-music-player .music-player {\n  cursor: pointer;\n  position: relative;\n}\n.react-jinke-music-player .music-player-audio {\n  display: none !important;\n}\n.react-jinke-music-player .music-player,\n.react-jinke-music-player .music-player-controller {\n  touch-action: none;\n}\n.react-jinke-music-player .music-player-controller {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 2px solid #fff;\n  background-color: #fff;\n  color: #31c27c;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);\n  font-size: 20px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  z-index: 99;\n  padding: 10px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-controller::before {\n  content: \"\";\n  position: absolute;\n  left: 10px;\n  top: 10px;\n  width: 80px;\n  height: 80px;\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  border-radius: 50%;\n  z-index: 88;\n  animation: scale 5s linear infinite;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player .music-player-controller,\n  .react-jinke-music-player .music-player-controller::before {\n    width: 60px;\n    height: 60px;\n  }\n}\n.react-jinke-music-player .music-player-controller i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-controller:active {\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);\n}\n.react-jinke-music-player .music-player-controller:hover {\n  font-size: 16px;\n}\n.react-jinke-music-player .music-player-controller:hover .music-player-controller-setting {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-controller .controller-title {\n  font-size: 14px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-controller i {\n    font-size: 20px;\n  }\n  .react-jinke-music-player .music-player-controller:hover {\n    font-size: 12px;\n  }\n  .react-jinke-music-player .music-player-controller:hover .music-player-controller-setting {\n    transform: scale(1);\n  }\n}\n.react-jinke-music-player .music-player-controller .music-player-controller-setting {\n  width: 100%;\n  height: 100%;\n  background: #31c27c;\n  transform: scale(0);\n  border-radius: 50%;\n  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);\n  color: #fff;\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel {\n  box-shadow: 0 0 5px #403f3f;\n  position: fixed;\n  width: 100%;\n  bottom: 0;\n  left: 0;\n  color: #fff;\n  height: 65px;\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 6px 20px;\n  z-index: 99;\n}\n.react-jinke-music-player .music-player-panel .panel-content {\n  padding: 4px 20px 0 20px;\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  overflow: hidden;\n  background-size: 100%;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .img-content {\n    width: 40px;\n    height: 40px;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content img {\n  width: 100%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate {\n  animation: imgRotate 15s linear infinite;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate-pause {\n  animation-play-state: paused;\n}\n.react-jinke-music-player .music-player-panel .panel-content .hide-panel,\n.react-jinke-music-player .music-player-panel .panel-content .upload-music {\n  flex-basis: 10%;\n  cursor: pointer;\n  margin-left: 15px;\n  margin-top: 5px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n  flex: 1;\n  padding: 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-title {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: inline-block;\n  max-width: 400px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main {\n  width: 100%;\n  display: inline-flex;\n  justify-content: center;\n  margin-top: 6px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .current-time,\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .duration {\n  font-size: 12px;\n  flex-basis: 5%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar {\n  flex: 1 1 auto;\n  width: 100%;\n  margin: 2px 20px 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress {\n  position: absolute;\n  display: inline-block;\n  height: 5px;\n  left: 0;\n  top: 0;\n  transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);\n  background-color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress .progress-change {\n  position: absolute;\n  width: 10px;\n  height: 10px;\n  right: 0;\n  bottom: -2px;\n  border-radius: 50%;\n  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);\n  background-color: #fff;\n  cursor: pointer;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content {\n  padding-left: 5%;\n  display: inline-flex;\n  align-items: center;\n  align-content: center;\n  flex-basis: 15%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group {\n  cursor: pointer;\n  text-align: center;\n  flex: 1;\n  padding: 0 10px;\n  display: inline-flex;\n  justify-content: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group > i {\n  cursor: pointer;\n  color: #31c27c;\n  font-size: 25px;\n  vertical-align: middle;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group:last-child {\n  padding: 0 30px 0 10px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .loop-btn.active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n  padding-top: 5px;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sounds-icon {\n  margin-right: 5px;\n  flex: 1 1 auto;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sound-operation {\n  width: 100px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting {\n  position: relative;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting > i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting:hover .play-setting-items {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items {\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);\n  position: absolute;\n  bottom: 35px;\n  left: 6px;\n  transform: scale(0);\n  background-color: rgba(0, 0, 0, 0.5);\n  transform-origin: bottom center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items .active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items::before {\n  width: 20px;\n  height: 20px;\n  border: 20px solid transparent;\n  border-bottom-color: red;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li {\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 5px 10px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover i {\n  color: #31c27c;\n}\n.react-jinke-music-player .translate {\n  animation: translate 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n.react-jinke-music-player .scale {\n  animation: scaleTo 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n@keyframes scale {\n  from {\n    transform: scale(0);\n  }\n  50% {\n    opacity: .6;\n    transform: scale(1.5);\n  }\n  to {\n    opacity: 0;\n    transform: scale(2);\n  }\n}\n@keyframes scaleTo {\n  from {\n    transform: scale(0);\n  }\n  to {\n    transform: scale(1);\n  }\n}\n@keyframes imgRotate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes translate {\n  from {\n    transform: translate3d(100%, 0, 0);\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n", "", {"version":3,"sources":["/./src/d:/file/github/React-Jk-Music-Player/src/styles.less","/./src/styles.less"],"names":[],"mappings":"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","file":"styles.less","sourcesContent":[".react-jinke-music-player{\n    @primary-color: #31c27c; \n    @default-color: #d9d9d9; \n    @bg-color:#f7f8fa;  \n    @border-color:#d9d9d9;\n    @music-player-panel-height:65px;\n    @font-family:\"Yuanti SC\",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;\n    @font:'iconfont';\n    @font-color:#444;\n\n    .clearfix(){\n        &::before,&::after{\n            clear:both;\n            content:\"\";\n            display: table;\n            zoom: 1;\n        }\n    }\n    .hidden(){\n        display: none !important;\n    }\n    .hidden{\n        .hidden();\n    }\n    .text-center(){\n        text-align: center\n    }\n    .text-center{\n        text-align: center;\n    }\n    .transition(@time:.3s){\n        transition: all @time cubic-bezier(0.165, 0.84, 0.44, 1);\n    }\n    .center(){\n        display: flex;\n        justify-content: center;\n        align-items: center;\n    }\n    .btn-hover(@color:@default-color,@lighten:3%){\n        color:#fff;\n        background-color: @color;\n        border:1px solid @color;\n        &:hover,&:active{\n            background-color: lighten(@color,@lighten)\n        }\n    }\n\n    .ellipsis-n(@n:2){\n        -webkit-line-clamp:@n;\n        display:-webkit-box;\n        -webkit-box-orient: vertical;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        justify-content: center;\n    }\n    .ellipsis-1(){\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        overflow: hidden;\n    }\n    svg{\n        font-size:24px;\n        .transition(.5s);\n        &:hover,&:active{\n            color:@primary-color;\n        }\n    }\n    @media screen and (max-width:767px){\n        svg{\n            font-size:28px;\n        }\n    }\n    .music-player{\n        cursor:pointer;\n        position: relative;\n        &-audio{\n            .hidden();\n        }\n        &,&-controller{\n            touch-action: none;\n        }\n        &-controller{\n            @player-width:80px;\n            @player-height:@player-width;\n            width:@player-width;\n            height:@player-height;\n            border-radius: 50%;\n            border:2px solid #fff;\n            background-color: #fff;\n            color:@primary-color;\n            box-shadow: 0 0 10px rgba(0,0,0,.15);\n            font-size:20px;\n            .text-center();\n            .transition(.3s);\n            z-index: 99;\n            padding: 10px;\n            position: absolute;\n            &::before{\n                content:\"\";\n                position: absolute;\n                left:10px;\n                top:10px;\n                width:@player-width;\n                height:@player-height;\n                border:1px solid rgba(255,255,255,.2);\n                border-radius: 50%;\n                z-index:88;\n                animation: scale 5s linear infinite;\n            }\n            @media screen and (max-width:767px){\n                &,&::before{\n                    width:60px;\n                    height:60px;\n                }\n            }\n            .center();\n            i{\n                font-size:28px;\n            }\n            &:active{\n                box-shadow: 0 0 30px rgba(0,0,0,.2);\n            }\n            &:hover{\n                font-size:16px;\n                .music-player-controller-setting{\n                    transform: scale(1)\n                }\n            }\n            .controller-title{\n                font-size:14px;\n            }\n            @media screen and (max-width:768px){\n                i{\n                    font-size:20px;\n                }\n                &:hover{\n                    font-size:12px;\n                    .music-player-controller-setting{\n                        transform: scale(1)\n                    }\n                }\n            }\n            .music-player-controller-setting{\n                width:100%;\n                height:100%;\n                background: @primary-color;\n                transform:scale(0);\n                border-radius: 50%;\n                .transition(.4s);\n                color:#fff;\n                position: absolute;\n                left:0;\n                top:0;\n                .center();\n            }\n        }\n    }\n    .music-player-panel{\n        box-shadow: 0 0 5px #403f3f;\n        @panel-height:@music-player-panel-height;\n        position: fixed;\n        width:100%;\n        bottom:0;\n        left:0;\n        color:#fff;\n        height:@panel-height;\n        background-color:rgba(0,0,0,.7);\n        padding: 6px 20px;\n        z-index: 99;\n        .panel-content{\n            padding: 4px 20px 0 20px;\n            display: flex;\n            justify-content: center;\n            align-content: center;\n            .img-content{\n                width:50px;\n                height:50px;\n                border-radius: 50%;\n                overflow: hidden;\n                background-size:100%;\n                box-shadow: 0 0 10px rgba(0,0,0,.2);\n                @media screen and (max-width:768px){\n                    width: 40px;\n                    height:40px;\n                }\n                img{\n                    width: 100%;\n                }\n            }\n            .img-rotate{\n                    animation: imgRotate 15s linear infinite;\n            }\n            .img-rotate-pause{\n                animation-play-state:paused\n            }\n            .hide-panel,.upload-music{\n                flex-basis:10%;\n                cursor: pointer;\n                margin-left:15px;\n                margin-top: 5px;\n            }\n            @media screen and (max-width:768px){\n                .progressbar-content{\n                    .hidden()\n                }\n            }\n            .progressbar-content{\n                flex:1;\n                padding: 0 20px;\n                .audio-title{\n                   .ellipsis-1();\n                   display: inline-block;\n                   max-width: 400px;\n                }\n                .audio-main{\n                    width: 100%;\n                    display: inline-flex;\n                    justify-content: center;\n                    margin-top:6px;\n                    .current-time,\n                    .duration{\n                        font-size:12px;\n                        flex-basis: 5%;\n                    }\n                }\n                .progressbar{\n                    flex:1 1 auto;\n                    @progress-height:5px;\n                    width:100%;\n                    margin: 2px 20px 0 20px;\n                    .progress{\n                        position: absolute;\n                        display: inline-block;\n                        height:@progress-height;\n                        left:0;\n                        top:0;\n                        transition: width .3s cubic-bezier(0.165, 0.84, 0.44, 1);\n                        background:linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 31%, rgba(0,0,0,0.05) 33%, rgba(0,0,0,0.05) 67%, rgba(0,0,0,0) 69%);\n                        background-color: @primary-color;\n                        .progress-change{\n                            position: absolute;\n                            width:10px;\n                            height:10px;\n                            right:0;\n                            bottom:-2px;\n                            border-radius: 50%;\n                            box-shadow: 0 0 2px rgba(0,0,0,.4);\n                            background-color: #fff;\n                            cursor: pointer;\n                            \n                        }\n                    }\n                }\n            }\n            .player-content{\n                padding-left: 5%;\n                display: inline-flex;\n                align-items: center;\n                align-content: center;\n                flex-basis: 15%;\n                >.group{\n                    cursor: pointer;\n                    text-align: center;\n                    flex:1;\n                    padding: 0 10px;\n                    display: inline-flex;\n                    justify-content: center;\n                    >i{\n                        cursor:pointer;\n                        color:@primary-color;\n                        font-size:25px;\n                        vertical-align: middle\n                    }\n                }\n                >.group:last-child{\n                    padding: 0 30px 0 10px;\n                }\n                @media screen and (max-width:768px){\n                    .play-sounds{\n                        .hidden()\n                    }\n                }\n                .loop-btn{\n                    &.active{\n                        color:@primary-color\n                    }\n                }\n                .play-sounds{\n                    padding-top: 5px;\n                    align-items: center;\n                    .sounds-icon{\n                        margin-right: 5px;\n                        flex:1 1 auto;\n                    }\n                    .sound-operation{\n                        width:100px;\n                    }\n                }\n                .play-setting{\n                    position: relative;\n                    >i{\n                        font-size:28px;\n                    }\n                    &:hover{\n                        .play-setting-items{\n                            transform: scale(1)\n                        }\n                    }\n                    &-items{\n                        box-shadow: 0 0 10px rgba(255,255,255,.1);\n                        position: absolute;\n                        bottom:35px;\n                        left:6px;\n                        transform: scale(0);\n                        background-color: rgba(0,0,0,.5);\n                        transform-origin: bottom center;\n                        .transition();\n                        .active{\n                            color:@primary-color;\n                        }\n                        &::before{\n                            width:20px;\n                            height:20px;\n                            border:20px solid transparent;\n                            border-bottom-color:red;\n                            position: absolute;\n                            bottom:0;\n                            left:0;\n                        }\n                    li{\n                        cursor: pointer;\n                        .center();\n                        padding: 5px 10px;\n                        text-align: center;\n                        .transition();\n                        &:hover{\n                                background-color: rgba(0,0,0,.5);\n                                i{\n                                    color:@primary-color;\n                                }\n                        }\n                    } \n                    }\n                }\n            }\n        }\n    }\n    .translate{\n        animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards\n    }\n    .scale{\n        animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards\n    }\n}\n\n@keyframes scale{\n    from{\n        transform: scale(0)\n    }\n    50%{\n        opacity: .6;\n        transform: scale(1.5)\n    }\n    to{\n     opacity: 0;\n        transform: scale(2)\n    }\n\n}\n@keyframes scaleTo{\n    from{\n        transform: scale(0)\n    }\n    to{\n        transform: scale(1)\n    }\n\n}\n@keyframes imgRotate{\n    from{\n        transform: rotate(0deg)\n    }\n    to{\n        transform: rotate(360deg)\n    }\n}\n@keyframes translate{\n    from{\n        transform: translate3d(100%,0,0)\n    }\n    to{\n        transform: translate3d(0,0,0)\n    }\n}\n",".react-jinke-music-player .hidden {\n  display: none !important;\n}\n.react-jinke-music-player .text-center {\n  text-align: center;\n}\n.react-jinke-music-player svg {\n  font-size: 24px;\n  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player svg:hover,\n.react-jinke-music-player svg:active {\n  color: #31c27c;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player svg {\n    font-size: 28px;\n  }\n}\n.react-jinke-music-player .music-player {\n  cursor: pointer;\n  position: relative;\n}\n.react-jinke-music-player .music-player-audio {\n  display: none !important;\n}\n.react-jinke-music-player .music-player,\n.react-jinke-music-player .music-player-controller {\n  touch-action: none;\n}\n.react-jinke-music-player .music-player-controller {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 2px solid #fff;\n  background-color: #fff;\n  color: #31c27c;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);\n  font-size: 20px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  z-index: 99;\n  padding: 10px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-controller::before {\n  content: \"\";\n  position: absolute;\n  left: 10px;\n  top: 10px;\n  width: 80px;\n  height: 80px;\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  border-radius: 50%;\n  z-index: 88;\n  animation: scale 5s linear infinite;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player .music-player-controller,\n  .react-jinke-music-player .music-player-controller::before {\n    width: 60px;\n    height: 60px;\n  }\n}\n.react-jinke-music-player .music-player-controller i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-controller:active {\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);\n}\n.react-jinke-music-player .music-player-controller:hover {\n  font-size: 16px;\n}\n.react-jinke-music-player .music-player-controller:hover .music-player-controller-setting {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-controller .controller-title {\n  font-size: 14px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-controller i {\n    font-size: 20px;\n  }\n  .react-jinke-music-player .music-player-controller:hover {\n    font-size: 12px;\n  }\n  .react-jinke-music-player .music-player-controller:hover .music-player-controller-setting {\n    transform: scale(1);\n  }\n}\n.react-jinke-music-player .music-player-controller .music-player-controller-setting {\n  width: 100%;\n  height: 100%;\n  background: #31c27c;\n  transform: scale(0);\n  border-radius: 50%;\n  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);\n  color: #fff;\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel {\n  box-shadow: 0 0 5px #403f3f;\n  position: fixed;\n  width: 100%;\n  bottom: 0;\n  left: 0;\n  color: #fff;\n  height: 65px;\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 6px 20px;\n  z-index: 99;\n}\n.react-jinke-music-player .music-player-panel .panel-content {\n  padding: 4px 20px 0 20px;\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  overflow: hidden;\n  background-size: 100%;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .img-content {\n    width: 40px;\n    height: 40px;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content img {\n  width: 100%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate {\n  animation: imgRotate 15s linear infinite;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate-pause {\n  animation-play-state: paused;\n}\n.react-jinke-music-player .music-player-panel .panel-content .hide-panel,\n.react-jinke-music-player .music-player-panel .panel-content .upload-music {\n  flex-basis: 10%;\n  cursor: pointer;\n  margin-left: 15px;\n  margin-top: 5px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n  flex: 1;\n  padding: 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-title {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: inline-block;\n  max-width: 400px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main {\n  width: 100%;\n  display: inline-flex;\n  justify-content: center;\n  margin-top: 6px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .current-time,\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .duration {\n  font-size: 12px;\n  flex-basis: 5%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar {\n  flex: 1 1 auto;\n  width: 100%;\n  margin: 2px 20px 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress {\n  position: absolute;\n  display: inline-block;\n  height: 5px;\n  left: 0;\n  top: 0;\n  transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);\n  background-color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress .progress-change {\n  position: absolute;\n  width: 10px;\n  height: 10px;\n  right: 0;\n  bottom: -2px;\n  border-radius: 50%;\n  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);\n  background-color: #fff;\n  cursor: pointer;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content {\n  padding-left: 5%;\n  display: inline-flex;\n  align-items: center;\n  align-content: center;\n  flex-basis: 15%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group {\n  cursor: pointer;\n  text-align: center;\n  flex: 1;\n  padding: 0 10px;\n  display: inline-flex;\n  justify-content: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group > i {\n  cursor: pointer;\n  color: #31c27c;\n  font-size: 25px;\n  vertical-align: middle;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group:last-child {\n  padding: 0 30px 0 10px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .loop-btn.active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n  padding-top: 5px;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sounds-icon {\n  margin-right: 5px;\n  flex: 1 1 auto;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sound-operation {\n  width: 100px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting {\n  position: relative;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting > i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting:hover .play-setting-items {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items {\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);\n  position: absolute;\n  bottom: 35px;\n  left: 6px;\n  transform: scale(0);\n  background-color: rgba(0, 0, 0, 0.5);\n  transform-origin: bottom center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items .active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items::before {\n  width: 20px;\n  height: 20px;\n  border: 20px solid transparent;\n  border-bottom-color: red;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li {\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 5px 10px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover i {\n  color: #31c27c;\n}\n.react-jinke-music-player .translate {\n  animation: translate 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n.react-jinke-music-player .scale {\n  animation: scaleTo 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n@keyframes scale {\n  from {\n    transform: scale(0);\n  }\n  50% {\n    opacity: .6;\n    transform: scale(1.5);\n  }\n  to {\n    opacity: 0;\n    transform: scale(2);\n  }\n}\n@keyframes scaleTo {\n  from {\n    transform: scale(0);\n  }\n  to {\n    transform: scale(1);\n  }\n}\n@keyframes imgRotate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes translate {\n  from {\n    transform: translate3d(100%, 0, 0);\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, ".rc-message {\n  position: fixed;\n  z-index: 999;\n  pointer-events: none;\n  top: 0;\n  right: 0;\n  left: 0;\n  bottom: 0;\n  margin: auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.rc-message-notice-content {\n  max-width: 80%;\n  max-height: 80%;\n  min-width: 200px;\n  min-height: 30px;\n  padding: 5px 10px;\n  border-radius: 4px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);\n  display: inline-block;\n  pointer-events: all;\n  text-align: center;\n  animation: messageAnimate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n}\n.rc-message-notice-content .message-loading svg {\n  animation: messageLoadingAnimate 2s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;\n}\n.rc-message-notice-content .icon svg,\n.rc-message-notice-content .icon i {\n  font-size: 30px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .icon svg,\n  .rc-message-notice-content .icon i {\n    font-size: 20px;\n  }\n}\n.rc-message-notice-content .text {\n  font-size: 20px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .text {\n    font-size: 16px;\n  }\n}\n.rc-message-notice-content .text svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content .text svg + .title {\n  font-size: 16px;\n  vertical-align: middle;\n  margin-left: 5px;\n}\n.rc-message-notice-content .prompt-input {\n  position: relative;\n  display: inline-block;\n  padding: 2px 7px;\n  height: 25px;\n  cursor: text;\n  font-size: 14px;\n  line-height: 1.5;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  background-image: none;\n  border: 1px solid #d9d9d9;\n  border-radius: 4px;\n  transition: all .3s;\n}\n.rc-message-notice-content .confirm-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding-bottom: 8px;\n}\n.rc-message-notice-content .confirm-footer .confirm-btn {\n  flex-basis: 40%;\n}\n.rc-message-notice-content.theme-dark {\n  background: rgba(0, 0, 0, 0.5);\n  color: #fff;\n}\n.rc-message-notice-content.theme-dark svg,\n.rc-message-notice-content.theme-dark i,\n.rc-message-notice-content.theme-dark .text {\n  color: #fff;\n}\n.rc-message-notice-content.theme-light {\n  background: #fff;\n}\n.rc-message-notice-content.theme-light .text {\n  color: rgba(0, 0, 0, 0.65);\n}\n.rc-message-notice-content.theme-light .message-info svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content.theme-light .message-error svg {\n  color: #f04134;\n}\n.rc-message-notice-content.theme-light .message-success svg {\n  color: #00a854;\n}\n.rc-message-notice-content.theme-light .message-warning svg,\n.rc-message-notice-content.theme-light .message-confirm svg {\n  color: #ffbf00;\n}\n.rc-message-notice-content.theme-light .message-loading svg {\n  color: #1a93ea;\n}\n.rc-message-notice-content::before,\n.rc-message-notice-content::after {\n  clear: both;\n  content: \"\";\n  display: table;\n  zoom: 1;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content {\n    min-width: 180px;\n  }\n}\n@keyframes messageAnimate {\n  from {\n    opacity: 0;\n    transform: translate3d(0, -100px, 0);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1) translate3d(0, 0, 0);\n  }\n}\n@keyframes messageLoadingAnimate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n", "", {"version":3,"sources":["/./node_modules/_rc-message@1.3.2@rc-message/src/d:/file/github/React-Jk-Music-Player/node_modules/_rc-message@1.3.2@rc-message/src/styles.less","/./node_modules/_rc-message@1.3.2@rc-message/src/styles.less"],"names":[],"mappings":"AAkBA;EACI,gBAAA;EACA,aAAA;EACA,qBAAA;EACA,OAAA;EACA,SAAA;EACA,QAAA;EACA,UAAA;EACA,aAAA;EACA,cAAA;EACA,wBAAA;EACA,oBAAA;CCjBH;ADkBG;EA6FI,eAAA;EACA,gBAAA;EACA,iBAAA;EAIA,iBAAA;EACA,kBAAA;EACA,mBAAA;EACA,yCAAA;EACA,sBAAA;EACA,oBAAA;EACA,mBAAA;EACA,uEAAA;CC/GP;ADKG;EAGY,iFAAA;CCLf;ADEG;;EAQY,gBAAA;CCNf;ADOe;EAuHf;;IAtHmB,gBAAA;GCHjB;CACF;ADRG;EAeQ,gBAAA;CCJX;ADKW;EAgHX;IA/Ge,gBAAA;GCFb;CACF;ADhBG;EAoBY,eAAA;CCDf;ADEe;EACI,gBAAA;EACA,uBAAA;EACA,iBAAA;CCAnB;ADxBG;EA6BQ,mBAAA;EACA,sBAAA;EACA,iBAAA;EACA,aAAA;EACA,aAAA;EACA,gBAAA;EACA,iBAAA;EACA,2BAAA;EACA,uBAAA;EACA,uBAAA;EACA,0BAAA;EACA,mBAAA;EACA,oBAAA;CCFX;ADvCG;EA4CQ,cAAA;EACA,+BAAA;EACA,oBAAA;EACA,oBAAA;CCFX;AD7CG;EAiDY,gBAAA;CCDf;ADIO;EACI,+BAAA;EACA,YAAA;CCFX;ADAO;;;EAIQ,YAAA;CCCf;ADEO;EACI,iBAAA;CCAX;ADDO;EAGQ,2BAAA;CCCf;ADJO;EAOY,eAAA;CCAnB;ADPO;EAYY,eAAA;CCFnB;ADVO;EAiBY,eAAA;CCJnB;ADbO;;EAsBY,eAAA;CCLnB;ADjBO;EA4BY,eAAA;CCRnB;ADlGC;;EACE,YAAA;EACA,YAAA;EACA,eAAA;EACA,QAAA;CCqGH;ADUO;EAgCP;IA/BW,iBAAA;GCPT;CACF;ADoBD;EACI;IACI,WAAA;IACA,qCAAA;GClBL;EDoBC;IACI,WAAA;IACA,yCAAA;GClBL;CACF;ADoBD;EACI;IACI,wBAAA;GClBL;EDoBC;IACI,0BAAA;GClBL;CACF","file":"styles.less","sourcesContent":["@primary-color: #31c27c; \n@warning-color: #ffbf00; \n@error-color: #f04134; \n@success-color: #00a854; \n@default-color: #d9d9d9; \n@disabled-color:#f7f7f7;\n@info-color:#49a9ee;\n@loading-color:darken(@info-color,10%);\n@bg-color:#f7f8fa;  \n@text-color:rgba(0,0,0,.65);\n.clearfix(){\n  &::before,&::after{\n    clear:both;\n    content:\"\";\n    display: table;\n    zoom: 1;\n  }\n}\n.rc-message{\n    position: fixed;\n    z-index: 999;\n    pointer-events:none;\n    top:0;\n    right:0;\n    left:0;\n    bottom:0;\n    margin:auto;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    &-notice-content{\n        .message-loading{\n            svg{\n                animation: messageLoadingAnimate  2s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;\n            }\n        }\n        .icon{\n            svg,i{\n                font-size: 30px;\n                @media screen and (max-width:768px){\n                    font-size:20px\n                }\n            }\n        }\n        .text{\n            font-size: 20px;\n            @media screen and (max-width:768px){\n                font-size:16px\n            }\n            svg{\n                color:@info-color;\n                &+.title{\n                    font-size:16px;\n                    vertical-align: middle;\n                    margin-left: 5px;\n                }\n            }\n        }\n        .prompt-input{\n            position: relative;\n            display: inline-block;\n            padding: 2px 7px;\n            height: 25px;\n            cursor: text;\n            font-size: 14px;\n            line-height: 1.5;\n            color: rgba(0,0,0,.65);\n            background-color: #fff;\n            background-image: none;\n            border: 1px solid #d9d9d9;\n            border-radius: 4px;\n            transition: all .3s;\n        }\n        .confirm-footer{\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            padding-bottom: 8px;\n            .confirm-btn{\n                flex-basis: 40%;\n            }\n        }\n        &.theme-dark{\n            background: rgba(0,0,0,.5);\n            color:#fff;\n            svg,i,.text{\n                color:#fff\n            }\n        }\n        &.theme-light{\n            background: #fff;\n            .text{\n                color:@text-color;\n            }\n            .message-info{\n                svg{\n                    color:@info-color\n                }\n            }\n            .message-error{\n                svg{\n                    color:@error-color\n                }\n            }\n            .message-success{\n                svg{\n                    color:@success-color\n                }\n            }\n            .message-warning,.message-confirm{\n                svg{\n                    color:@warning-color\n                }\n            }\n            \n            .message-loading{\n                svg{\n                    color:@loading-color\n                }\n            }\n \n        }\n        .clearfix();\n        max-width: 80%;\n        max-height:80%;\n        min-width: 200px;\n        @media screen and (max-width:768px){\n            min-width: 180px;\n        }\n        min-height: 30px;\n        padding: 5px 10px;\n        border-radius: 4px;\n        box-shadow: 0 2px 8px rgba(0,0,0,.2);\n        display:inline-block;\n        pointer-events: all;\n        text-align: center;\n        animation: messageAnimate .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n    }\n    \n}\n\n@keyframes messageAnimate{\n    from {\n        opacity: 0;\n        transform: translate3d(0,-100px,0);\n    }\n    to{\n        opacity: 1;\n        transform: scale(1) translate3d(0,0,0); \n    }\n}\n@keyframes messageLoadingAnimate{\n    from{\n        transform: rotate(0deg)\n    }\n    to{\n        transform: rotate(360deg)\n    }\n}",".rc-message {\n  position: fixed;\n  z-index: 999;\n  pointer-events: none;\n  top: 0;\n  right: 0;\n  left: 0;\n  bottom: 0;\n  margin: auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.rc-message-notice-content {\n  max-width: 80%;\n  max-height: 80%;\n  min-width: 200px;\n  min-height: 30px;\n  padding: 5px 10px;\n  border-radius: 4px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);\n  display: inline-block;\n  pointer-events: all;\n  text-align: center;\n  animation: messageAnimate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n}\n.rc-message-notice-content .message-loading svg {\n  animation: messageLoadingAnimate 2s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;\n}\n.rc-message-notice-content .icon svg,\n.rc-message-notice-content .icon i {\n  font-size: 30px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .icon svg,\n  .rc-message-notice-content .icon i {\n    font-size: 20px;\n  }\n}\n.rc-message-notice-content .text {\n  font-size: 20px;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content .text {\n    font-size: 16px;\n  }\n}\n.rc-message-notice-content .text svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content .text svg + .title {\n  font-size: 16px;\n  vertical-align: middle;\n  margin-left: 5px;\n}\n.rc-message-notice-content .prompt-input {\n  position: relative;\n  display: inline-block;\n  padding: 2px 7px;\n  height: 25px;\n  cursor: text;\n  font-size: 14px;\n  line-height: 1.5;\n  color: rgba(0, 0, 0, 0.65);\n  background-color: #fff;\n  background-image: none;\n  border: 1px solid #d9d9d9;\n  border-radius: 4px;\n  transition: all .3s;\n}\n.rc-message-notice-content .confirm-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding-bottom: 8px;\n}\n.rc-message-notice-content .confirm-footer .confirm-btn {\n  flex-basis: 40%;\n}\n.rc-message-notice-content.theme-dark {\n  background: rgba(0, 0, 0, 0.5);\n  color: #fff;\n}\n.rc-message-notice-content.theme-dark svg,\n.rc-message-notice-content.theme-dark i,\n.rc-message-notice-content.theme-dark .text {\n  color: #fff;\n}\n.rc-message-notice-content.theme-light {\n  background: #fff;\n}\n.rc-message-notice-content.theme-light .text {\n  color: rgba(0, 0, 0, 0.65);\n}\n.rc-message-notice-content.theme-light .message-info svg {\n  color: #49a9ee;\n}\n.rc-message-notice-content.theme-light .message-error svg {\n  color: #f04134;\n}\n.rc-message-notice-content.theme-light .message-success svg {\n  color: #00a854;\n}\n.rc-message-notice-content.theme-light .message-warning svg,\n.rc-message-notice-content.theme-light .message-confirm svg {\n  color: #ffbf00;\n}\n.rc-message-notice-content.theme-light .message-loading svg {\n  color: #1a93ea;\n}\n.rc-message-notice-content::before,\n.rc-message-notice-content::after {\n  clear: both;\n  content: \"\";\n  display: table;\n  zoom: 1;\n}\n@media screen and (max-width: 768px) {\n  .rc-message-notice-content {\n    min-width: 180px;\n  }\n}\n@keyframes messageAnimate {\n  from {\n    opacity: 0;\n    transform: translate3d(0, -100px, 0);\n  }\n  to {\n    opacity: 1;\n    transform: scale(1) translate3d(0, 0, 0);\n  }\n}\n@keyframes messageLoadingAnimate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -29499,7 +29539,7 @@ exports = module.exports = __webpack_require__(40)();
 
 
 // module
-exports.push([module.i, ".rc-slider {\n  position: relative;\n  height: 14px;\n  padding: 5px 0;\n  width: 100%;\n  border-radius: 6px;\n  -ms-touch-action: none;\n      touch-action: none;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-rail {\n  position: absolute;\n  width: 100%;\n  background-color: #e9e9e9;\n  height: 4px;\n  border-radius: 6px;\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 4px;\n  border-radius: 6px;\n  background-color: #abe2fb;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -5px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  cursor: -webkit-grab;\n  cursor: grab;\n  border-radius: 50%;\n  border: solid 2px #96dbfa;\n  background-color: #fff;\n  -ms-touch-action: pan-x;\n      touch-action: pan-x;\n}\n.rc-slider-handle:hover {\n  border-color: #57c5f7;\n}\n.rc-slider-handle:active {\n  border-color: #57c5f7;\n  box-shadow: 0 0 5px #57c5f7;\n  cursor: -webkit-grabbing;\n  cursor: grabbing;\n}\n.rc-slider-handle:focus {\n  border-color: #57c5f7;\n  box-shadow: 0 0 0 5px #96dbfa;\n  outline: none;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 18px;\n  left: 0;\n  width: 100%;\n  font-size: 12px;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #999;\n}\n.rc-slider-mark-text-active {\n  color: #666;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  box-shadow: none;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 14px;\n  height: 100%;\n  padding: 0 5px;\n}\n.rc-slider-vertical .rc-slider-rail {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-track {\n  left: 5px;\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  margin-left: -5px;\n  margin-bottom: -7px;\n  -ms-touch-action: pan-y;\n      touch-action: pan-y;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 18px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-slider-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip-hidden {\n  display: none;\n}\n.rc-slider-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-slider-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-slider-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n", "", {"version":3,"sources":["/./node_modules/_rc-slider@8.3.1@rc-slider/assets/index.css"],"names":[],"mappings":"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","file":"index.css","sourcesContent":[".rc-slider {\n  position: relative;\n  height: 14px;\n  padding: 5px 0;\n  width: 100%;\n  border-radius: 6px;\n  -ms-touch-action: none;\n      touch-action: none;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-rail {\n  position: absolute;\n  width: 100%;\n  background-color: #e9e9e9;\n  height: 4px;\n  border-radius: 6px;\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 4px;\n  border-radius: 6px;\n  background-color: #abe2fb;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -5px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  cursor: -webkit-grab;\n  cursor: grab;\n  border-radius: 50%;\n  border: solid 2px #96dbfa;\n  background-color: #fff;\n  -ms-touch-action: pan-x;\n      touch-action: pan-x;\n}\n.rc-slider-handle:hover {\n  border-color: #57c5f7;\n}\n.rc-slider-handle:active {\n  border-color: #57c5f7;\n  box-shadow: 0 0 5px #57c5f7;\n  cursor: -webkit-grabbing;\n  cursor: grabbing;\n}\n.rc-slider-handle:focus {\n  border-color: #57c5f7;\n  box-shadow: 0 0 0 5px #96dbfa;\n  outline: none;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 18px;\n  left: 0;\n  width: 100%;\n  font-size: 12px;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #999;\n}\n.rc-slider-mark-text-active {\n  color: #666;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  box-shadow: none;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 14px;\n  height: 100%;\n  padding: 0 5px;\n}\n.rc-slider-vertical .rc-slider-rail {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-track {\n  left: 5px;\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  margin-left: -5px;\n  margin-bottom: -7px;\n  -ms-touch-action: pan-y;\n      touch-action: pan-y;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 18px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-slider-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip-hidden {\n  display: none;\n}\n.rc-slider-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-slider-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-slider-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n"],"sourceRoot":"webpack://"}]);
+exports.push([module.i, ".react-jinke-music-player {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 80px;\n  height: 80px;\n}\n.react-jinke-music-player * {\n  touch-action: none;\n}\n.react-jinke-music-player .hidden {\n  display: none !important;\n}\n.react-jinke-music-player .text-center {\n  text-align: center;\n}\n.react-jinke-music-player svg {\n  font-size: 24px;\n  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player svg:hover,\n.react-jinke-music-player svg:active {\n  color: #31c27c;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player svg {\n    font-size: 22px;\n  }\n}\n.react-jinke-music-player .music-player {\n  cursor: pointer;\n  position: relative;\n}\n.react-jinke-music-player .music-player-audio {\n  display: none !important;\n}\n.react-jinke-music-player .music-player-controller {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 2px solid #fff;\n  background-color: #fff;\n  color: #31c27c;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);\n  font-size: 20px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  z-index: 99;\n  padding: 10px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-controller::before {\n  content: \"\";\n  position: absolute;\n  left: 10px;\n  top: 10px;\n  width: 80px;\n  height: 80px;\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  border-radius: 50%;\n  z-index: 88;\n  animation: scale 5s linear infinite;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player .music-player-controller,\n  .react-jinke-music-player .music-player-controller::before {\n    width: 60px;\n    height: 60px;\n  }\n}\n.react-jinke-music-player .music-player-controller i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-controller:active {\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);\n}\n.react-jinke-music-player .music-player-controller:hover {\n  font-size: 16px;\n}\n.react-jinke-music-player .music-player-controller:hover .music-player-controller-setting {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-controller .controller-title {\n  font-size: 14px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-controller i {\n    font-size: 20px;\n  }\n  .react-jinke-music-player .music-player-controller:hover,\n  .react-jinke-music-player .music-player-controller:active {\n    font-size: 12px;\n  }\n  .react-jinke-music-player .music-player-controller:hover .music-player-controller-setting,\n  .react-jinke-music-player .music-player-controller:active .music-player-controller-setting {\n    transform: scale(1);\n  }\n}\n.react-jinke-music-player .music-player-controller .music-player-controller-setting {\n  width: 100%;\n  height: 100%;\n  background: #31c27c;\n  transform: scale(0);\n  border-radius: 50%;\n  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);\n  color: #fff;\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel {\n  box-shadow: 0 0 5px #403f3f;\n  position: fixed;\n  width: 100%;\n  bottom: 0;\n  left: 0;\n  color: #fff;\n  height: 65px;\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 6px 20px;\n  z-index: 99;\n}\n.react-jinke-music-player .music-player-panel .panel-content {\n  padding: 4px 20px 0 20px;\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  overflow: hidden;\n  background-size: 100%;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .img-content {\n    width: 40px;\n    height: 40px;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content img {\n  width: 100%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate {\n  animation: imgRotate 15s linear infinite;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate-pause {\n  animation-play-state: paused;\n}\n.react-jinke-music-player .music-player-panel .panel-content .hide-panel,\n.react-jinke-music-player .music-player-panel .panel-content .upload-music {\n  flex-basis: 10%;\n  cursor: pointer;\n  margin-left: 15px;\n  margin-top: 5px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n  flex: 1;\n  padding: 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-title {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: inline-block;\n  max-width: 400px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main {\n  width: 100%;\n  display: inline-flex;\n  justify-content: center;\n  margin-top: 6px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .current-time,\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .duration {\n  font-size: 12px;\n  flex-basis: 5%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar {\n  flex: 1 1 auto;\n  width: 100%;\n  margin: 2px 20px 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress {\n  position: absolute;\n  display: inline-block;\n  height: 5px;\n  left: 0;\n  top: 0;\n  transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);\n  background-color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress .progress-change {\n  position: absolute;\n  width: 10px;\n  height: 10px;\n  right: 0;\n  bottom: -2px;\n  border-radius: 50%;\n  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);\n  background-color: #fff;\n  cursor: pointer;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content {\n  padding-left: 5%;\n  display: inline-flex;\n  align-items: center;\n  align-content: center;\n  flex-basis: 15%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group {\n  cursor: pointer;\n  text-align: center;\n  flex: 1;\n  padding: 0 10px;\n  display: inline-flex;\n  justify-content: center;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player .music-player-panel .panel-content .player-content > .group {\n    padding: 0 6px;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group > i {\n  cursor: pointer;\n  color: #31c27c;\n  font-size: 25px;\n  vertical-align: middle;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group:last-child {\n  padding: 0 30px 0 10px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .loop-btn.active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n  padding-top: 5px;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sounds-icon {\n  margin-right: 5px;\n  flex: 1 1 auto;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sound-operation {\n  width: 100px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting {\n  position: relative;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting > i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting:hover .play-setting-items {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items {\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);\n  position: absolute;\n  bottom: 35px;\n  left: 6px;\n  transform: scale(0);\n  background-color: rgba(0, 0, 0, 0.5);\n  transform-origin: bottom center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items .active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items::before {\n  width: 20px;\n  height: 20px;\n  border: 20px solid transparent;\n  border-bottom-color: red;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li {\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 5px 10px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover i {\n  color: #31c27c;\n}\n.react-jinke-music-player .translate {\n  animation: translate 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n.react-jinke-music-player .scale {\n  animation: scaleTo 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n@keyframes scale {\n  from {\n    transform: scale(0);\n  }\n  50% {\n    opacity: .6;\n    transform: scale(1.5);\n  }\n  to {\n    opacity: 0;\n    transform: scale(2);\n  }\n}\n@keyframes scaleTo {\n  from {\n    transform: scale(0);\n  }\n  to {\n    transform: scale(1);\n  }\n}\n@keyframes imgRotate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes translate {\n  from {\n    transform: translate3d(100%, 0, 0);\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n", "", {"version":3,"sources":["/./src/d:/file/github/React-Jk-Music-Player/src/styles.less","/./src/styles.less"],"names":[],"mappings":"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","file":"styles.less","sourcesContent":["\n.react-jinke-music-player{\n    * { \n        touch-action: none; \n    }\n    @primary-color: #31c27c; \n    @default-color: #d9d9d9; \n    @bg-color:#f7f8fa;  \n    @border-color:#d9d9d9;\n    @music-player-panel-height:65px;\n    @font-family:\"Yuanti SC\",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;\n    @font:'iconfont';\n    @font-color:#444;\n    @player-width:80px;\n    @player-height:@player-width;\n    position: absolute;\n    left:0;\n    top:0;\n    width:@player-width;\n    height:@player-height;\n    .clearfix(){\n        &::before,&::after{\n            clear:both;\n            content:\"\";\n            display: table;\n            zoom: 1;\n        }\n    }\n    .hidden(){\n        display: none !important;\n    }\n    .hidden{\n        .hidden();\n    }\n    .text-center(){\n        text-align: center\n    }\n    .text-center{\n        text-align: center;\n    }\n    .transition(@time:.3s){\n        transition: all @time cubic-bezier(0.165, 0.84, 0.44, 1);\n    }\n    .center(){\n        display: flex;\n        justify-content: center;\n        align-items: center;\n    }\n    .btn-hover(@color:@default-color,@lighten:3%){\n        color:#fff;\n        background-color: @color;\n        border:1px solid @color;\n        &:hover,&:active{\n            background-color: lighten(@color,@lighten)\n        }\n    }\n\n    .ellipsis-n(@n:2){\n        -webkit-line-clamp:@n;\n        display:-webkit-box;\n        -webkit-box-orient: vertical;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        justify-content: center;\n    }\n    .ellipsis-1(){\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        overflow: hidden;\n    }\n    svg{\n        font-size:24px;\n        .transition(.5s);\n        &:hover,&:active{\n            color:@primary-color;\n        }\n    }\n    @media screen and (max-width:767px){\n        svg{\n            font-size:22px;\n        }\n    }\n    .music-player{\n        cursor:pointer;\n        position: relative;\n        &-audio{\n            .hidden();\n        }\n        &-controller{\n            width:@player-width;\n            height:@player-height;\n            border-radius: 50%;\n            border:2px solid #fff;\n            background-color: #fff;\n            color:@primary-color;\n            box-shadow: 0 0 10px rgba(0,0,0,.15);\n            font-size:20px;\n            .text-center();\n            .transition(.3s);\n            z-index: 99;\n            padding: 10px;\n            position: absolute;\n            &::before{\n                content:\"\";\n                position: absolute;\n                left:10px;\n                top:10px;\n                width:@player-width;\n                height:@player-height;\n                border:1px solid rgba(255,255,255,.2);\n                border-radius: 50%;\n                z-index:88;\n                animation: scale 5s linear infinite;\n            }\n            @media screen and (max-width:767px){\n                &,&::before{\n                    width:60px;\n                    height:60px;\n                }\n            }\n            .center();\n            i{\n                font-size:28px;\n            }\n            &:active{\n                box-shadow: 0 0 30px rgba(0,0,0,.2);\n            }\n            &:hover{\n                font-size:16px;\n                .music-player-controller-setting{\n                    transform: scale(1)\n                }\n            }\n            .controller-title{\n                font-size:14px;\n            }\n            @media screen and (max-width:768px){\n                i{\n                    font-size:20px;\n                }\n                &:hover,&:active{\n                    font-size:12px;\n                    .music-player-controller-setting{\n                        transform: scale(1)\n                    }\n                }\n            }\n            .music-player-controller-setting{\n                width:100%;\n                height:100%;\n                background: @primary-color;\n                transform:scale(0);\n                border-radius: 50%;\n                .transition(.4s);\n                color:#fff;\n                position: absolute;\n                left:0;\n                top:0;\n                .center();\n            }\n        }\n    }\n    .music-player-panel{\n        box-shadow: 0 0 5px #403f3f;\n        @panel-height:@music-player-panel-height;\n        position: fixed;\n        width:100%;\n        bottom:0;\n        left:0;\n        color:#fff;\n        height:@panel-height;\n        background-color:rgba(0,0,0,.7);\n        padding: 6px 20px;\n        z-index: 99;\n        .panel-content{\n            padding: 4px 20px 0 20px;\n            display: flex;\n            justify-content: center;\n            align-content: center;\n            .img-content{\n                width:50px;\n                height:50px;\n                border-radius: 50%;\n                overflow: hidden;\n                background-size:100%;\n                box-shadow: 0 0 10px rgba(0,0,0,.2);\n                @media screen and (max-width:768px){\n                    width: 40px;\n                    height:40px;\n                }\n                img{\n                    width: 100%;\n                }\n            }\n            .img-rotate{\n                    animation: imgRotate 15s linear infinite;\n            }\n            .img-rotate-pause{\n                animation-play-state:paused\n            }\n            .hide-panel,.upload-music{\n                flex-basis:10%;\n                cursor: pointer;\n                margin-left:15px;\n                margin-top: 5px;\n            }\n            @media screen and (max-width:768px){\n                .progressbar-content{\n                    .hidden()\n                }\n            }\n            .progressbar-content{\n                flex:1;\n                padding: 0 20px;\n                .audio-title{\n                   .ellipsis-1();\n                   display: inline-block;\n                   max-width: 400px;\n                }\n                .audio-main{\n                    width: 100%;\n                    display: inline-flex;\n                    justify-content: center;\n                    margin-top:6px;\n                    .current-time,\n                    .duration{\n                        font-size:12px;\n                        flex-basis: 5%;\n                    }\n                }\n                .progressbar{\n                    flex:1 1 auto;\n                    @progress-height:5px;\n                    width:100%;\n                    margin: 2px 20px 0 20px;\n                    .progress{\n                        position: absolute;\n                        display: inline-block;\n                        height:@progress-height;\n                        left:0;\n                        top:0;\n                        transition: width .3s cubic-bezier(0.165, 0.84, 0.44, 1);\n                        background:linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 31%, rgba(0,0,0,0.05) 33%, rgba(0,0,0,0.05) 67%, rgba(0,0,0,0) 69%);\n                        background-color: @primary-color;\n                        .progress-change{\n                            position: absolute;\n                            width:10px;\n                            height:10px;\n                            right:0;\n                            bottom:-2px;\n                            border-radius: 50%;\n                            box-shadow: 0 0 2px rgba(0,0,0,.4);\n                            background-color: #fff;\n                            cursor: pointer;\n                            \n                        }\n                    }\n                }\n            }\n            .player-content{\n                padding-left: 5%;\n                display: inline-flex;\n                align-items: center;\n                align-content: center;\n                flex-basis: 15%;\n                >.group{\n                    cursor: pointer;\n                    text-align: center;\n                    flex:1;\n                    padding: 0 10px;\n                    display: inline-flex;\n                    justify-content: center;\n                    @media screen and (max-width:767px){\n                        padding: 0 6px;\n                    }\n                    >i{\n                        cursor:pointer;\n                        color:@primary-color;\n                        font-size:25px;\n                        vertical-align: middle\n                    }\n                }\n                >.group:last-child{\n                    padding: 0 30px 0 10px;\n                }\n                @media screen and (max-width:768px){\n                    .play-sounds{\n                        .hidden()\n                    }\n                }\n                .loop-btn{\n                    &.active{\n                        color:@primary-color\n                    }\n                }\n                .play-sounds{\n                    padding-top: 5px;\n                    align-items: center;\n                    .sounds-icon{\n                        margin-right: 5px;\n                        flex:1 1 auto;\n                    }\n                    .sound-operation{\n                        width:100px;\n                    }\n                }\n                .play-setting{\n                    position: relative;\n                    >i{\n                        font-size:28px;\n                    }\n                    &:hover{\n                        .play-setting-items{\n                            transform: scale(1)\n                        }\n                    }\n                    &-items{\n                        box-shadow: 0 0 10px rgba(255,255,255,.1);\n                        position: absolute;\n                        bottom:35px;\n                        left:6px;\n                        transform: scale(0);\n                        background-color: rgba(0,0,0,.5);\n                        transform-origin: bottom center;\n                        .transition();\n                        .active{\n                            color:@primary-color;\n                        }\n                        &::before{\n                            width:20px;\n                            height:20px;\n                            border:20px solid transparent;\n                            border-bottom-color:red;\n                            position: absolute;\n                            bottom:0;\n                            left:0;\n                        }\n                    li{\n                        cursor: pointer;\n                        .center();\n                        padding: 5px 10px;\n                        text-align: center;\n                        .transition();\n                        &:hover{\n                                background-color: rgba(0,0,0,.5);\n                                i{\n                                    color:@primary-color;\n                                }\n                        }\n                    } \n                    }\n                }\n            }\n        }\n    }\n    .translate{\n        animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards\n    }\n    .scale{\n        animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards\n    }\n}\n\n@keyframes scale{\n    from{\n        transform: scale(0)\n    }\n    50%{\n        opacity: .6;\n        transform: scale(1.5)\n    }\n    to{\n     opacity: 0;\n        transform: scale(2)\n    }\n\n}\n@keyframes scaleTo{\n    from{\n        transform: scale(0)\n    }\n    to{\n        transform: scale(1)\n    }\n\n}\n@keyframes imgRotate{\n    from{\n        transform: rotate(0deg)\n    }\n    to{\n        transform: rotate(360deg)\n    }\n}\n@keyframes translate{\n    from{\n        transform: translate3d(100%,0,0)\n    }\n    to{\n        transform: translate3d(0,0,0)\n    }\n}\n",".react-jinke-music-player {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 80px;\n  height: 80px;\n}\n.react-jinke-music-player * {\n  touch-action: none;\n}\n.react-jinke-music-player .hidden {\n  display: none !important;\n}\n.react-jinke-music-player .text-center {\n  text-align: center;\n}\n.react-jinke-music-player svg {\n  font-size: 24px;\n  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player svg:hover,\n.react-jinke-music-player svg:active {\n  color: #31c27c;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player svg {\n    font-size: 22px;\n  }\n}\n.react-jinke-music-player .music-player {\n  cursor: pointer;\n  position: relative;\n}\n.react-jinke-music-player .music-player-audio {\n  display: none !important;\n}\n.react-jinke-music-player .music-player-controller {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 2px solid #fff;\n  background-color: #fff;\n  color: #31c27c;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);\n  font-size: 20px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  z-index: 99;\n  padding: 10px;\n  position: absolute;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-controller::before {\n  content: \"\";\n  position: absolute;\n  left: 10px;\n  top: 10px;\n  width: 80px;\n  height: 80px;\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  border-radius: 50%;\n  z-index: 88;\n  animation: scale 5s linear infinite;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player .music-player-controller,\n  .react-jinke-music-player .music-player-controller::before {\n    width: 60px;\n    height: 60px;\n  }\n}\n.react-jinke-music-player .music-player-controller i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-controller:active {\n  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);\n}\n.react-jinke-music-player .music-player-controller:hover {\n  font-size: 16px;\n}\n.react-jinke-music-player .music-player-controller:hover .music-player-controller-setting {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-controller .controller-title {\n  font-size: 14px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-controller i {\n    font-size: 20px;\n  }\n  .react-jinke-music-player .music-player-controller:hover,\n  .react-jinke-music-player .music-player-controller:active {\n    font-size: 12px;\n  }\n  .react-jinke-music-player .music-player-controller:hover .music-player-controller-setting,\n  .react-jinke-music-player .music-player-controller:active .music-player-controller-setting {\n    transform: scale(1);\n  }\n}\n.react-jinke-music-player .music-player-controller .music-player-controller-setting {\n  width: 100%;\n  height: 100%;\n  background: #31c27c;\n  transform: scale(0);\n  border-radius: 50%;\n  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);\n  color: #fff;\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel {\n  box-shadow: 0 0 5px #403f3f;\n  position: fixed;\n  width: 100%;\n  bottom: 0;\n  left: 0;\n  color: #fff;\n  height: 65px;\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 6px 20px;\n  z-index: 99;\n}\n.react-jinke-music-player .music-player-panel .panel-content {\n  padding: 4px 20px 0 20px;\n  display: flex;\n  justify-content: center;\n  align-content: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  overflow: hidden;\n  background-size: 100%;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .img-content {\n    width: 40px;\n    height: 40px;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-content img {\n  width: 100%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate {\n  animation: imgRotate 15s linear infinite;\n}\n.react-jinke-music-player .music-player-panel .panel-content .img-rotate-pause {\n  animation-play-state: paused;\n}\n.react-jinke-music-player .music-player-panel .panel-content .hide-panel,\n.react-jinke-music-player .music-player-panel .panel-content .upload-music {\n  flex-basis: 10%;\n  cursor: pointer;\n  margin-left: 15px;\n  margin-top: 5px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content {\n  flex: 1;\n  padding: 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-title {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  display: inline-block;\n  max-width: 400px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main {\n  width: 100%;\n  display: inline-flex;\n  justify-content: center;\n  margin-top: 6px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .current-time,\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .audio-main .duration {\n  font-size: 12px;\n  flex-basis: 5%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar {\n  flex: 1 1 auto;\n  width: 100%;\n  margin: 2px 20px 0 20px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress {\n  position: absolute;\n  display: inline-block;\n  height: 5px;\n  left: 0;\n  top: 0;\n  transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);\n  background-color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .progressbar-content .progressbar .progress .progress-change {\n  position: absolute;\n  width: 10px;\n  height: 10px;\n  right: 0;\n  bottom: -2px;\n  border-radius: 50%;\n  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);\n  background-color: #fff;\n  cursor: pointer;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content {\n  padding-left: 5%;\n  display: inline-flex;\n  align-items: center;\n  align-content: center;\n  flex-basis: 15%;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group {\n  cursor: pointer;\n  text-align: center;\n  flex: 1;\n  padding: 0 10px;\n  display: inline-flex;\n  justify-content: center;\n}\n@media screen and (max-width: 767px) {\n  .react-jinke-music-player .music-player-panel .panel-content .player-content > .group {\n    padding: 0 6px;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group > i {\n  cursor: pointer;\n  color: #31c27c;\n  font-size: 25px;\n  vertical-align: middle;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content > .group:last-child {\n  padding: 0 30px 0 10px;\n}\n@media screen and (max-width: 768px) {\n  .react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n    display: none !important;\n  }\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .loop-btn.active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds {\n  padding-top: 5px;\n  align-items: center;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sounds-icon {\n  margin-right: 5px;\n  flex: 1 1 auto;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-sounds .sound-operation {\n  width: 100px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting {\n  position: relative;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting > i {\n  font-size: 28px;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting:hover .play-setting-items {\n  transform: scale(1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items {\n  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);\n  position: absolute;\n  bottom: 35px;\n  left: 6px;\n  transform: scale(0);\n  background-color: rgba(0, 0, 0, 0.5);\n  transform-origin: bottom center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items .active {\n  color: #31c27c;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items::before {\n  width: 20px;\n  height: 20px;\n  border: 20px solid transparent;\n  border-bottom-color: red;\n  position: absolute;\n  bottom: 0;\n  left: 0;\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li {\n  cursor: pointer;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 5px 10px;\n  text-align: center;\n  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.react-jinke-music-player .music-player-panel .panel-content .player-content .play-setting-items li:hover i {\n  color: #31c27c;\n}\n.react-jinke-music-player .translate {\n  animation: translate 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n.react-jinke-music-player .scale {\n  animation: scaleTo 0.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;\n}\n@keyframes scale {\n  from {\n    transform: scale(0);\n  }\n  50% {\n    opacity: .6;\n    transform: scale(1.5);\n  }\n  to {\n    opacity: 0;\n    transform: scale(2);\n  }\n}\n@keyframes scaleTo {\n  from {\n    transform: scale(0);\n  }\n  to {\n    transform: scale(1);\n  }\n}\n@keyframes imgRotate {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes translate {\n  from {\n    transform: translate3d(100%, 0, 0);\n  }\n  to {\n    transform: translate3d(0, 0, 0);\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -29508,27 +29548,15 @@ exports.push([module.i, ".rc-slider {\n  position: relative;\n  height: 14px;\n 
 /* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+exports = module.exports = __webpack_require__(40)();
+// imports
 
-// load the styles
-var content = __webpack_require__(336);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(45)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../_css-loader@0.23.1@css-loader/index.js??ref--1-1!../../_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less", function() {
-			var newContent = require("!!../../_css-loader@0.23.1@css-loader/index.js??ref--1-1!../../_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
+
+// module
+exports.push([module.i, ".rc-slider {\n  position: relative;\n  height: 14px;\n  padding: 5px 0;\n  width: 100%;\n  border-radius: 6px;\n  -ms-touch-action: none;\n      touch-action: none;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-rail {\n  position: absolute;\n  width: 100%;\n  background-color: #e9e9e9;\n  height: 4px;\n  border-radius: 6px;\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 4px;\n  border-radius: 6px;\n  background-color: #abe2fb;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -5px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  cursor: -webkit-grab;\n  cursor: grab;\n  border-radius: 50%;\n  border: solid 2px #96dbfa;\n  background-color: #fff;\n  -ms-touch-action: pan-x;\n      touch-action: pan-x;\n}\n.rc-slider-handle:hover {\n  border-color: #57c5f7;\n}\n.rc-slider-handle:active {\n  border-color: #57c5f7;\n  box-shadow: 0 0 5px #57c5f7;\n  cursor: -webkit-grabbing;\n  cursor: grabbing;\n}\n.rc-slider-handle:focus {\n  border-color: #57c5f7;\n  box-shadow: 0 0 0 5px #96dbfa;\n  outline: none;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 18px;\n  left: 0;\n  width: 100%;\n  font-size: 12px;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #999;\n}\n.rc-slider-mark-text-active {\n  color: #666;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  box-shadow: none;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 14px;\n  height: 100%;\n  padding: 0 5px;\n}\n.rc-slider-vertical .rc-slider-rail {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-track {\n  left: 5px;\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  margin-left: -5px;\n  margin-bottom: -7px;\n  -ms-touch-action: pan-y;\n      touch-action: pan-y;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 18px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-slider-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip-hidden {\n  display: none;\n}\n.rc-slider-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-slider-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-slider-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n", "", {"version":3,"sources":["/./node_modules/_rc-slider@8.3.1@rc-slider/assets/index.css"],"names":[],"mappings":"AAAA;EACE,mBAAmB;EACnB,aAAa;EACb,eAAe;EACf,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;MACnB,mBAAmB;EACvB,uBAAuB;EACvB,8CAA8C;CAC/C;AACD;EACE,uBAAuB;EACvB,8CAA8C;CAC/C;AACD;EACE,mBAAmB;EACnB,YAAY;EACZ,0BAA0B;EAC1B,YAAY;EACZ,mBAAmB;CACpB;AACD;EACE,mBAAmB;EACnB,QAAQ;EACR,YAAY;EACZ,mBAAmB;EACnB,0BAA0B;CAC3B;AACD;EACE,mBAAmB;EACnB,kBAAkB;EAClB,iBAAiB;EACjB,YAAY;EACZ,aAAa;EACb,gBAAgB;EAChB,qBAAqB;EACrB,aAAa;EACb,mBAAmB;EACnB,0BAA0B;EAC1B,uBAAuB;EACvB,wBAAwB;MACpB,oBAAoB;CACzB;AACD;EACE,sBAAsB;CACvB;AACD;EACE,sBAAsB;EACtB,4BAA4B;EAC5B,yBAAyB;EACzB,iBAAiB;CAClB;AACD;EACE,sBAAsB;EACtB,8BAA8B;EAC9B,cAAc;CACf;AACD;EACE,mBAAmB;EACnB,UAAU;EACV,QAAQ;EACR,YAAY;EACZ,gBAAgB;CACjB;AACD;EACE,mBAAmB;EACnB,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,gBAAgB;EAChB,YAAY;CACb;AACD;EACE,YAAY;CACb;AACD;EACE,mBAAmB;EACnB,YAAY;EACZ,YAAY;EACZ,wBAAwB;CACzB;AACD;EACE,mBAAmB;EACnB,aAAa;EACb,kBAAkB;EAClB,WAAW;EACX,YAAY;EACZ,0BAA0B;EAC1B,uBAAuB;EACvB,gBAAgB;EAChB,mBAAmB;EACnB,uBAAuB;CACxB;AACD;EACE,kBAAkB;CACnB;AACD;EACE,kBAAkB;CACnB;AACD;EACE,sBAAsB;CACvB;AACD;EACE,0BAA0B;CAC3B;AACD;EACE,uBAAuB;CACxB;AACD;;EAEE,mBAAmB;EACnB,iBAAiB;EACjB,uBAAuB;EACvB,oBAAoB;CACrB;AACD;;EAEE,+BAA+B;CAChC;AACD;EACE,YAAY;EACZ,aAAa;EACb,eAAe;CAChB;AACD;EACE,aAAa;EACb,WAAW;CACZ;AACD;EACE,UAAU;EACV,UAAU;EACV,WAAW;CACZ;AACD;EACE,kBAAkB;EAClB,oBAAoB;EACpB,wBAAwB;MACpB,oBAAoB;CACzB;AACD;EACE,OAAO;EACP,WAAW;EACX,aAAa;CACd;AACD;EACE,aAAa;EACb,WAAW;CACZ;AACD;EACE,UAAU;EACV,oBAAoB;CACrB;AACD;EACE,oBAAoB;CACrB;AACD;EACE,oBAAoB;CACrB;AACD;;EAEE,gCAAgC;UACxB,wBAAwB;EAChC,kCAAkC;UAC1B,0BAA0B;EAClC,0BAA0B;EAC1B,qCAAqC;UAC7B,6BAA6B;CACtC;AACD;EACE,gCAAgC;UACxB,wBAAwB;EAChC,kCAAkC;UAC1B,0BAA0B;EAClC,0BAA0B;EAC1B,qCAAqC;UAC7B,6BAA6B;CACtC;AACD;;EAEE,kDAAkD;UAC1C,0CAA0C;EAClD,sCAAsC;UAC9B,8BAA8B;CACvC;AACD;EACE,mDAAmD;UAC3C,2CAA2C;EACnD,sCAAsC;UAC9B,8BAA8B;CACvC;AACD;;EAEE,+BAA+B;UACvB,uBAAuB;EAC/B,kEAAkE;UAC1D,0DAA0D;CACnE;AACD;EACE,0EAA0E;UAClE,kEAAkE;CAC3E;AACD;EACE;IACE,WAAW;IACX,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;EACD;IACE,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;CACF;AACD;EACE;IACE,WAAW;IACX,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;EACD;IACE,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;CACF;AACD;EACE;IACE,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;EACD;IACE,WAAW;IACX,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;CACF;AACD;EACE;IACE,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;EACD;IACE,WAAW;IACX,mCAAmC;YAC3B,2BAA2B;IACnC,+BAA+B;YACvB,uBAAuB;GAChC;CACF;AACD;EACE,mBAAmB;EACnB,cAAc;EACd,aAAa;EACb,oBAAoB;EACpB,uBAAuB;EACvB,8CAA8C;CAC/C;AACD;EACE,uBAAuB;EACvB,8CAA8C;CAC/C;AACD;EACE,cAAc;CACf;AACD;EACE,qBAAqB;CACtB;AACD;EACE,iBAAiB;EACjB,gBAAgB;EAChB,aAAa;EACb,gBAAgB;EAChB,eAAe;EACf,YAAY;EACZ,mBAAmB;EACnB,sBAAsB;EACtB,0BAA0B;EAC1B,mBAAmB;EACnB,4BAA4B;CAC7B;AACD;EACE,mBAAmB;EACnB,SAAS;EACT,UAAU;EACV,0BAA0B;EAC1B,oBAAoB;CACrB;AACD;EACE,YAAY;EACZ,UAAU;EACV,kBAAkB;EAClB,wBAAwB;EACxB,0BAA0B;CAC3B","file":"index.css","sourcesContent":[".rc-slider {\n  position: relative;\n  height: 14px;\n  padding: 5px 0;\n  width: 100%;\n  border-radius: 6px;\n  -ms-touch-action: none;\n      touch-action: none;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-rail {\n  position: absolute;\n  width: 100%;\n  background-color: #e9e9e9;\n  height: 4px;\n  border-radius: 6px;\n}\n.rc-slider-track {\n  position: absolute;\n  left: 0;\n  height: 4px;\n  border-radius: 6px;\n  background-color: #abe2fb;\n}\n.rc-slider-handle {\n  position: absolute;\n  margin-left: -7px;\n  margin-top: -5px;\n  width: 14px;\n  height: 14px;\n  cursor: pointer;\n  cursor: -webkit-grab;\n  cursor: grab;\n  border-radius: 50%;\n  border: solid 2px #96dbfa;\n  background-color: #fff;\n  -ms-touch-action: pan-x;\n      touch-action: pan-x;\n}\n.rc-slider-handle:hover {\n  border-color: #57c5f7;\n}\n.rc-slider-handle:active {\n  border-color: #57c5f7;\n  box-shadow: 0 0 5px #57c5f7;\n  cursor: -webkit-grabbing;\n  cursor: grabbing;\n}\n.rc-slider-handle:focus {\n  border-color: #57c5f7;\n  box-shadow: 0 0 0 5px #96dbfa;\n  outline: none;\n}\n.rc-slider-mark {\n  position: absolute;\n  top: 18px;\n  left: 0;\n  width: 100%;\n  font-size: 12px;\n}\n.rc-slider-mark-text {\n  position: absolute;\n  display: inline-block;\n  vertical-align: middle;\n  text-align: center;\n  cursor: pointer;\n  color: #999;\n}\n.rc-slider-mark-text-active {\n  color: #666;\n}\n.rc-slider-step {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: transparent;\n}\n.rc-slider-dot {\n  position: absolute;\n  bottom: -2px;\n  margin-left: -4px;\n  width: 8px;\n  height: 8px;\n  border: 2px solid #e9e9e9;\n  background-color: #fff;\n  cursor: pointer;\n  border-radius: 50%;\n  vertical-align: middle;\n}\n.rc-slider-dot:first-child {\n  margin-left: -4px;\n}\n.rc-slider-dot:last-child {\n  margin-left: -4px;\n}\n.rc-slider-dot-active {\n  border-color: #96dbfa;\n}\n.rc-slider-disabled {\n  background-color: #e9e9e9;\n}\n.rc-slider-disabled .rc-slider-track {\n  background-color: #ccc;\n}\n.rc-slider-disabled .rc-slider-handle,\n.rc-slider-disabled .rc-slider-dot {\n  border-color: #ccc;\n  box-shadow: none;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-slider-disabled .rc-slider-mark-text,\n.rc-slider-disabled .rc-slider-dot {\n  cursor: not-allowed !important;\n}\n.rc-slider-vertical {\n  width: 14px;\n  height: 100%;\n  padding: 0 5px;\n}\n.rc-slider-vertical .rc-slider-rail {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-track {\n  left: 5px;\n  bottom: 0;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-handle {\n  margin-left: -5px;\n  margin-bottom: -7px;\n  -ms-touch-action: pan-y;\n      touch-action: pan-y;\n}\n.rc-slider-vertical .rc-slider-mark {\n  top: 0;\n  left: 18px;\n  height: 100%;\n}\n.rc-slider-vertical .rc-slider-step {\n  height: 100%;\n  width: 4px;\n}\n.rc-slider-vertical .rc-slider-dot {\n  left: 2px;\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:first-child {\n  margin-bottom: -4px;\n}\n.rc-slider-vertical .rc-slider-dot:last-child {\n  margin-bottom: -4px;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-duration: .3s;\n          animation-duration: .3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  display: block !important;\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,\n.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownIn;\n          animation-name: rcSliderTooltipZoomDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {\n  -webkit-animation-name: rcSliderTooltipZoomDownOut;\n          animation-name: rcSliderTooltipZoomDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-slider-tooltip-zoom-down-enter,\n.rc-slider-tooltip-zoom-down-appear {\n  -webkit-transform: scale(0, 0);\n          transform: scale(0, 0);\n  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);\n}\n.rc-slider-tooltip-zoom-down-leave {\n  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n}\n@-webkit-keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@keyframes rcSliderTooltipZoomDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n  100% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n}\n@-webkit-keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n@keyframes rcSliderTooltipZoomDownOut {\n  0% {\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(1, 1);\n            transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 50% 100%;\n            transform-origin: 50% 100%;\n    -webkit-transform: scale(0, 0);\n            transform: scale(0, 0);\n  }\n}\n.rc-slider-tooltip {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  visibility: visible;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip * {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rc-slider-tooltip-hidden {\n  display: none;\n}\n.rc-slider-tooltip-placement-top {\n  padding: 4px 0 8px 0;\n}\n.rc-slider-tooltip-inner {\n  padding: 6px 2px;\n  min-width: 24px;\n  height: 24px;\n  font-size: 12px;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  background-color: #6c6c6c;\n  border-radius: 6px;\n  box-shadow: 0 0 4px #d9d9d9;\n}\n.rc-slider-tooltip-arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-color: transparent;\n  border-style: solid;\n}\n.rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {\n  bottom: 4px;\n  left: 50%;\n  margin-left: -4px;\n  border-width: 4px 4px 0;\n  border-top-color: #6c6c6c;\n}\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
 
 /***/ }),
 /* 341 */
@@ -29572,8 +29600,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/_css-loader@0.23.1@css-loader/index.js??ref--1-1!../node_modules/_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less", function() {
-			var newContent = require("!!../node_modules/_css-loader@0.23.1@css-loader/index.js??ref--1-1!../node_modules/_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less");
+		module.hot.accept("!!../../_css-loader@0.23.1@css-loader/index.js??ref--1-1!../../_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less", function() {
+			var newContent = require("!!../../_css-loader@0.23.1@css-loader/index.js??ref--1-1!../../_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -29590,6 +29618,32 @@ if(false) {
 
 // load the styles
 var content = __webpack_require__(339);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(45)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../node_modules/_css-loader@0.23.1@css-loader/index.js??ref--1-1!../node_modules/_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less", function() {
+			var newContent = require("!!../node_modules/_css-loader@0.23.1@css-loader/index.js??ref--1-1!../node_modules/_less-loader@2.2.3@less-loader/index.js??ref--1-2!./styles.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(340);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(45)(content, {});

@@ -1,4 +1,8 @@
+
 .react-jinke-music-player{
+    * { 
+        touch-action: none; 
+    }
     @primary-color: #31c27c; 
     @default-color: #d9d9d9; 
     @bg-color:#f7f8fa;  
@@ -7,7 +11,13 @@
     @font-family:"Yuanti SC",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;
     @font:'iconfont';
     @font-color:#444;
-
+    @player-width:80px;
+    @player-height:@player-width;
+    position: absolute;
+    left:0;
+    top:0;
+    width:@player-width;
+    height:@player-height;
     .clearfix(){
         &::before,&::after{
             clear:both;
@@ -67,7 +77,7 @@
     }
     @media screen and (max-width:767px){
         svg{
-            font-size:28px;
+            font-size:22px;
         }
     }
     .music-player{
@@ -76,12 +86,7 @@
         &-audio{
             .hidden();
         }
-        &,&-controller{
-            touch-action: none;
-        }
         &-controller{
-            @player-width:80px;
-            @player-height:@player-width;
             width:@player-width;
             height:@player-height;
             border-radius: 50%;
@@ -133,7 +138,7 @@
                 i{
                     font-size:20px;
                 }
-                &:hover{
+                &:hover,&:active{
                     font-size:12px;
                     .music-player-controller-setting{
                         transform: scale(1)
@@ -265,6 +270,9 @@
                     padding: 0 10px;
                     display: inline-flex;
                     justify-content: center;
+                    @media screen and (max-width:767px){
+                        padding: 0 6px;
+                    }
                     >i{
                         cursor:pointer;
                         color:@primary-color;
