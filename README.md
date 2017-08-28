@@ -34,10 +34,10 @@ const options = {
         left:120
     },
 
-    //audio controller open text  [ type `String` default 'open']
+    //audio controller open text  [ type `String | ReactNode ` default 'open']
     openText: "OPEN",
 
-    //audio controller close text  [ type `String` default 'close']
+    //audio controller close text  [ type `String | ReactNode` default 'close']
     closeText: "CLOSE",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
@@ -46,17 +46,17 @@ const options = {
     //audio controller is can be drag of the "mini" mode
     drag: true,
 
-    //audio name     [type `String`  default `name`]
-    name: "押尾コータロー-風の詩",
+    //audio name     [type `String | ReactNode`  default `name`]
+    name: "Canon (piano version)",
 
     //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
     controllerTitle: <FaHeadphones />,
 
     //audio cover    [type `String`  default `-`]
-    cover: "http://imge.kugou.com/stdmusic/20150717/20150717134451909720.jpg",
+    cover: "http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
 
     //audio path     [type `String`  default `-`]   
-    musicSrc: "http://fs.web.kugou.com/e7c6f55063f1671bfd989dfb99eedb89/59a17c74/G004/M07/09/09/pIYBAFT_9QKAGw-eADsE6OIQ0nQ828.mp3",
+    musicSrc: "http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3",
 
     //play button display of the audio player panel   [type `Boolean` default `true`]
     showPlay: true,

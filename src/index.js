@@ -540,7 +540,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   bindEvents = (
     target = this.audio,
     eventsNames = {
-      warning: this.loadAudio,
+      waiting: this.loadAudio,
       canplay: this.onPlay,
       error: this.loadAudioError,
       ended: this.audioEnd,
