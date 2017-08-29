@@ -1,17 +1,17 @@
-# React-Jk-Music-Player
+# react-jinke-music-player
 A beautiful and responsive react music player component :)
 
 ## Screenshots
 
-![gif](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/example.gif) <br/>
+![gif](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/example.gif) <br/>
 
 > Light Theme <br/>
 
-![lightTheme](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/light-theme.png)
+![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/light-theme.png)
 
 > Dark Theme  <br/>
 
-![darkTheme](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/dark-theme.png)
+![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/dark-theme.png)
 
 ## Installation
 ```
@@ -19,9 +19,9 @@ npm install react-jinke-music-player --save
 ```
 
 ## Example
-### [LIVE DEMO](https://lijinke666.github.io/React-Jk-Music-Player/)
+### [LIVE DEMO](https://lijinke666.github.io/react-jinke-music-player/)
 ```
-git clone https://github.com/lijinke666/React-Jk-Music-Player.git
+git clone https://github.com/lijinke666/react-jinke-music-player.git
 ```
 
 - `yarn`

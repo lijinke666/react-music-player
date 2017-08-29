@@ -1,6 +1,6 @@
 {
   "name": "react-jinke-music-player",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description":"A beautiful and responsive react music player component",
   "main": "src/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "jinke.li",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lijinke666/React-Jk-Music-Player"
+    "url": "https://github.com/lijinke666/react-jinke-music-player"
   },
   "license": "MIT",
   "keywords": [
