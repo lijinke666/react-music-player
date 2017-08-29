@@ -8,6 +8,19 @@
     ],
     "react"
   ],
+  "env":{
+    "test":{
+      "presets":[
+        "es2015",
+        "stage-0",
+        "react"
+      ],
+      "plugins":[
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    }
+  },
   "plugins": [
     "transform-object-rest-spread",
     "transform-class-properties"     
