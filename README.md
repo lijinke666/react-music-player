@@ -32,11 +32,8 @@ git clone https://github.com/lijinke666/react-jinke-music-player.git
 ```javascript
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "../src"
-import Message from "rc-message"
+import ReactJkMusicPlayer from "react-jinke-music-player"
 import FaHeadphones from "react-icons/lib/fa/headphones"
-
-import "./example.less"
 
 const options = {
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
