@@ -3,8 +3,14 @@ A beautiful and responsive react music player component :)
 
 ## Screenshots
 
-![gif](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/example.gif)
+![gif](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/example.gif) <br/>
+
+> Light Theme <br/>
+
 ![lightTheme](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/light-theme.png)
+
+> Dark Theme  <br/>
+
 ![darkTheme](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/dark-theme.png)
 
 ## Installation
