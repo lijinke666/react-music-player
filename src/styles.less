@@ -7,6 +7,7 @@
     @default-color: #d9d9d9; 
     @bg-color:#f7f8fa;  
     @border-color:#d9d9d9;
+    @light-theme-panel-bg:#fff;
     @music-player-panel-height:65px;
     @font-family:"Yuanti SC",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;
     @font:'iconfont';
@@ -78,6 +79,15 @@
     @media screen and (max-width:767px){
         svg{
             font-size:22px;
+        }
+    }
+    .loading{
+        display: inline-flex;
+        animation: audioLoading linear .9s infinite;
+        margin-top:4px;
+        svg{
+            font-size:24px;
+            color:@primary-color
         }
     }
     .music-player{
@@ -174,9 +184,7 @@
         z-index: 99;
         .panel-content{
             padding: 4px 20px 0 20px;
-            display: flex;
-            justify-content: center;
-            align-content: center;
+            .center();
             .img-content{
                 width:50px;
                 height:50px;
@@ -353,50 +361,77 @@
             }
         }
     }
+    &.light-theme{
+        svg{
+            color:@primary-color;
+            &:hover,&:active{
+                color:lighten(@primary-color,5%);
+            }
+        }
+        .music-player-panel{
+            box-shadow: 0 1px 3px rgba(0,0,0,.055);
+            background-color:@light-theme-panel-bg;
+            color:#7D7D7D;
+            .img-content{
+                box-shadow: 0 0 10px #dcdcdc;
+            }
+        }
+    }
     .translate{
         animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }
     .scale{
         animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }
-}
 
-@keyframes scale{
-    from{
-        transform: scale(0)
-    }
-    50%{
-        opacity: .6;
-        transform: scale(1.5)
-    }
-    to{
-     opacity: 0;
-        transform: scale(2)
+    
+    @keyframes audioLoading {
+        from{
+            transform: rotate(0deg)
+        }
+        to{
+            transform: rotate(360deg)
+        }
     }
 
-}
-@keyframes scaleTo{
-    from{
-        transform: scale(0)
-    }
-    to{
-        transform: scale(1)
-    }
+    @keyframes scale{
+        from{
+            transform: scale(0)
+        }
+        50%{
+            opacity: .6;
+            transform: scale(1.5)
+        }
+        to{
+        opacity: 0;
+            transform: scale(2)
+        }
 
+    }
+    @keyframes scaleTo{
+        from{
+            transform: scale(0)
+        }
+        to{
+            transform: scale(1)
+        }
+
+    }
+    @keyframes imgRotate{
+        from{
+            transform: rotate(0deg)
+        }
+        to{
+            transform: rotate(360deg)
+        }
+    }
+    @keyframes translate{
+        from{
+            transform: translate3d(100%,0,0)
+        }
+        to{
+            transform: translate3d(0,0,0)
+        }
+    }
 }
-@keyframes imgRotate{
-    from{
-        transform: rotate(0deg)
-    }
-    to{
-        transform: rotate(360deg)
-    }
-}
-@keyframes translate{
-    from{
-        transform: translate3d(100%,0,0)
-    }
-    to{
-        transform: translate3d(0,0,0)
-    }
-}
+

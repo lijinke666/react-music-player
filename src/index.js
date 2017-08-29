@@ -11,6 +11,7 @@ import Reload from "react-icons/lib/fa/refresh"
 import MdVolumeDown from "react-icons/lib/md/volume-down"
 import MdVolumeMute from "react-icons/lib/md/volume-mute"
 import Download from "react-icons/lib/fa/cloud-download"
+import LoadIcon from "react-icons/lib/fa/spinner"
 import classNames from "classnames"
 import Mobile from "is-mobile"
 import Slider from 'rc-slider/lib/Slider'
@@ -20,6 +21,10 @@ import 'rc-slider/assets/index.css'
 import "./styles.less"
 
 const ISMOBILE = Mobile()
+
+const Load = () => (
+  <span className='loading group' key="loading"><LoadIcon /></span>
+)
 
 
 export default class ReactJkMusicPlayer extends PureComponent {
@@ -37,9 +42,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     moveX: 0,
     moveY: 0,
     isMove: false,
+    loading: false,
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
   }
   static defaultProps = {
+    theme: this.lightThemeName,
     mode: "mini",
     defaultPosition: {
       left: 0,
@@ -58,6 +65,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showLoop: true,
   }
   static PropTypes = {
+    theme: PropTypes.oneOf([this.darkThemeName, this.lightThemeName]),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
     name: PropTypes.oneOfType([
@@ -94,7 +102,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   constructor(props) {
     super(props)
     this.audio = null       //当前播放器
-    this.defaultMusciName = "music"
+    this.lightThemeName = "light"
+    this.darkThemeName = "dark"
     this.targetId = "music-player-controller"
     this.openPanelPeriphery = 1             //移动差值 在 这之间 认为是点击打开panel
     this.x = 0
@@ -103,6 +112,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   render() {
     const {
+      theme,
       musicSrc,
       name,
       cover,
@@ -132,7 +142,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       audioFile,
       moveX,
       moveY,
-      isMove
+      isMove,
+      loading
     } = this.state
 
     const bindEvents = drag
@@ -155,20 +166,24 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     return (
       <div
-        className="react-jinke-music-player"
+        className={
+          classNames(
+            "react-jinke-music-player",
+            { "light-theme": theme === this.lightThemeName }
+          )
+        }
+        key="react-jinke-music-player"
         ref={node => this.controller = node}
         {...bindEvents}
         style={{
           ...style,
           left: moveX,
           top: moveY
-
         }}
       >
         <div
           className={classNames("music-player", className)}
           key="music-player"
-
         >
           {
             toggle
@@ -179,8 +194,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   id={this.targetId}
                   className="scale music-player-controller"
                 >
-                  <span className="controller-title" key="controller-title">{controllerTitle}</span>
-                  <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
+                  {
+                    loading
+                      ? <Load />
+                      : (
+                        <span>
+                          <span className="controller-title" key="controller-title">{controllerTitle}</span>
+                          <div key="setting" className="music-player-controller-setting">{toggle ? closeText : openText}</div>
+                        </span>
+                      )
+                  }
                 </div>
               )
           }
@@ -197,7 +220,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span className="audio-title">{name}</span>
                     <section className="audio-main">
                       <span key="current-time" className="current-time">
-                        {this.formatTime(currentTime)}
+                        {
+                          loading
+                            ? '--'
+                            : this.formatTime(currentTime)
+                        }
                       </span>
                       <div className="progressbar" key="progressbar">
                         <Slider
@@ -210,28 +237,36 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         />
                       </div>
                       <span key="duration" className="duration">
-                        {this.formatTime(duration)}
+                        {
+                          loading
+                            ? '--'
+                            : this.formatTime(currentTime)
+                        }
                       </span>
                     </section>
                   </div>
                   <div className="player-content" key="player-content">
                     {/*播放按钮*/}
                     {
-                      showPlay
-                        ? <span
-                          className="group play-btn"
-                          key="play-btn"
-                          ref={node => this.playBtn = node}
-                          {...ISMOBILE ? { onTouchStart: this.onPlay } : { onClick: this.onPlay }}
-                          title="play"
-                        >
-                          {
-                            playing
-                              ? <span><FaPauseCircle /></span>
-                              : <span><FaPlayCircle /></span>
-                          }
+                      loading
+                        ? <span>
+                          <Load />
                         </span>
-                        : undefined
+                        : showPlay
+                          ? <span
+                            className="group play-btn"
+                            key="play-btn"
+                            ref={node => this.playBtn = node}
+                            {...ISMOBILE ? { onTouchStart: this.onPlay } : { onClick: this.onPlay }}
+                            title="play"
+                          >
+                            {
+                              playing
+                                ? <span><FaPauseCircle /></span>
+                                : <span><FaPlayCircle /></span>
+                            }
+                          </span>
+                          : undefined
                     }
 
                     {/*重播*/}
@@ -266,11 +301,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     {
                       showDowload
                         ? <span
-                            className="group audio-download"
-                            {...ISMOBILE ? { onTouchStart: () => this.downloadAudio(name, musicSrc) } : { onClick: ()=>this.downloadAudio(name, musicSrc) }}
-                            >
-                            <Download />
-                          </span>
+                          className="group audio-download"
+                          {...ISMOBILE ? { onTouchStart: () => this.downloadAudio(name, musicSrc) } : { onClick: () => this.downloadAudio(name, musicSrc) }}
+                        >
+                          <Download />
+                        </span>
                         : undefined
                     }
 
@@ -304,9 +339,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
       </div>
     )
-  }
-  bindPanelEvnets = () => {
-
   }
   downloadAudio = (audioName, audioSrc) => {
     this.downloadNode = document.createElement('a')
@@ -466,8 +498,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   //加载音频
   loadAudio = () => {
+    this.setState({ loading: true })
     if (this.audio.readyState == 4 && this.audio.networkState != 3) {
-      this.setState({ playing: true }, () => this.audio.play())
+      this.setState({ playing: true, loading: false }, () => this.audio.play())
     }
   }
   //获取音频长度
@@ -477,7 +510,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
   }
   loadAudioError = (e) => {
-    this.setState({ playing: false })
+    this.setState({ playing: false, loading: true })
     this.props.loadAudioError && this.props.loadAudioError(e)
   }
   //音频播放结束
@@ -548,6 +581,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       pause: this.pauseAudio,
       timeupdate: this.audioTimeUpdate,
       volumechange: this.audioVolumeChange,
+      stalled: this.audioStalled
     },
     bind = true
   ) => {
@@ -562,6 +596,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     //解决拖拽速度过快产生的bug  绑定了但是会导致 Slider 组件拖拽事件无效 暂未想到好的解决办法
     document.addEventListener(ISMOBILE ? 'touchmove' : 'mousemove', (e) => this.controllerMouseMove(e), false)
     document.addEventListener(ISMOBILE ? 'touchend' : 'mouseup', (e) => this.controllerMouseUp(e), false)
+  }
+  audioStalled = () => {
+    this.setState({ loading: true })
   }
   //合并state 更新初始位置
   componentWillMount() {

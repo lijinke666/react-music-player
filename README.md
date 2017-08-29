@@ -1,9 +1,11 @@
 # React-Jk-Music-Player
-react music player component 
+A beautiful and responsive react music player component :)
 
 ## Screenshots
 
-![example](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/example.gif)
+![gif](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/example.gif)
+![lightTheme](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/light-theme.png)
+![darkTheme](https://github.com/lijinke666/React-Jk-Music-Player/blob/master/assets/dark-theme.png)
 
 ## Installation
 ```
@@ -24,27 +26,33 @@ git clone https://github.com/lijinke666/React-Jk-Music-Player.git
 ```javascript
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "react-jinke-music-player"
+import ReactJkMusicPlayer from "../src"
+import Message from "rc-message"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
+import "./example.less"
+
 const options = {
-    //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
-    defaultPosition:{
-        top:120,
-        left:120
-    },
-
-    //audio controller open text  [ type `String | ReactNode ` default 'open']
-    openText: "OPEN",
-
-    //audio controller close text  [ type `String | ReactNode` default 'close']
-    closeText: "CLOSE",
+    //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
+    theme:"drak",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
     mode: "mini",
 
     //audio controller is can be drag of the "mini" mode
     drag: true,
+    
+    //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
+    defaultPosition:{
+        top:120,
+        left:120
+    },
+
+    //audio controller open text  [ type `String` default 'open']
+    openText: "OPEN",
+
+    //audio controller close text  [ type `String` default 'close']
+    closeText: "CLOSE",
 
     //audio name     [type `String | ReactNode`  default `name`]
     name: "Canon (piano version)",
@@ -72,7 +80,6 @@ const options = {
 
     //Music is downloaded handle
     audioDowload(audioName, audioSrc) {
-        Message.success({ content: audioName })
         console.log('audio dowload', audioName, audioSrc);
     },
 
@@ -108,7 +115,7 @@ const options = {
 }
 
 const Demo = () => (
-    <ReactJkMusicPlayer {...options} />
+        <ReactJkMusicPlayer {...options} />
 )
 ReactDOM.render(
     <Demo />,
