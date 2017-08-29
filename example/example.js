@@ -7,16 +7,19 @@ import FaHeadphones from "react-icons/lib/fa/headphones"
 import "./example.less"
 
 const options = {
+    //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
+    theme:"drak",
+    
     //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
     defaultPosition:{
         top:120,
         left:120
     },
 
-    //audio controller open text  [ type `String` default 'open']
+    //audio controller open text  [ type `String | ReactNode` default 'open']
     openText: "OPEN",
 
-    //audio controller close text  [ type `String` default 'close']
+    //audio controller close text  [ type `String | ReactNode` default 'close']
     closeText: "CLOSE",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
@@ -25,7 +28,7 @@ const options = {
     //audio controller is can be drag of the "mini" mode
     drag: true,
 
-    //audio name     [type `String`  default `name`]
+    //audio name     [type `String | ReactNode `  default `name`]
     name: "Canon (piano version)",
 
     //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
