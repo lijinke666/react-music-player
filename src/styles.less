@@ -8,7 +8,8 @@
     @bg-color:#f7f8fa;  
     @border-color:#d9d9d9;
     @light-theme-panel-bg:#fff;
-    @music-player-panel-height:65px;
+    @music-player-panel-height:80px;
+    @panel-bg:rgba(0,0,0,.7);
     @font-family:"Yuanti SC",STKaiti,'Microsoft YaHei',Helvetica,sans-serif,Arial,Verdana;
     @font:'iconfont';
     @font-color:#444;
@@ -179,12 +180,13 @@
         left:0;
         color:#fff;
         height:@panel-height;
-        background-color:rgba(0,0,0,.7);
-        padding: 6px 20px;
+        background-color: @panel-bg;
+        // padding: 6px 20px;
         z-index: 99;
         .transition(.8s);
         .panel-content{
-            padding: 4px 20px 0 20px;
+            padding: 13px 25px 10px 25px;
+            position: relative;
             .center();
             .img-content{
                 width:50px;
@@ -192,6 +194,7 @@
                 border-radius: 50%;
                 overflow: hidden;
                 background-size:100%;
+                background-repeat: no-repeat;
                 box-shadow: 0 0 10px rgba(0,0,0,.2);
                 @media screen and (max-width:768px){
                     width: 40px;
@@ -211,7 +214,6 @@
                 flex-basis:10%;
                 cursor: pointer;
                 margin-left:15px;
-                margin-top: 5px;
             }
             @media screen and (max-width:768px){
                 .progressbar-content{
@@ -267,7 +269,7 @@
                 }
             }
             .player-content{
-                padding-left: 5%;
+                padding: 5px 0 0 5%;
                 display: inline-flex;
                 align-items: center;
                 align-content: center;
@@ -276,11 +278,12 @@
                     cursor: pointer;
                     text-align: center;
                     flex:1;
-                    padding: 0 10px;
+                    margin: 0 10px;
                     display: inline-flex;
                     justify-content: center;
+                    align-items: center;
                     @media screen and (max-width:767px){
-                        padding: 0 6px;
+                        margin: 0 6px;
                     }
                     >i{
                         cursor:pointer;
@@ -289,13 +292,13 @@
                         vertical-align: middle
                     }
                 }
-                >.group:last-child{
-                    padding: 0 30px 0 10px;
-                }
+                // >.group:last-child{
+                //     margin-10px;
+                // }
                 .theme-switch{
-                    .rc-switch{
-                        background-color: transparent;
-                    }
+                  .rc-switch{
+                      background-color: transparent;
+                  }
                 }
                 @media screen and (max-width:768px){
                     .play-sounds{
@@ -308,8 +311,10 @@
                     }
                 }
                 .play-sounds{
-                    padding-top: 5px;
                     align-items: center;
+                    svg{
+                        font-size:30px;
+                    }
                     .sounds-icon{
                         margin-right: 5px;
                         flex:1 1 auto;
@@ -318,50 +323,26 @@
                         width:100px;
                     }
                 }
-                .play-setting{
+                .audio-lists-btn{
+                    min-width: 60px;
+                    height: 23px;
+                    border-radius: 40px;
+                    background-color: rgba(0,0,0,.3);
+                    padding: 0 10px;
+                    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.02);
+                    .transition(.5s);
                     position: relative;
-                    >i{
-                        font-size:28px;
-                    }
-                    &:hover{
-                        .play-setting-items{
-                            transform: scale(1)
+                    >.group:hover{
+                        &,&>svg{
+                            color:#fff;
                         }
                     }
-                    &-items{
-                        box-shadow: 0 0 10px rgba(255,255,255,.1);
-                        position: absolute;
-                        bottom:35px;
-                        left:6px;
-                        transform: scale(0);
-                        background-color: rgba(0,0,0,.5);
-                        transform-origin: bottom center;
-                        .transition();
-                        .active{
-                            color:@primary-color;
-                        }
-                        &::before{
-                            width:20px;
-                            height:20px;
-                            border:20px solid transparent;
-                            border-bottom-color:red;
-                            position: absolute;
-                            bottom:0;
-                            left:0;
-                        }
-                    li{
-                        cursor: pointer;
-                        .center();
-                        padding: 5px 10px;
-                        text-align: center;
-                        .transition();
-                        &:hover{
-                                background-color: rgba(0,0,0,.5);
-                                i{
-                                    color:@primary-color;
-                                }
-                        }
-                    } 
+                    .audio-lists-num{
+                        margin-left: 8px;
+                    }
+                    &:hover,&:active{
+                        background-color: @primary-color;
+                        color:#fff;
                     }
                 }
             }
@@ -372,6 +353,50 @@
             font-size:13px;
         }
     }
+    .audio-lists-panel{
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        // right: 70px;
+        // bottom:77px;
+        right:50px;
+        bottom:60px;
+        z-index: 198;
+        width: 480px;
+        height: 410px;
+        color: #7c898e;
+        transform-origin: right bottom;
+        background-color: @panel-bg;
+        transform: scale(0);
+        display: none\9;
+        .transition(.3s);
+        @media screen and (max-width:767px){
+            width:100% !important;
+            right:0;
+            height:calc(~"100vh - @{music-player-panel-height} - 12px")
+        }
+        &.show{
+            animation: scaleTo .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
+            display: block\9;
+        }
+    }
+    .audio-lists-panel-header{
+        .close-btn{
+            float: right;
+            cursor: pointer;
+        }
+        border-bottom:1px solid lighten(@panel-bg,1%);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        .title{
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            font-size: 20px;
+            margin: 0;
+            text-align: left;
+            font-weight: 500;
+        }
+    }
     &.light-theme{
         svg{
             color:@primary-color;
@@ -380,7 +405,7 @@
             }
         }
         .music-player-panel{
-            box-shadow: 0 1px 3px rgba(0,0,0,.055);
+            box-shadow:0 1px 2px 0 rgba(0,34,77,.05);
             background-color:@light-theme-panel-bg;
             color:#7D7D7D;
             .img-content{
@@ -388,12 +413,17 @@
             }
         }
         .rc-switch{
-          &::after{
-              background-color: @primary-color;
-          }
+            color:#fff;
+            &::after{
+                background-color: #fff;
+            }
+        }
+        .rc-switch-checked{
+            background-color: @primary-color !important;
+            border:1px solid @primary-color
         }
         .rc-switch-inner{
-            color:@font-color;
+            color:#fff;
         }
     }
     .translate{
@@ -434,7 +464,6 @@
         to{
             transform: scale(1)
         }
-
     }
     @keyframes imgRotate{
         from{

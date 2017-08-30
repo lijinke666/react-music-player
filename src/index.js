@@ -17,6 +17,8 @@ import MdVolumeDown from "react-icons/lib/md/volume-down"
 import MdVolumeMute from "react-icons/lib/md/volume-mute"
 import Download from "react-icons/lib/fa/cloud-download"
 import LoadIcon from "react-icons/lib/fa/spinner"
+import PlayLists from "react-icons/lib/fa/list-ul"
+import CloseBtn from "react-icons/lib/md/close"
 
 
 import 'rc-slider/assets/index.css'
@@ -48,6 +50,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     moveY: 0,
     isMove: false,
     loading: false,
+    audioListsPanelVisible: false,
     theme: this.lightThemeName,
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
   }
@@ -63,8 +66,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     name: "",
     closeText: "close",
     openText: "open",
-    checkedText:"",
-    unCheckedText:"",
+    checkedText: "",
+    unCheckedText: "",
     isMove: false,
     drag: true,
     showDowload: true,
@@ -112,7 +115,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.string,
       PropTypes.object
     ]),
-    unCheckedText:PropTypes.oneOfType([
+    unCheckedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
     ])
@@ -164,6 +167,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       moveY,
       isMove,
       loading,
+      audioListsPanelVisible,
       theme
     } = this.state
 
@@ -261,7 +265,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         {
                           loading
                             ? '--'
-                            : this.formatTime(currentTime)
+                            : this.formatTime(duration)
                         }
                       </span>
                     </section>
@@ -350,7 +354,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       {
                         isMute
                           ? <span className="sounds-icon" {...ISMOBILE ? { onTouchStart: this.onSound } : { onClick: this.onSound }}><MdVolumeMute /></span>
-                          : <span className="sounds-icon" {...ISMOBILE ? { onTouchStart: this.onSound } : { onClick: this.onSound }}><MdVolumeDown /></span>
+                          : <span className="sounds-icon" {...ISMOBILE ? { onTouchStart: this.onMute } : { onClick: this.onMute }}><MdVolumeDown /></span>
                       }
                       <Slider
                         max={1}
@@ -360,6 +364,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         {...sliderBaseOptions}
                       />
                     </span>
+
+                    {/*播放列表*/}
+                    <span className="group audio-lists-btn" key="audio-lists-btn" title="play lists" onClick={this.openAudioListsPanel}>
+                      <span className="audio-lists-icon"><PlayLists /></span>
+                      <span className="audio-lists-num">111</span>
+                    </span>
+
+                    {/*收起面板*/}
                     {
                       mode === 'full'
                         ? undefined
@@ -368,6 +380,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         </span>
                     }
                   </div>
+                  <div
+                    className={classNames("audio-lists-panel", { "show": audioListsPanelVisible })} key="audio-list-panel"
+                  >
+                    <div className="audio-lists-panel-header">
+                      <h2 className="title">
+                        播放列表
+                            <span className="close-btn" onClick={this.closeAudioListsPanel}><CloseBtn /></span>
+                      </h2>
+                    </div>
+                    <div className="audio-lists-panel-content">
+
+                    </div>
+                  </div>
                 </section>
               </div>
             )
@@ -375,6 +400,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
       </div>
     )
+  }
+  openAudioListsPanel = () => {
+    this.setState({ audioListsPanelVisible: true })
+  }
+  closeAudioListsPanel = (e) => {
+    e.stopPropagation()
+    this.setState({ audioListsPanelVisible: false })
   }
   themeChange = (value) => {
     this.setState({
@@ -641,6 +673,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
   audioStalled = () => {
     this.setState({ loading: true })
   }
+  // shouldComponentUpdate(nextProps,{audioListsPanelVisible}){
+  //   console.log(this.state.audioListsPanelVisible,audioListsPanelVisible);
+  //   return true
+  // }
   //合并state 更新初始位置
   componentWillMount() {
     const {

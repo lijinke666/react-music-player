@@ -29,7 +29,7 @@ const options = {
     unCheckedText:"关",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "mini",
+    mode: "full",
 
     //audio controller is can be drag of the "mini" mode
     drag: true,
@@ -90,7 +90,7 @@ const options = {
 
     //audio play progress handle
     audioProgress(currentTime, duration) {
-        console.log(currentTime,duration);
+        // console.log('audio progress',currentTime,duration);
     },
 
     //audio load faild error handle
@@ -102,7 +102,7 @@ const options = {
 
 const Demo = () => (
     <div>
-        <h2 className="title">Click or Drag to try</h2>
+        <h2 className="example-title">Click or Drag to try</h2>
         <ReactJkMusicPlayer {...options} />
     </div>
 )
