@@ -22,6 +22,12 @@ const options = {
     //audio controller close text  [ type `String | ReactNode` default 'close']
     closeText: "CLOSE",
 
+    //audio theme switch checkedText  [ type `String | ReactNode` default '-']
+    checkedText:"开",
+
+    //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
+    unCheckedText:"关",
+
     //audio mode        mini | full          [type `String`  default `mini`]  
     mode: "mini",
 
@@ -51,6 +57,9 @@ const options = {
 
     //loop button display of the audio player panel   [type `Boolean` default `true`]
     showLoop: true,
+
+    //theme toogle switch  display of the audio player panel   [type `Boolean` default `true`]
+    showThemeSwitch:true,
 
     //Music is downloaded handle
     audioDowload(audioName, audioSrc) {

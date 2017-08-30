@@ -2,6 +2,11 @@
 import React, { PureComponent, PropTypes } from "react"
 import ReactDOM from "react-dom"
 import SettingIcon from "react-icons/lib/fa/cog"
+import classNames from "classnames"
+import Mobile from "is-mobile"
+import Slider from 'rc-slider/lib/Slider'
+import Switch from "rc-switch"
+
 import FaCircleONotch from "react-icons/lib/fa/circle-o-notch"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o"
@@ -12,13 +17,13 @@ import MdVolumeDown from "react-icons/lib/md/volume-down"
 import MdVolumeMute from "react-icons/lib/md/volume-mute"
 import Download from "react-icons/lib/fa/cloud-download"
 import LoadIcon from "react-icons/lib/fa/spinner"
-import classNames from "classnames"
-import Mobile from "is-mobile"
-import Slider from 'rc-slider/lib/Slider'
 
 
 import 'rc-slider/assets/index.css'
+import 'rc-switch/assets/index.css'
 import "./styles.less"
+
+//TODO V2.4.0 1.主题切换 2.支持多首歌曲播放
 
 const ISMOBILE = Mobile()
 
@@ -43,6 +48,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     moveY: 0,
     isMove: false,
     loading: false,
+    theme: this.lightThemeName,
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
   }
   static defaultProps = {
@@ -57,12 +63,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     name: "",
     closeText: "close",
     openText: "open",
+    checkedText:"",
+    unCheckedText:"",
     isMove: false,
     drag: true,
     showDowload: true,
     showPlay: true,
     showReload: true,
     showLoop: true,
+    showThemeSwitch: true
   }
   static PropTypes = {
     theme: PropTypes.oneOf([this.darkThemeName, this.lightThemeName]),
@@ -98,6 +107,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showPlay: PropTypes.bool,
     showReload: PropTypes.bool,
     showLoop: PropTypes.bool,
+    showThemeSwitch: PropTypes.bool,
+    checkedText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    unCheckedText:PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ])
   }
   constructor(props) {
     super(props)
@@ -112,7 +130,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   render() {
     const {
-      theme,
       musicSrc,
       name,
       cover,
@@ -127,6 +144,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       showPlay,
       showReload,
       showLoop,
+      showThemeSwitch,
+      checkedText,
+      unCheckedText
     } = this.props
 
     const {
@@ -143,7 +163,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       moveX,
       moveY,
       isMove,
-      loading
+      loading,
+      theme
     } = this.state
 
     const bindEvents = drag
@@ -309,6 +330,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         : undefined
                     }
 
+                    {/* 主题选择 */}
+                    {
+                      showThemeSwitch
+                        ? <span className="group theme-switch">
+                          <Switch
+                            className="theme-switch"
+                            onChange={this.themeChange}
+                            checkedChildren={checkedText}
+                            unCheckedChildren={unCheckedText}
+                            checked={theme === this.lightThemeName}
+                          />
+                        </span>
+                        : undefined
+                    }
+
                     {/*音量控制*/}
                     <span className="group play-sounds" key="play-sound" title="sounds">
                       {
@@ -339,6 +375,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
       </div>
     )
+  }
+  themeChange = (value) => {
+    this.setState({
+      theme: value ? this.lightThemeName : this.darkThemeName
+    })
   }
   downloadAudio = (audioName, audioSrc) => {
     this.downloadNode = document.createElement('a')
@@ -602,9 +643,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //合并state 更新初始位置
   componentWillMount() {
-    const { defaultPosition: { left, top } } = this.props
+    const {
+      defaultPosition: { left, top },
+      theme
+     } = this.props
     this.setState(() => {
       return {
+        theme,
         moveX: left || 0,
         moveY: top || 0
       }

@@ -182,6 +182,7 @@
         background-color:rgba(0,0,0,.7);
         padding: 6px 20px;
         z-index: 99;
+        .transition(.8s);
         .panel-content{
             padding: 4px 20px 0 20px;
             .center();
@@ -291,6 +292,11 @@
                 >.group:last-child{
                     padding: 0 30px 0 10px;
                 }
+                .theme-switch{
+                    .rc-switch{
+                        background-color: transparent;
+                    }
+                }
                 @media screen and (max-width:768px){
                     .play-sounds{
                         .hidden()
@@ -361,6 +367,11 @@
             }
         }
     }
+    .rc-switch-inner{
+        svg{
+            font-size:13px;
+        }
+    }
     &.light-theme{
         svg{
             color:@primary-color;
@@ -375,6 +386,14 @@
             .img-content{
                 box-shadow: 0 0 10px #dcdcdc;
             }
+        }
+        .rc-switch{
+          &::after{
+              background-color: @primary-color;
+          }
+        }
+        .rc-switch-inner{
+            color:@font-color;
         }
     }
     .translate{
