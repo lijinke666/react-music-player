@@ -30,10 +30,13 @@ const AudioListsPanel = ({
             ? <ul>
                 {
                     audioLists.map((audio,i)=>{
+                        const {
+                          name,
+                        } = audio
                         return (
                             <li className="audio-item" key={i}>
                                 <span className="group player-status" key="player-status"><PlayIcon/></span>
-                                <span className="group player-name">消愁</span>
+                                <span className="group player-name">{name}</span>
                                 <span className="group player-time">02:89</span>     
                             </li>
                         )
