@@ -1,7 +1,7 @@
 {
   "name": "react-jinke-music-player",
-  "version": "2.2.2",
-  "description":"A beautiful and responsive react music player component",
+  "version": "2.4.0",
+  "description": "A beautiful and responsive react music player component",
   "main": "src/index.js",
   "scripts": {
     "start": "npm run demo",
@@ -30,6 +30,7 @@
     "classnames": "^2.2.5",
     "is-mobile": "^0.2.2",
     "rc-slider": "^8.3.1",
+    "rc-switch": "^1.5.2",
     "react": "15.x",
     "react-dom": "15.x",
     "react-icons": "^2.2.5"
