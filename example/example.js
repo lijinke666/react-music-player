@@ -29,7 +29,7 @@ const options = {
     unCheckedText:"关",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "full",
+    mode: "mini",
 
     //audio controller is can be drag of the "mini" mode
     drag: true,

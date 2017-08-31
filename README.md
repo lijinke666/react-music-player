@@ -38,12 +38,6 @@ import FaHeadphones from "react-icons/lib/fa/headphones"
 const options = {
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
     theme:"drak",
-
-    //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "mini",
-
-    //audio controller is can be drag of the "mini" mode
-    drag: true,
     
     //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
     defaultPosition:{
@@ -51,13 +45,25 @@ const options = {
         left:120
     },
 
-    //audio controller open text  [ type `String` default 'open']
+    //audio controller open text  [ type `String | ReactNode` default 'open']
     openText: "OPEN",
 
-    //audio controller close text  [ type `String` default 'close']
+    //audio controller close text  [ type `String | ReactNode` default 'close']
     closeText: "CLOSE",
 
-    //audio name     [type `String | ReactNode`  default `name`]
+    //audio theme switch checkedText  [ type `String | ReactNode` default '-']
+    checkedText:"开",
+
+    //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
+    unCheckedText:"关",
+
+    //audio mode        mini | full          [type `String`  default `mini`]  
+    mode: "mini",
+
+    //audio controller is can be drag of the "mini" mode
+    drag: true,
+
+    //audio name     [type `String | ReactNode `  default `name`]
     name: "Canon (piano version)",
 
     //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
@@ -80,6 +86,9 @@ const options = {
 
     //loop button display of the audio player panel   [type `Boolean` default `true`]
     showLoop: true,
+
+    //theme toogle switch  display of the audio player panel   [type `Boolean` default `true`]
+    showThemeSwitch:true,
 
     //Music is downloaded handle
     audioDowload(audioName, audioSrc) {
@@ -108,7 +117,7 @@ const options = {
 
     //audio play progress handle
     audioProgress(currentTime, duration) {
-        console.log(currentTime,duration);
+        console.log('audio progress',currentTime,duration);
     },
 
     //audio load faild error handle
@@ -118,12 +127,13 @@ const options = {
 }
 
 const Demo = () => (
-        <ReactJkMusicPlayer {...options} />
+    <ReactJkMusicPlayer {...options} />
 )
 ReactDOM.render(
     <Demo />,
     document.getElementById('root')
 )
+
 
 
 ```

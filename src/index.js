@@ -1,12 +1,13 @@
 
 import React, { PureComponent, PropTypes } from "react"
 import ReactDOM from "react-dom"
-import SettingIcon from "react-icons/lib/fa/cog"
 import classNames from "classnames"
 import Mobile from "is-mobile"
 import Slider from 'rc-slider/lib/Slider'
 import Switch from "rc-switch"
+// import AudioListsPanel from "./audioListsPanel"
 
+import SettingIcon from "react-icons/lib/fa/cog"
 import FaCircleONotch from "react-icons/lib/fa/circle-o-notch"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o"
@@ -18,14 +19,13 @@ import MdVolumeMute from "react-icons/lib/md/volume-mute"
 import Download from "react-icons/lib/fa/cloud-download"
 import LoadIcon from "react-icons/lib/fa/spinner"
 import PlayLists from "react-icons/lib/fa/list-ul"
-import CloseBtn from "react-icons/lib/md/close"
 
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
 import "./styles.less"
 
-//TODO V2.4.0 1.主题切换 2.支持多首歌曲播放
+//TODO V3.0.0 .支持多首歌曲播放
 
 const ISMOBILE = Mobile()
 
@@ -55,6 +55,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量
   }
   static defaultProps = {
+    // audioLists: [],
     theme: this.lightThemeName,
     mode: "mini",
     defaultPosition: {
@@ -66,6 +67,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     name: "",
     closeText: "close",
     openText: "open",
+    // notContentText: "暂无音乐",
     checkedText: "",
     unCheckedText: "",
     isMove: false,
@@ -77,6 +79,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showThemeSwitch: true
   }
   static PropTypes = {
+    // audioLists: PropTypes.array.isRequired,
     theme: PropTypes.oneOf([this.darkThemeName, this.lightThemeName]),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
@@ -94,6 +97,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.string,
       PropTypes.object
     ]),
+    // notContentText: PropTypes.oneOfType([
+    //   PropTypes.string,
+    //   PropTypes.object
+    // ]),
     controllerTitle: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
@@ -141,6 +148,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       controllerTitle,
       closeText,
       openText,
+      // notContentText,
       drag,
       style,
       showDowload,
@@ -149,7 +157,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       showLoop,
       showThemeSwitch,
       checkedText,
-      unCheckedText
+      unCheckedText,
+      // audioLists
     } = this.props
 
     const {
@@ -365,11 +374,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       />
                     </span>
 
-                    {/*播放列表*/}
-                    <span className="group audio-lists-btn" key="audio-lists-btn" title="play lists" onClick={this.openAudioListsPanel}>
+                    {/*TODO 播放列表*/}
+                    {/* <span className="group audio-lists-btn" key="audio-lists-btn" title="play lists" onClick={this.openAudioListsPanel}>
                       <span className="audio-lists-icon"><PlayLists /></span>
                       <span className="audio-lists-num">111</span>
-                    </span>
+                    </span> */}
 
                     {/*收起面板*/}
                     {
@@ -380,19 +389,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         </span>
                     }
                   </div>
-                  <div
-                    className={classNames("audio-lists-panel", { "show": audioListsPanelVisible })} key="audio-list-panel"
-                  >
-                    <div className="audio-lists-panel-header">
-                      <h2 className="title">
-                        播放列表
-                            <span className="close-btn" onClick={this.closeAudioListsPanel}><CloseBtn /></span>
-                      </h2>
-                    </div>
-                    <div className="audio-lists-panel-content">
-
-                    </div>
-                  </div>
+                  {/* 播放列表面板 */}
+                  {/* <AudioListsPanel
+                    visible={audioListsPanelVisible}
+                    audioLists={audioLists}
+                    notContentText={notContentText}
+                    onCancel={this.closeAudioListsPanel}
+                  /> */}
                 </section>
               </div>
             )
@@ -402,7 +405,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
   }
   openAudioListsPanel = () => {
-    this.setState({ audioListsPanelVisible: true })
+    this.setState(({ audioListsPanelVisible }) => ({
+      audioListsPanelVisible: !audioListsPanelVisible
+    }))
   }
   closeAudioListsPanel = (e) => {
     e.stopPropagation()
