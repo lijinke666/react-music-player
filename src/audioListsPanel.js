@@ -9,7 +9,10 @@ const AudioListsPanel = ({
     audioLists, 
     visible, 
     notContentText, 
-    onCancel
+    onCancel,
+    onPlay,
+    pause,
+    playId
  }) => (
     <div
       className={classNames("audio-lists-panel", { "show": visible })} key="audio-list-panel"
@@ -34,10 +37,22 @@ const AudioListsPanel = ({
                           name,
                         } = audio
                         return (
-                            <li className="audio-item" key={i}>
-                                <span className="group player-status" key="player-status"><PlayIcon/></span>
-                                <span className="group player-name">{name}</span>
-                                <span className="group player-time">02:89</span>     
+                            <li title={pause ? ' Click to play' : 'Click to pause'} className={classNames("audio-item",{"playing":playId === i},{"pause":pause})} key={i} onClick={()=>onPlay(i)}>
+                                <span className="group player-status" key="player-status">
+                                  <span className="player-icons" key={`player-icons-${i}`}>
+                                  {
+                                    playId === i
+                                    ? pause ? <PauseIcon/> : <PlayIcon/>
+                                    : undefined
+                                  }
+                                  </span>
+                                </span>
+                                <span className="group player-name" key="player-name">
+                                  {name}
+                                </span>
+                                <span className="group player-time">
+                                  02:89
+                                </span>     
                             </li>
                         )
                     })

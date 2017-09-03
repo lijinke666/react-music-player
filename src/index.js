@@ -25,7 +25,14 @@ import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
 import "./styles.less"
 
-//TODO V3.0.0 .支持多首歌曲播放
+
+/**
+ * TODO V3.0.0 支持多首歌曲播放
+ * 待完成
+ * 1.获取列表每首歌的时长 
+ * 2.增加列表循环 随机播放 功能
+ * 
+ */
 
 const ISMOBILE = Mobile()
 
@@ -36,7 +43,12 @@ const Load = () => (
 
 export default class ReactJkMusicPlayer extends PureComponent {
   state = {
+    playId: -1,
+    name: "",
+    cover: "",
+    musicSrc: "",
     toggle: false,
+    pause: false,
     playing: false,
     duration: 0,
     currentTime: 0,
@@ -140,9 +152,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   render() {
     const {
-      musicSrc,
-      name,
-      cover,
       mode,
       className,
       controllerTitle,
@@ -177,7 +186,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       isMove,
       loading,
       audioListsPanelVisible,
-      theme
+      pause,
+      theme,
+      name,
+      cover,
+      musicSrc,
+      playId
     } = this.state
 
     const bindEvents = drag
@@ -375,10 +389,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     </span>
 
                     {/*TODO 播放列表*/}
-                     <span className="group audio-lists-btn" key="audio-lists-btn" title="play lists" onClick={this.openAudioListsPanel}>
+                    <span className="group audio-lists-btn" key="audio-lists-btn" title="play lists"  {...ISMOBILE ? { onTouchStart: this.openAudioListsPanel } : { onClick: this.openAudioListsPanel }}>
                       <span className="audio-lists-icon"><PlayLists /></span>
-                      <span className="audio-lists-num">111</span>
-                    </span> 
+                      <span className="audio-lists-num">{audioLists.length}</span>
+                    </span>
 
                     {/*收起面板*/}
                     {
@@ -390,12 +404,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     }
                   </div>
                   {/* 播放列表面板 */}
-                   <AudioListsPanel
+                  <AudioListsPanel
+                    playId={playId}
+                    pause={pause}
                     visible={audioListsPanelVisible}
                     audioLists={audioLists}
                     notContentText={notContentText}
+                    onPlay={this.audioListsPlay}
                     onCancel={this.closeAudioListsPanel}
-                  /> 
+                  />
                 </section>
               </div>
             )
@@ -403,6 +420,33 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
       </div>
     )
+  }
+  //音乐列表面板选择歌曲
+  audioListsPlay = (playId) => {
+    const { audioLists } = this.props
+    const { playId: _playId, pause } = this.state
+    //如果点击当前项 就暂停
+    if (playId === _playId) {
+      return pause ? this.audio.play() : this._pauseAudio()
+    }
+    const {
+      name,
+      cover,
+      musicSrc
+    } = audioLists[playId]
+    this.setState({
+      name,
+      cover,
+      musicSrc,
+      playId,
+      currentTime: 0,
+      duration: 0,
+      playing: false,
+      loading: true
+    }, () => {
+      this.audio.currentTime = 0
+      this.audio.load()
+    })
   }
   openAudioListsPanel = () => {
     this.setState(({ audioListsPanelVisible }) => ({
@@ -568,7 +612,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //暂停
   _pauseAudio = () => {
     this.audio.pause()
-    this.setState({ playing: false })
+    this.setState({ playing: false, pause: true })
   }
   pauseAudio = () => {
     this.props.audioPause && this.props.audioPause(this.audio.currentTime, this.audio.duration)
@@ -578,7 +622,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   loadAudio = () => {
     this.setState({ loading: true })
     if (this.audio.readyState == 4 && this.audio.networkState != 3) {
-      this.setState({ playing: true, loading: false }, () => this.audio.play())
+      this.setState({ playing: true, loading: false, pause: false }, () => this.audio.play())
     }
   }
   //获取音频长度
@@ -678,18 +722,26 @@ export default class ReactJkMusicPlayer extends PureComponent {
   audioStalled = () => {
     this.setState({ loading: true })
   }
-  // shouldComponentUpdate(nextProps,{audioListsPanelVisible}){
-  //   console.log(this.state.audioListsPanelVisible,audioListsPanelVisible);
-  //   return true
-  // }
+  shouldComponentUpdate(nextProps, { musicSrc }) {
+    if (this.state.musicSrc === musicSrc || this.state.musicSrc !== musicSrc) return true
+    return true
+  }
   //合并state 更新初始位置
   componentWillMount() {
     const {
       defaultPosition: { left, top },
-      theme
+      theme,
+      audioLists
      } = this.props
-    this.setState(() => {
+
+    const { name, cover, musicSrc } = audioLists[0]
+
+    this.setState(({ playId }) => {
       return {
+        playId: ++playId,
+        name,
+        cover,
+        musicSrc,
         theme,
         moveX: left || 0,
         moveY: top || 0
@@ -706,6 +758,5 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.audio = this.dom.querySelector('audio')
     this.toggleMode(this.props.mode)
     this.bindEvents(this.audio)
-    // this.bindMobileAutoPlayerEvents()
   }
 }

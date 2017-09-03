@@ -28,6 +28,17 @@ ul,li{
     top:0;
     width:@player-width;
     height:@player-height;
+ 
+    ::-webkit-scrollbar-thumb {
+        height: 20px;
+        background-color: @primary-color;
+        opacity: .5;
+    }
+ 
+    ::-webkit-scrollbar{
+        width: 10px;
+        background-color: @bg-color;
+    }
     .clearfix(){
         &::before,&::after{
             clear:both;
@@ -431,6 +442,24 @@ ul,li{
             font-size:14px;
             cursor: pointer;
             .transition(.3s);
+            &.playing{
+                .player-icons{
+                    animation: playing 8s infinite;
+                }
+                background-color: lighten(@lists-panel-item-bg,2%);
+                svg{
+                    color:@primary-color;
+                }
+            }
+            &.pause{
+                .player-icons{
+                    animation:none;
+                }
+            }
+            .player-icons{
+                display: inline-block;
+                width:30px;
+            }
             &:hover,&:active{
                 background-color: lighten(@lists-panel-item-bg,2%);
                 svg{
@@ -524,7 +553,11 @@ ul,li{
         animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }
 
-    
+    @keyframes playing{
+        to{
+            transform: rotateX(360deg)
+        }
+    }
     @keyframes audioLoading {
         from{
             transform: rotate(0deg)

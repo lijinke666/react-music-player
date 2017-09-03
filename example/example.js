@@ -15,6 +15,38 @@ const options = {
         name:"aaaaa",
         cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
         musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"bbbbbbbbbbb",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"ccccccccc",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://sc1.111ttt.com/2017/1/05/09/298092204432.mp3"
+    },{
+        name:"ddddddddd",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"eeeeeeee",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"是对方的说法",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"阿斯蒂芬的",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"啊啊",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"sfsfsfsf",
+        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
     }],
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
     theme:"drak",
