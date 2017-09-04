@@ -69,6 +69,8 @@ const options = {
     //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
     unCheckedText:"关",
 
+    defaultPlayMode:"order",
+
     //audio mode        mini | full          [type `String`  default `mini`]  
     mode: "mini",
 
@@ -97,7 +99,7 @@ const options = {
     showDowload: true,
 
     //loop button display of the audio player panel   [type `Boolean` default `true`]
-    showLoop: true,
+    showPlayMode: true,
 
     //theme toogle switch  display of the audio player panel   [type `Boolean` default `true`]
     showThemeSwitch:true,

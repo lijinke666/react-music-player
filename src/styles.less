@@ -305,6 +305,9 @@ ul,li{
                     @media screen and (max-width:767px){
                         margin: 0 6px;
                     }
+                    @media screen and (max-width:320px){
+                        margin: 0 4px;
+                    }
                     >i{
                         cursor:pointer;
                         color:@primary-color;
@@ -478,6 +481,22 @@ ul,li{
             .player-time{
                 font-size:12px;
             }
+        }
+    }
+    .play-mode-title{
+        position: absolute;
+        right: 72px;
+        bottom:@music-player-panel-height;
+        padding: 5px 20px;
+        background-color: rgba(0,0,0,.5);
+        color:#fff;
+        line-height: 1.5;
+        text-align: center;
+        transform: scale(0);
+        transform-origin: bottom center;
+        transition: ttransform .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        &.play-mode-title-visible{
+            animation: scaleTo .6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
     }
     &.light-theme{
