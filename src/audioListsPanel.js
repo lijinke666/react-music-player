@@ -5,14 +5,15 @@ import PlayIcon from "react-icons/lib/md/play-arrow"
 import PauseIcon from "react-icons/lib/md/pause"
 import classNames from "classnames"
 
-const AudioListsPanel = ({ 
-    audioLists, 
-    visible, 
-    notContentText, 
-    onCancel,
-    onPlay,
-    pause,
-    playId
+const AudioListsPanel = ({
+  audioLists,
+  visible,
+  notContentText,
+  onCancel,
+  onPlay,
+  pause,
+  playId,
+  loading
  }) => (
     <div
       className={classNames("audio-lists-panel", { "show": visible })} key="audio-list-panel"
@@ -24,39 +25,41 @@ const AudioListsPanel = ({
           <span className="close-btn" onClick={onCancel}><CloseBtn /></span>
         </h2>
       </div>
-      <div 
-        className={classNames("audio-lists-panel-content",{"no-content":audioLists.length < 1}) } 
+      <div
+        className={classNames("audio-lists-panel-content", { "no-content": audioLists.length < 1 })}
         key="audio-lists-panel-content"
       >
         {
           audioLists.length >= 1
             ? <ul>
-                {
-                    audioLists.map((audio,i)=>{
-                        const {
-                          name,
-                        } = audio
-                        return (
-                            <li title={pause ? ' Click to play' : 'Click to pause'} className={classNames("audio-item",{"playing":playId === i},{"pause":pause})} key={i} onClick={()=>onPlay(i)}>
-                                <span className="group player-status" key="player-status">
-                                  <span className="player-icons" key={`player-icons-${i}`}>
-                                  {
-                                    playId === i
-                                    ? pause ? <PauseIcon/> : <PlayIcon/>
-                                    : undefined
-                                  }
-                                  </span>
+              {
+                audioLists.map((audio, i) => {
+                  const {
+                    name,
+                  } = audio
+                  return (
+                    <li title={pause ? ' Click to play' : 'Click to pause'} className={classNames("audio-item", { "playing": playId === i }, { "pause": pause })} key={i} onClick={() => onPlay(i)}>
+                      <span className="group player-status" key="player-status">
+                        <span className="player-icons" key={`player-icons-${i}`}>
+                          {
+                             playId === i && loading
+                              ? loading
+                              : playId === i 
+                                ?  pause ? <PauseIcon /> : <PlayIcon />
+                                : undefined
+                          }
+                        </span>
+                      </span>
+                      <span className="group player-name" key="player-name">
+                        {name}
+                      </span>
+                      <span className="group player-time">
+                        02:89
                                 </span>
-                                <span className="group player-name" key="player-name">
-                                  {name}
-                                </span>
-                                <span className="group player-time">
-                                  02:89
-                                </span>     
-                            </li>
-                        )
-                    })
-                }
+                    </li>
+                  )
+                })
+              }
             </ul>
             : <div>
               <span><NotContent /></span>
@@ -67,4 +70,4 @@ const AudioListsPanel = ({
     </div>
   )
 
-  export default AudioListsPanel
+export default AudioListsPanel
