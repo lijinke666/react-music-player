@@ -1,6 +1,11 @@
 # react-jinke-music-player
-A beautiful and responsive react music player component :)
+[![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-jinke-music-player)
+[![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-jinke-music-player)
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-jinke-music-player)
+> A beautiful and responsive react music player component :)
 
+
+[中文文档](https://github.com/lijinke666/react-jinke-music-player/blob/master/CN.md)
 ## Screenshots
 
 ![gif](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/example.gif) <br/>
@@ -19,17 +24,19 @@ npm install react-jinke-music-player --save
 ```
 
 ## Example
-### [LIVE DEMO](https://lijinke666.github.io/react-jinke-music-player/)
+> ONLINE example :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)
+
+
+## Development
 ```
 git clone https://github.com/lijinke666/react-jinke-music-player.git
+npm install
+npm start
 ```
-
-- `yarn`
-- `npm run demo`   run example
 
 ## Options
 
-```javascript
+```jsx
 import React from "react"
 import ReactDOM from "react-dom"
 import ReactJkMusicPlayer from "react-jinke-music-player"
