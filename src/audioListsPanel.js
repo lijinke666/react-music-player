@@ -46,16 +46,14 @@ const AudioListsPanel = ({
                               ? loading
                               : playId === i 
                                 ?  pause ? <PauseIcon /> : <PlayIcon />
-                                : undefined
+                                : undefined    
                           }
                         </span>
                       </span>
                       <span className="group player-name" key="player-name">
                         {name}
                       </span>
-                      <span className="group player-time">
-                        02:89
-                                </span>
+                      <span className="group player-time"></span>
                     </li>
                   )
                 })

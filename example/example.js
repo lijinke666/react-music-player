@@ -48,7 +48,7 @@ const options = {
     defaultPlayMode:"order",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "mini",
+    mode: "full",
 
     //audio controller is can be drag of the "mini" mode
     drag: true,

@@ -295,7 +295,9 @@ ul,li{
                 align-content: center;
                 flex-basis: 15%;
                 >.group{
-                    cursor: pointer;
+                    &,&>svg{
+                        cursor: pointer;
+                    }
                     text-align: center;
                     flex:1;
                     margin: 0 10px;
@@ -326,6 +328,17 @@ ul,li{
                 @media screen and (max-width:768px){
                     .play-sounds{
                         .hidden()
+                    }
+                }
+                .prev-audio,.next-audio{
+                    svg{
+                        font-size:35px;
+                    }
+                }
+                .play-btn{
+                    padding: 0 18px;
+                    svg{
+                        font-size:26px;
                     }
                 }
                 .loop-btn{
@@ -564,7 +577,7 @@ ul,li{
                 }
             }
         }
-
+    
     }
     .translate{
         animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards

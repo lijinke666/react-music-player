@@ -21,6 +21,8 @@ import LoopIcon from "react-icons/lib/md/repeat-one"
 import RepeatIcon from "react-icons/lib/md/repeat"
 import OrderPlayIcon from "react-icons/lib/md/view-headline"
 import PlayLists from "react-icons/lib/md/queue-music"
+import NextAudioIcon from "react-icons/lib/md/skip-next"
+import PrevAudioIcon from "react-icons/lib/md/skip-previous"
 
 
 import 'rc-slider/assets/index.css'
@@ -354,19 +356,23 @@ export default class ReactJkMusicPlayer extends PureComponent {
                           <Load />
                         </span>
                         : showPlay
-                          ? <span
-                            className="group play-btn"
-                            key="play-btn"
-                            ref={node => this.playBtn = node}
-                            {...ISMOBILE ? { onTouchStart: this.onPlay } : { onClick: this.onPlay }}
-                            title="play"
-                          >
-                            {
-                              playing
-                                ? <span><FaPauseCircle /></span>
-                                : <span><FaPlayCircle /></span>
-                            }
-                          </span>
+                          ? <span className="group">
+                              <span className="group prev-audio" title="previous track"><PrevAudioIcon /></span>
+                              <span
+                                className="group play-btn"
+                                key="play-btn"
+                                ref={node => this.playBtn = node}
+                                {...ISMOBILE ? { onTouchStart: this.onPlay } : { onClick: this.onPlay }}
+                                title="play"
+                              >
+                                {
+                                  playing
+                                    ? <span><FaPauseCircle /></span>
+                                    : <span><FaPlayCircle /></span>
+                                }
+                              </span>
+                              <span className="group next-audio" title="next track"><NextAudioIcon /></span>
+                            </span>
                           : undefined
                     }
 
