@@ -1,0 +1,61 @@
+@import "./vars.less";
+::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: @primary-color;
+    opacity: .5;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: @bg-color;
+}
+.clearfix(){
+    &::before,&::after{
+        clear:both;
+        content:"";
+        display: table;
+        zoom: 1;
+    }
+}
+.hidden(){
+    display: none !important;
+}
+.hidden{
+    .hidden();
+}
+.text-center(){
+    text-align: center
+}
+.text-center{
+    text-align: center;
+}
+.transition(@time:.3s){
+    transition: all @time cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.center(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-hover(@color:@default-color,@lighten:3%){
+    color:#fff;
+    background-color: @color;
+    border:1px solid @color;
+    &:hover,&:active{
+        background-color: lighten(@color,@lighten)
+    }
+}
+
+.ellipsis-n(@n:2){
+    -webkit-line-clamp:@n;
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: center;
+}
+.ellipsis-1(){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

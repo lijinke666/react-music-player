@@ -7,15 +7,29 @@ import FaHeadphones from "react-icons/lib/fa/headphones"
 import "./example.less"
 
 const options = {
+    //audio lists model
     audioLists:[{
         name:"Canon (piano version)",
+        singer:"未知",
         cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
         musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
     },{
-        name:"ccccccccc",
-        cover:"http://p1.music.126.net/0TcWI1dFAC1tG_bC621mKQ==/18922595114347800.jpg?param=140y140",
-        musicSrc:"http://sc1.111ttt.com/2017/1/05/09/298092204432.mp3"
+        name:"胆小鬼",
+        singer:"梁咏琪",
+        cover:"http://p3.music.126.net/OLroXJamq8uM44u1Jawpyw==/51677046522535.jpg?param=177y177",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101640205.m4a?tflag=1506065899&pin=ff429b7ee5e0d36bb527c286ef8b09d6&ip=218.88.22.24#.mp3"
+    },{
+        name:"Beautiful",
+        singer:"Chrisina Aguilera",
+        cover:"http://p3.music.126.net/biJeqQZ5niniD7Va2w-LHA==/109951163028526512.jpg?param=200y200",
+        musicSrc:"http://other.web.ra01.sycdn.kuwo.cn/de37dfd72c9fb9bf7de1a0f9a7fc2c4c/59c4bbc4/resource/n2/320/94/4/1498621112.mp3"
+    },{
+        name:"悟空",
+        singer:"戴荃",
+        cover:"http://p4.music.126.net/gn4pPKc_Wk3EyByfi86lUQ==/3333719255417035.jpg?param=177y177",
+        musicSrc:"http://mp3.henduoge.com/s/2017-09-22/1506047726.mp3"
     }],
+
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
     theme:"drak",
     
@@ -48,22 +62,19 @@ const options = {
     defaultPlayMode:"order",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "full",
+    mode: "mini",
 
-    //audio controller is can be drag of the "mini" mode
+    //Whether you can switch between two modes, full => mini  or mini => full   [type 'Bollean' default 'true']
+    toggleMode:true,
+
+    //audio cover is show of the "mini" mode [type `Boolean` default 'true']
+    showMiniModeCover:true,
+
+    //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
     drag: true,
-
-    //audio name     [type `String | ReactNode `  default `name`]
-    name: "Canon (piano version)",
 
     //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
     controllerTitle: <FaHeadphones />,
-
-    //audio cover    [type `String`  default `-`]
-    cover: "http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
-
-    //audio path     [type `String`  default `-`]   
-    musicSrc: "",
 
     //play button display of the audio player panel   [type `Boolean` default `true`]
     showPlay: true,
@@ -81,24 +92,24 @@ const options = {
     showThemeSwitch:true,
 
     //Music is downloaded handle
-    audioDowload(audioName, audioSrc) {
-        Message.success({ content: audioName })
-        console.log('audio dowload', audioName, audioSrc);
+    audioDowload(audioInfo) {
+        Message.success({ content: '下载成功' })
+        console.log('audio dowload', audioInfo);
     },
 
     //audio play handle
-    audioPlay(currentTime, duration) {
-        console.log('audio playing', currentTime, duration);
+    audioPlay(audioInfo) {
+        console.log('audio playing', audioInfo);
     },
 
     //audio pause handle
-    audioPause(currentTime, duration) {
-        console.log('audio pause', currentTime, duration);
+    audioPause(audioInfo) {
+        console.log('audio pause', audioInfo);
     },
 
     //When the user has moved/jumped to a new location in audio
-    autdioSeeked(currentTime, duration) {
-        console.log('audio seeked', currentTime, duration);
+    autdioSeeked(audioInfo) {
+        console.log('audio seeked', audioInfo);
     },
     
     //When the volume has changed  min = 0.0  max = 1.0
@@ -107,20 +118,19 @@ const options = {
     },
 
     //The single song is ended handle
-    audioEnded(audioName,audioSrc,duration) {
+    audioEnded(audioInfo) {
         Message.info({ content: "Music is ended!" })
-        console.log('audio ended', audioName,audioSrc,duration);
+        console.log('audio ended', audioInfo);
     },
 
     //audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}
     audioAbort(e){
-        Message.warning({content:"audio load abort"})
         console.log('audio abort',e);
     },
 
     //audio play progress handle
-    audioProgress(currentTime, duration) {
-        // console.log('audio progress',currentTime,duration);
+    audioProgress(audioInfo) {
+        // console.log('audio progress',audioInfo);
     },
 
     //audio load faild error handle

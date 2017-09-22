@@ -4,6 +4,8 @@ import NotContent from "react-icons/lib/md/library-music"
 import PlayIcon from "react-icons/lib/md/play-arrow"
 import PauseIcon from "react-icons/lib/md/pause"
 import classNames from "classnames"
+import Mobile from "is-mobile"
+const ISMOBILE = Mobile()
 
 const AudioListsPanel = ({
   audioLists,
@@ -22,7 +24,7 @@ const AudioListsPanel = ({
         <h2 className="title">
           <span>播放列表/</span>
           <span className="num" key="num">{audioLists.length}</span>
-          <span className="close-btn" onClick={onCancel}><CloseBtn /></span>
+          <span className="close-btn" {...ISMOBILE ? { onTouchStart: onCancel } : { onClick: onCancel }}><CloseBtn /></span>
         </h2>
       </div>
       <div
@@ -36,24 +38,30 @@ const AudioListsPanel = ({
                 audioLists.map((audio, i) => {
                   const {
                     name,
+                    singer
                   } = audio
                   return (
-                    <li title={pause ? ' Click to play' : 'Click to pause'} className={classNames("audio-item", { "playing": playId === i }, { "pause": pause })} key={i} onClick={() => onPlay(i)}>
+                    <li
+                      key={i}
+                      title={pause ? ' Click to play' : 'Click to pause'}
+                      className={classNames("audio-item", { "playing": playId === i }, { "pause": pause })}
+                      {...ISMOBILE ? { onTouchStart: () => onPlay(i) } : { onClick: () => onPlay(i) }}
+                    >
                       <span className="group player-status" key="player-status">
                         <span className="player-icons" key={`player-icons-${i}`}>
                           {
-                             playId === i && loading
+                            playId === i && loading
                               ? loading
-                              : playId === i 
-                                ?  pause ? <PauseIcon /> : <PlayIcon />
-                                : undefined    
+                              : playId === i
+                                ? pause ? <PauseIcon /> : <PlayIcon />
+                                : undefined
                           }
                         </span>
                       </span>
                       <span className="group player-name" key="player-name">
                         {name}
                       </span>
-                      <span className="group player-time"></span>
+                      <span className="group player-time">{singer}</span>
                     </li>
                   )
                 })

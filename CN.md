@@ -43,6 +43,21 @@ import ReactJkMusicPlayer from "react-jinke-music-player"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {
+    /**
+        音乐列表
+        name 歌曲名字 必填
+        singer 歌手名字 非必填
+        cover 封面图 必填
+        musicSrc 歌曲路径 必填
+    */
+    audioLists:[{
+        name:"Canon (piano version)",
+        singer:"未知",
+        cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    }],
+
+
     //播放器的主题,可选 白天 和 黑夜 两种主题    [ type `string: 'light' or 'drak'  ` default 'drak' ]
     theme:"drak",
     
@@ -51,6 +66,17 @@ const options = {
         top:120,
         left:120
     },
+
+    //播放模式 自定义文字
+    playModeText: {
+        order: "顺序播放",
+        orderLoop: "列表循环",
+        singleLoop: "单曲循环",
+        shufflePlay: "随机播放"
+    },
+
+    //默认播放模式 选项 'order' 'orderLoop' 'singleLoop' 'shufflePlay'
+    defaultPlayMode:"order",
 
     //播放器控制器 自定义 打开 文字  [ type `String | ReactNode` default 'open']
     openText: "OPEN",
@@ -67,13 +93,17 @@ const options = {
     //播放器的模式 迷你(mini) 或者 完整 (full) [type `String`  default `mini`]  
     mode: "mini",
 
+    //是否可以 从迷你模式 切换到 完整模式 , 或者 完整模式 切换到 迷你模式 [type `String` default 'true']
+    toggleMode:true,
+
+    //在迷你模式时, 是否显示 封面图  [type `Boolean` default 'true']
+    showMiniModeCover:true,
+
     //当播放器是迷你模式时  是否可以对其进行拖拽 [type `String`  default `true`]
     drag: true,
 
-
     //播放器控制器的文字 [type `String | ReactNode`  default <FaHeadphones/>]
     controllerTitle: <FaHeadphones />,
-
 
     //是否显示播放按钮  [type `Boolean` default `true`]
     showPlay: true,
@@ -87,37 +117,40 @@ const options = {
     //是否显示主题切换开关  [type `Boolean` default `true`]
     showThemeSwitch:true,
 
-    //音频下载 触发函数 返回 当前音频名字 和 路径
-    audioDowload(audioName, audioSrc) {
-        console.log('audio dowload', audioName, audioSrc);
+    //是否显示播放模式 按钮  [type `Boolean` default `treu`]
+    showPlayMode: true,
+
+    //音频下载 触发 返回 音频信息
+    audioDowload(audioInfo) {
+        console.log('audio dowload', audioInfo);
     },
 
-    //音频播放 触发函数 返回 音频 当前播放时长 和 总时长
-    audioPlay(currentTime, duration) {
-        console.log('audio playing', currentTime, duration);
+    //音频播放触发 返回 音频信息
+    audioPlay(audioInfo) {
+        console.log('audio playing', audioInfo);
     },
 
-    //音频暂停 触发函数 返回 音频 当前播放时长 和 总时长
-    audioPause(currentTime, duration) {
-        console.log('audio pause', currentTime, duration);
+    //音频暂停触发 返回 音频信息
+    audioPause(audioInfo) {
+        console.log('audio pause', audioInfo);
     },
 
-    //音频拖动 触发函数 返回 音频 当前播放时长 和 总时长
-    autdioSeeked(currentTime, duration) {
-        console.log('audio seeked', currentTime, duration);
+    //音频拖动 触发函数 返回 音频信息
+    autdioSeeked(audioInfo) {
+        console.log('audio seeked', audioInfo);
     },
 
-    //当前音频结束播放 触发函数 返回 当前音频 总时长
-    audioEnded(duration) {
-        console.log('audio ended', duration);
+    //当前音频结束播放触发 返回音频信息
+    audioEnded(audioInfo) {
+        console.log('audio ended', audioInfo);
     },
 
-    //音频播放进度 返回当前当前音频播放时长 和总时长
-    audioProgress(currentTime, duration) {
-        console.log('audio progress',currentTime,duration);
+    //音频正在播放中 触发 返回音频信息
+    audioProgress(audioInfo) {
+        console.log('audio progress',audioInfo);
     },
 
-    //音频加载失败 触发函数
+    //音频加载失败 触发
     loadAudioError(e) {
         console.log('audio load err', e);
     }
@@ -132,5 +165,79 @@ ReactDOM.render(
 )
 
 
-
 ```
+
+## AudioInfo 返回参数
+```js
+{
+    cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg"   //封面图
+    currentTime:10.211519                                                //当前播放时长
+    duration:164.211519                                                  //歌曲总时长
+    musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?  tflag=1502850639pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3" //歌曲链接
+    name:"Canon (piano version)"                                                //歌曲名
+    volume:100                                                                  //当前音量
+}
+```
+
+## 参数属性
+
+```jsx
+  static PropTypes = {
+    audioLists: PropTypes.array.isRequired,
+    theme: PropTypes.oneOf(['dark', 'light']),
+    mode: PropTypes.oneOf(['mini', 'full']),
+    drag: PropTypes.bool,
+    name: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    cover: PropTypes.string.isRequired,
+    musicSrc: PropTypes.string.isRequired,
+    playModeText: PropTypes.object,
+    closeText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    openText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    notContentText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    controllerTitle: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    defaultPosition: PropTypes.object,
+    audioPlay: PropTypes.func,
+    audioPause: PropTypes.func,
+    audioEnded: PropTypes.func,
+    audioAbort: PropTypes.func,
+    audioVolumeChange: PropTypes.func,
+    loadAudioError: PropTypes.func,
+    audioProgress: PropTypes.func,
+    autdioSeeked: PropTypes.func,
+    audioDowload: PropTypes.func,
+    showDowload: PropTypes.bool,
+    showPlay: PropTypes.bool,
+    showReload: PropTypes.bool,
+    showPlayMode: PropTypes.bool,
+    showThemeSwitch: PropTypes.bool,
+    showMiniModeCover: PropTypes.bool,
+    toggleMode: PropTypes.bool,
+    checkedText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    unCheckedText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ])
+  }
+```
+
+
+## 许可证
+[MIT](https://github.com/lijinke666/react-jinke-music-player/blob/master/LICENCE)
