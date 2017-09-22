@@ -7,7 +7,7 @@
     "start": "npm run demo",
     "test": "jest --no-cache",
     "build": "webpack --env.mode=PROD --progress --config ./example/webpack.config.js",
-    "demo": "webpack-dev-server --progress --config ./example/webpack.config.js"
+    "demo": "webpack-dev-server --progress --inline --hot --config ./example/webpack.config.js"
   },
   "author": "jinke.li",
   "repository": {

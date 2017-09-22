@@ -22,7 +22,7 @@ const options = {
         name:"Beautiful",
         singer:"Chrisina Aguilera",
         cover:"http://p3.music.126.net/biJeqQZ5niniD7Va2w-LHA==/109951163028526512.jpg?param=200y200",
-        musicSrc:"http://other.web.ra01.sycdn.kuwo.cn/de37dfd72c9fb9bf7de1a0f9a7fc2c4c/59c4bbc4/resource/n2/320/94/4/1498621112.mp3"
+        musicSrc:"http://so1.111ttt.com:8282/2017/4/05m/10/298101104389.m4a?tflag=1506098533&pin=3e6a002582055ad2041fde2beaf23cee&ip=222.209.158.174#.mp3"
     },{
         name:"悟空",
         singer:"戴荃",
@@ -62,7 +62,7 @@ const options = {
     defaultPlayMode:"order",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "mini",
+    mode: "full",
 
     //Whether you can switch between two modes, full => mini  or mini => full   [type 'Bollean' default 'true']
     toggleMode:true,
