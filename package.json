@@ -1,13 +1,13 @@
 {
   "name": "react-jinke-music-player",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "A beautiful and responsive react music player component",
   "main": "src/index.js",
   "scripts": {
     "start": "npm run demo",
     "test": "jest --no-cache",
     "build": "webpack --env.mode=PROD --progress --config ./example/webpack.config.js",
-    "demo": "webpack-dev-server --progress --config ./example/webpack.config.js"
+    "demo": "webpack-dev-server --progress --inline --hot --config ./example/webpack.config.js"
   },
   "author": "jinke.li",
   "repository": {

@@ -1,0 +1,148 @@
+@import "./vars.less";
+ul,li{
+    margin:0;
+    padding: 0;
+    list-style-type: none;
+}
+::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: @primary-color;
+    opacity: .5;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: @bg-color;
+}
+.clearfix(){
+    &::before,&::after{
+        clear:both;
+        content:"";
+        display: table;
+        zoom: 1;
+    }
+}
+*{
+    box-sizing: border-box;
+}
+.hidden(){
+    display: none !important;
+}
+.hidden{
+    .hidden();
+}
+.text-center(){
+    text-align: center
+}
+.text-center{
+    text-align: center;
+}
+.transition(@time:.3s){
+    transition: all @time cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.center(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-hover(@color:@default-color,@lighten:3%){
+    color:#fff;
+    background-color: @color;
+    border:1px solid @color;
+    &:hover,&:active{
+        background-color: lighten(@color,@lighten)
+    }
+}
+
+.ellipsis-n(@n:2){
+    -webkit-line-clamp:@n;
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: center;
+}
+.ellipsis-1(){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+    .translate{
+        animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+    }
+    .scale{
+        animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+    }
+
+    @keyframes playing{
+        to{
+            transform: rotateX(360deg)
+        }
+    }
+    @keyframes audioLoading {
+        from{
+            transform: rotate(0deg)
+        }
+        to{
+            transform: rotate(360deg)
+        }
+    }
+
+    @keyframes scale{
+        from{
+            transform: scale(0)
+        }
+        50%{
+            opacity: .6;
+            transform: scale(1.5)
+        }
+        to{
+        opacity: 0;
+            transform: scale(2)
+        }
+
+    }
+    @keyframes scaleTo{
+        from{
+            transform: scale(0)
+        }
+        to{
+            transform: scale(1)
+        }
+    }
+    @keyframes imgRotate{
+        from{
+            transform: rotate(0deg)
+        }
+        to{
+            transform: rotate(360deg)
+        }
+    }
+    @keyframes fromTo{
+        from{
+            transform: scale(1) translate3d(0,110%,0)
+        }
+        to{
+            transform: scale(1) translate3d(0,0,0)
+        }
+    }
+    @keyframes fromDown{
+        from{
+            transform: scale(1) translate3d(0,-110%,0)
+        }
+        to{
+            transform: scale(1) translate3d(0,0,0)
+        }
+    }
+    
+    @keyframes translate{
+        from{
+            transform: translate3d(100%,0,0)
+        }
+        to{
+            transform: translate3d(0,0,0)
+        }
+    }
+    .img-rotate-pause{
+        animation-play-state:paused !important;
+    }

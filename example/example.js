@@ -7,6 +7,29 @@ import FaHeadphones from "react-icons/lib/fa/headphones"
 import "./example.less"
 
 const options = {
+    //audio lists model
+    audioLists:[{
+        name:"Canon (piano version)",
+        singer:"未知",
+        cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    },{
+        name:"胆小鬼",
+        singer:"梁咏琪",
+        cover:"http://p3.music.126.net/OLroXJamq8uM44u1Jawpyw==/51677046522535.jpg?param=177y177",
+        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101640205.m4a?tflag=1506065899&pin=ff429b7ee5e0d36bb527c286ef8b09d6&ip=218.88.22.24#.mp3"
+    },{
+        name:"Beautiful",
+        singer:"Chrisina Aguilera",
+        cover:"http://p3.music.126.net/biJeqQZ5niniD7Va2w-LHA==/109951163028526512.jpg?param=200y200",
+        musicSrc:"http://so1.111ttt.com:8282/2017/4/05m/10/298101104389.m4a?tflag=1506098533&pin=3e6a002582055ad2041fde2beaf23cee&ip=222.209.158.174#.mp3"
+    },{
+        name:"悟空",
+        singer:"戴荃",
+        cover:"http://p4.music.126.net/gn4pPKc_Wk3EyByfi86lUQ==/3333719255417035.jpg?param=177y177",
+        musicSrc:"http://mp3.henduoge.com/s/2017-09-22/1506047726.mp3"
+    }],
+
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
     theme:"drak",
     
@@ -14,6 +37,14 @@ const options = {
     defaultPosition:{
         top:120,
         left:120
+    },
+
+    //play mode text config of the audio player
+    playModeText: {
+        order: "顺序播放",
+        orderLoop: "列表循环",
+        singleLoop: "单曲循环",
+        shufflePlay: "随机播放"
     },
 
     //audio controller open text  [ type `String | ReactNode` default 'open']
@@ -28,23 +59,22 @@ const options = {
     //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
     unCheckedText:"关",
 
+    defaultPlayMode:"order",
+
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "mini",
+    mode: "full",
 
-    //audio controller is can be drag of the "mini" mode
+    //Whether you can switch between two modes, full => mini  or mini => full   [type 'Bollean' default 'true']
+    toggleMode:true,
+
+    //audio cover is show of the "mini" mode [type `Boolean` default 'true']
+    showMiniModeCover:true,
+
+    //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
     drag: true,
-
-    //audio name     [type `String | ReactNode `  default `name`]
-    name: "Canon (piano version)",
 
     //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
     controllerTitle: <FaHeadphones />,
-
-    //audio cover    [type `String`  default `-`]
-    cover: "http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
-
-    //audio path     [type `String`  default `-`]   
-    musicSrc: "http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3",
 
     //play button display of the audio player panel   [type `Boolean` default `true`]
     showPlay: true,
@@ -56,41 +86,51 @@ const options = {
     showDowload: true,
 
     //loop button display of the audio player panel   [type `Boolean` default `true`]
-    showLoop: true,
+    showPlayMode: true,
 
     //theme toogle switch  display of the audio player panel   [type `Boolean` default `true`]
     showThemeSwitch:true,
 
     //Music is downloaded handle
-    audioDowload(audioName, audioSrc) {
-        Message.success({ content: audioName })
-        console.log('audio dowload', audioName, audioSrc);
+    audioDowload(audioInfo) {
+        Message.success({ content: '下载成功' })
+        console.log('audio dowload', audioInfo);
     },
 
     //audio play handle
-    audioPlay(currentTime, duration) {
-        console.log('audio playing', currentTime, duration);
+    audioPlay(audioInfo) {
+        console.log('audio playing', audioInfo);
     },
 
     //audio pause handle
-    audioPause(currentTime, duration) {
-        console.log('audio pause', currentTime, duration);
+    audioPause(audioInfo) {
+        console.log('audio pause', audioInfo);
     },
 
     //When the user has moved/jumped to a new location in audio
-    autdioSeeked(currentTime, duration) {
-        console.log('audio seeked', currentTime, duration);
+    autdioSeeked(audioInfo) {
+        console.log('audio seeked', audioInfo);
+    },
+    
+    //When the volume has changed  min = 0.0  max = 1.0
+    audioVolumeChange(currentVolume){
+        console.log('audio volume change',currentVolume);
     },
 
-    //audio ended handle
-    audioEnded(duration) {
-        Message.info({ content: "Music is over!" })
-        console.log('audio ended', duration);
+    //The single song is ended handle
+    audioEnded(audioInfo) {
+        Message.info({ content: "Music is ended!" })
+        console.log('audio ended', audioInfo);
+    },
+
+    //audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}
+    audioAbort(e){
+        console.log('audio abort',e);
     },
 
     //audio play progress handle
-    audioProgress(currentTime, duration) {
-        // console.log('audio progress',currentTime,duration);
+    audioProgress(audioInfo) {
+        // console.log('audio progress',audioInfo);
     },
 
     //audio load faild error handle
