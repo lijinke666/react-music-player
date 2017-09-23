@@ -1,16 +1,48 @@
 @import "./vars.less";
 @import "./mixins.less";
 .react-jinke-music-player-mobile{
-    @base-color:rgba(255,255,255,.6);
+    @animate-time:.45s cubic-bezier(0.165, 0.84, 0.44, 1.1);
     height: 100vh;
     width:100%;
     position: absolute;
     z-index: 999;
     left:0;
     top:0;
-    background: rgba(0,0,0,.6);
+    background-color: rgba(0,0,0,.6);
     padding: 20px;
     color:#fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: mobile-bg @animate-time forwards;
+    transition: background-color @animate-time;
+    svg{
+        transition: color @animate-time;
+    }
+    &-play-model-tip{
+        position: absolute;
+        left:0;
+        width:100%;
+        top:0;
+        height:35px;
+        line-height: 35px;
+        background-color: @primary-color;
+        color:#fff;
+        padding: 0 20px;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0,0,0,.1);
+        transform: translate3d(0,-105%,0);
+        .transition();
+        .title{
+            margin-right:12px;
+        }
+        .text{
+            font-size:14px;
+        }
+        &.show{
+            transform: translate3d(0,0,0);
+        }
+    }
     &::before{
         filter: blur(15px);
         position: absolute;
@@ -25,6 +57,7 @@
         left:0;
         display: flex;
         align-items: center;
+         animation: fromDown @animate-time forwards;
         .title{
             flex-basis: 80%;
             text-align: center;
@@ -43,16 +76,17 @@
         }
     }
     &-singer{
-
+        animation: fromDown @animate-time forwards;
         padding: 16px 0;
         .name{
             position: relative;
+            font-size:14px;
             &:before,&:after{
                 content:"";
                 position: absolute;
                 width:16px;
                 height:1px;
-                top:12px;
+                top:9px;
                 border-radius: 2px;
                 background-color: @base-color;    
             }
@@ -71,10 +105,15 @@
         border:5px solid rgba(0,0,0,.2);
         box-shadow: 0 0 1px 3px rgba(0,0,0,.1);
         margin:20px auto;
+        animation: fromTo @animate-time forwards;
         overflow: hidden;
+            @media screen and (max-width:320px){
+                width:230px;
+                height:230px;
+            }
         .cover{
             width:100%;
-            animation: imgRotate 15s linear infinite;
+            animation: imgRotate 30s linear infinite;
         }
     }
     &-progress{
@@ -97,6 +136,9 @@
             background-color: @base-color;
         }
     }
+    &-swtich{
+          animation: fromDown @animate-time forwards;
+    }
     &-toggle{
         padding: 20px 0;
         .group{
@@ -110,5 +152,32 @@
                 font-size:60px;
             }
         }
+    }
+    &-toggle,&-progress{
+        animation: fromTo @animate-time forwards;
+    }
+    &-operation{
+        animation: fromTo @animate-time forwards;
+        .items{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .item{
+                flex:1;
+                text-align: center;
+                svg{
+                    color:@base-color;
+                    font-size:25px;
+                }
+            }
+        }
+    }
+     @keyframes mobile-bg{
+         from{
+             opacity: 0
+         }
+         to{
+             opacity: 1;
+         }
     }
 }

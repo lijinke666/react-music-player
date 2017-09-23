@@ -1,11 +1,7 @@
 import React from "react"
-import CloseBtn from "react-icons/lib/md/close"
 import NotContent from "react-icons/lib/md/library-music"
-import PlayIcon from "react-icons/lib/md/play-arrow"
-import PauseIcon from "react-icons/lib/md/pause"
+
 import classNames from "classnames"
-import Mobile from "is-mobile"
-const ISMOBILE = Mobile()
 
 const AudioListsPanel = ({
   audioLists,
@@ -15,7 +11,11 @@ const AudioListsPanel = ({
   onPlay,
   pause,
   playId,
-  loading
+  loading,
+  playIcon,
+  pauseIcon,
+  closeIcon,
+  isMobile
  }) => (
     <div
       className={classNames("audio-lists-panel", { "show": visible })} key="audio-list-panel"
@@ -24,7 +24,7 @@ const AudioListsPanel = ({
         <h2 className="title">
           <span>播放列表/</span>
           <span className="num" key="num">{audioLists.length}</span>
-          <span className="close-btn" {...ISMOBILE ? { onTouchStart: onCancel } : { onClick: onCancel }}><CloseBtn /></span>
+          <span className="close-btn" {...isMobile ? { onTouchStart: onCancel } : { onClick: onCancel }}>{closeIcon}</span>
         </h2>
       </div>
       <div
@@ -45,7 +45,7 @@ const AudioListsPanel = ({
                       key={i}
                       title={pause ? ' Click to play' : 'Click to pause'}
                       className={classNames("audio-item", { "playing": playId === i }, { "pause": pause })}
-                      {...ISMOBILE ? { onTouchStart: () => onPlay(i) } : { onClick: () => onPlay(i) }}
+                      {...isMobile ? { onTouchStart: () => onPlay(i) } : { onClick: () => onPlay(i) }}
                     >
                       <span className="group player-status" key="player-status">
                         <span className="player-icons" key={`player-icons-${i}`}>
@@ -53,7 +53,7 @@ const AudioListsPanel = ({
                             playId === i && loading
                               ? loading
                               : playId === i
-                                ? pause ? <PauseIcon /> : <PlayIcon />
+                                ? pause ? pauseIcon : playIcon
                                 : undefined
                           }
                         </span>

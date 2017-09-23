@@ -1,20 +1,18 @@
-import React, { PureComponent, PropTypes } from "react"
+import React from "react"
 import classNames from "classnames"
-import CloseBtn from "react-icons/lib/md/close"
-import Switch from "rc-switch"
-import Slider from 'rc-slider/lib/Slider'
-import { formatTime, sliderBaseOptions } from "./index"
 
-import NextAudioIcon from "react-icons/lib/md/skip-next"
-import PrevAudioIcon from "react-icons/lib/md/skip-previous"
-import FaPlayCircle from "react-icons/lib/fa/play-circle"
-// import FaPlayCircle from "react-icons/lib/md/play-circle-outline"
-import FaPauseCircle from "react-icons/lib/fa/pause-circle"
-// import FaPauseCircle from "react-icons/lib/md/pause-circle-outline"
-
-import 'rc-switch/assets/index.css'
-import 'rc-slider/assets/index.css'
 import "./playerMobileStyle.less"
+
+const PlayModeTip = ({
+    visibile,
+    title,
+    text
+})=>(
+    <div className={classNames("react-jinke-music-player-mobile-play-model-tip",{"show":visibile})}>
+        <span className="title">{title}</span>
+        <span className="text">{text}</span>
+    </div>
+)
 
 
 const PlayerMobile = ({
@@ -25,54 +23,61 @@ const PlayerMobile = ({
     duration,
     currentTime,
     loading,
+    themeSwitch,
+    progressBar,
     progressChange,
+    openAudioListsPanel,
     progressAfterChange,
     audioPrevPlay,
     audioNextPlay,
+    prevAudioIcon,
+    nextAudioIcon,
+    playIcon,
+    pauseIcon,
+    playMode,
+    downloadIcon,
+    reloadIcon,
+    playListsIcon,
+    closeIcon,
+    onClose,
+    pause,
+    tipIcon,
+    playModeTipVisible,
+    currentPlayModeName,
     onPlay
     }) => (
         <div className="react-jinke-music-player-mobile">
-            <div className="react-jinke-music-player-mobile-header">
+            <PlayModeTip visibile ={playModeTipVisible} title={tipIcon} text={currentPlayModeName}/>
+            <div className="react-jinke-music-player-mobile-header group">
                 <div className="left item"></div>
                 <div className="title" key="audio-title">{name}</div>
-                <div className="right item"><CloseBtn /></div>
+                <div className="right item" onTouchStart={onClose}>{closeIcon}</div>
             </div>
-            <div className="react-jinke-music-player-mobile-singer text-center">
+            <div className="react-jinke-music-player-mobile-singer text-center group">
                 <span className="name" key="singer-name">{singer}</span>
             </div>
-            <div className="react-jinke-music-player-mobile-swtich text-center">
-                <Switch
-                    className="theme-switch"
-                />
+            <div className="react-jinke-music-player-mobile-swtich text-center group">
+                {themeSwitch}
             </div>
-            <div className="react-jinke-music-player-mobile-cover text-center">
-                <img src={cover} alt="cover" key="cover" className="cover" />
+            <div className="react-jinke-music-player-mobile-cover text-center group">
+                <img src={cover} alt="cover" key="cover" className={classNames("cover",{"img-rotate-pause":pause})} />
             </div>
-            <div className="react-jinke-music-player-mobile-progress">
+            <div className="react-jinke-music-player-mobile-progress group">
                 <span key="current-time" className="current-time">
-                    {loading ? '--' : formatTime(currentTime)}
+                    {loading ? '--' : currentTime}
                 </span>
-
-                <Slider
-                    className="progress-bar"
-                    max={Math.ceil(duration)}
-                    defaultValue={0}
-                    value={currentTime}
-                    onChange={progressChange}
-                    onAfterChange={progressAfterChange}
-                    {...sliderBaseOptions}
-                />
+                {progressBar}
                 <span key="duration" className="duration text-right">
-                    {loading ? '--' : formatTime(duration)}
+                    {loading ? '--' : duration}
                 </span>
             </div>
-            <div className="react-jinke-music-player-mobile-toggle text-center">
+            <div className="react-jinke-music-player-mobile-toggle text-center group">
                 <span
                     className="group prev-audio"
                     title="previous track"
                     onTouchStart={audioPrevPlay}
                 >
-                    <PrevAudioIcon />
+                    {prevAudioIcon}
                 </span>
                 <span
                     className="group play-btn"
@@ -81,18 +86,25 @@ const PlayerMobile = ({
                     onTouchStart={onPlay}
                 >
                     {
-                        playing
-                            ? <span><FaPauseCircle /></span>
-                            : <span><FaPlayCircle /></span>
+                        playing ? pauseIcon : playIcon
                     }
+
                 </span>
                 <span
                     className="group next-audio"
                     title="next track"
                     onTouchStart={audioNextPlay}
                 >
-                    <NextAudioIcon />
+                    {nextAudioIcon}
                 </span>
+            </div>
+            <div className="react-jinke-music-player-mobile-operation group">
+                <ul className="items">
+                    <li className="item">{playMode}</li>
+                    <li className="item">{downloadIcon}</li>
+                    <li className="item">{reloadIcon}</li>
+                    <li className="item" onTouchStart={openAudioListsPanel}>{playListsIcon}</li>
+                </ul>
             </div>
         </div>
     )

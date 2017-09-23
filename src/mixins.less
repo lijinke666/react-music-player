@@ -1,4 +1,9 @@
 @import "./vars.less";
+ul,li{
+    margin:0;
+    padding: 0;
+    list-style-type: none;
+}
 ::-webkit-scrollbar-thumb {
     height: 20px;
     background-color: @primary-color;
@@ -137,4 +142,7 @@
         to{
             transform: translate3d(0,0,0)
         }
+    }
+    .img-rotate-pause{
+        animation-play-state:paused !important;
     }
