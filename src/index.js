@@ -35,9 +35,7 @@ import "./styles.less"
 
 
 /**
- * TODO V3.0.0 支持多首歌曲播放
- * 待完成 
- * 1.全新的手机端ui
+ * V3.0.0
  */
 
 const ISMOBILE = Mobile()
@@ -469,7 +467,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       <div className={classNames("img-content", "img-rotate", { "img-rotate-pause": !playing })} style={{ 'backgroundImage': `url(${cover})` }} key="img-content">
                       </div>
                       <div className="progressbar-content" key="progressbar-content">
-                        <span className="audio-title">{name} {singer ? `-${singer}` : ""}</span>
+                        <span className="audio-title">{name} {singer ? `- ${singer}` : ""}</span>
                         <section className="audio-main">
                           <span key="current-time" className="current-time">
                             {

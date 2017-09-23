@@ -2,10 +2,16 @@
 [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-jinke-music-player)
-> 一个漂亮的响应式 React HTML5 音频播放器
+> 也许是最好的一个漂亮的响应式 React HTML5 音频播放器
 
 
 [English Doc](https://github.com/lijinke666/react-jinke-music-player/blob/master/README.md)
+
+## 安装
+```
+npm install react-jinke-music-player --save
+```
+
 ## 预览
 
 ![gif](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/example.gif) <br/>
@@ -14,14 +20,13 @@
 
 ![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/light-theme.png)
 
+
 > 夜晚主题  <br/>
 
 ![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/dark-theme.png)
 
-## 安装
-```
-npm install react-jinke-music-player --save
-```
+
+![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/mobile.jpg)
 
 ## 例子
 > 在线例子 :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)

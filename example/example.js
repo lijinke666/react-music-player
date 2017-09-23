@@ -62,7 +62,7 @@ const options = {
     defaultPlayMode:"order",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "full",
+    mode: "mini",
 
     //Whether you can switch between two modes, full => mini  or mini => full   [type 'Bollean' default 'true']
     toggleMode:true,

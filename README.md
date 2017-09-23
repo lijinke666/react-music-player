@@ -2,10 +2,16 @@
 [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-jinke-music-player)
-> A beautiful and responsive react music player component :)
+> Maybe a must beautiful and responsive react music player component :)
 
 
 [中文文档](https://github.com/lijinke666/react-jinke-music-player/blob/master/CN.md)
+
+## Installation
+```
+npm install react-jinke-music-player --save
+```
+
 ## Screenshots
 
 ![gif](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/example.gif) <br/>
@@ -18,10 +24,9 @@
 
 ![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/dark-theme.png)
 
-## Installation
-```
-npm install react-jinke-music-player --save
-```
+
+![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/mobile.jpg)
+
 
 ## Example
 > ONLINE example :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)
@@ -34,7 +39,7 @@ npm install
 npm start
 ```
 
-## Options
+## Options & Usage
 
 ```jsx
 import React from "react"
@@ -154,7 +159,6 @@ const options = {
 
     //The single song is ended handle
     audioEnded(audioInfo) {
-        Message.info({ content: "Music is ended!" })
         console.log('audio ended', audioInfo);
     },
 
@@ -165,12 +169,11 @@ const options = {
 
     //audio play progress handle
     audioProgress(audioInfo) {
-        // console.log('audio progress',audioInfo);
+        console.log('audio progress',audioInfo);
     },
 
     //audio load faild error handle
     loadAudioError(e) {
-        Message.error({ content: "audio load error" })
         console.log('audio load err', e);
     }
 }
