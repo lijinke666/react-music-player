@@ -16,6 +16,9 @@
     justify-content: space-between;
     animation: mobile-bg @animate-time forwards;
     transition: background-color @animate-time;
+    >.group{
+        flex:1 1 auto;
+    }
     svg{
         transition: color @animate-time;
     }
@@ -62,6 +65,7 @@
             flex-basis: 80%;
             text-align: center;
              font-size:20px;
+             .ellipsis-1()
         }
         .item{
             display: inline-flex;
@@ -107,10 +111,10 @@
         margin:20px auto;
         animation: fromTo @animate-time forwards;
         overflow: hidden;
-            @media screen and (max-width:320px){
-                width:230px;
-                height:230px;
-            }
+        @media screen and (max-width:320px){
+            width:230px;
+            height:230px;
+        }
         .cover{
             width:100%;
             animation: imgRotate 30s linear infinite;
@@ -140,7 +144,7 @@
           animation: fromDown @animate-time forwards;
     }
     &-toggle{
-        padding: 20px 0;
+        padding: 17px 0;
         .group{
             svg{
                 font-size:40px;
@@ -150,6 +154,19 @@
             padding: 0 40px;
             svg{
                 font-size:60px;
+            }
+        }
+        @media screen and (max-width:320px){
+            padding: 10px 0;
+            >.group{
+                svg{
+                    font-size:32px;
+                }
+            }
+            .play-btn{
+                svg{
+                    font-size:50px;
+                }
             }
         }
     }
@@ -168,9 +185,13 @@
                 svg{
                     color:@base-color;
                     font-size:25px;
+                    @media screen and (max-width:320px){
+                        font-size:20px;
+                    }
                 }
             }
         }
+
     }
      @keyframes mobile-bg{
          from{

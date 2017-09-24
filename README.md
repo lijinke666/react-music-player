@@ -14,8 +14,6 @@ npm install react-jinke-music-player --save
 
 ## Screenshots
 
-![gif](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/example.gif) <br/>
-
 > Light Theme <br/>
 
 ![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/light-theme.png)

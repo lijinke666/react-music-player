@@ -1062,7 +1062,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.progress = this.dom.querySelector('.progress')
     this.audio = this.dom.querySelector('audio')
     this.bindEvents(this.audio)
-    this.media = window.matchMedia("(max-width: 768px)");
+    this.media = window.matchMedia("(max-width: 768px) and (orientation : portrait)");
     this.media.addListener(this.listenerIsMobile)
   }
 }

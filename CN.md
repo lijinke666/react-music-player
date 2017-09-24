@@ -14,7 +14,6 @@ npm install react-jinke-music-player --save
 
 ## 预览
 
-![gif](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/example.gif) <br/>
 
 > 白天主题 <br/>
 

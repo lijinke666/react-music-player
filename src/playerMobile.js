@@ -59,7 +59,7 @@ const PlayerMobile = ({
             <div className="react-jinke-music-player-mobile-swtich text-center group">
                 {themeSwitch}
             </div>
-            <div className="react-jinke-music-player-mobile-cover text-center group">
+            <div className="react-jinke-music-player-mobile-cover text-center">
                 <img src={cover} alt="cover" key="cover" className={classNames("cover",{"img-rotate-pause":pause})} />
             </div>
             <div className="react-jinke-music-player-mobile-progress group">

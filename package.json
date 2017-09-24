@@ -1,7 +1,7 @@
 {
   "name": "react-jinke-music-player",
-  "version": "3.0.0",
-  "description": "A beautiful and responsive react music player component",
+  "version": "3.0.1",
+  "description": "Maybe must a beautiful and responsive react music player component",
   "main": "src/index.js",
   "scripts": {
     "start": "npm run demo",
@@ -24,6 +24,9 @@
     "react-player",
     "react-music-player",
     "react-audio-player",
+    "cd-player",
+    "music-player",
+    "audio-player",
     "component"
   ],
   "dependencies": {
