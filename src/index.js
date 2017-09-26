@@ -31,11 +31,13 @@ import CloseBtn from "react-icons/lib/md/close"
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
-import "./styles.less"
 
 
 /**
- * V3.0.0
+ * V3.1.0
+ * TODO
+ * 添加自定义拓展按钮
+ * playing 函数 配置 触发  true 触发很多次  false 触发一次  默认false
  */
 
 const ISMOBILE = Mobile()

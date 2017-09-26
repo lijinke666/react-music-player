@@ -17,33 +17,38 @@ npm install react-jinke-music-player --save
 
 > 白天主题 <br/>
 
-![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/light-theme.png)
+![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/light-theme.png)
 
 
 > 夜晚主题  <br/>
 
-![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/dark-theme.png)
+![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/dark-theme.png)
 
 
-![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/mobile.jpg)
+![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/mobile.jpg)
 
 ## 例子
 > 在线例子 :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)
 
 
-## 开发
-```
-git clone https://github.com/lijinke666/react-jinke-music-player.git
-npm install
-npm start
-```
-
-## 参数 & 使用
+## 使用
 
 ```jsx
 import React from "react"
 import ReactDOM from "react-dom"
 import ReactJkMusicPlayer from "react-jinke-music-player"
+import "react-jinke-music-player/assets/index.css"
+
+ReactDOM.render(
+    <ReactJkMusicPlayer {...options} />,
+    document.getElementById('root')
+)
+
+
+```
+## 参数 
+
+```js
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {
@@ -169,6 +174,13 @@ ReactDOM.render(
 )
 
 
+```
+
+## 开发
+```
+git clone https://github.com/lijinke666/react-jinke-music-player.git
+npm install
+npm start
 ```
 
 ## AudioInfo 返回参数

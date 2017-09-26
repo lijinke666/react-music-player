@@ -4,6 +4,7 @@ import ReactJkMusicPlayer from "../src"
 import Message from "rc-message"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
+import "../src/index.less"
 import "./example.less"
 
 const options = {
