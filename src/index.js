@@ -106,7 +106,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   static defaultProps = {
     audioLists: [],
-    theme: this.lightThemeName,
+    theme: "light",
     mode: "mini",
     playModeText: {
       order: "order",

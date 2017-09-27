@@ -1,5 +1,5 @@
 {
-  "presets": [         
+  "presets": [       
     [
       "es2015",
       {
@@ -22,8 +22,9 @@
     }
   },
   "plugins": [
-    "transform-object-assign",
+    "transform-es2015-modules-commonjs",
     "transform-object-rest-spread",
-    "transform-class-properties"     
+    "transform-class-properties",
+    "react-hot-loader/babel"
   ]
 }

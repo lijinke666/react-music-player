@@ -1,8 +1,6 @@
 import React from "react"
 import classNames from "classnames"
 
-import "./playerMobileStyle.less"
-
 const PlayModeTip = ({
     visibile,
     title,
