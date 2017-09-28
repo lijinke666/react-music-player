@@ -62,6 +62,9 @@ module.exports = (env) => {
                 "node_modules",
             ],
         },
+        externals: {
+            async: "commonjs async"
+        },
         devServer: {
             contentBase: path.join(__dirname, "../example/"),
             compress: true,
@@ -83,11 +86,11 @@ module.exports = (env) => {
             })
         ]
     }
-    if(mode === 'PROD'){
+    if (mode === 'PROD') {
         options.plugins = options.plugins.concat([
-            new webpack.optimize.UglifyJsPlugin({   
+            new webpack.optimize.UglifyJsPlugin({
                 output: {
-                    comments: false 
+                    comments: false
                 },
                 compress: {
                     warnings: false

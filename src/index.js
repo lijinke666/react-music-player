@@ -1,5 +1,13 @@
 
-import React, { PureComponent, PropTypes } from "react"
+/**
+ * @version 3.1.0
+ * @添加自定义拓展按钮
+ * @playing 函数 配置 触发  true 触发很多次  false 触发一次  默认false
+ * @发布到 npm 包 时  编译成 es5 语法
+ */
+
+import React, { PureComponent } from "react"
+import PropTypes from "prop-types"
 import ReactDOM from "react-dom"
 import classNames from "classnames"
 import Mobile from "is-mobile"
@@ -13,9 +21,7 @@ import SettingIcon from "react-icons/lib/fa/cog"
 import FaHeadphones from "react-icons/lib/fa/headphones"
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o"
 import FaPlayCircle from "react-icons/lib/fa/play-circle"
-// import FaPlayCircle from "react-icons/lib/md/play-circle-outline"
 import FaPauseCircle from "react-icons/lib/fa/pause-circle"
-// import FaPauseCircle from "react-icons/lib/md/pause-circle-outline"
 import Reload from "react-icons/lib/fa/refresh"
 import MdVolumeDown from "react-icons/lib/md/volume-down"
 import MdVolumeMute from "react-icons/lib/md/volume-mute"
@@ -23,6 +29,7 @@ import Download from "react-icons/lib/fa/cloud-download"
 import LoadIcon from "react-icons/lib/fa/spinner"
 import LoopIcon from "react-icons/lib/md/repeat-one"
 import RepeatIcon from "react-icons/lib/md/repeat"
+import ShufflePlayIcon from "react-icons/lib/ti/arrow-shuffle"
 import OrderPlayIcon from "react-icons/lib/md/view-headline"
 import PlayLists from "react-icons/lib/md/queue-music"
 import NextAudioIcon from "react-icons/lib/md/skip-next"
@@ -31,12 +38,6 @@ import CloseBtn from "react-icons/lib/md/close"
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
-import "./styles.less"
-
-
-/**
- * V3.0.0
- */
 
 const ISMOBILE = Mobile()
 
@@ -80,7 +81,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     cover: "",    //当前歌曲封面
     singer: "",    //当前歌手
     musicSrc: "", //当前歌曲链接
-    isMobile:ISMOBILE,
+    isMobile: ISMOBILE,
     toggle: false,
     pause: false,
     playing: false,
@@ -99,12 +100,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioListsPanelVisible: false,
     playModelNameVisible: false,
     theme: this.lightThemeName,
+    extendsContent:[],            //自定义扩展功能按钮
     playMode: "",                 //当前播放模式
     currentAudioVolume: 0         //当前音量  静音后恢复到之前记录的音量
   }
   static defaultProps = {
     audioLists: [],
-    theme: this.lightThemeName,
+    theme: "drak",
     mode: "mini",
     playModeText: {
       order: "order",
@@ -124,6 +126,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     notContentText: "暂无音乐",
     checkedText: "",
     unCheckedText: "",
+    once: false,                       //audioPlay 事件  是否只触发一次
     isMove: false,
     drag: true,
     toggleMode: true,                 //能换在迷你 和完整模式下 互相切换
@@ -133,19 +136,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showReload: true,
     showPlayMode: true,
     showThemeSwitch: true,
-    playModeTipVisible:false,        //手机端切换播放模式
+    playModeTipVisible: false,        //手机端切换播放模式
   }
   static PropTypes = {
     audioLists: PropTypes.array.isRequired,
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
-    name: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    cover: PropTypes.string.isRequired,
-    musicSrc: PropTypes.string.isRequired,
     playModeText: PropTypes.object,
     closeText: PropTypes.oneOfType([
       PropTypes.string,
@@ -163,7 +160,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.string,
       PropTypes.object
     ]),
-    defaultPosition: PropTypes.object,
+    defaultPosition: PropTypes.shape({
+      top: PropTypes.number,
+      left: PropTypes.number
+    }),
     audioPlay: PropTypes.func,
     audioPause: PropTypes.func,
     audioEnded: PropTypes.func,
@@ -180,6 +180,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showThemeSwitch: PropTypes.bool,
     showMiniModeCover: PropTypes.bool,
     toggleMode: PropTypes.bool,
+    once: PropTypes.bool,
+    extendsContent: PropTypes.array,
     checkedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
@@ -251,7 +253,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       unCheckedText,
       audioLists,
       toggleMode,
-      showMiniModeCover
+      showMiniModeCover,
+      extendsContent
     } = this.props
 
     const {
@@ -386,33 +389,34 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {
           toggle && isMobile
             ? <AudioPlayerMobile
-                playing={playing}
-                loading={loading}
-                pause={pause}
-                name={name}
-                singer={singer}
-                cover={cover}
-                themeSwitch={ThemeSwitchComponent}
-                duration={_duration}
-                currentTime={_currentTime}
-                progressBar={_Slider}
-                onPlay={this.onPlay}
-                currentPlayModeName={this.PLAYMODE[currentPlayMode]['value']}
-                playMode={PlayModeComponent}
-                audioNextPlay={this.audioNextPlay}
-                audioPrevPlay={this.audioPrevPlay}
-                playListsIcon={<PlayLists />}
-                reloadIcon={ReloadComponent}
-                downloadIcon={DowlonadComponent}
-                nextAudioIcon={<NextAudioIcon />}
-                prevAudioIcon={<PrevAudioIcon />}
-                playIcon={<FaPlayCircle />}
-                pauseIcon={<FaPauseCircle />}
-                closeIcon={<CloseBtn />}
-                tipIcon={<FaHeadphones/>}
-                playModeTipVisible={playModeTipVisible}
-                openAudioListsPanel={this.openAudioListsPanel}
-                onClose={this.onHidePanel}
+              playing={playing}
+              loading={loading}
+              pause={pause}
+              name={name}
+              singer={singer}
+              cover={cover}
+              themeSwitch={ThemeSwitchComponent}
+              duration={_duration}
+              currentTime={_currentTime}
+              progressBar={_Slider}
+              onPlay={this.onPlay}
+              currentPlayModeName={this.PLAYMODE[currentPlayMode]['value']}
+              playMode={PlayModeComponent}
+              audioNextPlay={this.audioNextPlay}
+              audioPrevPlay={this.audioPrevPlay}
+              playListsIcon={<PlayLists />}
+              reloadIcon={ReloadComponent}
+              downloadIcon={DowlonadComponent}
+              nextAudioIcon={<NextAudioIcon />}
+              prevAudioIcon={<PrevAudioIcon />}
+              playIcon={<FaPlayCircle />}
+              pauseIcon={<FaPauseCircle />}
+              closeIcon={<CloseBtn />}
+              tipIcon={<FaHeadphones />}
+              playModeTipVisible={playModeTipVisible}
+              openAudioListsPanel={this.openAudioListsPanel}
+              onClose={this.onHidePanel}
+              extendsContent={extendsContent}
             />
             : undefined
         }
@@ -535,6 +539,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         {/* 主题选择 */}
                         {ThemeSwitchComponent}
 
+                        {/* 自定义扩展按钮 */}
+                        {
+                          extendsContent && extendsContent.length >= 1
+                            ? extendsContent.map((content, i) => content)
+                            : undefined
+                        }
+
                         {/*音量控制*/}
                         <span className="group play-sounds" key="play-sound" title="sounds">
                           {
@@ -600,14 +611,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState(({ playMode }) => {
       let index = this._PLAY_MODE_.findIndex(({ key }) => key === playMode)
       if (index === this._PLAY_MODE_LENGTH_ - 1) {
-        return { playMode: this._PLAY_MODE_[0]['key'], playModelNameVisible: true,playModeTipVisible:true }
+        return { playMode: this._PLAY_MODE_[0]['key'], playModelNameVisible: true, playModeTipVisible: true }
       } else {
-        return { playMode: this._PLAY_MODE_[++index]['key'], playModelNameVisible: true,playModeTipVisible:true }
+        return { playMode: this._PLAY_MODE_[++index]['key'], playModelNameVisible: true, playModeTipVisible: true }
       }
     })
     clearTimeout(this.playModelTimer)
     this.playModelTimer = setTimeout(() => {
-      this.setState({ playModelNameVisible: false,playModeTipVisible:false })
+      this.setState({ playModelNameVisible: false, playModeTipVisible: false })
     }, 600)
   }
   //渲染播放模式 对应按钮
@@ -617,7 +628,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       case this.PLAYMODE['order']['key']: IconNode = <OrderPlayIcon />; break
       case this.PLAYMODE['orderLoop']['key']: IconNode = <RepeatIcon />; break
       case this.PLAYMODE['singleLoop']['key']: IconNode = <LoopIcon />; break
-      case this.PLAYMODE['shufflePlay']['key']: IconNode = <FaMinusSquareO />; break
+      case this.PLAYMODE['shufflePlay']['key']: IconNode = <ShufflePlayIcon />; break
       default: IconNode = <OrderPlayIcon />
     }
     return IconNode
@@ -789,18 +800,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //收起播放器
   onHidePanel = (e) => {
-    this.setState({ toggle: false ,audioListsPanelVisible:false})
+    this.setState({ toggle: false, audioListsPanelVisible: false })
   }
   //返回给使用者的 音乐信息
   getBaseAudioInfo() {
     const { cover, name, musicSrc, soundValue } = this.state
+    const { currentTime, duration, muted, networkState, readyState, played, paused, ended, startDate } = this.audio
     return {
       cover,
       name,
       musicSrc,
       volume: soundValue,
-      currentTime: this.audio.currentTime,
-      duration: this.audio.duration
+      currentTime, duration, muted, networkState, readyState, played, paused, ended, startDate
     }
   }
   //播放
@@ -812,7 +823,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     } else {
       this.getAudioLength()
       this.loadAudio();
-      this.props.audioPlay && this.props.audioPlay(this.getBaseAudioInfo())
     }
   }
   //暂停
@@ -839,8 +849,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   loadAudioError = (e) => {
     this.setState({ playing: false, loading: true })
-    const info = getBaseAudioInfo()
-    this.props.loadAudioError && this.props.loadAudioError({ ...e, audioInfo: info })
+    const info = this.getBaseAudioInfo()
+    this.props.loadAudioError && this.props.loadAudioError({ ...e, audioInfo: info, errMsg: this.audio.error || null })
   }
   //isNext true 下一首  false  
   handlePlay = (playMode, isNext = true) => {
@@ -876,7 +886,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
       //随机播放
       case this.PLAYMODE['shufflePlay']['key']:
-        IconNode = <FaMinusSquareO />
+        IconNode = <ShufflePlayIcon />
         let randomPlayId = Math.max(
           Math.min(audioListsLen - 1, ~~(Math.random() * audioListsLen)),
           audioListsLen - 1
@@ -936,6 +946,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
     this.props.audioVolumeChange && this.props.audioVolumeChange(this.state.currentAudioVolume)
   }
+  audioPlay = () => {
+    this.props.audioPlay && this.props.audioPlay(this.getBaseAudioInfo())
+  }
   //进度条跳跃
   autdioSeeked = () => {
     this.loadAudio()
@@ -989,6 +1002,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ended: this.audioEnd,
       seeked: this.autdioSeeked,
       pause: this.pauseAudio,
+      play: this.audioPlay,
       timeupdate: this.audioTimeUpdate,
       volumechange: this.audioVolumeChange,
       stalled: this.loadAudioError,            //当浏览器尝试获取媒体数据，但数据不可用时
@@ -996,10 +1010,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     },
     bind = true
   ) => {
+    const { once } = this.props
     for (let name in eventsNames) {
       const _events = eventsNames[name]
       bind
-        ? target.addEventListener(name, _events)
+        ? target.addEventListener(name, _events, { once: (once && name === 'play' ? true : false) })
         : target.removeEventListener(name, _events)
     }
   }
@@ -1046,9 +1061,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       }
     })
   }
-  listenerIsMobile = ({matches})=>{
+  listenerIsMobile = ({ matches }) => {
     this.setState({
-      isMobile:matches ? true :false
+      isMobile: matches ? true : false
     })
   }
   componentWillUnmount() {

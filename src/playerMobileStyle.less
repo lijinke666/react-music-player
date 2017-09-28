@@ -81,7 +81,10 @@
     }
     &-singer{
         animation: fromDown @animate-time forwards;
-        padding: 16px 0;
+        padding: 12px 0;
+        @media screen and (max-width:320px){
+            padding: 0;
+        }
         .name{
             position: relative;
             font-size:14px;
@@ -108,12 +111,13 @@
         border-radius: 50%;
         border:5px solid rgba(0,0,0,.2);
         box-shadow: 0 0 1px 3px rgba(0,0,0,.1);
-        margin:20px auto;
+        margin:15px auto;
         animation: fromTo @animate-time forwards;
         overflow: hidden;
         @media screen and (max-width:320px){
             width:230px;
             height:230px;
+            margin:10px auto;
         }
         .cover{
             width:100%;

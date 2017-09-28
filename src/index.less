@@ -1,7 +1,19 @@
 @import "./vars.less";
 @import "./mixins.less";
+@import "./playerMobileStyle.less";
 .react-jinke-music-player-main{
-        &.light-theme{
+    ::-webkit-scrollbar-thumb {
+        height: 20px;
+        background-color: @primary-color;
+        opacity: .5;
+    }
+    
+    ::-webkit-scrollbar{
+        width: 10px;
+        background-color: @bg-color;
+    }
+    touch-action: none;
+    &.light-theme{
         svg{
             color:@primary-color;
             &:hover,&:active{

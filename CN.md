@@ -17,42 +17,48 @@ npm install react-jinke-music-player --save
 
 > 白天主题 <br/>
 
-![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/light-theme.png)
+![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/light-theme.png)
 
 
 > 夜晚主题  <br/>
 
-![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/dark-theme.png)
+![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/dark-theme.png)
 
 
-![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assets/mobile.jpg)
+![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/mobile.jpg)
 
 ## 例子
 > 在线例子 :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)
 
 
-## 开发
-```
-git clone https://github.com/lijinke666/react-jinke-music-player.git
-npm install
-npm start
-```
-
-## 参数 & 使用
+## 使用
 
 ```jsx
 import React from "react"
 import ReactDOM from "react-dom"
 import ReactJkMusicPlayer from "react-jinke-music-player"
+import "react-jinke-music-player/assets/index.css"
+
+ReactDOM.render(
+    <ReactJkMusicPlayer {...options} />,
+    document.getElementById('root')
+)
+
+
+```
+## 参数 
+
+```js
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {
     /**
-        音乐列表
-        name 歌曲名字 必填
-        singer 歌手名字 非必填
-        cover 封面图 必填
-        musicSrc 歌曲路径 必填
+     * 音乐列表
+     * @param {Array} audioLists 
+     * @param {String | ReactNode } audioLists.name  音乐的名字  [ 必填 ]
+     * @param {String | ReactNode } audioLists.singer  歌手名  [ 非必填 ]
+     * @param {String } audioLists.cover  封面图  [ 必填 ]
+     * @param {String } audioLists.musicSrc  音乐链接  [ required ]
     */
     audioLists:[{
         name:"Canon (piano version)",
@@ -97,6 +103,12 @@ const options = {
     //播放器的模式 迷你(mini) 或者 完整 (full) [type `String`  default `mini`]  
     mode: "mini",
 
+    /**
+     * [ type `Boolean` default 'false' ]
+     * 在默认情况下 'audioPlay' 函数 会在你 每次暂停后再次播放  触发 , 如果 你只想 让 'audioPlay' 在 音乐初始化播放的时候触发一次,你可以设置 为 `true`
+     */
+    once: false,
+
     //是否可以 从迷你模式 切换到 完整模式 , 或者 完整模式 切换到 迷你模式 [type `String` default 'true']
     toggleMode:true,
 
@@ -123,6 +135,9 @@ const options = {
 
     //是否显示播放模式 按钮  [type `Boolean` default `treu`]
     showPlayMode: true,
+
+    //如果默认的功能按钮不满足你 你可以自定义扩展      [type 'Array' default '[]' ]
+    extendsContent:[],
 
     //音频下载 触发 返回 音频信息
     audioDowload(audioInfo) {
@@ -171,15 +186,29 @@ ReactDOM.render(
 
 ```
 
+## 开发
+```
+git clone https://github.com/lijinke666/react-jinke-music-player.git
+npm install
+npm start
+```
+
 ## AudioInfo 返回参数
 ```js
 {
-    cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg"   //封面图
-    currentTime:10.211519                                                //当前播放时长
-    duration:164.211519                                                  //歌曲总时长
-    musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?  tflag=1502850639pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3" //歌曲链接
-    name:"Canon (piano version)"                                                //歌曲名
-    volume:100                                                                  //当前音量
+    cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg"      //封面图
+    currentTime:10.211519                   //当前播放时长
+    duration:164.211519                     //音乐总时长
+    musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?    tflag=1502850639pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"   //音乐地址
+    name:"Canon (piano version)"     //音乐名
+    volume:100,      //当前音量
+    muted:false,     //是否静音
+    networkState:1,  //当前网络状态
+    readyState:4,    //当前就绪状态
+    paused:false,    //是否暂停
+    ended:false,     //是否结束
+    startDate:null,  //当前时间偏移的 Date 对象
+    played:{length:1}     //已播放部分的 TimeRanges 对象
 }
 ```
 
@@ -191,12 +220,6 @@ ReactDOM.render(
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
-    name: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    cover: PropTypes.string.isRequired,
-    musicSrc: PropTypes.string.isRequired,
     playModeText: PropTypes.object,
     closeText: PropTypes.oneOfType([
       PropTypes.string,
@@ -214,7 +237,10 @@ ReactDOM.render(
       PropTypes.string,
       PropTypes.object
     ]),
-    defaultPosition: PropTypes.object,
+    defaultPosition: PropTypes.shape({
+      top: PropTypes.number,
+      left: PropTypes.number
+    }),
     audioPlay: PropTypes.func,
     audioPause: PropTypes.func,
     audioEnded: PropTypes.func,
@@ -231,6 +257,8 @@ ReactDOM.render(
     showThemeSwitch: PropTypes.bool,
     showMiniModeCover: PropTypes.bool,
     toggleMode: PropTypes.bool,
+    once: PropTypes.bool,
+    extendsContent: PropTypes.array,
     checkedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
