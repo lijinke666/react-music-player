@@ -49,27 +49,19 @@ ReactDOM.render(
 import FaHeadphones from "react-icons/lib/fa/headphones"
 
 const options = {
-    //audio lists model
+    /**
+     * audio lists model
+     * @param {Array} audioLists 
+     * @param {String | ReactNode } audioLists.name  audio name  [ required ]
+     * @param {String | ReactNode } audioLists.singer  singer name of the playing song  [ not required ]
+     * @param {String } audioLists.cover  audio cover  [ required ]
+     * @param {String } audioLists.musicSrc  audio music source  [ required ]
+    */
     audioLists:[{
         name:"Canon (piano version)",
-        singer:"未知",
+        singer:"尼古拉斯赵四",
         cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
         musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
-    },{
-        name:"胆小鬼",
-        singer:"梁咏琪",
-        cover:"http://p3.music.126.net/OLroXJamq8uM44u1Jawpyw==/51677046522535.jpg?param=177y177",
-        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101640205.m4a?tflag=1506065899&pin=ff429b7ee5e0d36bb527c286ef8b09d6&ip=218.88.22.24#.mp3"
-    },{
-        name:"Beautiful",
-        singer:"Chrisina Aguilera",
-        cover:"http://p3.music.126.net/biJeqQZ5niniD7Va2w-LHA==/109951163028526512.jpg?param=200y200",
-        musicSrc:"http://other.web.ra01.sycdn.kuwo.cn/de37dfd72c9fb9bf7de1a0f9a7fc2c4c/59c4bbc4/resource/n2/320/94/4/1498621112.mp3"
-    },{
-        name:"悟空",
-        singer:"戴荃",
-        cover:"http://p4.music.126.net/gn4pPKc_Wk3EyByfi86lUQ==/3333719255417035.jpg?param=177y177",
-        musicSrc:"http://mp3.henduoge.com/s/2017-09-22/1506047726.mp3"
     }],
 
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
@@ -101,10 +93,17 @@ const options = {
     //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
     unCheckedText:"关",
 
+    //default play mode of the audio player options 'order' 'orderLoop' 'singleLoop' 'shufflePlay' [ type `String` default 'order' ]
     defaultPlayMode:"order",
 
     //audio mode        mini | full          [type `String`  default `mini`]  
     mode: "mini",
+
+    /**
+     * [ type `Boolean` default 'false' ]
+     * The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true'
+     */
+    once: false,
 
     //Whether you can switch between two modes, full => mini  or mini => full   [type 'Bollean' default 'true']
     toggleMode:true,
@@ -132,6 +131,9 @@ const options = {
 
     //theme toogle switch  display of the audio player panel   [type `Boolean` default `true`]
     showThemeSwitch:true,
+
+    //Extensible custom content       [type 'Array' default '[]' ]
+    extendsContent:[],
 
     //Music is downloaded handle
     audioDowload(audioInfo) {
@@ -198,7 +200,14 @@ npm start
     duration:164.211519
     musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
     name:"Canon (piano version)"
-    volume:100
+    volume:100,
+    muted:false,
+    networkState:1,
+    readyState:4,
+    paused:false,
+    ended:false,
+    startDate:null,
+    played:{length:1}
 }
 ```
 
@@ -210,12 +219,6 @@ npm start
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
-    name: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    cover: PropTypes.string.isRequired,
-    musicSrc: PropTypes.string.isRequired,
     playModeText: PropTypes.object,
     closeText: PropTypes.oneOfType([
       PropTypes.string,
@@ -233,7 +236,10 @@ npm start
       PropTypes.string,
       PropTypes.object
     ]),
-    defaultPosition: PropTypes.object,
+    defaultPosition: PropTypes.shape({
+      top: PropTypes.number,
+      left: PropTypes.number
+    }),
     audioPlay: PropTypes.func,
     audioPause: PropTypes.func,
     audioEnded: PropTypes.func,
@@ -250,6 +256,8 @@ npm start
     showThemeSwitch: PropTypes.bool,
     showMiniModeCover: PropTypes.bool,
     toggleMode: PropTypes.bool,
+    once: PropTypes.bool,
+    extendsContent: PropTypes.array,
     checkedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object

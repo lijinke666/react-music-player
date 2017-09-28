@@ -42,9 +42,10 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "is-mobile": "^0.2.2",
+    "prop-types": "^15.6.0",
     "rc-slider": "^8.3.1",
     "rc-switch": "^1.5.2",
-    "react": "^15.6.0",
+    "react": "^15.6.2",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {

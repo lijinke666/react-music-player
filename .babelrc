@@ -6,7 +6,8 @@
         "modules": false
       }
     ],
-    "react"
+    "react",
+    "stage-1"
   ],
   "env":{
     "test":{

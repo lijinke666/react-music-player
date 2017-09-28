@@ -42,6 +42,7 @@ const PlayerMobile = ({
     tipIcon,
     playModeTipVisible,
     currentPlayModeName,
+    extendsContent,
     onPlay
     }) => (
         <div className="react-jinke-music-player-mobile">
@@ -101,6 +102,15 @@ const PlayerMobile = ({
                     <li className="item">{playMode}</li>
                     <li className="item">{downloadIcon}</li>
                     <li className="item">{reloadIcon}</li>
+                    {
+                        extendsContent && extendsContent.length >=1
+                        ? extendsContent.map((content,i)=>{
+                            return (
+                                <li className="item" key={i}>{content}</li>
+                            )
+                        })
+                        : undefined
+                    }
                     <li className="item" onTouchStart={openAudioListsPanel}>{playListsIcon}</li>
                 </ul>
             </div>
