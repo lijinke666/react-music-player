@@ -1068,7 +1068,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   componentWillUnmount() {
     this.unBindEvnets(this.audio, undefined, false)
-    this.unBindMobileTouchStartEvents()
     this.media.removeListener(this.listenerIsMobile)
     this.media = undefined
   }
