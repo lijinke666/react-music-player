@@ -1,4 +1,4 @@
-# react-music-player
+# react-jinke-music-player
 [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-jinke-music-player)
@@ -9,7 +9,7 @@
 
 ## 安装
 ```
-npm install react-music-player --save
+npm install react-jinke-music-player --save
 ```
 
 ## 预览
