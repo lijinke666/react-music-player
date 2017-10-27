@@ -5,11 +5,11 @@
 > 也许是最好的一个漂亮的响应式 React HTML5 音频播放器
 
 
-[English Doc](https://github.com/lijinke666/react-jinke-music-player/blob/master/README.md)
+[English Doc](https://github.com/lijinke666/react-music-player/blob/master/README.md)
 
 ## 安装
 ```
-npm install react-jinke-music-player --save
+npm install react-music-player --save
 ```
 
 ## 预览
@@ -17,18 +17,18 @@ npm install react-jinke-music-player --save
 
 > 白天主题 <br/>
 
-![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/light-theme.png)
+![lightTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
 
 
 > 夜晚主题  <br/>
 
-![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/dark-theme.png)
+![darkTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
 
 
-![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/mobile.jpg)
+![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg)
 
 ## 例子
-> 在线例子 :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)
+> 在线例子 :  [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
 
 
 ## 使用
@@ -188,7 +188,7 @@ ReactDOM.render(
 
 ## 开发
 ```
-git clone https://github.com/lijinke666/react-jinke-music-player.git
+git clone https://github.com/lijinke666/react-music-player.git
 npm install
 npm start
 ```
@@ -272,4 +272,4 @@ npm start
 
 
 ## 许可证
-[MIT](https://github.com/lijinke666/react-jinke-music-player/blob/master/LICENCE)
+[MIT](https://github.com/lijinke666/react-music-player/blob/master/LICENCE)

@@ -5,7 +5,7 @@
 > Maybe a must beautiful and responsive react music player component :)
 
 
-[中文文档](https://github.com/lijinke666/react-jinke-music-player/blob/master/CN.md)
+[中文文档](https://github.com/lijinke666/react-music-player/blob/master/CN.md)
 
 ## Installation
 ```
@@ -16,18 +16,18 @@ npm install react-jinke-music-player --save
 
 > Light Theme <br/>
 
-![lightTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/light-theme.png)
+![lightTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
 
 > Dark Theme  <br/>
 
-![darkTheme](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/dark-theme.png)
+![darkTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
 
 
-![mobile](https://github.com/lijinke666/react-jinke-music-player/blob/master/assetsImg/mobile.jpg)
+![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg)
 
 
 ## Example
-> ONLINE example :  [https://lijinke666.github.io/react-jinke-music-player/](https://lijinke666.github.io/react-jinke-music-player/)
+> ONLINE example :  [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
 
 ## Usage
 
@@ -186,7 +186,7 @@ const options = {
 
 ## Development
 ```
-git clone https://github.com/lijinke666/react-jinke-music-player.git
+git clone https://github.com/lijinke666/react-music-player.git
 npm install
 npm start
 ```
@@ -271,4 +271,4 @@ npm start
 
 
 ## License
-[MIT](https://github.com/lijinke666/react-jinke-music-player/blob/master/LICENCE)
+[MIT](https://github.com/lijinke666/react-music-player/blob/master/LICENCE)

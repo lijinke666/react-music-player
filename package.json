@@ -1,7 +1,7 @@
 {
-  "name": "react-jinke-music-player",
-  "version": "3.1.1",
-  "description": "Maybe must a beautiful and responsive react music player component",
+  "name": "react-music-player",
+  "version": "3.1.2",
+  "description": "Maybe the best beautiful HTML5 responsive player for react",
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run demo",
@@ -18,11 +18,11 @@
   "author": "jinke.li",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lijinke666/react-jinke-music-player"
+    "url": "https://github.com/lijinke666/react-music-player"
   },
-  "homepage": "https://lijinke666.github.io/react-jinke-music-player",
+  "homepage": "https://lijinke666.github.io/react-music-player",
   "bugs": {
-    "url": "https://github.com/lijinke666/react-jinke-music-player/issues"
+    "url": "https://github.com/lijinke666/react-music-player/issues"
   },
   "license": "MIT",
   "keywords": [
@@ -32,6 +32,7 @@
     "music",
     "audio",
     "react-player",
+    "react-jinke-music-player",
     "react-music-player",
     "react-audio-player",
     "cd-player",
