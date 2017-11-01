@@ -1,5 +1,5 @@
-# React-Jk-Music-Player
-### a example
+# react-jinke-music-player
+a example
 
 ```
 $ npm run demo :)
