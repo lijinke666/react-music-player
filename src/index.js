@@ -1025,9 +1025,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     document.addEventListener(ISMOBILE ? 'touchmove' : 'mousemove', (e) => this.controllerMouseMove(e), false)
     document.addEventListener(ISMOBILE ? 'touchend' : 'mouseup', (e) => this.controllerMouseUp(e), false)
   }
-  shouldComponentUpdate(nextProps, { musicSrc }) {
-    if (this.state.musicSrc === musicSrc || this.state.musicSrc !== musicSrc) return true
-    return true
+  componentWillReceiveProps({audioLists}){
+    const _audioLists = this.filterAudioLists(audioLists)
+    const { name = "未知", cover, singer, musicSrc } = _audioLists[0]
+    this.setState({
+      name,
+      cover,
+      singer,
+      musicSrc
+    })
   }
   //合并state 更新初始位置
   componentWillMount() {
