@@ -60,11 +60,11 @@ const options = {
      * @param {String } audioLists.cover  封面图  [ 必填 ]
      * @param {String } audioLists.musicSrc  音乐链接  [ required ]
     */
-    audioLists:[{
-        name:"Canon (piano version)",
-        singer:"未知",
-        cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
-        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    audioLists: [{
+        name: "丑",
+        singer: "草东没有派对",
+        cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
+        musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
     }],
 
 
@@ -196,10 +196,10 @@ npm start
 ## AudioInfo 返回参数
 ```js
 {
-    cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg"      //封面图
-    currentTime:10.211519                   //当前播放时长
-    duration:164.211519                     //音乐总时长
-    musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?    tflag=1502850639pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"   //音乐地址
+    cover:"http://www.lijinke.cn/music/1387583682387727.jpg"
+    currentTime:10.211519
+    duration:164.211519
+    musicSrc:"http://www.lijinke.cn/music/201711082.mp3"
     name:"Canon (piano version)"     //音乐名
     volume:100,      //当前音量
     muted:false,     //是否静音

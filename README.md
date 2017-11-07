@@ -57,11 +57,11 @@ const options = {
      * @param {String } audioLists.cover  audio cover  [ required ]
      * @param {String } audioLists.musicSrc  audio music source  [ required ]
     */
-    audioLists:[{
-        name:"Canon (piano version)",
-        singer:"尼古拉斯赵四",
-        cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
-        musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    audioLists: [{
+        name: "丑",
+        singer: "草东没有派对",
+        cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
+        musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
     }],
 
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
@@ -75,10 +75,10 @@ const options = {
 
     //play mode text config of the audio player
     playModeText: {
-        order: "顺序播放",
-        orderLoop: "列表循环",
-        singleLoop: "单曲循环",
-        shufflePlay: "随机播放"
+        order: "order",
+        orderLoop: "orderLoop",
+        singleLoop: "singleLoop",
+        shufflePlay: "shufflePlay"
     },
 
     //audio controller open text  [ type `String | ReactNode` default 'open']
@@ -195,10 +195,10 @@ npm start
 > Like This
 ```js
 {
-    cover:"http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg"
+    cover:"http://www.lijinke.cn/music/1387583682387727.jpg"
     currentTime:10.211519
     duration:164.211519
-    musicSrc:"http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+    musicSrc:"http://www.lijinke.cn/music/201711082.mp3"
     name:"Canon (piano version)"
     volume:100,
     muted:false,
