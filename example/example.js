@@ -10,25 +10,20 @@ import "./example.less"
 const options = {
     //audio lists model
     audioLists: [{
-        name: "Canon (piano version)",
-        singer: "未知",
-        cover: "http://img2.kuwo.cn/star/starheads/120/26/82/544626559.jpg",
-        musicSrc: "http://so1.111ttt.com:8282/2016/1/12m/10/205101300290.m4a?tflag=1502850639&pin=13888f2d75f5f6229a8a3e818f09d195&ip=118.116.109.58#.mp3"
+        name: "丑",
+        singer: "草东没有派对",
+        cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
+        musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
     }, {
-        name: "胆小鬼",
-        singer: "梁咏琪",
-        cover: "http://p3.music.126.net/OLroXJamq8uM44u1Jawpyw==/51677046522535.jpg?param=177y177",
-        musicSrc: "http://so1.111ttt.com:8282/2016/1/12m/10/205101640205.m4a?tflag=1506065899&pin=ff429b7ee5e0d36bb527c286ef8b09d6&ip=218.88.22.24#.mp3"
+        name: "达尔文",
+        singer: "蔡健雅",
+        cover: "http://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
+        musicSrc: "http://www.lijinke.cn/music/20171108.mp3"
     }, {
-        name: "Beautiful",
-        singer: "Chrisina Aguilera",
-        cover: "http://p3.music.126.net/biJeqQZ5niniD7Va2w-LHA==/109951163028526512.jpg?param=200y200",
-        musicSrc: "http://so1.111ttt.com:8282/2017/4/05m/10/298101104389.m4a?tflag=1506098533&pin=3e6a002582055ad2041fde2beaf23cee&ip=222.209.158.174#.mp3"
-    }, {
-        name: "悟空",
-        singer: "戴荃",
-        cover: "http://p4.music.126.net/gn4pPKc_Wk3EyByfi86lUQ==/3333719255417035.jpg?param=177y177",
-        musicSrc: "http://mp3.henduoge.com/s/2017-09-22/1506047726.mp3"
+        name: "十年青春换绝症",
+        singer: "贰佰",
+        cover: "http://www.lijinke.cn/music/18892908300128861.jpg",
+        musicSrc: "http://www.lijinke.cn/music/201711081.mp3"
     }],
 
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
