@@ -1,7 +1,7 @@
 {
   "name": "react-jinke-music-player",
-  "version": "3.1.4",
-  "description": "Maybe the best beautiful HTML5 responsive player for react",
+  "version": "3.1.5",
+  "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run demo",
@@ -69,8 +69,11 @@
     "babel-preset-stage-0": "6.x",
     "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "^6.23.0",
+    "chai": "^4.1.2",
     "copy-webpack-plugin": "latest",
     "css-loader": "~0.23.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
@@ -97,5 +100,15 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.7.0",
     "webpack-dev-server": "^2.3.0"
+  },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ]
   }
 }
