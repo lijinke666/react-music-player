@@ -2,7 +2,7 @@
 [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-jinke-music-player)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-jinke-music-player)
-> Maybe a must beautiful and responsive react music player component :)
+> Maybe the best beautiful HTML5 responsive player component for react :)
 
 
 [中文文档](https://github.com/lijinke666/react-music-player/blob/master/CN.md)

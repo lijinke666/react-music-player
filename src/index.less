@@ -60,6 +60,15 @@
             .audio-item{
                 background-color:@lists-panel-item-bg-light;
                 box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                @media screen and (max-width:767px){
+                    background-color:@lists-panel-item-bg-light !important;
+                    &.playing{
+                        background-color: darken(@lists-panel-item-bg-light,2%) !important;
+                        svg{
+                            color:@primary-color;
+                        }
+                    }
+                }
             }
         }
         .audio-lists-panel-header{
@@ -156,7 +165,7 @@
             }
         }
         .audio-item{
-                            @media screen and (max-width:767px){
+                @media screen and (max-width:767px){
                     background-color: rgba(64, 68, 75,.5) !important;
                     &.playing{
                         background-color: rgba(64, 68, 75,.75) !important;
