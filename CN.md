@@ -89,10 +89,16 @@ const options = {
     defaultPlayMode:"order",
 
     //播放器控制器 自定义 打开 文字  [ type `String | ReactNode` default 'open']
-    openText: "OPEN",
+    openText: "打开",
 
     //播放器控制器 自定义 关闭 文字  [ type `String | ReactNode` default 'close']
-    closeText: "CLOSE",
+    closeText: "关闭",
+
+    //播放列表 自定义标题 [ type `String` | ReactNode default 'PlayList' ]
+    panelTitle:"播放列表",
+
+    //播放列表没有音乐时的 自定义文字 [ type `String` | ReactNode  default 'no music']
+    notContentText:"暂无音乐",
 
     //播放器主题开关 自定义 选中 文字  [ type `String | ReactNode` default '-']
     checkedText:"开",
@@ -229,6 +235,7 @@ npm start
       PropTypes.string,
       PropTypes.object
     ]),
+    panelTitle:PropTypes.string,
     notContentText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object

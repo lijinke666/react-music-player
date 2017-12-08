@@ -1,16 +1,18 @@
 import React from "react"
 import classNames from "classnames"
 
+const prefix = "react-jinke-music-player-mobile"
+
 const PlayModeTip = ({
     visibile,
     title,
     text
-})=>(
-    <div className={classNames("react-jinke-music-player-mobile-play-model-tip",{"show":visibile})}>
-        <span className="title">{title}</span>
-        <span className="text">{text}</span>
-    </div>
-)
+}) => (
+        <div className={classNames(`${prefix}-play-model-tip`, { "show": visibile })}>
+            <span className="title">{title}</span>
+            <span className="text">{text}</span>
+        </div>
+    )
 
 
 const PlayerMobile = ({
@@ -21,6 +23,7 @@ const PlayerMobile = ({
     duration,
     currentTime,
     loading,
+    loadingIcon,
     themeSwitch,
     progressBar,
     progressChange,
@@ -45,23 +48,27 @@ const PlayerMobile = ({
     extendsContent,
     onPlay
     }) => (
-        <div className="react-jinke-music-player-mobile">
-            <PlayModeTip visibile ={playModeTipVisible} title={tipIcon} text={currentPlayModeName}/>
-            <div className="react-jinke-music-player-mobile-header group">
+        <div className={prefix}>
+            <PlayModeTip
+                visibile={playModeTipVisible}
+                title={tipIcon}
+                text={currentPlayModeName}
+            />
+            <div className={`${prefix}-header group`}>
                 <div className="left item"></div>
                 <div className="title" key="audio-title">{name}</div>
                 <div className="right item" onTouchStart={onClose}>{closeIcon}</div>
             </div>
-            <div className="react-jinke-music-player-mobile-singer text-center group">
+            <div className={`${prefix}-singer text-center group`}>
                 <span className="name" key="singer-name">{singer}</span>
             </div>
-            <div className="react-jinke-music-player-mobile-swtich text-center group">
+            <div className={`${prefix}-swtich text-center group`}>
                 {themeSwitch}
             </div>
-            <div className="react-jinke-music-player-mobile-cover text-center">
-                <img src={cover} alt="cover" key="cover" className={classNames("cover",{"img-rotate-pause":pause})} />
+            <div className={`${prefix}-cover text-center`}>
+                <img src={cover} alt="cover" key="cover" className={classNames("cover", { "img-rotate-pause": pause })} />
             </div>
-            <div className="react-jinke-music-player-mobile-progress group">
+            <div className={`${prefix}-progress group`}>
                 <span key="current-time" className="current-time">
                     {loading ? '--' : currentTime}
                 </span>
@@ -70,48 +77,56 @@ const PlayerMobile = ({
                     {loading ? '--' : duration}
                 </span>
             </div>
-            <div className="react-jinke-music-player-mobile-toggle text-center group">
-                <span
-                    className="group prev-audio"
-                    title="previous track"
-                    onTouchStart={audioPrevPlay}
-                >
-                    {prevAudioIcon}
-                </span>
-                <span
-                    className="group play-btn"
-                    key="play-btn"
-                    title="play"
-                    onTouchStart={onPlay}
-                >
-                    {
-                        playing ? pauseIcon : playIcon
-                    }
+            <div className={`${prefix}-toggle text-center group`}>
+                {
+                    loading
+                        ? loadingIcon
+                        : [
+                            <span
+                                className="group prev-audio"
+                                title="previous track"
+                                key="prev-audio"
+                                onTouchStart={audioPrevPlay}
+                            >
+                                {prevAudioIcon}
+                            </span>,
+                            <span
+                                className="group play-btn"
+                                title="play"
+                                key="play-btn"
+                                onTouchStart={onPlay}
+                            >
+                                {
+                                    playing ? pauseIcon : playIcon
+                                }
 
-                </span>
-                <span
-                    className="group next-audio"
-                    title="next track"
-                    onTouchStart={audioNextPlay}
-                >
-                    {nextAudioIcon}
-                </span>
+                            </span>,
+                            <span
+                                className="group next-audio"
+                                title="next track"
+                                key="next-audio"
+                                onTouchStart={audioNextPlay}
+                            >
+                                {nextAudioIcon}
+                            </span>
+                        ]
+                }
             </div>
-            <div className="react-jinke-music-player-mobile-operation group">
+            <div className={`${prefix}-operation group`}>
                 <ul className="items">
-                    <li className="item">{playMode}</li>
-                    <li className="item">{downloadIcon}</li>
-                    <li className="item">{reloadIcon}</li>
+                    <li className="item" key="item-player-mode">{playMode}</li>
+                    <li className="item" key="item-download-icon">{downloadIcon}</li>
+                    <li className="item" key="item-reload-icon">{reloadIcon}</li>
                     {
-                        extendsContent && extendsContent.length >=1
-                        ? extendsContent.map((content,i)=>{
-                            return (
-                                <li className="item" key={i}>{content}</li>
-                            )
-                        })
-                        : undefined
+                        extendsContent && extendsContent.length >= 1
+                            ? extendsContent.map((content, i) => {
+                                return (
+                                    <li className="item" key={i}>{content}</li>
+                                )
+                            })
+                            : undefined
                     }
-                    <li className="item" onTouchStart={openAudioListsPanel}>{playListsIcon}</li>
+                    <li className="item" key="play-lists-icon" onTouchStart={openAudioListsPanel}>{playListsIcon}</li>
                 </ul>
             </div>
         </div>

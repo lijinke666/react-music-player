@@ -15,16 +15,17 @@ const AudioListsPanel = ({
   playIcon,
   pauseIcon,
   closeIcon,
-  isMobile
+  isMobile,
+  panelTitle
  }) => (
     <div
       className={classNames("audio-lists-panel", { "show": visible })} key="audio-list-panel"
     >
       <div className="audio-lists-panel-header">
         <h2 className="title">
-          <span>播放列表/</span>
+          <span key="panel-title">{panelTitle} / </span>
           <span className="num" key="num">{audioLists.length}</span>
-          <span className="close-btn" {...isMobile ? { onTouchStart: onCancel } : { onClick: onCancel }}>{closeIcon}</span>
+          <span key="close-btn" className="close-btn" {...isMobile ? { onTouchStart: onCancel } : { onClick: onCancel }}>{closeIcon}</span>
         </h2>
       </div>
       <div
@@ -61,7 +62,7 @@ const AudioListsPanel = ({
                       <span className="group player-name" key="player-name">
                         {name}
                       </span>
-                      <span className="group player-time">{singer}</span>
+                      <span className="group player-time" key="player-time">{singer}</span>
                     </li>
                   )
                 })
