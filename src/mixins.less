@@ -57,6 +57,18 @@ ul,li{
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.react-jinke-music-player,
+.react-jinke-music-player-mobile{
+    .loading{
+        display: inline-flex;
+        animation: audioLoading linear .9s infinite;
+        margin-top:4px;
+        svg{
+            font-size:24px;
+            color:@primary-color
+        }
+    }
+}
     .translate{
         animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
     }

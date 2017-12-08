@@ -82,16 +82,22 @@ const options = {
     },
 
     //audio controller open text  [ type `String | ReactNode` default 'open']
-    openText: "OPEN",
+    openText: "open",
 
     //audio controller close text  [ type `String | ReactNode` default 'close']
-    closeText: "CLOSE",
+    closeText: "close",
+
+    //audio list panel title [ type `String` | ReactNode default 'PlayList' ]
+    panelTitle:"PlayList",
+
+    //audio list panel show text of the playlist has no songs [ type `String` | ReactNode  default 'no music']
+    notContentText:"no music",
 
     //audio theme switch checkedText  [ type `String | ReactNode` default '-']
-    checkedText:"开",
+    checkedText:"",
 
     //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
-    unCheckedText:"关",
+    unCheckedText:"",
 
     //default play mode of the audio player options 'order' 'orderLoop' 'singleLoop' 'shufflePlay' [ type `String` default 'order' ]
     defaultPlayMode:"order",
@@ -228,6 +234,7 @@ npm start
       PropTypes.string,
       PropTypes.object
     ]),
+    panelTitle:PropTypes.string,
     notContentText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object

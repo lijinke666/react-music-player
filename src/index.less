@@ -267,7 +267,7 @@
         text-align: center;
         transform: scale(0);
         transform-origin: bottom center;
-        z-index: 200;
+        z-index: 1000;
         transition: ttransform .3s cubic-bezier(0.165, 0.84, 0.44, 1);
         &.play-mode-title-visible{
             animation: scaleTo .6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -293,15 +293,6 @@
     @media screen and (max-width:767px){
         svg{
             font-size:22px;
-        }
-    }
-    .loading{
-        display: inline-flex;
-        animation: audioLoading linear .9s infinite;
-        margin-top:4px;
-        svg{
-            font-size:24px;
-            color:@primary-color
         }
     }
     .music-player{
