@@ -25,7 +25,7 @@ const options = {
         cover: "http://www.lijinke.cn/music/18892908300128861.jpg",
         musicSrc: "http://www.lijinke.cn/music/201711081.mp3"
     }],
-
+    
     //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
     theme: "drak",
 
@@ -35,7 +35,7 @@ const options = {
         left: 120
     },
 
-    //play mode text config of the audio player
+    // play mode text config of the audio player
     playModeText: {
         order: "顺序播放",
         orderLoop: "列表循环",
@@ -44,16 +44,21 @@ const options = {
     },
 
     //audio controller open text  [ type `String | ReactNode` default 'open']
-    openText: "OPEN",
+    openText: "打开",
 
     //audio controller close text  [ type `String | ReactNode` default 'close']
-    closeText: "CLOSE",
+    closeText: "关闭",
 
     //audio theme switch checkedText  [ type `String | ReactNode` default '-']
     checkedText: "开",
 
     //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
     unCheckedText: "关",
+
+    // audio list panel show text of the playlist has no songs [ type `String` | ReactNode  default 'no music']
+    notContentText:"暂无音乐",
+
+    panelTitle:"播放列表",
 
     defaultPlayMode: "order",
 
