@@ -118,7 +118,7 @@ const options = {
     },
 
     //When the user has moved/jumped to a new location in audio
-    autdioSeeked(audioInfo) {
+    audioSeeked(audioInfo) {
         console.log('audio seeked', audioInfo);
     },
 

@@ -218,22 +218,22 @@
             cursor: pointer;
             .transition(.3s);
             &.playing{
-                .player-icons{
-                    animation: playing 8s infinite;
-                }
+                // .player-icons{
+                //     animation: playing 8s infinite;
+                // }
                 background-color: lighten(@lists-panel-item-bg,2%);
                 svg{
                     color:@primary-color;
                 }
             }
             &.pause{
-                .player-icons{
-                    animation:none;
-                }
             }
             .player-icons{
                 display: inline-block;
                 width:30px;
+                .loading{
+                    animation: audioLoading .9s linear infinite;
+                }
             }
             &:hover,&:active{
                 background-color: lighten(@lists-panel-item-bg,2%);

@@ -54,7 +54,7 @@ const AudioListsPanel = ({
                             playId === i && loading
                               ? loading
                               : playId === i
-                                ? pause ? pauseIcon : playIcon
+                                ? pause ? playIcon : pauseIcon
                                 : undefined
                           }
                         </span>

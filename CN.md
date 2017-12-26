@@ -161,7 +161,7 @@ const options = {
     },
 
     //音频拖动 触发函数 返回 音频信息
-    autdioSeeked(audioInfo) {
+    audioSeeked(audioInfo) {
         console.log('audio seeked', audioInfo);
     },
 
@@ -255,7 +255,7 @@ npm start
     audioVolumeChange: PropTypes.func,
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
-    autdioSeeked: PropTypes.func,
+    audioSeeked: PropTypes.func,
     audioDowload: PropTypes.func,
     showDowload: PropTypes.bool,
     showPlay: PropTypes.bool,
