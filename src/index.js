@@ -1,6 +1,6 @@
 
 /**
- * @version 3.2.0
+ * @version 3.2.1
  * @name react-jinke-music-player
  * @author jinke.li
  */
@@ -64,7 +64,7 @@ export function formatTime(second) {
   return [zero(i), zero(s)].join(":");
 };
 
-export function createRandomNum(minNum,maxNum) {
+export function createRandomNum(minNum, maxNum) {
   return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
 }
 
@@ -179,7 +179,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       top: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
-      ]) ,
+      ]),
       left: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string
@@ -192,7 +192,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioVolumeChange: PropTypes.func,
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
-    autdioSeeked: PropTypes.func,
+    audioSeeked: PropTypes.func,
     audioDowload: PropTypes.func,
     showDowload: PropTypes.bool,
     showPlay: PropTypes.bool,
@@ -334,6 +334,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const _currentTime = formatTime(currentTime)
     const _duration = formatTime(duration)
 
+    console.log(playing)
+
     //进度条
 
     const _Slider = (
@@ -342,7 +344,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         defaultValue={0}
         value={currentTime}
         onChange={this.onHandleProgress}
-        onAfterChange={this.autdioSeeked}
+        onAfterChange={this.audioSeeked}
         {...sliderBaseOptions}
       />
     )
@@ -665,12 +667,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
    * 通用方法
    * @tip: ignore 如果 为 true playId相同则不暂停 可是重新播放 适用于 随机播放 重新播放等逻辑
    */
-  audioListsPlay = (playId,ignore = false) => {
+  audioListsPlay = (playId, ignore = false) => {
     const { audioLists } = this.props
-    const { playId: currentPlayId, pause } = this.state
+    const { playId: currentPlayId, pause, playing } = this.state
     //如果点击当前项 就暂停 或者播放
     if (playId === currentPlayId && !ignore) {
-      this.setState({ pause: !pause })
+      this.setState({ pause: !pause, playing: !playing })
       return pause ? this.audio.play() : this._pauseAudio()
     }
 
@@ -911,16 +913,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
       //单曲循环
       case this.PLAYMODE['singleLoop']['key']:
         IconNode = <LoopIcon />
-        this.audioListsPlay(playId,true)
+        this.audioListsPlay(playId, true)
         break
 
       //随机播放
       case this.PLAYMODE['shufflePlay']['key']:
         IconNode = <ShufflePlayIcon />
-        let randomPlayId = createRandomNum(0,audioListsLen-1)
+        let randomPlayId = createRandomNum(0, audioListsLen - 1)
         //防止 id 溢出
         // randomPlayId = playId === randomPlayId ? Math.max(0,Math.min(playId,audioListsLen-1)-1) : randomPlayId
-        this.audioListsPlay(randomPlayId,true)
+        this.audioListsPlay(randomPlayId, true)
         break
       default: IconNode = <OrderPlayIcon />
     }
@@ -978,9 +980,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.audioPlay && this.props.audioPlay(this.getBaseAudioInfo())
   }
   //进度条跳跃
-  autdioSeeked = () => {
+  audioSeeked = () => {
     this.loadAudio()
-    this.props.autdioSeeked && this.props.autdioSeeked(this.getBaseAudioInfo())
+    this.props.audioSeeked && this.props.audioSeeked(this.getBaseAudioInfo())
   }
   //静音
   onMute = () => {
@@ -1028,7 +1030,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       canplay: this.onPlay,
       error: this.loadAudioError,
       ended: this.audioEnd,
-      seeked: this.autdioSeeked,
+      seeked: this.audioSeeked,
       pause: this.pauseAudio,
       play: this.audioPlay,
       timeupdate: this.audioTimeUpdate,
