@@ -1,6 +1,6 @@
 
 /**
- * @version 3.2.1
+ * @version 3.2.2
  * @name react-jinke-music-player
  * @author jinke.li
  */
@@ -112,7 +112,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     theme: this.lightThemeName,
     extendsContent: [],            //自定义扩展功能按钮
     playMode: "",                 //当前播放模式
-    currentAudioVolume: 0         //当前音量  静音后恢复到之前记录的音量
+    currentAudioVolume: 0,         //当前音量  静音后恢复到之前记录的音量\
+    init:false
   }
   static defaultProps = {
     audioLists: [],
@@ -149,7 +150,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showPlayMode: true,
     showThemeSwitch: true,
     playModeTipVisible: false,        //手机端切换播放模式
-    autoplay: true
+    autoplay: true,
+    defaultVolume:100
   }
   static PropTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -210,7 +212,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     unCheckedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ])
+    ]),
+    defaultVolume:PropTypes.number
   }
   constructor(props) {
     super(props)
@@ -333,8 +336,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const _currentTime = formatTime(currentTime)
     const _duration = formatTime(duration)
-
-    console.log(playing)
 
     //进度条
 
@@ -1057,8 +1058,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     document.addEventListener(ISMOBILE ? 'touchend' : 'mouseup', (e) => this.controllerMouseUp(e), false)
   }
   initPlayInfo = (audioLists) => {
-    const _audioLists = this.filterAudioLists(audioLists)
-    const { name = "未知", cover, singer, musicSrc } = _audioLists[0]
+    const _audioLists = this.filterAudioLists(audioLists) || []
+    const {
+      name = "未知",
+      cover = "",
+      singer = "",
+      musicSrc = ""
+    } = _audioLists[0] || {}
     this.setState({
       name,
       cover,
@@ -1067,16 +1073,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
   }
   componentWillReceiveProps({ audioLists }) {
-    this.initPlayInfo(audioLists)
+    if(!this.state.init){
+      this.setState({init:true},()=>{
+        this.initPlayInfo(audioLists)
+      })
+    }
   }
-  //合并state 更新初始位置
+  //合并state 更新初始值
   componentWillMount() {
     const {
       defaultPosition: { left, top },
       theme,
       mode,
       audioLists,
-      defaultPlayMode
+      defaultPlayMode,
+      defaultVolume
      } = this.props
 
     //切换 'mini' 或者 'full' 模式
@@ -1084,8 +1095,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     if (audioLists.length >= 1) {
       //去掉重复的歌曲
-      const cleanAudioLists = this.filterAudioLists(audioLists)
-      const { name = "未知", cover, singer, musicSrc } = cleanAudioLists[0]
+      const cleanAudioLists = this.filterAudioLists(audioLists) || []
+      const { name = "未知", cover = "", singer = "", musicSrc = "" } = cleanAudioLists[0] || {}
 
       this.setState(({ playId }) => {
         return {
@@ -1118,7 +1129,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.progress = this.dom.querySelector('.progress')
     this.audio = this.dom.querySelector('audio')
     this.bindEvents(this.audio)
-    this.media = window.matchMedia("(max-width: 768px) and (orientation : portrait)");
+    this.media = window.matchMedia("(max-width: 768px) and (orientation : portrait)")
     this.media.addListener(this.listenerIsMobile)
+    //音量 [0-100]
+    const _defaultVolume = Math.max(0,Math.min(this.props.defaultVolume,100)) / 100
+    this.setAudioVolume(_defaultVolume)
   }
 }
