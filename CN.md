@@ -145,6 +145,9 @@ const options = {
     //如果默认的功能按钮不满足你 你可以自定义扩展      [type 'Array' default '[]' ]
     extendsContent:[],
 
+    //播放器初始音量  [type `Number` default `100` range `0-100`]
+    defaultVolume:100,
+
     //音频下载 触发 返回 音频信息
     audioDowload(audioInfo) {
         console.log('audio dowload', audioInfo);
@@ -273,7 +276,8 @@ npm start
     unCheckedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ])
+    ]),
+    defaultVolume:PropTypes.number
   }
 ```
 

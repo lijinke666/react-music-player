@@ -141,6 +141,9 @@ const options = {
     //Extensible custom content       [type 'Array' default '[]' ]
     extendsContent:[],
 
+    //default volume of the audio player [type `Number` default `100` range `0-100`]
+    defaultVolume:100,
+
     //Music is downloaded handle
     audioDowload(audioInfo) {
         console.log('audio dowload', audioInfo);
@@ -272,7 +275,8 @@ npm start
     unCheckedText: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ])
+    ]),
+    defaultVolume:PropTypes.number
   }
 ```
 

@@ -101,9 +101,12 @@ const options = {
     //Extensible custom content       [type 'Array' default '[]' ]
     extendsContent: [],
 
+    //default volume of the audio player [type `Number` default `100` range `0-100`]
+    defaultVolume:100,
+
     //Music is downloaded handle
     audioDowload(audioInfo) {
-        Message.success({ content: '下载成功' })
+        Message.success({ content: 'download successfully' })
         console.log('audio dowload', audioInfo);
     },
 
@@ -152,7 +155,7 @@ const options = {
 
 const Demo = () => (
     <div>
-        <h2 className="example-title">Click or Drag to try</h2>
+        <h2 className="example-title">Drag, Click, or switch to phone mode to try</h2>
         <ReactJkMusicPlayer {...options} />
     </div>
 )
