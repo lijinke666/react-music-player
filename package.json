@@ -93,7 +93,9 @@
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.28.0",
     "imagemin-webpack-plugin": "^1.4.4",
-    "jest": "^19.0.2",
+    "jest": "^22.4.3",
+    "jest-environment-jsdom": "^22.4.3",
+    "jsdom": "^11.8.0",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "lint-staged": "^7.0.4",
@@ -102,6 +104,7 @@
     "postcss": "^6.0.12",
     "postcss-cli": "^4.1.1",
     "postcss-loader": "^1.2.2",
+    "power-assert": "^1.5.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
     "rc-button": "^0.1.5",
@@ -114,6 +117,7 @@
     "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.11.0",
     "rimraf": "^2.6.0",
+    "sinon": "^4.5.0",
     "style-loader": "~0.13.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.7.0",
@@ -147,6 +151,7 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__tests__/__mocks__/styleMock.js"
-    }
+    },
+    "testEnvironment": "<rootDir>/__tests__/__mocks__/jsdomMock.js"
   }
 }
