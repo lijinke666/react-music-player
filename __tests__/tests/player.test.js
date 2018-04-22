@@ -1,7 +1,7 @@
+/* global describe,it,expect*/
 import React from "react"
-import Mobile from "is-mobile"
-import Enzyme, { render, shallow } from 'enzyme'
-import { expect } from 'chai'
+import isMobile from "is-mobile"
+import { render, shallow } from 'enzyme'
 
 import ReactJkMusicPlayer, { createRandomNum } from "../src"
 import PlayerMobile from "../src/playerMobile"
@@ -25,7 +25,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     })
     it('render a <PlayerMobile/> components', () => {
         const wrapper = shallow(<ReactJkMusicPlayer {...testProps} />)
-        const num = Mobile() ? 1 : 0
+        const num = isMobile() ? 1 : 0
         expect(wrapper.find(PlayerMobile)).to.have.length(num)
     })
     it('render full mode', () => {
@@ -37,7 +37,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         expect(wrapper.text()).to.contain('mini');
     })
     it('render dark theme', () => {
-        const wrapper = render(<ReactJkMusicPlayer {...testProps} thme="dark" />);
+        const wrapper = render(<ReactJkMusicPlayer {...testProps} theme="dark" />);
         expect(wrapper.text()).to.contain('dark');
     })
     it('render range random', () => {

@@ -68,8 +68,8 @@ const options = {
     }],
 
 
-    //播放器的主题,可选 白天 和 黑夜 两种主题    [ type `string: 'light' or 'drak'  ` default 'drak' ]
-    theme:"drak",
+    //播放器的主题,可选 白天 和 黑夜 两种主题    [ type `string: 'light' or 'dark'  ` default 'dark' ]
+    theme:"dark",
     
     //播放器的初始位置 绝对定位 的 top 和left 值   [ type `Object` default '{top:0,left:0}' ]
     defaultPosition:{
@@ -134,7 +134,7 @@ const options = {
     showReload: true,
 
     //是否显示下载按钮   [type `Boolean` default `true`]
-    showDowload: true,
+    showDownload: true,
 
     //是否显示主题切换开关  [type `Boolean` default `true`]
     showThemeSwitch:true,
@@ -149,8 +149,8 @@ const options = {
     defaultVolume:100,
 
     //音频下载 触发 返回 音频信息
-    audioDowload(audioInfo) {
-        console.log('audio dowload', audioInfo);
+    audioDownload(audioInfo) {
+        console.log('audio download', audioInfo);
     },
 
     //音频播放触发 返回 音频信息
@@ -224,7 +224,7 @@ npm start
 ## 参数属性
 
 ```jsx
-  static PropTypes = {
+  static propTypes = {
     audioLists: PropTypes.array.isRequired,
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
@@ -259,8 +259,8 @@ npm start
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
     audioSeeked: PropTypes.func,
-    audioDowload: PropTypes.func,
-    showDowload: PropTypes.bool,
+    audioDownload: PropTypes.func,
+    showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
     showReload: PropTypes.bool,
     showPlayMode: PropTypes.bool,

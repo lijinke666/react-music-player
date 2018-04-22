@@ -5,15 +5,24 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run demo",
-    "test": "jest",
     "clean": "rimraf lib && rimraf assets",
+    "lint": "prettier --write \"src/**/*.js\" && eslint_d --fix src",
     "auto": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
-    "buildcss": "lessc src/index.less assets/index.css && npm run auto",
-    "buildjs": "babel src -d lib",
-    "pub": "npm run clean && npm run buildjs && npm run buildcss && npm run buildcss",
-    "build-demo": "webpack --env.mode=PROD --progress --config  ./example/webpack.config.js",
+    "build:css": "lessc src/styles/index.less assets/index.css && npm run auto",
+    "build:js": "babel src -d lib",
+    "build": "npm run clean && npm run build:js && npm run build:css && npm run auto",
+    "build:demo": "webpack --env.mode=PROD --progress --config  ./example/webpack.config.js",
     "demo": "webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
-    "prepublish": "npm run pub"
+    "test": "jest __tests__/tests",
+    "prepare": "npm run build"
+  },
+  "pre-commit": "lint",
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint_d --fix",
+      "git add"
+    ]
   },
   "author": "jinke.li",
   "repository": {
@@ -46,14 +55,14 @@
     "prop-types": "^15.6.0",
     "rc-slider": "^8.3.1",
     "rc-switch": "^1.5.2",
-    "react": "^16.0.0",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-cli": "^6.16.0",
     "babel-core": "6.x",
-    "babel-jest": "^19.0.0",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
     "babel-loader": "6.x",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-dynamic-import-node": "^1.0.2",
@@ -74,7 +83,11 @@
     "css-loader": "~0.23.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "enzyme-to-json": "^3.2.2",
+    "enzyme-to-json": "^3.3.3",
+    "eslint": "^4.19.1",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint_d": "^5.3.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
@@ -83,14 +96,18 @@
     "jest": "^19.0.2",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "lint-staged": "^7.0.4",
     "open-browser-webpack-plugin": "0.0.2",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "postcss": "^6.0.12",
     "postcss-cli": "^4.1.1",
     "postcss-loader": "^1.2.2",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.12.1",
     "rc-button": "^0.1.5",
     "rc-message": "^1.3.2",
-    "react-dom": "^16.0.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-jinke-music-player": "latest",
     "react-loader": "^2.4.0",
@@ -103,18 +120,33 @@
     "webpack-dev-server": "^2.3.0"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/*"
-    ],
     "moduleFileExtensions": [
       "js",
-      "jsx"
+      "jsx",
+      "json"
     ],
-    "setupFiles": [
-      "./__tests__/setup.js"
+    "transformIgnorePatterns": [
+      "/node_modules/"
     ],
+    "moduleDirectories": [
+      "node_modules",
+      ".",
+      "src",
+      "src/shared"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__tests__/__mocks__/styleMock.js"
+    }
   }
 }

@@ -223,7 +223,7 @@ npm start
 ## Properties
 
 ```jsx
-  static PropTypes = {
+  static propTypes = {
     audioLists: PropTypes.array.isRequired,
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
@@ -258,8 +258,8 @@ npm start
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
     audioSeeked: PropTypes.func,
-    audioDowload: PropTypes.func,
-    showDowload: PropTypes.bool,
+    audioDownload: PropTypes.func,
+    showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
     showReload: PropTypes.bool,
     showPlayMode: PropTypes.bool,

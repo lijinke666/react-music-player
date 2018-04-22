@@ -4,4 +4,3 @@ assets
 npm-debug.log
 .DS_Store
 .history
-.npmignore
