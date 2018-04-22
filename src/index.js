@@ -6,7 +6,6 @@
 
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 import classNames from "classnames";
 import isMobile from "is-mobile";
 import Slider from "rc-slider/lib/Slider";
@@ -366,12 +365,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
     //重放
     const ReloadComponent = showReload ? (
       <span
-        className="group roload-btn"
+        className="group reload-btn"
         {...(ISMOBILE
           ? { onTouchStart: this.audioReload }
           : { onClick: this.audioReload })}
-        key="roload-btn"
-        title="roload"
+        key="reload-btn"
+        title="reload"
       >
         <Reload />
       </span>
@@ -398,7 +397,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return (
       <div
         className={classNames("react-jinke-music-player-main", {
-          "light-theme": theme === this.lightThemeName
+          "light-theme": theme === this.lightThemeName,
+          "dark-theme": theme === this.darkThemeName
         })}
       >
         {toggle && isMobile ? (
@@ -483,6 +483,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               className="music-player-audio"
               preload="auto"
               src={musicSrc}
+              ref={ node => this.audio = node}
             />
           </div>
           {toggle ? (
@@ -1252,13 +1253,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   componentDidMount() {
     const { audioLists } = this.props;
-    this.dom = ReactDOM.findDOMNode(this);
-    this.progress = this.dom.querySelector(".progress");
-    this.audio = this.dom.querySelector("audio");
-    this.media = window.matchMedia(
-      "(max-width: 768px) and (orientation : portrait)"
-    );
-    this.media.addListener(this.listenerIsMobile);
+    // this.media = window.matchMedia(
+    //   "(max-width: 768px) and (orientation : portrait)"
+    // );
+    // this.media.addListener(this.listenerIsMobile);
     //音量 [0-100]
     const _defaultVolume =
       Math.max(0, Math.min(this.props.defaultVolume, 100)) / 100;

@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 const prefix = "react-jinke-music-player-mobile";
 
-const PlayModeTip = ({ visible, title, text }) => (
+export const PlayModeTip = ({ visible, title, text }) => (
   <div className={classNames(`${prefix}-play-model-tip`, { show: visible })}>
     <span className="title">{title}</span>
     <span className="text">{text}</span>
