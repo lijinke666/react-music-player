@@ -483,7 +483,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               className="music-player-audio"
               preload="auto"
               src={musicSrc}
-              ref={ node => this.audio = node}
+              ref={node => (this.audio = node)}
             />
           </div>
           {toggle ? (
