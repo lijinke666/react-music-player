@@ -25,7 +25,6 @@
   "plugins": [
     "transform-es2015-modules-commonjs",
     "transform-object-rest-spread",
-    "transform-class-properties",
-    "react-hot-loader/babel"
+    "transform-class-properties"
   ]
 }

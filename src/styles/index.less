@@ -145,13 +145,17 @@
         background-color: @panel-bg;
         transform: scale(0);
         display: none\9;
-        .transition(.5s);
+        // .transition(.5s);
         svg{
-            font-size:20px;
+            font-size:24px;
         }
         &.show{
             animation: scaleTo .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
             display: block\9;
+        }
+        &.hide{
+            animation: scaleFrom .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
+            display: none\9;
         }
         @media screen and (max-width:767px){
             width:100% !important;
@@ -162,6 +166,10 @@
             &.show{
                 animation: fromTo .4s cubic-bezier(.43,-0.1,.16,1) forwards;
                 display: block\9;
+            }
+            &.hide{
+                animation: fromOut .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
+                display: none\9;
             }
         }
         .audio-item{
