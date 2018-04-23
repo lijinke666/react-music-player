@@ -8,4 +8,5 @@ src
 .history
 assetsImg
 index.html
+__tests__
 /.*
