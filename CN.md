@@ -3,15 +3,24 @@
 [![npm](https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
 [![npm](https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg?style=flat-square)](https://github.com/facebook/jest)
+[![npm version](https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square)](https://badge.fury.io/js/react-jinke-music-player)
 [![Coverage Status](https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master?style=flat-square)](https://coveralls.io/github/lijinke666/react-music-player?branch=master)
-[![npm version](https://badge.fury.io/js/react-jinke-music-player.svg?style=flat-square)](https://badge.fury.io/js/react-jinke-music-player)
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
+[![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
-也许是最好的一个漂亮的响应式 React HTML5 音频播放器
+:musical_note: 也许是颜值最高,最好用的一个响应式 React HTML5 音频播放器组件
 
 [English Doc](https://github.com/lijinke666/react-music-player/blob/master/README.md)
 
 ## 安装
+
+使用 `yarn`:
+
+```
+yarn add react-jinke-music-player
+```
+
+或者 `npm`
 
 ```
 npm install react-jinke-music-player --save
@@ -19,19 +28,29 @@ npm install react-jinke-music-player --save
 
 ## 预览
 
+> 迷你模式 <br/>
+
+> ![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png)
+
 > 白天主题 <br/>
 
-![lightTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
+![light theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
 
-> 夜晚主题 <br/>
+> 黑夜主题 <br/>
 
-![darkTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
+![dark theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
+
+> 移动端 <br/>
 
 ![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg)
 
 ## 例子
 
-> 在线例子 : [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+> 在线访问 : [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+
+> 实际应用 : [李金珂的小屋](http://www.lijinke.cn/)
+
+> 本地访问 : [http://localhost:8081/](http://localhost:8081/)
 
 ## 使用
 
@@ -47,281 +66,55 @@ ReactDOM.render(
 );
 ```
 
-## 参数
+## API
 
-```js
-import FaHeadphones from "react-icons/lib/fa/headphones";
-
-const options = {
-  /**
-   * @description 播放列表
-   * @param {Array} audioLists
-   * @param {String | ReactNode } audioLists.name  音乐名 [ 必填 ]
-   * @param {String | ReactNode } audioLists.singer  歌手名  [ 非必填 ]
-   * @param {String } audioLists.cover  封面图  [ 必填 ]
-   * @param {String } audioLists.musicSrc  音乐文件地址  [ 必填 ]
-   * @required true
-   */
-  audioLists: [
-    {
-      name: "YOUR_AUDIO_NAME",
-      singer: "YOUR_AUDIO_SINGER_NAME",
-      cover: "YOUR_AUDIO_COVER",
-      musicSrc: "YOUR_AUDIO_SRC"
-    }
-  ],
-
-  /**
-   * @description 播放器主题 可选 'light'(白天) 和 'dark'(黑夜) 两种
-   * @param {String} theme 'light' | 'dark'
-   * @default 'dark'
-   * @required false
-   */
-  theme: "dark",
-
-  /**
-   * @description 当播放器是迷你模式时的初始位置
-   * @param {Object} defaultPosition
-   * @param {Number | String } defaultPosition.top   
-   * @param {Number | String } defaultPosition.left
-   * @default {top:0,left:0}
-   * @required false
-   * 比如 
-   * {top:0,left:0} or  {top:'20%',left:"20%"}
-   */
-  defaultPosition: {
-    top: 120,
-    left: 120
-  },
-
-  /**
-   * @description 播放模式对应的文字
-   * @param {Object} playModeText
-   * @param {String } playModeText.order        顺序播放
-   * @param {String } playModeText.orderLoop    列表循环
-   * @param {String } playModeText.singleLoop   单曲循环
-   * @param {String } playModeText.shufflePlay  随机播放
-   * @default {order:"order",orderLoop:"orderLoop",singleLoop:"singleLoop",shufflePlay:"shufflePlay"}
-   * @required false
-   */
-  playModeText: {
-    order: "顺序播放",
-    orderLoop: "列表循环",
-    singleLoop: "单曲循环",
-    shufflePlay: "随机播放"
-  },
-
-  /**
-   * @description 迷你模式时播放器的打开文案
-   * @param {String | ReactNode} openText
-   * @default 'open'
-   * @required false
-   */
-  openText: "打开",
-
-  /**
-   * @description 迷你模式时播放器的关闭文案
-   * @param {String | ReactNode} closeText
-   * @default 'close'
-   * @required false
-   */
-  closeText: "关闭",
-
-  /**
-   * @description 播放列表显示的标题
-   * @param {String | ReactNode} panelTitle
-   * @default 'PlayList'
-   * @required false
-   */
-  panelTitle: "播放列表",
-
-  /**
-   * @description 播放列表为空时显示的文字
-   * @param {String | ReactNode} notContentText
-   * @default 'no music'
-   * @required false
-   */
-  notContentText: "没有音乐",
-
-  /**
-   * @description 播放器主题开关 选中的文字
-   * @param {String | ReactNode} checkedText
-   * @default '--'
-   * @required false
-   */
-  checkedText: "",
-
-  /**
-   * @description 播放器主题开关 未选中的文字
-   * @param {String | ReactNode} unCheckedText
-   * @default '--'
-   * @required false
-   */
-  unCheckedText: "",
-
-  /**
-   * @description 默认的播放模式
-   * @param {String} defaultPlayMode
-   * @default 'order'
-   * @required false
-   */
-  defaultPlayMode: "order",
-
-  /**
-   * @description 播放器的默认模式
-   * @param {String} mode 'mini'(迷你) | 'full'(完整)
-   * @default 'mini'
-   * @required false
-   */
-  mode: "mini",
-
-  /**
-   * @description 在默认情况下 'audioPlay' 函数 会在你 每次暂停后再次播放  触发 , 如果 你只想 让 'audioPlay' 在 音乐初始化播放的时候触发一次,你可以设置 为 `true`
-   * @param {Boolean} once 是否只触发一次
-   * @default 'false'
-   * @required false
-   */
-  once: false,
-
-  /**
-   * @description 是否可以 从迷你模式 切换到 完整模式 , 或者 完整模式 切换到 迷你模式
-   * @param {Boolean} toggleMode
-   * @default 'true'
-   * @required false
-   */
-  toggleMode: true,
-
-  /**
-   * @description 在迷你模式时, 是否显示 封面图
-   * @param {Boolean} showMiniModeCover
-   * @default 'true'
-   * @required false
-   */
-  showMiniModeCover: true,
-
-  /**
-   * @description 当播放器是迷你模式时  是否可以对其进行拖拽
-   * @param {Boolean} drag
-   * @default 'true'
-   * @required false
-   */
-  drag: true,
-
-  /**
-   * @description 播放器控制器的文字
-   * @param {String | ReactNode} controllerTitle
-   * @default '<FaHeadphones/>'
-   * @required false
-   */
-  controllerTitle: <FaHeadphones />,
-
-  /**
-   * @description 是否显示播放按钮
-   * @param {Boolean} showPlay
-   * @default 'true'
-   * @required false
-   */
-  showPlay: true,
-
-  /**
-   * @description 是否显示重放按钮
-   * @param {Boolean} showReload
-   * @default 'true'
-   * @required false
-   */
-  showReload: true,
-
-  /**
-   * @description 是否显示下载按钮 
-   * @param {Boolean} showDownload
-   * @default 'true'
-   * @required false
-   */
-  showDownload: true,
-
-  /**
-   * @description 是否显示播放模式 按钮
-   * @param {Boolean} showPlayMode
-   * @default 'true'
-   * @required false
-   */
-  showPlayMode: true,
-
-  /**
-   * @description 是否显示主题切换开关
-   * @param {Boolean} showThemeSwitch
-   * @default 'true'
-   * @required false
-   */
-  showThemeSwitch: true,
-
-  /**
-   * @description 如果默认的功能按钮不满足你 你可以自定义扩展
-   * @param {Array} extendsContent
-   * @default '[]'
-   * @required false
-   * 比如
-   * extendsContent:[
-   *    <button>按钮1</button>,
-   *    <button>按钮2</button>
-   * ]
-   */
-  extendsContent: [],
-
-  /**
-   * @description 播放器初始音量
-   * @param {Number} defaultVolume  range 0-100
-   * @default '100'
-   * @required false
-   */
-  defaultVolume: 100,
-
-  //音频下载 触发 返回 音频信息
-  audioDownload(audioInfo) {
-    console.log("audio download", audioInfo);
-  },
-
-  //音频播放触发 返回 音频信息
-  audioPlay(audioInfo) {
-    console.log("audio playing", audioInfo);
-  },
-
-  //音频暂停触发 返回 音频信息
-  audioPause(audioInfo) {
-    console.log("audio pause", audioInfo);
-  },
-
-  //音频拖动 触发函数 返回 音频信息
-  audioSeeked(audioInfo) {
-    console.log("audio seeked", audioInfo);
-  },
-
-  //当前音频结束播放触发 返回音频信息
-  audioEnded(audioInfo) {
-    console.log("audio ended", audioInfo);
-  },
-
-  //音频正在播放中 触发 返回音频信息
-  audioProgress(audioInfo) {
-    console.log("audio progress", audioInfo);
-  },
-
-  //音频加载失败 触发
-  loadAudioError(e) {
-    console.log("audio load err", e);
-  }
-};
-
-const Demo = () => <ReactJkMusicPlayer {...options} />;
-ReactDOM.render(<Demo />, document.getElementById("root"));
-```
+| 属性                | 类型                  | 默认值                                                                                                           | 说明                                                                                                                                           |
+| ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| className           | `string`              | `-`                                                                                                              | 附加的 className                                                                                                                               |
+| audioLists          | `string[]`            | `-`                                                                                                              | 播放列表 : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}                     |
+| theme               | `string`              | `dark`                                                                                                           | 播放器主题 可选 'light'(白天) 和 'dark'(黑夜) 两种                                                                                             |
+| defaultPosition     | `object`              | `{top:0,left:0}`                                                                                                 | 当播放器是迷你模式时的初始位 比如 {top:0,left:0} or {top:'20%',left:"20%"}                                                                     |
+| playModeText        | `object`              | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | 播放模式对应的文字 |
+| openText            | `string | ReactNode`  | `open`                                                                                                           | 迷你模式时播放器的打开文案                                                                                                                     |
+| closeText           | `string | ReactNode`  | `close`                                                                                                          | 迷你模式时播放器的关闭文案                                                                                                                     |
+| panelTitle          | `string | ReactNode`  | `PlayList`                                                                                                       | 播放列表显示的标题                                                                                                                             |
+| notContentText      | `string | ReactNode`  | `no music`                                                                                                       | 播放列表为空时显示的文字                                                                                                                       |
+| checkedText         | `string | ReactNode`  | `-`                                                                                                              | 播放器主题开关 选中的文字                                                                                                                      |
+| unCheckedText       | `string | ReactNode`  | `-`                                                                                                              | 播放器主题开关 未选中的文字                                                                                                                    |
+| defaultPlayMode     | `string`              | `order`                                                                                                          | 默认的播放模式 可选 `order`,`orderLoop`,`singleLoop`,`shufflePlay`                                                                             |
+| mode                | `string`              | `mini`                                                                                                           | 播放器的默认模式 可选 `mini`,`full`                                                                                                            |
+| once                | `boolean`             | `false`                                                                                                          | 在默认情况下 'audioPlay' 函数 会在你 每次暂停后再次播放 触发 , 如果 你只想 让 'audioPlay' 在 音乐初始化播放的时候触发一次,你可以设置 为 `true` |
+| autoPlay            | `boolean`             | `true`                                                                                                           | 是否在加载完成后随即播放音频                                                                                                                   |
+| toggleMode          | `boolean`             | `true`                                                                                                           | 是否可以 从迷你模式 切换到 完整模式 , 或者 完整模式 切换到 迷你模式                                                                            |
+| drag                | `boolean`             | `true`                                                                                                           | 当播放器是迷你模式时 是否可以对其进行拖拽                                                                                                      |
+| seeked              | `boolean`             | `true`                                                                                                           | 是否能拖动或点击进度条 调整播放进度                                                                                                            |
+| showMiniModeCover   | `boolean`             | `true`                                                                                                           | 在迷你模式时, 是否显示 封面图                                                                                                                  |
+| showProgressLoadBar | `boolean`             | `true`                                                                                                           | 显示音频加载进度条                                                                                                                             |
+| showPlay            | `boolean`             | `true`                                                                                                           | 是否显示播放按钮                                                                                                                               |
+| showReload          | `boolean`             | `true`                                                                                                           | 是否显示重放按钮                                                                                                                               |
+| showDownload        | `boolean`             | `true`                                                                                                           | 是否显示下载按钮                                                                                                                               |
+| showPlayMode        | `boolean`             | `true`                                                                                                           | 是否显示切换播放模式按钮                                                                                                                       |
+| showThemeSwitch     | `boolean`             | `true`                                                                                                           | 是否显示主题切换开关                                                                                                                           |
+| extendsContent      | `array`               | `-`                                                                                                              | 如果默认的功能按钮不满足你 你可以自定义扩展 比如 `[<button>按钮1</button>,<button>按钮2</button>]`                                             |
+| controllerTitle     | `string | ReactNode`  | `<FaHeadphones/>`                                                                                                | 播放器模拟模式封面显示的文字                                                                                                                   |
+| defaultVolume       | `number`              | `100`                                                                                                            | 播放器初始音量, 范围 `0`-`100`                                                                                                                 |
+| audioDownload       | `function(audioInfo)` | `-`                                                                                                              | 音频下载 的 handler                                                                                                                            |
+| audioPlay           | `function(audioInfo)` | `-`                                                                                                              | 音频播放 的 handler                                                                                                                            |
+| audioPause          | `function(audioInfo)` | `-`                                                                                                              | 音频暂停 的 handler                                                                                                                            |
+| audioSeeked         | `function(audioInfo)` | `-`                                                                                                              | 进度条被点击或者拖动改变播放进度的 handler                                                                                                     |
+| audioVolumeChange   | `function(audioInfo)` | `-`                                                                                                              | 音量改变的 handler 范围 `0.0`-`1.0`                                                                                                            |
+| audioEnded          | `function(audioInfo)` | `-`                                                                                                              | 当前音频播放结束的 handler                                                                                                                     |
+| audioAbort          | `function(audioInfo)` | `-`                                                                                                              | 当前音频播放中断的 handler                                                                                                                     |
+| audioProgress       | `function(audioInfo)` | `-`                                                                                                              | 音频正在播放中的 handler                                                                                                                       |
+| loadAudioError      | `function(audioInfo)` | `-`                                                                                                              | 音频播放失败的 handler                                                                                                                         |
 
 ## 开发
 
 ```
 git clone https://github.com/lijinke666/react-music-player.git
-npm install
-npm start
+yarn | npm install
+yarn start | npm start
+访问 `http://localhost:8081/`
 ```
 
 ## 单元测试
@@ -358,6 +151,8 @@ npm run test
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
+    seeked: PropTypes.bool,
+    autoPlay: PropTypes.bool,
     playModeText: PropTypes.object,
     closeText: PropTypes.oneOfType([
       PropTypes.string,
@@ -389,6 +184,7 @@ npm run test
     audioProgress: PropTypes.func,
     audioSeeked: PropTypes.func,
     audioDownload: PropTypes.func,
+    showProgressLoadBar:PropTypes.bool,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
     showReload: PropTypes.bool,

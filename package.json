@@ -1,20 +1,21 @@
 {
   "name": "react-jinke-music-player",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
   "scripts": {
-    "start": "npm run demo",
-    "clean": "rimraf lib && rimraf assets",
+    "start": "yarn demo",
+    "build:clean": "rimraf lib && rimraf assets",
     "lint": "prettier --write \"src/**/*.js\" && eslint_d --fix src",
     "auto": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
-    "build:css": "lessc src/styles/index.less assets/index.css && npm run auto",
+    "build:css": "lessc src/styles/index.less assets/index.css && yarn auto",
     "build:js": "babel src -d lib",
-    "build": "npm run clean && npm run build:js && npm run build:css && npm run auto",
+    "build": "yarn build:clean && yarn build:js && yarn build:css && yarn auto",
     "build:demo": "webpack --env.mode=PROD --progress --config  ./example/webpack.config.js",
     "demo": "webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "test": "jest __tests__/tests",
-    "prepare": "npm run build"
+    "precommit": "lint-staged",
+    "prepare": "yarn build"
   },
   "pre-commit": "lint",
   "lint-staged": {
@@ -24,7 +25,7 @@
       "git add"
     ]
   },
-  "author": "jinke.li",
+  "author": "Jinke.Li <1359518268@qq.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/lijinke666/react-music-player"
@@ -117,7 +118,6 @@
     "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.11.0",
     "rimraf": "^2.6.0",
-    "sinon": "^4.5.0",
     "style-loader": "~0.13.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.7.0",
@@ -130,7 +130,8 @@
       "json"
     ],
     "transformIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      ".history/*"
     ],
     "moduleDirectories": [
       "node_modules",

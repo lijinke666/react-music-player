@@ -1,6 +1,7 @@
 /**
  * @version 3.3.0
  * @name react-jinke-music-player
+ * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
  */
 
@@ -13,7 +14,6 @@ import Switch from "rc-switch";
 import AudioListsPanel from "./audioListsPanel";
 import AudioPlayerMobile from "./playerMobile";
 
-import PlayIcon from "react-icons/lib/md/play-arrow";
 import FaHeadphones from "react-icons/lib/fa/headphones";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
 import FaPlayCircle from "react-icons/lib/fa/play-circle";
@@ -36,6 +36,13 @@ import "rc-slider/assets/index.css";
 import "rc-switch/assets/index.css";
 
 const ISMOBILE = isMobile();
+
+const AnimatePlayIcon = () => (
+  <FaPlayCircle className="react-jinke-music-player-play-icon" />
+);
+const AnimatePauseIcon = () => (
+  <FaPauseCircle className="react-jinke-music-player-pause-icon" />
+);
 
 const Load = () => (
   <span className="loading group" key="loading">
@@ -117,8 +124,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
     theme: this.lightThemeName,
     extendsContent: [], //自定义扩展功能按钮
     playMode: "", //当前播放模式
-    currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量\
-    init: false
+    currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
+    init: false,
+    initAnimate: false,
+    seeked: true,
+    isInitAutoplay: false,
+    loadProgress: 0
   };
   static defaultProps = {
     audioLists: [],
@@ -145,7 +156,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     checkedText: "",
     unCheckedText: "",
     once: false, //audioPlay 事件  是否只触发一次
-    isMove: false,
     drag: true,
     toggleMode: true, //能换在迷你 和完整模式下 互相切换
     showMiniModeCover: true, //迷你模式下 是否显示封面图
@@ -155,8 +165,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showPlayMode: true,
     showThemeSwitch: true,
     playModeTipVisible: false, //手机端切换播放模式
-    autoplay: true,
-    defaultVolume: 100
+    autoPlay: true,
+    defaultVolume: 100,
+    showProgressLoadBar: true //音频预加载进度
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -169,6 +180,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       "shufflePlay"
     ]),
     drag: PropTypes.bool,
+    seeked: PropTypes.bool,
+    autoPlay: PropTypes.bool,
     playModeText: PropTypes.object,
     panelTitle: PropTypes.string,
     closeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -263,7 +276,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       toggleMode,
       showMiniModeCover,
       extendsContent,
-      defaultPlayMode
+      defaultPlayMode,
+      seeked,
+      showProgressLoadBar
     } = this.props;
 
     const {
@@ -288,10 +303,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playMode,
       playModeTipVisible,
       playModelNameVisible,
-      init
+      initAnimate,
+      loadProgress
     } = this.state;
 
-    const panelToggleAnimate = init
+    const panelToggleAnimate = initAnimate
       ? { show: audioListsPanelVisible, hide: !audioListsPanelVisible }
       : { show: audioListsPanelVisible };
 
@@ -322,15 +338,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const _currentTime = formatTime(currentTime);
     const _duration = formatTime(duration);
 
+    const progressHandler = seeked
+      ? {
+          onChange: this.onHandleProgress,
+          onAfterChange: this.audioSeeked
+        }
+      : {};
     //进度条
-
     const _Slider = (
       <Slider
         max={Math.ceil(duration)}
         defaultValue={0}
         value={currentTime}
-        onChange={this.onHandleProgress}
-        onAfterChange={this.audioSeeked}
+        {...progressHandler}
         {...sliderBaseOptions}
       />
     );
@@ -396,10 +416,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     return (
       <div
-        className={classNames("react-jinke-music-player-main", {
-          "light-theme": theme === this.lightThemeName,
-          "dark-theme": theme === this.darkThemeName
-        })}
+        className={classNames(
+          "react-jinke-music-player-main",
+          {
+            "light-theme": theme === this.lightThemeName,
+            "dark-theme": theme === this.darkThemeName
+          },
+          className
+        )}
+        style={style}
       >
         {toggle && isMobile ? (
           <AudioPlayerMobile
@@ -443,15 +468,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
           ref={node => (this.controller = node)}
           {...bindEvents}
           style={{
-            ...style,
             left: moveX,
             top: moveY
           }}
         >
-          <div
-            className={classNames("music-player", className)}
-            key="music-player"
-          >
+          <div className={classNames("music-player")} key="music-player">
             {toggle ? (
               undefined
             ) : (
@@ -500,8 +521,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     key="img-content"
                   />
                   <div
-                    className="progressbar-content"
-                    key="progressbar-content"
+                    className="progress-bar-content"
+                    key="progress-bar-content"
                   >
                     <span className="audio-title">
                       {name} {singer ? `- ${singer}` : ""}
@@ -510,7 +531,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       <span key="current-time" className="current-time">
                         {loading ? "--" : _currentTime}
                       </span>
-                      <div className="progressbar" key="progressbar">
+                      <div className="progress-bar" key="progress-bar">
+                        {showProgressLoadBar ? (
+                          <div
+                            className="progress-load-bar"
+                            key="progress-load-bar"
+                            style={{ width: `${Math.min(loadProgress, 100)}%` }}
+                          />
+                        ) : (
+                          undefined
+                        )}
+
                         {_Slider}
                       </div>
                       <span key="duration" className="duration">
@@ -546,11 +577,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         >
                           {playing ? (
                             <span>
-                              <FaPauseCircle />
+                              <AnimatePauseIcon />
                             </span>
                           ) : (
                             <span>
-                              <FaPlayCircle />
+                              <AnimatePlayIcon />
                             </span>
                           )}
                         </span>
@@ -671,8 +702,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
           notContentText={notContentText}
           onPlay={this.audioListsPlay}
           onCancel={this.closeAudioListsPanel}
-          playIcon={<PlayIcon />}
-          pauseIcon={<FaPauseCircle />}
+          playIcon={<AnimatePlayIcon />}
+          pauseIcon={<AnimatePauseIcon />}
           closeIcon={<CloseBtn />}
           panelTitle={panelTitle}
           isMobile={ISMOBILE}
@@ -707,21 +738,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //渲染播放模式 对应按钮
   renderPlayModeIcon = playMode => {
     let IconNode = "";
+    const animateName = "react-jinke-music-player-mode-icon";
     switch (playMode) {
       case this.PLAYMODE["order"]["key"]:
-        IconNode = <OrderPlayIcon />;
+        IconNode = <OrderPlayIcon className={animateName} />;
         break;
       case this.PLAYMODE["orderLoop"]["key"]:
-        IconNode = <RepeatIcon />;
+        IconNode = <RepeatIcon className={animateName} />;
         break;
       case this.PLAYMODE["singleLoop"]["key"]:
-        IconNode = <LoopIcon />;
+        IconNode = <LoopIcon className={animateName} />;
         break;
       case this.PLAYMODE["shufflePlay"]["key"]:
-        IconNode = <ShufflePlayIcon />;
+        IconNode = <ShufflePlayIcon className={animateName} />;
         break;
       default:
-        IconNode = <OrderPlayIcon />;
+        IconNode = <OrderPlayIcon className={animateName} />;
     }
     return IconNode;
   };
@@ -759,7 +791,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         currentTime: 0,
         duration: 0,
         playing: false,
-        loading: true
+        loading: true,
+        loadProgress: 0
       },
       () => {
         this.audio.load();
@@ -767,8 +800,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     );
   };
   openAudioListsPanel = () => {
-    this.setState(({ audioListsPanelVisible, init }) => ({
-      init: true,
+    this.setState(({ audioListsPanelVisible, initAnimate }) => ({
+      initAnimate: true,
       audioListsPanelVisible: !audioListsPanelVisible
     }));
   };
@@ -962,14 +995,37 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   //加载音频
   loadAudio = () => {
+    const { autoPlay } = this.props;
+    const { isInitAutoplay, loadProgress } = this.state;
     const { readyState, networkState } = this.audio;
+    const maxLoadProgress = 100;
     this.setState({ loading: true });
+    if (loadProgress < maxLoadProgress) {
+      this.setState({ loadProgress: loadProgress + 1 });
+    }
     if (
       readyState === this.READY_SUCCESS_STATE &&
       networkState !== this.NETWORK_STATE.NETWORK_NO_SOURCE
     ) {
-      this.setState({ playing: true, loading: false, pause: false }, () =>
-        this.audio.play()
+      const isAutoPlay = autoPlay === false && !isInitAutoplay;
+      this.setState(
+        {
+          playing: true,
+          loading: false,
+          pause: false,
+          loadProgress: maxLoadProgress
+        },
+        () => {
+          isAutoPlay && (this.audio.volume = 0);
+          this.audio.play();
+          if (isAutoPlay) {
+            setTimeout(() => {
+              this._pauseAudio();
+              this.audio.volume = this.defaultVolume;
+              this.setState({ isInitAutoplay: true });
+            }, 0);
+          }
+        }
       );
     }
   };
@@ -1108,6 +1164,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.audio.volume = 0;
       }
     );
+  };
+  //TODO:预加载进度条
+  showPreloadProgressBar = () => {
+    const buffered = this.audio.buffered;
+    console.log(buffered.start(0), buffered.end(0));
   };
   //加载中断
   audioAbort = e => {
@@ -1253,14 +1314,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   componentDidMount() {
     const { audioLists } = this.props;
-    // this.media = window.matchMedia(
-    //   "(max-width: 768px) and (orientation : portrait)"
-    // );
-    // this.media.addListener(this.listenerIsMobile);
+    this.media = window.matchMedia(
+      "(max-width: 768px) and (orientation : portrait)"
+    );
+    this.media.addListener(this.listenerIsMobile);
     //音量 [0-100]
-    const _defaultVolume =
+    this.defaultVolume =
       Math.max(0, Math.min(this.props.defaultVolume, 100)) / 100;
-    this.setAudioVolume(_defaultVolume);
+    this.setAudioVolume(this.defaultVolume);
     if (audioLists.length >= 1) {
       this.bindEvents(this.audio);
     }
