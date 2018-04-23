@@ -1,5 +1,5 @@
 /**
- * @version 3.3.0
+ * @version 3.3.1
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -448,8 +448,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
             downloadIcon={DownloadComponent}
             nextAudioIcon={<NextAudioIcon />}
             prevAudioIcon={<PrevAudioIcon />}
-            playIcon={<FaPlayCircle />}
-            pauseIcon={<FaPauseCircle />}
+            playIcon={<AnimatePlayIcon />}
+            pauseIcon={<AnimatePauseIcon />}
             closeIcon={<CloseBtn />}
             tipIcon={<FaHeadphones />}
             loadingIcon={<Load />}
