@@ -68,13 +68,16 @@ const options = {
   defaultPlayMode: "order",
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: "mini",
+  mode: "full",
 
   /**
    * [ type `Boolean` default 'false' ]
    * The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true'
    */
   once: true,
+
+  //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
+  autoPlay:true,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -85,8 +88,14 @@ const options = {
   //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
   drag: true,
 
+  //drag the audio progress bar [type `Boolean` default `true`]
+  seeked:true,
+
   //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
   controllerTitle: <FaHeadphones/>,
+
+  //Displays the audio load progress bar.  [type `Boolean` default `true`]
+  showProgressLoadBar:true,
 
   //play button display of the audio player panel   [type `Boolean` default `true`]
   showPlay: true,

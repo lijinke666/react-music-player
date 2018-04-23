@@ -1,11 +1,9 @@
 /* global describe,it*/
 /*eslint-disable no-console */
-//TODOS: 完成点击事件模拟测试 
 import React from "react";
 import assert from "power-assert";
 import { expect } from "chai";
 import { shallow, mount } from "enzyme";
-// import sinon from 'sinon';
 
 import ReactJkMusicPlayer, { createRandomNum, formatTime } from "../../src";
 import PlayerMobile, { PlayModeTip } from "../../src/playerMobile";
@@ -13,9 +11,10 @@ import AudioListsPanel from "../../src/audioListsPanel";
 
 describe("<ReactJkMusicPlayer/>", () => {
   it("should render a <ReactJkMusicPlayer/> components", () => {
-    const wrapper = mount(<ReactJkMusicPlayer />);
+    const wrapper = mount(<ReactJkMusicPlayer className="text-class-name"/>);
     assert(wrapper.find(".react-jinke-music-player-main").length === 1);
     assert(wrapper.find(".react-jinke-music-player").length >= 1);
+    assert(wrapper.find(".text-class-name").length >= 1);
   });
   it("should render <AudioListsPanel/> components", () => {
     const wrapper = mount(<ReactJkMusicPlayer />);
@@ -134,6 +133,27 @@ describe("<ReactJkMusicPlayer/>", () => {
     wrapper.setProps({ audioLists: [] });
     expect(wrapper.text()).to.contain("notContentText");
   });
+  it("should render seeked", () => {
+    const wrapper = mount(<ReactJkMusicPlayer seeked={true} />);
+    assert(wrapper.props().seeked === true);
+    wrapper.setProps({ seeked: false });
+    assert(wrapper.props().seeked === false);
+  });
+  it("should render extendsContent", () => {
+    const extendsContent = [
+      <span key="1" className="extendsContent">
+        extendsText1
+      </span>,
+      <span key="2">extendsText2</span>
+    ];
+    const wrapper = mount(
+      <ReactJkMusicPlayer extendsContent={extendsContent} />
+    );
+    wrapper.setState({ toggle: true });
+    expect(wrapper.text()).to.contain("extendsText1");
+    expect(wrapper.text()).to.contain("extendsText2");
+    assert(wrapper.find(".extendsContent").length === 1);
+  });
   it("should render range random", () => {
     const repeat = 10;
     const result = new Array(repeat).fill().map((_, i) => {
@@ -141,15 +161,31 @@ describe("<ReactJkMusicPlayer/>", () => {
     });
     expect(result.filter(v => v)).to.have.length(repeat);
   });
+  it("should set defaultVolume", () => {
+    const volumes = [100, 20];
+    const wrapper = mount(<ReactJkMusicPlayer defaultVolume={volumes[0]} />);
+    assert(wrapper.props().defaultVolume === volumes[0]);
+    wrapper.setProps({ defaultVolume: volumes[1] });
+    assert(wrapper.props().defaultVolume === volumes[1]);
+  });
+  it("should autoPlay", () => {
+    const wrapper = mount(<ReactJkMusicPlayer autoPlay={false} />);
+    assert(wrapper.state().playing === false);
+    wrapper.setProps({ autoPlay: true });
+    assert(wrapper.props().autoPlay === true);
+  });
+  it("should render progress load bar", () => {
+    const wrapper = mount(<ReactJkMusicPlayer showProgressLoadBar={true} />);
+    wrapper.setState({ toggle: true });
+    assert(wrapper.props().showProgressLoadBar === true);
+    assert(wrapper.find(".progress-load-bar").length === 1);
+    wrapper.setProps({ showProgressLoadBar: false });
+    assert(wrapper.props().showProgressLoadBar === false);
+    assert(wrapper.find(".progress-load-bar").length === 0);
+  });
   it("should print second return format time", () => {
     assert(formatTime(30000) === "20:00");
     assert(formatTime(60) === "00:60");
     assert(formatTime(140) === "02:20");
   });
-//   it('simulates click events', () => {
-//     const onButtonClick = sinon.spy();
-//     const wrapper = mount(<ReactJkMusicPlayer onMouseDown={onButtonClick} />);
-//     wrapper.find('.react-jinke-music-player').simulate('click');
-//     expect(onButtonClick).to.have.property('callCount', 1);
-//   });
 });
