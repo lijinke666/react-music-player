@@ -145,13 +145,17 @@
         background-color: @panel-bg;
         transform: scale(0);
         display: none\9;
-        .transition(.5s);
+        // .transition(.5s);
         svg{
-            font-size:20px;
+            font-size:24px;
         }
         &.show{
             animation: scaleTo .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
             display: block\9;
+        }
+        &.hide{
+            animation: scaleFrom .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
+            display: none\9;
         }
         @media screen and (max-width:767px){
             width:100% !important;
@@ -162,6 +166,10 @@
             &.show{
                 animation: fromTo .4s cubic-bezier(.43,-0.1,.16,1) forwards;
                 display: block\9;
+            }
+            &.hide{
+                animation: fromOut .4s cubic-bezier(.43,-0.1,.16,1.1) forwards;
+                display: none\9;
             }
         }
         .audio-item{
@@ -209,7 +217,7 @@
         .audio-item{
             background-color:  @lists-panel-item-bg;
             border-bottom: @lists-panel-item-bg;
-            padding: 0 20px;
+            padding: 1px 20px;
             line-height: 40px;
             display: flex;
             justify-content: space-between;
@@ -229,7 +237,7 @@
             &.pause{
             }
             .player-icons{
-                display: inline-block;
+                display: inline-flex;
                 width:30px;
                 .loading{
                     animation: audioLoading .9s linear infinite;
@@ -268,21 +276,20 @@
         transform: scale(0);
         transform-origin: bottom center;
         z-index: 1000;
-        transition: ttransform .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: transform .3s cubic-bezier(0.165, 0.84, 0.44, 1);
         &.play-mode-title-visible{
             animation: scaleTo .6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
     }
 }
 .react-jinke-music-player{
-    // * { 
-    //     touch-action: none; 
-    // }
+    touch-action: pan-x,pan-y;
     position: absolute;
     left:0;
     top:0;
     width:@player-width;
     height:@player-height;
+    @icon-animate-time:.3s cubic-bezier(0.43, -0.1, 0.16, 1);
     svg{
         font-size:24px;
         .transition(.5s);
@@ -294,6 +301,13 @@
         svg{
             font-size:22px;
         }
+    }
+    &-play-icon,
+    &-pause-icon,{
+        animation:imgRotate @icon-animate-time ;
+    }
+    &-mode-icon{
+        animation:scaleTo @icon-animate-time ;
     }
     .music-player{
         cursor:pointer;
@@ -321,8 +335,6 @@
             &::before{
                 content:"";
                 position: absolute;
-                left:10px;
-                top:10px;
                 width:@player-width;
                 height:@player-height;
                 border:1px solid rgba(255,255,255,.2);
@@ -421,11 +433,11 @@
                 margin-left:15px;
             }
             @media screen and (max-width:768px){
-                .progressbar-content{
+                .progress-bar-content{
                     .hidden()
                 }
             }
-            .progressbar-content{
+            .progress-bar-content{
                 flex:1;
                 padding: 0 20px;
                 .audio-title{
@@ -444,11 +456,13 @@
                         flex-basis: 5%;
                     }
                 }
-                .progressbar{
+                .progress-bar{
                     flex:1 1 auto;
                     @progress-height:5px;
                     width:100%;
                     margin: 2px 20px 0 20px;
+                    position: relative;
+                    @load-bar-z-index:77;
                     .progress{
                         position: absolute;
                         display: inline-block;
@@ -470,6 +484,22 @@
                             cursor: pointer;
                             
                         }
+                    }
+                    .progress-load-bar{
+                        position: absolute;
+                        width:0%;
+                        height:@progress-height - 1px;
+                        background: rgba(0,0,0,.25);
+                        left:0;
+                        top:5px;
+                        transition: width .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                        z-index: @load-bar-z-index;
+                    }
+                    .rc-slider-track{
+                        z-index:@load-bar-z-index+1;
+                    }
+                    .rc-slider-handle{
+                        z-index: @load-bar-z-index+2;
                     }
                 }
             }

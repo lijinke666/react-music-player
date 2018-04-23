@@ -1,5 +1,6 @@
 node_modules
 npm-debug.log
+yarn-error.log
 .DS_Store
 dist
 example
@@ -7,3 +8,5 @@ src
 .history
 assetsImg
 index.html
+__tests__
+/.*

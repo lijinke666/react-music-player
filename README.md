@@ -1,213 +1,140 @@
 # react-jinke-music-player
-[![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-jinke-music-player)
-[![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/react-jinke-music-player)
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-jinke-music-player)
-> Maybe the best beautiful HTML5 responsive player component for react :)
 
+[![npm](https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
+[![npm](https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
+[![npm version](https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square)](https://badge.fury.io/js/react-jinke-music-player)
+[![Coverage Status](https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master?style=flat-square)](https://coveralls.io/github/lijinke666/react-music-player?branch=master)
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
+[![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
+
+:musical_note: Maybe the best beautiful HTML5 responsive player component for react :)
 
 [中文文档](https://github.com/lijinke666/react-music-player/blob/master/CN.md)
 
 ## Installation
+
+using `yarn` :
+
+```
+yarn add react-jinke-music-player
+```
+
+using `npm` :
+
 ```
 npm install react-jinke-music-player --save
 ```
 
 ## Screenshots
 
+> mini mode <br/>
+
+> ![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png)
+
 > Light Theme <br/>
 
-![lightTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
+![light theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
 
-> Dark Theme  <br/>
+> Dark Theme <br/>
 
-![darkTheme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
+![dark theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
 
+> mobile <br/>
 
 ![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg)
 
-
 ## Example
-> ONLINE example :  [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+
+> live example : [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+
+> practical application : [Jinke.Li's House](http://www.lijinke.cn/)
+
+> local example : [http://localhost:8081/](http://localhost:8081/)
 
 ## Usage
 
 ```jsx
-import React from "react"
-import ReactDOM from "react-dom"
-import ReactJkMusicPlayer from "react-jinke-music-player"
-import "react-jinke-music-player/assets/index.css"
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactJkMusicPlayer from "react-jinke-music-player";
+import "react-jinke-music-player/assets/index.css";
 
 ReactDOM.render(
-    <ReactJkMusicPlayer {...options} />,
-    document.getElementById('root')
-)
+  <ReactJkMusicPlayer {...options} />,
+  document.getElementById("root")
+);
 ```
 
-## Options
+## API
 
-```js
-import FaHeadphones from "react-icons/lib/fa/headphones"
+| Name              | Type                  | Default           | Description                                                                                                                          |
+| ----------------- | --------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| className         | `string`              | `-`               | Additional CSS class for the root DOM node                                                                                           |
+| audioLists        | `string[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
+| theme             | `string`              | `dark`            | color of the music player theme  `dark` | `light`                                                                                                    |
+| defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position lik {top:0,left:0} or {top:'20%',left:"20%"} |
+| playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
+| openText          | `string | ReactNode`  | `open`            | audio controller open text                                                                                                           |
+| closeText         | `string | ReactNode`  | `close`           | audio controller close text                                                                                                          |
+| panelTitle        | `string | ReactNode`  | `PlayList`        | audio list panel title                                                                                                               |
+| notContentText    | `string | ReactNode`  | `no music`        | audio list panel show text of the playlist has no songs                                                                              |
+| checkedText       | `string | ReactNode`  | `-`               | audio theme switch checkedText                                                                                                       |
+| unCheckedText     | `string | ReactNode`  | `-`               | audio theme switch unCheckedText                                                                                                     |
+| defaultPlayMode   | `string`              | `order`           | default play mode of the audio player options can be set to `order`,`orderLoop`,`singleLoop`,`shufflePlay` or omitted                |
+| mode              | `string`              | `mini`            | audio theme switch checkedText can be set to `mini`,`full` or omitted                                                                |
+| once              | `boolean`             | `false`           | The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true' |
+| autoPlay          | `boolean`             | `true`            | Whether the audio is played after loading is completed.                                                                              |
+| toggleMode        | `boolean`             | `true`            | Whether you can switch between two modes, full => mini or mini => full                                                               |                                                                                            |
+| drag              | `boolean`             | `true`            | audio controller is can be drag of the "mini" mode                                                                                   |
+| seeked            | `boolean`             | `true`            | Whether you can drag or click the progress bar to play in the new progress.                                                          |
+| showMiniModeCover | `boolean`             | `true`            | audio cover is show of the "mini" mode |
 
-const options = {
-    /**
-     * audio lists model
-     * @param {Array} audioLists 
-     * @param {String | ReactNode } audioLists.name  audio name  [ required ]
-     * @param {String | ReactNode } audioLists.singer  singer name of the playing song  [ not required ]
-     * @param {String } audioLists.cover  audio cover  [ required ]
-     * @param {String } audioLists.musicSrc  audio music source  [ required ]
-    */
-    audioLists: [{
-        name: "丑",
-        singer: "草东没有派对",
-        cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
-        musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
-    }],
+| showProgressLoadBar | `boolean`             | `true`            | Displays the audio load progress bar. |
 
-    //color of the music player theme    [ type `string: 'light' or 'drak'  ` default 'drak' ]
-    theme:"drak",
-    
-    //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
-    defaultPosition:{
-        top:120,
-        left:120
-    },
-
-    //play mode text config of the audio player
-    playModeText: {
-        order: "order",
-        orderLoop: "orderLoop",
-        singleLoop: "singleLoop",
-        shufflePlay: "shufflePlay"
-    },
-
-    //audio controller open text  [ type `String | ReactNode` default 'open']
-    openText: "open",
-
-    //audio controller close text  [ type `String | ReactNode` default 'close']
-    closeText: "close",
-
-    //audio list panel title [ type `String` | ReactNode default 'PlayList' ]
-    panelTitle:"PlayList",
-
-    //audio list panel show text of the playlist has no songs [ type `String` | ReactNode  default 'no music']
-    notContentText:"no music",
-
-    //audio theme switch checkedText  [ type `String | ReactNode` default '-']
-    checkedText:"",
-
-    //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
-    unCheckedText:"",
-
-    //default play mode of the audio player options 'order' 'orderLoop' 'singleLoop' 'shufflePlay' [ type `String` default 'order' ]
-    defaultPlayMode:"order",
-
-    //audio mode        mini | full          [type `String`  default `mini`]  
-    mode: "mini",
-
-    /**
-     * [ type `Boolean` default 'false' ]
-     * The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true'
-     */
-    once: false,
-
-    //Whether you can switch between two modes, full => mini  or mini => full   [type 'Bollean' default 'true']
-    toggleMode:true,
-
-    //audio cover is show of the "mini" mode [type `Boolean` default 'true']
-    showMiniModeCover:true,
-
-    //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
-    drag: true,
-
-    //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
-    controllerTitle: <FaHeadphones />,
-
-    //play button display of the audio player panel   [type `Boolean` default `true`]
-    showPlay: true,
-
-    //reload button display of the audio player panel   [type `Boolean` default `true`]
-    showReload: true,
-
-    //dowload button display of the audio player panel   [type `Boolean` default `true`]
-    showDowload: true,
-
-    //loop button display of the audio player panel   [type `Boolean` default `true`]
-    showPlayMode: true,
-
-    //theme toogle switch  display of the audio player panel   [type `Boolean` default `true`]
-    showThemeSwitch:true,
-
-    //Extensible custom content       [type 'Array' default '[]' ]
-    extendsContent:[],
-
-    //default volume of the audio player [type `Number` default `100` range `0-100`]
-    defaultVolume:100,
-
-    //Music is downloaded handle
-    audioDowload(audioInfo) {
-        console.log('audio dowload', audioInfo);
-    },
-
-    //audio play handle
-    audioPlay(audioInfo) {
-        console.log('audio playing', audioInfo);
-    },
-
-    //audio pause handle
-    audioPause(audioInfo) {
-        console.log('audio pause', audioInfo);
-    },
-
-    //When the user has moved/jumped to a new location in audio
-    audioSeeked(audioInfo) {
-        console.log('audio seeked', audioInfo);
-    },
-    
-    //When the volume has changed  min = 0.0  max = 1.0
-    audioVolumeChange(currentVolume){
-        console.log('audio volume change',currentVolume);
-    },
-
-    //The single song is ended handle
-    audioEnded(audioInfo) {
-        console.log('audio ended', audioInfo);
-    },
-
-    //audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}
-    audioAbort(e){
-        console.log('audio abort',e);
-    },
-
-    //audio play progress handle
-    audioProgress(audioInfo) {
-        console.log('audio progress',audioInfo);
-    },
-
-    //audio load faild error handle
-    loadAudioError(e) {
-        console.log('audio load err', e);
-    }
-}
-
-```
-
+| showPlay          | `boolean`             | `true`            | play button display of the audio player panel                                                                                        |
+| showReload        | `boolean`             | `true`            | reload button display of the audio player panel                                                                                      |
+| showDownload      | `boolean`             | `true`            | download button display of the audio player panel                                                                                    |
+| showPlayMode      | `boolean`             | `true`            | play mode toggle button display of the audio player panel                                                                                  |
+| showThemeSwitch   | `boolean`             | `true`            | theme toggle switch display of the audio player panel                                                                                |
+| extendsContent    | `array`               | `-`               | Extensible custom content like `[<button>button1</button>,<button>button2</button>]`                                                 |
+| controllerTitle   | `string | ReactNode`  | `<FaHeadphones/>` | audio controller title                                                                                                               |
+| defaultVolume     | `number`              | `100`             | default volume of the audio player , range `0`-`100`                                                                                 |
+| audioDownload     | `function(audioInfo)` | `-`               | audio is downloaded handle                                                                                                           |
+| audioPlay         | `function(audioInfo)` | `-`               | audio play handle                                                                                                                    |
+| audioPause        | `function(audioInfo)` | `-`               | audio pause handle                                                                                                                   |
+| audioSeeked       | `function(audioInfo)` | `-`               | When the user has moved/jumped to a new location in audio handle                                                                     |
+| audioVolumeChange | `function(audioInfo)` | `-`               | When the volume has changed handle min = 0.0 max = 1.0                                                                               |
+| audioEnded        | `function(audioInfo)` | `-`               | The single song is ended handle                                                                                                      |
+| audioAbort        | `function(audioInfo)` | `-`               | audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}                                                    |
+| audioProgress     | `function(audioInfo)` | `-`               | audio play progress handle                                                                                                           |
+| loadAudioError    | `function(audioInfo)` | `-`               | audio load failed error handle                                                                                                       |
 
 ## Development
+
 ```
 git clone https://github.com/lijinke666/react-music-player.git
-npm install
-npm start
+yarn | npm install
+yarn start | npm start
+open `http://localhost:8081/`
+```
+
+## Test case
+
+```
+npm run test
 ```
 
 ## AudioInfo
+
 > Like This
+
 ```js
 {
-    cover:"http://www.lijinke.cn/music/1387583682387727.jpg"
+    cover:"xx.jpg"
     currentTime:10.211519
     duration:164.211519
-    musicSrc:"http://www.lijinke.cn/music/201711082.mp3"
+    musicSrc:"xx.mp3"
     name:"Canon (piano version)"
     volume:100,
     muted:false,
@@ -223,11 +150,13 @@ npm start
 ## Properties
 
 ```jsx
-  static PropTypes = {
+  static propTypes = {
     audioLists: PropTypes.array.isRequired,
     theme: PropTypes.oneOf(['dark', 'light']),
     mode: PropTypes.oneOf(['mini', 'full']),
     drag: PropTypes.bool,
+    seeked: PropTypes.bool,
+    autoPlay: PropTypes.bool,
     playModeText: PropTypes.object,
     closeText: PropTypes.oneOfType([
       PropTypes.string,
@@ -258,8 +187,9 @@ npm start
     loadAudioError: PropTypes.func,
     audioProgress: PropTypes.func,
     audioSeeked: PropTypes.func,
-    audioDowload: PropTypes.func,
-    showDowload: PropTypes.bool,
+    audioDownload: PropTypes.func,
+    showProgressLoadBar:PropTypes.bool,
+    showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
     showReload: PropTypes.bool,
     showPlayMode: PropTypes.bool,
@@ -280,6 +210,6 @@ npm start
   }
 ```
 
-
 ## License
+
 [MIT](https://github.com/lijinke666/react-music-player/blob/master/LICENCE)
