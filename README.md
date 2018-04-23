@@ -68,47 +68,46 @@ ReactDOM.render(
 
 ## API
 
-| Name              | Type                  | Default           | Description                                                                                                                          |
-| ----------------- | --------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Name              | Type                  | Default           | Description |
+| ------------ | ------- | ------- | ----------- |
 | className         | `string`              | `-`               | Additional CSS class for the root DOM node                                                                                           |
 | audioLists        | `string[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
 | theme             | `string`              | `dark`            | color of the music player theme  `dark` | `light`                                                                                                    |
 | defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position lik {top:0,left:0} or {top:'20%',left:"20%"} |
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
-| openText          | `string | ReactNode`  | `open`            | audio controller open text                                                                                                           |
-| closeText         | `string | ReactNode`  | `close`           | audio controller close text                                                                                                          |
-| panelTitle        | `string | ReactNode`  | `PlayList`        | audio list panel title                                                                                                               |
-| notContentText    | `string | ReactNode`  | `no music`        | audio list panel show text of the playlist has no songs                                                                              |
-| checkedText       | `string | ReactNode`  | `-`               | audio theme switch checkedText                                                                                                       |
-| unCheckedText     | `string | ReactNode`  | `-`               | audio theme switch unCheckedText                                                                                                     |
+| openText          | `string`  | `open`            | audio controller open text  |
+| closeText         | `string`  | `close`           | audio controller close text |
+| panelTitle        | `string`  | `PlayList`        | audio list panel title |
+| notContentText    | `string`  | `no music`        | audio list panel show text of the playlist has no songs  |
+| checkedText       | `string`  | `-`               | audio theme switch checkedText    |
+| unCheckedText     | `string`  | `-`               | audio theme switch unCheckedText  |
 | defaultPlayMode   | `string`              | `order`           | default play mode of the audio player options can be set to `order`,`orderLoop`,`singleLoop`,`shufflePlay` or omitted                |
-| mode              | `string`              | `mini`            | audio theme switch checkedText can be set to `mini`,`full` or omitted                                                                |
+| mode              | `string`              | `mini`            | audio theme switch checkedText can be set to `mini`,`full` or omitted  |
 | once              | `boolean`             | `false`           | The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true' |
-| autoPlay          | `boolean`             | `true`            | Whether the audio is played after loading is completed.                                                                              |
-| toggleMode        | `boolean`             | `true`            | Whether you can switch between two modes, full => mini or mini => full                                                               |                                                                                            |
-| drag              | `boolean`             | `true`            | audio controller is can be drag of the "mini" mode                                                                                   |
-| seeked            | `boolean`             | `true`            | Whether you can drag or click the progress bar to play in the new progress.                                                          |
+| autoPlay          | `boolean`             | `true`            | Whether the audio is played after loading is completed.  |
+| toggleMode        | `boolean`             | `true`            | Whether you can switch between two modes, full => mini or mini => full   |                                                                                           
+| drag              | `boolean`             | `true`            | audio controller is can be drag of the "mini" mode   |
+| seeked            | `boolean`             | `true`            | Whether you can drag or click the progress bar to play in the new progress.  |
 | showMiniModeCover | `boolean`             | `true`            | audio cover is show of the "mini" mode |
-
 | showProgressLoadBar | `boolean`             | `true`            | Displays the audio load progress bar. |
+| showPlay | `boolean`             | `true`            | play button display of the audio player panel |
+| showReload | `boolean`             | `true`            | reload button display of the audio player panel  |
+| showDownload | `boolean`             | `true`            | download button display of the audio player panel  |
+| showPlayMode | `boolean`             | `true`            | play mode toggle button display of the audio player panel |
+| showThemeSwitch | `boolean`             | `true`            | theme toggle switch display of the audio player panel |
+| extendsContent | `array`             | `-`            | Extensible custom content like `[<button>button1</button>,<button>button2</button>]` |
+| controllerTitle | `string`             | `<FaHeadphones/>`            | audio controller title |
+| defaultVolume | `number`             | `100`            | default volume of the audio player , range `0`-`100` |
+| audioDownload | `function(audioInfo)` | `-`            | audio is downloaded handle |
+| audioPlay     | `function(audioInfo)` | `-`            | audio play handle |
+| audioPause    | `function(audioInfo)` | `-`          | audio pause handle |
+| audioSeeked   | `function(audioInfo)` | `-`          | When the user has moved/jumped to a new location in audio handle |
+| audioVolumeChange   | `function(audioInfo)` | `-`          |  When the volume has changed handle min = 0.0 max = 1.0  |
+| audioEnded   | `function(audioInfo)` | `-`          |  The single song is ended handle |
+| audioAbort   | `function(audioInfo)` | `-`          |  audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}|
+| audioProgress   | `function(audioInfo)` | `-`          |  audio play progress handle |
+| loadAudioError   | `function(audioInfo)` | `-`          |  audio load failed error handle |
 
-| showPlay          | `boolean`             | `true`            | play button display of the audio player panel                                                                                        |
-| showReload        | `boolean`             | `true`            | reload button display of the audio player panel                                                                                      |
-| showDownload      | `boolean`             | `true`            | download button display of the audio player panel                                                                                    |
-| showPlayMode      | `boolean`             | `true`            | play mode toggle button display of the audio player panel                                                                                  |
-| showThemeSwitch   | `boolean`             | `true`            | theme toggle switch display of the audio player panel                                                                                |
-| extendsContent    | `array`               | `-`               | Extensible custom content like `[<button>button1</button>,<button>button2</button>]`                                                 |
-| controllerTitle   | `string | ReactNode`  | `<FaHeadphones/>` | audio controller title                                                                                                               |
-| defaultVolume     | `number`              | `100`             | default volume of the audio player , range `0`-`100`                                                                                 |
-| audioDownload     | `function(audioInfo)` | `-`               | audio is downloaded handle                                                                                                           |
-| audioPlay         | `function(audioInfo)` | `-`               | audio play handle                                                                                                                    |
-| audioPause        | `function(audioInfo)` | `-`               | audio pause handle                                                                                                                   |
-| audioSeeked       | `function(audioInfo)` | `-`               | When the user has moved/jumped to a new location in audio handle                                                                     |
-| audioVolumeChange | `function(audioInfo)` | `-`               | When the volume has changed handle min = 0.0 max = 1.0                                                                               |
-| audioEnded        | `function(audioInfo)` | `-`               | The single song is ended handle                                                                                                      |
-| audioAbort        | `function(audioInfo)` | `-`               | audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}                                                    |
-| audioProgress     | `function(audioInfo)` | `-`               | audio play progress handle                                                                                                           |
-| loadAudioError    | `function(audioInfo)` | `-`               | audio load failed error handle                                                                                                       |
 
 ## Development
 
