@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
 [![Build Status](https://travis-ci.org/lijinke666/react-music-player.svg?branch=master)](https://travis-ci.org/lijinke666/react-music-player)
 [![npm version](https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square)](https://badge.fury.io/js/react-jinke-music-player)
-[![Coverage Status](https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master?style=flat-square)](https://coveralls.io/github/lijinke666/react-music-player?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master)](https://coveralls.io/github/lijinke666/react-music-player?branch=master)
 [![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
 [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
