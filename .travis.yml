@@ -18,3 +18,5 @@ cache:
   directories:
     - ".eslintcache"
     - "node_modules"
+
+after_script: "yarn run ci"
