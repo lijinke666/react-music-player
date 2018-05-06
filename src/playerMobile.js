@@ -63,7 +63,7 @@ const PlayerMobile = ({
         {singer}
       </span>
     </div>
-    <div className={`${prefix}-swtich text-center group`}>{themeSwitch}</div>
+    <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
     <div className={`${prefix}-cover text-center`}>
       <img
         src={cover}

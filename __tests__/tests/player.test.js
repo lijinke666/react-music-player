@@ -188,4 +188,28 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(formatTime(60) === "00:60");
     assert(formatTime(140) === "02:20");
   });
+  it('should render operation group',()=>{ 
+    const prefix = '.react-jinke-music-player-mobile'
+    const wrapper = mount(
+      <ReactJkMusicPlayer />
+    );
+    wrapper.setState({ toggle: true });
+    assert(wrapper.find(PlayerMobile).length === 0);
+    wrapper.setState({ isMobile: true });
+    assert(wrapper.find(PlayerMobile).length === 1);
+    assert(wrapper.find(`${prefix}-header`).length === 1);
+    assert(wrapper.find(`${prefix}-singer`).length === 1);
+    assert(wrapper.find(`${prefix}-switch`).length === 1);
+    assert(wrapper.find(`${prefix}-cover`).length === 1);
+    assert(wrapper.find(`${prefix}-progress`).length === 1);
+    assert(wrapper.find(`${prefix}-toggle`).length === 1);
+    assert(wrapper.find(`${prefix}-operation`).length === 1);
+  })
+  it('should render extendsContent with mobile',()=>{ 
+    const wrapper = mount(
+      <ReactJkMusicPlayer extendsContent={[<div key="test">extends</div>]}/>
+    );
+    wrapper.setState({ toggle: true,isMobile:true });
+    assert(wrapper.find('.react-jinke-music-player-mobile-operation .item').length >= 5);
+  })
 });
