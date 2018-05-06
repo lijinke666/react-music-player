@@ -1,5 +1,5 @@
 /**
- * @version 3.3.1
+ * @version 3.3.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -127,7 +127,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
     init: false,
     initAnimate: false,
-    seeked: true,
     isInitAutoplay: false,
     loadProgress: 0
   };
@@ -167,7 +166,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     playModeTipVisible: false, //手机端切换播放模式
     autoPlay: true,
     defaultVolume: 100,
-    showProgressLoadBar: true //音频预加载进度
+    showProgressLoadBar: true, //音频预加载进度
+    seeked: true
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -1164,11 +1164,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.audio.volume = 0;
       }
     );
-  };
-  //TODO:预加载进度条
-  showPreloadProgressBar = () => {
-    const buffered = this.audio.buffered;
-    console.log(buffered.start(0), buffered.end(0));
   };
   //加载中断
   audioAbort = e => {
