@@ -3,6 +3,8 @@
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
+ * TODO: 音频拖动时 会触发seeked 事件 会导致 暂停的 bug
+ * TODO: 优化迷你模式时的拖拽效果 有点生硬
  */
 
 import React, { PureComponent, Fragment } from "react";
@@ -11,7 +13,7 @@ import classNames from "classnames";
 import isMobile from "is-mobile";
 import Slider from "rc-slider/lib/Slider";
 import Switch from "rc-switch";
-import { formatTime, createRandomNum } from "./utils";
+import { formatTime, createRandomNum, distinct } from "./utils";
 import AudioListsPanel from "./components/AudioListsPanel";
 import AudioPlayerMobile from "./components/PlayerMobile";
 
@@ -148,7 +150,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     autoPlay: true,
     defaultVolume: 100,
     showProgressLoadBar: true, //音频预加载进度
-    seeked: true
+    seeked: true,
+    playModeShowTime: 600 //播放模式提示 显示时间
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -193,7 +196,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     extendsContent: PropTypes.array,
     checkedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     unCheckedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    defaultVolume: PropTypes.number
+    defaultVolume: PropTypes.number,
+    playModeShowTime: PropTypes.number
   };
   constructor(props) {
     super(props);
@@ -443,20 +447,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
           undefined
         )}
 
-        <div
-          className={classNames("react-jinke-music-player")}
-          key="react-jinke-music-player"
-          ref={node => (this.controller = node)}
-          {...bindEvents}
-          style={{
-            left: moveX,
-            top: moveY
-          }}
-        >
-          <div className={classNames("music-player")} key="music-player">
-            {toggle ? (
-              undefined
-            ) : (
+        {toggle ? (
+          undefined
+        ) : (
+          <div
+            className={classNames("react-jinke-music-player")}
+            key="react-jinke-music-player"
+            ref={node => (this.controller = node)}
+            {...bindEvents}
+            style={{
+              left: moveX,
+              top: moveY
+            }}
+          >
+            <div className={classNames("music-player")} key="music-player">
               <div
                 key="controller"
                 id={this.targetId}
@@ -479,15 +483,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   </Fragment>
                 )}
               </div>
-            )}
-            <audio
-              key="audio"
-              className="music-player-audio"
-              src={musicSrc}
-              ref={node => (this.audio = node)}
-            />
+            </div>
           </div>
-        </div>
+        )}
         {toggle ? (
           isMobile ? (
             undefined
@@ -665,27 +663,33 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   value={currentPlayModeName}
                 />
               </section>
+              {/* 播放列表面板 */}
+              <AudioListsPanel
+                playId={playId}
+                pause={pause}
+                loading={loading ? <Load /> : undefined}
+                visible={audioListsPanelVisible}
+                audioLists={audioLists}
+                notContentText={notContentText}
+                onPlay={this.audioListsPlay}
+                onCancel={this.closeAudioListsPanel}
+                playIcon={<AnimatePlayIcon />}
+                pauseIcon={<AnimatePauseIcon />}
+                closeIcon={<CloseBtn />}
+                panelTitle={panelTitle}
+                isMobile={ISMOBILE}
+                panelToggleAnimate={panelToggleAnimate}
+              />
             </div>
           )
         ) : (
           undefined
         )}
-        {/* 播放列表面板 */}
-        <AudioListsPanel
-          playId={playId}
-          pause={pause}
-          loading={loading ? <Load /> : undefined}
-          visible={audioListsPanelVisible}
-          audioLists={audioLists}
-          notContentText={notContentText}
-          onPlay={this.audioListsPlay}
-          onCancel={this.closeAudioListsPanel}
-          playIcon={<AnimatePlayIcon />}
-          pauseIcon={<AnimatePauseIcon />}
-          closeIcon={<CloseBtn />}
-          panelTitle={panelTitle}
-          isMobile={ISMOBILE}
-          panelToggleAnimate={panelToggleAnimate}
+        <audio
+          key="audio"
+          className="music-player-audio"
+          src={musicSrc}
+          ref={node => (this.audio = node)}
         />
       </div>
     );
@@ -711,7 +715,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     clearTimeout(this.playModelTimer);
     this.playModelTimer = setTimeout(() => {
       this.setState({ playModelNameVisible: false, playModeTipVisible: false });
-    }, 600);
+    }, this.props.playModeShowTime);
   };
   //渲染播放模式 对应按钮
   renderPlayModeIcon = playMode => {
@@ -1154,12 +1158,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState({ toggle: true });
     }
   };
-  filterAudioLists = audioLists => {
-    return audioLists
-      .map(item => JSON.stringify(item))
-      .filter((item, idx, arry) => idx === arry.indexOf(item))
-      .map(item => JSON.parse(item));
-  };
   bindMobileAutoPlayerEvents = () => {
     document.addEventListener("DOMContentLoaded", () => {
       this.audio.play();
@@ -1215,7 +1213,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     );
   }
   initPlayInfo = audioLists => {
-    const _audioLists = this.filterAudioLists(audioLists) || [];
+    const _audioLists = distinct(audioLists) || [];
     const { name = "未知", cover = "", singer = "", musicSrc = "" } =
       _audioLists[0] || {};
     this.setState({
@@ -1247,7 +1245,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     if (audioLists.length >= 1) {
       //去掉重复的歌曲
-      const cleanAudioLists = this.filterAudioLists(audioLists) || [];
+      const cleanAudioLists = distinct(audioLists) || [];
       const { name = "未知", cover = "", singer = "", musicSrc = "" } =
         cleanAudioLists[0] || {};
 

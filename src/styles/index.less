@@ -22,17 +22,19 @@
         color: #fff;
         line-height: 1.5;
         text-align: center;
-        transform: scale(0);
+        transform: translate3d(100%,0,0);
         transform-origin: bottom center;
-        z-index: 1000;
-        transition: transform @common-animate-time;
+        z-index: 88;
+        opacity: 0;
+        transition:all @common-animate-time;
         &.play-mode-title-visible {
-            animation: scaleTo @common-animate-time;
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
         }
     }
     svg {
         font-size: 24px;
-        .transition(.5s);
+        transition: color @common-animate-time;
         &:hover,
         &:active {
             color: @primary-color;
@@ -52,7 +54,7 @@
         animation: scaleTo @common-animate-time;
     }
     .music-player-panel {
-        box-shadow: 0 0 5px #403f3f;
+        box-shadow: 0 0 3px #403f3f;
         @panel-height: @music-player-panel-height;
         position: fixed;
         width: 100%;
@@ -62,7 +64,8 @@
         height: @panel-height;
         background-color: @panel-bg; // padding: 6px 20px;
         z-index: 99;
-        .transition(.8s);
+        transition: background-color @common-animate-time;
+        // transition: box-shadow,color @common-animate-time;
         .panel-content {
             height: 100%;
             padding: 0 30px;
@@ -75,7 +78,7 @@
                 overflow: hidden;
                 background-size: 100%;
                 background-repeat: no-repeat;
-                box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+                box-shadow: 0 0 10px rgba(0, 34, 77, 0.05);
                 @media screen and (max-width: 768px) {
                     width: 40px;
                     height: 40px;
@@ -102,6 +105,7 @@
                 flex: 1;
                 padding: 0 20px;
                 .audio-title {
+                    transition: color @common-animate-time;
                     .ellipsis-1();
                     display: inline-block;
                     max-width: 400px;
@@ -115,6 +119,7 @@
                     .duration {
                         font-size: 12px;
                         flex-basis: 5%;
+                        transition: color @common-animate-time;
                     }
                 }
                 .progress-bar {
@@ -149,10 +154,10 @@
                         position: absolute;
                         width: 0%;
                         height: @progress-height - 1px;
-                        background: rgba(0, 0, 0, .25);
+                        background-color: rgba(0, 0, 0, .06);
+                        transition: width,background-color @common-animate-time;
                         left: 0;
                         top: 5px;
-                        transition: width @common-animate-time;
                         z-index: @load-bar-z-index;
                     }
                     .rc-slider-track {
@@ -242,8 +247,8 @@
                     background-color: rgba(0, 0, 0, .3);
                     padding: 0 10px;
                     box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.02);
-                    .transition(.5s);
                     position: relative;
+                    transition: color,background-color @common-animate-time;
                     >.group:hover {
                         &,
                         &>svg {
@@ -261,6 +266,9 @@
                 font-size: 13px;
             }
         }
+    }
+    .rc-slider-rail {
+        transition: background-color @common-animate-time;
     }
     &.light-theme {
         svg {
@@ -292,11 +300,11 @@
             color: #fff;
         }
         .audio-lists-btn {
-            background-color: #E1E1E2 !important;
+            background-color: @bg-color !important;
             &:hover,
             &:active {
                 color: @font-color;
-                background-color: lighten(#E1E1E2, 2%);
+                background-color: lighten(@bg-color, 2%);
             }
             >.group:hover {
                 &,
@@ -352,9 +360,9 @@
         .react-jinke-music-player-mobile {
             background-color: @light-theme-panel-bg;
             color: @font-color;
-            .react-jinke-music-player-mobile-cover {
+            &-cover {
                 border: 5px solid transparent;
-                box-shadow: 0 0 30px 2px rgba(0, 0, 0, .2)
+                box-shadow: 0 0 30px 2px rgba(0, 0, 0, .2);
             }
             .current-time,
             .duration {
@@ -363,18 +371,20 @@
             .rc-slider-rail {
                 background-color: #e9e9e9;
             }
-            .react-jinke-music-player-mobile-operation {
+            &-operation {
                 svg {
                     color: @font-color;
                 }
             }
-            .react-jinke-music-player-mobile-play-model-tip {
+            &-tip {
                 svg {
                     color: #fff !important;
                 }
             }
-            .react-jinke-music-player-mobile-singer {
+            &-singer {
                 .name {
+                    color:@font-color;
+                    transition: color @common-animate-time;
                     &::before,
                     &::after {
                         background-color: @font-color;

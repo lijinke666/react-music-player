@@ -1,29 +1,25 @@
 @import "./vars.less";
 @import "./mixins.less";
 .react-jinke-music-player-mobile {
-    @common-animate-time: .45s cubic-bezier(0.165, 0.84, 0.44, 1.1);
+    @mobile-padding:20px;
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 999;
     left: 0;
     top: 0;
     background-color: rgba(0, 0, 0, .6);
-    padding: 20px;
+    padding: @mobile-padding;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     animation: mobile-bg @common-animate-time forwards;
-    transition: background-color @common-animate-time;
     >.group {
         flex: 1 1 auto;
     }
-    svg {
-        transition: color @common-animate-time;
-    }
     &-play-model-tip {
-        position: absolute;
+        position: fixed;
         left: 0;
         width: 100%;
         top: 0;
@@ -31,11 +27,11 @@
         line-height: 35px;
         background-color: @primary-color;
         color: #fff;
-        padding: 0 20px;
+        padding: 0  @mobile-padding;
         z-index: 1000;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+        box-shadow: 0 2px @mobile-padding rgba(0, 0, 0, .1);
         transform: translate3d(0, -105%, 0);
-        .transition();
+        transition: transform @common-animate-time;
         .title {
             margin-right: 12px;
         }
@@ -57,6 +53,7 @@
             flex-basis: 80%;
             text-align: center;
             font-size: 20px;
+            transition: color @common-animate-time;
             .ellipsis-1()
         }
         .item {
@@ -80,6 +77,7 @@
         .name {
             position: relative;
             font-size: 14px;
+            transition: color @common-animate-time;
             &:before,
             &:after {
                 content: "";
@@ -89,6 +87,7 @@
                 top: 9px;
                 border-radius: 2px;
                 background-color: @base-color;
+                transition: background-color @common-animate-time
             }
             &:after {
                 left: -25px;
@@ -107,6 +106,7 @@
         margin: 15px auto;
         animation: fromTo @common-animate-time forwards;
         overflow: hidden;
+        transition: box-shadow,border @common-animate-time;
         @media screen and (max-width: 320px) {
             width:230px;
             height: 230px;
@@ -127,6 +127,7 @@
             width: 55px;
             font-size: 12px;
             color: @base-color;
+            transition: color @common-animate-time;
         }
         .duration {
             justify-content: flex-end;

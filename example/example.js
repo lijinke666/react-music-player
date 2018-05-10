@@ -68,7 +68,7 @@ const options = {
   defaultPlayMode: "order",
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: "mini",
+  mode: "full",
 
   /**
    * [ type `Boolean` default 'false' ]
@@ -77,7 +77,7 @@ const options = {
   once: true,
 
   //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
-  autoPlay:false,
+  autoPlay:true,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -117,6 +117,9 @@ const options = {
 
   //default volume of the audio player [type `Number` default `100` range `0-100`]
   defaultVolume: 100,
+
+  //playModeText show time [type `Number(ms)` default `700`]
+  playModeShowTime:600,
 
   //Music is downloaded handle
   audioDownload(audioInfo) {
