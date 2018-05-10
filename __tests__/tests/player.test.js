@@ -5,9 +5,10 @@ import assert from "power-assert";
 import { expect } from "chai";
 import { shallow, mount } from "enzyme";
 
-import ReactJkMusicPlayer, { createRandomNum, formatTime } from "../../src";
-import PlayerMobile, { PlayModeTip } from "../../src/playerMobile";
-import AudioListsPanel from "../../src/audioListsPanel";
+import ReactJkMusicPlayer from "../../src";
+import { createRandomNum, formatTime }  from "../../src/utils"
+import PlayerMobile, { PlayModeTip } from "../../src/components/PlayerMobile";
+import AudioListsPanel from "../../src/components/AudioListsPanel";
 
 describe("<ReactJkMusicPlayer/>", () => {
   it("should render a <ReactJkMusicPlayer/> components", () => {

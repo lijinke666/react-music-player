@@ -28,7 +28,7 @@ ul,li{
     text-align: center;
 }
 .transition(@time:.3s){
-    transition: all @time cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all @time @common-animate-type;
 }
 .center(){
     display: flex;
@@ -70,10 +70,10 @@ ul,li{
     }
 }
     .translate{
-        animation: translate .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+        animation: translate @common-animate-time forwards
     }
     .scale{
-        animation: scaleTo .2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards
+        animation: scaleTo @common-animate-time forwards
     }
 
     @keyframes playing{

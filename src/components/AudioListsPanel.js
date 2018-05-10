@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
+import cls from "classnames";
 import NotContent from "react-icons/lib/md/library-music";
-
-import classNames from "classnames";
 
 const AudioListsPanel = ({
   audioLists,
@@ -20,7 +19,7 @@ const AudioListsPanel = ({
   panelToggleAnimate
 }) => (
   <div
-    className={classNames("audio-lists-panel", panelToggleAnimate)}
+    className={cls("audio-lists-panel", panelToggleAnimate)}
     key="audio-list-panel"
   >
     <div className="audio-lists-panel-header">
@@ -39,7 +38,7 @@ const AudioListsPanel = ({
       </h2>
     </div>
     <div
-      className={classNames("audio-lists-panel-content", {
+      className={cls("audio-lists-panel-content", {
         "no-content": audioLists.length < 1
       })}
       key="audio-lists-panel-content"
@@ -52,7 +51,7 @@ const AudioListsPanel = ({
               <li
                 key={i}
                 title={pause ? " Click to play" : "Click to pause"}
-                className={classNames(
+                className={cls(
                   "audio-item",
                   { playing: playId === i },
                   { pause }
