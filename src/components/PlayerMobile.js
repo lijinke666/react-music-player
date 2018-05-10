@@ -1,10 +1,10 @@
 import React from "react";
-import classNames from "classnames";
+import cls from "classnames";
 
 const prefix = "react-jinke-music-player-mobile";
 
 export const PlayModeTip = ({ visible, title, text }) => (
-  <div className={classNames(`${prefix}-play-model-tip`, { show: visible })}>
+  <div className={cls(`${prefix}-play-model-tip`, { show: visible })}>
     <span className="title">{title}</span>
     <span className="text">{text}</span>
   </div>
@@ -69,7 +69,7 @@ const PlayerMobile = ({
         src={cover}
         alt="cover"
         key="cover"
-        className={classNames("cover", { "img-rotate-pause": pause })}
+        className={cls("cover", { "img-rotate-pause": pause })}
       />
     </div>
     <div className={`${prefix}-progress group`}>

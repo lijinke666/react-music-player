@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactJkMusicPlayer from "../src";
-import Message from "rc-message";
+import swal from 'sweetalert'
 import FaHeadphones from "react-icons/lib/fa/headphones";
 
 import "../src/styles/index.less";
@@ -77,7 +77,7 @@ const options = {
   once: true,
 
   //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
-  autoPlay:true,
+  autoPlay:false,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -120,7 +120,7 @@ const options = {
 
   //Music is downloaded handle
   audioDownload(audioInfo) {
-    Message.success({ content: "download successfully" });
+    swal('download successfully','','success')
     console.log("audio download", audioInfo);
   },
 
@@ -146,7 +146,7 @@ const options = {
 
   //The single song is ended handle
   audioEnded(audioInfo) {
-    Message.info({ content: "Music is ended!" });
+    swal('Audio is ended!','','success')
     console.log("audio ended", audioInfo);
   },
 
@@ -162,7 +162,7 @@ const options = {
 
   //audio load failed error handle
   loadAudioError(e) {
-    Message.error({ content: "audio load error" });
+    swal('audio load error',undefined,'error')
     console.log("audio load err", e);
   }
 };
