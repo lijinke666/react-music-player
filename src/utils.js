@@ -17,3 +17,10 @@ export function formatTime(second) {
 export function createRandomNum(minNum, maxNum) {
   return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
 }
+
+export function distinct(array){
+  return array
+  .map(item => JSON.stringify(item))
+  .filter((item, idx, arry) => idx === arry.indexOf(item))
+  .map(item => JSON.parse(item));
+}
