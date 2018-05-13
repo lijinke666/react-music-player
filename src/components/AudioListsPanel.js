@@ -50,7 +50,13 @@ const AudioListsPanel = ({
             return (
               <li
                 key={i}
-                title={pause ? " Click to play" : "Click to pause"}
+                title={
+                  pause
+                    ? " Click to play"
+                    : playId === i
+                      ? "Click to pause"
+                      : "Click to play"
+                }
                 className={cls(
                   "audio-item",
                   { playing: playId === i },

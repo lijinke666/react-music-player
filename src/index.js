@@ -3,8 +3,8 @@
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
- * TODO: 音频拖动时 会触发seeked 事件 会导致 暂停的 bug
- * TODO: 优化迷你模式时的拖拽效果 有点生硬
+ * TODO: audio 标签 替换成 web audio api
+ * FIXME: 迷你模式进度条 不对
  */
 
 import React, { PureComponent, Fragment } from "react";
@@ -16,6 +16,7 @@ import Switch from "rc-switch";
 import { formatTime, createRandomNum, distinct } from "./utils";
 import AudioListsPanel from "./components/AudioListsPanel";
 import AudioPlayerMobile from "./components/PlayerMobile";
+import Draggable from "react-draggable";
 
 import FaHeadphones from "react-icons/lib/fa/headphones";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
@@ -63,6 +64,34 @@ const PlayModel = ({ visible, value }) => (
     {value}
   </div>
 );
+
+const CircleProcessBar = ({ process, r = 44 } = {}) => {
+  const perimeter = Math.PI * 2 * r;
+  const strokeDasharray = `${~~(perimeter * process)} ${~~(
+    perimeter *
+    (1 - process)
+  )}`;
+  return (
+    <svg className="audio-circle-process-bar">
+      <circle
+        cx={r + 1}
+        cy={r + 1}
+        r={r}
+        fill="none"
+        className="stroke"
+        strokeDasharray={strokeDasharray}
+      />
+      <circle
+        cx={r + 1}
+        cy={r + 1}
+        r={r}
+        fill="none"
+        className="bg"
+        strokeDasharray="0 1000"
+      />
+    </svg>
+  );
+};
 
 const sliderBaseOptions = {
   min: 0,
@@ -151,7 +180,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     defaultVolume: 100,
     showProgressLoadBar: true, //音频预加载进度
     seeked: true,
-    playModeShowTime: 600 //播放模式提示 显示时间
+    playModeShowTime: 600, //播放模式提示 显示时间,
+    bounds: "body", //移动边界
+    showMiniProcessBar: false //是否在迷你模式 显示进度条
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -197,7 +228,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     checkedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     unCheckedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     defaultVolume: PropTypes.number,
-    playModeShowTime: PropTypes.number
+    playModeShowTime: PropTypes.number,
+    bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    showMiniProcessBar: PropTypes.bool
   };
   constructor(props) {
     super(props);
@@ -263,7 +296,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       extendsContent,
       defaultPlayMode,
       seeked,
-      showProgressLoadBar
+      showProgressLoadBar,
+      bounds,
+      defaultPosition,
+      showMiniProcessBar
     } = this.props;
 
     const {
@@ -296,17 +332,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ? { show: audioListsPanelVisible, hide: !audioListsPanelVisible }
       : { show: audioListsPanelVisible };
 
-    const bindEvents = drag
-      ? {
-          [ISMOBILE ? "onTouchStart" : "onMouseDown"]: this.controllerMouseDown,
-          [ISMOBILE ? "onTouchMove" : "onMouseMove"]: this.controllerMouseMove,
-          [ISMOBILE ? "onTouchEnd" : "onMouseUp"]: this.controllerMouseUp,
-          [ISMOBILE ? "onTouchCancel" : "onMouseOut"]: this.controllerMouseOut
-        }
-      : {
-          onClick: this.openPanel
-        };
-
     const _playMode_ = this.PLAYMODE[playMode || defaultPlayMode];
 
     const currentPlayMode = _playMode_["key"];
@@ -330,7 +355,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
       : {};
     //进度条
-    const _Slider = (
+    const ProgressBar = (
       <Slider
         max={Math.ceil(duration)}
         defaultValue={0}
@@ -399,6 +424,41 @@ export default class ReactJkMusicPlayer extends PureComponent {
       undefined
     );
 
+    const AudioController = (
+      <div
+        className={classNames("react-jinke-music-player")}
+        key="react-jinke-music-player"
+        style={defaultPosition}
+      >
+        <div className={classNames("music-player")} key="music-player">
+          {showMiniProcessBar ? (
+            <CircleProcessBar process={currentTime / 100} />
+          ) : (
+            undefined
+          )}
+          <div
+            key="controller"
+            id={this.targetId}
+            className="scale music-player-controller"
+            {...isShowMiniModeCover}
+          >
+            {loading ? (
+              <Load />
+            ) : (
+              <Fragment>
+                <span className="controller-title" key="controller-title">
+                  {controllerTitle}
+                </span>
+                <div key="setting" className="music-player-controller-setting">
+                  {toggle ? closeText : openText}
+                </div>
+              </Fragment>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+
     return (
       <div
         className={classNames(
@@ -422,7 +482,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             themeSwitch={ThemeSwitchComponent}
             duration={_duration}
             currentTime={_currentTime}
-            progressBar={_Slider}
+            progressBar={ProgressBar}
             onPlay={this.onPlay}
             currentPlayModeName={this.PLAYMODE[currentPlayMode]["value"]}
             playMode={PlayModeComponent}
@@ -436,7 +496,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
             playIcon={<AnimatePlayIcon />}
             pauseIcon={<AnimatePauseIcon />}
             closeIcon={<CloseBtn />}
-            tipIcon={<FaHeadphones />}
             loadingIcon={<Load />}
             playModeTipVisible={playModeTipVisible}
             openAudioListsPanel={this.openAudioListsPanel}
@@ -449,42 +508,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
         {toggle ? (
           undefined
-        ) : (
-          <div
-            className={classNames("react-jinke-music-player")}
-            key="react-jinke-music-player"
-            ref={node => (this.controller = node)}
-            {...bindEvents}
-            style={{
-              left: moveX,
-              top: moveY
-            }}
+        ) : drag ? (
+          <Draggable
+            bounds={bounds}
+            position={{ x: moveX, y: moveY }}
+            onDrag={this.controllerMouseMove}
+            onStop={this.controllerMouseUp}
+            onStart={this.controllerMouseMove}
           >
-            <div className={classNames("music-player")} key="music-player">
-              <div
-                key="controller"
-                id={this.targetId}
-                className="scale music-player-controller"
-                {...isShowMiniModeCover}
-              >
-                {loading ? (
-                  <Load />
-                ) : (
-                  <Fragment>
-                    <span className="controller-title" key="controller-title">
-                      {controllerTitle}
-                    </span>
-                    <div
-                      key="setting"
-                      className="music-player-controller-setting"
-                    >
-                      {toggle ? closeText : openText}
-                    </div>
-                  </Fragment>
-                )}
-              </div>
-            </div>
-          </div>
+            {AudioController}
+          </Draggable>
+        ) : (
+          <Fragment>{AudioController}</Fragment>
         )}
         {toggle ? (
           isMobile ? (
@@ -521,7 +556,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         undefined
                       )}
 
-                      {_Slider}
+                      {ProgressBar}
                     </div>
                     <span key="duration" className="duration">
                       {loading ? "--" : _duration}
@@ -663,28 +698,28 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   value={currentPlayModeName}
                 />
               </section>
-              {/* 播放列表面板 */}
-              <AudioListsPanel
-                playId={playId}
-                pause={pause}
-                loading={loading ? <Load /> : undefined}
-                visible={audioListsPanelVisible}
-                audioLists={audioLists}
-                notContentText={notContentText}
-                onPlay={this.audioListsPlay}
-                onCancel={this.closeAudioListsPanel}
-                playIcon={<AnimatePlayIcon />}
-                pauseIcon={<AnimatePauseIcon />}
-                closeIcon={<CloseBtn />}
-                panelTitle={panelTitle}
-                isMobile={ISMOBILE}
-                panelToggleAnimate={panelToggleAnimate}
-              />
             </div>
           )
         ) : (
           undefined
         )}
+        {/* 播放列表面板 */}
+        <AudioListsPanel
+          playId={playId}
+          pause={pause}
+          loading={loading ? <Load /> : undefined}
+          visible={audioListsPanelVisible}
+          audioLists={audioLists}
+          notContentText={notContentText}
+          onPlay={this.audioListsPlay}
+          onCancel={this.closeAudioListsPanel}
+          playIcon={<AnimatePlayIcon />}
+          pauseIcon={<AnimatePauseIcon />}
+          closeIcon={<CloseBtn />}
+          panelTitle={panelTitle}
+          isMobile={ISMOBILE}
+          panelToggleAnimate={panelToggleAnimate}
+        />
         <audio
           key="audio"
           className="music-player-audio"
@@ -808,70 +843,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.audioDownload &&
       this.props.audioDownload(this.getBaseAudioInfo());
   };
-  controllerMouseDown = e => {
-    e.preventDefault();
-    const touch = !ISMOBILE ? e : e.targetTouches[0];
-    const _currentX = touch.pageX;
-    const _currentY = touch.pageY;
-    this.x = _currentX;
-    this.y = _currentY;
-    this.isDrag = true;
-    return false;
-  };
-  controllerMouseMove = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const touch = !ISMOBILE ? e : e.targetTouches[0];
-    let _currentX = touch.pageX;
-    let _currentY = touch.pageY;
-    let [moveX, moveY] = [0, 0];
-    if (!this.isDrag) return false;
-
-    const { top, left } = this.getBoundingClientRect(this.controller);
-    moveX = _currentX - this.x;
-    moveY = _currentY - this.y;
-
-    const dragX = moveX + left;
-    const dragY = moveY + top;
-    let pageWidth = Math.max(
-      //页面最大宽度
-      document.body.clientWidth,
-      document.documentElement.clientWidth
-    );
-    let pageHeight = Math.max(
-      //页面最大宽度
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    );
-    let maxMoveX = pageWidth - this.controller.offsetWidth;
-    let maxMoveY = pageHeight - this.controller.offsetHeight;
-    maxMoveX = Math.min(maxMoveX, Math.max(0, dragX));
-    maxMoveY = Math.min(maxMoveY, Math.max(0, dragY));
-    const peripheryX = _currentX - this.x;
-    const peripheryY = _currentY - this.y;
-
+  controllerMouseMove = (e, { deltaX, deltaY }) => {
     const isMove =
-      Math.abs(peripheryX) >= this.openPanelPeriphery ||
-      Math.abs(peripheryY) >= this.openPanelPeriphery;
-
+      Math.abs(deltaX) >= this.openPanelPeriphery ||
+      Math.abs(deltaY) >= this.openPanelPeriphery;
     this.setState({
-      isMove,
-      moveX: maxMoveX,
-      moveY: maxMoveY
+      isMove
     });
-
-    this.x = _currentX;
-    this.y = _currentY;
-    return false;
   };
-  controllerMouseUp = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    this.isDrag = false;
+  controllerMouseUp = (e, { x, y }) => {
     if (!this.state.isMove) {
       this.openPanel();
     }
-    this.setState({ isMove: false });
+    this.setState({ moveX: x, moveY: y });
     return false;
   };
   controllerMouseOut = e => {
@@ -1197,21 +1181,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         : target.removeEventListener(name, _events);
     }
   };
-  /**
-   * 解决拖拽速度过快产生的bug  绑定了但是会导致 Slider 组件拖拽事件无效 暂未想到好的解决办法
-   */
-  fixDragBug() {
-    document.addEventListener(
-      ISMOBILE ? "touchmove" : "mousemove",
-      e => this.controllerMouseMove(e),
-      false
-    );
-    document.addEventListener(
-      ISMOBILE ? "touchend" : "mouseup",
-      e => this.controllerMouseUp(e),
-      false
-    );
-  }
   initPlayInfo = audioLists => {
     const _audioLists = distinct(audioLists) || [];
     const { name = "未知", cover = "", singer = "", musicSrc = "" } =
@@ -1232,13 +1201,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //合并state 更新初始值
   componentWillMount() {
-    const {
-      defaultPosition: { left, top },
-      theme,
-      mode,
-      audioLists,
-      defaultPlayMode
-    } = this.props;
+    const { theme, mode, audioLists, defaultPlayMode } = this.props;
 
     //切换 'mini' 或者 'full' 模式
     this.toggleMode(mode);
@@ -1258,9 +1221,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           singer,
           musicSrc,
           theme,
-          playMode: defaultPlayMode,
-          moveX: left || 0,
-          moveY: top || 0
+          playMode: defaultPlayMode
         };
       });
     } else {

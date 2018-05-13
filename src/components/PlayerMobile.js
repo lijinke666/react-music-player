@@ -37,7 +37,6 @@ const PlayerMobile = ({
   closeIcon,
   onClose,
   pause,
-  tipIcon,
   playModeTipVisible,
   currentPlayModeName,
   extendsContent,
@@ -46,7 +45,7 @@ const PlayerMobile = ({
   <div className={prefix}>
     <PlayModeTip
       visible={playModeTipVisible}
-      title={tipIcon}
+      title={playMode}
       text={currentPlayModeName}
     />
     <div className={`${prefix}-header group`}>
@@ -69,7 +68,7 @@ const PlayerMobile = ({
         src={cover}
         alt="cover"
         key="cover"
-        className={cls("cover", { "img-rotate-pause": pause })}
+        className={cls("cover", { "img-rotate-pause": pause || !cover })}
       />
     </div>
     <div className={`${prefix}-progress group`}>
