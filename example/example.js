@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import ReactJkMusicPlayer from "../src";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 import FaHeadphones from "react-icons/lib/fa/headphones";
 
 import "../src/styles/index.less";
@@ -12,16 +12,16 @@ const options = {
   //audio lists model
   audioLists: [
     {
+      name: "刚好遇见你",
+      singer: "李玉刚",
+      cover: "http://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
+      musicSrc: "http://m.djvdj.com/kuwo/9950164.mp3"
+    },
+    {
       name: "丑",
       singer: "草东没有派对",
       cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
       musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
-    },
-    {
-      name: "达尔文",
-      singer: "蔡健雅",
-      cover: "http://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
-      musicSrc: "http://www.lijinke.cn/music/20171108.mp3"
     },
     {
       name: "十年青春换绝症",
@@ -34,10 +34,19 @@ const options = {
   //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
   theme: "dark",
 
+  // Specifies movement boundaries. Accepted values:
+  // - `parent` restricts movement within the node's offsetParent
+  //    (nearest node with position relative or absolute), or
+  // - a selector, restricts movement within the targeted node
+  // - An object with `left, top, right, and bottom` properties.
+  //   These indicate how far in each direction the draggable
+  //   can be moved.
+  bounds: "body",
+
   //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
-    top: 120,
-    left: 120
+    top:120,
+    left:120
   },
 
   // play mode text config of the audio player
@@ -68,7 +77,7 @@ const options = {
   defaultPlayMode: "order",
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: "full",
+  mode: "mini",
 
   /**
    * [ type `Boolean` default 'false' ]
@@ -77,7 +86,7 @@ const options = {
   once: true,
 
   //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
-  autoPlay:true,
+  autoPlay: true,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -85,17 +94,19 @@ const options = {
   //audio cover is show of the "mini" mode [type `Boolean` default 'true']
   showMiniModeCover: true,
 
+  showMiniProcessBar:false,
+
   //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
   drag: true,
 
   //drag the audio progress bar [type `Boolean` default `true`]
-  seeked:true,
+  seeked: true,
 
   //audio controller title [type `String | ReactNode`  default <FaHeadphones/>]
-  controllerTitle: <FaHeadphones/>,
+  controllerTitle: <FaHeadphones />,
 
   //Displays the audio load progress bar.  [type `Boolean` default `true`]
-  showProgressLoadBar:true,
+  showProgressLoadBar: true,
 
   //play button display of the audio player panel   [type `Boolean` default `true`]
   showPlay: true,
@@ -119,11 +130,11 @@ const options = {
   defaultVolume: 100,
 
   //playModeText show time [type `Number(ms)` default `700`]
-  playModeShowTime:600,
+  playModeShowTime: 600,
 
   //Music is downloaded handle
   audioDownload(audioInfo) {
-    swal('download successfully','','success')
+    swal("download successfully", "", "success");
     console.log("audio download", audioInfo);
   },
 
@@ -149,7 +160,7 @@ const options = {
 
   //The single song is ended handle
   audioEnded(audioInfo) {
-    swal('Audio is ended!','','success')
+    swal("Audio is ended!", "", "success");
     console.log("audio ended", audioInfo);
   },
 
@@ -165,7 +176,7 @@ const options = {
 
   //audio load failed error handle
   loadAudioError(e) {
-    swal('audio load error',undefined,'error')
+    swal("audio load error", undefined, "error");
     console.log("audio load err", e);
   }
 };

@@ -154,7 +154,7 @@
                         position: absolute;
                         width: 0%;
                         height: @progress-height - 1px;
-                        background-color: rgba(0, 0, 0, .06);
+                        background-color: @progress-load-bar-bg-color;
                         transition: width,background-color @common-animate-time;
                         left: 0;
                         top: 5px;
@@ -400,15 +400,14 @@
 }
 
 .react-jinke-music-player {
-    touch-action: pan-x, pan-y;
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: fixed;
     width: @player-width;
     height: @player-height;
     .music-player {
         cursor: pointer;
         position: relative;
+        width: @player-width;
+        height: @player-height;
         &-audio {
             .hidden();
         }
@@ -416,7 +415,7 @@
             width: @player-width;
             height: @player-height;
             border-radius: 50%;
-            border: 2px solid #fff;
+            border: 3px solid #fff;
             background-color: #fff;
             color: @primary-color;
             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
@@ -486,6 +485,27 @@
                 top: 0;
                 .center();
             }
+        }
+    }
+    .audio-circle-process-bar{
+        stroke-width: 3px;
+        stroke-linejoin: round;
+        pointer-events: none;
+        width:@player-width;
+        height:@player-height;
+        position: absolute;
+        left:0;
+        top:-@player-width;
+        z-index: 100;
+        circle[class='bg']{
+            stroke: #fff; 
+        }
+        circle[class="stroke"]{
+            stroke:@primary-color;
+        }
+        &,circle{
+            transition: stroke-dasharray @common-animate-time;
+            transform: matrix(0, -1, 1, 0, 0, 90); 
         }
     }
 }

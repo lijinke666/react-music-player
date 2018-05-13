@@ -4,6 +4,7 @@ import React from "react";
 import assert from "power-assert";
 import { expect } from "chai";
 import { shallow, mount } from "enzyme";
+import sinon from 'sinon';
 
 import ReactJkMusicPlayer from "../../src";
 import { createRandomNum, formatTime }  from "../../src/utils"
@@ -12,10 +13,14 @@ import AudioListsPanel from "../../src/components/AudioListsPanel";
 
 describe("<ReactJkMusicPlayer/>", () => {
   it("should render a <ReactJkMusicPlayer/> components", () => {
-    const wrapper = mount(<ReactJkMusicPlayer className="text-class-name"/>);
+    const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" showMiniProcessBar={true}/>);
     assert(wrapper.find(".react-jinke-music-player-main").length === 1);
     assert(wrapper.find(".react-jinke-music-player").length >= 1);
     assert(wrapper.find(".text-class-name").length >= 1);
+    assert(wrapper.find(".audio-circle-process-bar").length >= 1);
+    wrapper.setProps({showMiniProcessBar:false})
+    assert(wrapper.find(".audio-circle-process-bar").length === 0);
+    
   });
   it("should render <AudioListsPanel/> components", () => {
     const wrapper = mount(<ReactJkMusicPlayer />);
@@ -205,6 +210,7 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(wrapper.find(`${prefix}-progress`).length === 1);
     assert(wrapper.find(`${prefix}-toggle`).length === 1);
     assert(wrapper.find(`${prefix}-operation`).length === 1);
+    assert(wrapper.find('.img-rotate-pause').length ===1)
   })
   it('should render extendsContent with mobile',()=>{ 
     const wrapper = mount(
@@ -212,5 +218,11 @@ describe("<ReactJkMusicPlayer/>", () => {
     );
     wrapper.setState({ toggle: true,isMobile:true });
     assert(wrapper.find('.react-jinke-music-player-mobile-operation .item').length >= 5);
+  })
+  it('sinon audio lists panel close events',()=>{
+    const onButtonClick = sinon.spy();
+    const wrapper = shallow(<AudioListsPanel onCancel={onButtonClick} audioLists={[]}/>);
+    wrapper.find('.close-btn').simulate('click');
+    expect(onButtonClick).to.have.property('callCount', 1); 
   })
 });

@@ -58,6 +58,7 @@
     "prop-types": "^15.6.0",
     "rc-slider": "^8.3.1",
     "rc-switch": "^1.5.2",
+    "react-draggable": "^3.0.5",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {
@@ -122,6 +123,7 @@
     "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.11.0",
     "rimraf": "^2.6.0",
+    "sinon": "^5.0.7",
     "style-loader": "~0.13.0",
     "sweetalert": "^2.1.0",
     "url-loader": "^0.5.8",

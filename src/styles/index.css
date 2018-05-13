@@ -22,10 +22,10 @@ li {
   color: #31c27c;
 }
 .translate {
-  animation: translate 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: translate 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .scale {
-  animation: scaleTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: scaleTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 @keyframes playing {
   to {
@@ -121,7 +121,7 @@ li {
 .react-jinke-music-player-mobile {
   height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 999;
   left: 0;
   top: 0;
@@ -131,10 +131,15 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: mobile-bg 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .react-jinke-music-player-mobile > .group {
   flex: 1 1 auto;
+}
+.react-jinke-music-player-mobile .show {
+  animation: mobile-bg-show 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+}
+.react-jinke-music-player-mobile .hide {
+  animation: mobile-bg-hide 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .react-jinke-music-player-mobile-play-model-tip {
   position: fixed;
@@ -149,10 +154,18 @@ li {
   z-index: 1000;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   transform: translate3d(0, -105%, 0);
-  transition: transform 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: transform 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-mobile-play-model-tip .title {
   margin-right: 12px;
+}
+.react-jinke-music-player-mobile-play-model-tip .title svg {
+  vertical-align: text-bottom !important;
+}
+@media screen and (max-width: 767px) {
+  .react-jinke-music-player-mobile-play-model-tip .title svg {
+    font-size: 19px;
+  }
 }
 .react-jinke-music-player-mobile-play-model-tip .text {
   font-size: 14px;
@@ -166,13 +179,13 @@ li {
   left: 0;
   display: flex;
   align-items: center;
-  animation: fromDown 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: fromDown 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .react-jinke-music-player-mobile-header .title {
   flex-basis: 80%;
   text-align: center;
   font-size: 20px;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -189,7 +202,7 @@ li {
   font-size: 25px;
 }
 .react-jinke-music-player-mobile-singer {
-  animation: fromDown 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: fromDown 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
   padding: 12px 0;
 }
 @media screen and (max-width: 320px) {
@@ -200,7 +213,7 @@ li {
 .react-jinke-music-player-mobile-singer .name {
   position: relative;
   font-size: 14px;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-mobile-singer .name:before,
 .react-jinke-music-player-mobile-singer .name:after {
@@ -211,7 +224,7 @@ li {
   top: 9px;
   border-radius: 2px;
   background-color: rgba(255, 255, 255, 0.6);
-  transition: background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-mobile-singer .name:after {
   left: -25px;
@@ -226,9 +239,9 @@ li {
   border: 5px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
   margin: 15px auto;
-  animation: fromTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: fromTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
   overflow: hidden;
-  transition: box-shadow, border 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: box-shadow, border 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 @media screen and (max-width: 320px) {
   .react-jinke-music-player-mobile-cover {
@@ -252,7 +265,7 @@ li {
   width: 55px;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-mobile-progress .duration {
   justify-content: flex-end;
@@ -264,7 +277,7 @@ li {
   background-color: rgba(255, 255, 255, 0.6);
 }
 .react-jinke-music-player-mobile-switch {
-  animation: fromDown 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: fromDown 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .react-jinke-music-player-mobile-toggle {
   padding: 17px 0;
@@ -291,10 +304,10 @@ li {
 }
 .react-jinke-music-player-mobile-toggle,
 .react-jinke-music-player-mobile-progress {
-  animation: fromTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: fromTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .react-jinke-music-player-mobile-operation {
-  animation: fromTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: fromTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
 }
 .react-jinke-music-player-mobile-operation .items {
   display: flex;
@@ -314,7 +327,7 @@ li {
     font-size: 20px;
   }
 }
-@keyframes mobile-bg {
+@keyframes mobile-bg-show {
   from {
     opacity: 0;
   }
@@ -322,10 +335,18 @@ li {
     opacity: 1;
   }
 }
+@keyframes mobile-bg-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .audio-lists-panel {
   display: block;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   right: 33px;
   bottom: 80px;
   z-index: 999;
@@ -336,17 +357,17 @@ li {
   background-color: rgba(0, 0, 0, 0.7);
   transform: scale(0);
   display: none\9;
-  transition: background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .audio-lists-panel svg {
   font-size: 24px;
 }
 .audio-lists-panel.show {
-  animation: scaleTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: scaleTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
   display: block\9;
 }
 .audio-lists-panel.hide {
-  animation: scaleFrom 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+  animation: scaleFrom 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
   display: none\9;
 }
 @media screen and (max-width: 767px) {
@@ -358,11 +379,11 @@ li {
     transform-origin: bottom center;
   }
   .audio-lists-panel.show {
-    animation: fromTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+    animation: fromTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
     display: block\9;
   }
   .audio-lists-panel.hide {
-    animation: fromOut 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
+    animation: fromOut 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1) forwards;
     display: none\9;
   }
 }
@@ -378,7 +399,7 @@ li {
   border-bottom: 1px solid rgba(3, 3, 3, 0.7);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  transition: background-color, border-bottom 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: background-color, border-bottom 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .audio-lists-panel-header .close-btn {
   float: right;
@@ -392,7 +413,7 @@ li {
   margin: 0;
   text-align: left;
   font-weight: 500;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .audio-lists-panel-content {
   overflow-x: hidden;
@@ -417,14 +438,14 @@ li {
 .audio-lists-panel-content .audio-item {
   background-color: #40444b;
   border-bottom: #40444b;
-  padding: 1px 20px;
+  padding: 2px 20px;
   line-height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .audio-lists-panel-content .audio-item.playing {
   background-color: #454951;
@@ -457,12 +478,12 @@ li {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .audio-lists-panel-content .audio-item .player-time {
   font-size: 12px;
   color: rgba(217, 217, 217, 0.45);
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main {
   touch-action: none;
@@ -489,7 +510,7 @@ li {
   transform-origin: bottom center;
   z-index: 88;
   opacity: 0;
-  transition: all 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: all 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main .play-mode-title.play-mode-title-visible {
   opacity: 1;
@@ -497,7 +518,7 @@ li {
 }
 .react-jinke-music-player-main svg {
   font-size: 24px;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main svg:hover,
 .react-jinke-music-player-main svg:active {
@@ -510,10 +531,10 @@ li {
 }
 .react-jinke-music-player-main .react-jinke-music-player-play-icon,
 .react-jinke-music-player-main .react-jinke-music-player-pause-icon {
-  animation: imgRotate 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  animation: imgRotate 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main .react-jinke-music-player-mode-icon {
-  animation: scaleTo 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  animation: scaleTo 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main .music-player-panel {
   box-shadow: 0 0 3px #403f3f;
@@ -525,7 +546,7 @@ li {
   height: 80px;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
-  transition: background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main .music-player-panel .panel-content {
   height: 100%;
@@ -572,7 +593,7 @@ li {
   padding: 0 20px;
 }
 .react-jinke-music-player-main .music-player-panel .panel-content .progress-bar-content .audio-title {
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -589,7 +610,7 @@ li {
 .react-jinke-music-player-main .music-player-panel .panel-content .progress-bar-content .audio-main .duration {
   font-size: 12px;
   flex-basis: 5%;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main .music-player-panel .panel-content .progress-bar-content .progress-bar {
   flex: 1 1 auto;
@@ -603,7 +624,7 @@ li {
   height: 5px;
   left: 0;
   top: 0;
-  transition: width 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: width 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
   background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);
   background-color: #31c27c;
 }
@@ -623,7 +644,7 @@ li {
   width: 0%;
   height: 4px;
   background-color: rgba(0, 0, 0, 0.06);
-  transition: width, background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: width, background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
   left: 0;
   top: 5px;
   z-index: 77;
@@ -711,7 +732,7 @@ li {
   padding: 0 10px;
   box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.02);
   position: relative;
-  transition: color, background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color, background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main .music-player-panel .panel-content .player-content .audio-lists-btn > .group:hover,
 .react-jinke-music-player-main .music-player-panel .panel-content .player-content .audio-lists-btn > .group:hover > svg {
@@ -724,7 +745,7 @@ li {
   font-size: 13px;
 }
 .react-jinke-music-player-main .rc-slider-rail {
-  transition: background-color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: background-color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main.light-theme svg {
   color: #31c27c;
@@ -836,7 +857,7 @@ li {
 }
 .react-jinke-music-player-main.light-theme .react-jinke-music-player-mobile-singer .name {
   color: #444;
-  transition: color 400ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transition: color 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
 }
 .react-jinke-music-player-main.light-theme .react-jinke-music-player-mobile-singer .name::before,
 .react-jinke-music-player-main.light-theme .react-jinke-music-player-mobile-singer .name::after {
@@ -847,25 +868,24 @@ li {
   color: #31c27c;
 }
 .react-jinke-music-player {
-  touch-action: pan-x, pan-y;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 80px;
-  height: 80px;
+  position: fixed;
+  width: 90px;
+  height: 90px;
 }
 .react-jinke-music-player .music-player {
   cursor: pointer;
   position: relative;
+  width: 90px;
+  height: 90px;
 }
 .react-jinke-music-player .music-player-audio {
   display: none !important;
 }
 .react-jinke-music-player .music-player-controller {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   background-color: #fff;
   color: #31c27c;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -884,8 +904,8 @@ li {
 .react-jinke-music-player .music-player-controller::before {
   content: "";
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   z-index: 88;
@@ -940,4 +960,26 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.react-jinke-music-player .audio-circle-process-bar {
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  left: 0;
+  top: -90px;
+  z-index: 100;
+}
+.react-jinke-music-player .audio-circle-process-bar circle[class='bg'] {
+  stroke: #fff;
+}
+.react-jinke-music-player .audio-circle-process-bar circle[class="stroke"] {
+  stroke: #31c27c;
+}
+.react-jinke-music-player .audio-circle-process-bar,
+.react-jinke-music-player .audio-circle-process-bar circle {
+  transition: stroke-dasharray 350ms cubic-bezier(0.43, -0.1, 0.16, 1.1);
+  transform: matrix(0, -1, 1, 0, 0, 90);
 }

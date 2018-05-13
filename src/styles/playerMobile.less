@@ -14,9 +14,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    animation: mobile-bg @common-animate-time forwards;
     >.group {
         flex: 1 1 auto;
+    }
+    .show{
+        animation: mobile-bg-show @common-animate-time forwards;
+    }
+    .hide{
+        animation: mobile-bg-hide @common-animate-time forwards;
     }
     &-play-model-tip {
         position: fixed;
@@ -34,6 +39,12 @@
         transition: transform @common-animate-time;
         .title {
             margin-right: 12px;
+            svg{
+                vertical-align: text-bottom !important;
+                @media screen and (max-width: 767px) {
+                    font-size:19px;
+                }
+            }
         }
         .text {
             font-size: 14px;
@@ -192,12 +203,20 @@
             }
         }
     }
-    @keyframes mobile-bg {
+    @keyframes mobile-bg-show {
         from {
             opacity: 0
         }
         to {
             opacity: 1;
+        }
+    }
+    @keyframes mobile-bg-hide {
+        from {
+            opacity: 1
+        }
+        to {
+            opacity: 0;
         }
     }
 }
