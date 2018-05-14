@@ -3,8 +3,6 @@
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
- * TODO: audio 标签 替换成 web audio api
- * FIXME: 迷你模式进度条 不对
  */
 
 import React, { PureComponent, Fragment } from "react";
@@ -65,26 +63,28 @@ const PlayModel = ({ visible, value }) => (
   </div>
 );
 
-const CircleProcessBar = ({ process, r = 44 } = {}) => {
+//迷你模式进度条
+const CircleProcessBar = ({ progress = 0, r = 45 } = {}) => {
+  const _progress = progress.toFixed(2);
   const perimeter = Math.PI * 2 * r;
-  const strokeDasharray = `${~~(perimeter * process)} ${~~(
+  const strokeDasharray = `${~~(perimeter * _progress)} ${~~(
     perimeter *
-    (1 - process)
+    (1 - _progress)
   )}`;
   return (
     <svg className="audio-circle-process-bar">
       <circle
-        cx={r + 1}
-        cy={r + 1}
-        r={r}
+        cx={r}
+        cy={r}
+        r={r - 1}
         fill="none"
         className="stroke"
         strokeDasharray={strokeDasharray}
       />
       <circle
-        cx={r + 1}
-        cy={r + 1}
-        r={r}
+        cx={r}
+        cy={r}
+        r={r - 1}
         fill="none"
         className="bg"
         strokeDasharray="0 1000"
@@ -432,7 +432,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       >
         <div className={classNames("music-player")} key="music-player">
           {showMiniProcessBar ? (
-            <CircleProcessBar process={currentTime / 100} />
+            <CircleProcessBar
+              progress={currentTime / duration}
+              r={isMobile ? 30 : 45}
+            />
           ) : (
             undefined
           )}

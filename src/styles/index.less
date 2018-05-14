@@ -403,6 +403,7 @@
     position: fixed;
     width: @player-width;
     height: @player-height;
+    overflow: hidden;
     .music-player {
         cursor: pointer;
         position: relative;
@@ -415,8 +416,8 @@
             width: @player-width;
             height: @player-height;
             border-radius: 50%;
-            border: 3px solid #fff;
-            background-color: #fff;
+            border: 2px solid @light-theme-controller-bg;
+            background-color: @light-theme-controller-bg;
             color: @primary-color;
             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
             font-size: 20px;
@@ -497,6 +498,7 @@
         left:0;
         top:-@player-width;
         z-index: 100;
+        animation: scaleTo @common-animate-time;
         circle[class='bg']{
             stroke: #fff; 
         }
@@ -506,6 +508,9 @@
         &,circle{
             transition: stroke-dasharray @common-animate-time;
             transform: matrix(0, -1, 1, 0, 0, 90); 
+            @media screen and (max-width:768px) {
+                transform: matrix(0, -1, 1, 0, 0, 60); 
+            }
         }
     }
 }
