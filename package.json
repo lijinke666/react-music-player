@@ -10,7 +10,7 @@
     "auto": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
     "build:css": "lessc src/styles/index.less assets/index.css && yarn auto",
     "build:js": "babel src -d lib",
-    "build": "yarn build:clean && yarn build:js && yarn build:css && yarn auto",
+    "build": "yarn build:clean && yarn build:js && yarn build:css",
     "build:demo": "webpack --env.mode=PROD --progress --config  ./example/webpack.config.js",
     "demo": "webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "test": "jest __tests__/tests",

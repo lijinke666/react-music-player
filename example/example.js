@@ -12,16 +12,16 @@ const options = {
   //audio lists model
   audioLists: [
     {
-      name: "刚好遇见你",
-      singer: "李玉刚",
-      cover: "http://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
-      musicSrc: "http://m.djvdj.com/kuwo/9950164.mp3"
-    },
-    {
       name: "丑",
       singer: "草东没有派对",
       cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
       musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
+    },
+    {
+      name: "达尔文",
+      singer: "蔡健雅",
+      cover: "http://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
+      musicSrc: "http://www.lijinke.cn/music/20171108.mp3"
     },
     {
       name: "十年青春换绝症",
@@ -94,7 +94,8 @@ const options = {
   //audio cover is show of the "mini" mode [type `Boolean` default 'true']
   showMiniModeCover: true,
 
-  showMiniProcessBar:false,
+  //audio playing progress is show of the "mini"  mode
+  showMiniProcessBar:true,
 
   //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
   drag: true,
