@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .stroke-bg-red { stroke: #fdcfcb; }
+    .stroke-red { stroke: #f9655a; }
+    svg circle { 
+        transition: stroke-dasharray 0.6s cubic-bezier(0.59, -0.74, 0.13, 0.48); 
+        transform: matrix(0, -1, 1, 0, 0, 80); 
+        stroke-width: 3px; 
+    }
+    </style>
+</head>
+<body>
+    <svg width="80" height="80" data-circle="0.7" class="rotate">
+        <circle cx="40" cy="40" r="36" fill="none" class="stroke-bg-red" stroke-dasharray="158 67"></circle>
+        <circle cx="40" cy="40" r="36" fill="none" class="stroke-red" stroke-dasharray="0 1000"></circle>
+    </svg>
+</body>
+</html>

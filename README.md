@@ -73,8 +73,10 @@ ReactDOM.render(
 | className         | `string`              | `-`               | Additional CSS class for the root DOM node                                                                                           |
 | audioLists        | `string[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
 | theme             | `string`              | `dark`            | color of the music player theme  `dark` | `light`                                                                                                    |
-| defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position lik {top:0,left:0} or {top:'20%',left:"20%"} |
+| defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position with `left,top,right,and bottom` |
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
+| playModeShowTime          | `number`  | `600`            |  play mode toggle show time (ms) |
+| bounds          | `object` | `number`  | `body`            |  specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
@@ -89,6 +91,7 @@ ReactDOM.render(
 | drag              | `boolean`             | `true`            | audio controller is can be drag of the "mini" mode   |
 | seeked            | `boolean`             | `true`            | Whether you can drag or click the progress bar to play in the new progress.  |
 | showMiniModeCover | `boolean`             | `true`            | audio cover is show of the "mini" mode |
+| showMiniProcessBar | `boolean`             | `false`            | audio progress circle bar is show of the "mini" mode |
 | showProgressLoadBar | `boolean`             | `true`            | Displays the audio load progress bar. |
 | showPlay | `boolean`             | `true`            | play button display of the audio player panel |
 | showReload | `boolean`             | `true`            | reload button display of the audio player panel  |
@@ -205,7 +208,10 @@ npm run test
       PropTypes.string,
       PropTypes.object
     ]),
-    defaultVolume:PropTypes.number
+    defaultVolume:PropTypes.number,
+    playModeShowTime: PropTypes.number,
+    bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    showMiniProcessBar: PropTypes.bool
   }
 ```
 
