@@ -75,6 +75,8 @@ ReactDOM.render(
 | theme               | `string`              | `dark`                                                                                                           | 播放器主题 可选 'light'(白天) 和 'dark'(黑夜) 两种                                                                                             |
 | defaultPosition     | `object`              | `{top:0,left:0}`                                                                                                 | 当播放器是迷你模式时的初始位 比如 {top:0,left:0} or {top:'20%',left:"20%"}                                                                     |
 | playModeText        | `object`              | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | 播放模式对应的文字 |
+| playModeShowTime          | `number`  | `600`            |  切换播放模式时提示语的显示时间,单位毫秒 |
+| bounds          | `object` | `string`  | `body`            |  拖拽边界 可以是一个具体的字符串,比如 `body`,也可以是具体的值 `left,top,right,bottom`|
 | openText            | `string | ReactNode`  | `open`                                                                                                           | 迷你模式时播放器的打开文案                                                                                                                     |
 | closeText           | `string | ReactNode`  | `close`                                                                                                          | 迷你模式时播放器的关闭文案                                                                                                                     |
 | panelTitle          | `string | ReactNode`  | `PlayList`                                                                                                       | 播放列表显示的标题                                                                                                                             |
@@ -89,6 +91,7 @@ ReactDOM.render(
 | drag                | `boolean`             | `true`                                                                                                           | 当播放器是迷你模式时 是否可以对其进行拖拽                                                                                                      |
 | seeked              | `boolean`             | `true`                                                                                                           | 是否能拖动或点击进度条 调整播放进度                                                                                                            |
 | showMiniModeCover   | `boolean`             | `true`                                                                                                           | 在迷你模式时, 是否显示 封面图                                                                                                                  |
+| showMiniProcessBar   | `boolean`             | `false`                                                                                                           | 在迷你模式时, 是否显示 圆形进度条                                                                                                                |
 | showProgressLoadBar | `boolean`             | `true`                                                                                                           | 显示音频加载进度条                                                                                                                             |
 | showPlay            | `boolean`             | `true`                                                                                                           | 是否显示播放按钮                                                                                                                               |
 | showReload          | `boolean`             | `true`                                                                                                           | 是否显示重放按钮                                                                                                                               |
@@ -202,7 +205,10 @@ npm run test
       PropTypes.string,
       PropTypes.object
     ]),
-    defaultVolume:PropTypes.number
+    defaultVolume:PropTypes.number,
+    playModeShowTime: PropTypes.number,
+    bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    showMiniProcessBar: PropTypes.bool
   }
 ```
 
