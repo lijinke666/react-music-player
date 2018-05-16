@@ -4,23 +4,32 @@ import React from "react";
 import assert from "power-assert";
 import { expect } from "chai";
 import { shallow, mount } from "enzyme";
-import sinon from 'sinon';
+import sinon from "sinon";
 
 import ReactJkMusicPlayer from "../../src";
-import { createRandomNum, formatTime }  from "../../src/utils"
+import {
+  createRandomNum,
+  formatTime,
+  arrayEqual,
+  distinct
+} from "../../src/utils";
 import PlayerMobile, { PlayModeTip } from "../../src/components/PlayerMobile";
 import AudioListsPanel from "../../src/components/AudioListsPanel";
 
 describe("<ReactJkMusicPlayer/>", () => {
   it("should render a <ReactJkMusicPlayer/> components", () => {
-    const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" showMiniProcessBar={true}/>);
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        className="text-class-name"
+        showMiniProcessBar={true}
+      />
+    );
     assert(wrapper.find(".react-jinke-music-player-main").length === 1);
     assert(wrapper.find(".react-jinke-music-player").length >= 1);
     assert(wrapper.find(".text-class-name").length >= 1);
     assert(wrapper.find(".audio-circle-process-bar").length >= 1);
-    wrapper.setProps({showMiniProcessBar:false})
+    wrapper.setProps({ showMiniProcessBar: false });
     assert(wrapper.find(".audio-circle-process-bar").length === 0);
-    
   });
   it("should render <AudioListsPanel/> components", () => {
     const wrapper = mount(<ReactJkMusicPlayer />);
@@ -194,11 +203,19 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(formatTime(60) === "00:60");
     assert(formatTime(140) === "02:20");
   });
-  it('should render operation group',()=>{ 
-    const prefix = '.react-jinke-music-player-mobile'
-    const wrapper = mount(
-      <ReactJkMusicPlayer />
-    );
+  it("should return array is equal", () => {
+    assert(arrayEqual([1])([1]) === true);
+    assert(arrayEqual([1])([2]) === false);
+    assert(arrayEqual([{ musicSrc: "" }])([{ musicSrc: "xx" }]) === false);
+    assert(arrayEqual([{ musicSrc: "aa" }])([{ musicSrc: "aa" }]) === true);
+  });
+  it("should distinct arrar", () => {
+    assert(arrayEqual(distinct([1, 1, 1]))([1]) === true);
+    assert(arrayEqual(distinct([{a:1},{a:1}]))([{a:1}])=== true);
+  });
+  it("should render operation group", () => {
+    const prefix = ".react-jinke-music-player-mobile";
+    const wrapper = mount(<ReactJkMusicPlayer />);
     wrapper.setState({ toggle: true });
     assert(wrapper.find(PlayerMobile).length === 0);
     wrapper.setState({ isMobile: true });
@@ -210,19 +227,24 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(wrapper.find(`${prefix}-progress`).length === 1);
     assert(wrapper.find(`${prefix}-toggle`).length === 1);
     assert(wrapper.find(`${prefix}-operation`).length === 1);
-    assert(wrapper.find('.img-rotate-pause').length ===1)
-  })
-  it('should render extendsContent with mobile',()=>{ 
+    assert(wrapper.find(".img-rotate-pause").length === 1);
+  });
+  it("should render extendsContent with mobile", () => {
     const wrapper = mount(
-      <ReactJkMusicPlayer extendsContent={[<div key="test">extends</div>]}/>
+      <ReactJkMusicPlayer extendsContent={[<div key="test">extends</div>]} />
     );
-    wrapper.setState({ toggle: true,isMobile:true });
-    assert(wrapper.find('.react-jinke-music-player-mobile-operation .item').length >= 5);
-  })
-  it('sinon audio lists panel close events',()=>{
+    wrapper.setState({ toggle: true, isMobile: true });
+    assert(
+      wrapper.find(".react-jinke-music-player-mobile-operation .item").length >=
+        5
+    );
+  });
+  it("sinon audio lists panel close events", () => {
     const onButtonClick = sinon.spy();
-    const wrapper = shallow(<AudioListsPanel onCancel={onButtonClick} audioLists={[]}/>);
-    wrapper.find('.close-btn').simulate('click');
-    expect(onButtonClick).to.have.property('callCount', 1); 
-  })
+    const wrapper = shallow(
+      <AudioListsPanel onCancel={onButtonClick} audioLists={[]} />
+    );
+    wrapper.find(".close-btn").simulate("click");
+    expect(onButtonClick).to.have.property("callCount", 1);
+  });
 });
