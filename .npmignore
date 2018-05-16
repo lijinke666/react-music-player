@@ -11,3 +11,5 @@ index.html
 __tests__
 /.*
 coverage
+yarn.lock
+postcss.config.json
