@@ -24,3 +24,6 @@ export function distinct(array) {
     .filter((item, idx, arry) => idx === arry.indexOf(item))
     .map(item => JSON.parse(item));
 }
+
+export const arrayEqual = arr1 => arr2 =>
+  JSON.stringify(arr1) === JSON.stringify(arr2);

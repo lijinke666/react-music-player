@@ -1,5 +1,5 @@
 /**
- * @version 3.4.0
+ * @version 3.4.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -11,7 +11,7 @@ import classNames from "classnames";
 import isMobile from "is-mobile";
 import Slider from "rc-slider/lib/Slider";
 import Switch from "rc-switch";
-import { formatTime, createRandomNum, distinct } from "./utils";
+import { formatTime, createRandomNum, arrayEqual } from "./utils";
 import AudioListsPanel from "./components/AudioListsPanel";
 import AudioPlayerMobile from "./components/PlayerMobile";
 import Draggable from "react-draggable";
@@ -985,7 +985,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
           loadProgress: maxLoadProgress
         },
         () => {
-          isAutoPlay && (this.audio.volume = 0);
+          if (isAutoPlay) {
+            this.audio.volume = 0;
+          }
           this.audio.play();
           if (isAutoPlay) {
             setTimeout(() => {
@@ -1184,22 +1186,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
         : target.removeEventListener(name, _events);
     }
   };
-  initPlayInfo = audioLists => {
-    const _audioLists = distinct(audioLists) || [];
-    const { name = "未知", cover = "", singer = "", musicSrc = "" } =
-      _audioLists[0] || {};
-    this.setState({
-      name,
-      cover,
-      singer,
-      musicSrc
-    });
+  getPlayInfo = (audioLists = []) => {
+    const { name = "", cover = "", singer = "", musicSrc = "" } =
+      audioLists[0] || {};
+    return { name, cover, singer, musicSrc };
   };
+  initPlayInfo = (audioLists, cb) => {
+    this.setState(this.getPlayInfo(audioLists), cb);
+  };
+  //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
   componentWillReceiveProps({ audioLists }) {
-    if (!this.state.init) {
-      this.setState({ init: true }, () => {
-        this.initPlayInfo(audioLists);
-      });
+    if (!arrayEqual(audioLists)(this.props.audioLists)) {
+      this.initPlayInfo(audioLists);
+      this.bindEvents(this.audio);
     }
   }
   //合并state 更新初始值
@@ -1211,26 +1210,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     if (audioLists.length >= 1) {
       //去掉重复的歌曲
-      const cleanAudioLists = distinct(audioLists) || [];
-      const { name = "未知", cover = "", singer = "", musicSrc = "" } =
-        cleanAudioLists[0] || {};
-
       this.setState(({ playId }) => {
         let _playId = playId;
         return {
+          ...this.getPlayInfo(),
           playId: ++_playId,
-          name,
-          cover,
-          singer,
-          musicSrc,
           theme,
           playMode: defaultPlayMode
         };
       });
     } else {
       this.setState({
-        name: "--",
-        singer: "--",
+        name: "",
+        singer: "",
+        cover: "",
         init: true,
         playing: false,
         loading: false

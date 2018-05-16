@@ -177,7 +177,7 @@ const options = {
 
   //audio load failed error handle
   loadAudioError(e) {
-    swal("audio load error", undefined, "error");
+    swal("audio load error", "", "error");
     console.log("audio load err", e);
   }
 };

@@ -7822,7 +7822,7 @@ react-is@^16.3.2:
   version "16.3.2"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
 
-react-jinke-music-player@latest:
+react-jinke-music-player@^3.2.2:
   version "3.2.2"
   resolved "http://registry.npm.taobao.org/react-jinke-music-player/download/react-jinke-music-player-3.2.2.tgz#2dfe68bce394cae555b604d1a24490533a7f7c41"
   dependencies:

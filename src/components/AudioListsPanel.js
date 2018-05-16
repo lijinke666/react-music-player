@@ -52,7 +52,7 @@ const AudioListsPanel = ({
                 key={i}
                 title={
                   pause
-                    ? " Click to play"
+                    ? "Click to play"
                     : playId === i
                       ? "Click to pause"
                       : "Click to play"
