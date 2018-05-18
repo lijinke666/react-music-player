@@ -24,9 +24,6 @@ ul,li{
 .text-center(){
     text-align: center
 }
-.text-center{
-    text-align: center;
-}
 .transition(@time:.3s){
     transition: all @time @common-animate-type;
 }
@@ -58,6 +55,9 @@ ul,li{
     overflow: hidden;
 }
 .react-jinke-music-player-main{
+    .text-center{
+        text-align: center;
+    }
     .loading{
         display: inline-flex;
         animation: audioLoading 1s linear infinite;
