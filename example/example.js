@@ -43,6 +43,10 @@ const options = {
   //   can be moved.
   bounds: "body",
 
+  //Whether to load audio immediately after the page loads.  [type `Boolean | String`, default `false`]
+  //"auto|metadata|none" "true| false"
+  preload:false,
+
   //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
     top:120,
@@ -95,7 +99,7 @@ const options = {
   showMiniModeCover: true,
 
   //audio playing progress is show of the "mini"  mode
-  showMiniProcessBar:true,
+  showMiniProcessBar:false,
 
   //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
   drag: true,
@@ -132,6 +136,9 @@ const options = {
 
   //playModeText show time [type `Number(ms)` default `700`]
   playModeShowTime: 600,
+
+  //Whether to try playing the next audio when the current audio playback fails [type `Boolean` default `true`]
+  loadAudioErrorPlayNext:false,
 
   //Music is downloaded handle
   audioDownload(audioInfo) {
