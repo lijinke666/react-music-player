@@ -77,6 +77,7 @@ ReactDOM.render(
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
 | playModeShowTime          | `number`  | `600`            |  play mode toggle show time (ms) |
 | bounds          | `object` | `number`  | `body`            |  specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
+| preload          | `boolean | string`  | `false`            |  Whether to load audio immediately after the page loads. can be set to `auto|metadata|none` `true|false` if `preload=true` preload="auto" |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
@@ -101,6 +102,7 @@ ReactDOM.render(
 | extendsContent | `array`             | `-`            | Extensible custom content like `[<button>button1</button>,<button>button2</button>]` |
 | controllerTitle | `string`             | `<FaHeadphones/>`            | audio controller title |
 | defaultVolume | `number`             | `100`            | default volume of the audio player , range `0`-`100` |
+| loadAudioErrorPlayNext | `boolean`             | `true`            | Whether to try playing the next audio when the current audio playback fails |
 | audioDownload | `function(audioInfo)` | `-`            | audio is downloaded handle |
 | audioPlay     | `function(audioInfo)` | `-`            | audio play handle |
 | audioPause    | `function(audioInfo)` | `-`          | audio pause handle |
@@ -211,7 +213,12 @@ npm run test
     defaultVolume:PropTypes.number,
     playModeShowTime: PropTypes.number,
     bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    showMiniProcessBar: PropTypes.bool
+    showMiniProcessBar: PropTypes.bool,
+    loadAudioErrorPlayNext: PropTypes.bool,
+    preload: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(["auto", "metadata", "none"])
+    ])
   }
 ```
 

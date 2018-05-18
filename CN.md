@@ -77,6 +77,7 @@ ReactDOM.render(
 | playModeText        | `object`              | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | 播放模式对应的文字 |
 | playModeShowTime          | `number`  | `600`            |  切换播放模式时提示语的显示时间,单位毫秒 |
 | bounds          | `object` | `string`  | `body`            |  拖拽边界 可以是一个具体的字符串,比如 `body`,也可以是具体的值 `left,top,right,bottom`|
+| preload          | `boolean | string`  | `false`            |  是否在页面加载后立即加载音频。可选值 `auto|metadata|none` `true|false` 如果 `preload=true` 默认会 设置 preload="auto" |
 | openText            | `string | ReactNode`  | `open`                                                                                                           | 迷你模式时播放器的打开文案                                                                                                                     |
 | closeText           | `string | ReactNode`  | `close`                                                                                                          | 迷你模式时播放器的关闭文案                                                                                                                     |
 | panelTitle          | `string | ReactNode`  | `PlayList`                                                                                                       | 播放列表显示的标题                                                                                                                             |
@@ -101,6 +102,7 @@ ReactDOM.render(
 | extendsContent      | `array`               | `-`                                                                                                              | 如果默认的功能按钮不满足你 你可以自定义扩展 比如 `[<button>按钮1</button>,<button>按钮2</button>]`                                             |
 | controllerTitle     | `string | ReactNode`  | `<FaHeadphones/>`                                                                                                | 播放器模拟模式封面显示的文字                                                                                                                   |
 | defaultVolume       | `number`              | `100`                                                                                                            | 播放器初始音量, 范围 `0`-`100`                                                                                                                 |
+| loadAudioErrorPlayNext       | `number`              | `100`                                                                                                            | 当前音频加载加载失败时是否尝试播放下一首                                                                                                              |
 | audioDownload       | `function(audioInfo)` | `-`                                                                                                              | 音频下载 的 handler                                                                                                                            |
 | audioPlay           | `function(audioInfo)` | `-`                                                                                                              | 音频播放 的 handler                                                                                                                            |
 | audioPause          | `function(audioInfo)` | `-`                                                                                                              | 音频暂停 的 handler                                                                                                                            |
@@ -208,7 +210,12 @@ npm run test
     defaultVolume:PropTypes.number,
     playModeShowTime: PropTypes.number,
     bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    showMiniProcessBar: PropTypes.bool
+    showMiniProcessBar: PropTypes.bool,
+    loadAudioErrorPlayNext: PropTypes.bool,
+    preload: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(["auto", "metadata", "none"])
+    ])
   }
 ```
 

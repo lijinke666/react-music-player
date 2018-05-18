@@ -1,5 +1,5 @@
 /**
- * @version 3.4.2
+ * @version 3.5.0
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -158,8 +158,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       top: 0
     },
     controllerTitle: <FaHeadphones />,
-    isUploadAudio: false,
-    name: "",
     panelTitle: "PlayList",
     closeText: "close",
     openText: "open",
@@ -182,7 +180,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     seeked: true,
     playModeShowTime: 600, //播放模式提示 显示时间,
     bounds: "body", //移动边界
-    showMiniProcessBar: false //是否在迷你模式 显示进度条
+    showMiniProcessBar: false, //是否在迷你模式 显示进度条
+    loadAudioErrorPlayNext: true, // 加载音频失败时 是否尝试播放下一首
+    preload: false //是否在页面加载后立即加载音频
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -230,7 +230,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
     defaultVolume: PropTypes.number,
     playModeShowTime: PropTypes.number,
     bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    showMiniProcessBar: PropTypes.bool
+    showMiniProcessBar: PropTypes.bool,
+    loadAudioErrorPlayNext: PropTypes.bool,
+    preload: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(["auto", "metadata", "none"])
+    ])
   };
   constructor(props) {
     super(props);
@@ -299,7 +304,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       showProgressLoadBar,
       bounds,
       defaultPosition,
-      showMiniProcessBar
+      showMiniProcessBar,
+      preload
     } = this.props;
 
     const {
@@ -327,6 +333,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
       initAnimate,
       loadProgress
     } = this.state;
+
+    const preloadState =
+      preload === false || preload === "none"
+        ? {}
+        : preload === true
+          ? { preload: "auto" }
+          : { preload };
 
     const panelToggleAnimate = initAnimate
       ? { show: audioListsPanelVisible, hide: !audioListsPanelVisible }
@@ -726,6 +739,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <audio
           key="audio"
           className="music-player-audio"
+          {...preloadState}
           src={musicSrc}
           ref={node => (this.audio = node)}
         />
@@ -1006,8 +1020,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
       duration: this.audio.duration
     });
   };
+  //如果当前音乐加载出错 尝试播放下一首
   loadAudioError = e => {
-    this.setState({ playing: false, loading: true });
+    const { playMode } = this.state;
+    const { loadAudioErrorPlayNext } = this.props;
+    if (loadAudioErrorPlayNext) {
+      this.handlePlay(playMode);
+    }
+
     const info = this.getBaseAudioInfo();
     this.props.loadAudioError &&
       this.props.loadAudioError({
@@ -1213,7 +1233,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState(({ playId }) => {
         let _playId = playId;
         return {
-          ...this.getPlayInfo(),
+          ...this.getPlayInfo(audioLists),
           playId: ++_playId,
           theme,
           playMode: defaultPlayMode
