@@ -71,7 +71,7 @@ ReactDOM.render(
 | Name              | Type                  | Default           | Description |
 | ------------ | ------- | ------- | ----------- |
 | className         | `string`              | `-`               | Additional CSS class for the root DOM node                                                                                           |
-| audioLists        | `string[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
+| audioLists        | `object[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
 | theme             | `string`              | `dark`            | color of the music player theme  `dark` | `light`                                                                                                    |
 | defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position with `left,top,right,and bottom` |
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |

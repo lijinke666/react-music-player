@@ -47,6 +47,12 @@ const options = {
   //"auto|metadata|none" "true| false"
   preload:false,
 
+  //Whether the player's background displays frosted glass effect  [type `Boolean`, default `true`]
+  glassBg: true,
+
+  //
+  remember: false,
+
   //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
     top:120,
@@ -81,7 +87,7 @@ const options = {
   defaultPlayMode: "order",
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: "mini",
+  mode: "full",
 
   /**
    * [ type `Boolean` default 'false' ]

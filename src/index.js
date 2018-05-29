@@ -1,8 +1,11 @@
 /**
- * @version 3.5.0
+ * @version 3.6.0
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
+ * @FIXME: 播放状态记忆功能有bug 播放列表  状态图标不对
+ * @TODO: 播放列表可拖拽排序
+ * @TODO: 播放列表增加删除功能
  */
 
 import React, { PureComponent, Fragment } from "react";
@@ -21,8 +24,8 @@ import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
 import FaPlayCircle from "react-icons/lib/fa/play-circle";
 import FaPauseCircle from "react-icons/lib/fa/pause-circle";
 import Reload from "react-icons/lib/fa/refresh";
-import MdVolumeDown from "react-icons/lib/md/volume-down";
-import MdVolumeMute from "react-icons/lib/md/volume-mute";
+import MdVolumeDown from "react-icons/lib/md/volume-up";
+import MdVolumeMute from "react-icons/lib/md/volume-off";
 import Download from "react-icons/lib/fa/cloud-download";
 import LoadIcon from "react-icons/lib/fa/spinner";
 import LoopIcon from "react-icons/lib/md/repeat-one";
@@ -64,7 +67,7 @@ const PlayModel = ({ visible, value }) => (
 );
 
 //迷你模式进度条
-const CircleProcessBar = ({ progress = 0, r = 45 } = {}) => {
+const CircleProcessBar = ({ progress = 0, r = 40 } = {}) => {
   const _progress = progress.toFixed(2);
   const perimeter = Math.PI * 2 * r;
   const strokeDasharray = `${~~(perimeter * _progress)} ${~~(
@@ -137,7 +140,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     extendsContent: [], //自定义扩展功能按钮
     playMode: "", //当前播放模式
     currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
-    init: false,
     initAnimate: false,
     isInitAutoplay: false,
     loadProgress: 0
@@ -182,7 +184,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     bounds: "body", //移动边界
     showMiniProcessBar: false, //是否在迷你模式 显示进度条
     loadAudioErrorPlayNext: true, // 加载音频失败时 是否尝试播放下一首
-    preload: false //是否在页面加载后立即加载音频
+    preload: false, //是否在页面加载后立即加载音频
+    glassBg: true, //是否是毛玻璃效果
+    remember: false //是否记住当前播放状态
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -235,7 +239,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     preload: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(["auto", "metadata", "none"])
-    ])
+    ]),
+    glassBg: PropTypes.bool,
+    remember: PropTypes.bool
   };
   constructor(props) {
     super(props);
@@ -305,7 +311,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       bounds,
       defaultPosition,
       showMiniProcessBar,
-      preload
+      preload,
+      glassBg
     } = this.props;
 
     const {
@@ -437,6 +444,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       undefined
     );
 
+    const miniProcessBarR = isMobile ? 30 : 40
+
     const AudioController = (
       <div
         className={classNames("react-jinke-music-player")}
@@ -447,7 +456,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           {showMiniProcessBar ? (
             <CircleProcessBar
               progress={currentTime / duration}
-              r={isMobile ? 30 : 45}
+              r={miniProcessBarR}
             />
           ) : (
             undefined
@@ -517,6 +526,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             openAudioListsPanel={this.openAudioListsPanel}
             onClose={this.onHidePanel}
             extendsContent={extendsContent}
+            glassBg={glassBg}
           />
         ) : (
           undefined
@@ -545,7 +555,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               <section className="panel-content" key="panel-content">
                 <div
                   className={classNames("img-content", "img-rotate", {
-                    "img-rotate-pause": !playing
+                    "img-rotate-pause": pause || !playing || !cover
                   })}
                   style={{ backgroundImage: `url(${cover})` }}
                   key="img-content"
@@ -990,7 +1000,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       readyState === this.READY_SUCCESS_STATE &&
       networkState !== this.NETWORK_STATE.NETWORK_NO_SOURCE
     ) {
-      const isAutoPlay = autoPlay === false && !isInitAutoplay;
+      const canPlay = isInitAutoplay || autoPlay === true;
       this.setState(
         {
           playing: true,
@@ -999,17 +1009,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
           loadProgress: maxLoadProgress
         },
         () => {
-          if (isAutoPlay) {
-            this.audio.volume = 0;
+          if (canPlay) {
+            this.audio.play();
           }
-          this.audio.play();
-          if (isAutoPlay) {
-            setTimeout(() => {
-              this._pauseAudio();
-              this.audio.volume = this.defaultVolume;
-              this.setState({ isInitAutoplay: true });
-            }, 0);
-          }
+          this.setState({ isInitAutoplay: true });
         }
       );
     }
@@ -1117,6 +1120,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   audioTimeUpdate = () => {
     const currentTime = this.audio.currentTime;
     this.setState({ currentTime });
+    if (this.props.remember) {
+      this.saveLastPlayStatus();
+    }
     this.props.audioProgress &&
       this.props.audioProgress(this.getBaseAudioInfo());
   };
@@ -1162,9 +1168,59 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const _err = Object.assign({}, e, audioInfo);
     this.props.audioAbort && this.props.audioAbort(_err);
   };
+  //切换播放器模式
   toggleMode = mode => {
     if (mode === this.toggleModeName["full"]) {
       this.setState({ toggle: true });
+    }
+  };
+  saveLastPlayStatus = () => {
+    const {
+      currentTime,
+      playId,
+      duration,
+      theme,
+      soundValue,
+      playMode,
+      name,
+      cover,
+      singer,
+      musicSrc,
+      pause
+    } = this.state;
+    const lastPlayStatus = JSON.stringify({
+      currentTime,
+      playId,
+      duration,
+      theme,
+      playMode,
+      soundValue,
+      name,
+      cover,
+      singer,
+      musicSrc,
+      pause
+    });
+    localStorage.setItem("lastPlayStatus", lastPlayStatus);
+  };
+  getLastPlayStatus = () => {
+    const { theme, defaultPlayMode } = this.props;
+
+    try {
+      return JSON.parse(localStorage.getItem("lastPlayStatus"));
+    } catch (error) {
+      return {
+        currentTime: 0,
+        duration: 0,
+        playMode: defaultPlayMode,
+        name: "",
+        cover: "",
+        singer: "",
+        musicSrc: "",
+        playId: ++this.initPlayId,
+        theme,
+        pause: false
+      };
     }
   };
   bindMobileAutoPlayerEvents = () => {
@@ -1223,30 +1279,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //合并state 更新初始值
   componentWillMount() {
-    const { theme, mode, audioLists, defaultPlayMode } = this.props;
+    const { theme, mode, audioLists, defaultPlayMode, remember } = this.props;
 
     //切换 'mini' 或者 'full' 模式
     this.toggleMode(mode);
 
     if (audioLists.length >= 1) {
-      //去掉重复的歌曲
-      this.setState(({ playId }) => {
-        let _playId = playId;
-        return {
-          ...this.getPlayInfo(audioLists),
-          playId: ++_playId,
-          theme,
-          playMode: defaultPlayMode
-        };
-      });
-    } else {
       this.setState({
-        name: "",
-        singer: "",
-        cover: "",
-        init: true,
-        playing: false,
-        loading: false
+        ...this.getPlayInfo(audioLists),
+        ...(remember ? this.getLastPlayStatus() : {})
       });
     }
   }
@@ -1255,22 +1296,28 @@ export default class ReactJkMusicPlayer extends PureComponent {
       isMobile: !!matches
     });
   };
+  addMobileListener = () => {
+    this.media = window.matchMedia(
+      "(max-width: 768px) and (orientation : portrait)"
+    );
+    this.media.addListener(this.listenerIsMobile);
+  };
+  setDefaultAudioVolume = () => {
+    const { defaultVolume, remember } = this.props;
+    //音量 [0-100]
+    this.defaultVolume = Math.max(0, Math.min(defaultVolume, 100)) / 100;
+    const { soundValue } = this.getLastPlayStatus();
+    this.setAudioVolume(remember ? soundValue : this.defaultVolume);
+  };
   componentWillUnmount() {
     this.unBindEvents(this.audio, undefined, false);
     this.media.removeListener(this.listenerIsMobile);
     this.media = undefined;
   }
   componentDidMount() {
-    const { audioLists } = this.props;
-    this.media = window.matchMedia(
-      "(max-width: 768px) and (orientation : portrait)"
-    );
-    this.media.addListener(this.listenerIsMobile);
-    //音量 [0-100]
-    this.defaultVolume =
-      Math.max(0, Math.min(this.props.defaultVolume, 100)) / 100;
-    this.setAudioVolume(this.defaultVolume);
-    if (audioLists.length >= 1) {
+    this.addMobileListener();
+    this.setDefaultAudioVolume();
+    if (this.props.audioLists.length >= 1) {
       this.bindEvents(this.audio);
     }
   }
