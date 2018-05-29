@@ -444,7 +444,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       undefined
     );
 
-    const miniProcessBarR = isMobile ? 30 : 40
+    const miniProcessBarR = isMobile ? 30 : 40;
 
     const AudioController = (
       <div
