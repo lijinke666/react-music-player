@@ -40,14 +40,23 @@ const PlayerMobile = ({
   playModeTipVisible,
   currentPlayModeName,
   extendsContent,
-  onPlay
+  onPlay,
+  glassBg
 }) => (
-  <div className={prefix}>
+  <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
     <PlayModeTip
       visible={playModeTipVisible}
       title={playMode}
       text={currentPlayModeName}
     />
+    {glassBg ? (
+      <div
+        className="glass-bg-container"
+        style={{ backgroundImage: `url(${cover})` }}
+      />
+    ) : (
+      undefined
+    )}
     <div className={`${prefix}-header group`}>
       <div className="left item" />
       <div className="title" key="audio-title">
@@ -68,7 +77,7 @@ const PlayerMobile = ({
         src={cover}
         alt="cover"
         key="cover"
-        className={cls("cover", { "img-rotate-pause": pause || !cover })}
+        className={cls("cover", { "img-rotate-pause": pause || !playing || !cover })}
       />
     </div>
     <div className={`${prefix}-progress group`}>
