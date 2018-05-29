@@ -77,7 +77,9 @@ const PlayerMobile = ({
         src={cover}
         alt="cover"
         key="cover"
-        className={cls("cover", { "img-rotate-pause": pause || !playing || !cover })}
+        className={cls("cover", {
+          "img-rotate-pause": pause || !playing || !cover
+        })}
       />
     </div>
     <div className={`${prefix}-progress group`}>
