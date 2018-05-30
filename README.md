@@ -52,6 +52,8 @@ npm install react-jinke-music-player --save
 
 > local example : [http://localhost:8081/](http://localhost:8081/)
 
+[Source Code](https://github.com/lijinke666/react-music-player/blob/master/example/example.js)
+
 ## Usage
 
 ```jsx
@@ -78,6 +80,9 @@ ReactDOM.render(
 | playModeShowTime          | `number`  | `600`            |  play mode toggle show time (ms) |
 | bounds          | `object` | `number`  | `body`            |  specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
 | preload          | `boolean | string`  | `false`            |  Whether to load audio immediately after the page loads. can be set to `auto|metadata|none` `true|false` if `preload=true` preload="auto" |
+| remember          | `boolean`  | `false`            |  The next time you access the player, do you keep the last state  |
+| glassBg          | `boolean`  | `false`            |  Whether the player's background displays frosted glass effect |
+| remove          | `boolean`  | `true`            |  The Audio Can be deleted  |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
@@ -218,7 +223,10 @@ npm run test
     preload: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(["auto", "metadata", "none"])
-    ])
+    ]),
+    glassBg: PropTypes.bool,
+    remember: PropTypes.bool,
+    remove: PropTypes.bool
   }
 ```
 

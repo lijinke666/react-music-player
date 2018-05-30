@@ -7,6 +7,7 @@ const AudioListsPanel = ({
   visible,
   notContentText,
   onCancel,
+  onDelete,
   onPlay,
   pause,
   playId,
@@ -14,14 +15,26 @@ const AudioListsPanel = ({
   playIcon,
   pauseIcon,
   closeIcon,
+  deleteIcon,
   isMobile,
   panelTitle,
-  panelToggleAnimate
+  panelToggleAnimate,
+  glassBg,
+  cover,
+  remove
 }) => (
   <div
     className={cls("audio-lists-panel", panelToggleAnimate)}
     key="audio-list-panel"
   >
+    {glassBg ? (
+      <div
+        className="glass-bg-container"
+        style={{ backgroundImage: `url(${cover})` }}
+      />
+    ) : (
+      undefined
+    )}
     <div className="audio-lists-panel-header">
       <h2 className="title">
         <span key="panel-title">{panelTitle} / </span>
@@ -31,10 +44,26 @@ const AudioListsPanel = ({
         <span
           key="close-btn"
           className="close-btn"
+          title="close"
           {...{ [isMobile ? "onTouchStart" : "onClick"]: onCancel }}
         >
           {closeIcon}
         </span>
+        {remove ? (
+          <Fragment>
+            <span className="line" key="line" />
+            <span
+              key="delete-btn"
+              className="delete-btn"
+              title="delete audio lists"
+              {...{ [isMobile ? "onTouchStart" : "onClick"]: onDelete }}
+            >
+              {deleteIcon}
+            </span>
+          </Fragment>
+        ) : (
+          undefined
+        )}
       </h2>
     </div>
     <div
@@ -83,6 +112,13 @@ const AudioListsPanel = ({
                 <span className="group player-time" key="player-time">
                   {singer}
                 </span>
+                {remove ? (
+                  <span className="group player-delete" key="player-delete">
+                    {closeIcon}
+                  </span>
+                ) : (
+                  undefined
+                )}
               </li>
             );
           })}
