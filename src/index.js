@@ -187,7 +187,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     preload: false, //是否在页面加载后立即加载音频
     glassBg: false, //是否是毛玻璃效果
     remember: false, //是否记住当前播放状态
-    remove:true,     //音乐是否可以删除
+    remove: true //音乐是否可以删除
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -864,13 +864,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (!id) {
       this.setState({ audioLists: [] }, () => {
         this.initPlayInfo(this.state.audioLists);
-          this.setState({
-            currentTime:0,
-            duration:0,
-            loading:false,
-            playing:false,
-            pause:true
-          })
+        this.setState({
+          currentTime: 0,
+          duration: 0,
+          loading: false,
+          playing: false,
+          pause: true
+        });
       });
     }
   };
