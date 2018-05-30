@@ -186,8 +186,21 @@ describe("<ReactJkMusicPlayer/>", () => {
   it("should autoPlay", () => {
     const wrapper = mount(<ReactJkMusicPlayer autoPlay={false} />);
     assert(wrapper.state().playing === false);
+    assert(wrapper.state().pause === true);
     wrapper.setProps({ autoPlay: true });
     assert(wrapper.props().autoPlay === true);
+    assert(wrapper.state().playing === true);
+    assert(wrapper.state().pause === false);
+  });
+  it("should render glass background", () => {
+    const wrapper = mount(<ReactJkMusicPlayer glassBg={true} />);
+    assert(wrapper.state().glassBg === true);
+    assert(wrapper.find(".glass-bg-container").length >= 1);
+  });
+  it("should render delete btns", () => {
+    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} remove={true} />);
+    assert(wrapper.find(".delete-btn").length >= 1);
+    assert(wrapper.find(".player-delete").length >= 1);
   });
   it("should render progress load bar", () => {
     const wrapper = mount(<ReactJkMusicPlayer showProgressLoadBar={true} />);

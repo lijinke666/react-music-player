@@ -32,6 +32,18 @@
             transform: translate3d(0, 0, 0);
         }
     }
+    .glass-bg-container{
+        position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size:cover;
+        width:300%;
+        height:300%;
+        left:0;
+        top:0;
+        filter: blur(80px);
+        z-index: -1;
+    }
     svg {
         font-size: 24px;
         transition: color @common-animate-time;
@@ -70,6 +82,7 @@
             height: 100%;
             padding: 0 30px;
             position: relative;
+            overflow: hidden;
             .center();
             .img-content {
                 width: 50px;

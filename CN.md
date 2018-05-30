@@ -52,6 +52,8 @@ npm install react-jinke-music-player --save
 
 > 本地访问 : [http://localhost:8081/](http://localhost:8081/)
 
+[例子示例代码](https://github.com/lijinke666/react-music-player/blob/master/example/example.js)
+
 ## 使用
 
 ```jsx
@@ -78,6 +80,9 @@ ReactDOM.render(
 | playModeShowTime          | `number`  | `600`            |  切换播放模式时提示语的显示时间,单位毫秒 |
 | bounds          | `object` | `string`  | `body`            |  拖拽边界 可以是一个具体的字符串,比如 `body`,也可以是具体的值 `left,top,right,bottom`|
 | preload          | `boolean | string`  | `false`            |  是否在页面加载后立即加载音频。可选值 `auto|metadata|none` `true|false` 如果 `preload=true` 默认会 设置 preload="auto" |
+| remember          | `boolean`  | `false`            | 是否记住当前播放状态,比如音量,播放状态,下次访问时继续播放  |
+| glassBg          | `boolean`  | `false`            |  是否显示毛玻璃背景效果 |
+| remove          | `boolean`  | `true`            |  音乐是否可以被删除 |
 | openText            | `string | ReactNode`  | `open`                                                                                                           | 迷你模式时播放器的打开文案                                                                                                                     |
 | closeText           | `string | ReactNode`  | `close`                                                                                                          | 迷你模式时播放器的关闭文案                                                                                                                     |
 | panelTitle          | `string | ReactNode`  | `PlayList`                                                                                                       | 播放列表显示的标题                                                                                                                             |
@@ -215,7 +220,10 @@ npm run test
     preload: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(["auto", "metadata", "none"])
-    ])
+    ]),
+    glassBg: PropTypes.bool,
+    remember: PropTypes.bool,
+    remove: PropTypes.bool
   }
 ```
 

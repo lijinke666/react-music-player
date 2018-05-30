@@ -13,3 +13,42 @@ h2.example-title{
     padding: 40px;
     font-weight: 500
 }
+button{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    line-height: 1.15;
+    padding: 8px 30px;
+    font-size: 16px;
+    border-radius: 4px;
+    height: 35px;
+    user-select: none;
+    transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    color: rgba(0,0,0,.65);
+    background-color: #fff;
+    border-color: #e8e8e8;
+    outline: none;
+    margin: 0 20px;
+    &:hover{
+        background-color: #31c27c;
+        color:#fff;
+        border-color:#31c27c
+    }
+    >span{
+        pointer-events: none;
+    }
+}
+
+label{
+    cursor: pointer;
+    font-size:16px;
+    display: inline-block;
+    margin:20px;
+}
