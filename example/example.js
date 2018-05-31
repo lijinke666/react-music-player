@@ -32,6 +32,9 @@ const options = {
     }
   ],
 
+  //default play index of the audio player  [type `number` default `1`]
+  defaultPlayIndex:1,
+
   //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
   theme: "dark",
 
@@ -151,51 +154,83 @@ const options = {
   loadAudioErrorPlayNext: true,
 
   //Music is downloaded handle
-  audioDownload(audioInfo) {
+  onAudioDownload(audioInfo) {
     swal("download successfully", "", "success");
     console.log("audio download", audioInfo);
   },
 
   //audio play handle
-  audioPlay(audioInfo) {
+  onAudioPlay(audioInfo) {
     console.log("audio playing", audioInfo);
   },
 
   //audio pause handle
-  audioPause(audioInfo) {
+  onAudioPause(audioInfo) {
     console.log("audio pause", audioInfo);
   },
 
   //When the user has moved/jumped to a new location in audio
-  audioSeeked(audioInfo) {
+  onAudioSeeked(audioInfo) {
     console.log("audio seeked", audioInfo);
   },
 
   //When the volume has changed  min = 0.0  max = 1.0
-  audioVolumeChange(currentVolume) {
+  onAudioVolumeChange(currentVolume) {
     console.log("audio volume change", currentVolume);
   },
 
   //The single song is ended handle
-  audioEnded(audioInfo) {
+  onAudioEnded(audioInfo) {
     swal("Audio is ended!", "", "success");
     console.log("audio ended", audioInfo);
   },
 
   //audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}
-  audioAbort(e) {
+  onAudioAbort(e) {
     console.log("audio abort", e);
   },
 
   //audio play progress handle
-  audioProgress(audioInfo) {
+  onAudioProgress(audioInfo) {
     // console.log('audio progress',audioInfo);
   },
 
+  //audio reload handle
+  onAudioReload(audioInfo){
+    console.log('audio reload:',audioInfo);
+  },
+
   //audio load failed error handle
-  loadAudioError(e) {
+  onAudioLoadError(e) {
     swal("audio load error", "", "error");
     console.log("audio load err", e);
+  },
+
+  //theme change handle
+  onThemeChange(theme){
+    console.log('theme change:',theme);
+  },
+
+  onAudioListsChange(currentPlayIndex,audioLists,audioInfo){
+    console.log('audio lists change:',currentPlayIndex);
+    console.log('audio lists change:',audioLists);
+    console.log('audio lists change:',audioInfo);
+  },
+
+  onAudioPlayTrackChange(currentPlayIndex,audioLists,audioInfo){
+    console.log('audio play track change:',currentPlayIndex,audioLists,audioInfo);
+  },
+
+  onPlayModeChange(playMode){
+    console.log('play mode change:',playMode);
+  },
+
+  onModeChange(mode){
+    console.log('mode change:',mode)
+  },
+
+  onAudioListsPanelChange(panelVisible){
+    console.log('audio lists panel visible:',panelVisible)
   }
 };
 
@@ -227,8 +262,7 @@ class Demo extends React.PureComponent {
     const data = {
       ...this.state.params,
       extendsContent: [
-        <div key="text1">content1</div>,
-        <div key="text1">content2</div>
+        <button key="button" onClick={()=> swal("I'm extends content")}>button</button>,
       ]
     };
     this.setState({

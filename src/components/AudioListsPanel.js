@@ -56,7 +56,7 @@ const AudioListsPanel = ({
               key="delete-btn"
               className="delete-btn"
               title="delete audio lists"
-              {...{ [isMobile ? "onTouchStart" : "onClick"]: onDelete }}
+              {...{ [isMobile ? "onTouchStart" : "onClick"]: onDelete() }}
             >
               {deleteIcon}
             </span>
@@ -81,10 +81,10 @@ const AudioListsPanel = ({
                 key={i}
                 title={
                   pause
-                    ? "Click to play"
+                    ? "click to play"
                     : playId === i
-                      ? "Click to pause"
-                      : "Click to play"
+                      ? "click to pause"
+                      : "click to play"
                 }
                 className={cls(
                   "audio-item",
@@ -113,7 +113,14 @@ const AudioListsPanel = ({
                   {singer}
                 </span>
                 {remove ? (
-                  <span className="group player-delete" key="player-delete">
+                  <span
+                    className="group player-delete"
+                    key="player-delete"
+                    title={`click delete ${name}`}
+                    {...{
+                      [isMobile ? "onTouchStart" : "onClick"]: onDelete(i)
+                    }}
+                  >
                     {closeIcon}
                   </span>
                 ) : (

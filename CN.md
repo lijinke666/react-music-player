@@ -8,7 +8,7 @@
 [![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
 [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
-:musical_note: 也许是颜值最高,最好用的一个响应式 React HTML5 音频播放器组件
+:musical_note: 也许是颜值最高,最好用的一个响应式 React HTML5 音频播放器组件 : )
 
 [English Doc](https://github.com/lijinke666/react-music-player/blob/master/README.md)
 
@@ -83,6 +83,7 @@ ReactDOM.render(
 | remember          | `boolean`  | `false`            | 是否记住当前播放状态,比如音量,播放状态,下次访问时继续播放  |
 | glassBg          | `boolean`  | `false`            |  是否显示毛玻璃背景效果 |
 | remove          | `boolean`  | `true`            |  音乐是否可以被删除 |
+| defaultPlayIndex          | `number`  | `1`            |  默认从第几首歌开始播放, 当值 超过 或低于 可播放数 默认为最大播放数 和 最小播放数  |
 | openText            | `string | ReactNode`  | `open`                                                                                                           | 迷你模式时播放器的打开文案                                                                                                                     |
 | closeText           | `string | ReactNode`  | `close`                                                                                                          | 迷你模式时播放器的关闭文案                                                                                                                     |
 | panelTitle          | `string | ReactNode`  | `PlayList`                                                                                                       | 播放列表显示的标题                                                                                                                             |
@@ -108,15 +109,22 @@ ReactDOM.render(
 | controllerTitle     | `string | ReactNode`  | `<FaHeadphones/>`                                                                                                | 播放器模拟模式封面显示的文字                                                                                                                   |
 | defaultVolume       | `number`              | `100`                                                                                                            | 播放器初始音量, 范围 `0`-`100`                                                                                                                 |
 | loadAudioErrorPlayNext       | `number`              | `100`                                                                                                            | 当前音频加载加载失败时是否尝试播放下一首                                                                                                              |
-| audioDownload       | `function(audioInfo)` | `-`                                                                                                              | 音频下载 的 handler                                                                                                                            |
-| audioPlay           | `function(audioInfo)` | `-`                                                                                                              | 音频播放 的 handler                                                                                                                            |
-| audioPause          | `function(audioInfo)` | `-`                                                                                                              | 音频暂停 的 handler                                                                                                                            |
-| audioSeeked         | `function(audioInfo)` | `-`                                                                                                              | 进度条被点击或者拖动改变播放进度的 handler                                                                                                     |
-| audioVolumeChange   | `function(audioInfo)` | `-`                                                                                                              | 音量改变的 handler 范围 `0.0`-`1.0`                                                                                                            |
-| audioEnded          | `function(audioInfo)` | `-`                                                                                                              | 当前音频播放结束的 handler                                                                                                                     |
-| audioAbort          | `function(audioInfo)` | `-`                                                                                                              | 当前音频播放中断的 handler                                                                                                                     |
-| audioProgress       | `function(audioInfo)` | `-`                                                                                                              | 音频正在播放中的 handler                                                                                                                       |
-| loadAudioError      | `function(audioInfo)` | `-`                                                                                                              | 音频播放失败的 handler                                                                                                                         |
+| onAudioDownload       | `function(audioInfo)` | `-`                                                                                                              | 音频下载 的 钩子函数                                                                                                                            |
+| onAudioPlay           | `function(audioInfo)` | `-`                                                                                                              | 音频播放 的 钩子函数                                                                                                                            |
+| onAudioPause          | `function(audioInfo)` | `-`                                                                                                              | 音频暂停 的 钩子函数                                                                                                                            |
+| onAudioSeeked         | `function(audioInfo)` | `-`                                                                                                              | 进度条被点击或者拖动改变播放进度的 钩子函数                                                                                                     |
+| onAudioVolumeChange   | `function(audioInfo)` | `-`                                                                                                              | 音量改变的 钩子函数 范围 `0.0`-`1.0`                                                                                                            |
+| onAudioEnded          | `function(audioInfo)` | `-`                                                                                                              | 当前音频播放结束的 钩子函数                                                                                                                     |
+| onAudioAbort          | `function(audioInfo)` | `-`                                                                                                              | 当前音频播放中断的 钩子函数                                                                                                                     |
+| onAudioProgress       | `function(audioInfo)` | `-`                                                                                                              | 音频正在播放中的 钩子函数                                                                                                                       |
+| onAudioLoadError      | `function(audioInfo)` | `-`                                                                                                              | 音频播放失败的 钩子函数                                                                                                                         |
+| onAudioReload      | `function(audioInfo)` | `-`                                                                                                              | 音频重新播放的 钩子函数                                                                                                                         |
+| onThemeChange      | `function(theme)` | `-`                                                                                                              | 主题切换后的 钩子函数                                                                                                                         |
+| onAudioListsChange      | `function(currentPlayIndex,audioLists,audioInfo)` | `-`                                                                                                              | 播放列表发生改变时的 钩子函数                                                                                                                         |
+| onAudioPlayTrackChange      | `function(currentPlayIndex,audioLists,audioInfo)` | `-`                                                                                                              | 当前播放的音乐发生改变时的 钩子函数                                                                                                                         |
+| onAudioPlayModeChange      | `function(playMode)` | `-`                                                                                                              | 播放模式发生改变时的 钩子函数                                                                                                                         |
+| onModeChange      | `function(mode)` | `-`                                                                                                              | 模式切换发生改变时的 钩子函数                                                                                                                         |
+| onAudioListsPanelChange      | `function(panelVisible)` | `-`                                                                                                              | 播放列表打开或关闭的 钩子函数                                                                                                                         |
 
 ## 开发
 
@@ -182,18 +190,27 @@ npm run test
       PropTypes.object
     ]),
     defaultPosition: PropTypes.shape({
-      top: PropTypes.number,
-      left: PropTypes.number
+      top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     }),
-    audioPlay: PropTypes.func,
-    audioPause: PropTypes.func,
-    audioEnded: PropTypes.func,
-    audioAbort: PropTypes.func,
-    audioVolumeChange: PropTypes.func,
-    loadAudioError: PropTypes.func,
-    audioProgress: PropTypes.func,
-    audioSeeked: PropTypes.func,
-    audioDownload: PropTypes.func,
+    onAudioPlay: PropTypes.func,
+    onAudioPause: PropTypes.func,
+    onAudioEnded: PropTypes.func,
+    onAudioAbort: PropTypes.func,
+    onAudioVolumeChange: PropTypes.func,
+    onAudioLoadError: PropTypes.func,
+    onAudioProgress: PropTypes.func,
+    onAudioSeeked: PropTypes.func,
+    onAudioDownload: PropTypes.func,
+    onAudioReload: PropTypes.func,
+    onThemeChange:PropTypes.func,
+    onAudioListsChange: PropTypes.func,
+    onAudioPlayModeChange: PropTypes.func,
+    onModeChange: PropTypes.func,
+    onAudioListsPanelChange: PropTypes.func,
+    onAudioPlayTrackChange: PropTypes.func,
     showProgressLoadBar:PropTypes.bool,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
@@ -224,6 +241,7 @@ npm run test
     glassBg: PropTypes.bool,
     remember: PropTypes.bool,
     remove: PropTypes.bool
+    defaultPlayIndex: PropTypes.number
   }
 ```
 
