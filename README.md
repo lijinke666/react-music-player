@@ -8,7 +8,7 @@
 [![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
 [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
-:musical_note: Maybe the best beautiful HTML5 responsive player component for react :)
+:musical_note: Maybe the best beautiful HTML5 responsive player component for react : )
 
 [中文文档](https://github.com/lijinke666/react-music-player/blob/master/CN.md)
 
@@ -83,6 +83,7 @@ ReactDOM.render(
 | remember          | `boolean`  | `false`            |  The next time you access the player, do you keep the last state  |
 | glassBg          | `boolean`  | `false`            |  Whether the player's background displays frosted glass effect |
 | remove          | `boolean`  | `true`            |  The Audio Can be deleted  |
+| defaultPlayIndex          | `number`  | `1`            |  Default play index of the audio player  |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
@@ -108,15 +109,22 @@ ReactDOM.render(
 | controllerTitle | `string`             | `<FaHeadphones/>`            | audio controller title |
 | defaultVolume | `number`             | `100`            | default volume of the audio player , range `0`-`100` |
 | loadAudioErrorPlayNext | `boolean`             | `true`            | Whether to try playing the next audio when the current audio playback fails |
-| audioDownload | `function(audioInfo)` | `-`            | audio is downloaded handle |
-| audioPlay     | `function(audioInfo)` | `-`            | audio play handle |
-| audioPause    | `function(audioInfo)` | `-`          | audio pause handle |
-| audioSeeked   | `function(audioInfo)` | `-`          | When the user has moved/jumped to a new location in audio handle |
-| audioVolumeChange   | `function(audioInfo)` | `-`          |  When the volume has changed handle min = 0.0 max = 1.0  |
-| audioEnded   | `function(audioInfo)` | `-`          |  The single song is ended handle |
-| audioAbort   | `function(audioInfo)` | `-`          |  audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}|
-| audioProgress   | `function(audioInfo)` | `-`          |  audio play progress handle |
-| loadAudioError   | `function(audioInfo)` | `-`          |  audio load failed error handle |
+| onAudioDownload | `function(audioInfo)` | `-`            | audio is downloaded handle |
+| onAudioPlay     | `function(audioInfo)` | `-`            | audio play handle |
+| onAudioPause    | `function(audioInfo)` | `-`          | audio pause handle |
+| onAudioSeeked   | `function(audioInfo)` | `-`          | When the user has moved/jumped to a new location in audio handle |
+| onAudioVolumeChange   | `function(audioInfo)` | `-`          |  When the volume has changed handle min = 0.0 max = 1.0  |
+| onAudioEnded   | `function(audioInfo)` | `-`          |  The single song is ended handle |
+| onAudioAbort   | `function(audioInfo)` | `-`          |  audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}|
+| onAudioProgress   | `function(audioInfo)` | `-`          |  audio play progress handle |
+| onAudioLoadError   | `function(audioInfo)` | `-`          |  audio load failed error handle |
+| onAudioReload  | `function(audioInfo)` | `-`          |  audio reload handle |
+| onThemeChange  | `function(theme)` | `-`          |  theme change handle |
+| onAudioListsChange  | `function(currentPlayIndex,audioLists,audioInfo)` | `-`          |  audio lists change handle |
+| onAudioPlayTrackChange  | `function(currentPlayIndex,audioLists,audioInfo)` | `-`          |  audio current play track change handle |
+| onAudioPlayModeChange  | `function(playMode)` | `-`          |  play mode change handle |
+| onModeChange  | `function(mode)` | `-`          |  mode change handle |
+| onAudioListsPanelChange  | `function(panelVisible)` | `-`          |  audio lists panel change handle |
 
 
 ## Development
@@ -185,18 +193,27 @@ npm run test
       PropTypes.object
     ]),
     defaultPosition: PropTypes.shape({
-      top: PropTypes.number,
-      left: PropTypes.number
+      top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     }),
-    audioPlay: PropTypes.func,
-    audioPause: PropTypes.func,
-    audioEnded: PropTypes.func,
-    audioAbort: PropTypes.func,
-    audioVolumeChange: PropTypes.func,
-    loadAudioError: PropTypes.func,
-    audioProgress: PropTypes.func,
-    audioSeeked: PropTypes.func,
-    audioDownload: PropTypes.func,
+    onAudioPlay: PropTypes.func,
+    onAudioPause: PropTypes.func,
+    onAudioEnded: PropTypes.func,
+    onAudioAbort: PropTypes.func,
+    onAudioVolumeChange: PropTypes.func,
+    onAudioLoadError: PropTypes.func,
+    onAudioProgress: PropTypes.func,
+    onAudioSeeked: PropTypes.func,
+    onAudioDownload: PropTypes.func,
+    onAudioReload: PropTypes.func,
+    onThemeChange:PropTypes.func,
+    onAudioListsChange: PropTypes.func,
+    onAudioPlayTrackChange: PropTypes.func,
+    onAudioPlayModeChange: PropTypes.func,
+    onModeChange: PropTypes.func,
+    onAudioListsPanelChange: PropTypes.func,
     showProgressLoadBar:PropTypes.bool,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
@@ -226,7 +243,8 @@ npm run test
     ]),
     glassBg: PropTypes.bool,
     remember: PropTypes.bool,
-    remove: PropTypes.bool
+    remove: PropTypes.bool,
+    defaultPlayIndex: PropTypes.number
   }
 ```
 
