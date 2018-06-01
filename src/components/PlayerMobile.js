@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import cls from "classnames";
 
 const prefix = "react-jinke-music-player-mobile";
@@ -92,34 +92,36 @@ const PlayerMobile = ({
       </span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>
-      {loading
-        ? loadingIcon
-        : [
-            <span
-              className="group prev-audio"
-              title="previous track"
-              key="prev-audio"
-              onTouchStart={audioPrevPlay}
-            >
-              {prevAudioIcon}
-            </span>,
-            <span
-              className="group play-btn"
-              title="play"
-              key="play-btn"
-              onTouchStart={onPlay}
-            >
-              {playing ? pauseIcon : playIcon}
-            </span>,
-            <span
-              className="group next-audio"
-              title="next track"
-              key="next-audio"
-              onTouchStart={audioNextPlay}
-            >
-              {nextAudioIcon}
-            </span>
-          ]}
+      {loading ? (
+        loadingIcon
+      ) : (
+        <Fragment>
+          <span
+            className="group prev-audio"
+            title="Previous track"
+            key="prev-audio"
+            onTouchStart={audioPrevPlay}
+          >
+            {prevAudioIcon}
+          </span>
+          <span
+            className="group play-btn"
+            title={playing ? "Click to pause" : "Click to play"}
+            key="play-btn"
+            onTouchStart={onPlay}
+          >
+            {playing ? pauseIcon : playIcon}
+          </span>
+          <span
+            className="group next-audio"
+            title="Next track"
+            key="next-audio"
+            onTouchStart={audioNextPlay}
+          >
+            {nextAudioIcon}
+          </span>
+        </Fragment>
+      )}
     </div>
     <div className={`${prefix}-operation group`}>
       <ul className="items">

@@ -164,6 +164,16 @@ ul,li{
             opacity:1;
         }
     }
+    @keyframes remove {
+        from{
+            transform: translate3d(0,0,0);
+            opacity:1;
+        }
+        to{
+            transform: translate3d(-100%,0,0);
+            opacity:0;
+        }
+    }
     .img-rotate-pause{
         animation-play-state:paused !important;
     }

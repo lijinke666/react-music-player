@@ -32,8 +32,8 @@ const options = {
     }
   ],
 
-  //default play index of the audio player  [type `number` default `1`]
-  defaultPlayIndex:1,
+  //default play index of the audio player  [type `number` default `0`]
+  defaultPlayIndex:0,
 
   //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
   theme: "dark",
@@ -276,7 +276,7 @@ class Demo extends React.PureComponent {
     this.onChangeKey("drag");
   };
   onToggleMode = () => {
-    this.onChangeKey("toggle");
+    this.onChangeKey("toggleMode");
   };
   onSeeked = () => {
     this.onChangeKey("seeked");

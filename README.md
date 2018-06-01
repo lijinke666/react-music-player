@@ -83,7 +83,7 @@ ReactDOM.render(
 | remember          | `boolean`  | `false`            |  The next time you access the player, do you keep the last state  |
 | glassBg          | `boolean`  | `false`            |  Whether the player's background displays frosted glass effect |
 | remove          | `boolean`  | `true`            |  The Audio Can be deleted  |
-| defaultPlayIndex          | `number`  | `1`            |  Default play index of the audio player  |
+| defaultPlayIndex          | `number`  | `0`            |  Default play index of the audio player  |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
@@ -119,12 +119,12 @@ ReactDOM.render(
 | onAudioProgress   | `function(audioInfo)` | `-`          |  audio play progress handle |
 | onAudioLoadError   | `function(audioInfo)` | `-`          |  audio load failed error handle |
 | onAudioReload  | `function(audioInfo)` | `-`          |  audio reload handle |
-| onThemeChange  | `function(theme)` | `-`          |  theme change handle |
 | onAudioListsChange  | `function(currentPlayIndex,audioLists,audioInfo)` | `-`          |  audio lists change handle |
 | onAudioPlayTrackChange  | `function(currentPlayIndex,audioLists,audioInfo)` | `-`          |  audio current play track change handle |
 | onAudioPlayModeChange  | `function(playMode)` | `-`          |  play mode change handle |
-| onModeChange  | `function(mode)` | `-`          |  mode change handle |
 | onAudioListsPanelChange  | `function(panelVisible)` | `-`          |  audio lists panel change handle |
+| onThemeChange  | `function(theme)` | `-`          |  theme change handle |
+| onModeChange  | `function(mode)` | `-`          |  mode change handle |
 
 
 ## Development

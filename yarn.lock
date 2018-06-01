@@ -7791,6 +7791,12 @@ react-dom@16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-drag-listview@^0.0.9:
+  version "0.0.9"
+  resolved "http://registry.npm.taobao.org/react-drag-listview/download/react-drag-listview-0.0.9.tgz#bbda36c9fa246864a9cc7f6e483a42b6bdff3ffe"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-draggable@^3.0.5:
   version "3.0.5"
   resolved "http://registry.npm.taobao.org/react-draggable/download/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"

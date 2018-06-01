@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import cls from "classnames";
 import NotContent from "react-icons/lib/md/library-music";
+import ReactDragListView from "react-drag-listview/lib/ReactDragListView";
 
 const AudioListsPanel = ({
   audioLists,
@@ -21,7 +22,9 @@ const AudioListsPanel = ({
   panelToggleAnimate,
   glassBg,
   cover,
-  remove
+  remove,
+  removeId,
+  audioListsDragEnd
 }) => (
   <div
     className={cls("audio-lists-panel", panelToggleAnimate)}
@@ -44,7 +47,7 @@ const AudioListsPanel = ({
         <span
           key="close-btn"
           className="close-btn"
-          title="close"
+          title="Close"
           {...{ [isMobile ? "onTouchStart" : "onClick"]: onCancel }}
         >
           {closeIcon}
@@ -55,7 +58,7 @@ const AudioListsPanel = ({
             <span
               key="delete-btn"
               className="delete-btn"
-              title="delete audio lists"
+              title="Delete audio lists"
               {...{ [isMobile ? "onTouchStart" : "onClick"]: onDelete() }}
             >
               {deleteIcon}
@@ -73,66 +76,74 @@ const AudioListsPanel = ({
       key="audio-lists-panel-content"
     >
       {audioLists.length >= 1 ? (
-        <ul>
-          {audioLists.map((audio, i) => {
-            const { name, singer } = audio;
-            return (
-              <li
-                key={i}
-                title={
-                  pause
-                    ? "click to play"
-                    : playId === i
-                      ? "click to pause"
-                      : "click to play"
-                }
-                className={cls(
-                  "audio-item",
-                  { playing: playId === i },
-                  { pause }
-                )}
-                {...{
-                  [isMobile ? "onTouchStart" : "onClick"]: () => onPlay(i)
-                }}
-              >
-                <span className="group player-status" key="player-status">
-                  <span className="player-icons" key={`player-icons-${i}`}>
-                    {playId === i && loading
-                      ? loading
+        <ReactDragListView
+          nodeSelector="li"
+          handleSelector=".player-name"
+          lineClassName=".audio-lists-panel-drag-line"
+          onDragEnd={audioListsDragEnd}
+        >
+          <ul>
+            {audioLists.map((audio, i) => {
+              const { name, singer } = audio;
+              return (
+                <li
+                  key={i}
+                  title={
+                    pause
+                      ? "Click to play"
                       : playId === i
-                        ? pause
-                          ? playIcon
-                          : pauseIcon
-                        : undefined}
+                        ? "Click to pause"
+                        : "Click to play"
+                  }
+                  className={cls(
+                    "audio-item",
+                    { playing: playId === i },
+                    { pause },
+                    { remove: removeId === i }
+                  )}
+                  {...{
+                    [isMobile ? "onTouchStart" : "onClick"]: () => onPlay(i)
+                  }}
+                >
+                  <span className="group player-status" key="player-status">
+                    <span className="player-icons" key={`player-icons-${i}`}>
+                      {playId === i && loading
+                        ? loading
+                        : playId === i
+                          ? pause
+                            ? playIcon
+                            : pauseIcon
+                          : undefined}
+                    </span>
                   </span>
-                </span>
-                <span className="group player-name" key="player-name">
-                  {name}
-                </span>
-                <span className="group player-time" key="player-time">
-                  {singer}
-                </span>
-                {remove ? (
-                  <span
-                    className="group player-delete"
-                    key="player-delete"
-                    title={`click delete ${name}`}
-                    {...{
-                      [isMobile ? "onTouchStart" : "onClick"]: onDelete(i)
-                    }}
-                  >
-                    {closeIcon}
+                  <span className="group player-name" key="player-name">
+                    {name}
                   </span>
-                ) : (
-                  undefined
-                )}
-              </li>
-            );
-          })}
-        </ul>
+                  <span className="group player-time" key="player-time">
+                    {singer}
+                  </span>
+                  {remove ? (
+                    <span
+                      className="group player-delete"
+                      key="player-delete"
+                      title={`Click to delete ${name}`}
+                      {...{
+                        [isMobile ? "onTouchStart" : "onClick"]: onDelete(i)
+                      }}
+                    >
+                      {closeIcon}
+                    </span>
+                  ) : (
+                    undefined
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </ReactDragListView>
       ) : (
         <Fragment>
-          <span>
+          <span key="no-content">
             <NotContent />
           </span>
           <span className="no-data" key="no-data">
