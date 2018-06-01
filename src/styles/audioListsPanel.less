@@ -69,12 +69,9 @@
             }
         }
         .close-btn {
-            svg {
-                transition: transform @common-animate-time;
-            }
             &:hover {
                 svg {
-                    transform: rotate(360deg)
+                    animation: imgRotate @common-animate-time;
                 }
             }
         }
@@ -112,6 +109,9 @@
         .no-data {
             margin-left: 10px;
         }
+        .audio-lists-panel-drag-line{
+            border:2px dashed @primary-color !important;
+        }
         .audio-item {
             background-color: @lists-panel-item-bg;
             border-bottom: @lists-panel-item-bg;
@@ -124,13 +124,13 @@
             cursor: pointer;
             transition: background-color @common-animate-time;
             &.playing {
-                // .player-icons{
-                //     animation: playing 8s infinite;
-                // }
                 background-color: lighten(@lists-panel-item-bg, 2%);
                 svg {
                     color: @primary-color;
                 }
+            }
+            &.remove {
+                animation: remove @common-animate-time forwards;
             }
             .player-icons {
                 display: inline-flex;
@@ -140,12 +140,9 @@
                 }
             }
             .player-delete {
-                svg {
-                    transition: transform @common-animate-time;
-                }
                 &:hover {
                     svg {
-                        transform: rotate(360deg)
+                        animation: imgRotate @common-animate-time;
                     }
                 }
             }

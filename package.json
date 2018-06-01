@@ -58,6 +58,7 @@
     "prop-types": "^15.6.0",
     "rc-slider": "^8.3.1",
     "rc-switch": "^1.5.2",
+    "react-drag-listview": "^0.0.9",
     "react-draggable": "^3.0.5",
     "react-icons": "^2.2.5"
   },

@@ -83,7 +83,7 @@ ReactDOM.render(
 | remember          | `boolean`  | `false`            | 是否记住当前播放状态,比如音量,播放状态,下次访问时继续播放  |
 | glassBg          | `boolean`  | `false`            |  是否显示毛玻璃背景效果 |
 | remove          | `boolean`  | `true`            |  音乐是否可以被删除 |
-| defaultPlayIndex          | `number`  | `1`            |  默认从第几首歌开始播放, 当值 超过 或低于 可播放数 默认为最大播放数 和 最小播放数  |
+| defaultPlayIndex          | `number`  | `0`            |  默认从第几首歌开始播放, 当值 超过 或低于 可播放数 默认为最大播放数 和 最小播放数  |
 | openText            | `string | ReactNode`  | `open`                                                                                                           | 迷你模式时播放器的打开文案                                                                                                                     |
 | closeText           | `string | ReactNode`  | `close`                                                                                                          | 迷你模式时播放器的关闭文案                                                                                                                     |
 | panelTitle          | `string | ReactNode`  | `PlayList`                                                                                                       | 播放列表显示的标题                                                                                                                             |
@@ -119,12 +119,12 @@ ReactDOM.render(
 | onAudioProgress       | `function(audioInfo)` | `-`                                                                                                              | 音频正在播放中的 钩子函数                                                                                                                       |
 | onAudioLoadError      | `function(audioInfo)` | `-`                                                                                                              | 音频播放失败的 钩子函数                                                                                                                         |
 | onAudioReload      | `function(audioInfo)` | `-`                                                                                                              | 音频重新播放的 钩子函数                                                                                                                         |
-| onThemeChange      | `function(theme)` | `-`                                                                                                              | 主题切换后的 钩子函数                                                                                                                         |
 | onAudioListsChange      | `function(currentPlayIndex,audioLists,audioInfo)` | `-`                                                                                                              | 播放列表发生改变时的 钩子函数                                                                                                                         |
 | onAudioPlayTrackChange      | `function(currentPlayIndex,audioLists,audioInfo)` | `-`                                                                                                              | 当前播放的音乐发生改变时的 钩子函数                                                                                                                         |
 | onAudioPlayModeChange      | `function(playMode)` | `-`                                                                                                              | 播放模式发生改变时的 钩子函数                                                                                                                         |
-| onModeChange      | `function(mode)` | `-`                                                                                                              | 模式切换发生改变时的 钩子函数                                                                                                                         |
 | onAudioListsPanelChange      | `function(panelVisible)` | `-`                                                                                                              | 播放列表打开或关闭的 钩子函数                                                                                                                         |
+| onThemeChange      | `function(theme)` | `-`                                                                                                              | 主题切换后的 钩子函数                                                                                                                         |
+| onModeChange      | `function(mode)` | `-`                                                                                                              | 模式切换发生改变时的 钩子函数                                                                                                                         |
 
 ## 开发
 
