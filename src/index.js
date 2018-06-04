@@ -1291,14 +1291,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     this.setState({ audioLists: _audioLists, playId: _playId });
 
-    this.props.onAudioListsDragEnd && this.props.onAudioListsDragEnd(fromIndex,toIndex)
+    this.props.onAudioListsDragEnd &&
+      this.props.onAudioListsDragEnd(fromIndex, toIndex);
 
     this.props.onAudioListsChange &&
-    this.props.onAudioListsChange(
-      _playId,
-      _audioLists,
-      this.getBaseAudioInfo()
-    );
+      this.props.onAudioListsChange(
+        _playId,
+        _audioLists,
+        this.getBaseAudioInfo()
+      );
   };
   saveLastPlayStatus = () => {
     const {
