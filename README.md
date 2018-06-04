@@ -125,6 +125,7 @@ ReactDOM.render(
 | onAudioListsPanelChange  | `function(panelVisible)` | `-`          |  audio lists panel change handle |
 | onThemeChange  | `function(theme)` | `-`          |  theme change handle |
 | onModeChange  | `function(mode)` | `-`          |  mode change handle |
+| onAudioListsDragEnd  | `function(fromIndex,endIndex)` | `-`          |  audio lists drag end handle |
 
 
 ## Development
@@ -214,6 +215,7 @@ npm run test
     onAudioPlayModeChange: PropTypes.func,
     onModeChange: PropTypes.func,
     onAudioListsPanelChange: PropTypes.func,
+    onAudioListsDragEnd: PropTypes.func,
     showProgressLoadBar:PropTypes.bool,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,

@@ -233,6 +233,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     onModeChange: PropTypes.func,
     onAudioListsPanelChange: PropTypes.func,
     onAudioPlayTrackChange: PropTypes.func,
+    onAudioListsDragEnd: PropTypes.func,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
     showReload: PropTypes.bool,
@@ -1289,6 +1290,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     let _playId = fromIndex === playId ? toIndex : playId;
 
     this.setState({ audioLists: _audioLists, playId: _playId });
+
+    this.props.onAudioListsDragEnd && this.props.onAudioListsDragEnd(fromIndex,toIndex)
+
+    this.props.onAudioListsChange &&
+    this.props.onAudioListsChange(
+      _playId,
+      _audioLists,
+      this.getBaseAudioInfo()
+    );
   };
   saveLastPlayStatus = () => {
     const {
