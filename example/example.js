@@ -94,7 +94,7 @@ const options = {
   defaultPlayMode: "order",
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: "full",
+  mode: "mini",
 
   /**
    * [ type `Boolean` default 'false' ]
@@ -428,6 +428,14 @@ class Demo extends React.PureComponent {
               onChange={() => this.onChangeKey("remove")}
             />remove
           </label>
+          <label htmlFor="remember">
+          <input
+            type="checkbox"
+            id="remember"
+            checked={params.remember}
+            onChange={() => this.onChangeKey("remember")}
+          />remember
+        </label>
         </section>
         <ReactJkMusicPlayer {...params} />
       </div>

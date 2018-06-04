@@ -3,17 +3,6 @@
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
- * @FIXME: 播放列表可拖拽排序
- * @FIXME: 支持播放记忆功能 remember
- * @FIXME: 直接点击喇叭静音 钩子函数 显示音量还是1 的bug
- * @FIXME: 播放器迷你模式 宽高调整至80px
- * @FIXME: 音量喇叭图标跟换
- * @FIXME: 增加毛玻璃效果  glassBg
- * @FIXME: 支持音乐列表删除 remove
- * @FIXME: 播放列表更改时 现在以更改之后的playId
- * @FIXME: 增加默认播放索引 defaultPlayIndex
- * @FIXME: 所有钩子函数 从 audioXX() 更改为 onAudioXx()  更符合语义
- * @FIXME: 增加重放 ,播放模式切换, 歌曲删除 等钩子函数
  */
 
 import React, { PureComponent, Fragment } from "react";
@@ -153,6 +142,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
     initAnimate: false,
     isInitAutoplay: false,
+    isInitRemember: false,
     loadProgress: 0,
     removeId: -1
   };
@@ -850,8 +840,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
    * @tip: ignore 如果 为 true playId相同则不暂停 可是重新播放 适用于 随机播放 重新播放等逻辑
    */
   audioListsPlay = (playId, ignore = false) => {
-    const { audioLists } = this.state;
-    const { playId: currentPlayId, pause, playing } = this.state;
+    const { playId: currentPlayId, pause, playing, audioLists } = this.state;
 
     if (Array.isArray(audioLists) && audioLists.length === 0) {
       /*eslint-disable no-console*/
@@ -1102,8 +1091,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   //加载音频
   loadAndPlayAudio = () => {
-    const { autoPlay } = this.props;
-    const { isInitAutoplay, loadProgress } = this.state;
+    const { autoPlay, remember } = this.props;
+    const { isInitAutoplay, isInitRemember, loadProgress } = this.state;
     const { readyState, networkState } = this.audio;
     const maxLoadProgress = 100;
     this.setState({ loading: true });
@@ -1114,19 +1103,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
       readyState === this.READY_SUCCESS_STATE &&
       networkState !== this.NETWORK_STATE.NETWORK_NO_SOURCE
     ) {
+      const { pause } = this.getLastPlayStatus();
+      const isLastPause = remember && !isInitRemember && pause;
       const canPlay = isInitAutoplay || autoPlay === true;
       this.setState(
         {
-          playing: canPlay,
+          playing: remember ? !isLastPause : canPlay,
           loading: false,
-          pause: !canPlay,
+          pause: remember ? isLastPause : !canPlay,
           loadProgress: maxLoadProgress
         },
         () => {
-          if (canPlay) {
+          if (remember ? !isLastPause : canPlay) {
             this.audio.play();
           }
-          this.setState({ isInitAutoplay: true });
+          this.setState({ isInitAutoplay: true, isInitRemember: true });
         }
       );
     }
@@ -1294,14 +1285,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const item = _audioLists.splice(fromIndex, 1)[0];
     _audioLists.splice(toIndex, 0, item);
 
-    let _playId = 0;
     //如果拖动正在播放的歌曲 播放Id 等于 拖动后的index
-    if (fromIndex === playId) {
-      _playId = toIndex;
-    } else {
-      //FIXME: 拖放之后 图片状态有问题
-      _playId = Math.max(0, playId - 1);
-    }
+    let _playId = fromIndex === playId ? toIndex : playId;
 
     this.setState({ audioLists: _audioLists, playId: _playId });
   };
@@ -1337,21 +1322,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
   getLastPlayStatus = () => {
     const { theme, defaultPlayMode, defaultPlayIndex } = this.props;
 
+    let status = {
+      currentTime: 0,
+      duration: 0,
+      playMode: defaultPlayMode,
+      name: "",
+      cover: "",
+      singer: "",
+      musicSrc: "",
+      playId: this.getDefaultPlayIndex(defaultPlayIndex),
+      theme,
+      pause: false
+    };
     try {
-      return JSON.parse(localStorage.getItem("lastPlayStatus"));
+      return JSON.parse(localStorage.getItem("lastPlayStatus")) || status;
     } catch (error) {
-      return {
-        currentTime: 0,
-        duration: 0,
-        playMode: defaultPlayMode,
-        name: "",
-        cover: "",
-        singer: "",
-        musicSrc: "",
-        playId: this.getDefaultPlayIndex(defaultPlayIndex),
-        theme,
-        pause: false
-      };
+      return status;
     }
   };
   bindMobileAutoPlayerEvents = () => {
@@ -1429,7 +1415,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const { defaultVolume, remember } = this.props;
     //音量 [0-100]
     this.defaultVolume = Math.max(0, Math.min(defaultVolume, 100)) / 100;
-    const { soundValue } = this.getLastPlayStatus();
+    const { soundValue = this.defaultVolume } = this.getLastPlayStatus();
     this.setAudioVolume(remember ? soundValue : this.defaultVolume);
   };
   getDefaultPlayIndex = () => {

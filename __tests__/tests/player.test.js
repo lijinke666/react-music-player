@@ -189,18 +189,27 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(wrapper.state().pause === true);
     wrapper.setProps({ autoPlay: true });
     assert(wrapper.props().autoPlay === true);
-    assert(wrapper.state().playing === true);
-    assert(wrapper.state().pause === false);
   });
   it("should render glass background", () => {
     const wrapper = mount(<ReactJkMusicPlayer glassBg={true} />);
-    assert(wrapper.state().glassBg === true);
+    assert(wrapper.props().glassBg === true);
     assert(wrapper.find(".glass-bg-container").length >= 1);
   });
   it("should render delete btns", () => {
     const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} remove={true} />);
     assert(wrapper.find(".delete-btn").length >= 1);
-    assert(wrapper.find(".player-delete").length >= 1);
+    assert(wrapper.find(".player-delete").length === 0);
+    wrapper.setState({
+      audioLists: [
+        {
+          name: "name",
+          singer: "singer",
+          cover: "test.jpg",
+          musicSrc: "test.mp3"
+        }
+      ]
+    });
+    assert(wrapper.find(".player-delete").length === 1);
   });
   it("should render progress load bar", () => {
     const wrapper = mount(<ReactJkMusicPlayer showProgressLoadBar={true} />);
@@ -224,7 +233,7 @@ describe("<ReactJkMusicPlayer/>", () => {
   });
   it("should distinct arrar", () => {
     assert(arrayEqual(distinct([1, 1, 1]))([1]) === true);
-    assert(arrayEqual(distinct([{a:1},{a:1}]))([{a:1}])=== true);
+    assert(arrayEqual(distinct([{ a: 1 }, { a: 1 }]))([{ a: 1 }]) === true);
   });
   it("should render operation group", () => {
     const prefix = ".react-jinke-music-player-mobile";
