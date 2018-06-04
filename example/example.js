@@ -33,7 +33,7 @@ const options = {
   ],
 
   //default play index of the audio player  [type `number` default `0`]
-  defaultPlayIndex:0,
+  defaultPlayIndex: 0,
 
   //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
   theme: "dark",
@@ -58,7 +58,7 @@ const options = {
   remember: false,
 
   //The Audio Can be deleted  [type `Boolean`, default `true`]
-  remove:true,
+  remove: true,
 
   //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
@@ -196,8 +196,8 @@ const options = {
   },
 
   //audio reload handle
-  onAudioReload(audioInfo){
-    console.log('audio reload:',audioInfo);
+  onAudioReload(audioInfo) {
+    console.log("audio reload:", audioInfo);
   },
 
   //audio load failed error handle
@@ -207,30 +207,39 @@ const options = {
   },
 
   //theme change handle
-  onThemeChange(theme){
-    console.log('theme change:',theme);
+  onThemeChange(theme) {
+    console.log("theme change:", theme);
   },
 
-  onAudioListsChange(currentPlayIndex,audioLists,audioInfo){
-    console.log('audio lists change:',currentPlayIndex);
-    console.log('audio lists change:',audioLists);
-    console.log('audio lists change:',audioInfo);
+  onAudioListsChange(currentPlayIndex, audioLists, audioInfo) {
+    console.log("audio lists change:", currentPlayIndex);
+    console.log("audio lists change:", audioLists);
+    console.log("audio lists change:", audioInfo);
   },
 
-  onAudioPlayTrackChange(currentPlayIndex,audioLists,audioInfo){
-    console.log('audio play track change:',currentPlayIndex,audioLists,audioInfo);
+  onAudioPlayTrackChange(currentPlayIndex, audioLists, audioInfo) {
+    console.log(
+      "audio play track change:",
+      currentPlayIndex,
+      audioLists,
+      audioInfo
+    );
   },
 
-  onPlayModeChange(playMode){
-    console.log('play mode change:',playMode);
+  onPlayModeChange(playMode) {
+    console.log("play mode change:", playMode);
   },
 
-  onModeChange(mode){
-    console.log('mode change:',mode)
+  onModeChange(mode) {
+    console.log("mode change:", mode);
   },
 
-  onAudioListsPanelChange(panelVisible){
-    console.log('audio lists panel visible:',panelVisible)
+  onAudioListsPanelChange(panelVisible) {
+    console.log("audio lists panel visible:", panelVisible);
+  },
+
+  onAudioListsDragEnd(fromIndex, endIndex) {
+    console.log("audio lists drag end:", fromIndex, endIndex);
   }
 };
 
@@ -262,7 +271,9 @@ class Demo extends React.PureComponent {
     const data = {
       ...this.state.params,
       extendsContent: [
-        <button key="button" onClick={()=> swal("I'm extends content")}>button</button>,
+        <button key="button" onClick={() => swal("I'm extends content")}>
+          button
+        </button>
       ]
     };
     this.setState({
@@ -308,7 +319,13 @@ class Demo extends React.PureComponent {
     return (
       <div>
         <h2 className="example-title">
-          Drag, Click, or switch to phone mode to try  <a target="_blank" href="https://github.com/lijinke666/react-music-player/blob/master/example/example.js">【DEMO SOURCE】</a>
+          Drag, Click, or switch to phone mode to try{" "}
+          <a
+            target="_blank"
+            href="https://github.com/lijinke666/react-music-player/blob/master/example/example.js"
+          >
+            【DEMO SOURCE】
+          </a>
         </h2>
         <section className="settings">
           <button onClick={this.onAddAudio}>
@@ -429,13 +446,13 @@ class Demo extends React.PureComponent {
             />remove
           </label>
           <label htmlFor="remember">
-          <input
-            type="checkbox"
-            id="remember"
-            checked={params.remember}
-            onChange={() => this.onChangeKey("remember")}
-          />remember
-        </label>
+            <input
+              type="checkbox"
+              id="remember"
+              checked={params.remember}
+              onChange={() => this.onChangeKey("remember")}
+            />remember
+          </label>
         </section>
         <ReactJkMusicPlayer {...params} />
       </div>

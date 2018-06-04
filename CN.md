@@ -125,6 +125,7 @@ ReactDOM.render(
 | onAudioListsPanelChange      | `function(panelVisible)` | `-`                                                                                                              | 播放列表打开或关闭的 钩子函数                                                                                                                         |
 | onThemeChange      | `function(theme)` | `-`                                                                                                              | 主题切换后的 钩子函数                                                                                                                         |
 | onModeChange      | `function(mode)` | `-`                                                                                                              | 模式切换发生改变时的 钩子函数                                                                                                                         |
+| onAudioListsDragEnd      | `function(fromIndex,toIndex)` | `-`                                                                                                              | 列表歌曲拖拽后 钩子函数                                                                                                                         |
 
 ## 开发
 
@@ -211,6 +212,7 @@ npm run test
     onModeChange: PropTypes.func,
     onAudioListsPanelChange: PropTypes.func,
     onAudioPlayTrackChange: PropTypes.func,
+    onAudioListsDragEnd: PropTypes.func,
     showProgressLoadBar:PropTypes.bool,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
