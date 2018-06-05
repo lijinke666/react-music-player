@@ -1,5 +1,5 @@
 /**
- * @version 4.0.0
+ * @version 4.0.1
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -190,7 +190,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     glassBg: false, //是否是毛玻璃效果
     remember: false, //是否记住当前播放状态
     remove: true, //音乐是否可以删除
-    defaultPlayIndex: 1 //默认播放索引
+    defaultPlayIndex: 0 //默认播放索引
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -914,6 +914,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             if (id === playId) {
               this.initPlayInfo(newAudioLists);
               this.onPlay();
+              this.props.onAudioPlayTrackChange &&
               this.props.onAudioPlayTrackChange(
                 playId,
                 newAudioLists,
