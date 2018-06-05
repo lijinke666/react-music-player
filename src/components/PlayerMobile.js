@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import cls from "classnames";
 
 const prefix = "react-jinke-music-player-mobile";
@@ -40,14 +40,23 @@ const PlayerMobile = ({
   playModeTipVisible,
   currentPlayModeName,
   extendsContent,
-  onPlay
+  onPlay,
+  glassBg
 }) => (
-  <div className={prefix}>
+  <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
     <PlayModeTip
       visible={playModeTipVisible}
       title={playMode}
       text={currentPlayModeName}
     />
+    {glassBg ? (
+      <div
+        className="glass-bg-container"
+        style={{ backgroundImage: `url(${cover})` }}
+      />
+    ) : (
+      undefined
+    )}
     <div className={`${prefix}-header group`}>
       <div className="left item" />
       <div className="title" key="audio-title">
@@ -68,7 +77,9 @@ const PlayerMobile = ({
         src={cover}
         alt="cover"
         key="cover"
-        className={cls("cover", { "img-rotate-pause": pause || !cover })}
+        className={cls("cover", {
+          "img-rotate-pause": pause || !playing || !cover
+        })}
       />
     </div>
     <div className={`${prefix}-progress group`}>
@@ -81,34 +92,36 @@ const PlayerMobile = ({
       </span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>
-      {loading
-        ? loadingIcon
-        : [
-            <span
-              className="group prev-audio"
-              title="previous track"
-              key="prev-audio"
-              onTouchStart={audioPrevPlay}
-            >
-              {prevAudioIcon}
-            </span>,
-            <span
-              className="group play-btn"
-              title="play"
-              key="play-btn"
-              onTouchStart={onPlay}
-            >
-              {playing ? pauseIcon : playIcon}
-            </span>,
-            <span
-              className="group next-audio"
-              title="next track"
-              key="next-audio"
-              onTouchStart={audioNextPlay}
-            >
-              {nextAudioIcon}
-            </span>
-          ]}
+      {loading ? (
+        loadingIcon
+      ) : (
+        <Fragment>
+          <span
+            className="group prev-audio"
+            title="Previous track"
+            key="prev-audio"
+            onTouchStart={audioPrevPlay}
+          >
+            {prevAudioIcon}
+          </span>
+          <span
+            className="group play-btn"
+            title={playing ? "Click to pause" : "Click to play"}
+            key="play-btn"
+            onTouchStart={onPlay}
+          >
+            {playing ? pauseIcon : playIcon}
+          </span>
+          <span
+            className="group next-audio"
+            title="Next track"
+            key="next-audio"
+            onTouchStart={audioNextPlay}
+          >
+            {nextAudioIcon}
+          </span>
+        </Fragment>
+      )}
     </div>
     <div className={`${prefix}-operation group`}>
       <ul className="items">

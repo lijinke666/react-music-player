@@ -1,16 +1,40 @@
-# react-jinke-music-player
+<h1 align="center">
+react-jinke-music-player
+</h1>
 
-[![npm](https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
-[![npm](https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
-[![Build Status](https://travis-ci.org/lijinke666/react-music-player.svg?branch=master)](https://travis-ci.org/lijinke666/react-music-player)
-[![npm version](https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square)](https://badge.fury.io/js/react-jinke-music-player)
-[![Coverage Status](https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master)](https://coveralls.io/github/lijinke666/react-music-player?branch=master)
-[![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
-[![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
+<h4 align="center">
+:musical_note: Maybe the best beautiful HTML5 responsive player component for react : )
+</h4>
 
-:musical_note: Maybe the best beautiful HTML5 responsive player component for react :)
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-jinke-music-player" title="npm">
+    <img src="https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square" alt="npm">
+  </a>
+  <a href="https://www.npmjs.com/package/react-jinke-music-player" title="npm">
+    <img src="https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square" alt="npm">
+  </a>
+   <a href="https://travis-ci.org/lijinke666/react-music-player" title="Build Status">
+    <img src="https://travis-ci.org/lijinke666/react-music-player.svg?branch=master" alt="Build Status">
+  </a>
+   <a href="https://badge.fury.io/js/react-jinke-music-playerr" title="npm">
+    <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version">
+  </a>
+     <a href="https://coveralls.io/github/lijinke666/react-music-player?branch=master" title="Coverage Status">
+    <img src="https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master" alt="Coverage Status">
+  </a>
+    </a>
+     <a href="https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player" title="Dependency Status">
+    <img src="https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square" alt="Dependency Status">
+  </a>
+</p>
 
-[中文文档](https://github.com/lijinke666/react-music-player/blob/master/CN.md)
+
+
+<p align="center">
+  <a href="https://github.com/lijinke666/react-music-player/blob/master/CN.md">
+    中文文档
+  </a>
+</p>
 
 ## Installation
 
@@ -52,6 +76,8 @@ npm install react-jinke-music-player --save
 
 > local example : [http://localhost:8081/](http://localhost:8081/)
 
+[Source Code](https://github.com/lijinke666/react-music-player/blob/master/example/example.js)
+
 ## Usage
 
 ```jsx
@@ -71,13 +97,17 @@ ReactDOM.render(
 | Name              | Type                  | Default           | Description |
 | ------------ | ------- | ------- | ----------- |
 | className         | `string`              | `-`               | Additional CSS class for the root DOM node                                                                                           |
-| audioLists        | `string[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
+| audioLists        | `object[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
 | theme             | `string`              | `dark`            | color of the music player theme  `dark` | `light`                                                                                                    |
 | defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position with `left,top,right,and bottom` |
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
 | playModeShowTime          | `number`  | `600`            |  play mode toggle show time (ms) |
 | bounds          | `object` | `number`  | `body`            |  specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
 | preload          | `boolean | string`  | `false`            |  Whether to load audio immediately after the page loads. can be set to `auto|metadata|none` `true|false` if `preload=true` preload="auto" |
+| remember          | `boolean`  | `false`            |  The next time you access the player, do you keep the last state  |
+| glassBg          | `boolean`  | `false`            |  Whether the player's background displays frosted glass effect |
+| remove          | `boolean`  | `true`            |  The Audio Can be deleted  |
+| defaultPlayIndex          | `number`  | `0`            |  Default play index of the audio player  |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
@@ -103,15 +133,23 @@ ReactDOM.render(
 | controllerTitle | `string`             | `<FaHeadphones/>`            | audio controller title |
 | defaultVolume | `number`             | `100`            | default volume of the audio player , range `0`-`100` |
 | loadAudioErrorPlayNext | `boolean`             | `true`            | Whether to try playing the next audio when the current audio playback fails |
-| audioDownload | `function(audioInfo)` | `-`            | audio is downloaded handle |
-| audioPlay     | `function(audioInfo)` | `-`            | audio play handle |
-| audioPause    | `function(audioInfo)` | `-`          | audio pause handle |
-| audioSeeked   | `function(audioInfo)` | `-`          | When the user has moved/jumped to a new location in audio handle |
-| audioVolumeChange   | `function(audioInfo)` | `-`          |  When the volume has changed handle min = 0.0 max = 1.0  |
-| audioEnded   | `function(audioInfo)` | `-`          |  The single song is ended handle |
-| audioAbort   | `function(audioInfo)` | `-`          |  audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}|
-| audioProgress   | `function(audioInfo)` | `-`          |  audio play progress handle |
-| loadAudioError   | `function(audioInfo)` | `-`          |  audio load failed error handle |
+| onAudioDownload | `function(audioInfo)` | `-`            | audio is downloaded handle |
+| onAudioPlay     | `function(audioInfo)` | `-`            | audio play handle |
+| onAudioPause    | `function(audioInfo)` | `-`          | audio pause handle |
+| onAudioSeeked   | `function(audioInfo)` | `-`          | When the user has moved/jumped to a new location in audio handle |
+| onAudioVolumeChange   | `function(audioInfo)` | `-`          |  When the volume has changed handle min = 0.0 max = 1.0  |
+| onAudioEnded   | `function(audioInfo)` | `-`          |  The single song is ended handle |
+| onAudioAbort   | `function(audioInfo)` | `-`          |  audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}|
+| onAudioProgress   | `function(audioInfo)` | `-`          |  audio play progress handle |
+| onAudioLoadError   | `function(audioInfo)` | `-`          |  audio load failed error handle |
+| onAudioReload  | `function(audioInfo)` | `-`          |  audio reload handle |
+| onAudioListsChange  | `function(currentPlayIndex,audioLists,audioInfo)` | `-`          |  audio lists change handle |
+| onAudioPlayTrackChange  | `function(currentPlayIndex,audioLists,audioInfo)` | `-`          |  audio current play track change handle |
+| onAudioPlayModeChange  | `function(playMode)` | `-`          |  play mode change handle |
+| onAudioListsPanelChange  | `function(panelVisible)` | `-`          |  audio lists panel change handle |
+| onThemeChange  | `function(theme)` | `-`          |  theme change handle |
+| onModeChange  | `function(mode)` | `-`          |  mode change handle |
+| onAudioListsDragEnd  | `function(fromIndex,endIndex)` | `-`          |  audio lists drag end handle |
 
 
 ## Development
@@ -180,18 +218,28 @@ npm run test
       PropTypes.object
     ]),
     defaultPosition: PropTypes.shape({
-      top: PropTypes.number,
-      left: PropTypes.number
+      top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     }),
-    audioPlay: PropTypes.func,
-    audioPause: PropTypes.func,
-    audioEnded: PropTypes.func,
-    audioAbort: PropTypes.func,
-    audioVolumeChange: PropTypes.func,
-    loadAudioError: PropTypes.func,
-    audioProgress: PropTypes.func,
-    audioSeeked: PropTypes.func,
-    audioDownload: PropTypes.func,
+    onAudioPlay: PropTypes.func,
+    onAudioPause: PropTypes.func,
+    onAudioEnded: PropTypes.func,
+    onAudioAbort: PropTypes.func,
+    onAudioVolumeChange: PropTypes.func,
+    onAudioLoadError: PropTypes.func,
+    onAudioProgress: PropTypes.func,
+    onAudioSeeked: PropTypes.func,
+    onAudioDownload: PropTypes.func,
+    onAudioReload: PropTypes.func,
+    onThemeChange:PropTypes.func,
+    onAudioListsChange: PropTypes.func,
+    onAudioPlayTrackChange: PropTypes.func,
+    onAudioPlayModeChange: PropTypes.func,
+    onModeChange: PropTypes.func,
+    onAudioListsPanelChange: PropTypes.func,
+    onAudioListsDragEnd: PropTypes.func,
     showProgressLoadBar:PropTypes.bool,
     showDownload: PropTypes.bool,
     showPlay: PropTypes.bool,
@@ -218,7 +266,11 @@ npm run test
     preload: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(["auto", "metadata", "none"])
-    ])
+    ]),
+    glassBg: PropTypes.bool,
+    remember: PropTypes.bool,
+    remove: PropTypes.bool,
+    defaultPlayIndex: PropTypes.number
   }
 ```
 

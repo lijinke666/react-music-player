@@ -32,6 +32,18 @@
             transform: translate3d(0, 0, 0);
         }
     }
+    .glass-bg-container{
+        position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size:cover;
+        width:300%;
+        height:300%;
+        left:0;
+        top:0;
+        filter: blur(80px);
+        z-index: -1;
+    }
     svg {
         font-size: 24px;
         transition: color @common-animate-time;
@@ -70,6 +82,7 @@
             height: 100%;
             padding: 0 30px;
             position: relative;
+            overflow: hidden;
             .center();
             .img-content {
                 width: 50px;
@@ -230,10 +243,10 @@
                 .play-sounds {
                     align-items: center;
                     svg {
-                        font-size: 30px;
+                        font-size: 28px;
                     }
                     .sounds-icon {
-                        margin-right: 5px;
+                        margin-right: 15px;
                         flex: 1 1 auto;
                     }
                     .sound-operation {
@@ -507,7 +520,7 @@
         }
         &,circle{
             transition: stroke-dasharray @common-animate-time;
-            transform: matrix(0, -1, 1, 0, 0, 90); 
+            transform: matrix(0, -1, 1, 0, 0, 80); 
             @media screen and (max-width:768px) {
                 transform: matrix(0, -1, 1, 0, 0, 60); 
             }
