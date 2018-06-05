@@ -915,11 +915,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
               this.initPlayInfo(newAudioLists);
               this.onPlay();
               this.props.onAudioPlayTrackChange &&
-              this.props.onAudioPlayTrackChange(
-                playId,
-                newAudioLists,
-                this.getBaseAudioInfo()
-              );
+                this.props.onAudioPlayTrackChange(
+                  playId,
+                  newAudioLists,
+                  this.getBaseAudioInfo()
+                );
             }
 
             if (newAudioLists.length <= 0) {
