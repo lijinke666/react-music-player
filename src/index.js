@@ -40,20 +40,20 @@ import "rc-switch/assets/index.css";
 
 const ISMOBILE = isMobile();
 
-const AnimatePlayIcon = () => (
+export const AnimatePlayIcon = () => (
   <FaPlayCircle className="react-jinke-music-player-play-icon" />
 );
-const AnimatePauseIcon = () => (
+export const AnimatePauseIcon = () => (
   <FaPauseCircle className="react-jinke-music-player-pause-icon" />
 );
 
-const Load = () => (
+export const Load = () => (
   <span className="loading group" key="loading">
     <LoadIcon />
   </span>
 );
 
-const PlayModel = ({ visible, value }) => (
+export const PlayModel = ({ visible, value }) => (
   <div
     className={classNames("play-mode-title", {
       "play-mode-title-visible": visible
@@ -65,7 +65,7 @@ const PlayModel = ({ visible, value }) => (
 );
 
 //迷你模式进度条
-const CircleProcessBar = ({ progress = 0, r = 40 } = {}) => {
+export const CircleProcessBar = ({ progress = 0, r = 40 } = {}) => {
   const _progress = progress.toFixed(2);
   const perimeter = Math.PI * 2 * r;
   const strokeDasharray = `${~~(perimeter * _progress)} ${~~(
@@ -136,7 +136,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     loading: false,
     audioListsPanelVisible: false,
     playModelNameVisible: false,
-    theme: this.lightThemeName,
+    theme: this.darkThemeName,
     extendsContent: [], //自定义扩展功能按钮
     playMode: "", //当前播放模式
     currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
@@ -419,7 +419,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const ThemeSwitchComponent = showThemeSwitch ? (
       <span className="group theme-switch">
         <Switch
-          className="theme-switch"
+          className="theme-switch-container"
           onChange={this.themeChange}
           checkedChildren={checkedText}
           unCheckedChildren={unCheckedText}
