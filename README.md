@@ -1,6 +1,6 @@
-<div align="center">
-  <img alt="logo" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/logo.png">
-</div>
+<p align="center">
+  <img alt="logo" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/logo.png" width="100" max-width="100%">
+</p>
 
 <h1 align="center">
 react-jinke-music-player
