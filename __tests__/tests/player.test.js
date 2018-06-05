@@ -4,9 +4,14 @@ import React from "react";
 import assert from "power-assert";
 import { expect } from "chai";
 import { shallow, mount } from "enzyme";
-import sinon from "sinon";
 
-import ReactJkMusicPlayer from "../../src";
+import ReactJkMusicPlayer,{
+  AnimatePlayIcon,
+  AnimatePauseIcon,
+  Load,
+  PlayModel,
+  CircleProcessBar
+} from "../../src";
 import {
   createRandomNum,
   formatTime,
@@ -30,6 +35,16 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(wrapper.find(".audio-circle-process-bar").length >= 1);
     wrapper.setProps({ showMiniProcessBar: false });
     assert(wrapper.find(".audio-circle-process-bar").length === 0);
+    wrapper.setState({pause:false,playing:true,toggle:true})
+    assert(wrapper.find(AnimatePauseIcon).length >=1);
+    wrapper.setState({pause:true,playing:false})
+    assert(wrapper.find(AnimatePlayIcon).length >= 1);
+    wrapper.setState({loading:true})
+    assert(wrapper.find(Load).length >=1);
+    assert(wrapper.find(PlayModel).length >=1);
+    wrapper.setState({toggle:false})
+    wrapper.setProps({showMiniProcessBar:true})
+    assert(wrapper.find(CircleProcessBar).length >=1);
   });
   it("should render <AudioListsPanel/> components", () => {
     const wrapper = mount(<ReactJkMusicPlayer />);
@@ -260,13 +275,5 @@ describe("<ReactJkMusicPlayer/>", () => {
       wrapper.find(".react-jinke-music-player-mobile-operation .item").length >=
         5
     );
-  });
-  it("sinon audio lists panel close events", () => {
-    const onButtonClick = sinon.spy();
-    const wrapper = shallow(
-      <AudioListsPanel onCancel={onButtonClick} audioLists={[]} />
-    );
-    wrapper.find(".close-btn").simulate("click");
-    expect(onButtonClick).to.have.property("callCount", 1);
   });
 });
