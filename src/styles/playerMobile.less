@@ -8,12 +8,14 @@
     z-index: 999;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, .6);
     padding: @mobile-padding;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    &.default-bg{
+        background-color: rgba(0, 0, 0, .6);
+    }
     >.group {
         flex: 1 1 auto;
     }
