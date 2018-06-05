@@ -1,16 +1,42 @@
-# react-jinke-music-player
+<h1 align="center">
+react-jinke-music-player
+</h1>
 
-[![npm](https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
-[![npm](https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square)](https://www.npmjs.com/package/react-jinke-music-player)
-[![Build Status](https://travis-ci.org/lijinke666/react-music-player.svg?branch=master)](https://travis-ci.org/lijinke666/react-music-player)
-[![npm version](https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square)](https://badge.fury.io/js/react-jinke-music-player)
-[![Coverage Status](https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master)](https://coveralls.io/github/lijinke666/react-music-player?branch=master)
-[![Dependency Status](https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square)](https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player)
-[![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
-
+<h4 align="center">
 :musical_note: 也许是颜值最高,最好用的一个响应式 React HTML5 音频播放器组件 : )
+</h4>
 
-[English Doc](https://github.com/lijinke666/react-music-player/blob/master/README.md)
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-jinke-music-player" title="npm">
+    <img src="https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square" alt="npm">
+  </a>
+  <a href="https://www.npmjs.com/package/react-jinke-music-player" title="npm">
+    <img src="https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square" alt="npm">
+  </a>
+   <a href="https://travis-ci.org/lijinke666/react-music-player" title="Build Status">
+    <img src="https://travis-ci.org/lijinke666/react-music-player.svg?branch=master" alt="Build Status">
+  </a>
+   <a href="https://badge.fury.io/js/react-jinke-music-playerr" title="npm">
+    <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version">
+  </a>
+     <a href="https://coveralls.io/github/lijinke666/react-music-player?branch=master" title="Coverage Status">
+    <img src="https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master" alt="Coverage Status">
+  </a>
+    </a>
+     <a href="https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player" title="Dependency Status">
+    <img src="https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square" alt="Dependency Status">
+  </a>
+</p>
+
+
+
+<p align="center">
+  <a href="https://github.com/lijinke666/react-music-player/blob/master/README.md">
+    English Doc
+  </a>
+</p>
+
+
 
 ## 安装
 
