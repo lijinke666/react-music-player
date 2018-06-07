@@ -13,3 +13,4 @@ __tests__
 coverage
 yarn.lock
 postcss.config.json
+logos
