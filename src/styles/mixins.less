@@ -1,9 +1,4 @@
 @import "./vars.less";
-ul,li{
-    margin:0;
-    padding: 0;
-    list-style-type: none;
-}
 .clearfix(){
     &::before,&::after{
         clear:both;
@@ -12,14 +7,8 @@ ul,li{
         zoom: 1;
     }
 }
-*{
-    box-sizing: border-box;
-}
 .hidden(){
     display: none !important;
-}
-.hidden{
-    .hidden();
 }
 .text-center(){
     text-align: center
@@ -55,8 +44,19 @@ ul,li{
     overflow: hidden;
 }
 .react-jinke-music-player-main{
+    ul,li{
+        margin:0;
+        padding: 0;
+        list-style-type: none;
+    }
+    *{
+        box-sizing: border-box;
+    }
     .text-center{
         text-align: center;
+    }
+    .hidden{
+        .hidden();
     }
     .loading{
         display: inline-flex;
