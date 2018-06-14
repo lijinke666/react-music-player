@@ -27,3 +27,21 @@ export function distinct(array) {
 
 export const arrayEqual = arr1 => arr2 =>
   JSON.stringify(arr1) === JSON.stringify(arr2);
+
+export const parseLyric = (lrc = "") => {
+  const lyrics = lrc.split("\n");
+
+  return lyrics.reduce((lrcObj, lyric, i) => {
+    const lrc = decodeURIComponent(lyric);
+    const timeReg = /\[\d*:\d*((\.|:)\d*)*\]/g;
+    const formatLrc = lrc.match(timeReg) || [];
+    const clause = lrc.replace(timeReg, "");
+    for (let line of formatLrc) {
+      const min = Number(String(line.match(/\[\d*/i)).slice(1));
+      const sec = Number(String(line.match(/:\d*/i)).slice(1));
+      const time = min * 60 + sec;
+      lrcObj[time] = clause;
+    }
+    return lrcObj;
+  }, {});
+};

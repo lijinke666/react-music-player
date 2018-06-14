@@ -1,8 +1,9 @@
 /**
- * @version 4.0.1
+ * @version 4.1.0
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
+ * @TODO: 增加歌词功能 (歌词可拖动,滚动)
  */
 
 import React, { PureComponent, Fragment } from "react";
@@ -39,12 +40,13 @@ import "rc-slider/assets/index.css";
 import "rc-switch/assets/index.css";
 
 const ISMOBILE = isMobile();
+const prefix = "react-jinke-music-player";
 
 export const AnimatePlayIcon = () => (
-  <FaPlayCircle className="react-jinke-music-player-play-icon" />
+  <FaPlayCircle className={`${prefix}-play-icon`} />
 );
 export const AnimatePauseIcon = () => (
-  <FaPauseCircle className="react-jinke-music-player-pause-icon" />
+  <FaPauseCircle className={`${prefix}-pause-icon`} />
 );
 
 export const Load = () => (
@@ -465,12 +467,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const miniProcessBarR = isMobile ? 30 : 40;
 
     const AudioController = (
-      <div
-        className={classNames("react-jinke-music-player")}
-        key="react-jinke-music-player"
-        style={defaultPosition}
-      >
-        <div className={classNames("music-player")} key="music-player">
+      <div className={prefix} key={prefix} style={defaultPosition}>
+        <div className="music-player" key="music-player">
           {showMiniProcessBar ? (
             <CircleProcessBar
               progress={currentTime / duration}
@@ -505,7 +503,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return (
       <div
         className={classNames(
-          "react-jinke-music-player-main",
+          `${prefix}-main`,
           {
             "light-theme": theme === this.lightThemeName,
             "dark-theme": theme === this.darkThemeName
@@ -814,7 +812,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //渲染播放模式 对应按钮
   renderPlayModeIcon = playMode => {
     let IconNode = "";
-    const animateName = "react-jinke-music-player-mode-icon";
+    const animateName = `${prefix}-mode-icon`;
     switch (playMode) {
       case this.PLAYMODE["order"]["key"]:
         IconNode = <OrderPlayIcon className={animateName} />;

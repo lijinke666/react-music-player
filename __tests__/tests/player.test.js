@@ -12,12 +12,6 @@ import ReactJkMusicPlayer,{
   PlayModel,
   CircleProcessBar
 } from "../../src";
-import {
-  createRandomNum,
-  formatTime,
-  arrayEqual,
-  distinct
-} from "../../src/utils";
 import PlayerMobile, { PlayModeTip } from "../../src/components/PlayerMobile";
 import AudioListsPanel from "../../src/components/AudioListsPanel";
 
@@ -184,13 +178,6 @@ describe("<ReactJkMusicPlayer/>", () => {
     expect(wrapper.text()).to.contain("extendsText2");
     assert(wrapper.find(".extendsContent").length === 1);
   });
-  it("should render range random", () => {
-    const repeat = 10;
-    const result = new Array(repeat).fill().map((_, i) => {
-      return createRandomNum(0, i + 1) <= i + 1;
-    });
-    expect(result.filter(v => v)).to.have.length(repeat);
-  });
   it("should set defaultVolume", () => {
     const volumes = [100, 20];
     const wrapper = mount(<ReactJkMusicPlayer defaultVolume={volumes[0]} />);
@@ -234,21 +221,6 @@ describe("<ReactJkMusicPlayer/>", () => {
     wrapper.setProps({ showProgressLoadBar: false });
     assert(wrapper.props().showProgressLoadBar === false);
     assert(wrapper.find(".progress-load-bar").length === 0);
-  });
-  it("should print second return format time", () => {
-    assert(formatTime(30000) === "20:00");
-    assert(formatTime(60) === "00:60");
-    assert(formatTime(140) === "02:20");
-  });
-  it("should return array is equal", () => {
-    assert(arrayEqual([1])([1]) === true);
-    assert(arrayEqual([1])([2]) === false);
-    assert(arrayEqual([{ musicSrc: "" }])([{ musicSrc: "xx" }]) === false);
-    assert(arrayEqual([{ musicSrc: "aa" }])([{ musicSrc: "aa" }]) === true);
-  });
-  it("should distinct arrar", () => {
-    assert(arrayEqual(distinct([1, 1, 1]))([1]) === true);
-    assert(arrayEqual(distinct([{ a: 1 }, { a: 1 }]))([{ a: 1 }]) === true);
   });
   it("should render operation group", () => {
     const prefix = ".react-jinke-music-player-mobile";
