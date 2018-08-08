@@ -5,7 +5,6 @@ import ReactDragListView from "react-drag-listview/lib/ReactDragListView";
 
 const AudioListsPanel = ({
   audioLists,
-  visible,
   notContentText,
   onCancel,
   onDelete,
@@ -21,23 +20,16 @@ const AudioListsPanel = ({
   panelTitle,
   panelToggleAnimate,
   glassBg,
-  cover,
   remove,
   removeId,
   audioListsDragEnd
 }) => (
   <div
-    className={cls("audio-lists-panel", panelToggleAnimate)}
+    className={cls("audio-lists-panel", panelToggleAnimate, {
+      "glass-bg": glassBg
+    })}
     key="audio-list-panel"
   >
-    {glassBg ? (
-      <div
-        className="glass-bg-container"
-        style={{ backgroundImage: `url(${cover})` }}
-      />
-    ) : (
-      undefined
-    )}
     <div className="audio-lists-panel-header">
       <h2 className="title">
         <span key="panel-title">{panelTitle} / </span>

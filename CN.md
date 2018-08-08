@@ -108,8 +108,8 @@ ReactDOM.render(
 | defaultPosition     | `object`              | `{top:0,left:0}`                                                                                                 | 当播放器是迷你模式时的初始位 比如 {top:0,left:0} or {top:'20%',left:"20%"}                                                                     |
 | playModeText        | `object`              | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | 播放模式对应的文字 |
 | playModeShowTime          | `number`  | `600`            |  切换播放模式时提示语的显示时间,单位毫秒 |
-| bounds          | `object` | `string`  | `body`            |  拖拽边界 可以是一个具体的字符串,比如 `body`,也可以是具体的值 `left,top,right,bottom`|
-| preload          | `boolean | string`  | `false`            |  是否在页面加载后立即加载音频。可选值 `auto|metadata|none` `true|false` 如果 `preload=true` 默认会 设置 preload="auto" |
+| bounds          | `object`,`string`  | `body`            |  拖拽边界 可以是一个具体的字符串,比如 `body`,也可以是具体的值 `left,top,right,bottom`|
+| preload          | `boolean`,`string`  | `false`            |  是否在页面加载后立即加载音频。可选值 `auto|metadata|none` `true|false` 如果 `preload=true` 默认会 设置 preload="auto" |
 | remember          | `boolean`  | `false`            | 是否记住当前播放状态,比如音量,播放状态,下次访问时继续播放  |
 | glassBg          | `boolean`  | `false`            |  是否显示毛玻璃背景效果 |
 | remove          | `boolean`  | `true`            |  音乐是否可以被删除 |

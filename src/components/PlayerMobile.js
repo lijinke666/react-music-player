@@ -21,9 +21,7 @@ const PlayerMobile = ({
   loadingIcon,
   themeSwitch,
   progressBar,
-  progressChange,
   openAudioListsPanel,
-  progressAfterChange,
   audioPrevPlay,
   audioNextPlay,
   prevAudioIcon,
@@ -49,14 +47,6 @@ const PlayerMobile = ({
       title={playMode}
       text={currentPlayModeName}
     />
-    {glassBg ? (
-      <div
-        className="glass-bg-container"
-        style={{ backgroundImage: `url(${cover})` }}
-      />
-    ) : (
-      undefined
-    )}
     <div className={`${prefix}-header group`}>
       <div className="left item" />
       <div className="title" key="audio-title">

@@ -1,5 +1,5 @@
 /**
- * @version 4.0.1
+ * @version 4.0.3
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -569,16 +569,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
           isMobile ? (
             undefined
           ) : (
-            <div key="panel" className="music-player-panel translate">
+            <div
+              key="panel"
+              className={classNames("music-player-panel", "translate", {
+                "glass-bg": glassBg
+              })}
+            >
               <section className="panel-content" key="panel-content">
-                {glassBg ? (
-                  <div
-                    className="glass-bg-container"
-                    style={{ backgroundImage: `url(${cover})` }}
-                  />
-                ) : (
-                  undefined
-                )}
                 <div
                   className={classNames("img-content", "img-rotate", {
                     "img-rotate-pause": pause || !playing || !cover
@@ -1078,7 +1075,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       if (playing === true) {
         this._pauseAudio();
       } else {
-        this.getAudioLength();
+        this.setAudioLength();
         this.loadAndPlayAudio();
       }
     }
@@ -1124,18 +1121,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
       );
     }
   };
-  //获取音频长度
-  getAudioLength = () => {
+  //设置音频长度
+  setAudioLength = () => {
     this.setState({
       duration: this.audio.duration
     });
   };
-  //如果当前音乐加载出错 尝试播放下一首
   onAudioLoadError = e => {
-    const { playMode, audioLists } = this.state;
+    const { playMode, audioLists, playId } = this.state;
     if (audioLists.length >= 1) {
+      //如果当前音乐加载出错 尝试播放下一首
       const { loadAudioErrorPlayNext } = this.props;
-      if (loadAudioErrorPlayNext) {
+      if (loadAudioErrorPlayNext && playId < audioLists.length - 1) {
         this.handlePlay(playMode);
       }
 
@@ -1356,19 +1353,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     document.addEventListener(
       "touchstart",
       () => {
-        this.loadAndPlayAudio();
+        this.audio.load();
+        this.onPlay();
       },
       { once: true }
     );
-    document.addEventListener("DOMContentLoaded", () => {
-      //监听微信准备就绪事件
-      document.addEventListener(
-        "WeixinJSBridgeReady",
-        () => {
-          this.loadAndPlayAudio();
-        },
-        false
-      );
+    //监听微信准备就绪事件
+    document.addEventListener("WeixinJSBridgeReady", () => {
+      this.audio.load();
+      this.onPlay();
     });
   };
   unBindEvents = (...options) => {
