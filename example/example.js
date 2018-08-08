@@ -15,20 +15,20 @@ const options = {
     {
       name: "丑",
       singer: "草东没有派对",
-      cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
-      musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
+      cover: "https://www.lijinke.cn/music/1387583682387727.jpg",
+      musicSrc: "https://www.lijinke.cn/music/201711082.mp3"
     },
     {
       name: "达尔文",
       singer: "蔡健雅",
-      cover: "http://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
-      musicSrc: "http://www.lijinke.cn/music/20171108.mp3"
+      cover: "https://www.lijinke.cn/music/5V49G-3GFLn-f6mRjHsGaUAh.jpg",
+      musicSrc: "https://www.lijinke.cn/music/20171108.mp3"
     },
     {
       name: "十年青春换绝症",
       singer: "贰佰",
-      cover: "http://www.lijinke.cn/music/18892908300128861.jpg",
-      musicSrc: "http://www.lijinke.cn/music/201711081.mp3"
+      cover: "https://www.lijinke.cn/music/18892908300128861.jpg",
+      musicSrc: "https://www.lijinke.cn/music/201711081.mp3"
     }
   ],
 

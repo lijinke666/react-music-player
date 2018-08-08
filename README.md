@@ -106,8 +106,8 @@ ReactDOM.render(
 | defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position with `left,top,right,and bottom` |
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
 | playModeShowTime          | `number`  | `600`            |  play mode toggle show time (ms) |
-| bounds          | `object` | `number`  | `body`            |  specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
-| preload          | `boolean | string`  | `false`            |  Whether to load audio immediately after the page loads. can be set to `auto|metadata|none` `true|false` if `preload=true` preload="auto" |
+| bounds          | `object`,`number`  | `body`            |  specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
+| preload          | `boolean`,`string`  | `false`            |  Whether to load audio immediately after the page loads. can be set to `auto|metadata|none` `true|false` if `preload=true` preload="auto" |
 | remember          | `boolean`  | `false`            |  The next time you access the player, do you keep the last state  |
 | glassBg          | `boolean`  | `false`            |  Whether the player's background displays frosted glass effect |
 | remove          | `boolean`  | `true`            |  The Audio Can be deleted  |

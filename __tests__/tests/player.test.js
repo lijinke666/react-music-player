@@ -208,7 +208,7 @@ describe("<ReactJkMusicPlayer/>", () => {
   it("should render glass background", () => {
     const wrapper = mount(<ReactJkMusicPlayer glassBg={true} />);
     assert(wrapper.props().glassBg === true);
-    assert(wrapper.find(".glass-bg-container").length >= 1);
+    assert(wrapper.find(".glass-bg").length >= 1);
   });
   it("should render delete btns", () => {
     const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} remove={true} />);
