@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
-const HOST = "0.0.0.0"
+const HOST = "localhost"
 const PORT = 8081
 
 module.exports = (env) => {
