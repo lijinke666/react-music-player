@@ -52,7 +52,7 @@ const PlayerMobile = ({
       <div className="title" key="audio-title">
         {name}
       </div>
-      <div className="right item" onTouchStart={onClose}>
+      <div className="right item" onClick={onClose}>
         {closeIcon}
       </div>
     </div>
@@ -90,7 +90,7 @@ const PlayerMobile = ({
             className="group prev-audio"
             title="Previous track"
             key="prev-audio"
-            onTouchStart={audioPrevPlay}
+            onClick={audioPrevPlay}
           >
             {prevAudioIcon}
           </span>
@@ -98,7 +98,7 @@ const PlayerMobile = ({
             className="group play-btn"
             title={playing ? "Click to pause" : "Click to play"}
             key="play-btn"
-            onTouchStart={onPlay}
+            onClick={onPlay}
           >
             {playing ? pauseIcon : playIcon}
           </span>
@@ -106,7 +106,7 @@ const PlayerMobile = ({
             className="group next-audio"
             title="Next track"
             key="next-audio"
-            onTouchStart={audioNextPlay}
+            onClick={audioNextPlay}
           >
             {nextAudioIcon}
           </span>
@@ -136,7 +136,7 @@ const PlayerMobile = ({
         <li
           className="item"
           key="play-lists-icon"
-          onTouchStart={openAudioListsPanel}
+          onClick={openAudioListsPanel}
         >
           {playListsIcon}
         </li>
