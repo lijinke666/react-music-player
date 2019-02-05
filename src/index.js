@@ -853,30 +853,64 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const { name, cover, musicSrc, singer } = audioLists[playId];
 
-    this.setState(
-      {
-        name,
-        cover,
-        musicSrc,
-        singer,
-        playId,
-        currentTime: 0,
-        duration: 0,
-        playing: false,
-        loading: true,
-        loadProgress: 0
-      },
-      () => {
-        this.audio.load();
-      }
-    );
+    switch (typeof(musicSrc)) {
+      case 'function':
+        musicSrc().then(val => {
+          this.setState(
+            {
+              name,
+              cover,
+              musicSrc: val,
+              singer,
+              playId,
+              currentTime: 0,
+              duration: 0,
+              playing: false,
+              loading: true,
+              loadProgress: 0
+            },
+            () => {
+              this.audio.load();
+            }
+          );
 
-    this.props.onAudioPlayTrackChange &&
-      this.props.onAudioPlayTrackChange(
-        playId,
-        audioLists,
-        this.getBaseAudioInfo()
-      );
+          this.props.onAudioPlayTrackChange &&
+            this.props.onAudioPlayTrackChange(
+              playId,
+              audioLists,
+              this.getBaseAudioInfo()
+            );
+        });
+        break;
+      default:
+        this.setState(
+          {
+            name,
+            cover,
+            musicSrc,
+            singer,
+            playId,
+            currentTime: 0,
+            duration: 0,
+            playing: false,
+            loading: true,
+            loadProgress: 0
+          },
+          () => {
+            this.audio.load();
+          }
+        );
+
+        this.props.onAudioPlayTrackChange &&
+          this.props.onAudioPlayTrackChange(
+            playId,
+            audioLists,
+            this.getBaseAudioInfo()
+          );
+
+    }
+
+
   };
   clearAudioDuration = () => {
     this.setState({
@@ -1463,10 +1497,23 @@ export default class ReactJkMusicPlayer extends PureComponent {
       const lastPlayStatus = remember
         ? this.getLastPlayStatus()
         : { playId, playMode: defaultPlayMode };
-      this.setState({
-        ...this.getPlayInfo(audioLists, playId),
-        ...lastPlayStatus
-      });
+
+      const info = this.getPlayInfo(audioLists, playId);
+      switch (typeof(info.musicSrc)) {
+        case 'function':
+          info.musicSrc().then(val => {
+            this.setState({
+              ...info, musicSrc: val,
+              ...lastPlayStatus
+            });
+          });
+          break;
+        default:
+          this.setState({
+            ...info,
+            ...lastPlayStatus
+        });
+      }
     }
   }
   componentWillUnmount() {
