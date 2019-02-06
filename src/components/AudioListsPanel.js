@@ -16,7 +16,6 @@ const AudioListsPanel = ({
   pauseIcon,
   closeIcon,
   deleteIcon,
-  isMobile,
   panelTitle,
   panelToggleAnimate,
   glassBg,
@@ -71,39 +70,40 @@ const AudioListsPanel = ({
         <ReactDragListView
           nodeSelector="li"
           handleSelector=".player-name"
-          lineClassName=".audio-lists-panel-drag-line"
+          lineClassName="audio-lists-panel-drag-line"
           onDragEnd={audioListsDragEnd}
         >
           <ul>
             {audioLists.map((audio, i) => {
               const { name, singer } = audio;
+              const playing = playId === audio.id;
               return (
                 <li
                   key={i}
                   title={
                     pause
                       ? "Click to play"
-                      : playId === i
-                        ? "Click to pause"
-                        : "Click to play"
+                      : playing
+                      ? "Click to pause"
+                      : "Click to play"
                   }
                   className={cls(
                     "audio-item",
-                    { playing: playId === i },
+                    { playing },
                     { pause },
-                    { remove: removeId === i }
+                    { remove: removeId === audio.id }
                   )}
-                  onClick={() => onPlay(i)}
+                  onClick={() => onPlay(audio.id)}
                 >
                   <span className="group player-status" key="player-status">
                     <span className="player-icons" key={`player-icons-${i}`}>
-                      {playId === i && loading
+                      {playing && loading
                         ? loading
-                        : playId === i
-                          ? pause
-                            ? playIcon
-                            : pauseIcon
-                          : undefined}
+                        : playing
+                        ? pause
+                          ? playIcon
+                          : pauseIcon
+                        : undefined}
                     </span>
                   </span>
                   <span className="group player-name" key="player-name">
@@ -117,7 +117,7 @@ const AudioListsPanel = ({
                       className="group player-delete"
                       key="player-delete"
                       title={`Click to delete ${name}`}
-                      onClick={onDelete(i)}
+                      onClick={onDelete(audio.id)}
                     >
                       {closeIcon}
                     </span>

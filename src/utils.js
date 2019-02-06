@@ -27,3 +27,17 @@ export function distinct(array) {
 
 export const arrayEqual = arr1 => arr2 =>
   JSON.stringify(arr1) === JSON.stringify(arr2);
+
+const s4 = () => {
+  return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+};
+// Generate a pseudo-GUID by concatenating random hexadecimal.
+export const uuId = () => {
+  return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+};
+
+export const isSafari = () => {
+  return (
+    /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)
+  );
+};

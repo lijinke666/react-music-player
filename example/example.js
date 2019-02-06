@@ -13,6 +13,12 @@ const options = {
   //audio lists model
   audioLists: [
     {
+      name: "难得",
+      singer: "安来宁",
+      cover: "//cdn.lijinke.cn/nande.jpg",
+      musicSrc: "//cdn.lijinke.cn/nande.mp3"
+    },
+    {
       name: "Despacito",
       singer: "Luis Fonsi",
       cover: "http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg",
@@ -27,10 +33,10 @@ const options = {
       musicSrc: "http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3"
     },
     {
-      name: "十年青春换绝症",
-      singer: "贰佰",
-      cover: "https://www.lijinke.cn/music/18892908300128861.jpg",
-      musicSrc: "https://www.lijinke.cn/music/201711081.mp3"
+      name: "难得",
+      singer: "安来宁",
+      cover: "//cdn.lijinke.cn/nande.jpg",
+      musicSrc: "//cdn.lijinke.cn/nande.mp3"
     }
   ],
 
