@@ -1384,7 +1384,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       cover: "",
       singer: "",
       musicSrc: "",
-      playId: this.getDefaultPlayIndex(defaultPlayIndex),
+      playId: this.getDefaultPlayId(),
       theme,
       pause: false
     };
@@ -1462,7 +1462,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
         id: uuId()
       };
     });
-    const playId = this.state.playId || _audioLists[0].id;
+    const playIndex = Math.max(
+      0,
+      Math.min(audioLists.length, this.props.defaultPlayIndex)
+    );
+    const playId = this.state.playId || _audioLists[playIndex].id;
     const { name = "", cover = "", singer = "", musicSrc = "" } =
       _audioLists.find(({ id }) => id === playId) || {};
     return { name, cover, singer, musicSrc, audioLists: _audioLists, playId };
@@ -1488,18 +1492,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const { soundValue = this.defaultVolume } = this.getLastPlayStatus();
     this.setAudioVolume(remember ? soundValue : this.defaultVolume);
   };
-  getDefaultPlayIndex = () => {
-    // return Math.max(
-    //   0,
-    //   Math.min(this.props.audioLists.length, this.props.defaultPlayIndex)
-    // );
-    return this.props.audioLists[0].id;
+  getDefaultPlayId = (audioLists = this.props.audioLists) => {
+    const playIndex = Math.max(
+      0,
+      Math.min(audioLists.length, this.props.defaultPlayIndex)
+    );
+    return audioLists[playIndex].id;
   };
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
   componentWillReceiveProps({ audioLists }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
       //当列表改变 如3首变成1首 这时以最小值播放
-      // const playId = Math.min(audioLists.length, this.state.playId);
       this.initPlayInfo(audioLists);
       this.bindEvents(this.audio);
       this.props.onAudioListsChange &&
@@ -1524,11 +1527,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.toggleMode(mode);
 
     if (audioLists.length >= 1) {
+      const info = this.getPlayInfo(audioLists);
       const lastPlayStatus = remember
         ? this.getLastPlayStatus()
         : { playMode: defaultPlayMode };
 
-      const info = this.getPlayInfo(audioLists);
       switch (typeof info.musicSrc) {
         case "function":
           info.musicSrc().then(val => {
