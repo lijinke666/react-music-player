@@ -1,6 +1,6 @@
 {
   "name": "react-jinke-music-player",
-  "version": "4.0.4",
+  "version": "4.1.0",
   "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
   "scripts": {
@@ -53,13 +53,13 @@
     "component"
   ],
   "dependencies": {
-    "classnames": "^2.2.5",
-    "is-mobile": "^0.2.2",
+    "classnames": "^2.2.6",
+    "is-mobile": "^2.0.0",
     "prop-types": "^15.6.0",
-    "rc-slider": "^8.3.1",
-    "rc-switch": "^1.5.2",
-    "react-drag-listview": "^0.0.9",
-    "react-draggable": "^3.0.5",
+    "rc-slider": "^8.6.5",
+    "rc-switch": "^1.9.0",
+    "react-drag-listview": "^0.1.4",
+    "react-draggable": "^3.1.1",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {
@@ -129,7 +129,7 @@
     "sweetalert": "^2.1.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.7.0",
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^3.1.14"
   },
   "jest": {
     "moduleFileExtensions": [

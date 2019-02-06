@@ -1,5 +1,9 @@
 @import "./vars.less";
 @import "./mixins.less";
+
+.audio-lists-panel-drag-line{
+    border: 1px solid @primary-color !important;
+}
 .audio-lists-panel {
     display: block;
     overflow: hidden;
@@ -18,9 +22,6 @@
     transition: background-color @common-animate-time;
     svg {
         font-size: 24px;
-    }
-    .audio-lists-panel-drag-line{
-        border:2px dashed @primary-color !important;
     }
     &.show {
         animation: scaleTo @common-animate-time forwards;
