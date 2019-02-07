@@ -43,6 +43,9 @@ const options = {
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
 
+  //if you want dynamic change current play audio you can change it [type `number` default `0`] 
+  // playIndex: 0,
+
   //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
   theme: "dark",
 
@@ -219,16 +222,16 @@ const options = {
     console.log("theme change:", theme);
   },
 
-  onAudioListsChange(currentPlayIndex, audioLists, audioInfo) {
-    console.log("audio lists change:", currentPlayIndex);
-    console.log("audio lists change:", audioLists);
-    console.log("audio lists change:", audioInfo);
+  onAudioListsChange(currentPlayId, audioLists, audioInfo) {
+    console.log("[currentPlayId] audio lists change:", currentPlayId);
+    console.log("[audioLists] audio lists change:", audioLists);
+    console.log("[audioInfo] audio lists change:", audioInfo);
   },
 
-  onAudioPlayTrackChange(currentPlayIndex, audioLists, audioInfo) {
+  onAudioPlayTrackChange(currentPlayId, audioLists, audioInfo) {
     console.log(
       "audio play track change:",
-      currentPlayIndex,
+      currentPlayId,
       audioLists,
       audioInfo
     );
@@ -267,7 +270,7 @@ class Demo extends React.PureComponent {
           name: "I'm new here",
           singer: "jack",
           cover: "http://www.lijinke.cn/music/1387583682387727.jpg",
-          musicSrc: "http://www.lijinke.cn/music/201711082.mp3"
+          musicSrc: `http://www.lijinke.cn/music/${Date.now()}.mp3`
         }
       ]
     };
@@ -322,6 +325,15 @@ class Demo extends React.PureComponent {
       params: data
     });
   };
+  changePlayIndex = () => {
+    const data = {
+      ...this.state.params,
+      playIndex: createRandomNum(0, this.state.params.audioLists.length)
+    };
+    this.setState({
+      params: data
+    });
+  };
   render() {
     const { params } = this.state;
     return (
@@ -342,6 +354,9 @@ class Demo extends React.PureComponent {
           <button onClick={this.extendsContent}>+ add extends content</button>
           <button onClick={this.playModeShowTime}>
             change play mode show time ({params.playModeShowTime} ms)
+          </button>
+          <button onClick={this.changePlayIndex}>
+            change playIndex ({params.playIndex || 0})
           </button>
 
           <label htmlFor="glass">

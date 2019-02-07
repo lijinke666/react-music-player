@@ -26,10 +26,6 @@ react-jinke-music-player
      <a href="https://coveralls.io/github/lijinke666/react-music-player?branch=master" title="Coverage Status">
     <img src="https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master" alt="Coverage Status">
   </a>
-    </a>
-     <a href="https://beta.gemnasium.com/projects/github.com/lijinke666/react-music-player" title="Dependency Status">
-    <img src="https://beta.gemnasium.com/badges/github.com/lijinke666/react-music-player.svg?style=flat-square" alt="Dependency Status">
-  </a>
 </p>
 
 

@@ -264,7 +264,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     glassBg: PropTypes.bool,
     remember: PropTypes.bool,
     remove: PropTypes.bool,
-    defaultPlayIndex: PropTypes.number
+    defaultPlayIndex: PropTypes.number,
+    playIndex: PropTypes.number
   };
   constructor(props) {
     super(props);
@@ -1456,15 +1457,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   };
   getPlayInfo = (audioLists = []) => {
-    const _audioLists = audioLists.map(info => {
-      return {
-        ...info,
-        id: uuId()
-      };
-    });
+    const newAudioLists = audioLists.filter(audio => !audio["id"]);
+    const lastAudioLists = audioLists.filter(audio => audio["id"]);
+    const _audioLists = [
+      ...lastAudioLists,
+      ...newAudioLists.map(info => {
+        return {
+          ...info,
+          id: uuId()
+        };
+      })
+    ];
     const playIndex = Math.max(
       0,
-      Math.min(audioLists.length, this.props.defaultPlayIndex)
+      Math.min(_audioLists.length, this.props.defaultPlayIndex)
     );
     const playId = this.state.playId || _audioLists[playIndex].id;
     const { name = "", cover = "", singer = "", musicSrc = "" } =
@@ -1500,10 +1506,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return audioLists[playIndex].id;
   };
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
-  componentWillReceiveProps({ audioLists }) {
+  componentWillReceiveProps({ audioLists, playIndex }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
-      //当列表改变 如3首变成1首 这时以最小值播放
-      this.initPlayInfo(audioLists);
+      const newAudioLists = [
+        ...this.state.audioLists,
+        ...audioLists.filter(
+          (audio, i) =>
+            this.state.audioLists.findIndex(
+              v => v.musicSrc === audio.musicSrc
+            ) === -1
+        )
+      ];
+      this.initPlayInfo(newAudioLists);
       this.bindEvents(this.audio);
       this.props.onAudioListsChange &&
         this.props.onAudioListsChange(
@@ -1511,6 +1525,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
           audioLists,
           this.getBaseAudioInfo()
         );
+    } else {
+      // 播放索引 改变
+      const currentPlayIndex = this.state.audioLists.findIndex(
+        audio => audio.id === this.state.playId
+      );
+      if (currentPlayIndex !== playIndex) {
+        const _playIndex = Math.max(
+          0,
+          Math.min(this.state.audioLists.length, playIndex)
+        );
+        this.audioListsPlay(this.state.audioLists[_playIndex].id, true);
+      }
     }
   }
   //合并state 更新初始值
