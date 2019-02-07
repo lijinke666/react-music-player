@@ -108,6 +108,7 @@ ReactDOM.render(
 | glassBg          | `boolean`  | `false`            |  Whether the player's background displays frosted glass effect |
 | remove          | `boolean`  | `true`            |  The Audio Can be deleted  |
 | defaultPlayIndex          | `number`  | `0`            |  Default play index of the audio player  |
+| playIndex          | `number`  | `0`            |  play index of the audio player  |
 | openText          | `string`  | `open`            | audio controller open text  |
 | closeText         | `string`  | `close`           | audio controller close text |
 | panelTitle        | `string`  | `PlayList`        | audio list panel title |
