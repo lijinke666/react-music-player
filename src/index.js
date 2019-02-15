@@ -1478,16 +1478,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return { name, cover, singer, musicSrc, audioLists: _audioLists, playId };
   };
   initPlayInfo = (audioLists, cb) => {
-    const info = this.getPlayInfo(audioLists)
+    const info = this.getPlayInfo(audioLists);
 
     switch (typeof info.musicSrc) {
       case "function":
         info.musicSrc().then(originMusicSrc => {
-          this.setState({...info, musicSrc: originMusicSrc}, cb);
+          this.setState({ ...info, musicSrc: originMusicSrc }, cb);
         }, this.onAudioLoadError);
         break;
       default:
-        this.setState(info, cb);;
+        this.setState(info, cb);
     }
   };
   listenerIsMobile = ({ matches }) => {
