@@ -2,532 +2,645 @@
 @import "./mixins.less";
 @import "./playerMobile.less";
 @import "./audioListsPanel.less";
+
 .react-jinke-music-player-main {
-    touch-action: none;
-    font-family: inherit;
-    ::-webkit-scrollbar-thumb {
-        height: 20px;
-        background-color: @primary-color;
-        opacity: .5;
+  touch-action: none;
+  font-family: inherit;
+
+  ::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: @primary-color;
+    opacity: .5;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: @bg-color;
+  }
+
+  .play-mode-title {
+    position: absolute;
+    right: 72px;
+    bottom: @music-player-panel-height;
+    padding: 5px 20px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    line-height: 1.5;
+    text-align: center;
+    transform: translate3d(100%, 0, 0);
+    transform-origin: bottom center;
+    z-index: 88;
+    opacity: 0;
+    transition: all @common-animate-time;
+
+    &.play-mode-title-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
-    ::-webkit-scrollbar {
-        width: 10px;
-        background-color: @bg-color;
+  }
+
+  .glass-bg-container {
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 300%;
+    height: 300%;
+    left: 0;
+    top: 0;
+    filter: blur(80px);
+    z-index: -1;
+  }
+
+  .glass-bg {
+    backdrop-filter: blur(10px)
+  }
+
+  svg {
+    font-size: 24px;
+    transition: color @common-animate-time;
+
+    &:hover,
+    &:active {
+      color: @primary-color;
     }
-    .play-mode-title {
-        position: absolute;
-        right: 72px;
-        bottom: @music-player-panel-height;
-        padding: 5px 20px;
-        background-color: rgba(0, 0, 0, .5);
-        color: #fff;
-        line-height: 1.5;
-        text-align: center;
-        transform: translate3d(100%,0,0);
-        transform-origin: bottom center;
-        z-index: 88;
-        opacity: 0;
-        transition:all @common-animate-time;
-        &.play-mode-title-visible {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-        }
-    }
-    .glass-bg-container{
-        position: absolute;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size:cover;
-        width:300%;
-        height:300%;
-        left:0;
-        top:0;
-        filter: blur(80px);
-        z-index: -1;
-    }
-    .glass-bg {
-        backdrop-filter: blur(10px)
-    }
+  }
+
+  @media screen and (max-width:767px) {
     svg {
-        font-size: 24px;
-        transition: color @common-animate-time;
-        &:hover,
-        &:active {
+      font-size: 22px;
+    }
+  }
+
+  .react-jinke-music-player-play-icon,
+  .react-jinke-music-player-pause-icon {
+    animation: imgRotate @common-animate-time ;
+  }
+
+  .react-jinke-music-player-mode-icon {
+    animation: scaleTo @common-animate-time;
+  }
+
+  .music-player-panel {
+    box-shadow: 0 0 3px #403f3f;
+    @panel-height: @music-player-panel-height;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    height: @panel-height;
+    background-color: @panel-bg; // padding: 6px 20px;
+    z-index: 99;
+    transition: background-color @common-animate-time;
+
+    // transition: box-shadow,color @common-animate-time;
+    .panel-content {
+      height: 100%;
+      padding: 0 30px;
+      position: relative;
+      overflow: hidden;
+      .center();
+
+      .img-content {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        box-shadow: 0 0 10px rgba(0, 34, 77, 0.05);
+
+        @media screen and (max-width: 768px) {
+          width: 40px;
+          height: 40px;
+        }
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .img-rotate {
+        animation: imgRotate 15s linear infinite;
+      }
+
+      .hide-panel,
+      .upload-music {
+        flex-basis: 10%;
+        cursor: pointer;
+        margin-left: 15px;
+      }
+
+      @media screen and (max-width:768px) {
+        .progress-bar-content {
+          .hidden()
+        }
+      }
+
+      .progress-bar-content {
+        flex: 1;
+        padding: 0 20px;
+
+        .audio-title {
+          transition: color @common-animate-time;
+          .ellipsis-1();
+          display: inline-block;
+          max-width: 400px;
+        }
+
+        .audio-main {
+          width: 100%;
+          display: inline-flex;
+          justify-content: center;
+          margin-top: 6px;
+
+          .current-time,
+          .duration {
+            font-size: 12px;
+            flex-basis: 5%;
+            transition: color @common-animate-time;
+          }
+        }
+
+        .progress-bar {
+          flex: 1 1 auto;
+          @progress-height: 5px;
+          width: 100%;
+          margin: 2px 20px 0 20px;
+          position: relative;
+          @load-bar-z-index: 77;
+
+          .progress {
+            position: absolute;
+            display: inline-block;
+            height: @progress-height;
+            left: 0;
+            top: 0;
+            transition: width @common-animate-time;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);
+            background-color: @primary-color;
+
+            .progress-change {
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              right: 0;
+              bottom: -2px;
+              border-radius: 50%;
+              box-shadow: 0 0 2px rgba(0, 0, 0, .4);
+              background-color: #fff;
+              cursor: pointer;
+            }
+          }
+
+          .progress-load-bar {
+            position: absolute;
+            width: 0%;
+            height: @progress-height - 1px;
+            background-color: @progress-load-bar-bg-color;
+            transition: width, background-color @common-animate-time;
+            left: 0;
+            top: 5px;
+            z-index: @load-bar-z-index;
+          }
+
+          .rc-slider-track {
+            z-index: @load-bar-z-index+1;
+          }
+
+          .rc-slider-handle {
+            z-index: @load-bar-z-index+2;
+          }
+        }
+      }
+
+      .player-content {
+        padding-left: 5%;
+        display: inline-flex;
+        align-items: center;
+        align-content: center;
+        flex-basis: 15%;
+
+        >.group {
+
+          &,
+          &>svg {
+            cursor: pointer;
+          }
+
+          text-align: center;
+          flex:1;
+          margin: 0 10px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+
+          @media screen and (max-width:767px) {
+            margin: 0 6px;
+          }
+
+          @media screen and (max-width:320px) {
+            margin: 0 4px;
+          }
+
+          >i {
+            cursor: pointer;
             color: @primary-color;
+            font-size: 25px;
+            vertical-align: middle
+          }
         }
-    }
-    @media screen and (max-width:767px) {
-        svg {
-            font-size: 22px;
+
+        // >.group:last-child{
+        //     margin-10px;
+        // }
+        .theme-switch {
+          .rc-switch {
+            background-color: transparent;
+          }
         }
-    }
-    .react-jinke-music-player-play-icon,
-    .react-jinke-music-player-pause-icon,
-        {
-        animation: imgRotate @common-animate-time ;
-    }
-    .react-jinke-music-player-mode-icon {
-        animation: scaleTo @common-animate-time;
-    }
-    .music-player-panel {
-        box-shadow: 0 0 3px #403f3f;
-        @panel-height: @music-player-panel-height;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        left: 0;
-        color: #fff;
-        height: @panel-height;
-        background-color: @panel-bg; // padding: 6px 20px;
-        z-index: 99;
-        transition: background-color @common-animate-time;
-        // transition: box-shadow,color @common-animate-time;
-        .panel-content {
-            height: 100%;
-            padding: 0 30px;
-            position: relative;
-            overflow: hidden;
-            .center();
-            .img-content {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                overflow: hidden;
-                background-size: 100%;
-                background-repeat: no-repeat;
-                box-shadow: 0 0 10px rgba(0, 34, 77, 0.05);
-                @media screen and (max-width: 768px) {
-                    width: 40px;
-                    height: 40px;
-                }
-                img {
-                    width: 100%;
-                }
-            }
-            .img-rotate {
-                animation: imgRotate 15s linear infinite;
-            }
-            .hide-panel,
-            .upload-music {
-                flex-basis: 10%;
-                cursor: pointer;
-                margin-left: 15px;
-            }
-            @media screen and (max-width:768px) {
-                .progress-bar-content {
-                    .hidden()
-                }
-            }
-            .progress-bar-content {
-                flex: 1;
-                padding: 0 20px;
-                .audio-title {
-                    transition: color @common-animate-time;
-                    .ellipsis-1();
-                    display: inline-block;
-                    max-width: 400px;
-                }
-                .audio-main {
-                    width: 100%;
-                    display: inline-flex;
-                    justify-content: center;
-                    margin-top: 6px;
-                    .current-time,
-                    .duration {
-                        font-size: 12px;
-                        flex-basis: 5%;
-                        transition: color @common-animate-time;
-                    }
-                }
-                .progress-bar {
-                    flex: 1 1 auto;
-                    @progress-height: 5px;
-                    width: 100%;
-                    margin: 2px 20px 0 20px;
-                    position: relative;
-                    @load-bar-z-index: 77;
-                    .progress {
-                        position: absolute;
-                        display: inline-block;
-                        height: @progress-height;
-                        left: 0;
-                        top: 0;
-                        transition: width @common-animate-time;
-                        background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgba(0, 0, 0, 0.05) 33%, rgba(0, 0, 0, 0.05) 67%, rgba(0, 0, 0, 0) 69%);
-                        background-color: @primary-color;
-                        .progress-change {
-                            position: absolute;
-                            width: 10px;
-                            height: 10px;
-                            right: 0;
-                            bottom: -2px;
-                            border-radius: 50%;
-                            box-shadow: 0 0 2px rgba(0, 0, 0, .4);
-                            background-color: #fff;
-                            cursor: pointer;
-                        }
-                    }
-                    .progress-load-bar {
-                        position: absolute;
-                        width: 0%;
-                        height: @progress-height - 1px;
-                        background-color: @progress-load-bar-bg-color;
-                        transition: width,background-color @common-animate-time;
-                        left: 0;
-                        top: 5px;
-                        z-index: @load-bar-z-index;
-                    }
-                    .rc-slider-track {
-                        z-index: @load-bar-z-index+1;
-                    }
-                    .rc-slider-handle {
-                        z-index: @load-bar-z-index+2;
-                    }
-                }
-            }
-            .player-content {
-                padding-left: 5%;
-                display: inline-flex;
-                align-items: center;
-                align-content: center;
-                flex-basis: 15%;
-                >.group {
-                    &,
-                    &>svg {
-                        cursor: pointer;
-                    }
-                    text-align: center;
-                    flex:1;
-                    margin: 0 10px;
-                    display: inline-flex;
-                    justify-content: center;
-                    align-items: center;
-                    @media screen and (max-width:767px) {
-                        margin: 0 6px;
-                    }
-                    @media screen and (max-width:320px) {
-                        margin: 0 4px;
-                    }
-                    >i {
-                        cursor: pointer;
-                        color: @primary-color;
-                        font-size: 25px;
-                        vertical-align: middle
-                    }
-                } // >.group:last-child{
-                //     margin-10px;
-                // }
-                .theme-switch {
-                    .rc-switch {
-                        background-color: transparent;
-                    }
-                }
-                @media screen and (max-width:768px) {
-                    .play-sounds {
-                        .hidden()
-                    }
-                }
-                .prev-audio,
-                .next-audio {
-                    svg {
-                        font-size: 35px;
-                    }
-                }
-                .play-btn {
-                    padding: 0 18px;
-                    svg {
-                        font-size: 26px;
-                    }
-                }
-                .loop-btn {
-                    &.active {
-                        color: @primary-color
-                    }
-                }
-                .play-sounds {
-                    align-items: center;
-                    svg {
-                        font-size: 28px;
-                    }
-                    .sounds-icon {
-                        margin-right: 15px;
-                        flex: 1 1 auto;
-                    }
-                    .sound-operation {
-                        width: 100px;
-                    }
-                }
-                .audio-lists-btn {
-                    min-width: 60px;
-                    height: 23px;
-                    border-radius: 40px;
-                    background-color: rgba(0, 0, 0, .3);
-                    padding: 0 10px;
-                    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.02);
-                    position: relative;
-                    transition: color,background-color @common-animate-time;
-                    >.group:hover {
-                        &,
-                        &>svg {
-                            color: @primary-color;
-                        }
-                    }
-                    .audio-lists-num {
-                        margin-left: 8px;
-                    }
-                }
-            }
+
+        @media screen and (max-width:768px) {
+          .play-sounds {
+            .hidden()
+          }
         }
-        .rc-switch-inner {
-            svg {
-                font-size: 13px;
-            }
+
+        .prev-audio,
+        .next-audio {
+          svg {
+            font-size: 35px;
+          }
         }
-    }
-    .rc-slider-rail {
-        transition: background-color @common-animate-time;
-    }
-    &.light-theme {
-        svg {
-            color: @primary-color;
-            &:hover,
-            &:active {
-                color: lighten(@primary-color, 5%);
-            }
+
+        .play-btn {
+          padding: 0 18px;
+
+          svg {
+            font-size: 26px;
+          }
         }
-        .music-player-panel {
-            box-shadow: 0 1px 2px 0 rgba(0, 34, 77, .05);
-            background-color: @light-theme-panel-bg;
-            color: #7D7D7D;
-            .img-content {
-                box-shadow: 0 0 10px #dcdcdc;
-            }
+
+        .loop-btn {
+          &.active {
+            color: @primary-color
+          }
         }
-        .rc-switch {
-            color: #fff;
-            &::after {
-                background-color: #fff;
-            }
+
+        .play-sounds {
+          align-items: center;
+
+          svg {
+            font-size: 28px;
+          }
+
+          .sounds-icon {
+            margin-right: 15px;
+            flex: 1 1 auto;
+          }
+
+          .sound-operation {
+            width: 100px;
+          }
         }
-        .rc-switch-checked {
-            background-color: @primary-color  !important;
-            border: 1px solid @primary-color
-        }
-        .rc-switch-inner {
-            color: #fff;
-        }
+
         .audio-lists-btn {
-            background-color: @bg-color !important;
-            &:hover,
-            &:active {
-                color: @font-color;
-                background-color: lighten(@bg-color, 2%);
+          min-width: 60px;
+          height: 23px;
+          border-radius: 40px;
+          background-color: rgba(0, 0, 0, .3);
+          padding: 0 10px;
+          box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.02);
+          position: relative;
+          transition: color, background-color @common-animate-time;
+
+          >.group:hover {
+
+            &,
+            &>svg {
+              color: @primary-color;
             }
-            >.group:hover {
-                &,
-                &>svg {
-                    color: @font-color;
-                }
-            }
+          }
+
+          .audio-lists-num {
+            margin-left: 8px;
+          }
         }
-        .audio-lists-panel {
-            color: @font-color;
-            background-color: @lists-panel-item-bg-light;
-            box-shadow: 0 0 2px #dcdcdc;
-            .audio-item {
-                background-color: @lists-panel-item-bg-light;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-                @media screen and (max-width: 767px) {
-                    background-color:@lists-panel-item-bg-light  !important;
-                    &.playing {
-                        background-color: darken(@lists-panel-item-bg-light, 2%) !important;
-                        svg {
-                            color: @primary-color;
-                        }
-                    }
-                }
-            }
-        }
-        .audio-lists-panel-header {
-            color: @font-color;
-            background-color: #F4F4F7;
-            border-bottom: 1px solid #F4F4F7;
-        }
-        .audio-item {
-            box-shadow: 0 0 2px transparent !important;
-            border-bottom: 1px solid rgba(220, 220, 220, 0.26);
-            background-color: rgba(64, 68, 75, 0.65);
-            &:hover,
-            &:active {
-                background-color: darken(@lists-panel-item-bg-light, 2%) !important;
-                svg {
-                    color: @primary-color;
-                }
-            }
-            &.playing {
-                background-color: darken(@lists-panel-item-bg-light, 2%) !important;
-                svg {
-                    color: @primary-color;
-                }
-            }
-        }
-        .player-time {
-            color: rgba(162, 162, 162, .45) !important;
-        }
-        .react-jinke-music-player-mobile {
-            background-color: @light-theme-panel-bg;
-            color: @font-color;
-            &-cover {
-                border: 5px solid transparent;
-                box-shadow: 0 0 30px 2px rgba(0, 0, 0, .2);
-            }
-            .current-time,
-            .duration {
-                color: @font-color;
-            }
-            .rc-slider-rail {
-                background-color: #e9e9e9;
-            }
-            &-operation {
-                svg {
-                    color: @font-color;
-                }
-            }
-            &-tip {
-                svg {
-                    color: #fff !important;
-                }
-            }
-            &-singer {
-                .name {
-                    color:@font-color;
-                    transition: color @common-animate-time;
-                    &::before,
-                    &::after {
-                        background-color: @font-color;
-                    }
-                }
-            }
-        }
-        .play-mode-title {
-            background-color: @light-theme-panel-bg;
-            color: @primary-color;
-        }
+      }
     }
+
+    .rc-switch-inner {
+      svg {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .rc-slider-rail {
+    background-color: @progress-bar-bg-color-dark  !important;
+    transition: background-color @common-animate-time;
+  }
+
+  &.light-theme {
+    svg {
+      color: @primary-color;
+
+      &:hover,
+      &:active {
+        color: lighten(@primary-color, 5%);
+      }
+    }
+
+    .rc-slider-rail {
+      background-color: @progress-bar-bg-color-light  !important;
+    }
+
+    .music-player-panel {
+      box-shadow: 0 1px 2px 0 rgba(0, 34, 77, .05);
+      background-color: @light-theme-panel-bg;
+      color: #7D7D7D;
+
+      .img-content {
+        box-shadow: 0 0 10px #dcdcdc;
+      }
+    }
+
+    .rc-switch {
+      color: #fff;
+
+      &::after {
+        background-color: #fff;
+      }
+    }
+
+    .rc-switch-checked {
+      background-color: @primary-color  !important;
+      border: 1px solid @primary-color
+    }
+
+    .rc-switch-inner {
+      color: #fff;
+    }
+
+    .audio-lists-btn {
+      background-color: @bg-color  !important;
+
+      &:hover,
+      &:active {
+        color: @font-color;
+        background-color: lighten(@bg-color, 2%);
+      }
+
+      >.group:hover {
+
+        &,
+        &>svg {
+          color: @font-color;
+        }
+      }
+    }
+
+    .audio-lists-panel {
+      color: @font-color;
+      background-color: @lists-panel-item-bg-light;
+      box-shadow: 0 0 2px #dcdcdc;
+
+      .audio-item {
+        background-color: @lists-panel-item-bg-light;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+
+        @media screen and (max-width: 767px) {
+          background-color: @lists-panel-item-bg-light  !important;
+
+          &.playing {
+            background-color: darken(@lists-panel-item-bg-light, 2%) !important;
+
+            svg {
+              color: @primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    .audio-lists-panel-header {
+      color: @font-color;
+      background-color: #F4F4F7;
+      border-bottom: 1px solid #F4F4F7;
+    }
+
+    .audio-item {
+      box-shadow: 0 0 2px transparent !important;
+      border-bottom: 1px solid rgba(220, 220, 220, 0.26);
+      background-color: rgba(64, 68, 75, 0.65);
+
+      &:hover,
+      &:active {
+        background-color: darken(@lists-panel-item-bg-light, 2%) !important;
+
+        svg {
+          color: @primary-color;
+        }
+      }
+
+      &.playing {
+        background-color: darken(@lists-panel-item-bg-light, 2%) !important;
+
+        svg {
+          color: @primary-color;
+        }
+      }
+    }
+
+    .player-time {
+      color: rgba(162, 162, 162, .45) !important;
+    }
+
+    .react-jinke-music-player-mobile {
+      background-color: @light-theme-panel-bg;
+      color: @font-color;
+
+      &-cover {
+        border: 5px solid transparent;
+        box-shadow: 0 0 30px 2px rgba(0, 0, 0, .2);
+      }
+
+      .current-time,
+      .duration {
+        color: @font-color;
+      }
+
+      .rc-slider-rail {
+        background-color: #e9e9e9;
+      }
+
+      &-operation {
+        svg {
+          color: @font-color;
+        }
+      }
+
+      &-tip {
+        svg {
+          color: #fff !important;
+        }
+      }
+
+      &-singer {
+        .name {
+          color: @font-color;
+          transition: color @common-animate-time;
+
+          &::before,
+          &::after {
+            background-color: @font-color;
+          }
+        }
+      }
+    }
+
+    .play-mode-title {
+      background-color: @light-theme-panel-bg;
+      color: @primary-color;
+    }
+  }
 }
 
 .react-jinke-music-player {
-    position: fixed;
+  position: fixed;
+  width: @player-width;
+  height: @player-height;
+  z-index: 999;
+
+  .music-player {
+    cursor: pointer;
+    position: relative;
     width: @player-width;
     height: @player-height;
-    z-index:999;
-    .music-player {
-        cursor: pointer;
-        position: relative;
+
+    &-audio {
+      .hidden();
+    }
+
+    &-controller {
+      width: @player-width;
+      height: @player-height;
+      border-radius: 50%;
+      border: 2px solid @light-theme-controller-bg;
+      background-color: @light-theme-controller-bg;
+      color: @primary-color;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      font-size: 20px;
+      .text-center();
+      .transition(.3s);
+      z-index: 99;
+      padding: 10px;
+      position: fixed;
+      background-repeat: no-repeat;
+      background-size: 100%; // animation: imgRotate 15s linear infinite;
+
+      &::before {
+        content: "";
+        position: absolute;
         width: @player-width;
         height: @player-height;
-        &-audio {
-            .hidden();
+        border: 1px solid rgba(255, 255, 255, .2);
+        border-radius: 50%;
+        z-index: 88;
+        animation: scale 5s linear infinite;
+      }
+
+      @media screen and (max-width:767px) {
+
+        &,
+        &::before {
+          width: 60px;
+          height: 60px;
         }
-        &-controller {
-            width: @player-width;
-            height: @player-height;
-            border-radius: 50%;
-            border: 2px solid @light-theme-controller-bg;
-            background-color: @light-theme-controller-bg;
-            color: @primary-color;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-            font-size: 20px;
-            .text-center();
-            .transition(.3s);
-            z-index: 99;
-            padding: 10px;
-            position: fixed;
-            background-repeat: no-repeat;
-            background-size: 100%; // animation: imgRotate 15s linear infinite;
-            &::before {
-                content: "";
-                position: absolute;
-                width: @player-width;
-                height: @player-height;
-                border: 1px solid rgba(255, 255, 255, .2);
-                border-radius: 50%;
-                z-index: 88;
-                animation: scale 5s linear infinite;
-            }
-            @media screen and (max-width:767px) {
-                &,
-                &::before {
-                    width: 60px;
-                    height: 60px;
-                }
-            }
-            .center();
-            i {
-                font-size: 28px;
-            }
-            &:active {
-                box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-            }
-            &:hover {
-                font-size: 16px;
-                .music-player-controller-setting {
-                    transform: scale(1)
-                }
-            }
-            .controller-title {
-                font-size: 14px;
-            }
-            @media screen and (max-width:768px) {
-                i {
-                    font-size: 20px;
-                }
-                &:hover,
-                &:active {
-                    font-size: 12px;
-                    .music-player-controller-setting {
-                        transform: scale(1)
-                    }
-                }
-            }
-            .music-player-controller-setting {
-                width: 100%;
-                height: 100%;
-                background: fade(@primary-color, 30%);
-                transform: scale(0);
-                border-radius: 50%;
-                .transition(.4s);
-                color: #fff;
-                position: absolute;
-                left: 0;
-                top: 0;
-                .center();
-            }
+      }
+
+      .center();
+
+      i {
+        font-size: 28px;
+      }
+
+      &:active {
+        box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+      }
+
+      &:hover {
+        font-size: 16px;
+
+        .music-player-controller-setting {
+          transform: scale(1)
         }
-    }
-    .audio-circle-process-bar{
-        stroke-width: 3px;
-        stroke-linejoin: round;
-        pointer-events: none;
-        width:@player-width;
-        height:@player-height;
+      }
+
+      .controller-title {
+        font-size: 14px;
+      }
+
+      @media screen and (max-width:768px) {
+        i {
+          font-size: 20px;
+        }
+
+        &:hover,
+        &:active {
+          font-size: 12px;
+
+          .music-player-controller-setting {
+            transform: scale(1)
+          }
+        }
+      }
+
+      .music-player-controller-setting {
+        width: 100%;
+        height: 100%;
+        background: fade(@primary-color, 30%);
+        transform: scale(0);
+        border-radius: 50%;
+        .transition(.4s);
+        color: #fff;
         position: absolute;
-        left:0;
-        top:-@player-width;
-        z-index: 100;
-        animation: scaleTo @common-animate-time;
-        circle[class='bg']{
-            stroke: #fff; 
-        }
-        circle[class="stroke"]{
-            stroke:@primary-color;
-        }
-        &,circle{
-            transition: stroke-dasharray @common-animate-time;
-            transform: matrix(0, -1, 1, 0, 0, 80); 
-            @media screen and (max-width:768px) {
-                transform: matrix(0, -1, 1, 0, 0, 60); 
-            }
-        }
+        left: 0;
+        top: 0;
+        .center();
+      }
     }
+  }
+
+  .audio-circle-process-bar {
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    pointer-events: none;
+    width: @player-width;
+    height: @player-height;
+    position: absolute;
+    left: 0;
+    top: -@player-width;
+    z-index: 100;
+    animation: scaleTo @common-animate-time;
+
+    circle[class='bg'] {
+      stroke: #fff;
+    }
+
+    circle[class="stroke"] {
+      stroke: @primary-color;
+    }
+
+    &,
+    circle {
+      transition: stroke-dasharray @common-animate-time;
+      transform: matrix(0, -1, 1, 0, 0, 80);
+
+      @media screen and (max-width: 768px) {
+        transform: matrix(0, -1, 1, 0, 0, 60);
+      }
+    }
+  }
 }

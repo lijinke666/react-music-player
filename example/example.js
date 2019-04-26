@@ -43,7 +43,7 @@ const options = {
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
 
-  //if you want dynamic change current play audio you can change it [type `number` default `0`] 
+  //if you want dynamic change current play audio you can change it [type `number` default `0`]
   // playIndex: 0,
 
   //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
