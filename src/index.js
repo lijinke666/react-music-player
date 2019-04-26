@@ -1,5 +1,5 @@
 /**
- * @version 4.2.2
+ * @version 4.2.3
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -1566,7 +1566,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (audioLists.length >= 1) {
       const info = this.getPlayInfo(audioLists);
       const lastPlayStatus = remember
-        ? this.getLastPlayStatus()
+        ? this.getLastPlayStatus(defaultPlayIndex)
         : { playMode: defaultPlayMode, theme };
 
       switch (typeof info.musicSrc) {
