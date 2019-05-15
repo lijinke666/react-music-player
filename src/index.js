@@ -21,7 +21,7 @@ import {
 import AudioListsPanel from "./components/AudioListsPanel";
 import AudioPlayerMobile from "./components/PlayerMobile";
 import Draggable from "react-draggable";
-import Lyric from 'lyric-parser'
+import Lyric from "lyric-parser";
 
 import FaHeadphones from "react-icons/lib/fa/headphones";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
@@ -126,7 +126,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     cover: "", //当前歌曲封面
     singer: "", //当前歌手
     musicSrc: "", //当前歌曲链
-    lyric: "",      // 当前歌词
+    lyric: "", // 当前歌词
     currentLyric: "",
     isMobile: IS_MOBILE,
     toggle: false,
@@ -156,7 +156,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     loadProgress: 0,
     removeId: -1,
     isNeedMobileHack: IS_MOBILE,
-    audioLyricVisible: false,
+    audioLyricVisible: false
   };
   static defaultProps = {
     audioLists: [],
@@ -275,8 +275,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     defaultPlayIndex: PropTypes.number,
     playIndex: PropTypes.number,
     lyricClassName: PropTypes.string,
-    emptyLyricPlaceholder: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    showLyric: PropTypes.bool,
+    emptyLyricPlaceholder: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ]),
+    showLyric: PropTypes.bool
   };
   constructor(props) {
     super(props);
@@ -387,8 +390,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       preload === false || preload === "none"
         ? {}
         : preload === true
-          ? { preload: "auto" }
-          : { preload };
+        ? { preload: "auto" }
+        : { preload };
 
     const panelToggleAnimate = initAnimate
       ? { show: audioListsPanelVisible, hide: !audioListsPanelVisible }
@@ -401,10 +404,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const isShowMiniModeCover = showMiniModeCover
       ? {
-        style: {
-          backgroundImage: `url(${cover})`
+          style: {
+            backgroundImage: `url(${cover})`
+          }
         }
-      }
       : {};
 
     const _currentTime = formatTime(currentTime);
@@ -412,9 +415,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const progressHandler = seeked
       ? {
-        onChange: this.onHandleProgress,
-        onAfterChange: this.onAudioSeeked
-      }
+          onChange: this.onHandleProgress,
+          onAfterChange: this.onAudioSeeked
+        }
       : {};
     //进度条
     const ProgressBar = (
@@ -436,8 +439,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <Download />
       </span>
     ) : (
-        undefined
-      );
+      undefined
+    );
 
     //主题开关
     const ThemeSwitchComponent = showThemeSwitch ? (
@@ -451,8 +454,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         />
       </span>
     ) : (
-        undefined
-      );
+      undefined
+    );
 
     //重放
     const ReloadComponent = showReload ? (
@@ -467,8 +470,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <Reload />
       </span>
     ) : (
-        undefined
-      );
+      undefined
+    );
 
     //歌词
     const LyricComponent = showLyric ? (
@@ -485,8 +488,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <LyricIcon />
       </span>
     ) : (
-        undefined
-      );
+      undefined
+    );
 
     //播放模式
     const PlayModeComponent = showPlayMode ? (
@@ -501,8 +504,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {this.renderPlayModeIcon(currentPlayMode)}
       </span>
     ) : (
-        undefined
-      );
+      undefined
+    );
 
     const miniProcessBarR = isMobile ? 30 : 40;
 
@@ -519,8 +522,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
               r={miniProcessBarR}
             />
           ) : (
-              undefined
-            )}
+            undefined
+          )}
           <div
             key="controller"
             id={this.targetId}
@@ -530,15 +533,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
             {loading ? (
               <Load />
             ) : (
-                <Fragment>
-                  <span className="controller-title" key="controller-title">
-                    {controllerTitle}
-                  </span>
-                  <div key="setting" className="music-player-controller-setting">
-                    {toggle ? closeText : openText}
-                  </div>
-                </Fragment>
-              )}
+              <Fragment>
+                <span className="controller-title" key="controller-title">
+                  {controllerTitle}
+                </span>
+                <div key="setting" className="music-player-controller-setting">
+                  {toggle ? closeText : openText}
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
       </div>
@@ -590,8 +593,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
             LyricComponent={LyricComponent}
           />
         ) : (
-            undefined
-          )}
+          undefined
+        )}
 
         {toggle ? (
           undefined
@@ -606,198 +609,198 @@ export default class ReactJkMusicPlayer extends PureComponent {
             {AudioController}
           </Draggable>
         ) : (
-              <Fragment>{AudioController}</Fragment>
-            )}
+          <Fragment>{AudioController}</Fragment>
+        )}
         {toggle ? (
           isMobile ? (
             undefined
           ) : (
-              <div
-                key="panel"
-                className={classNames("music-player-panel", "translate", {
-                  "glass-bg": glassBg
-                })}
-              >
-                <section className="panel-content" key="panel-content">
-                  <div
-                    className={classNames("img-content", "img-rotate", {
-                      "img-rotate-pause": pause || !playing || !cover
-                    })}
-                    style={{ backgroundImage: `url(${cover})` }}
-                    key="img-content"
-                  />
-                  <div
-                    className="progress-bar-content"
-                    key="progress-bar-content"
-                  >
-                    <span className="audio-title">
-                      {name} {singer ? `- ${singer}` : ""}
+            <div
+              key="panel"
+              className={classNames("music-player-panel", "translate", {
+                "glass-bg": glassBg
+              })}
+            >
+              <section className="panel-content" key="panel-content">
+                <div
+                  className={classNames("img-content", "img-rotate", {
+                    "img-rotate-pause": pause || !playing || !cover
+                  })}
+                  style={{ backgroundImage: `url(${cover})` }}
+                  key="img-content"
+                />
+                <div
+                  className="progress-bar-content"
+                  key="progress-bar-content"
+                >
+                  <span className="audio-title">
+                    {name} {singer ? `- ${singer}` : ""}
+                  </span>
+                  <section className="audio-main">
+                    <span key="current-time" className="current-time">
+                      {loading ? "--" : _currentTime}
                     </span>
-                    <section className="audio-main">
-                      <span key="current-time" className="current-time">
-                        {loading ? "--" : _currentTime}
-                      </span>
-                      <div className="progress-bar" key="progress-bar">
-                        {showProgressLoadBar ? (
-                          <div
-                            className="progress-load-bar"
-                            key="progress-load-bar"
-                            style={{ width: `${Math.min(loadProgress, 100)}%` }}
-                          />
-                        ) : (
-                            undefined
-                          )}
-
-                        {ProgressBar}
-                      </div>
-                      <span key="duration" className="duration">
-                        {loading ? "--" : _duration}
-                      </span>
-                    </section>
-                  </div>
-                  <div className="player-content" key="player-content">
-                    {/*播放按钮*/}
-                    {loading ? (
-                      <span>
-                        <Load />
-                      </span>
-                    ) : showPlay ? (
-                      <span className="group">
-                        <span
-                          className="group prev-audio"
-                          title="Previous track"
-                          {...(IS_MOBILE
-                            ? { onTouchStart: this.audioPrevPlay }
-                            : { onClick: this.audioPrevPlay })}
-                        >
-                          <PrevAudioIcon />
-                        </span>
-                        <span
-                          className="group play-btn"
-                          key="play-btn"
-                          ref={node => (this.playBtn = node)}
-                          {...(IS_MOBILE
-                            ? { onTouchStart: this.onPlay }
-                            : { onClick: this.onPlay })}
-                          title={playing ? "Click to pause" : "Click to play"}
-                        >
-                          {playing ? (
-                            <span>
-                              <AnimatePauseIcon />
-                            </span>
-                          ) : (
-                              <span>
-                                <AnimatePlayIcon />
-                              </span>
-                            )}
-                        </span>
-                        <span
-                          className="group next-audio"
-                          title="Next track"
-                          {...(IS_MOBILE
-                            ? { onTouchStart: this.audioNextPlay }
-                            : { onClick: this.audioNextPlay })}
-                        >
-                          <NextAudioIcon />
-                        </span>
-                      </span>
-                    ) : (
-                          undefined
-                        )}
-
-                    {/*重播*/}
-                    {ReloadComponent}
-                    {/*下载歌曲*/}
-                    {DownloadComponent}
-                    {/* 主题选择 */}
-                    {ThemeSwitchComponent}
-
-                    {/* 自定义扩展按钮 */}
-                    {extendsContent && extendsContent.length >= 1
-                      ? extendsContent.map((content, i) => content)
-                      : undefined}
-
-                    {/*音量控制*/}
-                    <span
-                      className="group play-sounds"
-                      key="play-sound"
-                      title="Volume"
-                    >
-                      {isMute ? (
-                        <span
-                          className="sounds-icon"
-                          {...(IS_MOBILE
-                            ? { onTouchStart: this.onSound }
-                            : { onClick: this.onSound })}
-                        >
-                          <MdVolumeMute />
-                        </span>
+                    <div className="progress-bar" key="progress-bar">
+                      {showProgressLoadBar ? (
+                        <div
+                          className="progress-load-bar"
+                          key="progress-load-bar"
+                          style={{ width: `${Math.min(loadProgress, 100)}%` }}
+                        />
                       ) : (
-                          <span
-                            className="sounds-icon"
-                            {...(IS_MOBILE
-                              ? { onTouchStart: this.onMute }
-                              : { onClick: this.onMute })}
-                          >
-                            <MdVolumeDown />
-                          </span>
-                        )}
-                      <Slider
-                        max={1}
-                        value={soundValue}
-                        onChange={this.audioSoundChange}
-                        className="sound-operation"
-                        {...sliderBaseOptions}
-                      />
-                    </span>
-
-                    {/*播放模式*/}
-                    {PlayModeComponent}
-
-                    {/*歌词按钮*/}
-                    {LyricComponent}
-
-                    {/*播放列表按钮*/}
-                    <span
-                      className="group audio-lists-btn"
-                      key="audio-lists-btn"
-                      title="play lists"
-                      {...(IS_MOBILE
-                        ? { onTouchStart: this.openAudioListsPanel }
-                        : { onClick: this.openAudioListsPanel })}
-                    >
-                      <span className="audio-lists-icon">
-                        <PlayLists />
-                      </span>
-                      <span className="audio-lists-num">{audioLists.length}</span>
-                    </span>
-
-                    {/*收起面板*/}
-                    {toggleMode ? (
-                      <span
-                        className="group hide-panel"
-                        key="hide-panel-btn"
-                        {...(IS_MOBILE
-                          ? { onTouchStart: this.onHidePanel }
-                          : { onClick: this.onHidePanel })}
-                      >
-                        <FaMinusSquareO />
-                      </span>
-                    ) : (
                         undefined
                       )}
-                  </div>
-                </section>
-                {/* 播放模式提示框 */}
-                <PlayModel
-                  visible={playModelNameVisible}
-                  value={currentPlayModeName}
-                />
-              </div>
-            )
+
+                      {ProgressBar}
+                    </div>
+                    <span key="duration" className="duration">
+                      {loading ? "--" : _duration}
+                    </span>
+                  </section>
+                </div>
+                <div className="player-content" key="player-content">
+                  {/*播放按钮*/}
+                  {loading ? (
+                    <span>
+                      <Load />
+                    </span>
+                  ) : showPlay ? (
+                    <span className="group">
+                      <span
+                        className="group prev-audio"
+                        title="Previous track"
+                        {...(IS_MOBILE
+                          ? { onTouchStart: this.audioPrevPlay }
+                          : { onClick: this.audioPrevPlay })}
+                      >
+                        <PrevAudioIcon />
+                      </span>
+                      <span
+                        className="group play-btn"
+                        key="play-btn"
+                        ref={node => (this.playBtn = node)}
+                        {...(IS_MOBILE
+                          ? { onTouchStart: this.onPlay }
+                          : { onClick: this.onPlay })}
+                        title={playing ? "Click to pause" : "Click to play"}
+                      >
+                        {playing ? (
+                          <span>
+                            <AnimatePauseIcon />
+                          </span>
+                        ) : (
+                          <span>
+                            <AnimatePlayIcon />
+                          </span>
+                        )}
+                      </span>
+                      <span
+                        className="group next-audio"
+                        title="Next track"
+                        {...(IS_MOBILE
+                          ? { onTouchStart: this.audioNextPlay }
+                          : { onClick: this.audioNextPlay })}
+                      >
+                        <NextAudioIcon />
+                      </span>
+                    </span>
+                  ) : (
+                    undefined
+                  )}
+
+                  {/*重播*/}
+                  {ReloadComponent}
+                  {/*下载歌曲*/}
+                  {DownloadComponent}
+                  {/* 主题选择 */}
+                  {ThemeSwitchComponent}
+
+                  {/* 自定义扩展按钮 */}
+                  {extendsContent && extendsContent.length >= 1
+                    ? extendsContent.map((content, i) => content)
+                    : undefined}
+
+                  {/*音量控制*/}
+                  <span
+                    className="group play-sounds"
+                    key="play-sound"
+                    title="Volume"
+                  >
+                    {isMute ? (
+                      <span
+                        className="sounds-icon"
+                        {...(IS_MOBILE
+                          ? { onTouchStart: this.onSound }
+                          : { onClick: this.onSound })}
+                      >
+                        <MdVolumeMute />
+                      </span>
+                    ) : (
+                      <span
+                        className="sounds-icon"
+                        {...(IS_MOBILE
+                          ? { onTouchStart: this.onMute }
+                          : { onClick: this.onMute })}
+                      >
+                        <MdVolumeDown />
+                      </span>
+                    )}
+                    <Slider
+                      max={1}
+                      value={soundValue}
+                      onChange={this.audioSoundChange}
+                      className="sound-operation"
+                      {...sliderBaseOptions}
+                    />
+                  </span>
+
+                  {/*播放模式*/}
+                  {PlayModeComponent}
+
+                  {/*歌词按钮*/}
+                  {LyricComponent}
+
+                  {/*播放列表按钮*/}
+                  <span
+                    className="group audio-lists-btn"
+                    key="audio-lists-btn"
+                    title="play lists"
+                    {...(IS_MOBILE
+                      ? { onTouchStart: this.openAudioListsPanel }
+                      : { onClick: this.openAudioListsPanel })}
+                  >
+                    <span className="audio-lists-icon">
+                      <PlayLists />
+                    </span>
+                    <span className="audio-lists-num">{audioLists.length}</span>
+                  </span>
+
+                  {/*收起面板*/}
+                  {toggleMode ? (
+                    <span
+                      className="group hide-panel"
+                      key="hide-panel-btn"
+                      {...(IS_MOBILE
+                        ? { onTouchStart: this.onHidePanel }
+                        : { onClick: this.onHidePanel })}
+                    >
+                      <FaMinusSquareO />
+                    </span>
+                  ) : (
+                    undefined
+                  )}
+                </div>
+              </section>
+              {/* 播放模式提示框 */}
+              <PlayModel
+                visible={playModelNameVisible}
+                value={currentPlayModeName}
+              />
+            </div>
+          )
         ) : (
-            undefined
-          )}
+          undefined
+        )}
         {/* 播放列表面板 */}
         <AudioListsPanel
           playId={playId}
@@ -823,12 +826,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
           audioListsDragEnd={this.audioListsDragEnd}
         />
         {/* 歌词 */}
-        {
-          audioLyricVisible &&
+        {audioLyricVisible && (
           <Draggable>
-            <div className={classNames("music-player-lyric", lyricClassName)}>{currentLyric || emptyLyricPlaceholder}</div>
+            <div className={classNames("music-player-lyric", lyricClassName)}>
+              {currentLyric || emptyLyricPlaceholder}
+            </div>
           </Draggable>
-        }
+        )}
         <audio
           key="audio"
           className="music-player-audio"
@@ -843,8 +847,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   toggleAudioLyric = () => {
     this.setState({
       audioLyricVisible: !this.state.audioLyricVisible
-    })
-  }
+    });
+  };
   //播放模式切换
   togglePlayMode = () => {
     let index = this._PLAY_MODE_.findIndex(
@@ -930,7 +934,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           loadProgress: 0
         },
         () => {
-          this.initLyricParser()
+          this.initLyricParser();
           this.audio.load();
         }
       );
@@ -1219,7 +1223,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onAudioLoadError = e => {
     const { playMode, audioLists, playId } = this.state;
     if (audioLists.length >= 1) {
-      this.lyric.stop()
+      this.lyric.stop();
       //如果当前音乐加载出错 尝试播放下一首
       const { loadAudioErrorPlayNext } = this.props;
       if (loadAudioErrorPlayNext && playId < audioLists.length - 1) {
@@ -1374,7 +1378,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onAudioAbort && this.props.onAudioAbort(_err);
     this.audio.pause();
     this.audio.play();
-    this.lyric.stop()
+    this.lyric.stop();
   };
   //切换播放器模式
   toggleMode = mode => {
@@ -1511,8 +1515,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       const _events = eventsNames[name];
       bind
         ? target.addEventListener(name, _events, {
-          once: !!(once && name === "play")
-        })
+            once: !!(once && name === "play")
+          })
         : target.removeEventListener(name, _events);
     }
   };
@@ -1535,7 +1539,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const playId = this.state.playId || _audioLists[playIndex].id;
     const { name = "", cover = "", singer = "", musicSrc = "", lyric = "" } =
       _audioLists.find(({ id }) => id === playId) || {};
-    return { name, cover, singer, musicSrc, lyric, audioLists: _audioLists, playId };
+    return {
+      name,
+      cover,
+      singer,
+      musicSrc,
+      lyric,
+      audioLists: _audioLists,
+      playId
+    };
   };
   initPlayInfo = (audioLists, cb) => {
     const info = this.getPlayInfo(audioLists);
@@ -1576,21 +1588,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return audioLists[playIndex].id;
   };
   initLyricParser = () => {
-    this.lyric = undefined
-    this.setState({ currentLyric: "" })
-    this.lyric = new Lyric(this.state.lyric, this.onLyricChange)
-    this.lyric.stop()
+    this.lyric = undefined;
+    this.setState({ currentLyric: "" });
+    this.lyric = new Lyric(this.state.lyric, this.onLyricChange);
+    this.lyric.stop();
     if (this.props.showLyric) {
-      this.lyric.play()
-      this.lyric.seek(this.audio.currentTime)
+      this.lyric.play();
+      this.lyric.seek(this.audio.currentTime);
     }
-  }
+  };
   onLyricChange = ({ lineNum, txt }) => {
     this.setState({
       currentLyric: txt
-    })
-    this.props.onAudioLyricChange && this.props.onAudioLyricChange(lineNum, txt)
-  }
+    });
+    this.props.onAudioLyricChange &&
+      this.props.onAudioLyricChange(lineNum, txt);
+  };
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
   componentWillReceiveProps({ audioLists, playIndex }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
@@ -1673,7 +1686,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setDefaultAudioVolume();
     if (this.props.audioLists.length >= 1) {
       this.bindEvents(this.audio);
-      this.initLyricParser()
+      this.initLyricParser();
       if (IS_MOBILE) {
         this.bindMobileAutoPlayEvents();
       }
