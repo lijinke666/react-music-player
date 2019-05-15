@@ -22,12 +22,6 @@ const options = {
       lyric,
     },
     {
-      name: "难得",
-      singer: "安来宁",
-      cover: "//cdn.lijinke.cn/nande.jpg",
-      musicSrc: "//cdn.lijinke.cn/nande.mp3",
-    },
-    {
       name: "Despacito",
       singer: "Luis Fonsi",
       cover: "http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg",
