@@ -119,7 +119,7 @@ ReactDOM.render(
 | mode              | `string`              | `mini`            | audio theme switch checkedText can be set to `mini`,`full` or omitted  |
 | once              | `boolean`             | `false`           | The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true' |
 | autoPlay          | `boolean`             | `true`            | Whether the audio is played after loading is completed.  |
-| toggleMode        | `boolean`             | `true`            | Whether you can switch between two modes, full => mini or mini => full   |                                                                                           
+| toggleMode        | `boolean`             | `true`            | Whether you can switch between two modes, full => mini or mini => full   |
 | drag              | `boolean`             | `true`            | audio controller is can be drag of the "mini" mode   |
 | seeked            | `boolean`             | `true`            | Whether you can drag or click the progress bar to play in the new progress.  |
 | showMiniModeCover | `boolean`             | `true`            | audio cover is show of the "mini" mode |
@@ -130,6 +130,9 @@ ReactDOM.render(
 | showDownload | `boolean`             | `true`            | download button display of the audio player panel  |
 | showPlayMode | `boolean`             | `true`            | play mode toggle button display of the audio player panel |
 | showThemeSwitch | `boolean`             | `true`            | theme toggle switch display of the audio player panel |
+| showLyric | `boolean`             | `false`            | audio lyric button display of the audio player panel |
+| lyricClassName | `string`             | `-`            | audio lyric class name |
+| emptyLyricPlaceholder | `string`             | `-`            | audio lyric empty lyric placeholder |
 | extendsContent | `array`             | `-`            | Extensible custom content like `[<button>button1</button>,<button>button2</button>]` |
 | controllerTitle | `string`             | `<FaHeadphones/>`            | audio controller title |
 | defaultVolume | `number`             | `100`            | default volume of the audio player , range `0`-`100` |
@@ -151,6 +154,7 @@ ReactDOM.render(
 | onThemeChange  | `function(theme)` | `-`          |  theme change handle |
 | onModeChange  | `function(mode)` | `-`          |  mode change handle |
 | onAudioListsDragEnd  | `function(fromIndex,endIndex)` | `-`          |  audio lists drag end handle |
+| onAudioLyricChange  | `function(lineNum, currentLyric)` | `-`          |  audio lyric change handle |
 
 
 ## Development
@@ -168,111 +172,114 @@ open `http://localhost:8081/`
 npm run test
 ```
 
+## AudioList
+
+> Like This
+
+```js
+Array<{
+  name: string | React.ReactNode,
+  singer?: string | React.ReactNode,
+  cover: string,
+  musicSrc: () => Promise<any> | string,
+  lyric?: string,
+}>
+```
+
 ## AudioInfo
 
 > Like This
 
 ```js
-{
-    cover:"xx.jpg"
-    currentTime:10.211519
-    duration:164.211519
-    musicSrc:"xx.mp3"
-    name:"Canon (piano version)"
-    volume:100,
-    muted:false,
-    networkState:1,
-    readyState:4,
-    paused:false,
-    ended:false,
-    startDate:null,
-    played:{length:1}
+export interface ReactJkMusicPlayerAudioInfo {
+  cover: string,
+  currentTime: number,
+  duration: number,
+  ended: boolean,
+  musicSrc: string,
+  muted: boolean,
+  name: string,
+  networkState: number,
+  paused: boolean,
+  played: any,
+  readyState: number,
+  startDate: any
+  volume: number,
+  lyric: string,
 }
 ```
 
 ## Properties
 
-```jsx
-  static propTypes = {
-    audioLists: PropTypes.array.isRequired,
-    theme: PropTypes.oneOf(['dark', 'light']),
-    mode: PropTypes.oneOf(['mini', 'full']),
-    drag: PropTypes.bool,
-    seeked: PropTypes.bool,
-    autoPlay: PropTypes.bool,
-    playModeText: PropTypes.object,
-    closeText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    openText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    panelTitle:PropTypes.string,
-    notContentText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    controllerTitle: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    defaultPosition: PropTypes.shape({
-      top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    }),
-    onAudioPlay: PropTypes.func,
-    onAudioPause: PropTypes.func,
-    onAudioEnded: PropTypes.func,
-    onAudioAbort: PropTypes.func,
-    onAudioVolumeChange: PropTypes.func,
-    onAudioLoadError: PropTypes.func,
-    onAudioProgress: PropTypes.func,
-    onAudioSeeked: PropTypes.func,
-    onAudioDownload: PropTypes.func,
-    onAudioReload: PropTypes.func,
-    onThemeChange:PropTypes.func,
-    onAudioListsChange: PropTypes.func,
-    onAudioPlayTrackChange: PropTypes.func,
-    onAudioPlayModeChange: PropTypes.func,
-    onModeChange: PropTypes.func,
-    onAudioListsPanelChange: PropTypes.func,
-    onAudioListsDragEnd: PropTypes.func,
-    showProgressLoadBar:PropTypes.bool,
-    showDownload: PropTypes.bool,
-    showPlay: PropTypes.bool,
-    showReload: PropTypes.bool,
-    showPlayMode: PropTypes.bool,
-    showThemeSwitch: PropTypes.bool,
-    showMiniModeCover: PropTypes.bool,
-    toggleMode: PropTypes.bool,
-    once: PropTypes.bool,
-    extendsContent: PropTypes.array,
-    checkedText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    unCheckedText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    defaultVolume:PropTypes.number,
-    playModeShowTime: PropTypes.number,
-    bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    showMiniProcessBar: PropTypes.bool,
-    loadAudioErrorPlayNext: PropTypes.bool,
-    preload: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(["auto", "metadata", "none"])
-    ]),
-    glassBg: PropTypes.bool,
-    remember: PropTypes.bool,
-    remove: PropTypes.bool,
-    defaultPlayIndex: PropTypes.number
-  }
+```js
+  export interface ReactJkMusicPlayerProps {
+  audioLists: Array<ReactJkMusicPlayerAudioList>,
+  theme?: ReactJkMusicPlayerTheme,
+  mode?: ReactJkMusicPlayerMode,
+  defaultPlayMode?: ReactJkMusicPlayerPlayMode
+  drag?: boolean,
+  seeked?: boolean,
+  autoPlay?: boolean,
+  playModeText?: {
+    order: string | React.ReactNode,
+    orderLoop: string | React.ReactNode,
+    singleLoop: string | React.ReactNode,
+    shufflePlay: string | React.ReactNode
+  },
+  panelTitle?: string | React.ReactNode,
+  closeText?: string | React.ReactNode,
+  openText?: string | React.ReactNode,
+  notContentText?: string | React.ReactNode,
+  controllerTitle?: string | React.ReactNode,
+  defaultPosition?: {
+    top: number | string,
+    left: number | string,
+    right: number | string,
+    bottom: number | string
+  },
+  onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioAbort?: (data: any) => void,
+  onAudioVolumeChange?: () => void,
+  onAudioLoadError?: (data: any) => void,
+  onAudioProgress?: () => void,
+  onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void,
+  onAudioListsChange?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void,
+  onModeChange?: (mode: ReactJkMusicPlayerMode) => void,
+  onAudioListsPanelChange?: (panelVisible: boolean) => void,
+  onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void,
+  onAudioListsDragEnd?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  showDownload?: boolean,
+  showPlay?: boolean,
+  showReload?: boolean,
+  showPlayMode?: boolean,
+  showThemeSwitch?: boolean,
+  showMiniModeCover?: boolean,
+  toggleMode?: boolean,
+  once?: boolean,
+  extendsContent?: Array<React.ReactNode | string>,
+  checkedText?: string | React.ReactNode,
+  unCheckedText?: string | React.ReactNode,
+  defaultVolume?: number,
+  playModeShowTime?: number,
+  bounds?: string | React.ReactNode,
+  showMiniProcessBar?: boolean,
+  loadAudioErrorPlayNext?: boolean,
+  preload?: boolean | "auto" | "metadata" | "none"
+  glassBg?: boolean,
+  remember?: boolean,
+  remove?: boolean,
+  defaultPlayIndex?: number,
+  playIndex?: number,
+  lyricClassName?: string,
+  emptyLyricPlaceholder?: string | React.ReactNode,
+  showLyric?: boolean,
+}
 ```
 
 ## License
