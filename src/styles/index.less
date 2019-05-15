@@ -18,6 +18,36 @@
     background-color: @bg-color;
   }
 
+  .lyric-btn-active {
+    color: @primary-color;
+  }
+
+  .music-player-lyric {
+    position: fixed;
+    color: @player-lyric-color;
+    font-size: @player-lyric-font-size;
+    cursor: move;
+    z-index: @player-lyric-z-index;
+    bottom: @music-player-panel-height + 20px;
+    padding: 20px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    transition: box-shadow @common-animate-time;
+    background: transparent;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .05);
+
+    @media screen and (max-width: 767px) {
+      font-size: @player-lyric-font-size-mobile;
+
+      &:hover {
+        box-shadow: 2px 2px 20px @border-color;
+      }
+    }
+
+  }
+
+
   .play-mode-title {
     position: absolute;
     right: 72px;

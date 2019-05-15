@@ -39,7 +39,8 @@ const PlayerMobile = ({
   currentPlayModeName,
   extendsContent,
   onPlay,
-  glassBg
+  glassBg,
+  LyricComponent
 }) => (
   <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
     <PlayModeTip
@@ -133,6 +134,11 @@ const PlayerMobile = ({
               );
             })
           : undefined}
+        <li
+          className="item"
+        >
+          {LyricComponent}
+        </li>
         <li
           className="item"
           key="play-lists-icon"
