@@ -134,11 +134,7 @@ const PlayerMobile = ({
               );
             })
           : undefined}
-        <li
-          className="item"
-        >
-          {LyricComponent}
-        </li>
+        <li className="item">{LyricComponent}</li>
         <li
           className="item"
           key="play-lists-icon"
