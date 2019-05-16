@@ -97,7 +97,7 @@ ReactDOM.render(
 | Name              | Type                  | Default           | Description |
 | ------------ | ------- | ------- | ----------- |
 | className         | `string`              | `-`               | Additional CSS class for the root DOM node                                                                                           |
-| audioLists        | `object[]`            | `-`               | audio lists model : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"}  |
+| audioLists        | `object[]`            | `-`               | [detail](#AudioList)  |
 | theme             | `string`              | `dark`            | color of the music player theme  `dark` | `light`                                                                                                    |
 | defaultPosition   | `object`              | `{top:0,left:0}`  | audio controller initial position with `left,top,right,and bottom` |
 | playModeText | `object` | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player |
@@ -176,12 +176,12 @@ npm run test
 
 > Like This
 
-```js
+```ts
 Array<{
   name: string | React.ReactNode,
   singer?: string | React.ReactNode,
   cover: string,
-  musicSrc: () => Promise<any> | string,
+  musicSrc: string | () => Promise<string>,
   lyric?: string,
 }>
 ```
@@ -190,7 +190,7 @@ Array<{
 
 > Like This
 
-```js
+```ts
 export interface ReactJkMusicPlayerAudioInfo {
   cover: string,
   currentTime: number,
@@ -211,8 +211,8 @@ export interface ReactJkMusicPlayerAudioInfo {
 
 ## Properties
 
-```js
-  export interface ReactJkMusicPlayerProps {
+```ts
+export interface ReactJkMusicPlayerProps {
   audioLists: Array<ReactJkMusicPlayerAudioList>,
   theme?: ReactJkMusicPlayerTheme,
   mode?: ReactJkMusicPlayerMode,
