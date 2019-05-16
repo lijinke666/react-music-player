@@ -12,7 +12,7 @@ export interface ReactJkMusicPlayerAudioInfo {
   paused: boolean,
   played: any,
   readyState: number,
-  startDate: any
+  startDate: any,
   volume: number,
   lyric: string,
 }
@@ -25,7 +25,7 @@ export interface ReactJkMusicPlayerAudioList {
   name: string | React.ReactNode,
   singer?: string | React.ReactNode,
   cover: string,
-  musicSrc: () => Promise<any> | string,
+  musicSrc: () => Promise<string> | string,
   lyric?: string,
 }
 
@@ -33,7 +33,7 @@ export interface ReactJkMusicPlayerProps {
   audioLists: Array<ReactJkMusicPlayerAudioList>,
   theme?: ReactJkMusicPlayerTheme,
   mode?: ReactJkMusicPlayerMode,
-  defaultPlayMode?: ReactJkMusicPlayerPlayMode
+  defaultPlayMode?: ReactJkMusicPlayerPlayMode,
   drag?: boolean,
   seeked?: boolean,
   autoPlay?: boolean,
@@ -52,15 +52,15 @@ export interface ReactJkMusicPlayerProps {
     top: number | string,
     left: number | string,
     right: number | string,
-    bottom: number | string
+    bottom: number | string,
   },
   onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioAbort?: (data: any) => void,
-  onAudioVolumeChange?: () => void,
+  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioLoadError?: (data: any) => void,
-  onAudioProgress?: () => void,
+  onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
@@ -87,7 +87,7 @@ export interface ReactJkMusicPlayerProps {
   bounds?: string | React.ReactNode,
   showMiniProcessBar?: boolean,
   loadAudioErrorPlayNext?: boolean,
-  preload?: boolean | "auto" | "metadata" | "none"
+  preload?: boolean | "auto" | "metadata" | "none",
   glassBg?: boolean,
   remember?: boolean,
   remove?: boolean,
@@ -97,4 +97,4 @@ export interface ReactJkMusicPlayerProps {
   emptyLyricPlaceholder?: string | React.ReactNode,
   showLyric?: boolean,
 }
-export default class ReactJkMusicPlayer extends React.PureComponent<{}, any> { }
+export default class ReactJkMusicPlayer extends React.PureComponent<ReactJkMusicPlayerProps, any> { }
