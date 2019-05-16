@@ -177,7 +177,7 @@ npm run test
 > Like This
 
 ```ts
-Array<{
+interface ReactJkMusicPlayerAudioList {
   name: string | React.ReactNode,
   singer?: string | React.ReactNode,
   cover: string,
@@ -191,7 +191,7 @@ Array<{
 > Like This
 
 ```ts
-export interface ReactJkMusicPlayerAudioInfo {
+interface ReactJkMusicPlayerAudioInfo {
   cover: string,
   currentTime: number,
   duration: number,
@@ -212,7 +212,7 @@ export interface ReactJkMusicPlayerAudioInfo {
 ## Properties
 
 ```ts
-export interface ReactJkMusicPlayerProps {
+interface ReactJkMusicPlayerProps {
   audioLists: Array<ReactJkMusicPlayerAudioList>,
   theme?: ReactJkMusicPlayerTheme,
   mode?: ReactJkMusicPlayerMode,
@@ -241,9 +241,9 @@ export interface ReactJkMusicPlayerProps {
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioAbort?: (data: any) => void,
-  onAudioVolumeChange?: () => void,
+  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioLoadError?: (data: any) => void,
-  onAudioProgress?: () => void,
+  onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
@@ -270,7 +270,7 @@ export interface ReactJkMusicPlayerProps {
   bounds?: string | React.ReactNode,
   showMiniProcessBar?: boolean,
   loadAudioErrorPlayNext?: boolean,
-  preload?: boolean | "auto" | "metadata" | "none"
+  preload?: boolean | "auto" | "metadata" | "none",
   glassBg?: boolean,
   remember?: boolean,
   remove?: boolean,
