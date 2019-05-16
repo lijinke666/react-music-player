@@ -108,7 +108,7 @@ const options = {
   defaultPlayMode: "order",
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: "full",
+  mode: "mini",
 
   /**
    * [ type `Boolean` default 'false' ]
