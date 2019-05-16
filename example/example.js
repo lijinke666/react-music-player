@@ -462,6 +462,14 @@ class Demo extends React.PureComponent {
               onChange={() => this.onChangeKey("showThemeSwitch")}
             />showThemeSwitch
           </label>
+          <label htmlFor="showLyric">
+            <input
+              type="checkbox"
+              id="showLyric"
+              checked={params.showLyric}
+              onChange={() => this.onChangeKey("showLyric")}
+            />showLyric
+          </label>
           <label htmlFor="preload">
             <input
               type="checkbox"
