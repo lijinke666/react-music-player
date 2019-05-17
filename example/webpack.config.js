@@ -1,6 +1,6 @@
-const webpack = require('webpack')
 const path = require('path')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const HOST = "localhost"
 const PORT = 8081
@@ -87,16 +87,21 @@ module.exports = (env) => {
         ]
     }
     if (mode === 'PROD') {
-        options.plugins = options.plugins.concat([
-            new webpack.optimize.UglifyJsPlugin({
-                output: {
-                    comments: false
+        options.optimization =  {
+            minimizer: [
+              // we specify a custom UglifyJsPlugin here to get source maps in production
+              new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                  compress: false,
+                  ecma: 6,
+                  mangle: true
                 },
-                compress: {
-                    warnings: false
-                }
-            }),
-        ])
+                sourceMap: true
+              })
+            ]
+          }
     }
     return options
 }
