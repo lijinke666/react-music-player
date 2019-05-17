@@ -1,5 +1,5 @@
 /**
- * @version 4.3.3
+ * @version 4.3.4
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -21,7 +21,7 @@ import {
 import AudioListsPanel from "./components/AudioListsPanel";
 import AudioPlayerMobile from "./components/PlayerMobile";
 import Draggable from "react-draggable";
-import Lyric from "lyric-parser";
+import Lyric from "./lyric";
 
 import FaHeadphones from "react-icons/lib/fa/headphones";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
