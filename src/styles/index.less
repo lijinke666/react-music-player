@@ -570,15 +570,17 @@
       background-repeat: no-repeat;
       background-size: 100%; // animation: imgRotate 15s linear infinite;
 
-      &::before {
-        content: "";
-        position: absolute;
-        width: @player-width;
-        height: @player-height;
-        border: 1px solid rgba(255, 255, 255, .2);
-        border-radius: 50%;
-        z-index: 88;
-        animation: scale 5s linear infinite;
+      &.music-player-playing {
+        &::before {
+          content: "";
+          position: absolute;
+          width: @player-width;
+          height: @player-height;
+          border: 1px solid rgba(255, 255, 255, .2);
+          border-radius: 50%;
+          z-index: 88;
+          animation: scale 5s linear infinite;
+        }
       }
 
       @media screen and (max-width:767px) {

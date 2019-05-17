@@ -25,7 +25,7 @@ export interface ReactJkMusicPlayerAudioList {
   name: string | React.ReactNode,
   singer?: string | React.ReactNode,
   cover: string,
-  musicSrc: () => Promise<string> | string,
+  musicSrc: (() => Promise<string>) | string,
   lyric?: string,
 }
 
