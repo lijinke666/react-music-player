@@ -239,6 +239,8 @@ describe("<ReactJkMusicPlayer/>", () => {
     assert(formatTime(30000) === "20:00");
     assert(formatTime(60) === "00:60");
     assert(formatTime(140) === "02:20");
+    assert(formatTime(2 * 60 * 60) === "02:00:00");
+    assert(formatTime(2 * 60 * 60 + 30) === "02:00:30");
   });
   it("should return array is equal", () => {
     assert(arrayEqual([1])([1]) === true);
