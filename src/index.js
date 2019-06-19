@@ -1469,30 +1469,31 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return status;
     }
   };
+  mockAutoPlayForMobile = () => {
+    if (this.props.autoPlay && !this.state.playing && this.state.pause) {
+      this.audio.load();
+      this.audio.pause();
+      this.audio.play();
+    }
+  };
   bindMobileAutoPlayEvents = () => {
     document.addEventListener(
       "touchstart",
       () => {
-        this.audio.load();
-        this.audio.pause();
-        this.audio.play();
+        this.mockAutoPlayForMobile();
       },
       { once: true }
     );
     //监听微信准备就绪事件
     document.addEventListener("WeixinJSBridgeReady", () => {
-      this.audio.load();
-      this.audio.pause();
-      this.audio.play();
+      this.mockAutoPlayForMobile();
     });
   };
   bindSafariAutoPlayEvents = () => {
     document.addEventListener(
       "click",
       () => {
-        this.audio.load();
-        this.audio.pause();
-        this.audio.play();
+        this.mockAutoPlayForMobile();
       },
       { once: true }
     );
