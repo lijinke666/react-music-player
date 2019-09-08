@@ -20,13 +20,17 @@
     "precommit": "lint-staged",
     "prepublish": "yarn build"
   },
-  "pre-commit": "lint",
   "lint-staged": {
     "src/**/*.js": [
       "prettier --write",
       "eslint_d --fix",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "author": "Jinke.Li <1359518268@qq.com>",
   "repository": {
@@ -55,12 +59,12 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
-    "is-mobile": "^2.0.0",
-    "prop-types": "^15.6.0",
-    "rc-slider": "^8.6.5",
+    "is-mobile": "^2.1.0",
+    "prop-types": "^15.7.2",
+    "rc-slider": "^8.7.1",
     "rc-switch": "^1.9.0",
-    "react-drag-listview": "^0.1.4",
-    "react-draggable": "^3.1.1",
+    "react-drag-listview": "^0.1.6",
+    "react-draggable": "^3.3.2",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {
@@ -99,18 +103,19 @@
     "eslint": "^4.19.1",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-react": "^7.7.0",
-    "eslint_d": "^5.3.0",
+    "eslint_d": "^8.0.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.28.0",
+    "husky": "^3.0.5",
     "imagemin-webpack-plugin": "^1.4.4",
     "jest": "^22.4.3",
     "jest-environment-jsdom": "^22.4.3",
     "jsdom": "^11.8.0",
     "less": "^2.7.2",
     "less-loader": "^3.0.0",
-    "lint-staged": "^7.0.4",
+    "lint-staged": "^9.2.5",
     "open-browser-webpack-plugin": "0.0.5",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "postcss": "^6.0.12",
@@ -118,7 +123,7 @@
     "postcss-loader": "^1.2.2",
     "power-assert": "^1.5.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^1.12.1",
+    "prettier": "^1.18.2",
     "rc-button": "^0.1.5",
     "rc-message": "^1.3.2",
     "react": "16.4.2",
