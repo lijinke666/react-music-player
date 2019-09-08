@@ -419,12 +419,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
           onAfterChange: this.onAudioSeeked
         }
       : {};
+
     //进度条
     const ProgressBar = (
       <Slider
         max={Math.ceil(duration)}
         defaultValue={0}
-        value={currentTime}
+        value={Math.ceil(currentTime)}
         {...progressHandler}
         {...sliderBaseOptions}
       />
