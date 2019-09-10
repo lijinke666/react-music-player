@@ -1597,7 +1597,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       0,
       Math.min(audioLists.length, this.props.defaultPlayIndex)
     );
-    return audioLists[playIndex].id;
+    return audioLists[playIndex] && audioLists[playIndex].id;
   };
   getLyricPlayTime = () => {
     const [m, s] = formatTime(this.audio.currentTime).split(":");
