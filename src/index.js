@@ -6,6 +6,7 @@
  */
 
 import React, { PureComponent, Fragment } from "react";
+import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import isMobile from "is-mobile";
@@ -550,7 +551,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       </div>
     );
 
-    return (
+    return createPortal(
       <div
         className={classNames(
           "react-jinke-music-player-main",
@@ -841,7 +842,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
           src={musicSrc}
           ref={node => (this.audio = node)}
         />
-      </div>
+      </div>,
+      document.body
     );
   }
 
