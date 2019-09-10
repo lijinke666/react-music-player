@@ -1,5 +1,5 @@
 /**
- * @version 4.3.4
+ * @version 4.3.6
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -664,9 +664,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 <div className="player-content" key="player-content">
                   {/*播放按钮*/}
                   {loading ? (
-                    <span>
-                      <Load />
-                    </span>
+                    <Load />
                   ) : showPlay ? (
                     <span className="group">
                       <span
@@ -978,6 +976,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (audioLists.length < 1) {
       return;
     }
+    this.lyric && this.lyric.stop();
     const newAudioLists = [...audioLists].filter(audio => audio.id !== audioId);
     if (!audioId) {
       return this.resetAudioStatus();
@@ -1151,6 +1150,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //播放
   onPlay = () => {
     if (this.state.audioLists.length >= 1) {
+      this.lyric.togglePlay();
       if (this.state.playing) {
         this._pauseAudio();
       } else {
@@ -1208,7 +1208,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
           if (remember ? !isLastPause : canPlay) {
             // fuck Safari is need muted :(
             // this.audio.muted = true
-            // this.initLyricParser()
             this.audio.play();
           }
           this.setState({ isInitAutoplay: true, isInitRemember: true });
@@ -1227,7 +1226,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onAudioLoadError = e => {
     const { playMode, audioLists, playId } = this.state;
     this.lyric.stop();
-    this.setState({ loading: false });
+
     //如果当前音乐加载出错 尝试播放下一首
     const { loadAudioErrorPlayNext } = this.props;
     if (loadAudioErrorPlayNext && playId < audioLists.length - 1) {
@@ -1298,7 +1297,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         IconNode = <OrderPlayIcon />;
     }
   };
-  /*eslint-disable no-unused-vars */
   //音频播放结束
   audioEnd = () => {
     this.props.onAudioEnded && this.props.onAudioEnded(this.getBaseAudioInfo());
@@ -1561,7 +1559,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   initPlayInfo = (audioLists, cb) => {
     const info = this.getPlayInfo(audioLists);
-    console.log("info: ", info);
 
     switch (typeof info.musicSrc) {
       case "function":
