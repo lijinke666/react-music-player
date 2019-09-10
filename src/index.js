@@ -961,6 +961,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   resetAudioStatus = () => {
     this.audio.pause();
+    this.initPlayInfo([]);
     this.setState({
       currentTime: 0,
       duration: 0,
@@ -969,7 +970,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       pause: true,
       currentLyric: ""
     });
-    this.initPlayInfo([]);
   };
   deleteAudioLists = audioId => e => {
     e.stopPropagation();
@@ -980,28 +980,27 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
     const newAudioLists = [...audioLists].filter(audio => audio.id !== audioId);
     if (!audioId) {
-      this.resetAudioStatus();
-    } else {
-      //触发删除动画,等动画结束 删除列表
-      this.setState({ removeId: audioId });
-      setTimeout(() => {
-        this.setState(
-          {
-            audioLists: newAudioLists,
-            removeId: -1
-          },
-          () => {
-            if (newAudioLists.length <= 0) {
-              return this.resetAudioStatus();
-            }
-            // 如果删除的是当前正在播放的 顺延下一首播放
-            if (audioId === playId) {
-              this.handlePlay(this.PLAY_MODE["orderLoop"]["key"]);
-            }
-          }
-        );
-      }, this.audioListRemoveAnimateTime);
+      return this.resetAudioStatus();
     }
+    //触发删除动画,等动画结束 删除列表
+    this.setState({ removeId: audioId });
+    setTimeout(() => {
+      this.setState(
+        {
+          audioLists: newAudioLists,
+          removeId: -1
+        },
+        () => {
+          if (!newAudioLists.length) {
+            return this.resetAudioStatus();
+          }
+          // 如果删除的是当前正在播放的 顺延下一首播放
+          if (audioId === playId) {
+            this.handlePlay(this.PLAY_MODE["orderLoop"]["key"]);
+          }
+        }
+      );
+    }, this.audioListRemoveAnimateTime);
 
     this.props.onAudioListsChange &&
       this.props.onAudioListsChange(
@@ -1227,22 +1226,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   onAudioLoadError = e => {
     const { playMode, audioLists, playId } = this.state;
-    if (audioLists.length >= 1) {
-      this.lyric.stop();
-      //如果当前音乐加载出错 尝试播放下一首
-      const { loadAudioErrorPlayNext } = this.props;
-      if (loadAudioErrorPlayNext && playId < audioLists.length - 1) {
-        this.handlePlay(playMode);
-      }
-
-      const info = this.getBaseAudioInfo();
-      this.props.onAudioLoadError &&
-        this.props.onAudioLoadError({
-          ...e,
-          audioInfo: info,
-          errMsg: this.audio.error || null
-        });
+    this.lyric.stop();
+    this.setState({ loading: false });
+    //如果当前音乐加载出错 尝试播放下一首
+    const { loadAudioErrorPlayNext } = this.props;
+    if (loadAudioErrorPlayNext && playId < audioLists.length - 1) {
+      this.handlePlay(playMode);
     }
+
+    const info = this.getBaseAudioInfo();
+    this.props.onAudioLoadError &&
+      this.props.onAudioLoadError({
+        ...e,
+        audioInfo: info,
+        errMsg: this.audio.error || null
+      });
   };
   //isNext true 下一首  false
   /*eslint-disable no-unused-vars */
@@ -1449,7 +1447,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     localStorage.setItem("lastPlayStatus", lastPlayStatus);
   };
   getLastPlayStatus = () => {
-    const { theme, defaultPlayMode, defaultPlayIndex } = this.props;
+    const { theme, defaultPlayMode } = this.props;
 
     let status = {
       currentTime: 0,
@@ -1563,6 +1561,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   initPlayInfo = (audioLists, cb) => {
     const info = this.getPlayInfo(audioLists);
+    console.log("info: ", info);
 
     switch (typeof info.musicSrc) {
       case "function":
@@ -1694,14 +1693,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
       }
     }
   }
+  bindUnhandledrejection = () => {
+    window.addEventListener("unhandledrejection", this.onAudioLoadError);
+  };
+  unBindUnhandledrejection = () => {
+    window.removeEventListener("unhandledrejection", this.onAudioLoadError);
+  };
   componentWillUnmount() {
     this.unBindEvents(this.audio, undefined, false);
+    this.unBindUnhandledrejection();
     this.media.removeListener(this.listenerIsMobile);
     this.media = undefined;
   }
   componentDidMount() {
     this.addMobileListener();
     this.setDefaultAudioVolume();
+    this.bindUnhandledrejection();
     if (this.props.audioLists.length >= 1) {
       this.bindEvents(this.audio);
       this.initLyricParser();
