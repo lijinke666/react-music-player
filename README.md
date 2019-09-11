@@ -23,8 +23,11 @@ react-jinke-music-player
    <a href="https://badge.fury.io/js/react-jinke-music-playerr" title="npm">
     <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version">
   </a>
-     <a href="https://coveralls.io/github/lijinke666/react-music-player?branch=master" title="Coverage Status">
-    <img src="https://coveralls.io/repos/github/lijinke666/react-music-player/badge.svg?branch=master" alt="Coverage Status">
+  <a href="https://codecov.io/gh/lijinke666/react-music-player">
+    <img src="https://codecov.io/gh/lijinke666/react-music-player/branch/master/graph/badge.svg" />
+  </a>
+     <a href="https://app.netlify.com/sites/react-jinke-music-player/deploys" title="Netlify Status">
+    <img src="https://api.netlify.com/api/v1/badges/2a5d8639-9d2a-46ee-a504-10b7846a57e4/deploy-status" alt="Coverage Status">
   </a>
 </p>
 
@@ -70,7 +73,9 @@ npm install react-jinke-music-player --save
 
 ## Example
 
-> live example : [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+> live example :
+- [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+- [https://react-jinke-music-player.netlify.com/](https://react-jinke-music-player.netlify.com/)
 
 > practical application : [Jinke.Li's House](http://www.lijinke.cn/)
 
