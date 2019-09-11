@@ -1,13 +1,15 @@
 const path = require('path')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 const HOST = 'localhost'
 const PORT = 8081
 
-module.exports = env => {
-  const mode = (env && env.mode) || 'DEV'
+module.exports = () => {
   const options = {
+    mode: process.env.NODE_ENV,
     entry: path.join(__dirname, '../example/example.js'),
     output: {
       path: path.join(__dirname, '../example/dist'),
@@ -87,25 +89,13 @@ module.exports = env => {
     plugins: [
       new OpenBrowserPlugin({
         url: `http:${HOST}:${PORT}/`
+      }),
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({ template: './index.html' }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       })
     ]
-  }
-  if (mode === 'PROD') {
-    options.optimization = {
-      minimizer: [
-        // we specify a custom UglifyJsPlugin here to get source maps in production
-        new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
-          uglifyOptions: {
-            compress: false,
-            ecma: 6,
-            mangle: true
-          },
-          sourceMap: true
-        })
-      ]
-    }
   }
   return options
 }

@@ -7,3 +7,4 @@ npm-debug.log
 npm-error.log
 yarn-error.log
 coverage
+example/dist
