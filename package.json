@@ -15,9 +15,8 @@
     "build:demo": "webpack --progress --config  ./example/webpack.config.js",
     "demo": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "test": "jest __tests__/tests",
-    "coverage": "yarn test -- --coverage",
-    "ci": "yarn coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "precommit": "lint-staged",
+    "coverage": "yarn test --coverage",
+    "ci:coverage": "npm run coverage && codecov",
     "prepublish": "yarn build"
   },
   "lint-staged": {
@@ -95,6 +94,7 @@
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^3.0.0",
+    "codecov": "^3.5.0",
     "copy-webpack-plugin": "latest",
     "coveralls": "^3.0.1",
     "cross-env": "^5.2.1",
