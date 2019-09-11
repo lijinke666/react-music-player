@@ -30,6 +30,9 @@ if (typeof window !== 'undefined') {
       dispatchEvent: jest.fn()
     }
   })
+  global.window.HTMLMediaElement.prototype.load = () => {}
+  global.window.HTMLMediaElement.prototype.play = () => {}
+  global.window.HTMLMediaElement.prototype.pause = () => {}
 }
 
 Enzyme.configure({ adapter: new Adapter() })
