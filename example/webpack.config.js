@@ -69,7 +69,7 @@ module.exports = () => {
         }
       ]
     },
-    devtool: process.env.NODE_ENV === 'development' ? 'source-map' : null,
+    devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
     //自动补全后缀
     resolve: {
       enforceExtension: false,
