@@ -13,7 +13,8 @@ module.exports = () => {
     entry: path.join(__dirname, '../example/example.js'),
     output: {
       path: path.join(__dirname, '../example/dist'),
-      filename: 'build.js'
+      filename: '[name].[contenthash].js',
+      publicPath: '/'
     },
     //模块加载器
     module: {
@@ -91,7 +92,9 @@ module.exports = () => {
         url: `http:${HOST}:${PORT}/`
       }),
       new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({ template: './index.html' }),
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, '../example/index.html')
+      }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       })

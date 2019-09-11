@@ -12,7 +12,7 @@
     "build:css": "lessc src/styles/index.less assets/index.css && yarn auto",
     "build:js": "babel src -d lib",
     "build": "cross-env NODE_ENV=production yarn build:clean && yarn build:js && yarn build:css",
-    "build:demo": "webpack --progress --config  ./example/webpack.config.js",
+    "build:demo": "cross-env NODE_ENV=production webpack --progress --config  ./example/webpack.config.js",
     "demo": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "test": "jest __tests__/tests",
     "coverage": "yarn test --coverage",
