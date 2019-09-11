@@ -14,7 +14,8 @@ module.exports = () => {
     output: {
       path: path.join(__dirname, '../example/dist'),
       filename: '[name].[contenthash].js',
-      publicPath: '/'
+      publicPath:
+        process.env.NODE_ENV === 'production' ? '/react-music-player' : '/'
     },
     //模块加载器
     module: {
