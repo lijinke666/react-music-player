@@ -155,6 +155,9 @@ ReactDOM.render(
 | onThemeChange           | `function(theme)`                                 | `-`                                                                                         | 主题切换后的 钩子函数                                                                                                                          |
 | onModeChange            | `function(mode)`                                  | `-`                                                                                         | 模式切换发生改变时的 钩子函数                                                                                                                  |
 | onAudioListsDragEnd     | `function(fromIndex,toIndex)`                     | `-`                                                                                         | 列表歌曲拖拽后 钩子函数                                                                                                                        |
+| onAudioLyricChange      | `function(lineNum, currentLyric)`                 | `-`                                                                                         | 当前播放的歌词改变回调                                                                                                                         |
+| getContainer            | `() => HTMLElement` \| ` Selectors `              | `document.body`                                                                             | 播放器挂载的节点 默认在 body                                                                                                                   |
+
 
 ## 开发
 
@@ -171,109 +174,115 @@ yarn start | npm start
 npm run test
 ```
 
-## AudioInfo 返回参数
+## 音乐列表 数据结构
 
-```js
-{
-    cover:"xx.jpg"
-    currentTime:10.211519
-    duration:164.211519
-    musicSrc:"xx.mp3"
-    name:"Canon (piano version)"     //音乐名
-    volume:100,      //当前音量
-    muted:false,     //是否静音
-    networkState:1,  //当前网络状态
-    readyState:4,    //当前就绪状态
-    paused:false,    //是否暂停
-    ended:false,     //是否结束
-    startDate:null,  //当前时间偏移的 Date 对象
-    played:{length:1}     //已播放部分的 TimeRanges 对象
+> Like This
+
+```ts
+interface ReactJkMusicPlayerAudioList {
+  name: string | React.ReactNode,
+  singer?: string | React.ReactNode,
+  cover: string,
+  musicSrc: string | () => Promise<string>,
+  lyric?: string,
+}>
+```
+
+## 返回的音乐信息
+
+> Like This
+
+```ts
+interface ReactJkMusicPlayerAudioInfo {
+  cover: string,
+  currentTime: number,
+  duration: number,
+  ended: boolean,
+  musicSrc: string,
+  muted: boolean,
+  name: string,
+  networkState: number,
+  paused: boolean,
+  played: any,
+  readyState: number,
+  startDate: any
+  volume: number,
+  lyric: string,
 }
 ```
 
-## 参数属性
+## 参数
 
-```jsx
-  static propTypes = {
-    audioLists: PropTypes.array.isRequired,
-    theme: PropTypes.oneOf(['dark', 'light']),
-    mode: PropTypes.oneOf(['mini', 'full']),
-    drag: PropTypes.bool,
-    seeked: PropTypes.bool,
-    autoPlay: PropTypes.bool,
-    playModeText: PropTypes.object,
-    closeText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    openText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    panelTitle:PropTypes.string,
-    notContentText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    controllerTitle: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    defaultPosition: PropTypes.shape({
-      top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    }),
-    onAudioPlay: PropTypes.func,
-    onAudioPause: PropTypes.func,
-    onAudioEnded: PropTypes.func,
-    onAudioAbort: PropTypes.func,
-    onAudioVolumeChange: PropTypes.func,
-    onAudioLoadError: PropTypes.func,
-    onAudioProgress: PropTypes.func,
-    onAudioSeeked: PropTypes.func,
-    onAudioDownload: PropTypes.func,
-    onAudioReload: PropTypes.func,
-    onThemeChange:PropTypes.func,
-    onAudioListsChange: PropTypes.func,
-    onAudioPlayModeChange: PropTypes.func,
-    onModeChange: PropTypes.func,
-    onAudioListsPanelChange: PropTypes.func,
-    onAudioPlayTrackChange: PropTypes.func,
-    onAudioListsDragEnd: PropTypes.func,
-    showProgressLoadBar:PropTypes.bool,
-    showDownload: PropTypes.bool,
-    showPlay: PropTypes.bool,
-    showReload: PropTypes.bool,
-    showPlayMode: PropTypes.bool,
-    showThemeSwitch: PropTypes.bool,
-    showMiniModeCover: PropTypes.bool,
-    toggleMode: PropTypes.bool,
-    once: PropTypes.bool,
-    extendsContent: PropTypes.array,
-    checkedText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    unCheckedText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    defaultVolume:PropTypes.number,
-    playModeShowTime: PropTypes.number,
-    bounds: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    showMiniProcessBar: PropTypes.bool,
-    loadAudioErrorPlayNext: PropTypes.bool,
-    preload: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(["auto", "metadata", "none"])
-    ]),
-    glassBg: PropTypes.bool,
-    remember: PropTypes.bool,
-    remove: PropTypes.bool
-    defaultPlayIndex: PropTypes.number
-  }
+```ts
+interface ReactJkMusicPlayerProps {
+  audioLists: Array<ReactJkMusicPlayerAudioList>,
+  theme?: ReactJkMusicPlayerTheme,
+  mode?: ReactJkMusicPlayerMode,
+  defaultPlayMode?: ReactJkMusicPlayerPlayMode
+  drag?: boolean,
+  seeked?: boolean,
+  autoPlay?: boolean,
+  playModeText?: {
+    order: string | React.ReactNode,
+    orderLoop: string | React.ReactNode,
+    singleLoop: string | React.ReactNode,
+    shufflePlay: string | React.ReactNode
+  },
+  panelTitle?: string | React.ReactNode,
+  closeText?: string | React.ReactNode,
+  openText?: string | React.ReactNode,
+  notContentText?: string | React.ReactNode,
+  controllerTitle?: string | React.ReactNode,
+  defaultPosition?: {
+    top: number | string,
+    left: number | string,
+    right: number | string,
+    bottom: number | string
+  },
+  onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioAbort?: (data: any) => void,
+  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioLoadError?: (data: any) => void,
+  onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void,
+  onAudioListsChange?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void,
+  onModeChange?: (mode: ReactJkMusicPlayerMode) => void,
+  onAudioListsPanelChange?: (panelVisible: boolean) => void,
+  onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void,
+  onAudioListsDragEnd?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  showDownload?: boolean,
+  showPlay?: boolean,
+  showReload?: boolean,
+  showPlayMode?: boolean,
+  showThemeSwitch?: boolean,
+  showMiniModeCover?: boolean,
+  toggleMode?: boolean,
+  once?: boolean,
+  extendsContent?: Array<React.ReactNode | string>,
+  checkedText?: string | React.ReactNode,
+  unCheckedText?: string | React.ReactNode,
+  defaultVolume?: number,
+  playModeShowTime?: number,
+  bounds?: string | React.ReactNode,
+  showMiniProcessBar?: boolean,
+  loadAudioErrorPlayNext?: boolean,
+  preload?: boolean | "auto" | "metadata" | "none",
+  glassBg?: boolean,
+  remember?: boolean,
+  remove?: boolean,
+  defaultPlayIndex?: number,
+  playIndex?: number,
+  lyricClassName?: string,
+  emptyLyricPlaceholder?: string | React.ReactNode,
+  showLyric?: boolean,
+  getContainer?: () => HTMLElement
+}
 ```
 
 ## 许可证
