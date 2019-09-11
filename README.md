@@ -160,6 +160,7 @@ ReactDOM.render(
 | onModeChange  | `function(mode)` | `-`          |  mode change handle |
 | onAudioListsDragEnd  | `function(fromIndex,endIndex)` | `-`          |  audio lists drag end handle |
 | onAudioLyricChange  | `function(lineNum, currentLyric)` | `-`          |  audio lyric change handle |
+| getContainer  | `() => HTMLElement` \| ` Selectors ` | `document.body`          |  Return the mount node for Music player |
 
 
 ## Development
@@ -284,6 +285,7 @@ interface ReactJkMusicPlayerProps {
   lyricClassName?: string,
   emptyLyricPlaceholder?: string | React.ReactNode,
   showLyric?: boolean,
+  getContainer?: () => HTMLElement
 }
 ```
 
