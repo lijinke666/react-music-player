@@ -2,34 +2,34 @@
 const Enzyme = require('enzyme')
 const Adapter = require('enzyme-adapter-react-16')
 
-const { JSDOM } = require('jsdom')
-
-const jsdom = new JSDOM('<!doctype html><html><body></body></html>')
-const { window } = jsdom
-
-function copyProps(src, target) {
-  const props = Object.getOwnPropertyNames(src)
-    .filter(prop => typeof target[prop] === 'undefined')
-    .reduce(
-      (result, prop) => ({
-        ...result,
-        [prop]: Object.getOwnPropertyDescriptor(src, prop)
-      }),
-      {}
-    )
-  Object.defineProperties(target, props)
-}
-
 global.window = window
 global.document = window.document
 global.navigator = {
   userAgent: 'node.js'
 }
-copyProps(window, global)
-
-window.alert = msg => {
-  console.log(msg)
+if (typeof window !== 'undefined') {
+  global.window.resizeTo = (width, height) => {
+    global.window.innerWidth = width || global.window.innerWidth
+    global.window.innerHeight = height || global.window.innerHeight
+    global.window.dispatchEvent(new Event('resize'))
+  }
+  global.window.scrollTo = () => {}
+  global.alert = (msg) => {
+    console.log(msg)
+  }
+  global.scrollTo = () => {}
+  global.window.matchMedia = jest.fn().mockImplementation((query) => {
+    return {
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // deprecated
+      removeListener: jest.fn(), // deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn()
+    }
+  })
 }
-window.scrollTo = () => {}
 
 Enzyme.configure({ adapter: new Adapter() })
