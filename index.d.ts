@@ -96,5 +96,6 @@ export interface ReactJkMusicPlayerProps {
   lyricClassName?: string,
   emptyLyricPlaceholder?: string | React.ReactNode,
   showLyric?: boolean,
+  getContainer?: () => HTMLElement
 }
 export default class ReactJkMusicPlayer extends React.PureComponent<ReactJkMusicPlayerProps, any> { }

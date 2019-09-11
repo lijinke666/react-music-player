@@ -20,7 +20,7 @@ module.exports = () => {
     entry: path.join(__dirname, '../example/example.js'),
     output: {
       path: path.join(__dirname, '../example/dist'),
-      filename: '[name].[contenthash].js',
+      filename: '[name].[hash:8].js',
       publicPath: getPublicPath()
     },
     //模块加载器
@@ -69,7 +69,7 @@ module.exports = () => {
         }
       ]
     },
-    devtool: 'source-map',
+    devtool: process.env.NODE_ENV === 'development' ? 'source-map' : null,
     //自动补全后缀
     resolve: {
       enforceExtension: false,
@@ -84,7 +84,6 @@ module.exports = () => {
       compress: true,
       inline: true,
       port: PORT,
-      publicPath: '/dist/',
       historyApiFallback: true,
       stats: {
         color: true,

@@ -2,7 +2,6 @@
 /*eslint-disable no-console */
 import React from 'react'
 import assert from 'power-assert'
-import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 
 import ReactJkMusicPlayer, {
@@ -22,6 +21,10 @@ import PlayerMobile, { PlayModeTip } from '../../src/components/PlayerMobile'
 import AudioListsPanel from '../../src/components/AudioListsPanel'
 
 describe('<ReactJkMusicPlayer/>', () => {
+  it('should render a <ReactJkMusicPlayer/> components', () => {
+    const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" />)
+    expect(wrapper).toMatchSnapshot()
+  })
   it('should render a <ReactJkMusicPlayer/> components', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -94,7 +97,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({ audioLists: [] })
     setTimeout(() => {
       assert(wrapper.props().audioLists.length === 0)
-      expect(wrapper.text()).to.contain('no music')
+      expect(wrapper.text()).toContain('no music')
     })
   })
   it('should toggle group setting buttons', () => {
@@ -140,30 +143,30 @@ describe('<ReactJkMusicPlayer/>', () => {
       defaultPlayMode: 'order'
     }
     const wrapper = mount(<ReactJkMusicPlayer {...testProps} />)
-    expect(wrapper.text()).to.contain('openText')
+    expect(wrapper.text()).toContain('openText')
 
     wrapper.setState({ toggle: false, loading: false })
-    expect(wrapper.text()).to.contain('controllerTitle')
+    expect(wrapper.text()).toContain('controllerTitle')
 
     wrapper.setState({ toggle: true })
-    expect(wrapper.text()).to.contain('panelTitle')
-    expect(wrapper.text()).to.contain('unCheckedText')
+    expect(wrapper.text()).toContain('panelTitle')
+    expect(wrapper.text()).toContain('unCheckedText')
 
     wrapper.setState({ theme: 'light' })
-    expect(wrapper.text()).to.contain('checkedText')
-    expect(wrapper.text()).to.contain('order')
+    expect(wrapper.text()).toContain('checkedText')
+    expect(wrapper.text()).toContain('order')
 
     wrapper.setProps({ defaultPlayMode: 'orderLoop' })
-    expect(wrapper.text()).to.contain('orderLoop')
+    expect(wrapper.text()).toContain('orderLoop')
 
     wrapper.setProps({ defaultPlayMode: 'singleLoop' })
-    expect(wrapper.text()).to.contain('singleLoop')
+    expect(wrapper.text()).toContain('singleLoop')
 
     wrapper.setProps({ defaultPlayMode: 'shufflePlay' })
-    expect(wrapper.text()).to.contain('shufflePlay')
+    expect(wrapper.text()).toContain('shufflePlay')
 
     wrapper.setProps({ audioLists: [] })
-    expect(wrapper.text()).to.contain('notContentText')
+    expect(wrapper.text()).toContain('notContentText')
   })
   it('should render seeked', () => {
     const wrapper = mount(<ReactJkMusicPlayer seeked={true} />)
@@ -182,8 +185,8 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer extendsContent={extendsContent} />
     )
     wrapper.setState({ toggle: true })
-    expect(wrapper.text()).to.contain('extendsText1')
-    expect(wrapper.text()).to.contain('extendsText2')
+    expect(wrapper.text()).toContain('extendsText1')
+    expect(wrapper.text()).toContain('extendsText2')
     assert(wrapper.find('.extendsContent').length === 1)
   })
   it('should render range random', () => {
@@ -191,7 +194,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     const result = new Array(repeat).fill().map((_, i) => {
       return createRandomNum(0, i + 1) <= i + 1
     })
-    expect(result.filter(v => v)).to.have.length(repeat)
+    expect(result.filter((v) => v)).toHaveLength(repeat)
   })
   it('should set defaultVolume', () => {
     const volumes = [100, 20]
@@ -279,5 +282,35 @@ describe('<ReactJkMusicPlayer/>', () => {
       wrapper.find('.react-jinke-music-player-mobile-operation .item').length >=
         5
     )
+  })
+  it('should render music player in custom root node', () => {
+    const div = document.createElement('div')
+    div.className = 'test'
+    const wrapper = mount(<ReactJkMusicPlayer getContainer={() => div} />)
+    expect(wrapper.find('.test')).toHaveLength(0)
+  })
+
+  it('should render music player in custom root node', () => {
+    const wrapper = mount(
+      <div>
+        <div className="test">
+          <ReactJkMusicPlayer
+            getContainer={() => document.querySelector('.test')}
+          />
+        </div>
+        <span className="test1"></span>
+      </div>
+    )
+    expect(wrapper.find('.test1').find(ReactJkMusicPlayer)).toHaveLength(0)
+    expect(wrapper.find('.test').find(ReactJkMusicPlayer)).toHaveLength(1)
+  })
+
+  it('should cannot render player in invalid custom root node', () => {
+    const div = 1
+    try {
+      mount(<ReactJkMusicPlayer getContainer={() => div} />)
+    } catch (error) {
+      expect(error.message).toContain('Target container is not a DOM element')
+    }
   })
 })
