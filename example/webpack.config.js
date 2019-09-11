@@ -7,6 +7,13 @@ const webpack = require('webpack')
 const HOST = 'localhost'
 const PORT = 8081
 
+const getPublicPath = () => {
+  if (!!process.env.NETLIFY || process.env.NODE_ENV !== 'production') {
+    return '/'
+  }
+  return '/react-music-player'
+}
+
 module.exports = () => {
   const options = {
     mode: process.env.NODE_ENV,
@@ -14,8 +21,7 @@ module.exports = () => {
     output: {
       path: path.join(__dirname, '../example/dist'),
       filename: '[name].[contenthash].js',
-      publicPath:
-        process.env.NODE_ENV === 'production' ? '/react-music-player' : '/'
+      publicPath: getPublicPath()
     },
     //模块加载器
     module: {
