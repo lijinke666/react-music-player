@@ -351,6 +351,11 @@ const options = {
 
   onAudioLyricChange(lineNum, currentLyric) {
     console.log('audio lyric change:', lineNum, currentLyric)
+  },
+
+  // custom music player root node
+  getContainer() {
+    return document.body
   }
 }
 
@@ -403,7 +408,7 @@ class Demo extends React.PureComponent {
   onSeeked = () => {
     this.onChangeKey('seeked')
   }
-  onChangeKey = key => {
+  onChangeKey = (key) => {
     const data = {
       ...this.state.params,
       [key]: !this.state.params[key]

@@ -1,5 +1,5 @@
 /**
- * @version 4.3.7
+ * @version 4.4.0
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -205,7 +205,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     remember: false, //是否记住当前播放状态
     remove: true, //音乐是否可以删除
     defaultPlayIndex: 0, //默认播放索引
-    emptyLyricPlaceholder: "NO LYRIC"
+    emptyLyricPlaceholder: "NO LYRIC",
+    getContainer: () => document.body // 播放器挂载的节点
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -280,7 +281,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.string,
       PropTypes.object
     ]),
-    showLyric: PropTypes.bool
+    showLyric: PropTypes.bool,
+    getContainer: PropTypes.func
   };
   constructor(props) {
     super(props);
@@ -354,7 +356,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       remove,
       lyricClassName,
       showLyric,
-      emptyLyricPlaceholder
+      emptyLyricPlaceholder,
+      getContainer
     } = this.props;
 
     const {
@@ -550,6 +553,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         </div>
       </div>
     );
+
+    const container = getContainer() || document.body;
 
     return createPortal(
       <div
@@ -843,7 +848,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           ref={node => (this.audio = node)}
         />
       </div>,
-      document.body
+      container
     );
   }
 
