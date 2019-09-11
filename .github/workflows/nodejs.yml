@@ -27,18 +27,3 @@ jobs:
         env:
           CI: true
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      # - name: Label approved pull requests
-      #   uses: pullreminders/label-when-approved-action@v1.0.3
-      #   env:
-      #     APPROVALS: '1'
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     LABEL_NAME: 'approved'
-
-      - name: Deploy github pages
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: example/dist
-          BUILD_SCRIPT: npm run build:demo
