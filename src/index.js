@@ -724,7 +724,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                   {/* 自定义扩展按钮 */}
                   {extendsContent && extendsContent.length >= 1
-                    ? extendsContent.map((content, i) => content)
+                    ? extendsContent.map(content => content)
                     : undefined}
 
                   {/*音量控制*/}

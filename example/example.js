@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import ReactJkMusicPlayer from '../src'
 import swal from 'sweetalert'
 import FaHeadphones from 'react-icons/lib/fa/headphones'
+import Switch from 'rc-switch'
 import { createRandomNum } from '../src/utils'
 
 import '../src/styles/index.less'
@@ -309,8 +310,7 @@ const options = {
 
   //audio load failed error handle
   onAudioLoadError(e) {
-    swal('audio load error', '', 'error')
-    console.log('audio load err', e)
+    console.error('audio load err', e)
   },
 
   //theme change handle
@@ -413,6 +413,9 @@ class Demo extends React.PureComponent {
       ...this.state.params,
       [key]: !this.state.params[key]
     }
+    if (key === 'light' || key === 'dark') {
+      data.theme = key
+    }
     this.setState({ params: data })
   }
   showMiniProcessBar = () => {
@@ -441,6 +444,7 @@ class Demo extends React.PureComponent {
   }
   render() {
     const { params } = this.state
+    console.log('params: ', params)
     return (
       <div>
         <h2 className="example-title">
@@ -463,7 +467,6 @@ class Demo extends React.PureComponent {
           <button onClick={this.changePlayIndex}>
             change playIndex ({params.playIndex || 0})
           </button>
-
           <label htmlFor="glass">
             <input type="checkbox" id="glass" onChange={this.onShowGlassBg} />
             show glass background
@@ -513,7 +516,6 @@ class Demo extends React.PureComponent {
             />
             show cover of mini mode
           </label>
-
           <label htmlFor="showProgressLoadBar">
             <input
               type="checkbox"
@@ -604,6 +606,13 @@ class Demo extends React.PureComponent {
             />
             remember
           </label>
+          theme :{params.theme}
+          <Switch
+            checkedChildren={'D'}
+            unCheckedChildren={'L'}
+            checked={params.theme === 'light'}
+            onChange={(checked) => this.onChangeKey(checked ? 'light' : 'dark')}
+          />
         </section>
         <ReactJkMusicPlayer {...params} />
       </div>
