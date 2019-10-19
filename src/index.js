@@ -1622,8 +1622,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onAudioLyricChange &&
       this.props.onAudioLyricChange(lineNum, txt);
   };
+
+  updateTheme = theme => {
+    if (
+      theme &&
+      (theme === this.lightThemeName || theme === this.darkThemeName)
+    ) {
+      this.setState({ theme });
+    }
+  };
+
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
-  componentWillReceiveProps({ audioLists, playIndex }) {
+  componentWillReceiveProps({ audioLists, playIndex, theme }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
       const newAudioLists = [
         ...this.state.audioLists,
@@ -1657,6 +1667,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.audioListsPlay(currentPlay.id, true);
         }
       }
+      this.updateTheme(theme);
     }
   }
   //合并state 更新初始值
