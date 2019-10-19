@@ -313,4 +313,11 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(error.message).toContain('Target container is not a DOM element')
     }
   })
+  it('update state theme when option theme change', () => {
+    const wrapper = mount(<ReactJkMusicPlayer theme="light" />)
+    wrapper.setProps({ theme: 'dark' })
+    expect(wrapper.state().theme).toEqual('dark')
+    wrapper.setProps({ theme: 'xxxx' })
+    expect(wrapper.state().theme).toEqual('dark')
+  })
 })
