@@ -416,6 +416,9 @@ class Demo extends React.PureComponent {
     if (key === 'light' || key === 'dark') {
       data.theme = key
     }
+    if (key === 'full' || key === 'mini') {
+      data.mode = key
+    }
     this.setState({ params: data })
   }
   showMiniProcessBar = () => {
@@ -612,6 +615,13 @@ class Demo extends React.PureComponent {
             unCheckedChildren={'L'}
             checked={params.theme === 'light'}
             onChange={(checked) => this.onChangeKey(checked ? 'light' : 'dark')}
+          />
+          mode :{params.mode}
+          <Switch
+            checkedChildren={'M'}
+            unCheckedChildren={'F'}
+            checked={params.mode === 'mini'}
+            onChange={(checked) => this.onChangeKey(checked ? 'mini' : 'full')}
           />
         </section>
         <ReactJkMusicPlayer {...params} />
