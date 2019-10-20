@@ -156,15 +156,6 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.text()).toContain('checkedText')
     expect(wrapper.text()).toContain('order')
 
-    wrapper.setProps({ defaultPlayMode: 'orderLoop' })
-    expect(wrapper.text()).toContain('orderLoop')
-
-    wrapper.setProps({ defaultPlayMode: 'singleLoop' })
-    expect(wrapper.text()).toContain('singleLoop')
-
-    wrapper.setProps({ defaultPlayMode: 'shufflePlay' })
-    expect(wrapper.text()).toContain('shufflePlay')
-
     wrapper.setProps({ audioLists: [] })
     expect(wrapper.text()).toContain('notContentText')
   })
@@ -319,5 +310,33 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().theme).toEqual('dark')
     wrapper.setProps({ theme: 'xxxx' })
     expect(wrapper.state().theme).toEqual('dark')
+  })
+
+  it('trigger theme change handler when option theme change', () => {
+    const onThemeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer theme="light" onThemeChange={onThemeChange} />
+    )
+    wrapper.setProps({ theme: 'dark' })
+    expect(onThemeChange).toHaveBeenCalled()
+  })
+
+  it('update mode', () => {
+    const wrapper = mount(<ReactJkMusicPlayer mode="mini" />)
+    wrapper.setProps({ mode: 'full' })
+    expect(wrapper.state().toggle).toEqual(true)
+    wrapper.setProps({ mode: 'xxxx' })
+    expect(wrapper.state().toggle).toEqual(true)
+    wrapper.setProps({ mode: 'mini' })
+    expect(wrapper.state().toggle).toEqual(false)
+  })
+
+  it('mode change handler when update mode', () => {
+    const onModeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer mode="mini" onModeChange={onModeChange} />
+    )
+    wrapper.setProps({ mode: 'full' })
+    expect(onModeChange).toHaveBeenCalled()
   })
 })

@@ -1629,46 +1629,68 @@ export default class ReactJkMusicPlayer extends PureComponent {
       (theme === this.lightThemeName || theme === this.darkThemeName)
     ) {
       this.setState({ theme });
+      this.props.onThemeChange && this.props.onThemeChange(theme);
+    }
+  };
+
+  updateMode = mode => {
+    if (
+      mode &&
+      (mode !== this.props.mode &&
+        (mode === this.toggleModeName.full ||
+          mode === this.toggleModeName.mini))
+    ) {
+      this.setState({ toggle: mode === this.toggleModeName.full });
+      this.props.onModeChange && this.props.onModeChange(mode);
+    }
+  };
+
+  updateAudioLists = audioLists => {
+    const newAudioLists = [
+      ...this.state.audioLists,
+      ...audioLists.filter(
+        audio =>
+          this.state.audioLists.findIndex(
+            v => v.musicSrc === audio.musicSrc
+          ) === -1
+      )
+    ];
+    this.initPlayInfo(newAudioLists);
+    this.bindEvents(this.audio);
+    this.props.onAudioListsChange &&
+      this.props.onAudioListsChange(
+        this.state.playId,
+        audioLists,
+        this.getBaseAudioInfo()
+      );
+  };
+
+  updatePlayIndex = playIndex => {
+    // 播放索引 改变
+    const currentPlayIndex = this.state.audioLists.findIndex(
+      audio => audio.id === this.state.playId
+    );
+    if (currentPlayIndex !== playIndex) {
+      const _playIndex = Math.max(
+        0,
+        Math.min(this.state.audioLists.length, playIndex)
+      );
+      const currentPlay = this.state.audioLists[_playIndex];
+      if (currentPlay && currentPlay.id) {
+        this.audioListsPlay(currentPlay.id, true);
+      }
     }
   };
 
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
-  componentWillReceiveProps({ audioLists, playIndex, theme }) {
+  componentWillReceiveProps({ audioLists, playIndex, theme, mode }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
-      const newAudioLists = [
-        ...this.state.audioLists,
-        ...audioLists.filter(
-          (audio, i) =>
-            this.state.audioLists.findIndex(
-              v => v.musicSrc === audio.musicSrc
-            ) === -1
-        )
-      ];
-      this.initPlayInfo(newAudioLists);
-      this.bindEvents(this.audio);
-      this.props.onAudioListsChange &&
-        this.props.onAudioListsChange(
-          this.state.playId,
-          audioLists,
-          this.getBaseAudioInfo()
-        );
+      this.updateAudioLists(audioLists);
     } else {
-      // 播放索引 改变
-      const currentPlayIndex = this.state.audioLists.findIndex(
-        audio => audio.id === this.state.playId
-      );
-      if (currentPlayIndex !== playIndex) {
-        const _playIndex = Math.max(
-          0,
-          Math.min(this.state.audioLists.length, playIndex)
-        );
-        const currentPlay = this.state.audioLists[_playIndex];
-        if (currentPlay && currentPlay.id) {
-          this.audioListsPlay(currentPlay.id, true);
-        }
-      }
-      this.updateTheme(theme);
+      this.updatePlayIndex(playIndex);
     }
+    this.updateTheme(theme);
+    this.updateMode(mode);
   }
   //合并state 更新初始值
   componentWillMount() {
@@ -1708,22 +1730,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
       }
     }
   }
-  bindUnhandledrejection = () => {
+  bindUnhandledRejection = () => {
     window.addEventListener("unhandledrejection", this.onAudioLoadError);
   };
-  unBindUnhandledrejection = () => {
+  unBindUnhandledRejection = () => {
     window.removeEventListener("unhandledrejection", this.onAudioLoadError);
   };
   componentWillUnmount() {
     this.unBindEvents(this.audio, undefined, false);
-    this.unBindUnhandledrejection();
+    this.unBindUnhandledRejection();
     this.media.removeListener(this.listenerIsMobile);
     this.media = undefined;
   }
   componentDidMount() {
     this.addMobileListener();
     this.setDefaultAudioVolume();
-    this.bindUnhandledrejection();
+    this.bindUnhandledRejection();
     if (this.props.audioLists.length >= 1) {
       this.bindEvents(this.audio);
       this.initLyricParser();
