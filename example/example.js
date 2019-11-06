@@ -449,7 +449,7 @@ class Demo extends React.PureComponent {
     const { params } = this.state
     console.log('params: ', params)
     return (
-      <div>
+      <>
         <h2 className="example-title">
           Drag, Click, or switch to phone mode to try{' '}
           <a
@@ -625,7 +625,7 @@ class Demo extends React.PureComponent {
           />
         </section>
         <ReactJkMusicPlayer {...params} />
-      </div>
+      </>
     )
   }
 }

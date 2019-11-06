@@ -436,19 +436,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
     );
 
     //下载按钮
-    const DownloadComponent = showDownload ? (
+    const DownloadComponent = showDownload && (
       <span
         className="group audio-download"
         {...{ [IS_MOBILE ? "onTouchStart" : "onClick"]: this.onAudioDownload }}
       >
         <Download />
       </span>
-    ) : (
-      undefined
     );
 
     //主题开关
-    const ThemeSwitchComponent = showThemeSwitch ? (
+    const ThemeSwitchComponent = showThemeSwitch && (
       <span className="group theme-switch">
         <Switch
           className="theme-switch-container"
@@ -458,12 +456,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
           checked={theme === this.lightThemeName}
         />
       </span>
-    ) : (
-      undefined
     );
 
     //重放
-    const ReloadComponent = showReload ? (
+    const ReloadComponent = showReload && (
       <span
         className="group reload-btn"
         {...(IS_MOBILE
@@ -474,12 +470,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       >
         <Reload />
       </span>
-    ) : (
-      undefined
     );
 
     //歌词
-    const LyricComponent = showLyric ? (
+    const LyricComponent = showLyric && (
       <span
         className={classNames("group lyric-btn", {
           "lyric-btn-active": audioLyricVisible
@@ -492,8 +486,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       >
         <LyricIcon />
       </span>
-    ) : (
-      undefined
     );
 
     //播放模式
@@ -599,7 +591,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             onClose={this.onHidePanel}
             extendsContent={extendsContent}
             glassBg={glassBg}
-            LyricComponent={LyricComponent}
+            LyricIcon={LyricComponent}
           />
         ) : (
           undefined
