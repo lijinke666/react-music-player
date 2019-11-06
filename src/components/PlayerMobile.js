@@ -40,7 +40,7 @@ const PlayerMobile = ({
   extendsContent,
   onPlay,
   glassBg,
-  LyricComponent
+  LyricIcon
 }) => (
   <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
     <PlayModeTip
@@ -116,25 +116,22 @@ const PlayerMobile = ({
     </div>
     <div className={`${prefix}-operation group`}>
       <ul className="items">
-        <li className="item" key="item-player-mode">
-          {playMode}
-        </li>
-        <li className="item" key="item-download-icon">
-          {downloadIcon}
-        </li>
-        <li className="item" key="item-reload-icon">
-          {reloadIcon}
-        </li>
-        {extendsContent && extendsContent.length >= 1
-          ? extendsContent.map((content, i) => {
-              return (
-                <li className="item" key={i}>
-                  {content}
-                </li>
-              );
-            })
-          : undefined}
-        <li className="item">{LyricComponent}</li>
+        {[playMode, downloadIcon, reloadIcon, LyricIcon]
+          .filter(Boolean)
+          .map((icon, i) => (
+            <li className="item" key={i}>
+              {icon}
+            </li>
+          ))}
+        {extendsContent &&
+          extendsContent.length >= 1 &&
+          extendsContent.map((content, i) => {
+            return (
+              <li className="item" key={i}>
+                {content}
+              </li>
+            );
+          })}
         <li
           className="item"
           key="play-lists-icon"

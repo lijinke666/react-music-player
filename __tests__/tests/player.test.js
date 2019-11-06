@@ -339,4 +339,41 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({ mode: 'full' })
     expect(onModeChange).toHaveBeenCalled()
   })
+  it('should cannot find lyric operation button', () => {
+    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} mode="full" />)
+    wrapper.setState({ isMobile: true })
+    expect(
+      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+    ).toHaveLength(4)
+  })
+
+  it('should find five operation button when toggle lyric option', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer audioLists={[]} mode="full" showLyric={false} />
+    )
+    wrapper.setState({ isMobile: true })
+    expect(
+      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+    ).toHaveLength(4)
+    wrapper.setProps({ showLyric: true })
+    expect(
+      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+    ).toHaveLength(5)
+  })
+  it('should only render audio list menu button when ', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[]}
+        mode="full"
+        showLyric={false}
+        showDownload={false}
+        showPlayMode={false}
+        showReload={false}
+      />
+    )
+    wrapper.setState({ isMobile: true })
+    expect(
+      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+    ).toHaveLength(1)
+  })
 })
