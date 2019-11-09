@@ -833,7 +833,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
           </Draggable>
         )}
         <audio
-          key="audio"
           className="music-player-audio"
           {...preloadState}
           src={musicSrc}
@@ -1223,7 +1222,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     });
   };
   onAudioLoadError = e => {
-    const { playMode, audioLists, playId } = this.state;
+    const { playMode, audioLists, playId, musicSrc } = this.state;
     this.lyric.stop();
 
     //如果当前音乐加载出错 尝试播放下一首
@@ -1232,13 +1231,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.handlePlay(playMode);
     }
 
-    const info = this.getBaseAudioInfo();
-    this.props.onAudioLoadError &&
-      this.props.onAudioLoadError({
-        ...e,
-        audioInfo: info,
-        errMsg: this.audio.error || null
-      });
+    // 如果删除歌曲或其他原因导致列表为空时
+    // 这时候会触发 https://developer.mozilla.org/en-US/docs/Web/API/MediaError
+    if (musicSrc) {
+      const info = this.getBaseAudioInfo();
+      this.props.onAudioLoadError &&
+        this.props.onAudioLoadError({
+          ...e,
+          audioInfo: info,
+          errMsg: this.audio.error || null
+        });
+    }
   };
   //isNext true 下一首  false
   /*eslint-disable no-unused-vars */
@@ -1379,12 +1382,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   //加载中断
   onAudioAbort = e => {
+    const { audioLists } = this.state;
     const audioInfo = this.getBaseAudioInfo();
-    const _err = Object.assign({}, e, audioInfo);
-    this.props.onAudioAbort && this.props.onAudioAbort(_err);
-    this.audio.pause();
-    this.audio.play();
-    this.lyric.stop();
+    const mergedError = Object.assign({}, e, audioInfo);
+    this.props.onAudioAbort && this.props.onAudioAbort(mergedError);
+    if (audioLists.length) {
+      this.audio.pause();
+      this.audio.play();
+      this.lyric.stop();
+    }
   };
   //切换播放器模式
   toggleMode = mode => {

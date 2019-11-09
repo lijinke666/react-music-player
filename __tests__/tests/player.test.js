@@ -376,4 +376,22 @@ describe('<ReactJkMusicPlayer/>', () => {
       wrapper.find('.react-jinke-music-player-mobile-operation .item')
     ).toHaveLength(1)
   })
+  it('should cannot trigger onAudioLoadError when clear audioLists', () => {
+    const onAudioLoadError = jest.fn()
+    const testProps = {
+      audioLists: [
+        {
+          name: 'name',
+          singer: 'singer',
+          cover: 'test.jpg',
+          musicSrc: 'test.mp3'
+        }
+      ],
+      onAudioLoadError
+    }
+    const wrapper = mount(<ReactJkMusicPlayer {...testProps} mode="full" />)
+    wrapper.setState({ audioListsPanelVisible: true })
+    wrapper.find('.delete-btn').simulate('click')
+    expect(onAudioLoadError).not.toHaveBeenCalled()
+  })
 })
