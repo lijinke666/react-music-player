@@ -495,7 +495,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
       </AudioListsPanel>
       <audio
         className="music-player-audio"
-        key="audio"
         src=""
       />
     </div>
