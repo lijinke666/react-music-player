@@ -66,7 +66,10 @@ export interface ReactJkMusicPlayerProps {
   onAudioLoadError?: (data: any) => void
   onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioDownload?: (
+    audioInfo: ReactJkMusicPlayerAudioInfo,
+    transformedDownloadAudioInfo: TransformedDownloadAudioInfo
+  ) => void
   onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void
   onAudioListsChange?: (
@@ -111,7 +114,17 @@ export interface ReactJkMusicPlayerProps {
   getContainer?: () => HTMLElement
   getAudioInstance?: (instance: HTMLAudioElement) => void
   autoHiddenCover?: boolean
+  onBeforeAudioDownload?: (
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => Promise<TransformedDownloadAudioInfo>
 }
+
+export interface TransformedDownloadAudioInfo {
+  src: string
+  filename?: string
+  mimeType?: string
+}
+
 export default class ReactJkMusicPlayer extends React.PureComponent<
   ReactJkMusicPlayerProps,
   any

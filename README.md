@@ -163,6 +163,7 @@ ReactDOM.render(
 | getContainer  | `() => HTMLElement` \| ` Selectors ` | `document.body`          |  Return the mount node for Music player |
 | getAudioInstance  | `(instance: HTMLAudioElement) => void` | `-`          |  get origin audio element instance , you can use it do everything |
 | autoHiddenCover  | `boolean` | `false`          |  Auto hide the cover photo if no cover photo is available|
+| onBeforeAudioDownload   | `(audioInfo: ReactJkMusicPlayerAudioInfo) => Promise<TransformedDownloadAudioInfo>` |  `-`          |  transform download audio info before |
 
 
 ## Development
@@ -253,7 +254,7 @@ interface ReactJkMusicPlayerProps {
   onAudioLoadError?: (data: any) => void,
   onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
+  onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo, transformedDownloadAudioInfo: TransformedDownloadAudioInfo) => void,
   onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void,
   onAudioListsChange?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
@@ -290,6 +291,15 @@ interface ReactJkMusicPlayerProps {
   getContainer?: () => HTMLElement
   getAudioInstance?: (instance: HTMLAudioElement) => void
   autoHiddenCover?: boolean
+  onBeforeAudioDownload?: (
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => Promise<TransformedDownloadAudioInfo>
+}
+
+export interface TransformedDownloadAudioInfo {
+  src: string
+  filename?: string
+  mimeType?: string
 }
 ```
 
