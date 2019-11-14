@@ -157,10 +157,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     loadProgress: 0,
     removeId: -1,
     isNeedMobileHack: IS_MOBILE,
-    audioLyricVisible: false,
-    showFullModeCover: true,
-    showMiniModeCover: false,
-    baseCover: ""
+    audioLyricVisible: false
   };
   static defaultProps = {
     audioLists: [],
