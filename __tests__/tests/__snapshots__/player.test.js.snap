@@ -26,6 +26,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   loadAudioErrorPlayNext={true}
   mode="mini"
   notContentText="no music"
+  onBeforeAudioDownload={[Function]}
   once={false}
   openText="open"
   panelTitle="PlayList"

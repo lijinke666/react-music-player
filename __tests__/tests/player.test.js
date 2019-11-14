@@ -453,4 +453,24 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(wrapper.find('.cover')).toHaveLength(1)
     })
   })
+  it('should transform download audio info before', () => {
+    const onBeforeAudioDownload = jest.fn(() => {
+      return Promise.resolve({
+        src: '123.mpg',
+        filename: 'test'
+      })
+    })
+    const onAudioDownload = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', cover: '' }]}
+        mode="full"
+        onBeforeAudioDownload={onBeforeAudioDownload}
+        onAudioDownload={onAudioDownload}
+      />
+    )
+    wrapper.find('.audio-download').simulate('click')
+    expect(onBeforeAudioDownload).toHaveBeenCalled()
+    expect(onAudioDownload).toHaveBeenCalled()
+  })
 })

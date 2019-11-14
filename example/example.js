@@ -266,7 +266,6 @@ const options = {
 
   //Music is downloaded handle
   onAudioDownload(audioInfo) {
-    swal('download successfully', '', 'success')
     console.log('audio download', audioInfo)
   },
 
@@ -370,6 +369,22 @@ const options = {
   getAudioInstance(audio) {
     console.log('audio instance', audio)
   }
+
+  // transform audio info like return a Promise
+
+  /**
+   * @return
+   *  {
+   *    src: 'xxx',
+   *    filename: 'xxx',
+   *    mimeType: 'xxx'
+   *  }
+   */
+  // onBeforeAudioDownload() {
+  //   return Promise.resolve({
+  //     src: '1.mp3'
+  //   })
+  // }
 }
 
 class Demo extends React.PureComponent {

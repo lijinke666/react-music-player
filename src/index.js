@@ -208,7 +208,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     defaultPlayIndex: 0, //默认播放索引
     emptyLyricPlaceholder: 'NO LYRIC',
     getContainer: () => document.body, // 播放器挂载的节点
-    autoHiddenCover: false // 当前播放歌曲没有封面时是否自动隐藏
+    autoHiddenCover: false, // 当前播放歌曲没有封面时是否自动隐藏
+    onBeforeAudioDownload: () => {} // 下载前转换音频地址等
   }
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -286,6 +287,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showLyric: PropTypes.bool,
     getContainer: PropTypes.func,
     getAudioInstance: PropTypes.func,
+    onBeforeAudioDownload: PropTypes.func,
     autoHiddenCover: PropTypes.bool
   }
   constructor(props) {
@@ -1039,11 +1041,23 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onThemeChange && this.props.onThemeChange(theme)
   }
   onAudioDownload = () => {
-    const { name, musicSrc } = this.state
-    if (name && musicSrc) {
-      download(musicSrc)
+    if (this.state.musicSrc) {
+      const baseAudioInfo = this.getBaseAudioInfo()
+      const onBeforeAudioDownload = this.props.onBeforeAudioDownload(
+        baseAudioInfo
+      )
+      let transformedDownloadAudioInfo = {}
+      if (onBeforeAudioDownload && onBeforeAudioDownload.then) {
+        onBeforeAudioDownload.then((info) => {
+          const { src, filename, mimeType } = info
+          transformedDownloadAudioInfo = info
+          download(src, filename, mimeType)
+        })
+      } else {
+        download(this.state.musicSrc)
+      }
       this.props.onAudioDownload &&
-        this.props.onAudioDownload(this.getBaseAudioInfo())
+        this.props.onAudioDownload(baseAudioInfo, transformedDownloadAudioInfo)
     }
   }
   controllerMouseMove = (e, { deltaX, deltaY }) => {
