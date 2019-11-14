@@ -157,6 +157,9 @@ ReactDOM.render(
 | onAudioListsDragEnd     | `function(fromIndex,toIndex)`                     | `-`                                                                                         | 列表歌曲拖拽后 钩子函数                                                                                                                        |
 | onAudioLyricChange      | `function(lineNum, currentLyric)`                 | `-`                                                                                         | 当前播放的歌词改变回调                                                                                                                         |
 | getContainer            | `() => HTMLElement` \| ` Selectors `              | `document.body`                                                                             | 播放器挂载的节点 默认在 body                                                                                                                   |
+| getAudioInstance        | `(instance: HTMLAudioElement) => void`            | `-`                                                                                         | 获取原始的 audio 实例, 可以用它所有的 api 做你想做的事情                                                                                       |
+| autoHiddenCover         | `boolean`                                         | `false`                                                                                     | 当前歌曲没有封面图时是否不渲染对应的 dom 节点                                                                                                  |
+
 
 
 ## 开发
