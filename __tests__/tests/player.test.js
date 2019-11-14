@@ -414,4 +414,43 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
     expect(typeof _instance).toEqual('object')
   })
+  it('should auto hide the cover photo if no cover photo is available for pc', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', cover: '' }]}
+        mode="full"
+        autoHiddenCover
+      />
+    )
+    expect(wrapper.find('.img-content')).toHaveLength(0)
+    wrapper.setProps({
+      audioLists: [
+        { musicSrc: '2', cover: 'xxxx' },
+        { musicSrc: '22', cover: 'xxxxx' }
+      ]
+    })
+    setTimeout(() => {
+      expect(wrapper.find('.img-content')).toHaveLength(1)
+    })
+  })
+  it('should auto hide the cover photo if no cover photo is available for mobile', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', cover: '' }]}
+        mode="full"
+        autoHiddenCover
+      />
+    )
+    wrapper.setState({ isMobile: true })
+    expect(wrapper.find('.cover')).toHaveLength(0)
+    wrapper.setProps({
+      audioLists: [
+        { musicSrc: '2', cover: 'xxxx' },
+        { musicSrc: '22', cover: 'xxxxx' }
+      ]
+    })
+    setTimeout(() => {
+      expect(wrapper.find('.cover')).toHaveLength(1)
+    })
+  })
 })

@@ -40,7 +40,9 @@ const PlayerMobile = ({
   extendsContent,
   onPlay,
   glassBg,
-  LyricIcon
+  LyricIcon,
+  showFullModeCover,
+  autoHiddenCover
 }) => (
   <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
     <PlayModeTip
@@ -63,16 +65,18 @@ const PlayerMobile = ({
       </span>
     </div>
     <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
-    <div className={`${prefix}-cover text-center`}>
-      <img
-        src={cover}
-        alt="cover"
-        key="cover"
-        className={cls("cover", {
-          "img-rotate-pause": pause || !playing || !cover
-        })}
-      />
-    </div>
+    {(!autoHiddenCover || (autoHiddenCover && cover)) && (
+      <div className={`${prefix}-cover text-center`}>
+        <img
+          src={cover}
+          alt="cover"
+          key="cover"
+          className={cls("cover", {
+            "img-rotate-pause": pause || !playing || !cover
+          })}
+        />
+      </div>
+    )}
     <div className={`${prefix}-progress group`}>
       <span key="current-time" className="current-time">
         {loading ? "--" : currentTime}
