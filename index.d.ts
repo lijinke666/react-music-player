@@ -110,6 +110,7 @@ export interface ReactJkMusicPlayerProps {
   showLyric?: boolean
   getContainer?: () => HTMLElement
   getAudioInstance?: (instance: HTMLAudioElement) => void
+  autoHiddenCover?: boolean
 }
 export default class ReactJkMusicPlayer extends React.PureComponent<
   ReactJkMusicPlayerProps,

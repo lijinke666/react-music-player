@@ -261,6 +261,9 @@ const options = {
   //Whether to try playing the next audio when the current audio playback fails [type `Boolean` default `true`]
   loadAudioErrorPlayNext: true,
 
+  // Auto hide the cover photo if no cover photo is available [type `Boolean` default `false`]
+  autoHiddenCover: true,
+
   //Music is downloaded handle
   onAudioDownload(audioInfo) {
     swal('download successfully', '', 'success')

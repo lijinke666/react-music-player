@@ -157,7 +157,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     loadProgress: 0,
     removeId: -1,
     isNeedMobileHack: IS_MOBILE,
-    audioLyricVisible: false
+    audioLyricVisible: false,
+    showFullModeCover: true,
+    showMiniModeCover: false,
+    baseCover: ""
   };
   static defaultProps = {
     audioLists: [],
@@ -197,7 +200,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showProgressLoadBar: true, //音频预加载进度
     seeked: true,
     playModeShowTime: 600, //播放模式提示 显示时间,
-    bounds: "body", //移动边界
+    bounds: "body", //mini 模式拖拽的可移动边界
     showMiniProcessBar: false, //是否在迷你模式 显示进度条
     loadAudioErrorPlayNext: true, // 加载音频失败时 是否尝试播放下一首
     preload: false, //是否在页面加载后立即加载音频
@@ -206,7 +209,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     remove: true, //音乐是否可以删除
     defaultPlayIndex: 0, //默认播放索引
     emptyLyricPlaceholder: "NO LYRIC",
-    getContainer: () => document.body // 播放器挂载的节点
+    getContainer: () => document.body, // 播放器挂载的节点
+    autoHiddenCover: false // 当前播放歌曲没有封面时是否自动隐藏
   };
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -283,7 +287,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     ]),
     showLyric: PropTypes.bool,
     getContainer: PropTypes.func,
-    getAudioInstance: PropTypes.func
+    getAudioInstance: PropTypes.func,
+    autoHiddenCover: PropTypes.bool
   };
   constructor(props) {
     super(props);
@@ -358,7 +363,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       lyricClassName,
       showLyric,
       emptyLyricPlaceholder,
-      getContainer
+      getContainer,
+      autoHiddenCover
     } = this.props;
 
     const {
@@ -407,13 +413,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const currentPlayMode = _playMode_["key"];
     const currentPlayModeName = _playMode_["value"];
 
-    const isShowMiniModeCover = showMiniModeCover
-      ? {
-          style: {
-            backgroundImage: `url(${cover})`
+    const isShowMiniModeCover =
+      (showMiniModeCover && !autoHiddenCover) || (autoHiddenCover && cover)
+        ? {
+            style: {
+              backgroundImage: `url(${cover})`
+            }
           }
-        }
-      : {};
+        : {};
 
     const _currentTime = formatTime(currentTime);
     const _duration = formatTime(duration);
@@ -593,6 +600,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             extendsContent={extendsContent}
             glassBg={glassBg}
             LyricIcon={LyricComponent}
+            autoHiddenCover={autoHiddenCover}
           />
         ) : (
           undefined
@@ -624,13 +632,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
               })}
             >
               <section className="panel-content" key="panel-content">
-                <div
-                  className={classNames("img-content", "img-rotate", {
-                    "img-rotate-pause": pause || !playing || !cover
-                  })}
-                  style={{ backgroundImage: `url(${cover})` }}
-                  key="img-content"
-                />
+                {(!autoHiddenCover || (autoHiddenCover && cover)) && (
+                  <div
+                    className={classNames("img-content", "img-rotate", {
+                      "img-rotate-pause": pause || !playing || !cover
+                    })}
+                    style={{ backgroundImage: `url(${cover})` }}
+                    key="img-content"
+                  />
+                )}
                 <div
                   className="progress-bar-content"
                   key="progress-bar-content"

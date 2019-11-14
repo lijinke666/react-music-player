@@ -3,6 +3,7 @@
 exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 1`] = `
 <ReactJkMusicPlayer
   audioLists={Array []}
+  autoHiddenCover={false}
   autoPlay={true}
   bounds="body"
   checkedText=""
