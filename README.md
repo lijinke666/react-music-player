@@ -288,6 +288,8 @@ interface ReactJkMusicPlayerProps {
   emptyLyricPlaceholder?: string | React.ReactNode,
   showLyric?: boolean,
   getContainer?: () => HTMLElement
+  getAudioInstance?: (instance: HTMLAudioElement) => void
+  autoHiddenCover?: boolean
 }
 ```
 
