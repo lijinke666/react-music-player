@@ -356,6 +356,16 @@ const options = {
   // custom music player root node
   getContainer() {
     return document.body
+  },
+
+  /**
+   * @description get origin audio element instance , you can use it do everything
+   * @example
+   * audio.playbackRate = 1.5  // set play back rate
+   * audio.crossOrigin = 'xxx' // config cross origin
+   */
+  getAudioInstance(audio) {
+    console.log('audio instance', audio)
   }
 }
 

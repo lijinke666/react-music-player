@@ -394,4 +394,24 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.delete-btn').simulate('click')
     expect(onAudioLoadError).not.toHaveBeenCalled()
   })
+  it('should call getAudioInstance function', () => {
+    const getAudioInstance = jest.fn()
+    mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x' }]}
+        getAudioInstance={getAudioInstance}
+      />
+    )
+    expect(getAudioInstance).toHaveBeenCalled()
+  })
+  it('should get audio instance', () => {
+    let _instance
+    mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x' }]}
+        getAudioInstance={(instance) => (_instance = instance)}
+      />
+    )
+    expect(typeof _instance).toEqual('object')
+  })
 })

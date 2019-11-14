@@ -282,7 +282,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.object
     ]),
     showLyric: PropTypes.bool,
-    getContainer: PropTypes.func
+    getContainer: PropTypes.func,
+    getAudioInstance: PropTypes.func
   };
   constructor(props) {
     super(props);
@@ -1680,6 +1681,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   };
 
+  onGetAudioInstance = () => {
+    this.props.getAudioInstance && this.props.getAudioInstance(this.audio);
+  };
+
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
   componentWillReceiveProps({ audioLists, playIndex, theme, mode }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
@@ -1746,6 +1751,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.bindUnhandledRejection();
     if (this.props.audioLists.length >= 1) {
       this.bindEvents(this.audio);
+      this.onGetAudioInstance();
       this.initLyricParser();
       if (IS_MOBILE) {
         this.bindMobileAutoPlayEvents();
