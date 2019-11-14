@@ -97,42 +97,59 @@ const lyric = [
 ].join('\n')
 /*eslint-disable no-console*/
 
+const audioList1 = [
+  {
+    name: "高尚",
+    singer: "薛之谦",
+    cover: "//cdn.lijinke.cn/nande.jpg",
+    musicSrc: "//cdn.lijinke.cn/gaoshang.mp3",
+    lyric
+  },
+  {
+    name: "Despacito",
+    singer: "Luis Fonsi",
+    cover:
+      "http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg",
+    musicSrc: () => {
+      return Promise.resolve(
+        "http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3"
+      );
+    }
+  }
+];
+
+const audioList2 = [
+  {
+    name: "Bedtime Stories",
+    singer: "Jay Chou",
+    cover:
+      "http://res.cloudinary.com/alick/image/upload/v1502375978/bedtime_stories_bywggz.jpg",
+    musicSrc:
+      "http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3"
+  },
+  {
+    name: "Dorost Nemisham",
+    singer: "Sirvan Khosravi",
+    cover:
+      "https://res.cloudinary.com/ehsanahmadi/image/upload/v1573758778/Sirvan-Khosravi-Dorost-Nemisham_glicks.jpg",
+    musicSrc: () => {
+      return Promise.resolve(
+        "https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3"
+      );
+    }
+  },
+  {
+    name: "难得",
+    singer: "安来宁",
+    cover: "//cdn.lijinke.cn/nande.jpg",
+    musicSrc: "//cdn.lijinke.cn/nande.mp3"
+  }
+];
+
+
 const options = {
   //audio lists model
-  audioLists: [
-    {
-      name: '高尚',
-      singer: '薛之谦',
-      cover: '//cdn.lijinke.cn/nande.jpg',
-      musicSrc: '//cdn.lijinke.cn/gaoshang.mp3',
-      lyric
-    },
-    {
-      name: 'Despacito',
-      singer: 'Luis Fonsi',
-      cover:
-        'http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg',
-      musicSrc: () => {
-        return Promise.resolve(
-          'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3'
-        )
-      }
-    },
-    {
-      name: 'Bedtime Stories',
-      singer: 'Jay Chou',
-      cover:
-        'http://res.cloudinary.com/alick/image/upload/v1502375978/bedtime_stories_bywggz.jpg',
-      musicSrc:
-        'http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3'
-    },
-    {
-      name: '难得',
-      singer: '安来宁',
-      cover: '//cdn.lijinke.cn/nande.jpg',
-      musicSrc: '//cdn.lijinke.cn/nande.mp3'
-    }
-  ],
+  audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
@@ -151,6 +168,11 @@ const options = {
   //   These indicate how far in each direction the draggable
   //   can be moved.
   bounds: 'body',
+
+  // If you want to replace a new playlist with the first loaded playlist
+  // instead of adding it at the end of it. You must set this variable to true
+  // [type `boolean`, default `false`]
+  clearPriorAudioLists: false,
 
   //Whether to load audio immediately after the page loads.  [type `Boolean | String`, default `false`]
   //"auto|metadata|none" "true| false"
@@ -424,6 +446,31 @@ class Demo extends React.PureComponent {
       params: data
     })
   }
+
+  onChangeToFirstAudioList = () => {
+    const data = {
+      ...this.state.params,
+      clearPriorAudioLists: true,
+      audioLists: audioList1,
+      playIndex: createRandomNum(0, audioList1.length - 1)
+    };
+    this.setState({
+      params: data
+    });
+  };
+
+  onChangeToSecondAudioList = () => {
+    const data = {
+      ...this.state.params,
+      clearPriorAudioLists: true,
+      audioLists: audioList2,
+      playIndex: createRandomNum(0, audioList2.length - 1)
+    };
+    this.setState({
+      params: data
+    });
+  };
+
   onShowGlassBg = () => {
     this.onChangeKey('glassBg')
   }
@@ -488,6 +535,12 @@ class Demo extends React.PureComponent {
           </a>
         </h2>
         <section className="settings">
+          <button onClick={this.onChangeToFirstAudioList}>
+            change to first audio list ({audioList1.length})
+          </button>
+          <button onClick={this.onChangeToSecondAudioList}>
+            change to second audio list ({audioList2.length})
+          </button>
           <button onClick={this.onAddAudio}>
             + add audio ({params.audioLists.length})
           </button>
