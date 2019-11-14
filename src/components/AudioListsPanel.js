@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import cls from "classnames";
 import NotContent from "react-icons/lib/md/library-music";
+import ArrowDownIconIcon from "react-icons/lib/fa/angle-double-down";
 import ReactDragListView from "react-drag-listview/lib/ReactDragListView";
 
 const AudioListsPanel = ({
@@ -41,7 +42,7 @@ const AudioListsPanel = ({
           title="Close"
           onClick={onCancel}
         >
-          {closeIcon}
+          <ArrowDownIconIcon />
         </span>
         {remove ? (
           <Fragment>
