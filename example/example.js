@@ -169,10 +169,14 @@ const options = {
   //   can be moved.
   bounds: 'body',
 
-  // If you want to replace a new playlist with the first loaded playlist
-  // instead of adding it at the end of it. You must set this variable to true
+  // Replace a new playlist with the first loaded playlist
+  // instead of adding it at the end of it.
   // [type `boolean`, default `false`]
   clearPriorAudioLists: false,
+
+  // Play your new play list right after your new play list is loaded turn false. 
+  // [type `boolean`, default `false`]
+  autoPlayInitLoadPlayList: false,
 
   //Whether to load audio immediately after the page loads.  [type `Boolean | String`, default `false`]
   //"auto|metadata|none" "true| false"
@@ -478,6 +482,16 @@ class Demo extends React.PureComponent {
     });
   };
 
+  onAutoPlayInitLoadPlayList = () => {
+    const data = {
+      ...this.state.params,
+      autoPlayInitLoadPlayList: !this.state.params.autoPlayInitLoadPlayList
+    };
+    this.setState({
+      params: data
+    });
+  };
+
   onShowGlassBg = () => {
     this.onChangeKey('glassBg')
   }
@@ -592,11 +606,20 @@ class Demo extends React.PureComponent {
           <label htmlFor="toggle">
             <input
               type="checkbox"
-              id="toggle"
+              id="autoPlay"
               checked={params.autoPlay}
               onChange={this.onAutoPlayMode}
             />
             autoplay mode
+          </label>
+          <label htmlFor="toggle">
+            <input
+              type="checkbox"
+              id="onAutoPlayInitLoadPlayList"
+              checked={params.autoPlayInitLoadPlayList}
+              onChange={this.onAutoPlayInitLoadPlayList}
+            />
+            autoplayInitLoadPlayList
           </label>
           <label htmlFor="showMiniProcessBar">
             <input
