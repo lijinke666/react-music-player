@@ -158,7 +158,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     loadProgress: 0,
     removeId: -1,
     isNeedMobileHack: IS_MOBILE,
-    audioLyricVisible: false
+    audioLyricVisible: false,
+    isChanging: false
   }
   static defaultProps = {
     audioLists: [],
@@ -1181,13 +1182,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   canPlay = () => {
-    this.setAudioLength()
-    this.loadAndPlayAudio()
+    this.setAudioLength();
+
+    if (this.isChanging) this.loadAndPlayAudio();
+
     this.setState({
       loading: false,
-      playing: this.props.autoPlay
-    })
-  }
+      playing: false,
+      isChanging: false
+    });
+  };
+
   //暂停
   _pauseAudio = () => {
     this.audio.pause()
@@ -1411,7 +1416,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onAudioAbort && this.props.onAudioAbort(mergedError)
     if (audioLists.length) {
       this.audio.pause()
-      this.audio.play()
+      // this.audio.play() // i dont know why but when i uncomment this line when someone want to change playlist it will play automatically and this was so bad.
       this.lyric.stop()
     }
   }
@@ -1583,9 +1588,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       lyric,
       audioLists: _audioLists,
       playId
-    }
-  }
-
+    };
+  };
+  // I change the name of getPlayInfo to getPlayInfoOfNewList because i didn't want to change the prior changes
+  // the only thing this function does is to add id to audiolist elements.
   getPlayInfoOfNewList = (audioLists = []) => {
     const _audioLists = audioLists.map(info => {
       return {
@@ -1614,7 +1620,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     };
   };
 
-
   initPlayInfo = (audioLists, cb) => {
     const info = this.getPlayInfo(audioLists)
 
@@ -1629,30 +1634,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  resetPlayInfo = (audioLists, cb) => {
-    const { mode, defaultPlayMode, remember, theme } = this.props;
-    this.toggleMode(mode);
-    const info = this.getPlayInfoOfNewList(audioLists);
-
-    const lastPlayStatus = remember
-      ? this.getLastPlayStatus(defaultPlayIndex)
-      : { playMode: defaultPlayMode, theme };
-
-    switch (typeof info.musicSrc) {
-      case "function":
-        info.musicSrc().then(originMusicSrc => {
-          this.setState(
-            { ...info, musicSrc: originMusicSrc, ...lastPlayStatus },
-            cb
-          );
-        }, this.onAudioLoadError);
-        break;
-      default:
-        this.setState(info, cb);
-    }
-  };
-
-  listenerIsMobile = ({ matches }) => {
+   listenerIsMobile = ({ matches }) => {
     this.setState({
       isMobile: !!matches
     })
@@ -1739,16 +1721,45 @@ export default class ReactJkMusicPlayer extends PureComponent {
       )
   }
 
-  changeAudioLists = audioLists => {
-    this.resetPlayInfo(audioLists);
+  loadNewAudioLists = (
+    audioLists,
+    { remember, defaultPlayIndex, defaultPlayMode, theme }
+  ) => {
+    if (audioLists.length >= 1) {
+      const info = this.getPlayInfoOfNewList(audioLists);
+      const lastPlayStatus = remember
+        ? this.getLastPlayStatus(defaultPlayIndex)
+        : { playMode: defaultPlayMode, theme };
 
-    this.bindEvents(this.audio);
+      switch (typeof info.musicSrc) {
+        case "function":
+          info.musicSrc().then(val => {
+            this.setState({
+              ...info,
+              musicSrc: val,
+              ...lastPlayStatus
+            });
+          }, this.onAudioLoadError);
+          break;
+        default:
+          this.setState({
+            ...info,
+            ...lastPlayStatus
+          });
+      }
+    }
+  };
+
+  changeAudioLists = audioLists => {
+    this.resetAudioStatus();
+    this.loadNewAudioLists(audioLists, this.props);
     this.props.onAudioListsChange &&
       this.props.onAudioListsChange(
         this.state.playId,
         audioLists,
         this.getBaseAudioInfo()
       );
+    this.setState({ isChanging: true });
   };
 
   resetPlayList = state => {
@@ -1786,13 +1797,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.getAudioInstance && this.props.getAudioInstance(this.audio)
   }
 
-//当父组件 更新 props 时 如 audioLists 改变 更新播放信息
+  //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
   componentWillReceiveProps({
     audioLists,
     playIndex,
     theme,
     mode,
-    clearPriorAudioLists
+    defaultPlayIndex,
+    clearPriorAudioLists,
+    remember,
+    defaultPlayMode
   }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
       if (clearPriorAudioLists) {
@@ -1809,7 +1823,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   UNSAFE_componentWillUpdate(nextProps, nextState) {
     if (nextProps.clearPriorAudioLists) {
-      if (nextState.audioLists !== this.state.audioLists) {
+      if (nextState.isChanging !== this.state.isChanging) {
         this.resetPlayList(nextState);
       }
     }
