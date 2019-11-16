@@ -230,7 +230,7 @@ const options = {
   once: true,
 
   //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
-  autoPlay: true,
+  autoPlay: false,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -451,8 +451,7 @@ class Demo extends React.PureComponent {
     const data = {
       ...this.state.params,
       clearPriorAudioLists: true,
-      audioLists: audioList1,
-      playIndex: createRandomNum(0, audioList1.length - 1)
+      audioLists: audioList1
     };
     this.setState({
       params: data
@@ -463,8 +462,16 @@ class Demo extends React.PureComponent {
     const data = {
       ...this.state.params,
       clearPriorAudioLists: true,
-      audioLists: audioList2,
-      playIndex: createRandomNum(0, audioList2.length - 1)
+      audioLists: audioList2
+    };
+    this.setState({
+      params: data
+    });
+  };
+  onAutoPlayMode = () => {
+    const data = {
+      ...this.state.params,
+      autoPlay: !this.state.params.autoPlay
     };
     this.setState({
       params: data
@@ -581,6 +588,15 @@ class Demo extends React.PureComponent {
               onChange={this.onToggleMode}
             />
             toggle mode
+          </label>
+          <label htmlFor="toggle">
+            <input
+              type="checkbox"
+              id="toggle"
+              checked={params.autoPlay}
+              onChange={this.onAutoPlayMode}
+            />
+            autoplay mode
           </label>
           <label htmlFor="showMiniProcessBar">
             <input
