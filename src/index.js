@@ -1184,7 +1184,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   canPlay = () => {
     this.setAudioLength();
 
-    if (this.isChanging) this.loadAndPlayAudio();
+    if (this.props.autoPlay) this.loadAndPlayAudio();
 
     this.setState({
       loading: false,
@@ -1415,9 +1415,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const mergedError = Object.assign({}, e, audioInfo)
     this.props.onAudioAbort && this.props.onAudioAbort(mergedError)
     if (audioLists.length) {
-      this.audio.pause()
-      // this.audio.play() // i dont know why but when i uncomment this line when someone want to change playlist it will play automatically and this was so bad.
-      this.lyric.stop()
+      this.audio.pause();
+      this.props.autoPlay && this.audio.play(); // i dont know why but when i uncomment this line when someone want to change playlist it will play automatically and this was so bad.
+      this.lyric.stop();
     }
   }
   //切换播放器模式
