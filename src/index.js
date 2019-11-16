@@ -225,6 +225,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     drag: PropTypes.bool,
     seeked: PropTypes.bool,
     autoPlay: PropTypes.bool,
+    clearPriorAudioLists: PropTypes.bool,
+    autoPlayInitLoadPlayList: PropTypes.bool,
     playModeText: PropTypes.object,
     panelTitle: PropTypes.string,
     closeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -1184,7 +1186,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   canPlay = () => {
     this.setAudioLength();
 
-    if (this.props.autoPlay) this.loadAndPlayAudio();
+    this.state.isInitAutoplay && this.loadAndPlayAudio();
 
     this.setState({
       loading: false,
@@ -1416,7 +1418,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onAudioAbort && this.props.onAudioAbort(mergedError)
     if (audioLists.length) {
       this.audio.pause();
-      this.props.autoPlay && this.audio.play(); // i dont know why but when i uncomment this line when someone want to change playlist it will play automatically and this was so bad.
+      this.state.isInitAutoplay && this.audio.play();
       this.lyric.stop();
     }
   }
@@ -1723,7 +1725,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   loadNewAudioLists = (
     audioLists,
-    { remember, defaultPlayIndex, defaultPlayMode, theme }
+    {
+      remember,
+      defaultPlayIndex,
+      defaultPlayMode,
+      theme,
+      autoPlayInitLoadPlayList
+    }
   ) => {
     if (audioLists.length >= 1) {
       const info = this.getPlayInfoOfNewList(audioLists);
@@ -1737,6 +1745,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             this.setState({
               ...info,
               musicSrc: val,
+              isInitAutoplay: autoPlayInitLoadPlayList,
               ...lastPlayStatus
             });
           }, this.onAudioLoadError);
@@ -1744,6 +1753,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         default:
           this.setState({
             ...info,
+            isInitAutoplay: autoPlayInitLoadPlayList,
             ...lastPlayStatus
           });
       }
