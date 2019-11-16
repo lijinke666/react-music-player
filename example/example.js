@@ -174,7 +174,7 @@ const options = {
   // [type `boolean`, default `false`]
   clearPriorAudioLists: false,
 
-  // Play your new play list right after your new play list is loaded turn false. 
+  // Play your new play list right after your new play list is loaded turn false.
   // [type `boolean`, default `false`]
   autoPlayInitLoadPlayList: false,
 
@@ -234,7 +234,7 @@ const options = {
   once: true,
 
   //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
-  autoPlay: false,
+  autoPlay: true,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -603,7 +603,7 @@ class Demo extends React.PureComponent {
             />
             toggle mode
           </label>
-          <label htmlFor="toggle">
+          <label htmlFor="autoPlay">
             <input
               type="checkbox"
               id="autoPlay"
@@ -612,7 +612,7 @@ class Demo extends React.PureComponent {
             />
             autoplay mode
           </label>
-          <label htmlFor="toggle">
+          <label htmlFor="onAutoPlayInitLoadPlayList">
             <input
               type="checkbox"
               id="onAutoPlayInitLoadPlayList"
