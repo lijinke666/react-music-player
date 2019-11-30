@@ -180,6 +180,18 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.text()).toContain('extendsText2')
     assert(wrapper.find('.extendsContent').length === 1)
   })
+  it('should render extendsContent with react fragment', () => {
+    const ExtendsContent = () => (
+      <>
+        <button>1</button>
+      </>
+    )
+    const wrapper = mount(
+      <ReactJkMusicPlayer extendsContent={<ExtendsContent />} />
+    )
+    wrapper.setState({ toggle: true })
+    assert(wrapper.find(ExtendsContent).length === 1)
+  })
   it('should render range random', () => {
     const repeat = 10
     const result = new Array(repeat).fill().map((_, i) => {
