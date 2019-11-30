@@ -262,7 +262,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showMiniModeCover: PropTypes.bool,
     toggleMode: PropTypes.bool,
     once: PropTypes.bool,
-    extendsContent: PropTypes.array,
+    extendsContent: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.bool,
+      PropTypes.object,
+      PropTypes.node,
+      PropTypes.element
+    ]),
     checkedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     unCheckedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     defaultVolume: PropTypes.number,
@@ -726,9 +732,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   {ThemeSwitchComponent}
 
                   {/* 自定义扩展按钮 */}
-                  {extendsContent && extendsContent.length >= 1
-                    ? extendsContent.map((content) => content)
-                    : undefined}
+                  {extendsContent || null}
 
                   {/*音量控制*/}
                   <span
