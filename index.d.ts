@@ -94,7 +94,11 @@ export interface ReactJkMusicPlayerProps {
   showMiniModeCover?: boolean
   toggleMode?: boolean
   once?: boolean
-  extendsContent?: Array<React.ReactNode | string>
+  extendsContent?:
+    | (Array<React.ReactNode | string>)
+    | React.ReactNode
+    | boolean
+    | string
   checkedText?: string | React.ReactNode
   unCheckedText?: string | React.ReactNode
   defaultVolume?: number

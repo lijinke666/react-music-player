@@ -189,8 +189,11 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer extendsContent={<ExtendsContent />} />
     )
+    const wrapper1 = mount(<ReactJkMusicPlayer extendsContent={'extends'} />)
     wrapper.setState({ toggle: true })
+    wrapper1.setState({ toggle: true })
     assert(wrapper.find(ExtendsContent).length === 1)
+    expect(wrapper1.text()).toContain('extends')
   })
   it('should render range random', () => {
     const repeat = 10
