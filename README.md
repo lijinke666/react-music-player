@@ -138,7 +138,7 @@ ReactDOM.render(
 | showLyric | `boolean`             | `false`            | audio lyric button display of the audio player panel |
 | lyricClassName | `string`             | `-`            | audio lyric class name |
 | emptyLyricPlaceholder | `string`             | `-`            | audio lyric empty lyric placeholder |
-| extendsContent | `array | ReactNode | boolean | string`             | `-`            | Extensible custom content like `<><button>button1</button> <button>button2</button></>` |
+| extendsContent | `array \| ReactNode \| boolean \| string`             | `-`            | Extensible custom content like `<><button>button1</button> <button>button2</button></>` |
 | controllerTitle | `string`             | `<FaHeadphones/>`            | audio controller title |
 | defaultVolume | `number`             | `100`            | default volume of the audio player , range `0`-`100` |
 | loadAudioErrorPlayNext | `boolean`             | `true`            | Whether to try playing the next audio when the current audio playback fails |
