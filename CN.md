@@ -134,8 +134,8 @@ ReactDOM.render(
 | showDownload            | `boolean`                                                                           | `true`                                                                                      | 是否显示下载按钮                                                                                                                               |
 | showPlayMode            | `boolean`                                                                           | `true`                                                                                      | 是否显示切换播放模式按钮                                                                                                                       |
 | showThemeSwitch         | `boolean`                                                                           | `true`                                                                                      | 是否显示主题切换开关                                                                                                                           |
-| extendsContent          | `array \| ReactNode \| string \| boolean`                                              | `-`                                                                                         | 如果默认的功能按钮不满足你 你可以自定义扩展 比如 `<><button>按钮1</button> <button>按钮2</button></>`                                          |
-| controllerTitle         | `string | ReactNode`                                                                | `<FaHeadphones/>`                                                                           | 播放器模拟模式封面显示的文字                                                                                                                   |
+| extendsContent          | `array \| ReactNode \| string \| boolean`                                           | `-`                                                                                         | 如果默认的功能按钮不满足你 你可以自定义扩展 比如 `<><button>按钮1</button> <button>按钮2</button></>`                                          |
+| controllerTitle         | `string \| ReactNode`                                                               | `<FaHeadphones/>`                                                                           | 播放器模拟模式封面显示的文字                                                                                                                   |
 | defaultVolume           | `number`                                                                            | `100`                                                                                       | 播放器初始音量, 范围 `0`-`100`                                                                                                                 |
 | loadAudioErrorPlayNext  | `number`                                                                            | `100`                                                                                       | 当前音频加载加载失败时是否尝试播放下一首                                                                                                       |
 | onAudioDownload         | `function(audioInfo)`                                                               | `-`                                                                                         | 音频下载 的 钩子函数                                                                                                                           |
@@ -268,7 +268,7 @@ interface ReactJkMusicPlayerProps {
   showMiniModeCover?: boolean,
   toggleMode?: boolean,
   once?: boolean,
-  extendsContent?: Array<React.ReactNode | string>,
+  extendsContent?: Array<React.ReactNode | string> | React.ReactNode | string | boolean,
   checkedText?: string | React.ReactNode,
   unCheckedText?: string | React.ReactNode,
   defaultVolume?: number,
