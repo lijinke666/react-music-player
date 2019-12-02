@@ -267,7 +267,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PropTypes.bool,
       PropTypes.object,
       PropTypes.node,
-      PropTypes.element
+      PropTypes.element,
+      PropTypes.string
     ]),
     checkedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     unCheckedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -952,6 +953,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.audio.load()
         }
       )
+      this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
       this.props.onAudioPlayTrackChange &&
         this.props.onAudioPlayTrackChange(
           playId,
@@ -1139,7 +1141,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //返回给使用者的 音乐信息
   getBaseAudioInfo() {
-    const { cover, name, musicSrc, soundValue, lyric } = this.state
+    const {
+      playId,
+      cover,
+      name,
+      musicSrc,
+      soundValue,
+      lyric,
+      audioLists
+    } = this.state
+
     const {
       currentTime,
       duration,
@@ -1151,7 +1162,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ended,
       startDate
     } = this.audio
+
+    const currentPlayIndex = audioLists.findIndex(
+      (audio) => audio.id === playId
+    )
+    const currentAudioListInfo = audioLists[currentPlayIndex] || {}
+
     return {
+      ...currentAudioListInfo,
       cover,
       name,
       musicSrc,
