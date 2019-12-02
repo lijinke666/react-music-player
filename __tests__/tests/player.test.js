@@ -488,4 +488,39 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onBeforeAudioDownload).toHaveBeenCalled()
     expect(onAudioDownload).toHaveBeenCalled()
   })
+  it('should trigger onAudioPlay hook when audio track list change', () => {
+    const onAudioPlay = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' }
+        ]}
+        mode="full"
+        onAudioPlay={onAudioPlay}
+      />
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(onAudioPlay).toHaveBeenCalled()
+  })
+
+  it('should export custom fields in audioLists with audio info', () => {
+    let _audioInfo
+    const onAudioPlay = jest.fn((audioInfo) => {
+      _audioInfo = audioInfo
+    })
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
+          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' }
+        ]}
+        mode="full"
+        onAudioPlay={onAudioPlay}
+      />
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(_audioInfo.id).toEqual('1')
+    expect(_audioInfo.customField).toEqual('1')
+  })
 })

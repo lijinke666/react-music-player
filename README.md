@@ -192,6 +192,7 @@ interface ReactJkMusicPlayerAudioList {
   cover: string,
   musicSrc: string | () => Promise<string>,
   lyric?: string,
+  [key: string]: any
 }>
 ```
 
@@ -215,6 +216,7 @@ interface ReactJkMusicPlayerAudioInfo {
   startDate: any
   volume: number,
   lyric: string,
+  [key: string]: any
 }
 ```
 
