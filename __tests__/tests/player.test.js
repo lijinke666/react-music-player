@@ -337,8 +337,12 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
 
   it('update mode', () => {
-    const wrapper = mount(<ReactJkMusicPlayer mode="mini" />)
+    const onModeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer mode="mini" onModeChange={onModeChange} />
+    )
     wrapper.setProps({ mode: 'full' })
+    expect(onModeChange).toHaveBeenCalled()
     expect(wrapper.state().toggle).toEqual(true)
     wrapper.setProps({ mode: 'xxxx' })
     expect(wrapper.state().toggle).toEqual(true)
@@ -522,5 +526,102 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.next-audio').simulate('click')
     expect(_audioInfo.id).toEqual('1')
     expect(_audioInfo.customField).toEqual('1')
+  })
+  it('should trigger onAudioListsChange when audioList Change', () => {
+    const onThemeChange = jest.fn()
+    const onModeChange = jest.fn()
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
+          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' }
+        ]}
+        mode="full"
+        onAudioListsChange={onAudioListsChange}
+        onModeChange={onModeChange}
+        onThemeChange={onThemeChange}
+      />
+    )
+    wrapper.setProps({ audioLists: [] })
+    expect(onAudioListsChange).toHaveBeenCalled()
+    expect(onModeChange).not.toHaveBeenCalled()
+    expect(onThemeChange).not.toHaveBeenCalled()
+  })
+  it('should not trigger onAudioListsChange when audioList is equal', () => {
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        onAudioListsChange={onAudioListsChange}
+      />
+    )
+    wrapper.setProps({ audioLists: [{ musicSrc: 'x', name: '1' }] })
+    expect(onAudioListsChange).not.toHaveBeenCalled()
+    wrapper.setProps({ audioLists: [{ musicSrc: 'x', name: '2' }] })
+    expect(onAudioListsChange).toHaveBeenCalled()
+  })
+  it('should update audioLists', () => {
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        onAudioListsChange={onAudioListsChange}
+      />
+    )
+    wrapper.setProps({
+      audioLists: [
+        { musicSrc: 'xx', name: '11' },
+        { musicSrc: 'xxx', name: '111' }
+      ]
+    })
+
+    expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
+      { musicSrc: 'x', name: '1' },
+      { musicSrc: 'xx', name: '11' },
+      { musicSrc: 'xxx', name: '111' }
+    ])
+  })
+  it('should replace audioLists with clearPriorAudioLists option', () => {
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        onAudioListsChange={onAudioListsChange}
+      />
+    )
+    wrapper.setProps({
+      clearPriorAudioLists: true,
+      audioLists: [
+        { musicSrc: 'xx', name: '11' },
+        { musicSrc: 'xxx', name: '111' }
+      ]
+    })
+
+    expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
+      { musicSrc: 'xx', name: '11' },
+      { musicSrc: 'xxx', name: '111' }
+    ])
+  })
+
+  it('should not set playing state when audioLists is change and autoPlayInitLoadPlayList is false', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        autoPlayInitLoadPlayList={false}
+      />
+    )
+    wrapper.setProps({
+      audioLists: [
+        { musicSrc: 'xx', name: '11' },
+        { musicSrc: 'xxx', name: '111' }
+      ]
+    })
+
+    expect(wrapper.state().playing).toEqual(false)
   })
 })

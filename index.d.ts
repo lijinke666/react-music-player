@@ -123,6 +123,8 @@ export interface ReactJkMusicPlayerProps {
   onBeforeAudioDownload?: (
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<TransformedDownloadAudioInfo>
+  clearPriorAudioLists?: boolean
+  autoPlayInitLoadPlayList?: boolean
 }
 
 export interface TransformedDownloadAudioInfo {
