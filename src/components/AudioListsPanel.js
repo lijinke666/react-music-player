@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import cls from "classnames";
-import NotContent from "react-icons/lib/md/library-music";
-import ArrowDownIconIcon from "react-icons/lib/fa/angle-double-down";
-import ReactDragListView from "react-drag-listview/lib/ReactDragListView";
+import React, { Fragment } from 'react'
+import cls from 'classnames'
+import NotContent from 'react-icons/lib/md/library-music'
+import ArrowDownIcon from 'react-icons/lib/fa/angle-double-down'
+import ReactDragListView from 'react-drag-listview/lib/ReactDragListView'
 
 const AudioListsPanel = ({
   audioLists,
@@ -22,11 +22,12 @@ const AudioListsPanel = ({
   glassBg,
   remove,
   removeId,
-  audioListsDragEnd
+  audioListsDragEnd,
+  isMobile
 }) => (
   <div
-    className={cls("audio-lists-panel", panelToggleAnimate, {
-      "glass-bg": glassBg
+    className={cls('audio-lists-panel', panelToggleAnimate, {
+      'glass-bg': glassBg
     })}
     key="audio-list-panel"
   >
@@ -42,7 +43,7 @@ const AudioListsPanel = ({
           title="Close"
           onClick={onCancel}
         >
-          <ArrowDownIconIcon />
+          {isMobile ? <ArrowDownIcon /> : closeIcon}
         </span>
         {remove ? (
           <Fragment>
@@ -62,8 +63,8 @@ const AudioListsPanel = ({
       </h2>
     </div>
     <div
-      className={cls("audio-lists-panel-content", {
-        "no-content": audioLists.length < 1
+      className={cls('audio-lists-panel-content', {
+        'no-content': audioLists.length < 1
       })}
       key="audio-lists-panel-content"
     >
@@ -76,20 +77,20 @@ const AudioListsPanel = ({
         >
           <ul>
             {audioLists.map((audio, i) => {
-              const { name, singer } = audio;
-              const playing = playId === audio.id;
+              const { name, singer } = audio
+              const playing = playId === audio.id
               return (
                 <li
                   key={i}
                   title={
                     pause
-                      ? "Click to play"
+                      ? 'Click to play'
                       : playing
-                      ? "Click to pause"
-                      : "Click to play"
+                      ? 'Click to pause'
+                      : 'Click to play'
                   }
                   className={cls(
-                    "audio-item",
+                    'audio-item',
                     { playing },
                     { pause },
                     { remove: removeId === audio.id }
@@ -126,7 +127,7 @@ const AudioListsPanel = ({
                     undefined
                   )}
                 </li>
-              );
+              )
             })}
           </ul>
         </ReactDragListView>
@@ -142,6 +143,6 @@ const AudioListsPanel = ({
       )}
     </div>
   </div>
-);
+)
 
-export default AudioListsPanel;
+export default AudioListsPanel

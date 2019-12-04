@@ -833,7 +833,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           pauseIcon={<AnimatePauseIcon />}
           closeIcon={<CloseBtn />}
           panelTitle={panelTitle}
-          isMobile={IS_MOBILE}
+          isMobile={isMobile}
           panelToggleAnimate={panelToggleAnimate}
           glassBg={glassBg}
           cover={cover}
