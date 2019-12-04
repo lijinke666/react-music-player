@@ -164,6 +164,8 @@ ReactDOM.render(
 | getAudioInstance  | `(instance: HTMLAudioElement) => void` | `-`          |  get origin audio element instance , you can use it do everything |
 | autoHiddenCover  | `boolean` | `false`          |  Auto hide the cover photo if no cover photo is available|
 | onBeforeAudioDownload   | `(audioInfo: ReactJkMusicPlayerAudioInfo) => Promise<TransformedDownloadAudioInfo>` |  `-`          |  transform download audio info before |
+| clearPriorAudioLists   | `boolean` |  `false`          |  Replace a new playlist with the first loaded playlist,  |
+| autoPlayInitLoadPlayList   | `boolean` |  `false`          |  Play your new play list right after your new play list is loaded turn false.  |
 
 
 ## Development
@@ -296,6 +298,8 @@ interface ReactJkMusicPlayerProps {
   onBeforeAudioDownload?: (
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<TransformedDownloadAudioInfo>
+  clearPriorAudioLists?: boolean
+  autoPlayInitLoadPlayList?: boolean
 }
 
 export interface TransformedDownloadAudioInfo {
