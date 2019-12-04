@@ -1,5 +1,5 @@
 /**
- * @version 4.6.1
+ * @version 4.7.0
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
