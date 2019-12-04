@@ -15,6 +15,7 @@ export interface ReactJkMusicPlayerAudioInfo {
   startDate: any
   volume: number
   lyric: string
+  [key: string]: any
 }
 
 export type ReactJkMusicPlayerTheme = 'dark' | 'light'
@@ -28,9 +29,10 @@ export type ReactJkMusicPlayerPlayMode =
 export interface ReactJkMusicPlayerAudioList {
   name: string | React.ReactNode
   singer?: string | React.ReactNode
-  cover: string
+  cover?: string
   musicSrc: (() => Promise<string>) | string
   lyric?: string
+  [key: string]: any
 }
 
 export interface ReactJkMusicPlayerProps {
@@ -94,7 +96,11 @@ export interface ReactJkMusicPlayerProps {
   showMiniModeCover?: boolean
   toggleMode?: boolean
   once?: boolean
-  extendsContent?: Array<React.ReactNode | string>
+  extendsContent?:
+    | (Array<React.ReactNode | string>)
+    | React.ReactNode
+    | boolean
+    | string
   checkedText?: string | React.ReactNode
   unCheckedText?: string | React.ReactNode
   defaultVolume?: number

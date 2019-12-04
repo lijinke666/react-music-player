@@ -440,11 +440,12 @@ class Demo extends React.PureComponent {
   extendsContent = () => {
     const data = {
       ...this.state.params,
-      extendsContent: [
-        <button key="button" onClick={() => swal("I'm extends content")}>
-          button
-        </button>
-      ]
+      extendsContent: (
+        <>
+          <button onClick={() => swal("I'm extends content")}>button1</button>
+          <button onClick={() => swal("I'm extends content")}>button2</button>
+        </>
+      )
     }
     this.setState({
       params: data

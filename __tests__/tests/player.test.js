@@ -180,6 +180,21 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.text()).toContain('extendsText2')
     assert(wrapper.find('.extendsContent').length === 1)
   })
+  it('should render extendsContent with react fragment', () => {
+    const ExtendsContent = () => (
+      <>
+        <button>1</button>
+      </>
+    )
+    const wrapper = mount(
+      <ReactJkMusicPlayer extendsContent={<ExtendsContent />} />
+    )
+    const wrapper1 = mount(<ReactJkMusicPlayer extendsContent={'extends'} />)
+    wrapper.setState({ toggle: true })
+    wrapper1.setState({ toggle: true })
+    assert(wrapper.find(ExtendsContent).length === 1)
+    expect(wrapper1.text()).toContain('extends')
+  })
   it('should render range random', () => {
     const repeat = 10
     const result = new Array(repeat).fill().map((_, i) => {
@@ -472,5 +487,40 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.audio-download').simulate('click')
     expect(onBeforeAudioDownload).toHaveBeenCalled()
     expect(onAudioDownload).toHaveBeenCalled()
+  })
+  it('should trigger onAudioPlay hook when audio track list change', () => {
+    const onAudioPlay = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' }
+        ]}
+        mode="full"
+        onAudioPlay={onAudioPlay}
+      />
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(onAudioPlay).toHaveBeenCalled()
+  })
+
+  it('should export custom fields in audioLists with audio info', () => {
+    let _audioInfo
+    const onAudioPlay = jest.fn((audioInfo) => {
+      _audioInfo = audioInfo
+    })
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
+          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' }
+        ]}
+        mode="full"
+        onAudioPlay={onAudioPlay}
+      />
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(_audioInfo.id).toEqual('1')
+    expect(_audioInfo.customField).toEqual('1')
   })
 })
