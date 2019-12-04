@@ -1,5 +1,5 @@
 /**
- * @version 4.5.0
+ * @version 4.6.1
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -265,7 +265,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showMiniModeCover: PropTypes.bool,
     toggleMode: PropTypes.bool,
     once: PropTypes.bool,
-    extendsContent: PropTypes.array,
+    extendsContent: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.bool,
+      PropTypes.object,
+      PropTypes.node,
+      PropTypes.element,
+      PropTypes.string
+    ]),
     checkedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     unCheckedText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     defaultVolume: PropTypes.number,
@@ -729,9 +736,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   {ThemeSwitchComponent}
 
                   {/* 自定义扩展按钮 */}
-                  {extendsContent && extendsContent.length >= 1
-                    ? extendsContent.map((content) => content)
-                    : undefined}
+                  {extendsContent || null}
 
                   {/*音量控制*/}
                   <span
@@ -951,7 +956,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.initLyricParser();
           this.audio.load();
         }
-      );
+      )
+      this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
       this.props.onAudioPlayTrackChange &&
         this.props.onAudioPlayTrackChange(
           playId,
@@ -1140,7 +1146,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //返回给使用者的 音乐信息
   getBaseAudioInfo() {
-    const { cover, name, musicSrc, soundValue, lyric } = this.state
+    const {
+      playId,
+      cover,
+      name,
+      musicSrc,
+      soundValue,
+      lyric,
+      audioLists
+    } = this.state
+
     const {
       currentTime,
       duration,
@@ -1152,7 +1167,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ended,
       startDate
     } = this.audio
+
+    const currentPlayIndex = audioLists.findIndex(
+      (audio) => audio.id === playId
+    )
+    const currentAudioListInfo = audioLists[currentPlayIndex] || {}
+
     return {
+      ...currentAudioListInfo,
       cover,
       name,
       musicSrc,
