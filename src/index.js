@@ -995,12 +995,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return
     }
     this.lyric && this.lyric.stop()
+    if (!audioId) {
+      this.props.onAudioListsChange && this.props.onAudioListsChange('', [], {})
+      return this.resetAudioStatus()
+    }
     const newAudioLists = [...audioLists].filter(
       (audio) => audio.id !== audioId
     )
-    if (!audioId) {
-      return this.resetAudioStatus()
-    }
     //触发删除动画,等动画结束 删除列表
     this.setState({ removeId: audioId })
     setTimeout(() => {

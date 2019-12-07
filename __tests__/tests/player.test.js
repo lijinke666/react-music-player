@@ -605,6 +605,8 @@ describe('<ReactJkMusicPlayer/>', () => {
       { musicSrc: 'xx', name: '11' },
       { musicSrc: 'xxx', name: '111' }
     ])
+
+    expect(onAudioListsChange).toHaveBeenCalled()
   })
 
   it('should not set playing state when audioLists is change and autoPlayInitLoadPlayList is false', () => {
@@ -623,5 +625,36 @@ describe('<ReactJkMusicPlayer/>', () => {
     })
 
     expect(wrapper.state().playing).toEqual(false)
+  })
+
+  it('should trigger onAudioListsChange when clear all audio list', () => {
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        onAudioListsChange={onAudioListsChange}
+      />
+    )
+    wrapper.find('.delete-btn').simulate('click')
+    expect(onAudioListsChange).toHaveBeenCalled()
+  })
+
+  it('should trigger onAudioListsChange when audio list update', () => {
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', name: '1' },
+          { musicSrc: 'xx', name: '2' }
+        ]}
+        mode="full"
+        onAudioListsChange={onAudioListsChange}
+      />
+    )
+    wrapper.setProps({
+      audioLists: []
+    })
+    expect(onAudioListsChange).toHaveBeenCalled()
   })
 })
