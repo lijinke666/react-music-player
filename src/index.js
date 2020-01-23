@@ -1223,6 +1223,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
   }
   onPauseAudio = () => {
+    this._pauseAudio()
     this.lyric && this.lyric.stop()
     this.props.onAudioPause && this.props.onAudioPause(this.getBaseAudioInfo())
   }
@@ -1395,9 +1396,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setAudioVolume(value)
   }
   onAudioVolumeChange = () => {
-    this.setState({ isMute: this.audio.volume <= 0 })
+    const volume = this.audio.volume
+    this.setState({
+      isMute: this.audio.volume <= 0,
+      currentAudioVolume: volume,
+      soundValue: volume
+    })
     this.props.onAudioVolumeChange &&
-      this.props.onAudioVolumeChange(this.audio.volume)
+      this.props.onAudioVolumeChange(volume)
   }
   onAudioPlay = () => {
     this.setState({ playing: true, loading: false }, this.initLyricParser)
@@ -1569,7 +1575,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       timeupdate: this.audioTimeUpdate,
       volumechange: this.onAudioVolumeChange,
       stalled: this.onAudioLoadError, //当浏览器尝试获取媒体数据，但数据不可用时
-      abort: this.onAudioAbort
+      abort: this.onAudioAbort,
     },
     bind = true
   ) => {

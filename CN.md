@@ -163,6 +163,41 @@ ReactDOM.render(
 | clearPriorAudioLists     | `boolean`                                                                           | `false`                                                                                     | 更新歌曲列表时, 是否清除之前的列表                                                                                                             |
 | autoPlayInitLoadPlayList | `boolean`                                                                           | `false`                                                                                     | 歌曲列表更新后, 是否自动播放                                                                                                                   |
 
+## 自定义操作按钮
+
+如果播放器自带的功能不能满足你的需求, 可以自己实现操作按钮 UI, 会同步播放器对应的状态, 并触发钩子函数, 支持功能:
+
+- `播放`
+- `暂停`
+- `重新播放`
+- `改变当前播放位置`
+- `改变播放倍速`
+- `改变音量`
+
+```jsx
+class App extends React.Component{
+  constructor() {
+    this.audio = null
+  }
+  render() {
+    return (
+      <>
+        <ReactJkMusicPlayer getAudioInstance={instance => this.audio = instance}/>
+        <button onClick={() => this.audio.play()}>播放</button>
+        <button onClick={() => this.audio.pause()}>暂停</button>
+        <button onClick={() => this.audio.load()}>重新播放</button>
+        <button onClick={() => (this.audio.currentTime = 40)}>
+          改变当前播放位置
+        </button>
+        <button onClick={() => (this.audio.playbackRate = 2)}>
+          改变播放倍速
+        </button>
+        <button onClick={() => (this.audio.volume = 0.2)}>改变音量</button>
+      </>
+    )
+  }
+}
+```
 
 ## 开发
 

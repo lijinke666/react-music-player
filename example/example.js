@@ -4,7 +4,7 @@ import ReactJkMusicPlayer from '../src'
 import swal from 'sweetalert'
 import FaHeadphones from 'react-icons/lib/fa/headphones'
 import Switch from 'rc-switch'
-import { createRandomNum } from '../src/utils'
+import { createRandomNum, formatTime } from '../src/utils'
 
 import '../src/styles/index.less'
 import './example.less'
@@ -93,7 +93,7 @@ const lyric = [
   '[05:15.26]乐器录音室：北京录顶技录音室',
   '[05:15.72]乐器录音师：王晓海/鲍锐（鼓）',
   '[05:16.22]混音工程师：鲍锐@录顶技Studio',
-  '[05:16.65]母带工程师：Friedemann Tishmeyer@Hambug Studio'
+  '[05:16.65]母带工程师：Friedemann Tishmeyer@Hambug Studio',
 ].join('\n')
 /*eslint-disable no-console*/
 
@@ -103,7 +103,7 @@ const audioList1 = [
     singer: '薛之谦',
     cover: '//cdn.lijinke.cn/nande.jpg',
     musicSrc: '//cdn.lijinke.cn/gaoshang.mp3',
-    lyric
+    lyric,
   },
   {
     name: 'Despacito',
@@ -114,8 +114,8 @@ const audioList1 = [
       return Promise.resolve(
         'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3'
       )
-    }
-  }
+    },
+  },
 ]
 
 const audioList2 = [
@@ -125,7 +125,7 @@ const audioList2 = [
     cover:
       'http://res.cloudinary.com/alick/image/upload/v1502375978/bedtime_stories_bywggz.jpg',
     musicSrc:
-      'http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3'
+      'http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3',
   },
   {
     name: 'Dorost Nemisham',
@@ -136,14 +136,14 @@ const audioList2 = [
       return Promise.resolve(
         'https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3'
       )
-    }
+    },
   },
   {
     name: '难得',
     singer: '安来宁',
     cover: '//cdn.lijinke.cn/nande.jpg',
-    musicSrc: '//cdn.lijinke.cn/nande.mp3'
-  }
+    musicSrc: '//cdn.lijinke.cn/nande.mp3',
+  },
 ]
 
 const options = {
@@ -193,7 +193,7 @@ const options = {
   //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
     top: 300,
-    left: 120
+    left: 120,
   },
 
   // play mode text config of the audio player
@@ -201,7 +201,7 @@ const options = {
     order: '顺序播放',
     orderLoop: '列表循环',
     singleLoop: '单曲循环',
-    shufflePlay: '随机播放'
+    shufflePlay: '随机播放',
   },
 
   //audio controller open text  [ type `String | ReactNode` default 'open']
@@ -393,7 +393,7 @@ const options = {
    */
   getAudioInstance(audio) {
     console.log('audio instance', audio)
-  }
+  },
 
   // transform audio info like return a Promise
 
@@ -415,9 +415,15 @@ const options = {
 class Demo extends React.PureComponent {
   constructor(props) {
     super(props)
+    this.audio = {}
   }
   state = {
-    params: options
+    params: {
+      ...options,
+      getAudioInstance: (audio) => {
+        this.audio = audio
+      },
+    },
   }
   onAddAudio = () => {
     const data = {
@@ -428,12 +434,12 @@ class Demo extends React.PureComponent {
           name: "I'm new here",
           singer: 'jack',
           cover: 'http://www.lijinke.cn/music/1387583682387727.jpg',
-          musicSrc: `http://www.lijinke.cn/music/${Date.now()}.mp3`
-        }
-      ]
+          musicSrc: `http://www.lijinke.cn/music/${Date.now()}.mp3`,
+        },
+      ],
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
   extendsContent = () => {
@@ -444,10 +450,10 @@ class Demo extends React.PureComponent {
           <button onClick={() => swal("I'm extends content")}>button1</button>
           <button onClick={() => swal("I'm extends content")}>button2</button>
         </>
-      )
+      ),
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
 
@@ -455,10 +461,10 @@ class Demo extends React.PureComponent {
     const data = {
       ...this.state.params,
       clearPriorAudioLists: true,
-      audioLists: audioList1
+      audioLists: audioList1,
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
 
@@ -466,29 +472,29 @@ class Demo extends React.PureComponent {
     const data = {
       ...this.state.params,
       clearPriorAudioLists: true,
-      audioLists: audioList2
+      audioLists: audioList2,
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
   onAutoPlayMode = () => {
     const data = {
       ...this.state.params,
-      autoPlay: !this.state.params.autoPlay
+      autoPlay: !this.state.params.autoPlay,
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
 
   onAutoPlayInitLoadPlayList = () => {
     const data = {
       ...this.state.params,
-      autoPlayInitLoadPlayList: !this.state.params.autoPlayInitLoadPlayList
+      autoPlayInitLoadPlayList: !this.state.params.autoPlayInitLoadPlayList,
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
 
@@ -507,7 +513,7 @@ class Demo extends React.PureComponent {
   onChangeKey = (key) => {
     const data = {
       ...this.state.params,
-      [key]: !this.state.params[key]
+      [key]: !this.state.params[key],
     }
     if (key === 'light' || key === 'dark') {
       data.theme = key
@@ -526,20 +532,37 @@ class Demo extends React.PureComponent {
   playModeShowTime = () => {
     const data = {
       ...this.state.params,
-      playModeShowTime: createRandomNum(200, 2000)
+      playModeShowTime: createRandomNum(200, 2000),
     }
     this.setState({
-      params: data
+      params: data,
     })
   }
   changePlayIndex = () => {
     const data = {
       ...this.state.params,
-      playIndex: createRandomNum(0, this.state.params.audioLists.length)
+      playIndex: createRandomNum(0, this.state.params.audioLists.length),
     }
     this.setState({
-      params: data
+      params: data,
     })
+  }
+  renderCustomUI = () => {
+    return (
+      <>
+        <h2 style={{ marginLeft: 20 }}>Custom UI</h2>
+        <button onClick={() => this.audio.play()}>play</button>
+        <button onClick={() => this.audio.pause()}>pause</button>
+        <button onClick={() => this.audio.load()}>reload</button>
+        <button onClick={() => (this.audio.currentTime = 40)}>
+          change current play time
+        </button>
+        <button onClick={() => (this.audio.playbackRate = 2)}>
+          change play back rate
+        </button>
+        <button onClick={() => (this.audio.volume = 0.2)}>change volume</button>
+      </>
+    )
   }
   render() {
     const { params } = this.state
@@ -743,6 +766,7 @@ class Demo extends React.PureComponent {
             checked={params.mode === 'mini'}
             onChange={(checked) => this.onChangeKey(checked ? 'mini' : 'full')}
           />
+          <div>{this.renderCustomUI()}</div>
         </section>
         <ReactJkMusicPlayer {...params} />
       </>

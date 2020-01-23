@@ -167,6 +167,41 @@ ReactDOM.render(
 | clearPriorAudioLists   | `boolean` |  `false`          |  Replace a new playlist with the first loaded playlist,  |
 | autoPlayInitLoadPlayList   | `boolean` |  `false`          |  Play your new play list right after your new play list is loaded turn false.  |
 
+## Custom operation ui
+
+Support feature:
+
+- `play`
+- `pause`
+- `reload`
+- `change play time`
+- `change playbackRate`
+- `change volume`
+
+```jsx
+class App extends React.Component{
+  constructor() {
+    this.audio = null
+  }
+  render() {
+    return (
+      <>
+        <ReactJkMusicPlayer getAudioInstance={instance => this.audio = instance}/>
+        <button onClick={() => this.audio.play()}>play</button>
+        <button onClick={() => this.audio.pause()}>pause</button>
+        <button onClick={() => this.audio.load()}>reload</button>
+        <button onClick={() => (this.audio.currentTime = 40)}>
+          change current play time
+        </button>
+        <button onClick={() => (this.audio.playbackRate = 2)}>
+          change play back rate
+        </button>
+        <button onClick={() => (this.audio.volume = 0.2)}>change volume</button>
+      </>
+    )
+  }
+}
+```
 
 ## Development
 
