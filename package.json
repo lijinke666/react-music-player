@@ -1,6 +1,6 @@
 {
   "name": "react-jinke-music-player",
-  "version": "4.7.2",
+  "version": "4.8.0",
   "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
   "typing": "index.d.ts",
@@ -18,7 +18,7 @@
     "test": "jest __tests__/tests",
     "coverage": "yarn test --coverage",
     "ci:coverage": "npm run coverage && codecov",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "lint-staged": {
     "src/**/*.js": [

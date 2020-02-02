@@ -493,6 +493,31 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onBeforeAudioDownload).toHaveBeenCalled()
     expect(onAudioDownload).toHaveBeenCalled()
   })
+
+  it('should call customer downloader', () => {
+    const onBeforeAudioDownload = jest.fn(() => {
+      return Promise.resolve({
+        src: '123.mp3',
+        filename: 'test',
+      })
+    })
+    let testSrc = ''
+    const customDownloader = jest.fn((info) => {
+      testSrc = info.src
+    })
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', cover: '' }]}
+        mode="full"
+        onBeforeAudioDownload={onBeforeAudioDownload}
+        customDownloader={customDownloader}
+      />
+    )
+    wrapper.find('.audio-download').simulate('click')
+    setTimeout(() => {
+      expect(testSrc).toEqual('123.mp3')
+    }, 0)
+  })
   it('should trigger onAudioPlay hook when audio track list change', () => {
     const onAudioPlay = jest.fn()
     const wrapper = mount(

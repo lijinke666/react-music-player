@@ -166,6 +166,7 @@ ReactDOM.render(
 | showDestroy              | `boolean`                                                                           | `false`                                                                                     | 是否显示销毁按钮                                                                                                                               |
 | onBeforeDestroy          | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之前处理函数                                                                                                                               |
 | onDestroyed              | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之后的回调                                                                                                                                 |
+| customDownloader         | `function(downloadInfo: TransformedDownloadAudioInfo)`                              | `-`                                                                                         | 自定义下载器                                                                                                                                   |
 
 ## 自定义操作按钮
 
@@ -212,6 +213,33 @@ class App extends React.Component{
 ![glass-1](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png)
 
 ![glass-2](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png)
+
+## 自定义下载器
+
+> eg. <https://www.npmjs.com/package/file-saver>
+
+```jsx
+const customDownloader = (downloadInfo) => {
+  const link = document.createElement('a')
+  link.href = downloadInfo.src // a.mp3
+  link.download = downloadInfo.filename || 'test'
+  document.body.appendChild(link)
+  link.click()
+}
+<ReactJkMusicPlayer audioLists={[{src: "a.mp3"}]} customDownloader={customDownloader}/>
+
+// 配合 onBeforeAudioDownload 使用
+const onBeforeAudioDownload = () => {
+  return Promise.resolve({
+    src: '1.mp3',
+  })
+}
+
+const customDownloader = (downloadInfo) => {
+  console.log(downloadInfo.src) // 1.mp3
+}
+<ReactJkMusicPlayer customDownloader={customDownloader}/>
+```
 
 ## 关闭/销毁 播放器
 

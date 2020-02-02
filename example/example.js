@@ -433,9 +433,29 @@ const options = {
    */
   // onBeforeAudioDownload() {
   //   return Promise.resolve({
-  //     src: '1.mp3'
+  //     src: '1.mp3',
   //   })
-  // }
+  // },
+
+  /**
+   * customer download handler
+   * eg. a link , or https://www.npmjs.com/package/file-saver
+   * @param {*} downloadInfo
+   * @example
+   *
+       customDownloader(downloadInfo) {
+        const link = document.createElement('a')
+        link.href = downloadInfo.src
+        link.download = downloadInfo.filename || 'test'
+        document.body.appendChild(link)
+        link.click()
+      },
+   */
+  customDownloader(downloadInfo) {
+    console.log(downloadInfo.src)
+    console.log(downloadInfo.filename)
+    console.log(downloadInfo.mimeType)
+  },
 }
 
 class Demo extends React.PureComponent {

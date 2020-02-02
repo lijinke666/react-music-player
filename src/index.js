@@ -1,5 +1,5 @@
 /**
- * @version 4.7.2
+ * @version 4.8.0
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -306,6 +306,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showDestroy: PropTypes.bool,
     onBeforeDestroy: PropTypes.func,
     onDestroyed: PropTypes.func,
+    customDownloader: PropTypes.func,
   }
   constructor(props) {
     super(props)
@@ -1076,7 +1077,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onThemeChange && this.props.onThemeChange(theme)
   }
   onAudioDownload = () => {
+    const { musicSrc } = this.state
     if (this.state.musicSrc) {
+      const { customDownloader } = this.props
       const baseAudioInfo = this.getBaseAudioInfo()
       const onBeforeAudioDownload = this.props.onBeforeAudioDownload(
         baseAudioInfo
@@ -1086,10 +1089,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
         onBeforeAudioDownload.then((info) => {
           const { src, filename, mimeType } = info
           transformedDownloadAudioInfo = info
-          download(src, filename, mimeType)
+          if (customDownloader) {
+            customDownloader(info)
+          } else {
+            download(src, filename, mimeType)
+          }
         })
       } else {
-        download(this.state.musicSrc)
+        customDownloader
+          ? customDownloader({ src: musicSrc })
+          : download(musicSrc)
       }
       this.props.onAudioDownload &&
         this.props.onAudioDownload(baseAudioInfo, transformedDownloadAudioInfo)

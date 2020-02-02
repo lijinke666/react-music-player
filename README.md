@@ -170,6 +170,7 @@ ReactDOM.render(
 | showDestroy   | `boolean` |  `false`          |  Destroy player button display  |
 | onBeforeDestroy   | `function(currentPlayIndex,audioLists,audioInfo)` |  `-`          |  custom destroy handler before  |
 | onDestroyed   | `function(currentPlayIndex,audioLists,audioInfo)` |  `-`          |  player destroyed handle  |
+| customDownloader   | `function(downloadInfo: TransformedDownloadAudioInfo)` |  `-`          |  custom dwonload handle  |
 
 ## Custom operation ui
 
@@ -216,6 +217,33 @@ class App extends React.Component{
 ![glass-1](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png)
 
 ![glass-2](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png)
+
+## Custom downloader
+
+> eg. <https://www.npmjs.com/package/file-saver>
+
+```jsx
+const customDownloader = (downloadInfo) => {
+  const link = document.createElement('a')
+  link.href = downloadInfo.src // a.mp3
+  link.download = downloadInfo.filename || 'test'
+  document.body.appendChild(link)
+  link.click()
+}
+<ReactJkMusicPlayer audioLists={[{src: "a.mp3"}]} customDownloader={customDownloader}/>
+
+// use onBeforeAudioDownload
+const onBeforeAudioDownload = () => {
+  return Promise.resolve({
+    src: '1.mp3',
+  })
+}
+
+const customDownloader = (downloadInfo) => {
+  console.log(downloadInfo.src) // 1.mp3
+}
+<ReactJkMusicPlayer customDownloader={customDownloader}/>
+```
 
 ## Destory player
 
