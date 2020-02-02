@@ -451,11 +451,11 @@ const options = {
         link.click()
       },
    */
-  customDownloader(downloadInfo) {
-    console.log(downloadInfo.src)
-    console.log(downloadInfo.filename)
-    console.log(downloadInfo.mimeType)
-  },
+  // customDownloader(downloadInfo) {
+  //   console.log(downloadInfo.src)
+  //   console.log(downloadInfo.filename)
+  //   console.log(downloadInfo.mimeType)
+  // },
 }
 
 class Demo extends React.PureComponent {
