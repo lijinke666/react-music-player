@@ -166,6 +166,7 @@ ReactDOM.render(
 | onBeforeAudioDownload   | `(audioInfo: ReactJkMusicPlayerAudioInfo) => Promise<TransformedDownloadAudioInfo>` |  `-`          |  transform download audio info before |
 | clearPriorAudioLists   | `boolean` |  `false`          |  Replace a new playlist with the first loaded playlist,  |
 | autoPlayInitLoadPlayList   | `boolean` |  `false`          |  Play your new play list right after your new play list is loaded turn false.  |
+| spaceBar   | `boolean` |  `false`          |  Play and pause audio through space bar （Desktop effective）.  |
 
 ## Custom operation ui
 

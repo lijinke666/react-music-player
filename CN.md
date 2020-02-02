@@ -162,6 +162,7 @@ ReactDOM.render(
 | onBeforeAudioDownload    | `(audioInfo: ReactJkMusicPlayerAudioInfo) => Promise<TransformedDownloadAudioInfo>` | `-`                                                                                         | 转换下载歌曲的文件名,路径等                                                                                                                    |
 | clearPriorAudioLists     | `boolean`                                                                           | `false`                                                                                     | 更新歌曲列表时, 是否清除之前的列表                                                                                                             |
 | autoPlayInitLoadPlayList | `boolean`                                                                           | `false`                                                                                     | 歌曲列表更新后, 是否自动播放                                                                                                                   |
+| spaceBar                 | `boolean`                                                                           | `false`                                                                                     | 是否可以通过空格键控制音乐的播放与暂停                                                                                                         |
 
 ## 自定义操作按钮
 

@@ -19,7 +19,6 @@ import {
   arrayEqual,
   uuId,
   isSafari,
-  throttle,
 } from './utils'
 import AudioListsPanel from './components/AudioListsPanel'
 import AudioPlayerMobile from './components/PlayerMobile'

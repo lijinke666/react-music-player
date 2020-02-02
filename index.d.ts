@@ -125,6 +125,7 @@ export interface ReactJkMusicPlayerProps {
   ) => Promise<TransformedDownloadAudioInfo>
   clearPriorAudioLists?: boolean
   autoPlayInitLoadPlayList?: boolean
+  spaceBar?: boolean
 }
 
 export interface TransformedDownloadAudioInfo {
