@@ -53,6 +53,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   showProgressLoadBar={true}
   showReload={true}
   showThemeSwitch={true}
+  spaceBar={false}
   theme="dark"
   toggleMode={true}
   unCheckedText=""

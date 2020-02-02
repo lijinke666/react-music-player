@@ -287,7 +287,10 @@ const options = {
   loadAudioErrorPlayNext: true,
 
   // Auto hide the cover photo if no cover photo is available [type `Boolean` default `false`]
-  autoHiddenCover: true,
+  autoHiddenCover: false,
+
+  // Play and pause audio through blank space [type `Boolean` default `false`]
+  spaceBar: true,
 
   //Music is downloaded handle
   onAudioDownload(audioInfo) {
@@ -752,20 +755,35 @@ class Demo extends React.PureComponent {
             />
             remember
           </label>
-          theme :{params.theme}
-          <Switch
-            checkedChildren={'D'}
-            unCheckedChildren={'L'}
-            checked={params.theme === 'light'}
-            onChange={(checked) => this.onChangeKey(checked ? 'light' : 'dark')}
-          />
-          mode :{params.mode}
-          <Switch
-            checkedChildren={'M'}
-            unCheckedChildren={'F'}
-            checked={params.mode === 'mini'}
-            onChange={(checked) => this.onChangeKey(checked ? 'mini' : 'full')}
-          />
+          <label htmlFor="spaceBar">
+            <input
+              type="checkbox"
+              id="spaceBar"
+              checked={params.spaceBar}
+              onChange={() => this.onChangeKey('spaceBar')}
+            />
+            spaceBar
+          </label>
+          <div style={{ padding: 20 }}>
+            theme :{params.theme}
+            <Switch
+              checkedChildren={'D'}
+              unCheckedChildren={'L'}
+              checked={params.theme === 'light'}
+              onChange={(checked) =>
+                this.onChangeKey(checked ? 'light' : 'dark')
+              }
+            />
+            mode :{params.mode}
+            <Switch
+              checkedChildren={'M'}
+              unCheckedChildren={'F'}
+              checked={params.mode === 'mini'}
+              onChange={(checked) =>
+                this.onChangeKey(checked ? 'mini' : 'full')
+              }
+            />
+          </div>
           <div>{this.renderCustomUI()}</div>
         </section>
         <ReactJkMusicPlayer {...params} />

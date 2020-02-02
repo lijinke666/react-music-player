@@ -9,13 +9,14 @@ import ReactJkMusicPlayer, {
   AnimatePauseIcon,
   Load,
   PlayModel,
-  CircleProcessBar
+  CircleProcessBar,
+  SPACE_BAR_KEYCODE,
 } from '../../src'
 import {
   createRandomNum,
   formatTime,
   arrayEqual,
-  distinct
+  distinct,
 } from '../../src/utils'
 import PlayerMobile, { PlayModeTip } from '../../src/components/PlayerMobile'
 import AudioListsPanel from '../../src/components/AudioListsPanel'
@@ -84,9 +85,9 @@ describe('<ReactJkMusicPlayer/>', () => {
           name: 'name',
           singer: 'singer',
           cover: 'test.jpg',
-          musicSrc: 'test.mp3'
-        }
-      ]
+          musicSrc: 'test.mp3',
+        },
+      ],
     }
     const wrapper = mount(<ReactJkMusicPlayer {...testProps} />)
     assert(wrapper.props().audioLists.length >= 1)
@@ -127,7 +128,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         order: 'order',
         orderLoop: 'orderLoop',
         singleLoop: 'singleLoop',
-        shufflePlay: 'shufflePlay'
+        shufflePlay: 'shufflePlay',
       },
       controllerTitle: 'controllerTitle',
       openText: 'openText',
@@ -140,7 +141,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       showThemeSwitch: true,
       showReload: true,
       showPlayMode: true,
-      defaultPlayMode: 'order'
+      defaultPlayMode: 'order',
     }
     const wrapper = mount(<ReactJkMusicPlayer {...testProps} />)
     expect(wrapper.text()).toContain('openText')
@@ -170,7 +171,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       <span key="1" className="extendsContent">
         extendsText1
       </span>,
-      <span key="2">extendsText2</span>
+      <span key="2">extendsText2</span>,
     ]
     const wrapper = mount(
       <ReactJkMusicPlayer extendsContent={extendsContent} />
@@ -231,9 +232,9 @@ describe('<ReactJkMusicPlayer/>', () => {
           name: 'name',
           singer: 'singer',
           cover: 'test.jpg',
-          musicSrc: 'test.mp3'
-        }
-      ]
+          musicSrc: 'test.mp3',
+        },
+      ],
     })
     assert(wrapper.find('.player-delete').length === 1)
   })
@@ -403,10 +404,10 @@ describe('<ReactJkMusicPlayer/>', () => {
           name: 'name',
           singer: 'singer',
           cover: 'test.jpg',
-          musicSrc: 'test.mp3'
-        }
+          musicSrc: 'test.mp3',
+        },
       ],
-      onAudioLoadError
+      onAudioLoadError,
     }
     const wrapper = mount(<ReactJkMusicPlayer {...testProps} mode="full" />)
     wrapper.setState({ audioListsPanelVisible: true })
@@ -445,8 +446,8 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({
       audioLists: [
         { musicSrc: '2', cover: 'xxxx' },
-        { musicSrc: '22', cover: 'xxxxx' }
-      ]
+        { musicSrc: '22', cover: 'xxxxx' },
+      ],
     })
     setTimeout(() => {
       expect(wrapper.find('.img-content')).toHaveLength(1)
@@ -465,8 +466,8 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({
       audioLists: [
         { musicSrc: '2', cover: 'xxxx' },
-        { musicSrc: '22', cover: 'xxxxx' }
-      ]
+        { musicSrc: '22', cover: 'xxxxx' },
+      ],
     })
     setTimeout(() => {
       expect(wrapper.find('.cover')).toHaveLength(1)
@@ -476,7 +477,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     const onBeforeAudioDownload = jest.fn(() => {
       return Promise.resolve({
         src: '123.mpg',
-        filename: 'test'
+        filename: 'test',
       })
     })
     const onAudioDownload = jest.fn()
@@ -498,7 +499,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[
           { musicSrc: 'x', cover: '' },
-          { musicSrc: 'xx', cover: '' }
+          { musicSrc: 'xx', cover: '' },
         ]}
         mode="full"
         onAudioPlay={onAudioPlay}
@@ -517,7 +518,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[
           { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
-          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' }
+          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' },
         ]}
         mode="full"
         onAudioPlay={onAudioPlay}
@@ -535,7 +536,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[
           { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
-          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' }
+          { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' },
         ]}
         mode="full"
         onAudioListsChange={onAudioListsChange}
@@ -574,14 +575,14 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({
       audioLists: [
         { musicSrc: 'xx', name: '11' },
-        { musicSrc: 'xxx', name: '111' }
-      ]
+        { musicSrc: 'xxx', name: '111' },
+      ],
     })
 
     expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
       { musicSrc: 'x', name: '1' },
       { musicSrc: 'xx', name: '11' },
-      { musicSrc: 'xxx', name: '111' }
+      { musicSrc: 'xxx', name: '111' },
     ])
   })
   it('should replace audioLists with clearPriorAudioLists option', () => {
@@ -597,13 +598,13 @@ describe('<ReactJkMusicPlayer/>', () => {
       clearPriorAudioLists: true,
       audioLists: [
         { musicSrc: 'xx', name: '11' },
-        { musicSrc: 'xxx', name: '111' }
-      ]
+        { musicSrc: 'xxx', name: '111' },
+      ],
     })
 
     expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
       { musicSrc: 'xx', name: '11' },
-      { musicSrc: 'xxx', name: '111' }
+      { musicSrc: 'xxx', name: '111' },
     ])
 
     expect(onAudioListsChange).toHaveBeenCalled()
@@ -620,8 +621,8 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({
       audioLists: [
         { musicSrc: 'xx', name: '11' },
-        { musicSrc: 'xxx', name: '111' }
-      ]
+        { musicSrc: 'xxx', name: '111' },
+      ],
     })
 
     expect(wrapper.state().playing).toEqual(false)
@@ -646,15 +647,46 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[
           { musicSrc: 'x', name: '1' },
-          { musicSrc: 'xx', name: '2' }
+          { musicSrc: 'xx', name: '2' },
         ]}
         mode="full"
         onAudioListsChange={onAudioListsChange}
       />
     )
     wrapper.setProps({
-      audioLists: []
+      audioLists: [],
     })
     expect(onAudioListsChange).toHaveBeenCalled()
+  })
+
+  // FIXME: dispatchEvent call many time
+  it.skip('should pause audio when Space bar has be triggered', () => {
+    const onAudioPause = jest.fn()
+    const onAudioPlay = jest.fn()
+    const triggerKeyDown = () => {
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { keyCode: SPACE_BAR_KEYCODE })
+      )
+    }
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        spaceBar
+        onAudioPause={onAudioPause}
+        onAudioPlay={onAudioPlay}
+      />
+    )
+    triggerKeyDown()
+    expect(onAudioPause).toHaveBeenCalled()
+    expect(onAudioPlay).not.toHaveBeenCalled()
+    triggerKeyDown()
+    expect(onAudioPlay).toHaveBeenCalled()
+
+    wrapper.setProps({ spaceBar: false }, () => {
+      triggerKeyDown()
+      expect(onAudioPause).not.toHaveBeenCalled()
+      expect(onAudioPlay).not.toHaveBeenCalled()
+    })
   })
 })
