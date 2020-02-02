@@ -42,7 +42,7 @@ import OrderPlayIcon from 'react-icons/lib/md/view-headline'
 import PlayLists from 'react-icons/lib/md/queue-music'
 import NextAudioIcon from 'react-icons/lib/md/skip-next'
 import PrevAudioIcon from 'react-icons/lib/md/skip-previous'
-import CloseBtn from 'react-icons/lib/md/close'
+import CloseIcon from 'react-icons/lib/md/close'
 import DeleteIcon from 'react-icons/lib/fa/trash-o'
 
 import 'rc-slider/assets/index.css'
@@ -213,6 +213,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     autoHiddenCover: false, // 当前播放歌曲没有封面时是否自动隐藏
     onBeforeAudioDownload: () => {}, // 下载前转换音频地址等
     spaceBar: false, // 是否可以通过空格键 控制播放暂停
+    showDestroy: false,
   }
   static propTypes = {
     audioLists: PropTypes.array.isRequired,
@@ -302,6 +303,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     onBeforeAudioDownload: PropTypes.func,
     autoHiddenCover: PropTypes.bool,
     spaceBar: PropTypes.bool,
+    showDestroy: PropTypes.bool,
+    onBeforeDestroy: PropTypes.func,
+    onDestroyed: PropTypes.func,
   }
   constructor(props) {
     super(props)
@@ -378,6 +382,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       emptyLyricPlaceholder,
       getContainer,
       autoHiddenCover,
+      showDestroy,
     } = this.props
 
     const {
@@ -527,6 +532,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const miniProcessBarR = isMobile ? 30 : 40
 
+    const DestroyComponent = showDestroy && (
+      <span
+        title="destroy"
+        className="group destroy-btn"
+        {...(IS_MOBILE
+          ? { onTouchStart: this.onDestroyPlayer }
+          : { onClick: this.onDestroyPlayer })}
+      >
+        <CloseIcon />
+      </span>
+    )
+
     const AudioController = (
       <div
         className={classNames('react-jinke-music-player')}
@@ -563,6 +580,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               </Fragment>
             )}
           </div>
+          {DestroyComponent}
         </div>
       </div>
     )
@@ -580,6 +598,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           className
         )}
         style={style}
+        ref={(player) => (this.player = player)}
       >
         {toggle && isMobile ? (
           <AudioPlayerMobile
@@ -605,7 +624,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             prevAudioIcon={<PrevAudioIcon />}
             playIcon={<AnimatePlayIcon />}
             pauseIcon={<AnimatePauseIcon />}
-            closeIcon={<CloseBtn />}
+            closeIcon={<CloseIcon />}
             loadingIcon={<Load />}
             playModeTipVisible={playModeTipVisible}
             openAudioListsPanel={this.openAudioListsPanel}
@@ -800,7 +819,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   {toggleMode ? (
                     <span
                       className="group hide-panel"
-                      key="hide-panel-btn"
+                      title="toggle mode"
                       {...(IS_MOBILE
                         ? { onTouchStart: this.onHidePanel }
                         : { onClick: this.onHidePanel })}
@@ -810,6 +829,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   ) : (
                     undefined
                   )}
+
+                  {/*销毁播放器*/}
+                  {DestroyComponent}
                 </div>
               </section>
               {/* 播放模式提示框 */}
@@ -834,7 +856,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           onCancel={this.closeAudioListsPanel}
           playIcon={<AnimatePlayIcon />}
           pauseIcon={<AnimatePauseIcon />}
-          closeIcon={<CloseBtn />}
+          closeIcon={<CloseIcon />}
           panelTitle={panelTitle}
           isMobile={isMobile}
           panelToggleAnimate={panelToggleAnimate}
@@ -1142,10 +1164,47 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
   //收起播放器
-  onHidePanel = (e) => {
+  onHidePanel = () => {
     this.setState({ toggle: false, audioListsPanelVisible: false })
     this.props.onModeChange && this.props.onModeChange(this.toggleModeName.mini)
   }
+
+  onDestroyPlayer = (e) => {
+    e.stopPropagation()
+    if (this.props.onBeforeDestroy) {
+      const onBeforeDestroy = Promise.resolve(
+        this.props.onBeforeDestroy(
+          this.state.playId,
+          this.state.audioLists,
+          this.getBaseAudioInfo()
+        )
+      )
+
+      if (onBeforeDestroy && onBeforeDestroy.then) {
+        onBeforeDestroy.then(() => {
+          this._onDestroyPlayer()
+        })
+      }
+      return
+    }
+    this._onDestroyPlayer()
+  }
+
+  _onDestroyPlayer = () => {
+    this.componentWillUnmount()
+    this.player.remove()
+  }
+
+  _onDestroyed = () => {
+    if (this.props.onDestroyed) {
+      this.props.onDestroyed(
+        this.state.playId,
+        this.state.audioLists,
+        this.getBaseAudioInfo()
+      )
+    }
+  }
+
   //返回给使用者的 音乐信息
   getBaseAudioInfo() {
     const {
@@ -1926,11 +1985,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
   componentWillUnmount() {
+    this._onDestroyed()
     this.unBindEvents(this.audio, undefined, false)
     this.unBindUnhandledRejection()
     this.unBindKeyDownEvents()
     this.media.removeListener(this.listenerIsMobile)
     this.media = undefined
+    this.lyric.stop()
   }
   componentDidMount() {
     this.addMobileListener()

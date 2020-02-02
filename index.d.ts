@@ -94,6 +94,7 @@ export interface ReactJkMusicPlayerProps {
   showPlayMode?: boolean
   showThemeSwitch?: boolean
   showMiniModeCover?: boolean
+  showDestroy?: boolean
   toggleMode?: boolean
   once?: boolean
   extendsContent?:
@@ -126,6 +127,16 @@ export interface ReactJkMusicPlayerProps {
   clearPriorAudioLists?: boolean
   autoPlayInitLoadPlayList?: boolean
   spaceBar?: boolean
+  onBeforeDestroy?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => Promise<void>
+  onDestroyed?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => Promise<void>
 }
 
 export interface TransformedDownloadAudioInfo {

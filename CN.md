@@ -163,6 +163,9 @@ ReactDOM.render(
 | clearPriorAudioLists     | `boolean`                                                                           | `false`                                                                                     | 更新歌曲列表时, 是否清除之前的列表                                                                                                             |
 | autoPlayInitLoadPlayList | `boolean`                                                                           | `false`                                                                                     | 歌曲列表更新后, 是否自动播放                                                                                                                   |
 | spaceBar                 | `boolean`                                                                           | `false`                                                                                     | 是否可以通过空格键控制音乐的播放与暂停                                                                                                         |
+| showDestroy              | `boolean`                                                                           | `false`                                                                                     | 是否显示销毁按钮                                                                                                                               |
+| onBeforeDestroy          | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之前处理函数                                                                                                                               |
+| onDestroyed              | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之后的回调                                                                                                                                 |
 
 ## 自定义操作按钮
 
@@ -198,6 +201,35 @@ class App extends React.Component{
     )
   }
 }
+```
+
+## 关闭/销毁 播放器
+
+```jsx
+  const onBeforeDestroy = (currentPlayId, audioLists, audioInfo) => {
+    return new Promise((resolve, reject) => {
+      // 返回一个 Promise, 这里可以做一些自定义的校验
+      if (window.confirm('是否关闭?')) {
+        // 调用 resolve, 播放器正常关闭/销毁
+        resolve()
+      } else {
+        // 调用 reject, 本次操作无效.
+        reject()
+      }
+    })
+  }
+
+  const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
+    console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
+  }
+
+  ReactDOM.render(
+    <ReactJkMusicPlayer
+      showDestroy
+      onBeforeDestroy={onBeforeDestroy}
+      onDestroyed={onDestroyed}
+    />
+  )
 ```
 
 ## 开发

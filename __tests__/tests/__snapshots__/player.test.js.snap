@@ -44,6 +44,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   remember={false}
   remove={true}
   seeked={true}
+  showDestroy={false}
   showDownload={true}
   showLyric={false}
   showMiniModeCover={true}

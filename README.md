@@ -167,6 +167,9 @@ ReactDOM.render(
 | clearPriorAudioLists   | `boolean` |  `false`          |  Replace a new playlist with the first loaded playlist,  |
 | autoPlayInitLoadPlayList   | `boolean` |  `false`          |  Play your new play list right after your new play list is loaded turn false.  |
 | spaceBar   | `boolean` |  `false`          |  Play and pause audio through space bar （Desktop effective）.  |
+| showDestroy   | `boolean` |  `false`          |  Destroy player button display  |
+| onBeforeDestroy   | `function(currentPlayIndex,audioLists,audioInfo)` |  `-`          |  custom destroy handler before  |
+| onDestroyed   | `function(currentPlayIndex,audioLists,audioInfo)` |  `-`          |  player destroyed handle  |
 
 ## Custom operation ui
 
@@ -202,6 +205,35 @@ class App extends React.Component{
     )
   }
 }
+```
+
+## Destory player
+
+```jsx
+  const onBeforeDestroy = (currentPlayId, audioLists, audioInfo) => {
+    return new Promise((resolve, reject) => {
+      // your custom validate
+      if (window.confirm('Are you confirm destroy the player?')) {
+        // if resolve, player destroyed
+        resolve()
+      } else {
+        // if reject, skip.
+        reject()
+      }
+    })
+  }
+
+  const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
+    console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
+  }
+
+  ReactDOM.render(
+    <ReactJkMusicPlayer
+      showDestroy
+      onBeforeDestroy={onBeforeDestroy}
+      onDestroyed={onDestroyed}
+    />
+  )
 ```
 
 ## Development

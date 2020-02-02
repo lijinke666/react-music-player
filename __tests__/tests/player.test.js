@@ -689,4 +689,92 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(onAudioPlay).not.toHaveBeenCalled()
     })
   })
+
+  it('should find destroy button', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+      />
+    )
+    expect(wrapper.find('.destroy-btn')).toHaveLength(0)
+    wrapper.setProps({ showDestroy: true })
+    expect(wrapper.find('.destroy-btn')).toHaveLength(1)
+    wrapper.setProps({ mode: 'mini' })
+    expect(wrapper.find('.destroy-btn')).toHaveLength(1)
+  })
+
+  it('should trigger onDestroyed when destroy button clicked', () => {
+    const onDestroyed = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        showDestroy
+        onDestroyed={onDestroyed}
+      />
+    )
+    wrapper.find('.destroy-btn').simulate('click')
+    expect(onDestroyed).toHaveBeenCalled()
+  })
+
+  it('should trigger onBeforeDestroy when destroy button clicked', () => {
+    const onBeforeDestroy = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        showDestroy
+        onBeforeDestroy={onBeforeDestroy}
+      />
+    )
+    wrapper.find('.destroy-btn').simulate('click')
+    expect(onBeforeDestroy).toHaveBeenCalled()
+  })
+
+  it('should trigger onBeforeDestroy when destroy button clicked', () => {
+    const onBeforeDestroyRes = jest.fn(() => Promise.resolve())
+    const onBeforeDestroyRej = jest.fn(() => Promise.reject())
+    const onDestroyed = jest.fn()
+    const wrapperRes = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        showDestroy
+        onBeforeDestroy={onBeforeDestroyRes}
+        onDestroyed={onDestroyed}
+      />
+    )
+    wrapperRes.find('.destroy-btn').simulate('click')
+    // Promise 微任务 , setTimeout 宏任务
+    setTimeout(() => {
+      expect(onDestroyed).toHaveBeenCalled()
+    }, 0)
+
+    const wrapperRej = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        showDestroy
+        onBeforeDestroy={onBeforeDestroyRej}
+        onDestroyed={onDestroyed}
+      />
+    )
+    wrapperRej.find('.destroy-btn').simulate('click')
+    expect(onDestroyed).not.toHaveBeenCalled()
+  })
+
+  it('should trigger onDestroyed when component unmount', () => {
+    const onDestroyed = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        showDestroy
+        onDestroyed={onDestroyed}
+      />
+    )
+    wrapper.unmount()
+    expect(onDestroyed).toHaveBeenCalled()
+  })
 })

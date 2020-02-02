@@ -274,6 +274,9 @@ const options = {
   //lyric display of the audio player panel   [type `Boolean` default `false`]
   showLyric: true,
 
+  //destroy player button display  [type `Boolean` default `false`]
+  showDestroy: true,
+
   //Extensible custom content       [type 'Array' default '[]' ]
   extendsContent: [],
 
@@ -396,6 +399,26 @@ const options = {
    */
   getAudioInstance(audio) {
     console.log('audio instance', audio)
+  },
+
+  onBeforeDestroy(currentPlayId, audioLists, audioInfo) {
+    console.log('currentPlayId: ', currentPlayId)
+    console.log('audioLists: ', audioLists)
+    console.log('audioInfo: ', audioInfo)
+    return new Promise((resolve, reject) => {
+      // your custom validate
+      if (window.confirm('Are you confirm destroy the player?')) {
+        // if resolve, player destroyed
+        resolve()
+      } else {
+        // if reject, skip.
+        reject()
+      }
+    })
+  },
+
+  onDestroyed(currentPlayId, audioLists, audioInfo) {
+    console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
   },
 
   // transform audio info like return a Promise
@@ -727,6 +750,15 @@ class Demo extends React.PureComponent {
               onChange={() => this.onChangeKey('showLyric')}
             />
             showLyric
+          </label>
+          <label htmlFor="showDestroy">
+            <input
+              type="checkbox"
+              id="showDestroy"
+              checked={params.showDestroy}
+              onChange={() => this.onChangeKey('showDestroy')}
+            />
+            showDestroy
           </label>
           <label htmlFor="preload">
             <input
