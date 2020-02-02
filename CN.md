@@ -203,6 +203,16 @@ class App extends React.Component{
 }
 ```
 
+## 毛玻璃效果
+
+```jsx
+<ReactJkMusicPlayer glassBg/>
+```
+
+![glass-1](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png)
+
+![glass-2](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png)
+
 ## 关闭/销毁 播放器
 
 ```jsx
