@@ -1,5 +1,5 @@
 /**
- * @version 4.8.0
+ * @version 4.8.1
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -161,6 +161,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     isNeedMobileHack: IS_MOBILE,
     audioLyricVisible: false,
     isAudioListsChange: false,
+    notAutoPlayUntilPlayClicked: false,
   }
   static defaultProps = {
     audioLists: [],
@@ -1269,10 +1270,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (this.state.audioLists.length >= 1) {
       this.lyric.togglePlay()
       if (this.state.playing) {
-        this._pauseAudio()
-      } else {
-        this.loadAndPlayAudio()
+        return this._pauseAudio()
       }
+      this.setState(
+        { notAutoPlayUntilPlayClicked: !this.props.autoPlay },
+        this.loadAndPlayAudio
+      )
     }
   }
 
@@ -1304,7 +1307,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //加载音频
   loadAndPlayAudio = () => {
     const { autoPlay, remember } = this.props
-    const { isInitAutoplay, isInitRemember, loadProgress } = this.state
+    const {
+      isInitAutoplay,
+      isInitRemember,
+      loadProgress,
+      notAutoPlayUntilPlayClicked,
+    } = this.state
     const { networkState } = this.audio
     const maxLoadProgress = 100
     this.setState({ loading: true })
@@ -1317,7 +1325,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     ) {
       const { pause } = this.getLastPlayStatus()
       const isLastPause = remember && !isInitRemember && pause
-      const canPlay = isInitAutoplay || autoPlay === true
+      const canPlay = isInitAutoplay || autoPlay || notAutoPlayUntilPlayClicked
       this.setState(
         {
           playing: remember ? !isLastPause : canPlay,

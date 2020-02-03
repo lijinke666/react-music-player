@@ -803,4 +803,20 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.unmount()
     expect(onDestroyed).toHaveBeenCalled()
   })
+
+  // https://github.com/lijinke666/react-music-player/issues/78#issuecomment-574089990
+  it('should play audio when click play button and not auto play', () => {
+    const onAudioPlay = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        autoPlay={false}
+        mode="full"
+        onAudioPlay={onAudioPlay}
+      />
+    )
+    wrapper.find('.play-btn').simulate('click')
+    expect(wrapper.state().playing).toEqual(true)
+    expect(wrapper.state().pause).toEqual(false)
+  })
 })
