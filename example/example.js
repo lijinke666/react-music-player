@@ -607,6 +607,7 @@ class Demo extends React.PureComponent {
           change play back rate
         </button>
         <button onClick={() => (this.audio.volume = 0.2)}>change volume</button>
+        <button onClick={() => this.audio.destroy()}>destroy player</button>
       </>
     )
   }

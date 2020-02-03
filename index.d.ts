@@ -35,6 +35,10 @@ export interface ReactJkMusicPlayerAudioList {
   [key: string]: any
 }
 
+export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
+  destroy: () => void
+}
+
 export interface ReactJkMusicPlayerProps {
   audioLists: Array<ReactJkMusicPlayerAudioList>
   theme?: ReactJkMusicPlayerTheme

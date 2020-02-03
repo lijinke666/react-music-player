@@ -182,6 +182,7 @@ Support feature:
 - `change play time`
 - `change playbackRate`
 - `change volume`
+- `destroy play`
 
 ```jsx
 class App extends React.Component{
@@ -202,6 +203,7 @@ class App extends React.Component{
           change play back rate
         </button>
         <button onClick={() => (this.audio.volume = 0.2)}>change volume</button>
+        <button onClick={() => this.audio.destroy()}>destory player</button>
       </>
     )
   }

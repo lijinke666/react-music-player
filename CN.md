@@ -178,6 +178,7 @@ ReactDOM.render(
 - `改变当前播放位置`
 - `改变播放倍速`
 - `改变音量`
+- `销毁播放器`
 
 ```jsx
 class App extends React.Component{
@@ -198,6 +199,7 @@ class App extends React.Component{
           改变播放倍速
         </button>
         <button onClick={() => (this.audio.volume = 0.2)}>改变音量</button>
+        <button onClick={() => this.audio.destroy()}>销毁播放器</button>
       </>
     )
   }

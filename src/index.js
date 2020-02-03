@@ -1178,8 +1178,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onModeChange && this.props.onModeChange(this.toggleModeName.mini)
   }
 
-  onDestroyPlayer = (e) => {
-    e.stopPropagation()
+  onDestroyPlayer = () => {
     if (this.props.onBeforeDestroy) {
       const onBeforeDestroy = Promise.resolve(
         this.props.onBeforeDestroy(
@@ -1899,6 +1898,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onGetAudioInstance = () => {
+    Object.defineProperty(this.audio, 'destroy', {
+      value: () => {
+        this.onDestroyPlayer()
+      },
+      writable: false,
+    })
     this.props.getAudioInstance && this.props.getAudioInstance(this.audio)
   }
 
