@@ -182,28 +182,28 @@ Support feature:
 - `change play time`
 - `change playbackRate`
 - `change volume`
-- `destroy play`
+- `destroy audio player`
 
 ```jsx
 class App extends React.Component{
   constructor() {
-    this.audio = null
+    this.audioInstance = null
   }
   render() {
     return (
       <>
-        <ReactJkMusicPlayer getAudioInstance={instance => this.audio = instance}/>
-        <button onClick={() => this.audio.play()}>play</button>
-        <button onClick={() => this.audio.pause()}>pause</button>
-        <button onClick={() => this.audio.load()}>reload</button>
-        <button onClick={() => (this.audio.currentTime = 40)}>
+        <ReactJkMusicPlayer getAudioInstance={instance => this.audioInstance = instance}/>
+        <button onClick={() => this.audioInstance.play()}>play</button>
+        <button onClick={() => this.audioInstance.pause()}>pause</button>
+        <button onClick={() => this.audioInstance.load()}>reload</button>
+        <button onClick={() => (this.audioInstance.currentTime = 40)}>
           change current play time
         </button>
-        <button onClick={() => (this.audio.playbackRate = 2)}>
+        <button onClick={() => (this.audioInstance.playbackRate = 2)}>
           change play back rate
         </button>
-        <button onClick={() => (this.audio.volume = 0.2)}>change volume</button>
-        <button onClick={() => this.audio.destroy()}>destory player</button>
+        <button onClick={() => (this.audioInstance.volume = 0.2)}>change volume</button>
+        <button onClick={() => this.audioInstance.destroy()}>destory player</button>
       </>
     )
   }

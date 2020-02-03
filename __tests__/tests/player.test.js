@@ -433,6 +433,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       />
     )
     expect(typeof _instance).toEqual('object')
+    expect(typeof _instance.destroy).toBe('function')
   })
   it('should auto hide the cover photo if no cover photo is available for pc', () => {
     const wrapper = mount(

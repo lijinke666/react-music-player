@@ -183,23 +183,23 @@ ReactDOM.render(
 ```jsx
 class App extends React.Component{
   constructor() {
-    this.audio = null
+    this.audioInstance = null
   }
   render() {
     return (
       <>
-        <ReactJkMusicPlayer getAudioInstance={instance => this.audio = instance}/>
-        <button onClick={() => this.audio.play()}>播放</button>
-        <button onClick={() => this.audio.pause()}>暂停</button>
-        <button onClick={() => this.audio.load()}>重新播放</button>
-        <button onClick={() => (this.audio.currentTime = 40)}>
+        <ReactJkMusicPlayer getAudioInstance={instance => this.audioInstance = instance}/>
+        <button onClick={() => this.audioInstance.play()}>播放</button>
+        <button onClick={() => this.audioInstance.pause()}>暂停</button>
+        <button onClick={() => this.audioInstance.load()}>重新播放</button>
+        <button onClick={() => (this.audioInstance.currentTime = 40)}>
           改变当前播放位置
         </button>
-        <button onClick={() => (this.audio.playbackRate = 2)}>
+        <button onClick={() => (this.audioInstance.playbackRate = 2)}>
           改变播放倍速
         </button>
-        <button onClick={() => (this.audio.volume = 0.2)}>改变音量</button>
-        <button onClick={() => this.audio.destroy()}>销毁播放器</button>
+        <button onClick={() => (this.audioInstance.volume = 0.2)}>改变音量</button>
+        <button onClick={() => this.audioInstance.destroy()}>销毁播放器</button>
       </>
     )
   }

@@ -537,9 +537,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       <span
         title="destroy"
         className="group destroy-btn"
-        {...(IS_MOBILE
-          ? { onTouchStart: this.onDestroyPlayer }
-          : { onClick: this.onDestroyPlayer })}
+        ref={(node) => (this.destroyBtn = node)}
+        {...(!drag || toggle
+          ? { [IS_MOBILE ? 'onTouchStart' : 'onClick']: this.onDestroyPlayer }
+          : null)}
       >
         <CloseIcon />
       </span>
@@ -1113,6 +1114,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
   }
   controllerMouseUp = (e, { x, y }) => {
+    if (this.destroyBtn.contains(e.target)) {
+      this.onDestroyPlayer()
+      return
+    }
     if (!this.state.isMove) {
       if (this.state.isNeedMobileHack) {
         this.loadAndPlayAudio()
@@ -1122,10 +1127,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
     this.setState({ moveX: x, moveY: y })
     return false
-  }
-  controllerMouseOut = (e) => {
-    e.preventDefault()
-    this.isDrag = false
   }
   onHandleProgress = (value) => {
     this.audio.currentTime = value
@@ -1189,9 +1190,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       )
 
       if (onBeforeDestroy && onBeforeDestroy.then) {
-        onBeforeDestroy.then(() => {
-          this._onDestroyPlayer()
-        })
+        onBeforeDestroy
+          .then(() => {
+            this._onDestroyPlayer()
+          })
+          // ignore unhandledrejection handler
+          .catch(() => {})
       }
       return
     }
@@ -1898,13 +1902,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onGetAudioInstance = () => {
-    Object.defineProperty(this.audio, 'destroy', {
-      value: () => {
-        this.onDestroyPlayer()
-      },
-      writable: false,
-    })
-    this.props.getAudioInstance && this.props.getAudioInstance(this.audio)
+    if (this.props.getAudioInstance) {
+      Object.defineProperty(this.audio, 'destroy', {
+        value: () => {
+          this.onDestroyPlayer()
+        },
+        writable: false,
+      })
+      this.props.getAudioInstance(this.audio)
+    }
   }
 
   //当父组件 更新 props 时 如 audioLists 改变 更新播放信息
