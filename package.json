@@ -4,6 +4,13 @@
   "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
   "typing": "index.d.ts",
+  "files": [
+    "lib/",
+    "assets/",
+    "LICENCE",
+    "package.json",
+    "index.d.ts"
+  ],
   "scripts": {
     "start": "yarn demo",
     "build:clean": "rimraf lib && rimraf assets",
