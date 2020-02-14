@@ -47,7 +47,6 @@ import DeleteIcon from 'react-icons/lib/fa/trash-o'
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
-import { instanceOf } from 'prop-types'
 
 export const SPACE_BAR_KEYCODE = 32
 const IS_MOBILE = isMobile()
