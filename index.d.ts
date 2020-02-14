@@ -123,7 +123,7 @@ export interface ReactJkMusicPlayerProps {
   emptyLyricPlaceholder?: string | React.ReactNode
   showLyric?: boolean
   getContainer?: () => HTMLElement
-  getAudioInstance?: (instance: HTMLAudioElement) => void
+  getAudioInstance?: (instance: ReactJkMusicPlayerInstance) => void
   autoHiddenCover?: boolean
   onBeforeAudioDownload?: (
     audioInfo: ReactJkMusicPlayerAudioInfo

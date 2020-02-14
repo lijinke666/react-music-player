@@ -831,7 +831,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
     expect(wrapper.find('.audio-title').text()).toContain('test')
     expect(
-      wrapper.find('audio').filterWhere((item) => item.title)
+      wrapper.find('audio').filterWhere((item) => item.title === 'test')
     ).toHaveLength(0)
   })
 
@@ -846,7 +846,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
     expect(wrapper.find('.audio-title').text()).toContain('test')
     expect(
-      wrapper.find('audio').filterWhere((item) => item.title)
+      wrapper.find('audio').filterWhere((item) => item.title === 'test')
     ).toHaveLength(0)
     expect(audioTitle).toHaveBeenCalled()
   })

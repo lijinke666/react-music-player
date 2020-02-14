@@ -167,6 +167,8 @@ ReactDOM.render(
 | onBeforeDestroy          | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之前处理函数                                                                                                                               |
 | onDestroyed              | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之后的回调                                                                                                                                 |
 | customDownloader         | `function(downloadInfo: TransformedDownloadAudioInfo)`                              | `-`                                                                                         | 自定义下载器                                                                                                                                   |
+| audioTitle               | `string | (audioInfo: ReactJkMusicPlayerAudioInfo) => string`                       | `{name} - {signer}`                                                                         | 自定义音乐显示名称, 默认歌曲名-歌手                                                                                                            |
+
 
 ## 自定义操作按钮
 
@@ -329,85 +331,120 @@ interface ReactJkMusicPlayerAudioInfo {
 ## 参数
 
 ```ts
-interface ReactJkMusicPlayerProps {
-  audioLists: Array<ReactJkMusicPlayerAudioList>,
-  theme?: ReactJkMusicPlayerTheme,
-  mode?: ReactJkMusicPlayerMode,
+export interface ReactJkMusicPlayerProps {
+  audioLists: Array<ReactJkMusicPlayerAudioList>
+  theme?: ReactJkMusicPlayerTheme
+  mode?: ReactJkMusicPlayerMode
   defaultPlayMode?: ReactJkMusicPlayerPlayMode
-  drag?: boolean,
-  seeked?: boolean,
-  autoPlay?: boolean,
+  drag?: boolean
+  seeked?: boolean
+  autoPlay?: boolean
   playModeText?: {
-    order: string | React.ReactNode,
-    orderLoop: string | React.ReactNode,
-    singleLoop: string | React.ReactNode,
+    order: string | React.ReactNode
+    orderLoop: string | React.ReactNode
+    singleLoop: string | React.ReactNode
     shufflePlay: string | React.ReactNode
-  },
-  panelTitle?: string | React.ReactNode,
-  closeText?: string | React.ReactNode,
-  openText?: string | React.ReactNode,
-  notContentText?: string | React.ReactNode,
-  controllerTitle?: string | React.ReactNode,
+  }
+  panelTitle?: string | React.ReactNode
+  closeText?: string | React.ReactNode
+  openText?: string | React.ReactNode
+  notContentText?: string | React.ReactNode
+  controllerTitle?: string | React.ReactNode
   defaultPosition?: {
-    top: number | string,
-    left: number | string,
-    right: number | string,
+    top: number | string
+    left: number | string
+    right: number | string
     bottom: number | string
-  },
-  onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioAbort?: (data: any) => void,
-  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioLoadError?: (data: any) => void,
-  onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onAudioDownload?: (audioInfo: ReactJkMusicPlayerAudioInfo, transformedDownloadAudioInfo: TransformedDownloadAudioInfo) => void,
-  onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void,
-  onAudioListsChange?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void,
-  onModeChange?: (mode: ReactJkMusicPlayerMode) => void,
-  onAudioListsPanelChange?: (panelVisible: boolean) => void,
-  onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void,
-  onAudioListsDragEnd?: (currentPlayId: string, audioLists: Array<ReactJkMusicPlayerAudioList>, audioInfo: ReactJkMusicPlayerAudioInfo) => void,
-  showDownload?: boolean,
-  showPlay?: boolean,
-  showReload?: boolean,
-  showPlayMode?: boolean,
-  showThemeSwitch?: boolean,
-  showMiniModeCover?: boolean,
-  toggleMode?: boolean,
-  once?: boolean,
-  extendsContent?: Array<React.ReactNode | string> | React.ReactNode | string | boolean,
-  checkedText?: string | React.ReactNode,
-  unCheckedText?: string | React.ReactNode,
-  defaultVolume?: number,
-  playModeShowTime?: number,
-  bounds?: string | React.ReactNode,
-  showMiniProcessBar?: boolean,
-  loadAudioErrorPlayNext?: boolean,
-  preload?: boolean | "auto" | "metadata" | "none",
-  glassBg?: boolean,
-  remember?: boolean,
-  remove?: boolean,
-  defaultPlayIndex?: number,
-  playIndex?: number,
-  lyricClassName?: string,
-  emptyLyricPlaceholder?: string | React.ReactNode,
-  showLyric?: boolean,
+  }
+  onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioAbort?: (data: any) => void
+  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioLoadError?: (data: any) => void
+  onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onAudioDownload?: (
+    audioInfo: ReactJkMusicPlayerAudioInfo,
+    transformedDownloadAudioInfo: TransformedDownloadAudioInfo
+  ) => void
+  onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
+  onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void
+  onAudioListsChange?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
+  onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void
+  onModeChange?: (mode: ReactJkMusicPlayerMode) => void
+  onAudioListsPanelChange?: (panelVisible: boolean) => void
+  onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void
+  onAudioListsDragEnd?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
+  showDownload?: boolean
+  showPlay?: boolean
+  showReload?: boolean
+  showPlayMode?: boolean
+  showThemeSwitch?: boolean
+  showMiniModeCover?: boolean
+  showDestroy?: boolean
+  toggleMode?: boolean
+  once?: boolean
+  extendsContent?:
+    | (Array<React.ReactNode | string>)
+    | React.ReactNode
+    | boolean
+    | string
+  checkedText?: string | React.ReactNode
+  unCheckedText?: string | React.ReactNode
+  defaultVolume?: number
+  playModeShowTime?: number
+  bounds?: string | React.ReactNode
+  showMiniProcessBar?: boolean
+  loadAudioErrorPlayNext?: boolean
+  preload?: boolean | 'auto' | 'metadata' | 'none'
+  glassBg?: boolean
+  remember?: boolean
+  remove?: boolean
+  defaultPlayIndex?: number
+  playIndex?: number
+  lyricClassName?: string
+  emptyLyricPlaceholder?: string | React.ReactNode
+  showLyric?: boolean
   getContainer?: () => HTMLElement
   getAudioInstance?: (instance: HTMLAudioElement) => void
   autoHiddenCover?: boolean
   onBeforeAudioDownload?: (
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<TransformedDownloadAudioInfo>
+  clearPriorAudioLists?: boolean
+  autoPlayInitLoadPlayList?: boolean
+  spaceBar?: boolean
+  onBeforeDestroy?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => Promise<void>
+  onDestroyed?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => Promise<void>
+  customDownloader?: (downloadAudioInfo: TransformedDownloadAudioInfo) => void
+  audioTitle?: ((audioInfo: ReactJkMusicPlayerAudioInfo) => string) | string
 }
 
 export interface TransformedDownloadAudioInfo {
   src: string
   filename?: string
   mimeType?: string
+}
+
+export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
+  destroy: () => void
 }
 ```
 
