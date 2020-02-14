@@ -4,7 +4,7 @@ import ReactJkMusicPlayer from '../src'
 import swal from 'sweetalert'
 import FaHeadphones from 'react-icons/lib/fa/headphones'
 import Switch from 'rc-switch'
-import { createRandomNum, formatTime } from '../src/utils'
+import { createRandomNum } from '../src/utils'
 
 import '../src/styles/index.less'
 import './example.less'
@@ -294,6 +294,14 @@ const options = {
 
   // Play and pause audio through blank space [type `Boolean` default `false`]
   spaceBar: true,
+
+  /**
+   * @description Customer audio title [type `String | Function` default `${name} - ${singer}`]
+   * @example
+   * audioTitle: (audioInfo) => 'title'
+   */
+
+  // audioTitle: 'xxxx',
 
   //Music is downloaded handle
   onAudioDownload(audioInfo) {

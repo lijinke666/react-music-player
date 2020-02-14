@@ -142,6 +142,7 @@ export interface ReactJkMusicPlayerProps {
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<void>
   customDownloader?: (downloadAudioInfo: TransformedDownloadAudioInfo) => void
+  audioTitle?: ((audioInfo: ReactJkMusicPlayerAudioInfo) => string) | string
 }
 
 export interface TransformedDownloadAudioInfo {

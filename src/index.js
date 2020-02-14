@@ -47,6 +47,7 @@ import DeleteIcon from 'react-icons/lib/fa/trash-o'
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
+import { instanceOf } from 'prop-types'
 
 export const SPACE_BAR_KEYCODE = 32
 const IS_MOBILE = isMobile()
@@ -308,6 +309,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     onBeforeDestroy: PropTypes.func,
     onDestroyed: PropTypes.func,
     customDownloader: PropTypes.func,
+    audioTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
   constructor(props) {
     super(props)
@@ -589,6 +591,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
 
     const container = getContainer() || document.body
+    const audioTitle = this.getAudioTitle()
 
     return createPortal(
       <div
@@ -680,9 +683,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   className="progress-bar-content"
                   key="progress-bar-content"
                 >
-                  <span className="audio-title">
-                    {name} {singer ? `- ${singer}` : ''}
-                  </span>
+                  <span className="audio-title">{audioTitle}</span>
                   <section className="audio-main">
                     <span key="current-time" className="current-time">
                       {loading ? '--' : _currentTime}
@@ -881,6 +882,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         )}
         <audio
           className="music-player-audio"
+          title={audioTitle}
           {...preloadState}
           src={musicSrc}
           ref={(node) => (this.audio = node)}
@@ -888,6 +890,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
       </div>,
       container
     )
+  }
+
+  getAudioTitle = () => {
+    const { audioTitle } = this.props
+    const { name, singer } = this.state
+    if (typeof audioTitle === 'function' && this.audio) {
+      return audioTitle(this.getBaseAudioInfo())
+    }
+    return audioTitle || `${name} ${singer ? `- ${singer}` : ''}`
   }
 
   toggleAudioLyric = () => {

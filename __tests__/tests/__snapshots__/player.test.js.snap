@@ -193,6 +193,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           <audio
             class="music-player-audio"
             src=""
+            title=" "
           />
         </div>
       </body>
@@ -500,6 +501,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
       <audio
         className="music-player-audio"
         src=""
+        title=" "
       />
     </div>
   </Portal>
