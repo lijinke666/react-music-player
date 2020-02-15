@@ -280,8 +280,8 @@ const options = {
   //Extensible custom content       [type 'Array' default '[]' ]
   extendsContent: [],
 
-  //default volume of the audio player [type `Number` default `100` range `0-100`]
-  defaultVolume: 100,
+  //default volume of the audio player [type `Number` default `1` range `0-1`]
+  defaultVolume: 1,
 
   //playModeText show time [type `Number(ms)` default `700`]
   playModeShowTime: 600,

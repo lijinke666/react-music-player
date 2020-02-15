@@ -850,4 +850,18 @@ describe('<ReactJkMusicPlayer/>', () => {
     ).toHaveLength(0)
     expect(audioTitle).toHaveBeenCalled()
   })
+
+  it('should toggle audio volume', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode="full"
+        defaultVolume={1}
+      />
+    )
+    wrapper.find('.sounds-icon').simulate('click')
+    expect(wrapper.state().soundValue).toEqual(0)
+    wrapper.find('.sounds-icon').simulate('click')
+    expect(wrapper.state().soundValue).toEqual(1)
+  })
 })

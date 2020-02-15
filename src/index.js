@@ -197,7 +197,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showLyric: false,
     playModeTipVisible: false, //手机端切换播放模式
     autoPlay: true,
-    defaultVolume: 100,
+    defaultVolume: 1,
     showProgressLoadBar: true, //音频预加载进度
     seeked: true,
     playModeShowTime: 600, //播放模式提示 显示时间,
@@ -1491,7 +1491,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const volume = this.audio.volume
     this.setState({
       isMute: this.audio.volume <= 0,
-      currentAudioVolume: volume,
       soundValue: volume,
     })
     this.props.onAudioVolumeChange && this.props.onAudioVolumeChange(volume)
@@ -1766,8 +1765,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   setDefaultAudioVolume = () => {
     const { defaultVolume, remember } = this.props
-    //音量 [0-100]
-    this.defaultVolume = Math.max(0, Math.min(defaultVolume, 100)) / 100
+    //音量 [0-1]
+    this.defaultVolume = Math.max(0, Math.min(defaultVolume, 1))
     const { soundValue = this.defaultVolume } = this.getLastPlayStatus()
     this.setAudioVolume(remember ? soundValue : this.defaultVolume)
   }
