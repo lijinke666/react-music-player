@@ -245,7 +245,7 @@ const onBeforeAudioDownload = () => {
 const customDownloader = (downloadInfo) => {
   console.log(downloadInfo.src) // 1.mp3
 }
-<ReactJkMusicPlayer customDownloader={customDownloader}/>
+<ReactJkMusicPlayer customDownloader={customDownloader} onBeforeAudioDownload={onBeforeAudioDownload}/>
 ```
 
 ## Destory player
