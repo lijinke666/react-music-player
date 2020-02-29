@@ -329,14 +329,13 @@ const options = {
   },
 
   //The single song is ended handle
-  onAudioEnded(audioInfo) {
-    // swal('Audio is ended!', '', 'success')
-    console.log('audio ended', audioInfo)
+  onAudioEnded(currentPlayId, audioLists, audioInfo) {
+    console.log('audio ended', currentPlayId, audioLists, audioInfo)
   },
 
-  //audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}
-  onAudioAbort(e) {
-    console.log('audio abort', e)
+  //audio load abort
+  onAudioAbort(currentPlayId, audioLists, audioInfo) {
+    console.log('audio abort', currentPlayId, audioLists, audioInfo)
   },
 
   //audio play progress handle
@@ -350,8 +349,14 @@ const options = {
   },
 
   //audio load failed error handle
-  onAudioLoadError(e) {
-    console.error('audio load err', e)
+  onAudioLoadError(errMsg, currentPlayId, audioLists, audioInfo) {
+    console.error(
+      'audio load error',
+      errMsg,
+      currentPlayId,
+      audioLists,
+      audioInfo
+    )
   },
 
   //theme change handle
@@ -391,7 +396,7 @@ const options = {
   },
 
   onAudioLyricChange(lineNum, currentLyric) {
-    console.log('audio lyric change:', lineNum, currentLyric)
+    // console.log('audio lyric change:', lineNum, currentLyric)
   },
 
   // custom music player root node

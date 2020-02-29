@@ -142,14 +142,14 @@ ReactDOM.render(
 | onAudioPlay              | `function(audioInfo)`                                                               | `-`                                                                                         | 音频播放 的 钩子函数                                                                                                                           |
 | onAudioPause             | `function(audioInfo)`                                                               | `-`                                                                                         | 音频暂停 的 钩子函数                                                                                                                           |
 | onAudioSeeked            | `function(audioInfo)`                                                               | `-`                                                                                         | 进度条被点击或者拖动改变播放进度的 钩子函数                                                                                                    |
-| onAudioVolumeChange      | `function(audioInfo)`                                                               | `-`                                                                                         | 音量改变的 钩子函数 范围 `0.0`-`1.0`                                                                                                           |
-| onAudioEnded             | `function(audioInfo)`                                                               | `-`                                                                                         | 当前音频播放结束的 钩子函数                                                                                                                    |
-| onAudioAbort             | `function(audioInfo)`                                                               | `-`                                                                                         | 当前音频播放中断的 钩子函数                                                                                                                    |
+| onAudioVolumeChange      | `function(volume)`                                                                  | `-`                                                                                         | 音量改变的 钩子函数 范围 `0.0`-`1.0`                                                                                                           |
+| onAudioEnded             | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 当前音频播放结束的 钩子函数                                                                                                                    |
+| onAudioAbort             | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 当前音频播放中断的 钩子函数                                                                                                                    |
 | onAudioProgress          | `function(audioInfo)`                                                               | `-`                                                                                         | 音频正在播放中的 钩子函数                                                                                                                      |
-| onAudioLoadError         | `function(audioInfo)`                                                               | `-`                                                                                         | 音频播放失败的 钩子函数                                                                                                                        |
+| onAudioLoadError         | `function(errMsg,currentPlayId,audioLists,audioInfo)`                               | `-`                                                                                         | 音频播放失败的 钩子函数                                                                                                                        |
 | onAudioReload            | `function(audioInfo)`                                                               | `-`                                                                                         | 音频重新播放的 钩子函数                                                                                                                        |
-| onAudioListsChange       | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 播放列表发生改变时的 钩子函数                                                                                                                  |
-| onAudioPlayTrackChange   | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 当前播放的音乐发生改变时的 钩子函数                                                                                                            |
+| onAudioListsChange       | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 播放列表发生改变时的 钩子函数                                                                                                                  |
+| onAudioPlayTrackChange   | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 当前播放的音乐发生改变时的 钩子函数                                                                                                            |
 | onAudioPlayModeChange    | `function(playMode)`                                                                | `-`                                                                                         | 播放模式发生改变时的 钩子函数                                                                                                                  |
 | onAudioListsPanelChange  | `function(panelVisible)`                                                            | `-`                                                                                         | 播放列表打开或关闭的 钩子函数                                                                                                                  |
 | onThemeChange            | `function(theme)`                                                                   | `-`                                                                                         | 主题切换后的 钩子函数                                                                                                                          |
@@ -164,8 +164,8 @@ ReactDOM.render(
 | autoPlayInitLoadPlayList | `boolean`                                                                           | `false`                                                                                     | 歌曲列表更新后, 是否自动播放                                                                                                                   |
 | spaceBar                 | `boolean`                                                                           | `false`                                                                                     | 是否可以通过空格键控制音乐的播放与暂停                                                                                                         |
 | showDestroy              | `boolean`                                                                           | `false`                                                                                     | 是否显示销毁按钮                                                                                                                               |
-| onBeforeDestroy          | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之前处理函数                                                                                                                               |
-| onDestroyed              | `function(currentPlayIndex,audioLists,audioInfo)`                                   | `-`                                                                                         | 销毁之后的回调                                                                                                                                 |
+| onBeforeDestroy          | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 销毁之前处理函数                                                                                                                               |
+| onDestroyed              | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 销毁之后的回调                                                                                                                                 |
 | customDownloader         | `function(downloadInfo: TransformedDownloadAudioInfo)`                              | `-`                                                                                         | 自定义下载器                                                                                                                                   |
 | audioTitle               | `string \| (audioInfo: ReactJkMusicPlayerAudioInfo) => string`                      | `{name} - {signer}`                                                                         | 自定义音乐显示名称, 默认歌曲名-歌手                                                                                                            |
 
@@ -358,10 +358,23 @@ export interface ReactJkMusicPlayerProps {
   }
   onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioAbort?: (data: any) => void
-  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioLoadError?: (data: any) => void
+  onAudioEnded?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
+  onAudioAbort?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
+  onAudioVolumeChange?: (volume: number) => void
+  onAudioLoadError?: (
+    errMsg: any,
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
   onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioDownload?: (

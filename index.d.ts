@@ -66,10 +66,23 @@ export interface ReactJkMusicPlayerProps {
   }
   onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioEnded?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioAbort?: (data: any) => void
-  onAudioVolumeChange?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioLoadError?: (data: any) => void
+  onAudioEnded?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
+  onAudioAbort?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
+  onAudioVolumeChange?: (volume: number) => void
+  onAudioLoadError?: (
+    errMsg: any,
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioInfo: ReactJkMusicPlayerAudioInfo
+  ) => void
   onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioDownload?: (

@@ -1375,13 +1375,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     // 如果删除歌曲或其他原因导致列表为空时
     // 这时候会触发 https://developer.mozilla.org/en-US/docs/Web/API/MediaError
     if (musicSrc) {
-      const info = this.getBaseAudioInfo()
       this.props.onAudioLoadError &&
-        this.props.onAudioLoadError({
-          ...e,
-          audioInfo: info,
-          errMsg: this.audio.error || null,
-        })
+        this.props.onAudioLoadError(
+          this.audio.error || e.reason || null,
+          playId,
+          audioLists,
+          this.getBaseAudioInfo()
+        )
     }
   }
   //isNext true 下一首  false
@@ -1444,7 +1444,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //音频播放结束
   audioEnd = () => {
-    this.props.onAudioEnded && this.props.onAudioEnded(this.getBaseAudioInfo())
+    this.props.onAudioEnded &&
+      this.props.onAudioEnded(
+        this.state.playId,
+        this.state.audioLists,
+        this.getBaseAudioInfo()
+      )
     this.handlePlay(this.state.playMode)
   }
   /**
@@ -1503,9 +1508,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onAudioSeeked = () => {
     if (this.state.audioLists.length >= 1) {
       if (this.state.playing) {
-        this.loadAndPlayAudio()
-        setTimeout(() => {
-          this.setState({ playing: true })
+        this.setState({ playing: true }, () => {
+          this.loadAndPlayAudio()
           this.lyric.seek(this.getLyricPlayTime())
         })
       }
@@ -1528,10 +1532,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //加载中断
   onAudioAbort = (e) => {
-    const { audioLists } = this.state
+    const { audioLists, playId } = this.state
     const audioInfo = this.getBaseAudioInfo()
-    const mergedError = Object.assign({}, e, audioInfo)
-    this.props.onAudioAbort && this.props.onAudioAbort(mergedError)
+    const mergedAudioInfo = Object.assign({}, e, audioInfo)
+    this.props.onAudioAbort &&
+      this.props.onAudioAbort(playId, audioLists, mergedAudioInfo)
     if (audioLists.length) {
       this.audio.pause()
       this.state.isInitAutoplay && this.audio.play()
