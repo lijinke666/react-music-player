@@ -1364,12 +1364,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   onAudioLoadError = (e) => {
     const { playMode, audioLists, playId, musicSrc } = this.state
+    const { loadAudioErrorPlayNext } = this.props
+    const isSingleLoop = playMode === this.PLAY_MODE.singleLoop.key
+    const isLastAudio = (
+      playMode === this.PLAY_MODE.order.key ||
+      playMode === this.PLAY_MODE.orderLoop.key
+    ) && playId === audioLists[audioLists.length - 1].id
+    const currentPlayMode = isSingleLoop ? this.PLAY_MODE.order.key : playMode
+
     this.lyric.stop()
 
     //如果当前音乐加载出错 尝试播放下一首
-    const { loadAudioErrorPlayNext } = this.props
-    if (loadAudioErrorPlayNext && playId < audioLists.length - 1) {
-      this.handlePlay(playMode)
+    if (loadAudioErrorPlayNext && !isLastAudio) {
+      this.handlePlay(currentPlayMode, true)
     }
 
     // 如果删除歌曲或其他原因导致列表为空时
