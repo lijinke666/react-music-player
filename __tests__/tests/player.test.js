@@ -864,4 +864,20 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.sounds-icon').simulate('click')
     expect(wrapper.state().soundValue).toEqual(1)
   })
+
+  // https://github.com/lijinke666/react-music-player/issues/91
+  it('should not call ref.contains when showDestroy is false', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        showDestroy
+        mode="mini"
+      />
+    )
+    wrapper.setProps({showDestroy: false})
+    wrapper.find('.music-player-controller').simulate('click')
+    setTimeout(() => {
+      expect(wrapper.state().toggle).toEqual(true)
+    })
+  })
 })

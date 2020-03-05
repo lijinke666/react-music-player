@@ -1125,7 +1125,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
   }
   controllerMouseUp = (e, { x, y }) => {
-    if (this.destroyBtn.contains(e.target)) {
+    if (this.props.showDestroy && this.destroyBtn && this.destroyBtn.contains(e.target)) {
       this.onDestroyPlayer()
       return
     }
