@@ -235,6 +235,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     panelTitle: PropTypes.string,
     closeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     openText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    clickToPlayText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    clickToPauseText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     notContentText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     controllerTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     defaultPosition: PropTypes.shape({
@@ -357,6 +359,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       controllerTitle,
       closeText,
       openText,
+      clickToPlayText,
+      clickToPauseText,
       notContentText,
       drag,
       style,
@@ -727,7 +731,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         {...(IS_MOBILE
                           ? { onTouchStart: this.onTogglePlay }
                           : { onClick: this.onTogglePlay })}
-                        title={playing ? 'Click to pause' : 'Click to play'}
+                        title={playing ? clickToPauseText : clickToPlayText}
                       >
                         {playing ? (
                           <span>
