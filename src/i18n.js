@@ -1,6 +1,4 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-// import i18Resources from "assets/resources/i18Resources.js";
 
 const i18Resources = {
   en: {
@@ -67,9 +65,6 @@ const i18Resources = {
 };
 
 i18n
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
-  .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     fallbackLng: "en",
     lng: "en",

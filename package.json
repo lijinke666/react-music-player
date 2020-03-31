@@ -74,7 +74,6 @@
     "rc-switch": "^1.9.0",
     "react-drag-listview": "^0.1.6",
     "react-draggable": "^3.3.2",
-    "react-i18next": "^11.3.4",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {
