@@ -147,6 +147,42 @@ const audioList2 = [
 ]
 
 const options = {
+  //Language of the component. Currently, can be `en` or `pt` [type `string` default `en`]
+  lng: 'pt',
+
+  //Text for Play button [type `string` default from i18n]
+  // clickToPlayText: "Custom click to play",
+
+  //Text for Pause button [type `string` default from i18n]
+  // clickToPauseText: "Custom click to pause",
+  
+  //Text for Next Track button [type `string` default from i18n]
+  // nextTrackText: "Custom next",
+
+  //Text for Previous Track button [type `string` default from i18n]
+  // previousTrackText: "Custom previous",
+  
+  //Text for Reload button [type `string` default from i18n]
+  // reloadText: "Custom reload",
+  
+  //Text for Volume slider [type `string` default from i18n]
+  // volumeText: "Custom volume",
+
+  //Text for Playlist button [type `string` default from i18n]
+  // playListsText: "Custom playlist",
+  
+  //Text for Toggle Lyric button [type `string` default from i18n]
+  // toggleLyricText : "Custom toggle lyric",
+  
+  //Text for Toogle Mode button [type `string` default from i18n]
+  // toggleModeText: "Custom toggle mode",
+  
+  //Text for Destroy button [type `string` default from i18n]
+  // destroyText: "Custom destroy",
+
+  //Text for Download button [type `string` default from i18n]
+  //downloadText: "Custom download",
+
   //audio lists model
   audioLists: audioList1,
 
@@ -197,29 +233,29 @@ const options = {
   },
 
   // play mode text config of the audio player
-  playModeText: {
-    order: '顺序播放',
-    orderLoop: '列表循环',
-    singleLoop: '单曲循环',
-    shufflePlay: '随机播放',
-  },
+  // playModeText: {
+  //   order: '顺序播放',
+  //   orderLoop: '列表循环',
+  //   singleLoop: '单曲循环',
+  //   shufflePlay: '随机播放',
+  // },
 
   //audio controller open text  [ type `String | ReactNode` default 'open']
-  openText: '打开',
+  // openText: '打开',
 
   //audio controller close text  [ type `String | ReactNode` default 'close']
-  closeText: '关闭',
+  // closeText: '关闭',
 
   //audio theme switch checkedText  [ type `String | ReactNode` default '-']
-  checkedText: '开',
+  // checkedText: '开',
 
   //audio theme switch unCheckedText [ type `String | ReactNode` default '-']
-  unCheckedText: '关',
+  // unCheckedText: '关',
 
   // audio list panel show text of the playlist has no songs [ type `String` | ReactNode  default 'no music']
-  notContentText: '暂无音乐',
+  // notContentText: '暂无音乐',
 
-  panelTitle: '播放列表',
+  // panelTitle: '播放列表',
 
   defaultPlayMode: 'order',
 
@@ -516,6 +552,26 @@ class Demo extends React.PureComponent {
     })
   }
 
+  onChangeToPt = () => {
+    const data = {
+      ...this.state.params,
+      lng: "pt"
+    }
+    this.setState({
+      params: data,
+    })
+  }
+  
+  onChangeToEn = () => {
+    const data = {
+      ...this.state.params,
+      lng: "en"
+    }
+    this.setState({
+      params: data,
+    })
+
+  }
   onChangeToFirstAudioList = () => {
     const data = {
       ...this.state.params,
@@ -639,6 +695,12 @@ class Demo extends React.PureComponent {
           </a>
         </h2>
         <section className="settings">
+          <button onClick={this.onChangeToPt}>
+            change language to pt
+          </button>
+          <button onClick={this.onChangeToEn}>
+            change language to en
+          </button>
           <button onClick={this.onChangeToFirstAudioList}>
             change to first audio list ({audioList1.length})
           </button>

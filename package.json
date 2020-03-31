@@ -6,7 +6,6 @@
   "typing": "index.d.ts",
   "files": [
     "lib/",
-    "assets/",
     "LICENCE",
     "package.json",
     "index.d.ts"
@@ -67,12 +66,14 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "downloadjs": "^1.4.7",
+    "i18next": "^19.3.4",
     "is-mobile": "^2.1.0",
     "prop-types": "^15.7.2",
     "rc-slider": "^8.7.1",
     "rc-switch": "^1.9.0",
     "react-drag-listview": "^0.1.6",
     "react-draggable": "^3.3.2",
+    "react-i18next": "^11.3.4",
     "react-icons": "^2.2.5"
   },
   "devDependencies": {
