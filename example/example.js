@@ -5,6 +5,8 @@ import swal from 'sweetalert'
 import FaHeadphones from 'react-icons/lib/fa/headphones'
 import Switch from 'rc-switch'
 import { createRandomNum } from '../src/utils'
+import i18next from "i18next"
+
 
 import '../src/styles/index.less'
 import './example.less'
@@ -148,7 +150,7 @@ const audioList2 = [
 
 const options = {
   //Language of the component. Currently, can be `en` or `pt` [type `string` default `en`]
-  lng: 'pt',
+  // defaultLng: 'pt',
 
   //Text for Play button [type `string` default from i18n]
   // clickToPlayText: "Custom click to play",
@@ -182,6 +184,9 @@ const options = {
 
   //Text for Download button [type `string` default from i18n]
   //downloadText: "Custom download",
+
+  //Text for Dark/Light mode button [type `string` default from i18n]
+  //darkLightModeText: "Custom Dark/Light mode",
 
   //audio lists model
   audioLists: audioList1,
@@ -552,26 +557,16 @@ class Demo extends React.PureComponent {
     })
   }
 
+  changeLanguage = lng => {
+    i18next.changeLanguage(lng);
+  };
   onChangeToPt = () => {
-    const data = {
-      ...this.state.params,
-      lng: "pt"
-    }
-    this.setState({
-      params: data,
-    })
-  }
-  
+    this.changeLanguage("pt")
+  }  
   onChangeToEn = () => {
-    const data = {
-      ...this.state.params,
-      lng: "en"
-    }
-    this.setState({
-      params: data,
-    })
-
+    this.changeLanguage("en")
   }
+
   onChangeToFirstAudioList = () => {
     const data = {
       ...this.state.params,

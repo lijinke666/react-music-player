@@ -5,7 +5,8 @@
  * @author Jinke.Li <1359518268@qq.com>
  */
 
-import React, { PureComponent, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
+import memoize from "memoize-one"
 import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
@@ -115,7 +116,7 @@ const sliderBaseOptions = {
   handleStyle: { backgroundColor: '#31c27c', border: '2px solid #fff' },
 }
 
-export default class ReactJkMusicPlayer extends PureComponent {
+export default class ReactJkMusicPlayer extends Component {
   initPlayId = '' //初始播放id
   audioListRemoveAnimateTime = 350 // 列表删除动画时间(ms)
   NETWORK_STATE = {
@@ -318,6 +319,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     customDownloader: PropTypes.func,
     audioTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
+
   constructor(props) {
     super(props)
 
@@ -365,8 +367,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this._PLAY_MODE_LENGTH_ = this._PLAY_MODE_.length
   }
   render() {
-    i18next.changeLanguage(this.props.lng)
-    console.log("i18next.lng > ", i18next.language)
     const {
       className,
       controllerTitle,
@@ -378,9 +378,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       volumeText = i18next.t("Volume"),
       playListsText = i18next.t("Playlists"),
       toggleLyricText = i18next.t("Toggle Lyric"),
-      toggleModeText = i18next.t("Toggle Mode"),
+      toggleModeText = i18next.t("Minimize"),
       destroyText = i18next.t("Destroy"),
       downloadText = i18next.t("Download"),
+      darkLightModeText = i18next.t("Dark Light Mode"),
       // closeText = i18next.t("Close"),
       // openText = i18next.t("Open"),
       notContentText = i18next.t("No music"),
@@ -511,6 +512,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           checkedChildren={this.props.checkedText === undefined ? i18next.t("Theme Light") : this.props.checkedText}
           unCheckedChildren={this.props.unCheckedText === undefined ? i18next.t("Theme Dark") : this.props.unCheckedText}
           checked={theme === this.lightThemeName}
+          title={darkLightModeText}
         />
       </span>
     )

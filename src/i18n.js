@@ -26,11 +26,12 @@ const i18Resources = {
       "Volume": "Volume",
       "Playlists": "Playlists",
       "Toggle Lyric" : "Toggle lyric",
-      "Toggle Mode": "Toggle mode",
+      "Minimize": "Minimize",
       "Destroy": "Destroy",
       "Download": "Download",
       "Theme Light": "L",
-      "Theme Dark": "D"
+      "Theme Dark": "D",
+      "Dark Light Mode": "Dark/Light mode"
       }
     },
   pt: {
@@ -55,11 +56,12 @@ const i18Resources = {
       "Volume": "Volume",
       "Playlists": "Listas de execução",
       "Toggle Lyric" : "Ver letras",
-      "Toggle Mode": "Ver modos",
+      "Minimize": "Minimizar",
       "Destroy": "Sair",
       "Download": "Baixar",
       "Theme Light": "C",
-      "Theme Dark": "E"
+      "Theme Dark": "E",
+      "Dark Light Mode": "Modo claro/escuro"
     }
   }
 };
@@ -70,6 +72,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     fallbackLng: "en",
+    lng: "en",
     resources: i18Resources,
     keySeparator: false, // we do not use keys in form messages.welcome
 
