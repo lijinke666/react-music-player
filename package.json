@@ -68,7 +68,6 @@
     "downloadjs": "^1.4.7",
     "i18next": "^19.3.4",
     "is-mobile": "^2.1.0",
-    "memoize-one": "^5.1.1",
     "prop-types": "^15.7.2",
     "rc-slider": "^8.7.1",
     "rc-switch": "^1.9.0",

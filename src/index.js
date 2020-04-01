@@ -6,7 +6,6 @@
  */
 
 import React, { Component, Fragment } from 'react'
-import memoize from "memoize-one"
 import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'

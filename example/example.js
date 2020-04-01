@@ -149,9 +149,6 @@ const audioList2 = [
 ]
 
 const options = {
-  //Language of the component. Currently, can be `en` or `pt` [type `string` default `en`]
-  // defaultLng: 'pt',
-
   //Text for Play button [type `string` default from i18n]
   // clickToPlayText: "Custom click to play",
 
@@ -558,6 +555,8 @@ class Demo extends React.PureComponent {
   }
 
   changeLanguage = lng => {
+    console.log("example lng > ", lng);
+    console.log("example previous i18next.language > ", i18next.language)
     i18next.changeLanguage(lng);
   };
   onChangeToPt = () => {
@@ -909,6 +908,7 @@ class Demo extends React.PureComponent {
           </div>
           <div>{this.renderCustomUI()}</div>
         </section>
+        <h1>The player should be here</h1>
         <ReactJkMusicPlayer {...params} />
       </>
     )
