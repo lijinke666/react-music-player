@@ -5,7 +5,7 @@
  * @author Jinke.Li <1359518268@qq.com>
  */
 
-import React, { PureComponent, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
@@ -47,6 +47,9 @@ import DeleteIcon from 'react-icons/lib/fa/trash-o'
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
+
+import './i18n'
+import i18next from 'i18next'
 
 export const SPACE_BAR_KEYCODE = 32
 const IS_MOBILE = isMobile()
@@ -112,7 +115,7 @@ const sliderBaseOptions = {
   handleStyle: { backgroundColor: '#31c27c', border: '2px solid #fff' },
 }
 
-export default class ReactJkMusicPlayer extends PureComponent {
+export default class ReactJkMusicPlayer extends Component {
   initPlayId = '' //初始播放id
   audioListRemoveAnimateTime = 350 // 列表删除动画时间(ms)
   NETWORK_STATE = {
@@ -167,12 +170,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioLists: [],
     theme: 'dark',
     mode: 'mini',
-    playModeText: {
-      order: 'order',
-      orderLoop: 'orderLoop',
-      singleLoop: 'singleLoop',
-      shufflePlay: 'shufflePlay',
-    },
     defaultPlayMode: 'order',
     defaultPosition: {
       left: 0,
@@ -180,11 +177,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     },
     controllerTitle: <FaHeadphones />,
     panelTitle: 'PlayList',
-    closeText: 'close',
-    openText: 'open',
+    // closeText: 'close',
+    // openText: 'open',
     notContentText: 'no music',
-    checkedText: '',
-    unCheckedText: '',
+    // checkedText: '',
+    // unCheckedText: '',
     once: false, //onAudioPlay 事件  是否只触发一次
     drag: true,
     toggleMode: true, //能换在迷你 和完整模式下 互相切换
@@ -235,6 +232,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
     panelTitle: PropTypes.string,
     closeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     openText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    clickToPlayText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    clickToPauseText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    nextTrackText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    previousTrackText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    reloadText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    volumeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    playListsText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    toggleLyricText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    toggleModeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    destroyText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    downloadText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     notContentText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     controllerTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     defaultPosition: PropTypes.shape({
@@ -310,8 +318,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     customDownloader: PropTypes.func,
     audioTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
+
   constructor(props) {
     super(props)
+
     this.audio = null //当前播放器
     this.lightThemeName = 'light'
     this.darkThemeName = 'dark'
@@ -326,26 +336,30 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.y = 0
     this.isDrag = false
 
-    const {
-      playModeText: { order, orderLoop, singleLoop, shufflePlay },
-    } = props
+    const playModeText = props.playModeText !== undefined ?  props.playModeText : {
+          order: i18next.t("Play in order"),
+          orderLoop: i18next.t("List loop"),
+          singleLoop: i18next.t("Single cycle"),
+          shufflePlay: i18next.t("Shuffle Playback")
+    }
+
     //播放模式配置
     this.PLAY_MODE = {
       order: {
         key: 'order',
-        value: order,
+        value: playModeText.order,
       },
       orderLoop: {
         key: 'orderLoop',
-        value: orderLoop,
+        value: playModeText.orderLoop,
       },
       singleLoop: {
         key: 'singleLoop',
-        value: singleLoop,
+        value: playModeText.singleLoop,
       },
       shufflePlay: {
         key: 'shufflePlay',
-        value: shufflePlay,
+        value: playModeText.shufflePlay,
       },
     }
     this._PLAY_MODE_ = Object.values(this.PLAY_MODE)
@@ -355,9 +369,24 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const {
       className,
       controllerTitle,
-      closeText,
-      openText,
-      notContentText,
+      clickToPlayText = i18next.t("Click to Play"),
+      clickToPauseText = i18next.t("Click to Pause"),
+      nextTrackText = i18next.t("Next Track"),
+      previousTrackText = i18next.t("Previous Track"),
+      reloadText = i18next.t("Reload"),
+      volumeText = i18next.t("Volume"),
+      playListsText = i18next.t("Playlists"),
+      toggleLyricText = i18next.t("Toggle Lyric"),
+      toggleModeText = i18next.t("Minimize"),
+      destroyText = i18next.t("Destroy"),
+      downloadText = i18next.t("Download"),
+      darkLightModeText = i18next.t("Dark Light Mode"),
+      // closeText = i18next.t("Close"),
+      // openText = i18next.t("Open"),
+      notContentText = i18next.t("No music"),
+      panelTitle = i18next.t("Playlist"),
+      // checkedText = i18next.t("Checked"),
+      // unCheckedText = i18next.t("Unchecked"),
       drag,
       style,
       showDownload,
@@ -365,9 +394,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       showReload,
       showPlayMode,
       showThemeSwitch,
-      panelTitle,
-      checkedText,
-      unCheckedText,
       toggleMode,
       showMiniModeCover,
       extendsContent,
@@ -469,6 +495,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       <span
         className="group audio-download"
         {...{ [IS_MOBILE ? 'onTouchStart' : 'onClick']: this.onAudioDownload }}
+        key="download-btn"
+        title={downloadText}
       >
         <Download />
       </span>
@@ -480,9 +508,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <Switch
           className="theme-switch-container"
           onChange={this.themeChange}
-          checkedChildren={checkedText}
-          unCheckedChildren={unCheckedText}
+          checkedChildren={this.props.checkedText === undefined ? i18next.t("Theme Light") : this.props.checkedText}
+          unCheckedChildren={this.props.unCheckedText === undefined ? i18next.t("Theme Dark") : this.props.unCheckedText}
           checked={theme === this.lightThemeName}
+          title={darkLightModeText}
         />
       </span>
     )
@@ -495,7 +524,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           ? { onTouchStart: this.onAudioReload }
           : { onClick: this.onAudioReload })}
         key="reload-btn"
-        title="Reload"
+        title={reloadText}
       >
         <Reload />
       </span>
@@ -511,7 +540,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           ? { onTouchStart: this.toggleAudioLyric }
           : { onClick: this.toggleAudioLyric })}
         key="lyric-btn"
-        title="toggle lyric"
+        title={toggleLyricText}
       >
         <LyricIcon />
       </span>
@@ -537,7 +566,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const DestroyComponent = showDestroy && (
       <span
-        title="destroy"
+        title={destroyText}
         className="group destroy-btn"
         ref={(node) => (this.destroyBtn = node)}
         {...(!drag || toggle
@@ -579,7 +608,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   {controllerTitle}
                 </span>
                 <div key="setting" className="music-player-controller-setting">
-                  {toggle ? closeText : openText}
+                  {toggle ? this.props.closeText === undefined ? i18next.t("Close") : this.props.closeText : this.props.openText === undefined ? i18next.t("Open") : this.props.openText}
                 </div>
               </Fragment>
             )}
@@ -713,7 +742,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span className="group">
                       <span
                         className="group prev-audio"
-                        title="Previous track"
+                        title={previousTrackText}
                         {...(IS_MOBILE
                           ? { onTouchStart: this.audioPrevPlay }
                           : { onClick: this.audioPrevPlay })}
@@ -727,7 +756,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         {...(IS_MOBILE
                           ? { onTouchStart: this.onTogglePlay }
                           : { onClick: this.onTogglePlay })}
-                        title={playing ? 'Click to pause' : 'Click to play'}
+                        title={playing ? clickToPauseText : clickToPlayText}
                       >
                         {playing ? (
                           <span>
@@ -741,7 +770,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       </span>
                       <span
                         className="group next-audio"
-                        title="Next track"
+                        title={nextTrackText}
                         {...(IS_MOBILE
                           ? { onTouchStart: this.audioNextPlay }
                           : { onClick: this.audioNextPlay })}
@@ -767,7 +796,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   <span
                     className="group play-sounds"
                     key="play-sound"
-                    title="Volume"
+                    title={volumeText}
                   >
                     {isMute ? (
                       <span
@@ -807,7 +836,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   <span
                     className="group audio-lists-btn"
                     key="audio-lists-btn"
-                    title="play lists"
+                    title={playListsText}
                     {...(IS_MOBILE
                       ? { onTouchStart: this.openAudioListsPanel }
                       : { onClick: this.openAudioListsPanel })}
@@ -822,7 +851,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   {toggleMode ? (
                     <span
                       className="group hide-panel"
-                      title="toggle mode"
+                      title={toggleModeText}
                       {...(IS_MOBILE
                         ? { onTouchStart: this.onHidePanel }
                         : { onClick: this.onHidePanel })}

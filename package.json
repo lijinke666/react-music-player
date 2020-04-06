@@ -6,7 +6,6 @@
   "typing": "index.d.ts",
   "files": [
     "lib/",
-    "assets/",
     "LICENCE",
     "package.json",
     "index.d.ts"
@@ -67,6 +66,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "downloadjs": "^1.4.7",
+    "i18next": "^19.3.4",
     "is-mobile": "^2.1.0",
     "prop-types": "^15.7.2",
     "rc-slider": "^8.7.1",
