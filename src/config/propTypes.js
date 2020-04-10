@@ -27,7 +27,7 @@ export default {
   volumeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   playListsText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   toggleLyricText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  toggleModeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  toggleMiniModeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   destroyText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   downloadText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   notContentText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -89,7 +89,7 @@ export default {
   defaultPlayIndex: PropTypes.number,
   playIndex: PropTypes.number,
   lyricClassName: PropTypes.string,
-  emptyLyricPlaceholder: PropTypes.oneOfType([
+  emptyLyricText: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
   ]),

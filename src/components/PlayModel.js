@@ -6,7 +6,6 @@ const PlayModel = ({ visible, value }) => (
     className={cls('play-mode-title', {
       'play-mode-title-visible': visible,
     })}
-    key="play-mode-title"
   >
     {value}
   </div>

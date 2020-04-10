@@ -425,7 +425,7 @@ export interface ReactJkMusicPlayerProps {
   defaultPlayIndex?: number
   playIndex?: number
   lyricClassName?: string
-  emptyLyricPlaceholder?: string | React.ReactNode
+  emptyLyricText?: string | React.ReactNode
   showLyric?: boolean
   getContainer?: () => HTMLElement
   getAudioInstance?: (instance: HTMLAudioElement) => void

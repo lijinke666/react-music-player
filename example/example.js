@@ -182,6 +182,9 @@ const options = {
   // Play and pause audio through blank space [type `Boolean` default `false`]
   spaceBar: true,
 
+  // international
+  locale: 'en',
+
   /**
    * @description Customer audio title [type `String | Function` default `${name} - ${singer}`]
    * @example
@@ -406,8 +409,10 @@ class Demo extends React.PureComponent {
   changeLanguage = (locale) => {
     // i18next.changeLanguage(lng);
     this.setState({
-      ...this.state.params,
-      locale,
+      params: {
+        ...this.state.params,
+        locale,
+      }
     })
   }
   onChangeToZh = () => {

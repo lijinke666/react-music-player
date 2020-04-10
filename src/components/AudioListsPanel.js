@@ -30,7 +30,7 @@ const AudioListsPanel = ({
   >
     <div className='audio-lists-panel-header'>
       <h2 className='title'>
-        <span>{locale.panelTitle} / </span>
+        <span>{locale.playListsText} / </span>
         <span className='num'>{audioLists.length}</span>
         <span className='close-btn' title={locale.closeText} onClick={onCancel}>
           {isMobile ? <ArrowDownIcon /> : closeIcon}

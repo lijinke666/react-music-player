@@ -66,6 +66,7 @@ import PROP_TYPES from './config/propTypes'
 import LOCALES from './config/locale'
 import NETWORK_STATE from './config/networkState'
 import { AUDIO_LIST_REMOVE_ANIMATE_TIME } from './config/animate'
+import PLAY_MODE from './config/playMode'
 
 import LOCALE_CONFIG from './locale'
 
@@ -152,9 +153,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     onBeforeAudioDownload: () => {}, // 下载前转换音频地址等
     spaceBar: false, // 是否可以通过空格键 控制播放暂停
     showDestroy: false,
-    locale: LOCALE_CONFIG[LOCALES.EN],
+    locale: LOCALES.EN,
   }
   static propTypes = PROP_TYPES
+
+  get locale() {
+    return LOCALE_CONFIG[this.props.locale]
+  }
 
   constructor(props) {
     super(props)
@@ -170,28 +175,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.targetId = 'music-player-controller'
     this.openPanelPeriphery = 1 //移动差值 在 这之间 认为是点击打开panel
 
-    const { playMode } = props.locale
-
     //播放模式配置
-    this.PLAY_MODE = {
-      order: {
-        key: 'order',
-        value: playMode.order,
-      },
-      orderLoop: {
-        key: 'orderLoop',
-        value: playMode.orderLoop,
-      },
-      singleLoop: {
-        key: 'singleLoop',
-        value: playMode.singleLoop,
-      },
-      shufflePlay: {
-        key: 'shufflePlay',
-        value: playMode.shufflePlay,
-      },
-    }
-    this._PLAY_MODE_ = Object.values(this.PLAY_MODE)
+    this._PLAY_MODE_ = Object.values(PLAY_MODE)
     this._PLAY_MODE_LENGTH_ = this._PLAY_MODE_.length
   }
   render() {
@@ -218,12 +203,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
       remove,
       lyricClassName,
       showLyric,
-      emptyLyricPlaceholder,
+      emptyLyricText,
       getContainer,
       autoHiddenCover,
       showDestroy,
-      locale,
     } = this.props
+
+    const { locale } = this
 
     const {
       toggle,
@@ -266,10 +252,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ? { show: audioListsPanelVisible, hide: !audioListsPanelVisible }
       : { show: audioListsPanelVisible }
 
-    const _playMode_ = this.PLAY_MODE[playMode || defaultPlayMode]
-
-    const currentPlayMode = _playMode_['key']
-    const currentPlayModeName = _playMode_['value']
+    const currentPlayMode =
+      PLAY_MODE[playMode || defaultPlayMode] || PLAY_MODE.order
+    const currentPlayModeName = locale.playMode[currentPlayMode]
 
     const isShowMiniModeCover =
       (showMiniModeCover && !autoHiddenCover) || (autoHiddenCover && cover)
@@ -321,7 +306,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           checkedChildren={locale.lightThemeText}
           unCheckedChildren={locale.darkThemeText}
           checked={theme === this.lightThemeName}
-          title={locale.darkLightModeText}
+          title={locale.switchThemeText}
         />
       </span>
     )
@@ -361,7 +346,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {...(IS_MOBILE
           ? { onTouchStart: this.togglePlayMode }
           : { onClick: this.togglePlayMode })}
-        title={this.PLAY_MODE[currentPlayMode]['value']}
+        title={locale.playMode[currentPlayMode]}
       >
         {this.renderPlayModeIcon(currentPlayMode)}
       </span>
@@ -383,10 +368,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
 
     const AudioController = (
-      <div
-        className={cls('react-jinke-music-player')}
-        style={defaultPosition}
-      >
+      <div className={cls('react-jinke-music-player')} style={defaultPosition}>
         <div className={cls('music-player')}>
           {showMiniProcessBar && (
             <CircleProcessBar
@@ -449,7 +431,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             currentTime={_currentTime}
             progressBar={ProgressBar}
             onPlay={this.onTogglePlay}
-            currentPlayModeName={this.PLAY_MODE[currentPlayMode]['value']}
+            currentPlayModeName={currentPlayModeName}
             playMode={PlayModeComponent}
             audioNextPlay={this.audioNextPlay}
             audioPrevPlay={this.audioPrevPlay}
@@ -472,9 +454,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           />
         )}
 
-        {toggle ? (
-          undefined
-        ) : drag ? (
+        {toggle ? undefined : drag ? (
           <Draggable
             bounds={bounds}
             position={{ x: moveX, y: moveY }}
@@ -484,181 +464,175 @@ export default class ReactJkMusicPlayer extends PureComponent {
           >
             {AudioController}
           </Draggable>
-          ) : <>{AudioController}</>}
-        {toggle && (
-          !isMobile && (
-            <div
-              className={cls('music-player-panel', 'translate', {
-                'glass-bg': glassBg,
-              })}
-            >
-              <section className='panel-content'>
-                {(!autoHiddenCover || (autoHiddenCover && cover)) && (
-                  <div
-                    className={cls('img-content', 'img-rotate', {
-                      'img-rotate-pause': pause || !playing || !cover,
-                    })}
-                    style={{ backgroundImage: `url(${cover})` }}
-                  />
-                )}
+        ) : (
+          <>{AudioController}</>
+        )}
+        {toggle && !isMobile && (
+          <div
+            className={cls('music-player-panel', 'translate', {
+              'glass-bg': glassBg,
+            })}
+          >
+            <section className='panel-content'>
+              {(!autoHiddenCover || (autoHiddenCover && cover)) && (
                 <div
-                  className='progress-bar-content'
-                >
-                  <span className='audio-title'>{audioTitle}</span>
-                  <section className='audio-main'>
-                    <span className='current-time'>
-                      {loading ? '--' : _currentTime}
-                    </span>
-                    <div className='progress-bar'>
-                      {showProgressLoadBar && (
-                        <div
-                          className='progress-load-bar'
-                          style={{ width: `${Math.min(loadProgress, 100)}%` }}
-                        />
-                      )}
+                  className={cls('img-content', 'img-rotate', {
+                    'img-rotate-pause': pause || !playing || !cover,
+                  })}
+                  style={{ backgroundImage: `url(${cover})` }}
+                />
+              )}
+              <div className='progress-bar-content'>
+                <span className='audio-title'>{audioTitle}</span>
+                <section className='audio-main'>
+                  <span className='current-time'>
+                    {loading ? '--' : _currentTime}
+                  </span>
+                  <div className='progress-bar'>
+                    {showProgressLoadBar && (
+                      <div
+                        className='progress-load-bar'
+                        style={{ width: `${Math.min(loadProgress, 100)}%` }}
+                      />
+                    )}
 
-                      {ProgressBar}
-                    </div>
-                    <span className='duration'>
-                      {loading ? '--' : _duration}
+                    {ProgressBar}
+                  </div>
+                  <span className='duration'>{loading ? '--' : _duration}</span>
+                </section>
+              </div>
+              <div className='player-content'>
+                {/*播放按钮*/}
+                {loading ? (
+                  <Load />
+                ) : showPlay ? (
+                  <span className='group'>
+                    <span
+                      className='group prev-audio'
+                      title={locale.previousTrackText}
+                      {...(IS_MOBILE
+                        ? { onTouchStart: this.audioPrevPlay }
+                        : { onClick: this.audioPrevPlay })}
+                    >
+                      <PrevAudioIcon />
                     </span>
-                  </section>
-                </div>
-                <div className='player-content'>
-                  {/*播放按钮*/}
-                  {loading ? (
-                    <Load />
-                  ) : showPlay ? (
-                    <span className='group'>
-                      <span
-                        className='group prev-audio'
-                        title={locale.previousTrackText}
-                        {...(IS_MOBILE
-                          ? { onTouchStart: this.audioPrevPlay }
-                          : { onClick: this.audioPrevPlay })}
-                      >
-                        <PrevAudioIcon />
-                      </span>
-                      <span
-                        className='group play-btn'
-                        ref={(node) => (this.playBtn = node)}
-                        {...(IS_MOBILE
-                          ? { onTouchStart: this.onTogglePlay }
-                          : { onClick: this.onTogglePlay })}
-                        title={
-                          playing
-                            ? locale.clickToPauseText
-                            : locale.clickToPlayText
-                        }
-                      >
-                        {playing ? (
-                          <span>
-                            <AnimatePauseIcon />
-                          </span>
-                        ) : (
-                          <span>
-                            <AnimatePlayIcon />
-                          </span>
-                        )}
-                      </span>
-                      <span
-                        className='group next-audio'
-                        title={locale.nextTrackText}
-                        {...(IS_MOBILE
-                          ? { onTouchStart: this.audioNextPlay }
-                          : { onClick: this.audioNextPlay })}
-                      >
-                        <NextAudioIcon />
-                      </span>
+                    <span
+                      className='group play-btn'
+                      ref={(node) => (this.playBtn = node)}
+                      {...(IS_MOBILE
+                        ? { onTouchStart: this.onTogglePlay }
+                        : { onClick: this.onTogglePlay })}
+                      title={
+                        playing
+                          ? locale.clickToPauseText
+                          : locale.clickToPlayText
+                      }
+                    >
+                      {playing ? (
+                        <span>
+                          <AnimatePauseIcon />
+                        </span>
+                      ) : (
+                        <span>
+                          <AnimatePlayIcon />
+                        </span>
+                      )}
+                    </span>
+                    <span
+                      className='group next-audio'
+                      title={locale.nextTrackText}
+                      {...(IS_MOBILE
+                        ? { onTouchStart: this.audioNextPlay }
+                        : { onClick: this.audioNextPlay })}
+                    >
+                      <NextAudioIcon />
+                    </span>
+                  </span>
+                ) : undefined}
+
+                {/*重播*/}
+                {ReloadComponent}
+                {/*下载歌曲*/}
+                {DownloadComponent}
+                {/* 主题选择 */}
+                {ThemeSwitchComponent}
+
+                {/* 自定义扩展按钮 */}
+                {extendsContent || null}
+
+                {/*音量控制*/}
+                <span className='group play-sounds' title={locale.volumeText}>
+                  {isMute ? (
+                    <span
+                      className='sounds-icon'
+                      {...(IS_MOBILE
+                        ? { onTouchStart: this.onSound }
+                        : { onClick: this.onSound })}
+                    >
+                      <MdVolumeMuteIcon />
                     </span>
                   ) : (
-                    undefined
-                  )}
-
-                  {/*重播*/}
-                  {ReloadComponent}
-                  {/*下载歌曲*/}
-                  {DownloadComponent}
-                  {/* 主题选择 */}
-                  {ThemeSwitchComponent}
-
-                  {/* 自定义扩展按钮 */}
-                  {extendsContent || null}
-
-                  {/*音量控制*/}
-                  <span className='group play-sounds' title={locale.volumeText}>
-                    {isMute ? (
-                      <span
-                        className='sounds-icon'
-                        {...(IS_MOBILE
-                          ? { onTouchStart: this.onSound }
-                          : { onClick: this.onSound })}
-                      >
-                        <MdVolumeMuteIcon />
-                      </span>
-                    ) : (
-                      <span
-                        className='sounds-icon'
-                        {...(IS_MOBILE
-                          ? { onTouchStart: this.onMute }
-                          : { onClick: this.onMute })}
-                      >
-                        <MdVolumeDownIcon />
-                      </span>
-                    )}
-                    <Slider
-                      max={1}
-                      value={soundValue}
-                      onChange={this.audioSoundChange}
-                      className='sound-operation'
-                      {...sliderBaseOptions}
-                    />
-                  </span>
-
-                  {/*播放模式*/}
-                  {PlayModeComponent}
-
-                  {/*歌词按钮*/}
-                  {LyricComponent}
-
-                  {/*播放列表按钮*/}
-                  <span
-                    className='group audio-lists-btn'
-                    title={locale.playListsText}
-                    {...(IS_MOBILE
-                      ? { onTouchStart: this.openAudioListsPanel }
-                      : { onClick: this.openAudioListsPanel })}
-                  >
-                    <span className='audio-lists-icon'>
-                      <PlayLists />
-                    </span>
-                    <span className='audio-lists-num'>{audioLists.length}</span>
-                  </span>
-
-                  {/*收起面板*/}
-                  {toggleMode && (
                     <span
-                      className='group hide-panel'
-                      title={locale.toggleModeText}
+                      className='sounds-icon'
                       {...(IS_MOBILE
-                        ? { onTouchStart: this.onHidePanel }
-                        : { onClick: this.onHidePanel })}
+                        ? { onTouchStart: this.onMute }
+                        : { onClick: this.onMute })}
                     >
-                      <FaMinusSquareOIcon />
+                      <MdVolumeDownIcon />
                     </span>
                   )}
+                  <Slider
+                    max={1}
+                    value={soundValue}
+                    onChange={this.audioSoundChange}
+                    className='sound-operation'
+                    {...sliderBaseOptions}
+                  />
+                </span>
 
-                  {/*销毁播放器*/}
-                  {DestroyComponent}
-                </div>
-              </section>
-              {/* 播放模式提示框 */}
-              <PlayModel
-                visible={playModelNameVisible}
-                value={currentPlayModeName}
-              />
-            </div>
-          )
+                {/*播放模式*/}
+                {PlayModeComponent}
+
+                {/*歌词按钮*/}
+                {LyricComponent}
+
+                {/*播放列表按钮*/}
+                <span
+                  className='group audio-lists-btn'
+                  title={locale.playListsText}
+                  {...(IS_MOBILE
+                    ? { onTouchStart: this.openAudioListsPanel }
+                    : { onClick: this.openAudioListsPanel })}
+                >
+                  <span className='audio-lists-icon'>
+                    <PlayLists />
+                  </span>
+                  <span className='audio-lists-num'>{audioLists.length}</span>
+                </span>
+
+                {/*收起面板*/}
+                {toggleMode && (
+                  <span
+                    className='group hide-panel'
+                    title={locale.toggleMiniModeText}
+                    {...(IS_MOBILE
+                      ? { onTouchStart: this.onHidePanel }
+                      : { onClick: this.onHidePanel })}
+                  >
+                    <FaMinusSquareOIcon />
+                  </span>
+                )}
+
+                {/*销毁播放器*/}
+                {DestroyComponent}
+              </div>
+            </section>
+            {/* 播放模式提示框 */}
+            <PlayModel
+              visible={playModelNameVisible}
+              value={currentPlayModeName}
+            />
+          </div>
         )}
         {/* 播放列表面板 */}
         <AudioListsPanel
@@ -687,7 +661,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {audioLyricVisible && (
           <Draggable>
             <div className={cls('music-player-lyric', lyricClassName)}>
-              {currentLyric || emptyLyricPlaceholder}
+              {currentLyric || emptyLyricText}
             </div>
           </Draggable>
         )}
@@ -705,7 +679,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   getAudioTitle = () => {
     // 暂时兼容
-    const { audioTitle } = this.props.locale || {}
+    const { audioTitle } = this.locale || {}
     const _audioTitle = audioTitle || this.props.audioTitle
     const { name, singer } = this.state
     if (typeof _audioTitle === 'function' && this.audio) {
@@ -722,19 +696,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //播放模式切换
   togglePlayMode = () => {
     let index = this._PLAY_MODE_.findIndex(
-      ({ key }) => key === this.state.playMode
+      (mode) => mode === this.state.playMode
     )
     const playMode =
       index === this._PLAY_MODE_LENGTH_ - 1
-        ? this._PLAY_MODE_[0]['key']
-        : this._PLAY_MODE_[++index]['key']
+        ? this._PLAY_MODE_[0]
+        : this._PLAY_MODE_[++index]
     this.setState({
       playMode,
       playModelNameVisible: true,
       playModeTipVisible: true,
     })
-    this.props.onPlayModeChange &&
-      this.props.onPlayModeChange(this.PLAY_MODE[playMode])
+    this.props.onPlayModeChange && this.props.onPlayModeChange(playMode)
 
     clearTimeout(this.playModelTimer)
     this.playModelTimer = setTimeout(() => {
@@ -746,16 +719,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
     let IconNode = ''
     const animateName = 'react-jinke-music-player-mode-icon'
     switch (playMode) {
-      case this.PLAY_MODE['order']['key']:
+      case PLAY_MODE.order:
         IconNode = <OrderPlayIcon className={animateName} />
         break
-      case this.PLAY_MODE['orderLoop']['key']:
+      case PLAY_MODE.orderLoop:
         IconNode = <RepeatIcon className={animateName} />
         break
-      case this.PLAY_MODE['singleLoop']['key']:
+      case PLAY_MODE.singleLoop:
         IconNode = <LoopIcon className={animateName} />
         break
-      case this.PLAY_MODE['shufflePlay']['key']:
+      case PLAY_MODE.shufflePlay:
         IconNode = <ShufflePlayIcon className={animateName} />
         break
       default:
@@ -773,9 +746,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   audioListsPlay = (playId, ignore = false, state = this.state) => {
     const { playId: currentPlayId, pause, playing, audioLists } = state
     if (Array.isArray(audioLists) && audioLists.length === 0) {
-      /*eslint-disable no-console*/
+      /*eslint-disable-next-line no-console*/
       return console.warn('Your playlist has no songs. and cannot play !')
-      /*eslint-disable no-console*/
     }
     //如果点击当前项 就暂停 或者播放
     if (playId === currentPlayId && !ignore) {
@@ -868,7 +840,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           }
           // 如果删除的是当前正在播放的 顺延下一首播放
           if (audioId === playId) {
-            this.handlePlay(this.PLAY_MODE['orderLoop']['key'])
+            this.handlePlay(PLAY_MODE.orderLoop)
           }
         }
       )
@@ -991,7 +963,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //重新播放
   onAudioReload = () => {
-    this.handlePlay(this.PLAY_MODE['singleLoop']['key'])
+    this.handlePlay(PLAY_MODE.singleLoop)
     this.props.onAudioReload &&
       this.props.onAudioReload(this.getBaseAudioInfo())
   }
@@ -1180,12 +1152,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onAudioLoadError = (e) => {
     const { playMode, audioLists, playId, musicSrc } = this.state
     const { loadAudioErrorPlayNext } = this.props
-    const isSingleLoop = playMode === this.PLAY_MODE.singleLoop.key
+    const isSingleLoop = playMode === PLAY_MODE.singleLoop
     const isLastAudio =
-      (playMode === this.PLAY_MODE.order.key ||
-        playMode === this.PLAY_MODE.orderLoop.key) &&
+      (playMode === PLAY_MODE.order || playMode === PLAY_MODE.orderLoop) &&
       playId === audioLists[audioLists.length - 1].id
-    const currentPlayMode = isSingleLoop ? this.PLAY_MODE.order.key : playMode
+    const currentPlayMode = isSingleLoop ? PLAY_MODE.order : playMode
 
     this.lyric.stop()
 
@@ -1215,7 +1186,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
     switch (playMode) {
       //顺序播放
-      case this.PLAY_MODE['order']['key']:
+      case PLAY_MODE.order:
         // 拖拽排序后 或者 正常播放 到最后一首歌 就暂停
         if (currentPlayIndex === audioListsLen - 1) return this._pauseAudio()
         this.audioListsPlay(
@@ -1226,7 +1197,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         break
 
       //列表循环
-      case this.PLAY_MODE['orderLoop']['key']:
+      case PLAY_MODE.orderLoop:
         if (isNext) {
           if (currentPlayIndex === audioListsLen - 1) {
             return this.audioListsPlay(audioLists[0].id)
@@ -1241,20 +1212,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
         break
 
       //单曲循环
-      case this.PLAY_MODE['singleLoop']['key']:
+      case PLAY_MODE.singleLoop:
         this.audio.currentTime = 0
         this.audioListsPlay(playId, true)
         break
 
       //随机播放
-      case this.PLAY_MODE['shufflePlay']['key']:
+      case PLAY_MODE.shufflePlay:
         {
           let randomIndex = createRandomNum(0, audioListsLen - 1)
           const randomPlayId = (audioLists[randomIndex] || {}).id
           this.audioListsPlay(randomPlayId, true)
         }
         break
-      default: break
+      default:
+        break
     }
   }
   //音频播放结束
@@ -1276,11 +1248,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const { playMode } = this.state
     let _playMode = ''
     switch (playMode) {
-      case this.PLAY_MODE['shufflePlay']['key']:
+      case PLAY_MODE.shufflePlay:
         _playMode = playMode
         break
       default:
-        _playMode = this.PLAY_MODE['orderLoop']['key']
+        _playMode = PLAY_MODE.orderLoop
         break
     }
     this.handlePlay(_playMode, isNext)
@@ -1620,8 +1592,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   updateTheme = (theme) => {
     if (
       theme &&
-      (theme !== this.props.theme &&
-        (theme === this.lightThemeName || theme === this.darkThemeName))
+      theme !== this.props.theme &&
+      (theme === this.lightThemeName || theme === this.darkThemeName)
     ) {
       this.setState({ theme })
       this.props.onThemeChange && this.props.onThemeChange(theme)
@@ -1631,9 +1603,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   updateMode = (mode) => {
     if (
       mode &&
-      (mode !== this.props.mode &&
-        (mode === this.toggleModeName.full ||
-          mode === this.toggleModeName.mini))
+      mode !== this.props.mode &&
+      (mode === this.toggleModeName.full || mode === this.toggleModeName.mini)
     ) {
       this.setState({ toggle: mode === this.toggleModeName.full })
       this.props.onModeChange && this.props.onModeChange(mode)

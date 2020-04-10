@@ -20,38 +20,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   getContainer={[Function]}
   glassBg={false}
   loadAudioErrorPlayNext={true}
-  locale={
-    Object {
-      "clickToDelete": [Function],
-      "clickToPauseText": "Click to pause",
-      "clickToPlayText": "Click to play",
-      "closeText": "Close",
-      "controllerTitle": <FaHeadphones />,
-      "darkLightModeText": "Dark/Light mode",
-      "darkThemeText": "D",
-      "destroyText": "Destroy",
-      "downloadText": "Download",
-      "emptyLyricPlaceholder": "No lyric",
-      "lightThemeText": "L",
-      "nextTrackText": "Next track",
-      "notContentText": "No music",
-      "openText": "Open",
-      "panelTitle": "Playlist",
-      "playListsText": "Playlists",
-      "playMode": Object {
-        "order": "Play in order",
-        "orderLoop": "List loop",
-        "shufflePlay": "Shuffle playback",
-        "singleLoop": "Single loop",
-      },
-      "previousTrackText": "Previous track",
-      "reloadText": "Reload",
-      "removeAudioLists": "Delete audio lists",
-      "toggleLyricText": "Toggle lyric",
-      "toggleModeText": "Minimize",
-      "volumeText": "Volume",
-    }
-  }
+  locale="en"
   mode="mini"
   onBeforeAudioDownload={[Function]}
   once={false}
@@ -129,7 +98,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
                 class="title"
               >
                 <span>
-                  Playlist
+                  Playlists
                    / 
                 </span>
                 <span
@@ -348,16 +317,14 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             "clickToPlayText": "Click to play",
             "closeText": "Close",
             "controllerTitle": <FaHeadphones />,
-            "darkLightModeText": "Dark/Light mode",
             "darkThemeText": "D",
             "destroyText": "Destroy",
             "downloadText": "Download",
-            "emptyLyricPlaceholder": "No lyric",
+            "emptyLyricText": "No lyric",
             "lightThemeText": "L",
             "nextTrackText": "Next track",
             "notContentText": "No music",
             "openText": "Open",
-            "panelTitle": "Playlist",
             "playListsText": "Playlists",
             "playMode": Object {
               "order": "Play in order",
@@ -368,8 +335,9 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             "previousTrackText": "Previous track",
             "reloadText": "Reload",
             "removeAudioLists": "Delete audio lists",
+            "switchThemeText": "Dark/Light mode",
             "toggleLyricText": "Toggle lyric",
-            "toggleModeText": "Minimize",
+            "toggleMiniModeText": "Minimize",
             "volumeText": "Volume",
           }
         }
@@ -399,7 +367,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
               className="title"
             >
               <span>
-                Playlist
+                Playlists
                  / 
               </span>
               <span
