@@ -40,7 +40,7 @@ const AudioListsPanel = ({
             <span className='line' />
             <span
               className='delete-btn'
-              title={locale.removeAudioLists}
+              title={locale.removeAudioListsText}
               onClick={onDelete()}
             >
               {deleteIcon}
@@ -99,7 +99,7 @@ const AudioListsPanel = ({
                   {remove && (
                     <span
                       className='group player-delete'
-                      title={locale.clickToDelete(name)}
+                      title={locale.clickToDeleteText(name)}
                       onClick={onDelete(audio.id)}
                     >
                       {closeIcon}

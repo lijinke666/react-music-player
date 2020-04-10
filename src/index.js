@@ -63,7 +63,7 @@ import PlayModel from './components/PlayModel'
 import { sliderBaseOptions } from './config/slider'
 import { SPACE_BAR_KEYCODE } from './config/keycode'
 import PROP_TYPES from './config/propTypes'
-import LOCALES from './config/locale'
+import LOCALE from './config/locale'
 import NETWORK_STATE from './config/networkState'
 import { AUDIO_LIST_REMOVE_ANIMATE_TIME } from './config/animate'
 import PLAY_MODE from './config/playMode'
@@ -153,7 +153,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     onBeforeAudioDownload: () => {}, // 下载前转换音频地址等
     spaceBar: false, // 是否可以通过空格键 控制播放暂停
     showDestroy: false,
-    locale: LOCALES.EN,
+    locale: LOCALE.en_US,
   }
   static propTypes = PROP_TYPES
 
@@ -254,7 +254,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const currentPlayMode =
       PLAY_MODE[playMode || defaultPlayMode] || PLAY_MODE.order
-    const currentPlayModeName = locale.playMode[currentPlayMode]
+    const currentPlayModeName = locale.playModeText[currentPlayMode]
 
     const isShowMiniModeCover =
       (showMiniModeCover && !autoHiddenCover) || (autoHiddenCover && cover)
@@ -346,7 +346,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {...(IS_MOBILE
           ? { onTouchStart: this.togglePlayMode }
           : { onClick: this.togglePlayMode })}
-        title={locale.playMode[currentPlayMode]}
+        title={locale.playModeText[currentPlayMode]}
       >
         {this.renderPlayModeIcon(currentPlayMode)}
       </span>
@@ -377,7 +377,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
             />
           )}
           <div
-            key='controller'
             id={this.targetId}
             className={cls('scale', 'music-player-controller', {
               'music-player-playing': this.state.playing,
@@ -465,7 +464,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             {AudioController}
           </Draggable>
         ) : (
-          <>{AudioController}</>
+          AudioController
         )}
         {toggle && !isMobile && (
           <div
@@ -680,12 +679,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
   getAudioTitle = () => {
     // 暂时兼容
     const { audioTitle } = this.locale || {}
-    const _audioTitle = audioTitle || this.props.audioTitle
     const { name, singer } = this.state
-    if (typeof _audioTitle === 'function' && this.audio) {
-      return _audioTitle(this.getBaseAudioInfo())
+    if (typeof audioTitle === 'function' && this.audio) {
+      return audioTitle(this.getBaseAudioInfo())
     }
-    return _audioTitle || `${name} ${singer ? `- ${singer}` : ''}`
+    return audioTitle || `${name} ${singer ? `- ${singer}` : ''}`
   }
 
   toggleAudioLyric = () => {

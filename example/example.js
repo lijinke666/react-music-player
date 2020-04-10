@@ -1,6 +1,7 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react'
 import ReactJkMusicPlayer from '../src'
+import Locale from '../src/config/locale'
 import swal from 'sweetalert'
 import Switch from 'rc-switch'
 import { createRandomNum } from '../src/utils'
@@ -182,8 +183,8 @@ const options = {
   // Play and pause audio through blank space [type `Boolean` default `false`]
   spaceBar: true,
 
-  // international
-  locale: 'en',
+  // international [type `en_US | zh_CN | Object` default `en_US`]
+  locale: Locale.en_US,
 
   /**
    * @description Customer audio title [type `String | Function` default `${name} - ${singer}`]
@@ -470,7 +471,7 @@ class Demo extends React.PureComponent {
     if (key === 'full' || key === 'mini') {
       data.mode = key
     }
-    if (key === 'en' || key === 'zh') {
+    if (Object.values(Locale).includes(key)) {
       data.locale = key
     }
     this.setState({ params: data })
@@ -747,9 +748,9 @@ class Demo extends React.PureComponent {
             <Switch
               checkedChildren={'zh'}
               unCheckedChildren={'en'}
-              checked={params.locale === 'zh'}
+              checked={params.locale === Locale.zh_CN}
               onChange={(checked) =>
-                this.onChangeKey(checked ? 'zh' : 'en')
+                this.onChangeKey(checked ? Locale.zh_CN: Locale.en_US)
               }
             />
           </div>

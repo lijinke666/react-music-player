@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types'
+import Locale from './locale'
 
 export default {
   audioLists: PropTypes.array.isRequired,
+  locale: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.oneOf(Object.values(Locale)),
+  ]),
   theme: PropTypes.oneOf(['dark', 'light']),
   mode: PropTypes.oneOf(['mini', 'full']),
   defaultPlayMode: PropTypes.oneOf([

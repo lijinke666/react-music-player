@@ -31,29 +31,27 @@ react-jinke-music-player
   </a>
 </p>
 
-
-
 <p align="center">
   <a href="https://github.com/lijinke666/react-music-player/blob/master/CN.md">
     中文文档
   </a>
 </p>
 
-## Installation
+## :package: Installation
 
 using `yarn` :
 
-```
+```bash
 yarn add react-jinke-music-player
 ```
 
 using `npm` :
 
-```
+```bash
 npm install react-jinke-music-player --save
 ```
 
-## Screenshots
+## :framed_picture: Screenshots
 
 > mini mode <br/>
 
@@ -71,19 +69,30 @@ npm install react-jinke-music-player --save
 
 ![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg)
 
-## Example
+## :sparkles: Feature list
+
+- [x] Beautiful ui and animation
+- [x] Responsive
+- [x] Support theme switch
+- [x] [Complete hook function](#api)
+- [x] [Custom operation ui](#custom-operation-ui)
+- [x] [Support destroy player](#destroy-player)
+- [x] [Support glass background](#glass-bg)
+- [x] [Support internationalization](#Internationalization) (v4.11.0)
+
+## :eyes: Example
 
 > live example :
-- [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
-- [https://react-jinke-music-player.netlify.com/](https://react-jinke-music-player.netlify.com/)
 
-> practical application : [Jinke.Li's House](http://www.lijinke.cn/)
+- [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
+
+- [https://react-jinke-music-player.netlify.com/](https://react-jinke-music-player.netlify.com/)
 
 > local example : [http://localhost:8081/](http://localhost:8081/)
 
 [Source Code](https://github.com/lijinke666/react-music-player/blob/master/example/example.js)
 
-## Usage
+## :memo: Usage
 
 ```jsx
 import React from "react";
@@ -97,15 +106,14 @@ ReactDOM.render(
 );
 ```
 
-## API
+## :clipboard: API
 
 | Name                     | Type                                                                                | Default                                                                                     | Description                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | className                | `string`                                                                            | `-`                                                                                         | Additional CSS class for the root DOM node                                                                                                                                                                                                                                                                                                                  |
 | audioLists               | [AudioListProps[]](#AudioListProps)                                                 | `-`                                                                                         | [detail](#AudioListProps)                                                                                                                                                                                                                                                                                                                                   |
-| theme                    | `light | dark`                                                                      | `dark`                                                                                      | color of the music player theme  `dark`                                                                                                                                                                                                                                                                                                                     | `light` |
+| theme                    | `light` \| `dark`                                                                   | `dark`                                                                                      | color of the music player theme  `dark`                                                                                                                                                                                                                                                                                                                     | `light` |
 | defaultPosition          | `object`                                                                            | `{top:0,left:0}`                                                                            | audio controller initial position with `left,top,right,and bottom`                                                                                                                                                                                                                                                                                          |
-| playModeText             | `object`                                                                            | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player                                                                                                                                                                                                                                                                                                                   |
 | playModeShowTime         | `number`                                                                            | `600`                                                                                       | play mode toggle show time (ms)                                                                                                                                                                                                                                                                                                                             |
 | bounds                   | `object`,`number`                                                                   | `body`                                                                                      | specifies movement boundaries. Accepted values:  `parent` restricts movement within the node's offsetParent    (nearest node with position relative or absolute), or a selector, restricts movement within the targeted node An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved. |
 | preload                  | `boolean`,`string`                                                                  | `false`                                                                                     | Whether to load audio immediately after the page loads. can be set to `auto|metadata|none` `true|false` if `preload=true` preload="auto"                                                                                                                                                                                                                    |
@@ -114,12 +122,6 @@ ReactDOM.render(
 | remove                   | `boolean`                                                                           | `true`                                                                                      | The Audio Can be deleted                                                                                                                                                                                                                                                                                                                                    |
 | defaultPlayIndex         | `number`                                                                            | `0`                                                                                         | Default play index of the audio player                                                                                                                                                                                                                                                                                                                      |
 | playIndex                | `number`                                                                            | `0`                                                                                         | play index of the audio player                                                                                                                                                                                                                                                                                                                              |
-| openText                 | `string`                                                                            | `open`                                                                                      | audio controller open text                                                                                                                                                                                                                                                                                                                                  |
-| closeText                | `string`                                                                            | `close`                                                                                     | audio controller close text                                                                                                                                                                                                                                                                                                                                 |
-| panelTitle               | `string`                                                                            | `PlayList`                                                                                  | audio list panel title                                                                                                                                                                                                                                                                                                                                      |
-| notContentText           | `string`                                                                            | `no music`                                                                                  | audio list panel show text of the playlist has no songs                                                                                                                                                                                                                                                                                                     |
-| checkedText              | `string`                                                                            | `-`                                                                                         | audio theme switch checkedText                                                                                                                                                                                                                                                                                                                              |
-| unCheckedText            | `string`                                                                            | `-`                                                                                         | audio theme switch unCheckedText                                                                                                                                                                                                                                                                                                                            |
 | defaultPlayMode          | `string`                                                                            | `order`                                                                                     | default play mode of the audio player options can be set to `order`,`orderLoop`,`singleLoop`,`shufflePlay` or omitted                                                                                                                                                                                                                                       |
 | mode                     | `string`                                                                            | `mini`                                                                                      | audio theme switch checkedText can be set to `mini`,`full` or omitted                                                                                                                                                                                                                                                                                       |
 | once                     | `boolean`                                                                           | `false`                                                                                     | The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true'                                                                                                                                                                                                                        |
@@ -137,9 +139,7 @@ ReactDOM.render(
 | showThemeSwitch          | `boolean`                                                                           | `true`                                                                                      | theme toggle switch display of the audio player panel                                                                                                                                                                                                                                                                                                       |
 | showLyric                | `boolean`                                                                           | `false`                                                                                     | audio lyric button display of the audio player panel                                                                                                                                                                                                                                                                                                        |
 | lyricClassName           | `string`                                                                            | `-`                                                                                         | audio lyric class name                                                                                                                                                                                                                                                                                                                                      |
-| emptyLyricText    | `string`                                                                            | `-`                                                                                         | audio lyric empty lyric placeholder                                                                                                                                                                                                                                                                                                                         |
 | extendsContent           | `array \| ReactNode \| boolean \| string`                                           | `-`                                                                                         | Extensible custom content like `<><button>button1</button> <button>button2</button></>`                                                                                                                                                                                                                                                                     |
-| controllerTitle          | `string`                                                                            | `<FaHeadphones/>`                                                                           | audio controller title                                                                                                                                                                                                                                                                                                                                      |
 | defaultVolume            | `number`                                                                            | `1`                                                                                         | default volume of the audio player , range `0`-`1`                                                                                                                                                                                                                                                                                                          |
 | loadAudioErrorPlayNext   | `boolean`                                                                           | `true`                                                                                      | Whether to try playing the next audio when the current audio playback fails                                                                                                                                                                                                                                                                                 |
 | onAudioDownload          | `function(audioInfo)`                                                               | `-`                                                                                         | audio is downloaded handle                                                                                                                                                                                                                                                                                                                                  |
@@ -160,7 +160,7 @@ ReactDOM.render(
 | onModeChange             | `function(mode)`                                                                    | `-`                                                                                         | mode change handle                                                                                                                                                                                                                                                                                                                                          |
 | onAudioListsDragEnd      | `function(fromIndex,endIndex)`                                                      | `-`                                                                                         | audio lists drag end handle                                                                                                                                                                                                                                                                                                                                 |
 | onAudioLyricChange       | `function(lineNum, currentLyric)`                                                   | `-`                                                                                         | audio lyric change handle                                                                                                                                                                                                                                                                                                                                   |
-| getContainer             | `() => HTMLElement` \| ` Selectors `                                                | `document.body`                                                                             | Return the mount node for Music player                                                                                                                                                                                                                                                                                                                      |
+| getContainer             | `() => HTMLElement` \| `Selectors`                                                | `document.body`                                                                             | Return the mount node for Music player                                                                                                                                                                                                                                                                                                                      |
 | getAudioInstance         | `(instance: HTMLAudioElement) => void`                                              | `-`                                                                                         | get origin audio element instance , you can use it do everything                                                                                                                                                                                                                                                                                            |
 | autoHiddenCover          | `boolean`                                                                           | `false`                                                                                     | Auto hide the cover photo if no cover photo is available                                                                                                                                                                                                                                                                                                    |
 | onBeforeAudioDownload    | `(audioInfo: ReactJkMusicPlayerAudioInfo) => Promise<TransformedDownloadAudioInfo>` | `-`                                                                                         | transform download audio info before                                                                                                                                                                                                                                                                                                                        |
@@ -171,9 +171,8 @@ ReactDOM.render(
 | onBeforeDestroy          | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | custom destroy handler before                                                                                                                                                                                                                                                                                                                               |
 | onDestroyed              | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | player destroyed handle                                                                                                                                                                                                                                                                                                                                     |
 | customDownloader         | `function(downloadInfo: TransformedDownloadAudioInfo)`                              | `-`                                                                                         | custom download handle                                                                                                                                                                                                                                                                                                                                      |
-| audioTitle               | `string \| (audioInfo: ReactJkMusicPlayerAudioInfo) => string`                      | `{name} - {signer}`                                                                         | custom audio title                                                                                                                                                                                                                                                                                                                                          |
 
-## Custom operation ui
+## :bulb: Custom operation ui
 
 Support feature:
 
@@ -204,24 +203,25 @@ class App extends React.Component{
           change play back rate
         </button>
         <button onClick={() => (this.audioInstance.volume = 0.2)}>change volume</button>
-        <button onClick={() => this.audioInstance.destroy()}>destory player</button>
+        <button onClick={() => this.audioInstance.destroy()}>destroy player</button>
       </>
     )
   }
 }
 ```
 
-## Glass bg
+## :bulb: Glass bg
 
 ```jsx
 <ReactJkMusicPlayer glassBg/>
 ```
 
-![glass-1](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png)
+<p>
+<img alt="glass-1" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png" width="200" max-width="49%">
+<img alt="glass-2" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png" width="200" max-width="49%">
+</p>
 
-![glass-2](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png)
-
-## Custom downloader
+## :bulb: Custom downloader
 
 > eg. <https://www.npmjs.com/package/file-saver>
 
@@ -245,41 +245,87 @@ const onBeforeAudioDownload = () => {
 const customDownloader = (downloadInfo) => {
   console.log(downloadInfo.src) // 1.mp3
 }
-<ReactJkMusicPlayer customDownloader={customDownloader} onBeforeAudioDownload={onBeforeAudioDownload}/>
+
+<ReactJkMusicPlayer
+  customDownloader={customDownloader}
+  onBeforeAudioDownload={onBeforeAudioDownload}
+/>
 ```
 
-## Destory player
+## :bulb: Destroy player
 
 ```jsx
-  const onBeforeDestroy = (currentPlayId, audioLists, audioInfo) => {
-    return new Promise((resolve, reject) => {
-      // your custom validate
-      if (window.confirm('Are you confirm destroy the player?')) {
-        // if resolve, player destroyed
-        resolve()
-      } else {
-        // if reject, skip.
-        reject()
-      }
-    })
-  }
+const onBeforeDestroy = (currentPlayId, audioLists, audioInfo) => {
+  return new Promise((resolve, reject) => {
+    // your custom validate
+    if (window.confirm('Are you confirm destroy the player?')) {
+      // if resolve, player destroyed
+      resolve()
+    } else {
+      // if reject, skip.
+      reject()
+    }
+  })
+}
 
-  const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
-    console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
-  }
+const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
+  console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
+}
 
-  ReactDOM.render(
-    <ReactJkMusicPlayer
-      showDestroy
-      onBeforeDestroy={onBeforeDestroy}
-      onDestroyed={onDestroyed}
-    />
-  )
+<ReactJkMusicPlayer
+  showDestroy
+  onBeforeDestroy={onBeforeDestroy}
+  onDestroyed={onDestroyed}
+/>
 ```
 
-## Development
+## :bulb: Internationalization
 
+> Version: 4.11.0
+
+```jsx
+import Locale from 'react-jinke-music-player/lib/config/locale'
+// Two languages are provided by default
+// one of zh_CN | en_US
+<ReactJkMusicPlayer locale={Locale.zh_CN}/>
+
+// Custom Override
+const customLocale = {
+  playModeText: {
+    order: '',
+    orderLoop: '',
+    singleLoop: '',
+    shufflePlay: ''
+  },
+  openText: '',
+  closeText: '',
+  notContentText: '',
+  clickToPlayText: '',
+  clickToPauseText: '',
+  nextTrackText: '',
+  previousTrackText: '',
+  reloadText: '',
+  volumeText: '',
+  playListsText: '',
+  toggleLyricText: '',
+  toggleMiniModeText: '',
+  destroyText: '',
+  downloadText: '',
+  lightThemeText: '',
+  darkThemeText: '',
+  switchThemeText: '',
+  removeAudioListsText: '',
+  clickToDeleteText: (name) => {},
+  controllerTitle: '',
+  emptyLyricText: '',
+}
+
+<ReactJkMusicPlayer locale={customLocale}/>
 ```
+
+## :pencil: Development
+
+```bash
 git clone https://github.com/lijinke666/react-music-player.git
 yarn | npm install
 yarn start | npm start
@@ -288,11 +334,11 @@ open `http://localhost:8081/`
 
 ## Test case
 
-```
+```bash
 npm run test
 ```
 
-## AudioListProps
+## :bulb: AudioListProps
 
 > Like This
 
@@ -307,7 +353,7 @@ interface ReactJkMusicPlayerAudioListProps {
 }>
 ```
 
-## AudioInfo
+## :bulb: AudioInfo
 
 > Like This
 
@@ -331,139 +377,6 @@ interface ReactJkMusicPlayerAudioInfo {
 }
 ```
 
-## Properties
-
-```ts
-export interface ReactJkMusicPlayerProps {
-  audioLists: Array<ReactJkMusicPlayerAudioListProps>
-  theme?: ReactJkMusicPlayerTheme
-  mode?: ReactJkMusicPlayerMode
-  defaultPlayMode?: ReactJkMusicPlayerPlayMode
-  drag?: boolean
-  seeked?: boolean
-  autoPlay?: boolean
-  playModeText?: {
-    order: string | React.ReactNode
-    orderLoop: string | React.ReactNode
-    singleLoop: string | React.ReactNode
-    shufflePlay: string | React.ReactNode
-  }
-  panelTitle?: string | React.ReactNode
-  closeText?: string | React.ReactNode
-  openText?: string | React.ReactNode
-  notContentText?: string | React.ReactNode
-  controllerTitle?: string | React.ReactNode
-  defaultPosition?: {
-    top: number | string
-    left: number | string
-    right: number | string
-    bottom: number | string
-  }
-  onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioEnded?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => void
-  onAudioAbort?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => void
-  onAudioVolumeChange?: (volume: number) => void
-  onAudioLoadError?: (
-    errMsg: any,
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => void
-  onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioSeeked?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onAudioDownload?: (
-    audioInfo: ReactJkMusicPlayerAudioInfo,
-    transformedDownloadAudioInfo: TransformedDownloadAudioInfo
-  ) => void
-  onAudioReload?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
-  onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void
-  onAudioListsChange?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => void
-  onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void
-  onModeChange?: (mode: ReactJkMusicPlayerMode) => void
-  onAudioListsPanelChange?: (panelVisible: boolean) => void
-  onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void
-  onAudioListsDragEnd?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => void
-  showDownload?: boolean
-  showPlay?: boolean
-  showReload?: boolean
-  showPlayMode?: boolean
-  showThemeSwitch?: boolean
-  showMiniModeCover?: boolean
-  showDestroy?: boolean
-  toggleMode?: boolean
-  once?: boolean
-  extendsContent?:
-    | (Array<React.ReactNode | string>)
-    | React.ReactNode
-    | boolean
-    | string
-  checkedText?: string | React.ReactNode
-  unCheckedText?: string | React.ReactNode
-  defaultVolume?: number
-  playModeShowTime?: number
-  bounds?: string | React.ReactNode
-  showMiniProcessBar?: boolean
-  loadAudioErrorPlayNext?: boolean
-  preload?: boolean | 'auto' | 'metadata' | 'none'
-  glassBg?: boolean
-  remember?: boolean
-  remove?: boolean
-  defaultPlayIndex?: number
-  playIndex?: number
-  lyricClassName?: string
-  emptyLyricText?: string | React.ReactNode
-  showLyric?: boolean
-  getContainer?: () => HTMLElement
-  getAudioInstance?: (instance: HTMLAudioElement) => void
-  autoHiddenCover?: boolean
-  onBeforeAudioDownload?: (
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => Promise<TransformedDownloadAudioInfo>
-  clearPriorAudioLists?: boolean
-  autoPlayInitLoadPlayList?: boolean
-  spaceBar?: boolean
-  onBeforeDestroy?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => Promise<void>
-  onDestroyed?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
-    audioInfo: ReactJkMusicPlayerAudioInfo
-  ) => Promise<void>
-  customDownloader?: (downloadAudioInfo: TransformedDownloadAudioInfo) => void
-  audioTitle?: ((audioInfo: ReactJkMusicPlayerAudioInfo) => string) | string
-}
-
-export interface TransformedDownloadAudioInfo {
-  src: string
-  filename?: string
-  mimeType?: string
-}
-
-export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
-  destroy: () => void
-}
-```
-
-## License
+## :page_facing_up: License
 
 [MIT](https://github.com/lijinke666/react-music-player/blob/master/LICENCE)

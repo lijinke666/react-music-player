@@ -20,7 +20,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   getContainer={[Function]}
   glassBg={false}
   loadAudioErrorPlayNext={true}
-  locale="en"
+  locale="en_US"
   mode="mini"
   onBeforeAudioDownload={[Function]}
   once={false}
@@ -256,7 +256,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
               <div
                 className="scale music-player-controller"
                 id="music-player-controller"
-                key="controller"
                 style={
                   Object {
                     "backgroundImage": "url()",
@@ -312,7 +311,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
         isMobile={false}
         locale={
           Object {
-            "clickToDelete": [Function],
+            "clickToDeleteText": [Function],
             "clickToPauseText": "Click to pause",
             "clickToPlayText": "Click to play",
             "closeText": "Close",
@@ -326,7 +325,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             "notContentText": "No music",
             "openText": "Open",
             "playListsText": "Playlists",
-            "playMode": Object {
+            "playModeText": Object {
               "order": "Play in order",
               "orderLoop": "List loop",
               "shufflePlay": "Shuffle playback",
@@ -334,7 +333,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             },
             "previousTrackText": "Previous track",
             "reloadText": "Reload",
-            "removeAudioLists": "Delete audio lists",
+            "removeAudioListsText": "Delete audio lists",
             "switchThemeText": "Dark/Light mode",
             "toggleLyricText": "Toggle lyric",
             "toggleMiniModeText": "Minimize",

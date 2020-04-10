@@ -785,36 +785,36 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().pause).toEqual(false)
   })
 
-  // https://github.com/lijinke666/react-music-player/issues/83
-  it('should support custom audio title', () => {
-    const wrapper = mount(
-      <ReactJkMusicPlayer
-        audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
-        audioTitle={'test'}
-      />
-    )
-    expect(wrapper.find('.audio-title').text()).toContain('test')
-    expect(
-      wrapper.find('audio').filterWhere((item) => item.title === 'test')
-    ).toHaveLength(0)
-  })
+  // // https://github.com/lijinke666/react-music-player/issues/83
+  // it('should support custom audio title', () => {
+  //   const wrapper = mount(
+  //     <ReactJkMusicPlayer
+  //       audioLists={[{ musicSrc: 'x', name: '1' }]}
+  //       mode='full'
+  //       audioTitle={'test'}
+  //     />
+  //   )
+  //   expect(wrapper.find('.audio-title').text()).toContain('test')
+  //   expect(
+  //     wrapper.find('audio').filterWhere((item) => item.title === 'test')
+  //   ).toHaveLength(0)
+  // })
 
-  it('should support custom audio title by call function', () => {
-    const audioTitle = jest.fn(() => `test`)
-    const wrapper = mount(
-      <ReactJkMusicPlayer
-        audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
-        audioTitle={audioTitle}
-      />
-    )
-    expect(wrapper.find('.audio-title').text()).toContain('test')
-    expect(
-      wrapper.find('audio').filterWhere((item) => item.title === 'test')
-    ).toHaveLength(0)
-    expect(audioTitle).toHaveBeenCalled()
-  })
+  // it('should support custom audio title by call function', () => {
+  //   const audioTitle = jest.fn(() => `test`)
+  //   const wrapper = mount(
+  //     <ReactJkMusicPlayer
+  //       audioLists={[{ musicSrc: 'x', name: '1' }]}
+  //       mode='full'
+  //       audioTitle={audioTitle}
+  //     />
+  //   )
+  //   expect(wrapper.find('.audio-title').text()).toContain('test')
+  //   expect(
+  //     wrapper.find('audio').filterWhere((item) => item.title === 'test')
+  //   ).toHaveLength(0)
+  //   expect(audioTitle).toHaveBeenCalled()
+  // })
 
   it('should toggle audio volume', () => {
     const wrapper = mount(

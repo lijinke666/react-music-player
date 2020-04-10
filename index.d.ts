@@ -39,30 +39,52 @@ export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
   destroy: () => void
 }
 
+export interface ReactJkMusicPlayerCustomLocale {
+  playModeText: {
+    order: string | React.ReactNode
+    orderLoop: string | React.ReactNode
+    singleLoop: string | React.ReactNode
+    shufflePlay: string | React.ReactNode
+  }
+  openText: string | React.ReactNode
+  closeText: string | React.ReactNode
+  notContentText: string | React.ReactNode
+  clickToPlayText: string | React.ReactNode
+  clickToPauseText: string | React.ReactNode
+  nextTrackText: string | React.ReactNode
+  previousTrackText: string | React.ReactNode
+  reloadText: string | React.ReactNode
+  volumeText: string | React.ReactNode
+  playListsText: string | React.ReactNode
+  toggleLyricText: string | React.ReactNode
+  toggleMiniModeText: string | React.ReactNode
+  destroyText: string | React.ReactNode
+  downloadText: string | React.ReactNode
+  lightThemeText: string | React.ReactNode
+  darkThemeText: string | React.ReactNode
+  switchThemeText: string | React.ReactNode
+  removeAudioListsText: string | React.ReactNode
+  clickToDeleteText: (name: string) => string | React.ReactNode
+  controllerTitle: string | React.ReactNode
+  emptyLyricText: string | React.ReactNode
+}
+
+export type ReactJkMusicPlayerLocale = 'zh_CN' | 'en_US' | ReactJkMusicPlayerCustomLocale
+
 export interface ReactJkMusicPlayerProps {
   audioLists: Array<ReactJkMusicPlayerAudioListProps>
+  locale?: ReactJkMusicPlayerLocale
   theme?: ReactJkMusicPlayerTheme
   mode?: ReactJkMusicPlayerMode
   defaultPlayMode?: ReactJkMusicPlayerPlayMode
   drag?: boolean
   seeked?: boolean
   autoPlay?: boolean
-  playModeText?: {
-    order: string | React.ReactNode
-    orderLoop: string | React.ReactNode
-    singleLoop: string | React.ReactNode
-    shufflePlay: string | React.ReactNode
-  }
-  panelTitle?: string | React.ReactNode
-  closeText?: string | React.ReactNode
-  openText?: string | React.ReactNode
-  notContentText?: string | React.ReactNode
-  controllerTitle?: string | React.ReactNode
   defaultPosition?: {
-    top: number | string
-    left: number | string
-    right: number | string
-    bottom: number | string
+    top?: number | string
+    left?: number | string
+    right?: number | string
+    bottom?: number | string
   }
   onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
@@ -114,13 +136,7 @@ export interface ReactJkMusicPlayerProps {
   showDestroy?: boolean
   toggleMode?: boolean
   once?: boolean
-  extendsContent?:
-    | (Array<React.ReactNode | string>)
-    | React.ReactNode
-    | boolean
-    | string
-  checkedText?: string | React.ReactNode
-  unCheckedText?: string | React.ReactNode
+  extendsContent?: React.ReactNode
   defaultVolume?: number
   playModeShowTime?: number
   bounds?: string | React.ReactNode
@@ -133,7 +149,6 @@ export interface ReactJkMusicPlayerProps {
   defaultPlayIndex?: number
   playIndex?: number
   lyricClassName?: string
-  emptyLyricText?: string | React.ReactNode
   showLyric?: boolean
   getContainer?: () => HTMLElement
   getAudioInstance?: (instance: ReactJkMusicPlayerInstance) => void
@@ -155,7 +170,6 @@ export interface ReactJkMusicPlayerProps {
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<void>
   customDownloader?: (downloadAudioInfo: TransformedDownloadAudioInfo) => void
-  audioTitle?: ((audioInfo: ReactJkMusicPlayerAudioInfo) => string) | string
 }
 
 export interface TransformedDownloadAudioInfo {

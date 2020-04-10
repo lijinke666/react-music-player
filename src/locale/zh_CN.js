@@ -2,7 +2,7 @@ import React from 'react'
 import { FaHeadphonesIcon } from '../components/Icon'
 
 export default {
-  playMode: {
+  playModeText: {
     order: '顺序播放',
     orderLoop: '列表循环',
     singleLoop: '单曲循环',
@@ -25,8 +25,8 @@ export default {
   lightThemeText: '亮',
   darkThemeText: '暗',
   switchThemeText: '暗黑/明亮 主题',
-  removeAudioLists: "清空播放列表",
-  clickToDelete: (name) => `点击删除 ${name}`,
+  removeAudioListsText: "清空播放列表",
+  clickToDeleteText: (name) => `点击删除 ${name}`,
   controllerTitle: <FaHeadphonesIcon />,
   emptyLyricText: '暂无歌词',
 }
