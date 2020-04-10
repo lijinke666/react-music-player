@@ -1,14 +1,8 @@
-import React, { Fragment } from "react";
-import cls from "classnames";
+import React from 'react'
+import cls from 'classnames'
+import PlayModeTip from './PlayModeTip'
 
-const prefix = "react-jinke-music-player-mobile";
-
-export const PlayModeTip = ({ visible, title, text }) => (
-  <div className={cls(`${prefix}-play-model-tip`, { show: visible })}>
-    <span className="title">{title}</span>
-    <span className="text">{text}</span>
-  </div>
-);
+const prefix = 'react-jinke-music-player-mobile'
 
 const PlayerMobile = ({
   name,
@@ -41,26 +35,26 @@ const PlayerMobile = ({
   onPlay,
   glassBg,
   LyricIcon,
-  showFullModeCover,
-  autoHiddenCover
+  autoHiddenCover,
 }) => (
-  <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
+  <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
+      prefix={prefix}
       visible={playModeTipVisible}
       title={playMode}
       text={currentPlayModeName}
     />
     <div className={`${prefix}-header group`}>
-      <div className="left item" />
-      <div className="title" key="audio-title">
+      <div className='left item' />
+      <div className='title'>
         {name}
       </div>
-      <div className="right item" onClick={onClose}>
+      <div className='right item' onClick={onClose}>
         {closeIcon}
       </div>
     </div>
     <div className={`${prefix}-singer text-center group`}>
-      <span className="name" key="singer-name">
+      <span className='name'>
         {singer}
       </span>
     </div>
@@ -69,61 +63,57 @@ const PlayerMobile = ({
       <div className={`${prefix}-cover text-center`}>
         <img
           src={cover}
-          alt="cover"
-          key="cover"
-          className={cls("cover", {
-            "img-rotate-pause": pause || !playing || !cover
+          alt='cover'
+          className={cls('cover', {
+            'img-rotate-pause': pause || !playing || !cover,
           })}
         />
       </div>
     )}
     <div className={`${prefix}-progress group`}>
-      <span key="current-time" className="current-time">
-        {loading ? "--" : currentTime}
+      <span className='current-time'>
+        {loading ? '--' : currentTime}
       </span>
       {progressBar}
-      <span key="duration" className="duration text-right">
-        {loading ? "--" : duration}
+      <span className='duration text-right'>
+        {loading ? '--' : duration}
       </span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>
       {loading ? (
         loadingIcon
       ) : (
-        <Fragment>
+        <>
           <span
-            className="group prev-audio"
-            title="Previous track"
-            key="prev-audio"
+            className='group prev-audio'
+            title='Previous track'
             onClick={audioPrevPlay}
           >
             {prevAudioIcon}
           </span>
           <span
-            className="group play-btn"
-            title={playing ? "Click to pause" : "Click to play"}
-            key="play-btn"
+            className='group play-btn'
+            title={playing ? 'Click to pause' : 'Click to play'}
             onClick={onPlay}
           >
             {playing ? pauseIcon : playIcon}
           </span>
           <span
-            className="group next-audio"
-            title="Next track"
-            key="next-audio"
+            className='group next-audio'
+            title='Next track'
             onClick={audioNextPlay}
           >
             {nextAudioIcon}
           </span>
-        </Fragment>
+        </>
       )}
     </div>
     <div className={`${prefix}-operation group`}>
-      <ul className="items">
+      <ul className='items'>
         {[playMode, downloadIcon, reloadIcon, LyricIcon]
           .filter(Boolean)
           .map((icon, i) => (
-            <li className="item" key={i}>
+            <li className='item' key={i}>
               {icon}
             </li>
           ))}
@@ -131,14 +121,13 @@ const PlayerMobile = ({
           extendsContent.length >= 1 &&
           extendsContent.map((content, i) => {
             return (
-              <li className="item" key={i}>
+              <li className='item' key={i}>
                 {content}
               </li>
-            );
+            )
           })}
         <li
-          className="item"
-          key="play-lists-icon"
+          className='item'
           onClick={openAudioListsPanel}
         >
           {playListsIcon}
@@ -146,6 +135,6 @@ const PlayerMobile = ({
       </ul>
     </div>
   </div>
-);
+)
 
-export default PlayerMobile;
+export default PlayerMobile

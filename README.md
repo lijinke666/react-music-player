@@ -102,8 +102,8 @@ ReactDOM.render(
 | Name                     | Type                                                                                | Default                                                                                     | Description                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | className                | `string`                                                                            | `-`                                                                                         | Additional CSS class for the root DOM node                                                                                                                                                                                                                                                                                                                  |
-| audioLists               | `object[]`                                                                          | `-`                                                                                         | [detail](#AudioList)                                                                                                                                                                                                                                                                                                                                        |
-| theme                    | `string`                                                                            | `dark`                                                                                      | color of the music player theme  `dark`                                                                                                                                                                                                                                                                                                                     | `light` |
+| audioLists               | [AudioListProps[]](#AudioListProps)                                                 | `-`                                                                                         | [detail](#AudioListProps)                                                                                                                                                                                                                                                                                                                                   |
+| theme                    | `light | dark`                                                                      | `dark`                                                                                      | color of the music player theme  `dark`                                                                                                                                                                                                                                                                                                                     | `light` |
 | defaultPosition          | `object`                                                                            | `{top:0,left:0}`                                                                            | audio controller initial position with `left,top,right,and bottom`                                                                                                                                                                                                                                                                                          |
 | playModeText             | `object`                                                                            | {order: "order",orderLoop: "orderLoop",singleLoop: "singleLoop",shufflePlay:"shufflePlay"}` | play mode text config of the audio player                                                                                                                                                                                                                                                                                                                   |
 | playModeShowTime         | `number`                                                                            | `600`                                                                                       | play mode toggle show time (ms)                                                                                                                                                                                                                                                                                                                             |
@@ -292,12 +292,12 @@ open `http://localhost:8081/`
 npm run test
 ```
 
-## AudioList
+## AudioListProps
 
 > Like This
 
 ```ts
-interface ReactJkMusicPlayerAudioList {
+interface ReactJkMusicPlayerAudioListProps {
   name: string | React.ReactNode,
   singer?: string | React.ReactNode,
   cover: string,
@@ -335,7 +335,7 @@ interface ReactJkMusicPlayerAudioInfo {
 
 ```ts
 export interface ReactJkMusicPlayerProps {
-  audioLists: Array<ReactJkMusicPlayerAudioList>
+  audioLists: Array<ReactJkMusicPlayerAudioListProps>
   theme?: ReactJkMusicPlayerTheme
   mode?: ReactJkMusicPlayerMode
   defaultPlayMode?: ReactJkMusicPlayerPlayMode

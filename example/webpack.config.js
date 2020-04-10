@@ -15,9 +15,10 @@ const getPublicPath = () => {
 }
 
 module.exports = () => {
+  const isDev = process.env.NODE_ENV === 'development'
   const options = {
     mode: process.env.NODE_ENV,
-    entry: path.join(__dirname, '../example/example.js'),
+    entry: ['react-hot-loader/patch', path.join(__dirname, '../example')],
     output: {
       path: path.join(__dirname, '../example/dist'),
       filename: '[name].[hash:8].js',
@@ -41,9 +42,9 @@ module.exports = () => {
             { loader: 'style-loader' },
             {
               loader: 'css-loader',
-              options: { minimize: false, sourceMap: true }
+              options: { minimize: false, sourceMap: isDev }
             },
-            { loader: 'less-loader', options: { sourceMap: true } }
+            { loader: 'less-loader', options: { sourceMap: isDev } }
           ]
         },
         {
@@ -52,7 +53,7 @@ module.exports = () => {
             { loader: 'style-loader' }, //loader 倒序执行  先执行 less-laoder
             {
               loader: 'css-loader',
-              options: { minimize: false, sourceMap: true }
+              options: { minimize: false, sourceMap: isDev }
             }
           ]
         },
@@ -69,12 +70,12 @@ module.exports = () => {
         }
       ]
     },
-    devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
+    devtool: isDev ? 'source-map' : false,
     //自动补全后缀
     resolve: {
       enforceExtension: false,
       extensions: ['.js', '.jsx', '.json'],
-      modules: [path.resolve('src'), path.resolve('.'), 'node_modules']
+      modules: [path.resolve('src'), path.resolve('.'), 'node_modules'],
     },
     externals: {
       async: 'commonjs async'
@@ -85,6 +86,7 @@ module.exports = () => {
       inline: true,
       port: PORT,
       historyApiFallback: true,
+      hotOnly: true,
       stats: {
         color: true,
         errors: true,

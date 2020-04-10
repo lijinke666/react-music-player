@@ -1,12 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import cls from 'classnames'
-import NotContent from 'react-icons/lib/md/library-music'
-import ArrowDownIcon from 'react-icons/lib/fa/angle-double-down'
 import ReactDragListView from 'react-drag-listview/lib/ReactDragListView'
+import { NotContentIcon, ArrowDownIcon } from './Icon'
 
 const AudioListsPanel = ({
   audioLists,
-  notContentText,
   onCancel,
   onDelete,
   onPlay,
@@ -17,62 +15,50 @@ const AudioListsPanel = ({
   pauseIcon,
   closeIcon,
   deleteIcon,
-  panelTitle,
   panelToggleAnimate,
   glassBg,
   remove,
   removeId,
   audioListsDragEnd,
-  isMobile
+  isMobile,
+  locale,
 }) => (
   <div
     className={cls('audio-lists-panel', panelToggleAnimate, {
-      'glass-bg': glassBg
+      'glass-bg': glassBg,
     })}
-    key="audio-list-panel"
   >
-    <div className="audio-lists-panel-header">
-      <h2 className="title">
-        <span key="panel-title">{panelTitle} / </span>
-        <span className="num" key="num">
-          {audioLists.length}
-        </span>
-        <span
-          key="close-btn"
-          className="close-btn"
-          title="Close"
-          onClick={onCancel}
-        >
+    <div className='audio-lists-panel-header'>
+      <h2 className='title'>
+        <span>{locale.panelTitle} / </span>
+        <span className='num'>{audioLists.length}</span>
+        <span className='close-btn' title={locale.closeText} onClick={onCancel}>
           {isMobile ? <ArrowDownIcon /> : closeIcon}
         </span>
-        {remove ? (
-          <Fragment>
-            <span className="line" key="line" />
+        {remove && (
+          <>
+            <span className='line' />
             <span
-              key="delete-btn"
-              className="delete-btn"
-              title="Delete audio lists"
+              className='delete-btn'
+              title={locale.removeAudioLists}
               onClick={onDelete()}
             >
               {deleteIcon}
             </span>
-          </Fragment>
-        ) : (
-          undefined
+          </>
         )}
       </h2>
     </div>
     <div
       className={cls('audio-lists-panel-content', {
-        'no-content': audioLists.length < 1
+        'no-content': audioLists.length < 1,
       })}
-      key="audio-lists-panel-content"
     >
       {audioLists.length >= 1 ? (
         <ReactDragListView
-          nodeSelector="li"
-          handleSelector=".player-name"
-          lineClassName="audio-lists-panel-drag-line"
+          nodeSelector='li'
+          handleSelector='.player-name'
+          lineClassName='audio-lists-panel-drag-line'
           onDragEnd={audioListsDragEnd}
         >
           <ul>
@@ -81,13 +67,13 @@ const AudioListsPanel = ({
               const playing = playId === audio.id
               return (
                 <li
-                  key={i}
+                  key={audio.id}
                   title={
                     pause
-                      ? 'Click to play'
+                      ? locale.clickToPlayText
                       : playing
-                      ? 'Click to pause'
-                      : 'Click to play'
+                      ? locale.clickToPauseText
+                      : locale.clickToPlayText
                   }
                   className={cls(
                     'audio-item',
@@ -97,8 +83,8 @@ const AudioListsPanel = ({
                   )}
                   onClick={() => onPlay(audio.id)}
                 >
-                  <span className="group player-status" key="player-status">
-                    <span className="player-icons" key={`player-icons-${i}`}>
+                  <span className='group player-status'>
+                    <span className='player-icons'>
                       {playing && loading
                         ? loading
                         : playing
@@ -108,23 +94,16 @@ const AudioListsPanel = ({
                         : undefined}
                     </span>
                   </span>
-                  <span className="group player-name" key="player-name">
-                    {name}
-                  </span>
-                  <span className="group player-time" key="player-time">
-                    {singer}
-                  </span>
-                  {remove ? (
+                  <span className='group player-name'>{name}</span>
+                  <span className='group player-time'>{singer}</span>
+                  {remove && (
                     <span
-                      className="group player-delete"
-                      key="player-delete"
-                      title={`Click to delete ${name}`}
+                      className='group player-delete'
+                      title={locale.clickToDelete(name)}
                       onClick={onDelete(audio.id)}
                     >
                       {closeIcon}
                     </span>
-                  ) : (
-                    undefined
                   )}
                 </li>
               )
@@ -132,14 +111,12 @@ const AudioListsPanel = ({
           </ul>
         </ReactDragListView>
       ) : (
-        <Fragment>
-          <span key="no-content">
-            <NotContent />
+        <>
+          <span>
+            <NotContentIcon />
           </span>
-          <span className="no-data" key="no-data">
-            {notContentText}
-          </span>
-        </Fragment>
+          <span className='no-data'>{locale.notContentText}</span>
+        </>
       )}
     </div>
   </div>

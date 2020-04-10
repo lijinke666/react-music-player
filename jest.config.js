@@ -4,7 +4,7 @@ module.exports = {
   transformIgnorePatterns: ['/node_modules/', '.history/*'],
   modulePathIgnorePatterns: ['/.history/'],
   moduleDirectories: ['node_modules', '.', 'src', 'src/shared'],
-  setupTestFrameworkScriptFile: '<rootDir>/__tests__/setup.js',
+  setupFilesAfterEnv: ['<rootDir>/__tests__/setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testURL: 'http://localhost/',
   collectCoverageFrom: ['src/**/*.{js,jsx}'],

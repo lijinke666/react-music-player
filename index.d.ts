@@ -26,7 +26,7 @@ export type ReactJkMusicPlayerPlayMode =
   | 'singleLoop'
   | 'shufflePlay'
 
-export interface ReactJkMusicPlayerAudioList {
+export interface ReactJkMusicPlayerAudioListProps {
   name: string | React.ReactNode
   singer?: string | React.ReactNode
   cover?: string
@@ -40,7 +40,7 @@ export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
 }
 
 export interface ReactJkMusicPlayerProps {
-  audioLists: Array<ReactJkMusicPlayerAudioList>
+  audioLists: Array<ReactJkMusicPlayerAudioListProps>
   theme?: ReactJkMusicPlayerTheme
   mode?: ReactJkMusicPlayerMode
   defaultPlayMode?: ReactJkMusicPlayerPlayMode
@@ -68,19 +68,19 @@ export interface ReactJkMusicPlayerProps {
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioEnded?: (
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   onAudioAbort?: (
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   onAudioVolumeChange?: (volume: number) => void
   onAudioLoadError?: (
     errMsg: any,
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   onAudioProgress?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
@@ -93,7 +93,7 @@ export interface ReactJkMusicPlayerProps {
   onThemeChange?: (theme: ReactJkMusicPlayerTheme) => void
   onAudioListsChange?: (
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void
@@ -102,7 +102,7 @@ export interface ReactJkMusicPlayerProps {
   onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void
   onAudioListsDragEnd?: (
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   showDownload?: boolean
@@ -146,12 +146,12 @@ export interface ReactJkMusicPlayerProps {
   spaceBar?: boolean
   onBeforeDestroy?: (
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<void>
   onDestroyed?: (
     currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioList>,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => Promise<void>
   customDownloader?: (downloadAudioInfo: TransformedDownloadAudioInfo) => void

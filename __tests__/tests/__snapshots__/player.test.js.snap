@@ -6,10 +6,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   autoHiddenCover={false}
   autoPlay={true}
   bounds="body"
-  checkedText=""
   className="text-class-name"
-  closeText="close"
-  controllerTitle={<FaHeadphones />}
   defaultPlayIndex={0}
   defaultPlayMode="order"
   defaultPosition={
@@ -20,25 +17,45 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   }
   defaultVolume={1}
   drag={true}
-  emptyLyricPlaceholder="NO LYRIC"
   getContainer={[Function]}
   glassBg={false}
   loadAudioErrorPlayNext={true}
-  mode="mini"
-  notContentText="no music"
-  onBeforeAudioDownload={[Function]}
-  once={false}
-  openText="open"
-  panelTitle="PlayList"
-  playModeShowTime={600}
-  playModeText={
+  locale={
     Object {
-      "order": "order",
-      "orderLoop": "orderLoop",
-      "shufflePlay": "shufflePlay",
-      "singleLoop": "singleLoop",
+      "clickToDelete": [Function],
+      "clickToPauseText": "Click to pause",
+      "clickToPlayText": "Click to play",
+      "closeText": "Close",
+      "controllerTitle": <FaHeadphones />,
+      "darkLightModeText": "Dark/Light mode",
+      "darkThemeText": "D",
+      "destroyText": "Destroy",
+      "downloadText": "Download",
+      "emptyLyricPlaceholder": "No lyric",
+      "lightThemeText": "L",
+      "nextTrackText": "Next track",
+      "notContentText": "No music",
+      "openText": "Open",
+      "panelTitle": "Playlist",
+      "playListsText": "Playlists",
+      "playMode": Object {
+        "order": "Play in order",
+        "orderLoop": "List loop",
+        "shufflePlay": "Shuffle playback",
+        "singleLoop": "Single loop",
+      },
+      "previousTrackText": "Previous track",
+      "reloadText": "Reload",
+      "removeAudioLists": "Delete audio lists",
+      "toggleLyricText": "Toggle lyric",
+      "toggleModeText": "Minimize",
+      "volumeText": "Volume",
     }
   }
+  mode="mini"
+  onBeforeAudioDownload={[Function]}
+  once={false}
+  playModeShowTime={600}
   playModeTipVisible={false}
   preload={false}
   remember={false}
@@ -57,7 +74,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   spaceBar={false}
   theme="dark"
   toggleMode={true}
-  unCheckedText=""
 >
   <Portal
     containerInfo={
@@ -98,7 +114,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
                 <div
                   class="music-player-controller-setting"
                 >
-                  open
+                  Open
                 </div>
               </div>
             </div>
@@ -113,7 +129,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
                 class="title"
               >
                 <span>
-                  PlayList
+                  Playlist
                    / 
                 </span>
                 <span
@@ -186,7 +202,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
               <span
                 class="no-data"
               >
-                no music
+                No music
               </span>
             </div>
           </div>
@@ -236,18 +252,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
       >
         <DraggableCore
           allowAnyClick={false}
-          axis="both"
-          bounds="body"
           cancel={null}
-          defaultClassName="react-draggable"
-          defaultClassNameDragged="react-draggable-dragged"
-          defaultClassNameDragging="react-draggable-dragging"
-          defaultPosition={
-            Object {
-              "x": 0,
-              "y": 0,
-            }
-          }
           disabled={false}
           enableUserSelectHack={true}
           grid={null}
@@ -257,18 +262,11 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           onMouseDown={[Function]}
           onStart={[Function]}
           onStop={[Function]}
-          position={
-            Object {
-              "x": 0,
-              "y": 0,
-            }
-          }
           scale={1}
           transform={null}
         >
           <div
             className="react-jinke-music-player react-draggable"
-            key="react-jinke-music-player"
             onMouseDown={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
@@ -285,7 +283,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           >
             <div
               className="music-player"
-              key="music-player"
             >
               <div
                 className="scale music-player-controller"
@@ -299,7 +296,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
               >
                 <span
                   className="controller-title"
-                  key="controller-title"
                 >
                   <FaHeadphones>
                     <IconBase
@@ -329,9 +325,8 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
                 </span>
                 <div
                   className="music-player-controller-setting"
-                  key="setting"
                 >
-                  open
+                  Open
                 </div>
               </div>
             </div>
@@ -346,11 +341,41 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
         deleteIcon={<FaTrashO />}
         glassBg={false}
         isMobile={false}
-        notContentText="no music"
+        locale={
+          Object {
+            "clickToDelete": [Function],
+            "clickToPauseText": "Click to pause",
+            "clickToPlayText": "Click to play",
+            "closeText": "Close",
+            "controllerTitle": <FaHeadphones />,
+            "darkLightModeText": "Dark/Light mode",
+            "darkThemeText": "D",
+            "destroyText": "Destroy",
+            "downloadText": "Download",
+            "emptyLyricPlaceholder": "No lyric",
+            "lightThemeText": "L",
+            "nextTrackText": "Next track",
+            "notContentText": "No music",
+            "openText": "Open",
+            "panelTitle": "Playlist",
+            "playListsText": "Playlists",
+            "playMode": Object {
+              "order": "Play in order",
+              "orderLoop": "List loop",
+              "shufflePlay": "Shuffle playback",
+              "singleLoop": "Single loop",
+            },
+            "previousTrackText": "Previous track",
+            "reloadText": "Reload",
+            "removeAudioLists": "Delete audio lists",
+            "toggleLyricText": "Toggle lyric",
+            "toggleModeText": "Minimize",
+            "volumeText": "Volume",
+          }
+        }
         onCancel={[Function]}
         onDelete={[Function]}
         onPlay={[Function]}
-        panelTitle="PlayList"
         panelToggleAnimate={
           Object {
             "show": false,
@@ -366,7 +391,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
       >
         <div
           className="audio-lists-panel"
-          key="audio-list-panel"
         >
           <div
             className="audio-lists-panel-header"
@@ -374,21 +398,17 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             <h2
               className="title"
             >
-              <span
-                key="panel-title"
-              >
-                PlayList
+              <span>
+                Playlist
                  / 
               </span>
               <span
                 className="num"
-                key="num"
               >
                 0
               </span>
               <span
                 className="close-btn"
-                key="close-btn"
                 onClick={[Function]}
                 title="Close"
               >
@@ -420,11 +440,9 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
               </span>
               <span
                 className="line"
-                key="line"
               />
               <span
                 className="delete-btn"
-                key="delete-btn"
                 onClick={[Function]}
                 title="Delete audio lists"
               >
@@ -458,11 +476,8 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           </div>
           <div
             className="audio-lists-panel-content no-content"
-            key="audio-lists-panel-content"
           >
-            <span
-              key="no-content"
-            >
+            <span>
               <MdLibraryMusic>
                 <IconBase
                   viewBox="0 0 40 40"
@@ -491,9 +506,8 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             </span>
             <span
               className="no-data"
-              key="no-data"
             >
-              no music
+              No music
             </span>
           </div>
         </div>
