@@ -74,11 +74,12 @@ npm install react-jinke-music-player --save
 - [x] Beautiful ui and animation
 - [x] Responsive
 - [x] Support theme switch
-- [x] [Complete hook function](#api)
-- [x] [Custom operation ui](#custom-operation-ui)
-- [x] [Support destroy player](#destroy-player)
-- [x] [Support glass background](#glass-bg)
-- [x] [Support internationalization](#Internationalization) (v4.11.0)
+- [x] [Complete hook function](#clipboard-api)
+- [x] [Custom operation ui](#bulb-custom-operation-ui)
+- [x] [Custom downloader](#bulb-custom-downloader)
+- [x] [Support destroy player](#bulb-destroy-player)
+- [x] [Support glass background](#bulb-glass-bg)
+- [x] [Support internationalization](#bulb-internationalization) (v4.11.0)
 
 ## :eyes: Example
 
@@ -111,7 +112,7 @@ ReactDOM.render(
 | Name                     | Type                                                                                | Default                                                                                     | Description                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | className                | `string`                                                                            | `-`                                                                                         | Additional CSS class for the root DOM node                                                                                                                                                                                                                                                                                                                  |
-| audioLists               | [AudioListProps[]](#AudioListProps)                                                 | `-`                                                                                         | [detail](#AudioListProps)                                                                                                                                                                                                                                                                                                                                   |
+| audioLists               | [AudioListProps[]](#bulb-audiolistprops)                                                 | `-`                                                                                         | [detail](#bulb-audiolistprops)                                                                                                                                                                                                                                                                                                                                   |
 | theme                    | `light` \| `dark`                                                                   | `dark`                                                                                      | color of the music player theme  `dark`                                                                                                                                                                                                                                                                                                                     | `light` |
 | defaultPosition          | `object`                                                                            | `{top:0,left:0}`                                                                            | audio controller initial position with `left,top,right,and bottom`                                                                                                                                                                                                                                                                                          |
 | playModeShowTime         | `number`                                                                            | `600`                                                                                       | play mode toggle show time (ms)                                                                                                                                                                                                                                                                                                                             |
@@ -282,6 +283,8 @@ const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
 ## :bulb: Internationalization
 
 > Version: 4.11.0
+
+[Source](https://github.com/lijinke666/react-music-player/blob/master/src/locale/index.js)
 
 ```jsx
 import Locale from 'react-jinke-music-player/lib/config/locale'
