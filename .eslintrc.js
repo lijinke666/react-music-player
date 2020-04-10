@@ -12,7 +12,8 @@ module.exports = {
   env: {
     es6: true,
     browser: true,
-    commonjs: true
+    commonjs: true,
+    jest: true,
   },
   globals: {
     __dirname: true,

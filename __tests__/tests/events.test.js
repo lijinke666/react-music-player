@@ -1,4 +1,3 @@
-/* global describe,it*/
 /*eslint-disable no-console */
 import React from 'react'
 import assert from 'power-assert'

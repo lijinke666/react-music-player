@@ -117,15 +117,7 @@ const PlayerMobile = ({
               {icon}
             </li>
           ))}
-        {extendsContent &&
-          extendsContent.length >= 1 &&
-          extendsContent.map((content, i) => {
-            return (
-              <li className='item' key={i}>
-                {content}
-              </li>
-            )
-          })}
+        {extendsContent}
         <li
           className='item'
           onClick={openAudioListsPanel}

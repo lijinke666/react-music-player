@@ -62,7 +62,7 @@ const AudioListsPanel = ({
           onDragEnd={audioListsDragEnd}
         >
           <ul>
-            {audioLists.map((audio, i) => {
+            {audioLists.map((audio) => {
               const { name, singer } = audio
               const playing = playId === audio.id
               return (

@@ -1,4 +1,3 @@
-/* global describe,it*/
 /*eslint-disable no-console */
 import React from 'react'
 import assert from 'power-assert'
@@ -246,14 +245,16 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.img-rotate-pause').length === 1)
   })
   it('should render extendsContent with mobile', () => {
+    const Content = () => (
+      <div>extends</div>
+    )
     const wrapper = mount(
-      <ReactJkMusicPlayer extendsContent={[<div key='test'>extends</div>]} />
+      <ReactJkMusicPlayer extendsContent={<Content/>} />
     )
     wrapper.setState({ toggle: true, isMobile: true })
-    assert(
-      wrapper.find('.react-jinke-music-player-mobile-operation .item').length >=
-        5
-    )
+    expect(
+      wrapper.find(Content)
+    ).toHaveLength(1)
   })
   it('should render music player in custom root node', () => {
     const div = document.createElement('div')

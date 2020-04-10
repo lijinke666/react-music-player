@@ -807,6 +807,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playing: false,
       pause: true,
       currentLyric: '',
+      playId: this.initPlayId
     })
   }
   deleteAudioLists = (audioId) => (e) => {
@@ -1147,7 +1148,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       duration: this.audio.duration,
     })
   }
-  onAudioLoadError = (e) => {
+  onAudioLoadError = (error) => {
     const { playMode, audioLists, playId, musicSrc } = this.state
     const { loadAudioErrorPlayNext } = this.props
     const isSingleLoop = playMode === PLAY_MODE.singleLoop
@@ -1168,7 +1169,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (musicSrc) {
       this.props.onAudioLoadError &&
         this.props.onAudioLoadError(
-          this.audio.error || e.reason || null,
+          this.audio.error || error && error.reason || null,
           playId,
           audioLists,
           this.getBaseAudioInfo()
@@ -1469,10 +1470,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
         : target.removeEventListener(name, _events)
     }
   }
+
+  getPlayId = (audioLists = this.state.audioLists) => {
+    const playIndex = Math.max(
+      0,
+      Math.min(audioLists.length, this.props.defaultPlayIndex)
+    )
+    const playId = this.state.playId || audioLists[playIndex].id
+    return playId
+  }
+
   getPlayInfo = (audioLists = []) => {
     const newAudioLists = audioLists.filter((audio) => !audio['id'])
     const lastAudioLists = audioLists.filter((audio) => audio['id'])
-    const _audioLists = [
+    const mergedAudioLists = [
       ...lastAudioLists,
       ...newAudioLists.map((info) => {
         return {
@@ -1481,20 +1492,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
       }),
     ]
-    const playIndex = Math.max(
-      0,
-      Math.min(_audioLists.length, this.props.defaultPlayIndex)
-    )
-    const playId = this.state.playId || _audioLists[playIndex].id
+    const playId = this.getPlayId(mergedAudioLists)
     const { name = '', cover = '', singer = '', musicSrc = '', lyric = '' } =
-      _audioLists.find(({ id }) => id === playId) || {}
+    mergedAudioLists.find(({ id }) => id === playId) || {}
     return {
       name,
       cover,
       singer,
       musicSrc,
       lyric,
-      audioLists: _audioLists,
+      audioLists: mergedAudioLists,
       playId,
     }
   }
@@ -1666,6 +1673,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
+  // FIXME: 更新列表后 没有在第一首歌播放
   changeAudioLists = (audioLists) => {
     this.resetAudioStatus()
     this.loadNewAudioLists(audioLists, this.props)
