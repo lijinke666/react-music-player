@@ -406,23 +406,6 @@ class Demo extends React.PureComponent {
     })
   }
 
-  changeLanguage = (locale) => {
-    // i18next.changeLanguage(lng);
-    this.setState({
-      params: {
-        ...this.state.params,
-        locale,
-      }
-    })
-  }
-  onChangeToZh = () => {
-    this.changeLanguage('zh')
-
-  }
-  onChangeToEn = () => {
-    this.changeLanguage('en')
-  }
-
   onChangeToFirstAudioList = () => {
     const data = {
       ...this.state.params,
@@ -487,6 +470,9 @@ class Demo extends React.PureComponent {
     if (key === 'full' || key === 'mini') {
       data.mode = key
     }
+    if (key === 'en' || key === 'zh') {
+      data.locale = key
+    }
     this.setState({ params: data })
   }
   showMiniProcessBar = () => {
@@ -546,8 +532,6 @@ class Demo extends React.PureComponent {
           </a>
         </h2>
         <section className='settings'>
-          <button onClick={this.onChangeToZh}>change language to zh</button>
-          <button onClick={this.onChangeToEn}>change language to en</button>
           <button onClick={this.onChangeToFirstAudioList}>
             change to first audio list ({audioList1.length})
           </button>
@@ -756,6 +740,16 @@ class Demo extends React.PureComponent {
               checked={params.mode === 'mini'}
               onChange={(checked) =>
                 this.onChangeKey(checked ? 'mini' : 'full')
+              }
+            />
+
+            language :{params.locale}
+            <Switch
+              checkedChildren={'zh'}
+              unCheckedChildren={'en'}
+              checked={params.locale === 'zh'}
+              onChange={(checked) =>
+                this.onChangeKey(checked ? 'zh' : 'en')
               }
             />
           </div>
