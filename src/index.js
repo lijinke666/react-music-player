@@ -8,14 +8,10 @@
     2. 支持 暗模式 (跟随系统)
     3. media-session
     4. 精简api
-    5. 国际化
     6. 使用 antd icon
     7. umd esm lib 三种模式打包
     8. 移除歌词功能
     9. 导出less, 支持动态修改变量
- * TODO: readme 文档更新
- * TODO: 所有文本相关字段废弃
- * TODO: index.d.ts 更新
  */
 
 import React, { PureComponent } from 'react'
@@ -158,7 +154,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
   static propTypes = PROP_TYPES
 
   get locale() {
-    return LOCALE_CONFIG[this.props.locale]
+    const { locale } = this.props
+    if (typeof locale === 'string') {
+      return LOCALE_CONFIG[this.props.locale]
+    }
+    return locale ? {...LOCALE_CONFIG[LOCALE.en_US], ...locale } : {}
   }
 
   constructor(props) {

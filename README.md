@@ -74,6 +74,7 @@ npm install react-jinke-music-player --save
 - [x] Beautiful ui and animation
 - [x] Responsive
 - [x] Support theme switch
+- [x] Support TypeScript (d.ts)
 - [x] [Complete hook function](#clipboard-api)
 - [x] [Custom operation ui](#bulb-custom-operation-ui)
 - [x] [Custom downloader](#bulb-custom-downloader)
@@ -318,9 +319,10 @@ const customLocale = {
   darkThemeText: '',
   switchThemeText: '',
   removeAudioListsText: '',
-  clickToDeleteText: (name) => {},
   controllerTitle: '',
   emptyLyricText: '',
+  clickToDeleteText: (name) => ``,
+  audioTitle: (audioInfo) => ``
 }
 
 <ReactJkMusicPlayer locale={customLocale}/>
@@ -335,7 +337,7 @@ yarn start | npm start
 open `http://localhost:8081/`
 ```
 
-## Test case
+## :hourglass: Test case
 
 ```bash
 npm run test
