@@ -3,20 +3,26 @@
   "version": "4.10.1",
   "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
+  "module": "es/index.js",
+  "unpkg": "dist/react-jinke-music-player.min.js",
   "typing": "index.d.ts",
   "files": [
-    "lib/",
+    "lib",
+    "es",
+    "dist",
     "LICENCE",
-    "package.json",
     "index.d.ts"
   ],
   "scripts": {
     "start": "yarn demo",
-    "build:clean": "rimraf lib && rimraf assets",
+    "build:clean": "rimraf lib es dist assets",
     "lint": "prettier --write \"src/**/*.js\" && eslint_d --fix src",
-    "auto": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
-    "build:css": "lessc src/styles/index.less assets/index.css && yarn auto",
-    "build:js": "babel src -d lib",
+    "postcss": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
+    "build:css": "lessc src/styles/index.less assets/index.css && yarn postcss",
+    "build:js": "yarn build:cjs && yarn build:es && yarn build:umd",
+    "build:cjs": "cross-env OUTPUT_MODULE=commonjs babel src -d lib",
+    "build:es": "babel src -d es",
+    "build:umd": "webpack --config webpack.umd.config.js --progress",
     "build": "cross-env NODE_ENV=production yarn build:clean && yarn build:js && yarn build:css",
     "build:demo": "cross-env NODE_ENV=production webpack --progress --config  ./example/webpack.config.js",
     "build:netlify": "cross-env NETLIFY=true yarn build:demo ",
@@ -26,6 +32,9 @@
     "ci:coverage": "npm run coverage && codecov",
     "prepublishOnly": "yarn build"
   },
+  "sideEffects": [
+    "dist/*"
+  ],
   "lint-staged": {
     "src/**/*.js": [
       "prettier --write",
@@ -136,6 +145,7 @@
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-hot-loader": "^4.12.20",
+    "react-jinke-music-player": "^4.10.1",
     "react-loader": "^2.4.7",
     "react-test-renderer": "^15.6.1",
     "regenerator-runtime": "^0.11.0",
