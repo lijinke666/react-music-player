@@ -289,13 +289,11 @@ const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
 > <https://web.dev/media-session/>
 
 ```jsx
-// so cool !!!
+// so cool, so easy !!!
 <ReactJkMusicPlayer showMediaSession />
 ```
-
-![media-session](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-desktop2.png)
-![media-session](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-desktop.png)
-![media-session](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-mobile.png)
+<img src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-destop.png" max-width="100%"/>
+<img src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-mobile.jpeg" width="400" max-width="100%"/>
 
 ## :bulb: Internationalization
 
