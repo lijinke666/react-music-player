@@ -9919,10 +9919,10 @@ react-is@^16.8.1, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
-react-jinke-music-player@^4.11.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/react-jinke-music-player/-/react-jinke-music-player-4.11.0.tgz#3f7daf10509f403ca4df69f93370913e21866468"
-  integrity sha512-GX8vqrckolt8eIDJGBMRs9e9NhuAYvOWnqXhi+E5ZjoMwRYt6rNweYdSUw4e9CoLJka8oVM1FD9NsYO1p29nWg==
+react-jinke-music-player@^4.11.1:
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/react-jinke-music-player/-/react-jinke-music-player-4.11.1.tgz#f650878a06c2dde87f0e0c73e8d66aa7c3b4dd98"
+  integrity sha512-MItNamrRr4ac2vb4vLkKGbCAyuEMAnZEASt2iJh7F9YUNilyzuNMj6gmjF6uXACsnHF3FTaZo5X+eV+a4MUw7A==
   dependencies:
     classnames "^2.2.6"
     downloadjs "^1.4.7"

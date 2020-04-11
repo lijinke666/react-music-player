@@ -23,6 +23,7 @@ react-jinke-music-player
    <a href="https://badge.fury.io/js/react-jinke-music-playerr" title="npm">
     <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version">
   </a>
+  <a href="https://lgtm.com/projects/g/lijinke666/react-music-player/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/lijinke666/react-music-player.svg?logo=lgtm&logoWidth=18"/></a>
   <a href="https://codecov.io/gh/lijinke666/react-music-player">
     <img src="https://codecov.io/gh/lijinke666/react-music-player/branch/master/graph/badge.svg" />
   </a>
