@@ -134,6 +134,7 @@ export interface ReactJkMusicPlayerProps {
   showThemeSwitch?: boolean
   showMiniModeCover?: boolean
   showDestroy?: boolean
+  showMediaSession?: boolean
   toggleMode?: boolean
   once?: boolean
   extendsContent?: React.ReactNode

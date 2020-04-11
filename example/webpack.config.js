@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-const HOST = 'localhost'
+const HOST = '0.0.0.0'
 const PORT = 8081
 
 const getPublicPath = () => {
@@ -87,6 +87,7 @@ module.exports = () => {
     },
     devServer: {
       contentBase: path.join(__dirname, '../example/'),
+      host: HOST,
       compress: true,
       inline: true,
       port: PORT,

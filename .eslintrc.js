@@ -19,7 +19,8 @@ module.exports = {
     __dirname: true,
     process: true,
     jest: true,
-    expect: true
+    expect: true,
+    MediaMetadata: true
   },
   rules: {
     'object-shorthand': 'error',

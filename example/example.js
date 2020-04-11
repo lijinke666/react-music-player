@@ -141,6 +141,9 @@ const options = {
   //drag the audio progress bar [type `Boolean` default `true`]
   seeked: true,
 
+  //Display chrome media session.  [type `Boolean` default `false`]
+  showMediaSession: true,
+
   //Displays the audio load progress bar.  [type `Boolean` default `true`]
   showProgressLoadBar: true,
 
