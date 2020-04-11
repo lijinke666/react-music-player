@@ -23,7 +23,7 @@
     "build:cjs": "cross-env OUTPUT_MODULE=commonjs babel src -d lib",
     "build:es": "babel src -d es",
     "build:umd": "webpack --config webpack.umd.config.js --progress",
-    "build": "cross-env NODE_ENV=production yarn build:clean && yarn build:js && yarn build:css",
+    "build": "cross-env NODE_ENV=production yarn build:clean && yarn build:js && yarn build:css && yarn copy:less",
     "build:demo": "cross-env NODE_ENV=production webpack --progress --config  ./example/webpack.config.js",
     "build:netlify": "cross-env NETLIFY=true yarn build:demo ",
     "copy:less": "cp -r src/styles lib/styles && cp -r src/styles es/styles",
