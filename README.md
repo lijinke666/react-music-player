@@ -81,6 +81,7 @@ npm install react-jinke-music-player --save
 - [x] [Support destroy player](#bulb-destroy-player)
 - [x] [Support glass background](#bulb-glass-bg)
 - [x] [Support internationalization](#bulb-internationalization) (v4.11.0)
+- [x] [Customize Theme](#bulb-customize-theme) (v4.11.0)
 
 ## :eyes: Example
 
@@ -322,10 +323,76 @@ const customLocale = {
   controllerTitle: '',
   emptyLyricText: '',
   clickToDeleteText: (name) => ``,
-  audioTitle: (audioInfo) => ``
+  audioTitle: ''
+  // audioTitle: (audioInfo) => ``
 }
 
 <ReactJkMusicPlayer locale={customLocale}/>
+```
+
+## :bulb: Customize Theme
+
+```less
+
+@primary-color: #31c27c;
+@default-color: #d9d9d9;
+@bg-color: #f7f8fa;
+@border-color: #d9d9d9;
+@light-theme-panel-bg: #fff;
+@light-theme-controller-bg: #fff;
+@music-player-panel-height: 80px;
+@lists-panel-width: 480px;
+@lists-panel-height: 410px;
+@lists-panel-item-bg: #40444b;
+@lists-panel-item-bg-light: #fff;
+@panel-header-height: 50px;
+@panel-bg: rgba(0, 0, 0, 0.7);
+@font-color: #444;
+@player-width: 80px;
+@player-height: @player-width;
+@base-color: rgba(255, 255, 255, 0.6);
+@progress-load-bar-bg-color: rgba(0, 0, 0, 0.06);
+@common-animate-type: cubic-bezier(0.43, -0.1, 0.16, 1.1);
+@common-animate-time: 350ms @common-animate-type;
+@progress-bar-bg-color-light: rgba(0, 0, 0, 0.09);
+@progress-bar-bg-color-dark: #fff;
+@player-lyric-color: @primary-color;
+@player-lyric-font-size: 36px;
+@player-lyric-font-size-mobile: 16px;
+@player-lyric-z-index: 999;
+
+```
+
+> Customize in webpack
+
+```diff
+// webpack.config.js
+
+module.exports = {
+  rules: [{
+    test: /\.less$/,
+    use: [
+      ...
+      {
+      loader: 'less-loader',
++     options: {
++       modifyVars: {
++         'primary-color': '#444',
++         // or
++         'hack': `true; @import "your-less-file-path.less";`, // Override with less file
++       },
++       javascriptEnabled: true,
++     },
+    }],
+  }],
+}
+```
+
+> Customize in less file
+
+```less
+@import 'react-jinke-music-player/lib/styles/index.less';
+@import 'your-theme-file.less';
 ```
 
 ## :pencil: Development

@@ -135,6 +135,7 @@ describe('Locale test', () => {
     expect(wrapper.find('.music-player-controller-setting').text()).toContain('test')
   })
 
+  // https://github.com/lijinke666/react-music-player/issues/83
   it('should render locale with functional audioTitle', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer

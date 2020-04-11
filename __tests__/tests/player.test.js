@@ -786,37 +786,6 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().pause).toEqual(false)
   })
 
-  // // https://github.com/lijinke666/react-music-player/issues/83
-  // it('should support custom audio title', () => {
-  //   const wrapper = mount(
-  //     <ReactJkMusicPlayer
-  //       audioLists={[{ musicSrc: 'x', name: '1' }]}
-  //       mode='full'
-  //       audioTitle={'test'}
-  //     />
-  //   )
-  //   expect(wrapper.find('.audio-title').text()).toContain('test')
-  //   expect(
-  //     wrapper.find('audio').filterWhere((item) => item.title === 'test')
-  //   ).toHaveLength(0)
-  // })
-
-  // it('should support custom audio title by call function', () => {
-  //   const audioTitle = jest.fn(() => `test`)
-  //   const wrapper = mount(
-  //     <ReactJkMusicPlayer
-  //       audioLists={[{ musicSrc: 'x', name: '1' }]}
-  //       mode='full'
-  //       audioTitle={audioTitle}
-  //     />
-  //   )
-  //   expect(wrapper.find('.audio-title').text()).toContain('test')
-  //   expect(
-  //     wrapper.find('audio').filterWhere((item) => item.title === 'test')
-  //   ).toHaveLength(0)
-  //   expect(audioTitle).toHaveBeenCalled()
-  // })
-
   it('should toggle audio volume', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -845,5 +814,41 @@ describe('<ReactJkMusicPlayer/>', () => {
     setTimeout(() => {
       expect(wrapper.state().toggle).toEqual(true)
     })
+  })
+
+  it('should async get music src', () => {
+    const getMusicSrc = new Promise((res) => {
+      setTimeout(() => {
+        res('xxx.mp3')
+      }, 2000)
+    })
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: getMusicSrc, name: '1' }]}
+        mode='full'
+      />
+    )
+    setTimeout(() => {
+      expect(wrapper.state().musicSrc).toEqual('xxx.mp3')
+    },2000)
+  })
+  it('should call onAudioLoadError when async load music src failed', () => {
+    const onAudioLoadError = jest.fn()
+    const getMusicSrc = new Promise((res, rej) => {
+      setTimeout(() => {
+        rej()
+      }, 2000)
+    })
+    mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: getMusicSrc, name: '1' }]}
+        mode='full'
+        onAudioLoadError={onAudioLoadError}
+      />
+    )
+
+    setTimeout(() => {
+      expect(onAudioLoadError).toHaveBeenCalled()
+    },2000)
   })
 })

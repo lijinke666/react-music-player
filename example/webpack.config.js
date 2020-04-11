@@ -22,7 +22,7 @@ module.exports = () => {
     output: {
       path: path.join(__dirname, '../example/dist'),
       filename: '[name].[hash:8].js',
-      publicPath: getPublicPath()
+      publicPath: getPublicPath(),
     },
     //模块加载器
     module: {
@@ -31,10 +31,10 @@ module.exports = () => {
           test: /\.js[x]?$/,
           use: [
             {
-              loader: 'babel-loader'
-            }
+              loader: 'babel-loader',
+            },
           ],
-          exclude: '/node_modules/'
+          exclude: '/node_modules/',
         },
         {
           test: /\.less$/,
@@ -42,10 +42,15 @@ module.exports = () => {
             { loader: 'style-loader' },
             {
               loader: 'css-loader',
-              options: { minimize: false, sourceMap: isDev }
+              options: { minimize: false, sourceMap: isDev },
             },
-            { loader: 'less-loader', options: { sourceMap: isDev } }
-          ]
+            {
+              loader: 'less-loader',
+              options: {
+                sourceMap: isDev,
+              },
+            },
+          ],
         },
         {
           test: /\.css$/,
@@ -53,9 +58,9 @@ module.exports = () => {
             { loader: 'style-loader' }, //loader 倒序执行  先执行 less-laoder
             {
               loader: 'css-loader',
-              options: { minimize: false, sourceMap: isDev }
-            }
-          ]
+              options: { minimize: false, sourceMap: isDev },
+            },
+          ],
         },
         {
           test: /\.(eot|ttf|svg|woff|woff2)$/,
@@ -63,12 +68,12 @@ module.exports = () => {
             {
               loader: 'file-loader',
               options: {
-                name: 'fonts/[name][hash:8].[ext]'
-              }
-            }
-          ]
-        }
-      ]
+                name: 'fonts/[name][hash:8].[ext]',
+              },
+            },
+          ],
+        },
+      ],
     },
     devtool: isDev ? 'source-map' : false,
     //自动补全后缀
@@ -78,7 +83,7 @@ module.exports = () => {
       modules: [path.resolve('src'), path.resolve('.'), 'node_modules'],
     },
     externals: {
-      async: 'commonjs async'
+      async: 'commonjs async',
     },
     devServer: {
       contentBase: path.join(__dirname, '../example/'),
@@ -92,21 +97,21 @@ module.exports = () => {
         errors: true,
         version: true,
         warnings: true,
-        progress: true
-      }
+        progress: true,
+      },
     },
     plugins: [
       new OpenBrowserPlugin({
-        url: `http:${HOST}:${PORT}/`
+        url: `http:${HOST}:${PORT}/`,
       }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, '../example/index.html')
+        template: path.join(__dirname, '../example/index.html'),
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      })
-    ]
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      }),
+    ],
   }
   return options
 }
