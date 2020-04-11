@@ -306,8 +306,9 @@ import Locale from 'react-jinke-music-player/lib/config/locale'
 // Two languages are provided by default
 // one of zh_CN | en_US
 <ReactJkMusicPlayer locale={Locale.zh_CN}/>
+// <ReactJkMusicPlayer locale={'en_US'}/>
 
-// Custom Override
+// Custom override
 const customLocale = {
   playModeText: {
     order: '',
@@ -341,6 +342,10 @@ const customLocale = {
 }
 
 <ReactJkMusicPlayer locale={customLocale}/>
+
+// Support partial override, auto merge
+
+<ReactJkMusicPlayer locale={{ audioTitle: "xxx" }}/>
 ```
 
 ## :bulb: Customize Theme
