@@ -1,5 +1,5 @@
 /**
- * @version 4.11.0
+ * @version 4.11.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -1785,15 +1785,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.audioPrevPlay
       );
       navigator.mediaSession.setActionHandler("nexttrack", this.audioNextPlay);
-      try {
-        navigator.mediaSession.setActionHandler("stop", () => {
-          this.onDestroyPlayer();
-        });
-      } catch (error) {
-        console.log(
-          'Warning! The "stop" media session action is not supported.'
-        );
-      }
 
       try {
         navigator.mediaSession.setActionHandler("seekto", (event) => {
