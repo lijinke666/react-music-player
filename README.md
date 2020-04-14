@@ -352,6 +352,11 @@ const customLocale = {
 
 ## :bulb: Customize Theme
 
+```jsx
+import ReactJkMusicPlayer from "react-jinke-music-player";
+import "react-jinke-music-player/lib/styles/index.less";
+```
+
 ```less
 
 @primary-color: #31c27c;
