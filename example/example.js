@@ -1,4 +1,4 @@
-import { hot } from 'react-hot-loader/root';
+import { hot } from 'react-hot-loader/root'
 import React from 'react'
 import ReactJkMusicPlayer from '../src'
 import Locale from '../src/config/locale'
@@ -32,7 +32,6 @@ const audioList1 = [
     },
   },
 ]
-
 
 const audioList2 = [
   {
@@ -109,8 +108,8 @@ const options = {
 
   //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
-    top: 300,
-    left: 120,
+    right: 100,
+    bottom: 120,
   },
 
   defaultPlayMode: 'order',
@@ -189,6 +188,9 @@ const options = {
 
   // international [type `en_US | zh_CN | Object` default `en_US`]
   locale: Locale.en_US,
+
+  // Enable responsive player, auto toggle desktop and mobile [type `Boolean` default `true`]
+  responsive: true,
 
   /**
    * @description Customer audio title [type `String | Function` default `${name} - ${singer}`]
@@ -725,6 +727,15 @@ class Demo extends React.PureComponent {
             />
             spaceBar
           </label>
+          <label htmlFor='responsive'>
+            <input
+              type='checkbox'
+              id='responsive'
+              checked={params.responsive}
+              onChange={() => this.onChangeKey('responsive')}
+            />
+            responsive
+          </label>
           <div style={{ padding: 20 }}>
             theme :{params.theme}
             <Switch
@@ -744,14 +755,13 @@ class Demo extends React.PureComponent {
                 this.onChangeKey(checked ? 'mini' : 'full')
               }
             />
-
             language :{params.locale}
             <Switch
               checkedChildren={'zh'}
               unCheckedChildren={'en'}
               checked={params.locale === Locale.zh_CN}
               onChange={(checked) =>
-                this.onChangeKey(checked ? Locale.zh_CN: Locale.en_US)
+                this.onChangeKey(checked ? Locale.zh_CN : Locale.en_US)
               }
             />
           </div>

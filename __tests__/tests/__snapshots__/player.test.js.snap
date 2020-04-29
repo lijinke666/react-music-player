@@ -29,6 +29,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   preload={false}
   remember={false}
   remove={true}
+  responsive={true}
   seeked={true}
   showDestroy={false}
   showDownload={true}

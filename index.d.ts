@@ -86,6 +86,7 @@ export interface ReactJkMusicPlayerProps {
     right?: number | string
     bottom?: number | string
   }
+  responsive?: boolean
   onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void
   onAudioEnded?: (

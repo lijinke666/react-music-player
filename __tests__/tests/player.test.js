@@ -19,6 +19,7 @@ import {
 } from '../../src/utils'
 import PlayerMobile from '../../src/components/PlayerMobile'
 import PlayModeTip from '../../src/components/PlayModeTip'
+import AudioPlayerMobile from '../../src/components/PlayerMobile'
 import AudioListsPanel from '../../src/components/AudioListsPanel'
 import PlayModel from '../../src/components/PlayModel'
 import CircleProcessBar from '../../src/components/CircleProcessBar'
@@ -895,5 +896,40 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onAudioVolumeChange).toHaveBeenCalled()
     wrapper.find('.sound-operation .rc-slider-step').simulate('click')
     expect(onAudioVolumeChange).toHaveBeenCalled()
+  })
+
+  // https://github.com/lijinke666/react-music-player/issues/100
+  it('should toggle mobile and desktop panel when enable responsive option', () => {
+    const onAudioVolumeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode='full'
+        responsive
+        onAudioVolumeChange={onAudioVolumeChange}
+      />
+    )
+    expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
+    expect(wrapper.find('.music-player-panel')).toHaveLength(1)
+    wrapper.setState({ isMobile: true }, () => {
+      expect(wrapper.find(AudioPlayerMobile)).toHaveLength(1)
+      expect(wrapper.find('.music-player-panel')).toHaveLength(0)
+    })
+  })
+
+  it('should toggle mobile and desktop panel when disable responsive option', () => {
+    const onAudioVolumeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode='full'
+        responsive={false}
+        onAudioVolumeChange={onAudioVolumeChange}
+      />
+    )
+    expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
+    expect(wrapper.find('.music-player-panel')).toHaveLength(1)
+    wrapper.setState({ isMobile: true }, () => {
+      expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
+      expect(wrapper.find('.music-player-panel')).toHaveLength(1)
+    })
   })
 })

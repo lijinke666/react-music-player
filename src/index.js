@@ -146,6 +146,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showDestroy: false,
     showMediaSession: false,
     locale: LOCALE.en_US,
+    responsive: true,
   };
   static propTypes = PROP_TYPES;
 
@@ -203,6 +204,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       getContainer,
       autoHiddenCover,
       showDestroy,
+      responsive,
     } = this.props;
 
     const { locale } = this;
@@ -412,7 +414,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         style={style}
         ref={(player) => (this.player = player)}
       >
-        {toggle && isMobile && (
+        {toggle && isMobile && responsive && (
           <AudioPlayerMobile
             playing={playing}
             loading={loading}
@@ -461,7 +463,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         ) : (
           AudioController
         )}
-        {toggle && !isMobile && (
+        {toggle && (!isMobile || !responsive) && (
           <div
             className={cls("music-player-panel", "translate", {
               "glass-bg": glassBg,
@@ -1150,16 +1152,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const { playMode, audioLists, playId, musicSrc } = this.state;
     const { loadAudioErrorPlayNext } = this.props;
     const isSingleLoop = playMode === PLAY_MODE.singleLoop;
-    const isLastAudio =
-      (playMode === PLAY_MODE.order || playMode === PLAY_MODE.orderLoop) &&
-      playId === audioLists[audioLists.length - 1].id;
     const currentPlayMode = isSingleLoop ? PLAY_MODE.order : playMode;
 
     this.lyric.stop();
 
     //如果当前音乐加载出错 尝试播放下一首
-    if (loadAudioErrorPlayNext && !isLastAudio) {
-      this.handlePlay(currentPlayMode, true);
+    if (loadAudioErrorPlayNext && audioLists.length) {
+      const isLastAudio =
+        (playMode === PLAY_MODE.order || playMode === PLAY_MODE.orderLoop) &&
+        playId === audioLists[audioLists.length - 1].id;
+      if (!isLastAudio) {
+        this.handlePlay(currentPlayMode, true);
+      }
     }
 
     // 如果删除歌曲或其他原因导致列表为空时
@@ -1907,8 +1911,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.lyric.stop();
   }
   componentDidMount() {
-    this.addMobileListener();
     this.setDefaultAudioVolume();
+    this.addMobileListener();
     this.bindUnhandledRejection();
     if (this.props.audioLists.length >= 1) {
       this.bindEvents(this.audio);
