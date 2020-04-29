@@ -85,7 +85,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     duration: 0,
     currentTime: 0,
     isLoop: false,
-    isMute: false,
     soundValue: 100,
     moveX: 0,
     moveY: 0,
@@ -213,7 +212,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playing,
       duration,
       currentTime,
-      isMute,
       soundValue,
       moveX,
       moveY,
@@ -558,7 +556,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                 {/*音量控制*/}
                 <span className="group play-sounds" title={locale.volumeText}>
-                  {isMute ? (
+                  {soundValue === 0 ? (
                     <span
                       className="sounds-icon"
                       {...(IS_MOBILE
@@ -1180,6 +1178,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   handlePlay = (playMode, isNext = true) => {
     let { playId, audioLists } = this.state;
     const audioListsLen = audioLists.length;
+    if (!audioListsLen) {
+      return;
+    }
     const currentPlayIndex = audioLists.findIndex(
       (audio) => audio.id === playId
     );
@@ -1281,7 +1282,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onAudioVolumeChange = () => {
     const volume = this.audio.volume;
     this.setState({
-      isMute: this.audio.volume <= 0,
       soundValue: volume,
     });
     this.props.onAudioVolumeChange && this.props.onAudioVolumeChange(volume);
@@ -1307,7 +1307,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onMute = () => {
     this.setState(
       {
-        isMute: true,
         soundValue: 0,
         currentAudioVolume: this.audio.volume,
       },
@@ -1334,6 +1333,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (mode === this.toggleModeName["full"]) {
       this.setState({ toggle: true });
     }
+  };
+  toggleTheme = (theme) => {
+    this.setState({ theme });
   };
   //列表拖拽排序
   audioListsDragEnd = (fromIndex, toIndex) => {
@@ -1847,8 +1849,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       autoPlay,
     } = this.props;
 
-    //切换 'mini' 或者 'full' 模式
     this.toggleMode(mode);
+    this.toggleTheme(theme);
 
     if (audioLists.length >= 1) {
       const info = {

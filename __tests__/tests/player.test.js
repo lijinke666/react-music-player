@@ -5,7 +5,12 @@ import { shallow, mount } from 'enzyme'
 
 import ReactJkMusicPlayer from '../../src'
 
-import { AnimatePlayIcon, AnimatePauseIcon } from '../../src/components/Icon'
+import {
+  AnimatePlayIcon,
+  AnimatePauseIcon,
+  MdVolumeDownIcon,
+  MdVolumeMuteIcon,
+} from '../../src/components/Icon'
 import {
   createRandomNum,
   formatTime,
@@ -130,10 +135,8 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('should render extendsContent', () => {
     const extendsContent = (
       <>
-        <span className='extendsContent'>
-          extendsText1
-        </span>,
-        <span >extendsText2</span>
+        <span className='extendsContent'>extendsText1</span>,
+        <span>extendsText2</span>
       </>
     )
 
@@ -245,16 +248,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.img-rotate-pause').length === 1)
   })
   it('should render extendsContent with mobile', () => {
-    const Content = () => (
-      <div>extends</div>
-    )
-    const wrapper = mount(
-      <ReactJkMusicPlayer extendsContent={<Content/>} />
-    )
+    const Content = () => <div>extends</div>
+    const wrapper = mount(<ReactJkMusicPlayer extendsContent={<Content />} />)
     wrapper.setState({ toggle: true, isMobile: true })
-    expect(
-      wrapper.find(Content)
-    ).toHaveLength(1)
+    expect(wrapper.find(Content)).toHaveLength(1)
   })
   it('should render music player in custom root node', () => {
     const div = document.createElement('div')
@@ -830,7 +827,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
     setTimeout(() => {
       expect(wrapper.state().musicSrc).toEqual('xxx.mp3')
-    },2000)
+    }, 2000)
   })
   it('should call onAudioLoadError when async load music src failed', () => {
     const onAudioLoadError = jest.fn()
@@ -849,6 +846,54 @@ describe('<ReactJkMusicPlayer/>', () => {
 
     setTimeout(() => {
       expect(onAudioLoadError).toHaveBeenCalled()
-    },2000)
+    }, 2000)
+  })
+
+  // https://github.com/lijinke666/react-music-player/issues/101
+  it('should render light theme when audio lists is empty', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer audioLists={[]} mode='full' theme='light' />
+    )
+    expect(
+      wrapper.find('.react-jinke-music-player-main.light-theme')
+    ).toHaveLength(1)
+    wrapper.setProps({ mode: 'mini' })
+    expect(
+      wrapper.find('.react-jinke-music-player-main.light-theme')
+    ).toHaveLength(1)
+  })
+
+  it('should toggle audio volume when audio lists is empty', () => {
+    const onAudioVolumeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[]}
+        mode='full'
+        onAudioVolumeChange={onAudioVolumeChange}
+      />
+    )
+    expect(wrapper.find(MdVolumeDownIcon)).toHaveLength(1)
+    expect(wrapper.find(MdVolumeMuteIcon)).toHaveLength(0)
+    wrapper.find('.sounds-icon').simulate('click')
+    expect(wrapper.find(MdVolumeDownIcon)).toHaveLength(0)
+    expect(wrapper.find(MdVolumeMuteIcon)).toHaveLength(1)
+    expect(onAudioVolumeChange).not.toHaveBeenCalled()
+  })
+
+  it('should call onAudioVolumeChange', () => {
+    const onAudioVolumeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        mode='full'
+        onAudioVolumeChange={onAudioVolumeChange}
+      />
+    )
+    wrapper.find('.sounds-icon').simulate('click')
+    expect(onAudioVolumeChange).toHaveBeenCalled()
+    wrapper.find('.sounds-icon').simulate('click')
+    expect(onAudioVolumeChange).toHaveBeenCalled()
+    wrapper.find('.sound-operation .rc-slider-step').simulate('click')
+    expect(onAudioVolumeChange).toHaveBeenCalled()
   })
 })

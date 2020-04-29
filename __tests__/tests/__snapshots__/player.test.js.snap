@@ -49,7 +49,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
     containerInfo={
       <body>
         <div
-          class="react-jinke-music-player-main text-class-name"
+          class="react-jinke-music-player-main dark-theme text-class-name"
         >
           <div
             class="react-jinke-music-player react-draggable"
@@ -186,7 +186,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
     }
   >
     <div
-      className="react-jinke-music-player-main text-class-name"
+      className="react-jinke-music-player-main dark-theme text-class-name"
     >
       <Draggable
         allowAnyClick={false}

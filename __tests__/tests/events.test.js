@@ -139,7 +139,6 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
     )
     //静音
     wrapper.find('.sounds-icon').simulate('click')
-    assert(wrapper.state().isMute === true)
     assert(wrapper.state().soundValue === 0)
   })
   it('click change play mode', () => {

@@ -33,6 +33,7 @@ const audioList1 = [
   },
 ]
 
+
 const audioList2 = [
   {
     name: 'Bedtime Stories',
@@ -71,7 +72,7 @@ const options = {
   //if you want dynamic change current play audio you can change it [type `number` default `0`]
   // playIndex: 0,
 
-  //color of the music player theme    [ type `string: 'light' or 'dark'  ` default 'dark' ]
+  //color of the music player theme    [ type `string`: 'light' or 'dark'  default `dark` ]
   theme: 'dark',
 
   // Specifies movement boundaries. Accepted values:
