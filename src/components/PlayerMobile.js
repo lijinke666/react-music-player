@@ -1,8 +1,8 @@
-import React from 'react'
-import cls from 'classnames'
-import PlayModeTip from './PlayModeTip'
+import React from "react";
+import cls from "classnames";
+import PlayModeTip from "./PlayModeTip";
 
-const prefix = 'react-jinke-music-player-mobile'
+const prefix = "react-jinke-music-player-mobile";
 
 const PlayerMobile = ({
   name,
@@ -37,7 +37,7 @@ const PlayerMobile = ({
   LyricIcon,
   autoHiddenCover,
 }) => (
-  <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
+  <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
     <PlayModeTip
       prefix={prefix}
       visible={playModeTipVisible}
@@ -45,39 +45,31 @@ const PlayerMobile = ({
       text={currentPlayModeName}
     />
     <div className={`${prefix}-header group`}>
-      <div className='left item' />
-      <div className='title'>
-        {name}
-      </div>
-      <div className='right item' onClick={onClose}>
+      <div className="left item" />
+      <div className="title">{name}</div>
+      <div className="right item" onClick={onClose}>
         {closeIcon}
       </div>
     </div>
     <div className={`${prefix}-singer text-center group`}>
-      <span className='name'>
-        {singer}
-      </span>
+      <span className="name">{singer}</span>
     </div>
     <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
     {(!autoHiddenCover || (autoHiddenCover && cover)) && (
       <div className={`${prefix}-cover text-center`}>
         <img
           src={cover}
-          alt='cover'
-          className={cls('cover', {
-            'img-rotate-pause': pause || !playing || !cover,
+          alt="cover"
+          className={cls("cover", {
+            "img-rotate-pause": pause || !playing || !cover,
           })}
         />
       </div>
     )}
     <div className={`${prefix}-progress group`}>
-      <span className='current-time'>
-        {loading ? '--' : currentTime}
-      </span>
+      <span className="current-time">{loading ? "--" : currentTime}</span>
       {progressBar}
-      <span className='duration text-right'>
-        {loading ? '--' : duration}
-      </span>
+      <span className="duration text-right">{loading ? "--" : duration}</span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>
       {loading ? (
@@ -85,22 +77,22 @@ const PlayerMobile = ({
       ) : (
         <>
           <span
-            className='group prev-audio'
-            title='Previous track'
+            className="group prev-audio"
+            title="Previous track"
             onClick={audioPrevPlay}
           >
             {prevAudioIcon}
           </span>
           <span
-            className='group play-btn'
-            title={playing ? 'Click to pause' : 'Click to play'}
+            className="group play-btn"
+            title={playing ? "Click to pause" : "Click to play"}
             onClick={onPlay}
           >
             {playing ? pauseIcon : playIcon}
           </span>
           <span
-            className='group next-audio'
-            title='Next track'
+            className="group next-audio"
+            title="Next track"
             onClick={audioNextPlay}
           >
             {nextAudioIcon}
@@ -109,24 +101,21 @@ const PlayerMobile = ({
       )}
     </div>
     <div className={`${prefix}-operation group`}>
-      <ul className='items'>
+      <ul className="items">
         {[playMode, downloadIcon, reloadIcon, LyricIcon]
           .filter(Boolean)
           .map((icon, i) => (
-            <li className='item' key={i}>
+            <li className="item" key={i}>
               {icon}
             </li>
           ))}
         {extendsContent}
-        <li
-          className='item'
-          onClick={openAudioListsPanel}
-        >
+        <li className="item" onClick={openAudioListsPanel}>
           {playListsIcon}
         </li>
       </ul>
     </div>
   </div>
-)
+);
 
-export default PlayerMobile
+export default PlayerMobile;

@@ -10,7 +10,7 @@ const tagRegMap = {
   artist: "ar",
   album: "al",
   offset: "offset",
-  by: "by"
+  by: "by",
 };
 
 function noop() {}
@@ -53,7 +53,7 @@ export default class Lyric {
           this.lines.push({
             time:
               result[1] * 60 * 1000 + result[2] * 1000 + (result[3] || 0) * 10,
-            txt
+            txt,
           });
         }
       }
@@ -79,7 +79,7 @@ export default class Lyric {
     }
     this.handler({
       txt: this.lines[i].txt,
-      lineNum: i
+      lineNum: i,
     });
   }
 

@@ -1,7 +1,7 @@
-import React from 'react'
-import cls from 'classnames'
-import ReactDragListView from 'react-drag-listview/lib/ReactDragListView'
-import { NotContentIcon, ArrowDownIcon } from './Icon'
+import React from "react";
+import cls from "classnames";
+import ReactDragListView from "react-drag-listview/lib/ReactDragListView";
+import { NotContentIcon, ArrowDownIcon } from "./Icon";
 
 const AudioListsPanel = ({
   audioLists,
@@ -24,22 +24,22 @@ const AudioListsPanel = ({
   locale,
 }) => (
   <div
-    className={cls('audio-lists-panel', panelToggleAnimate, {
-      'glass-bg': glassBg,
+    className={cls("audio-lists-panel", panelToggleAnimate, {
+      "glass-bg": glassBg,
     })}
   >
-    <div className='audio-lists-panel-header'>
-      <h2 className='title'>
+    <div className="audio-lists-panel-header">
+      <h2 className="title">
         <span>{locale.playListsText} / </span>
-        <span className='num'>{audioLists.length}</span>
-        <span className='close-btn' title={locale.closeText} onClick={onCancel}>
+        <span className="num">{audioLists.length}</span>
+        <span className="close-btn" title={locale.closeText} onClick={onCancel}>
           {isMobile ? <ArrowDownIcon /> : closeIcon}
         </span>
         {remove && (
           <>
-            <span className='line' />
+            <span className="line" />
             <span
-              className='delete-btn'
+              className="delete-btn"
               title={locale.removeAudioListsText}
               onClick={onDelete()}
             >
@@ -50,21 +50,21 @@ const AudioListsPanel = ({
       </h2>
     </div>
     <div
-      className={cls('audio-lists-panel-content', {
-        'no-content': audioLists.length < 1,
+      className={cls("audio-lists-panel-content", {
+        "no-content": audioLists.length < 1,
       })}
     >
       {audioLists.length >= 1 ? (
         <ReactDragListView
-          nodeSelector='li'
-          handleSelector='.player-name'
-          lineClassName='audio-lists-panel-drag-line'
+          nodeSelector="li"
+          handleSelector=".player-name"
+          lineClassName="audio-lists-panel-drag-line"
           onDragEnd={audioListsDragEnd}
         >
           <ul>
             {audioLists.map((audio) => {
-              const { name, singer } = audio
-              const playing = playId === audio.id
+              const { name, singer } = audio;
+              const playing = playId === audio.id;
               return (
                 <li
                   key={audio.id}
@@ -76,15 +76,15 @@ const AudioListsPanel = ({
                       : locale.clickToPlayText
                   }
                   className={cls(
-                    'audio-item',
+                    "audio-item",
                     { playing },
                     { pause },
                     { remove: removeId === audio.id }
                   )}
                   onClick={() => onPlay(audio.id)}
                 >
-                  <span className='group player-status'>
-                    <span className='player-icons'>
+                  <span className="group player-status">
+                    <span className="player-icons">
                       {playing && loading
                         ? loading
                         : playing
@@ -94,11 +94,11 @@ const AudioListsPanel = ({
                         : undefined}
                     </span>
                   </span>
-                  <span className='group player-name'>{name}</span>
-                  <span className='group player-time'>{singer}</span>
+                  <span className="group player-name">{name}</span>
+                  <span className="group player-time">{singer}</span>
                   {remove && (
                     <span
-                      className='group player-delete'
+                      className="group player-delete"
                       title={locale.clickToDeleteText(name)}
                       onClick={onDelete(audio.id)}
                     >
@@ -106,7 +106,7 @@ const AudioListsPanel = ({
                     </span>
                   )}
                 </li>
-              )
+              );
             })}
           </ul>
         </ReactDragListView>
@@ -115,11 +115,11 @@ const AudioListsPanel = ({
           <span>
             <NotContentIcon />
           </span>
-          <span className='no-data'>{locale.notContentText}</span>
+          <span className="no-data">{locale.notContentText}</span>
         </>
       )}
     </div>
   </div>
-)
+);
 
-export default AudioListsPanel
+export default AudioListsPanel;

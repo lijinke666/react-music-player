@@ -1,1 +1,1 @@
-export const SPACE_BAR_KEYCODE = 32
+export const SPACE_BAR_KEYCODE = 32;

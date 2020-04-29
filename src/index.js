@@ -1759,12 +1759,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       try {
         const { audio } = this;
         navigator.mediaSession.setPositionState({
-          duration: audio.duration,
-          playbackRate: audio.playbackRate,
-          position: audio.currentTime,
+          duration: audio.duration || 0,
+          playbackRate: audio.playbackRate || 1,
+          position: audio.currentTime || 0,
         });
       } catch (error) {
-        console.log("setPositionState error: ", error);
+        console.error("setPositionState error: ", error);
       }
     }
   };
@@ -1794,7 +1794,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
       try {
         navigator.mediaSession.setActionHandler("seekto", (event) => {
-          console.log('> User clicked "Seek To" icon.');
           if (event.fastSeek && "fastSeek" in this.audio) {
             this.audio.fastSeek(event.seekTime);
             return;
@@ -1803,7 +1802,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.updateMediaSessionPositionState();
         });
       } catch (error) {
-        console.log(
+        console.warn(
           'Warning! The "seekto" media session action is not supported.'
         );
       }
