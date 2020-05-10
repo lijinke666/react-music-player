@@ -35,6 +35,7 @@
     "prepublishOnly": "yarn build"
   },
   "sideEffects": [
+    "assets/*",
     "dist/*",
     "*.less"
   ],
