@@ -443,9 +443,10 @@ npm run test
 ```ts
 interface ReactJkMusicPlayerAudioListProps {
   name: string | React.ReactNode,
-  singer?: string | React.ReactNode,
-  cover: string,
   musicSrc: string | () => Promise<string>,
+  cover: string,
+  singer?: string | React.ReactNode,
+  duration?: number,
   lyric?: string,
   [key: string]: any
 }>
