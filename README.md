@@ -75,15 +75,16 @@ npm install react-jinke-music-player --save
 - [x] Beautiful ui and animation
 - [x] Responsive
 - [x] Support theme switch
-- [x] Support TypeScript (d.ts)
+- [x] Support typescript (d.ts)
 - [x] [Complete hook function](#clipboard-api)
 - [x] [Custom operation ui](#bulb-custom-operation-ui)
 - [x] [Custom downloader](#bulb-custom-downloader)
 - [x] [Support destroy player](#bulb-destroy-player)
 - [x] [Support glass background](#bulb-glass-bg)
-- [x] [Media Session](#bulb-media-session) (v4.11.0)
+- [x] [Media session](#bulb-media-session) (v4.11.0)
 - [x] [Support internationalization](#bulb-internationalization) (v4.11.0)
-- [x] [Customize Theme](#bulb-customize-theme) (v4.11.0)
+- [x] [Customize theme](#bulb-customize-theme) (v4.11.0)
+- [x] [Customize audio duration](#bulb-customize-audio-duration) (v4.13.0)
 
 ## :eyes: Example
 
@@ -419,6 +420,17 @@ module.exports = {
 ```less
 @import 'react-jinke-music-player/lib/styles/index.less';
 @import 'your-theme-file.less';
+```
+
+## :bulb: Customize audio duration
+
+> Default: by this.audio.duration, if cannot get current play audio's duration, you can customize to set.
+
+```jsx
+<ReactJkMusicPlayer audioLists={[{
+  ...
+  duration: 100.00
+}]} />
 ```
 
 ## :pencil: Development
