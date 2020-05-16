@@ -28,10 +28,11 @@ export type ReactJkMusicPlayerPlayMode =
 
 export interface ReactJkMusicPlayerAudioListProps {
   name: string | React.ReactNode
+  musicSrc: (() => Promise<string>) | string
   singer?: string | React.ReactNode
   cover?: string
-  musicSrc: (() => Promise<string>) | string
   lyric?: string
+  duration?: number
   [key: string]: any
 }
 

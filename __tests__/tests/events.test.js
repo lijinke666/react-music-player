@@ -62,7 +62,6 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
     wrapper.find('.delete-btn').simulate('click')
     assert(wrapper.state().audioLists.length === 0)
     assert(wrapper.state().currentTime === 0)
-    assert(wrapper.state().duration === 0)
 
     //列表更新
     wrapper.setProps({

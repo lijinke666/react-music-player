@@ -932,4 +932,39 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(wrapper.find('.music-player-panel')).toHaveLength(1)
     })
   })
+
+  // https://github.com/lijinke666/react-music-player/issues/90
+  it('should support custom audio duration', () => {
+    const customAudioDuration = 70.01
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode='full'
+        audioLists={[{
+          duration: customAudioDuration
+        }]}
+      />
+    )
+    expect(wrapper.find('.duration').text()).toContain('01:10')
+    expect(wrapper.instance().getBaseAudioInfo().duration).toStrictEqual(customAudioDuration)
+  })
+
+  it('should format custom audio duration', () => {
+    const customAudioDuration = 104.00
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode='full'
+        audioLists={[{
+          duration: customAudioDuration
+        }]}
+      />
+    )
+    expect(wrapper.find('.duration').text()).toEqual('01:44')
+
+    wrapper.setState({
+      audioLists: [{duration: -10}]
+    }, () => {
+      expect(wrapper.find('.duration').text()).toEqual('00:00')
+    })
+
+  })
 })

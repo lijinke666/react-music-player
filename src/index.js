@@ -82,7 +82,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     toggle: false,
     pause: true,
     playing: false,
-    duration: 0,
     currentTime: 0,
     isLoop: false,
     soundValue: 100,
@@ -158,6 +157,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return locale ? { ...LOCALE_CONFIG[LOCALE.en_US], ...locale } : {};
   }
 
+  get audioDuration() {
+    const { audioLists, playId } = this.state;
+    if (!audioLists.length || !this.audio) {
+      return 0;
+    }
+    const { duration } = audioLists.find((audio) => audio.id === playId) || {};
+
+    return Math.max(Number(duration) || this.audio.duration || 0, 0);
+  }
+
   constructor(props) {
     super(props);
 
@@ -212,7 +221,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const {
       toggle,
       playing,
-      duration,
       currentTime,
       soundValue,
       moveX,
@@ -262,8 +270,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
           }
         : {};
 
-    const _currentTime = formatTime(currentTime);
-    const _duration = formatTime(duration);
+    const formattedCurrentTime = formatTime(currentTime);
+    const formattedAudioDuration = formatTime(this.audioDuration);
 
     const progressHandler = seeked
       ? {
@@ -275,7 +283,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     //进度条
     const ProgressBar = (
       <Slider
-        max={Math.ceil(duration)}
+        max={Math.ceil(this.audioDuration)}
         defaultValue={0}
         value={Math.ceil(currentTime)}
         {...progressHandler}
@@ -369,7 +377,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <div className={cls("music-player")}>
           {showMiniProcessBar && (
             <CircleProcessBar
-              progress={currentTime / duration}
+              progress={currentTime / this.audioDuration}
               r={miniProcessBarR}
             />
           )}
@@ -423,8 +431,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
             singer={singer}
             cover={cover}
             themeSwitch={ThemeSwitchComponent}
-            duration={_duration}
-            currentTime={_currentTime}
+            duration={formattedAudioDuration}
+            currentTime={formattedCurrentTime}
             progressBar={ProgressBar}
             onPlay={this.onTogglePlay}
             currentPlayModeName={currentPlayModeName}
@@ -482,7 +490,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 <span className="audio-title">{audioTitle}</span>
                 <section className="audio-main">
                   <span className="current-time">
-                    {loading ? "--" : _currentTime}
+                    {loading ? "--" : formattedCurrentTime}
                   </span>
                   <div className="progress-bar">
                     {showProgressLoadBar && (
@@ -494,7 +502,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                     {ProgressBar}
                   </div>
-                  <span className="duration">{loading ? "--" : _duration}</span>
+                  <span className="duration">
+                    {loading ? "--" : formattedAudioDuration}
+                  </span>
                 </section>
               </div>
               <div className="player-content">
@@ -764,7 +774,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
           playId,
           lyric,
           currentTime: 0,
-          duration: 0,
           playing: false,
           loading: true,
           loadProgress: 0,
@@ -800,7 +809,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.initPlayInfo([]);
     this.setState({
       currentTime: 0,
-      duration: 0,
       loading: false,
       playing: false,
       pause: true,
@@ -1031,7 +1039,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const {
       currentTime,
-      duration,
       muted,
       networkState,
       readyState,
@@ -1053,7 +1060,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       musicSrc,
       volume: soundValue,
       currentTime,
-      duration,
+      duration: this.audioDuration,
       muted,
       networkState,
       readyState,
@@ -1079,7 +1086,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
 
   canPlay = () => {
-    this.setAudioLength();
     this.setState({
       loading: false,
       playing: false,
@@ -1141,12 +1147,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     } else {
       this.onAudioLoadError();
     }
-  };
-  //设置音频长度
-  setAudioLength = () => {
-    this.setState({
-      duration: this.audio.duration,
-    });
   };
   onAudioLoadError = (error) => {
     const { playMode, audioLists, playId, musicSrc } = this.state;
@@ -1367,7 +1367,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const {
       currentTime,
       playId,
-      duration,
       theme,
       soundValue,
       playMode,
@@ -1380,7 +1379,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const lastPlayStatus = JSON.stringify({
       currentTime,
       playId,
-      duration,
       theme,
       playMode,
       soundValue,
@@ -1397,7 +1395,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     let status = {
       currentTime: 0,
-      duration: 0,
       playMode: defaultPlayMode,
       name: "",
       cover: "",
@@ -1759,7 +1756,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       try {
         const { audio } = this;
         navigator.mediaSession.setPositionState({
-          duration: audio.duration || 0,
+          duration: this.audioDuration,
           playbackRate: audio.playbackRate || 1,
           position: audio.currentTime || 0,
         });
@@ -1783,7 +1780,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         const skipTime = details.seekOffset || defaultSkipTime;
         this.audio.currentTime = Math.min(
           this.audio.currentTime + skipTime,
-          this.audio.duration
+          this.audioDuration
         );
       });
       navigator.mediaSession.setActionHandler(
