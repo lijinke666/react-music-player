@@ -1,5 +1,5 @@
 /**
- * @version 4.12.0
+ * @version 4.13.1
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -68,6 +68,7 @@ import "rc-switch/assets/index.css";
 const IS_MOBILE = isMobile();
 
 export default class ReactJkMusicPlayer extends PureComponent {
+  isDrag = false;
   initPlayId = ""; //初始播放id
   state = {
     audioLists: [],
@@ -87,7 +88,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     soundValue: 100,
     moveX: 0,
     moveY: 0,
-    isMove: false,
     loading: false,
     audioListsPanelVisible: false,
     playModelNameVisible: false,
@@ -179,7 +179,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       mini: "mini",
     };
     this.targetId = "music-player-controller";
-    this.openPanelPeriphery = 1; //移动差值 在 这之间 认为是点击打开panel
 
     //播放模式配置
     this._PLAY_MODE_ = Object.values(PLAY_MODE);
@@ -462,9 +461,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
           <Draggable
             bounds={bounds}
             position={{ x: moveX, y: moveY }}
-            onDrag={this.controllerMouseMove}
-            onStop={this.controllerMouseUp}
-            onStart={this.controllerMouseMove}
+            onDrag={this.onControllerDrag}
+            onStop={this.onControllerDragStop}
+            onStart={this.onControllerDragStart}
           >
             {AudioController}
           </Draggable>
@@ -908,15 +907,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.props.onAudioDownload(baseAudioInfo, transformedDownloadAudioInfo);
     }
   };
-  controllerMouseMove = (e, { deltaX, deltaY }) => {
-    const isMove =
-      Math.abs(deltaX) >= this.openPanelPeriphery ||
-      Math.abs(deltaY) >= this.openPanelPeriphery;
-    this.setState({
-      isMove,
-    });
+  onControllerDrag = () => {
+    this.isDrag = true;
   };
-  controllerMouseUp = (e, { x, y }) => {
+  onControllerDragStart = () => {
+    this.isDrag = false;
+  };
+  onControllerDragStop = (e, { x, y }) => {
     if (
       this.props.showDestroy &&
       this.destroyBtn &&
@@ -925,7 +922,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.onDestroyPlayer();
       return;
     }
-    if (!this.state.isMove) {
+    if (!this.isDrag) {
       if (this.state.isNeedMobileHack) {
         this.loadAndPlayAudio();
         this.setState({ isNeedMobileHack: false });
@@ -933,8 +930,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.openPanel();
     }
     this.setState({ moveX: x, moveY: y });
-    return false;
   };
+
   onHandleProgress = (value) => {
     this.audio.currentTime = value;
   };

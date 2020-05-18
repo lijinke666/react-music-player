@@ -14,12 +14,9 @@ module.exports = {
     browser: true,
     commonjs: true,
     jest: true,
+    node: true,
   },
   globals: {
-    __dirname: true,
-    process: true,
-    jest: true,
-    expect: true,
     MediaMetadata: true
   },
   rules: {
@@ -36,7 +33,6 @@ module.exports = {
     'no-sequences': 'error',
     'no-shadow-restricted-names': 'error',
     'no-unneeded-ternary': 'error',
-    //   "no-unused-expressions": "error",
     'no-unused-vars': ['error', { args: 'none' }],
     'no-use-before-define': ['error', 'nofunc'],
     'no-var': 'error',
