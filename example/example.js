@@ -63,7 +63,7 @@ const audioList2 = [
 
 const options = {
   //audio lists model
-  audioLists: [{ musicSrc: 'xx' }],
+  audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
@@ -385,6 +385,7 @@ class Demo extends React.PureComponent {
     this.updateParams({
       clearPriorAudioLists: false,
       audioLists: [
+        ...this.state.params.audioLists,
         {
           name: "I'm new here",
           singer: 'jack',
@@ -756,7 +757,17 @@ class Demo extends React.PureComponent {
           </div>
           <div>{this.renderCustomUI()}</div>
         </section>
-        <ReactJkMusicPlayer {...params} />
+        <ReactJkMusicPlayer
+          {...params}
+          onThemeChange={(theme) => {
+            params.onThemeChange(theme)
+            this.updateParams({ theme })
+          }}
+          onModeChange={(mode) => {
+            params.onModeChange(mode)
+            this.updateParams({ mode })
+          }}
+        />
       </>
     )
   }
