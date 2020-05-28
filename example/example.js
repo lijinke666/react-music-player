@@ -63,7 +63,7 @@ const audioList2 = [
 
 const options = {
   //audio lists model
-  audioLists: audioList1,
+  audioLists: [{ musicSrc: 'xx' }],
 
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
@@ -124,7 +124,7 @@ const options = {
   once: false,
 
   //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
-  autoPlay: true,
+  autoPlay: false,
 
   //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
@@ -382,10 +382,9 @@ class Demo extends React.PureComponent {
     },
   }
   onAddAudio = () => {
-    const data = {
-      ...this.state.params,
+    this.updateParams({
+      clearPriorAudioLists: false,
       audioLists: [
-        ...this.state.params.audioLists,
         {
           name: "I'm new here",
           singer: 'jack',
@@ -393,61 +392,41 @@ class Demo extends React.PureComponent {
           musicSrc: `http://www.lijinke.cn/music/${Date.now()}.mp3`,
         },
       ],
-    }
-    this.setState({
-      params: data,
     })
   }
   extendsContent = () => {
-    const data = {
-      ...this.state.params,
+    this.updateParams({
       extendsContent: (
         <button onClick={() => swal("I'm extends content")}>button</button>
       ),
-    }
-    this.setState({
-      params: data,
     })
   }
 
   onChangeToFirstAudioList = () => {
-    const data = {
-      ...this.state.params,
+    this.updateParams({
       clearPriorAudioLists: true,
       audioLists: audioList1,
-    }
-    this.setState({
-      params: data,
     })
   }
 
   onChangeToSecondAudioList = () => {
-    const data = {
-      ...this.state.params,
-      clearPriorAudioLists: true,
-      audioLists: audioList2,
-    }
-    this.setState({
-      params: data,
-    })
+    this.updateParams({ clearPriorAudioLists: true, audioLists: audioList2 })
   }
   onAutoPlayMode = () => {
-    const data = {
-      ...this.state.params,
+    this.updateParams({
       autoPlay: !this.state.params.autoPlay,
-    }
-    this.setState({
-      params: data,
     })
   }
 
   onAutoPlayInitLoadPlayList = () => {
-    const data = {
-      ...this.state.params,
+    this.updateParams({
       autoPlayInitLoadPlayList: !this.state.params.autoPlayInitLoadPlayList,
-    }
-    this.setState({
-      params: data,
+    })
+  }
+
+  onClearPriorAudioLists = () => {
+    this.updateParams({
+      clearPriorAudioLists: !this.state.params.clearPriorAudioLists,
     })
   }
 
@@ -486,18 +465,19 @@ class Demo extends React.PureComponent {
     this.onChangeKey('showMiniModeCover')
   }
   playModeShowTime = () => {
-    const data = {
-      ...this.state.params,
+    this.updateParams({
       playModeShowTime: createRandomNum(200, 2000),
-    }
-    this.setState({
-      params: data,
     })
   }
   changePlayIndex = () => {
+    this.updateParams({
+      playIndex: createRandomNum(0, this.state.params.audioLists.length),
+    })
+  }
+  updateParams = (params) => {
     const data = {
       ...this.state.params,
-      playIndex: createRandomNum(0, this.state.params.audioLists.length),
+      ...params,
     }
     this.setState({
       params: data,
@@ -552,9 +532,9 @@ class Demo extends React.PureComponent {
           <button onClick={this.changePlayIndex}>
             change playIndex ({params.playIndex || 0})
           </button>
-          <label htmlFor='glass'>
-            <input type='checkbox' id='glass' onChange={this.onShowGlassBg} />
-            show glass background
+          <label htmlFor='glassBg'>
+            <input type='checkbox' id='glassBg' onChange={this.onShowGlassBg} />
+            glassBg
           </label>
           <label htmlFor='drag'>
             <input
@@ -581,7 +561,7 @@ class Demo extends React.PureComponent {
               checked={params.toggleMode}
               onChange={this.onToggleMode}
             />
-            toggle mode
+            toggleMode
           </label>
           <label htmlFor='autoPlay'>
             <input
@@ -590,7 +570,16 @@ class Demo extends React.PureComponent {
               checked={params.autoPlay}
               onChange={this.onAutoPlayMode}
             />
-            autoplay
+            autoPlay
+          </label>
+          <label htmlFor='clearPriorAudioLists'>
+            <input
+              type='checkbox'
+              id='clearPriorAudioLists'
+              checked={params.clearPriorAudioLists}
+              onChange={this.onClearPriorAudioLists}
+            />
+            clearPriorAudioLists
           </label>
           <label htmlFor='onAutoPlayInitLoadPlayList'>
             <input
@@ -608,7 +597,7 @@ class Demo extends React.PureComponent {
               checked={params.showMiniProcessBar}
               onChange={this.showMiniProcessBar}
             />
-            show mini process bar
+            showMiniProcessBar
           </label>
           <label htmlFor='showMiniModeCover'>
             <input
@@ -617,7 +606,7 @@ class Demo extends React.PureComponent {
               checked={params.showMiniModeCover}
               onChange={this.showMiniModeCover}
             />
-            show cover of mini mode
+            showMiniModeCover
           </label>
           <label htmlFor='showProgressLoadBar'>
             <input

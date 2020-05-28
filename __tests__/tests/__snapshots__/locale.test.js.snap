@@ -260,12 +260,10 @@ exports[`Locale test should render default locale with en_US 1`] = `
             onMouseDown={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
-            onTouchStart={[Function]}
             style={
               Object {
                 "left": 0,
                 "top": 0,
-                "touchAction": "none",
                 "transform": "translate(0px,0px)",
               }
             }
@@ -953,12 +951,10 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             onMouseDown={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
-            onTouchStart={[Function]}
             style={
               Object {
                 "left": 0,
                 "top": 0,
-                "touchAction": "none",
                 "transform": "translate(0px,0px)",
               }
             }

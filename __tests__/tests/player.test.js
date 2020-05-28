@@ -649,10 +649,16 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onAudioListsChange).toHaveBeenCalled()
   })
 
-  // FIXME: dispatchEvent call many time
-  it.skip('should pause audio when Space bar has be triggered', () => {
+  it('should pause audio when Space bar has be triggered', () => {
     const onAudioPause = jest.fn()
     const onAudioPlay = jest.fn()
+    window.HTMLMediaElement.prototype.load = () => {}
+    window.HTMLMediaElement.prototype.play = () => {
+      onAudioPlay()
+    }
+    window.HTMLMediaElement.prototype.pause = () => {
+      onAudioPause()
+    }
     const triggerKeyDown = () => {
       document.dispatchEvent(
         new KeyboardEvent('keydown', { keyCode: SPACE_BAR_KEYCODE })
@@ -662,22 +668,19 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
         mode='full'
+        autoPlay={false}
         spaceBar
         onAudioPause={onAudioPause}
         onAudioPlay={onAudioPlay}
       />
     )
+    wrapper.find('.music-player-panel').simulate('focus')
+    wrapper.find('.music-player-panel').simulate('click')
     triggerKeyDown()
-    expect(onAudioPause).toHaveBeenCalled()
-    expect(onAudioPlay).not.toHaveBeenCalled()
+    expect(onAudioPause).not.toHaveBeenCalled()
+    expect(onAudioPlay).toHaveBeenCalledTimes(1)
     triggerKeyDown()
-    expect(onAudioPlay).toHaveBeenCalled()
-
-    wrapper.setProps({ spaceBar: false }, () => {
-      triggerKeyDown()
-      expect(onAudioPause).not.toHaveBeenCalled()
-      expect(onAudioPlay).not.toHaveBeenCalled()
-    })
+    expect(onAudioPause).toHaveBeenCalledTimes(1)
   })
 
   it('should find destroy button', () => {
@@ -939,32 +942,56 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         mode='full'
-        audioLists={[{
-          duration: customAudioDuration
-        }]}
+        audioLists={[
+          {
+            duration: customAudioDuration,
+          },
+        ]}
       />
     )
     expect(wrapper.find('.duration').text()).toContain('01:10')
-    expect(wrapper.instance().getBaseAudioInfo().duration).toStrictEqual(customAudioDuration)
+    expect(wrapper.instance().getBaseAudioInfo().duration).toStrictEqual(
+      customAudioDuration
+    )
   })
 
   it('should format custom audio duration', () => {
-    const customAudioDuration = 104.00
+    const customAudioDuration = 104.0
     const wrapper = mount(
       <ReactJkMusicPlayer
         mode='full'
-        audioLists={[{
-          duration: customAudioDuration
-        }]}
+        audioLists={[
+          {
+            duration: customAudioDuration,
+          },
+        ]}
       />
     )
     expect(wrapper.find('.duration').text()).toEqual('01:44')
 
-    wrapper.setState({
-      audioLists: [{duration: -10}]
-    }, () => {
-      expect(wrapper.find('.duration').text()).toEqual('00:00')
-    })
+    wrapper.setState(
+      {
+        audioLists: [{ duration: -10 }],
+      },
+      () => {
+        expect(wrapper.find('.duration').text()).toEqual('00:00')
+      }
+    )
+  })
 
+  it('should close audio panel when change to mini mode', () => {
+    const onAudioListsPanelChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode='full'
+        audioLists={[{ musicSrc: 'x', name: '1' }]}
+        onAudioListsPanelChange={onAudioListsPanelChange}
+      />
+    )
+    wrapper.find('.audio-lists-btn').simulate('click')
+    expect(wrapper.state().audioListsPanelVisible).toEqual(true)
+    wrapper.setProps({ mode: 'mini' })
+    expect(wrapper.state().audioListsPanelVisible).toEqual(false)
+    expect(onAudioListsPanelChange).toHaveBeenCalledTimes(2)
   })
 })

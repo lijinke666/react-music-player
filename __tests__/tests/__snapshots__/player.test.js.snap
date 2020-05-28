@@ -241,12 +241,10 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             onMouseDown={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
-            onTouchStart={[Function]}
             style={
               Object {
                 "left": 0,
                 "top": 0,
-                "touchAction": "none",
                 "transform": "translate(0px,0px)",
               }
             }

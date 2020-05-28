@@ -868,6 +868,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   };
   closeAudioListsPanel = (e) => {
     e.stopPropagation();
+    this._closeAudioListsPanel();
+  };
+  _closeAudioListsPanel = () => {
     this.setState({ audioListsPanelVisible: false });
     this.props.onAudioListsPanelChange &&
       this.props.onAudioListsPanelChange(false);
@@ -1614,6 +1617,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     ) {
       this.setState({ toggle: mode === this.toggleModeName.full });
       this.props.onModeChange && this.props.onModeChange(mode);
+      if (mode === this.toggleModeName.mini) {
+        this._closeAudioListsPanel();
+      }
     }
   };
 
