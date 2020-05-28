@@ -18,7 +18,14 @@ module.exports = () => {
   const isDev = process.env.NODE_ENV === 'development'
   const options = {
     mode: process.env.NODE_ENV,
-    entry: ['react-hot-loader/patch', path.join(__dirname, '../example')],
+    entry: isDev
+      ? [
+          'react-hot-loader/patch',
+          `webpack-dev-server/client?http://${HOST}:${PORT}`,
+          'webpack/hot/only-dev-server',
+          path.join(__dirname, '../example'),
+        ]
+      : path.join(__dirname, '../example'),
     output: {
       path: path.join(__dirname, '../example/dist'),
       filename: '[name].[hash:8].js',
@@ -48,6 +55,10 @@ module.exports = () => {
               loader: 'less-loader',
               options: {
                 sourceMap: isDev,
+                // modifyVars: {
+                //   'primary-color': 'red',
+                // },
+                // javascriptEnabled: true,
               },
             },
           ],
@@ -75,7 +86,7 @@ module.exports = () => {
         },
       ],
     },
-    devtool: isDev ? 'source-map' : false,
+    devtool: isDev ? 'nosources-source-map' : false,
     //自动补全后缀
     resolve: {
       enforceExtension: false,
@@ -92,7 +103,7 @@ module.exports = () => {
       inline: true,
       port: PORT,
       historyApiFallback: true,
-      hotOnly: true,
+      hot: true,
       stats: {
         color: true,
         errors: true,

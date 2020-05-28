@@ -144,15 +144,19 @@
       color: @base-color;
       transition: color @common-animate-time;
     }
+    .current-time {
+      margin-right: 5px;
+    }
+    .duration {
+      margin-left: 5px;
+    }
     .duration {
       justify-content: flex-end;
     }
     .progress-bar {
       flex: 1 1 auto;
     }
-    .rc-slider-rail {
-      background-color: @base-color;
-    }
+    .overwrite-progress-bar();
   }
   &-switch {
     animation: fromDown @common-animate-time forwards;

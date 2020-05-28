@@ -196,6 +196,11 @@ exports[`Locale test should render default locale with en_US 1`] = `
               </span>
             </div>
           </div>
+          <div
+            class="play-mode-title"
+          >
+            Play in order
+          </div>
           <audio
             class="music-player-audio"
             src=""
@@ -528,6 +533,16 @@ exports[`Locale test should render default locale with en_US 1`] = `
           </div>
         </div>
       </AudioListsPanel>
+      <PlayModel
+        value="Play in order"
+        visible={false}
+      >
+        <div
+          className="play-mode-title"
+        >
+          Play in order
+        </div>
+      </PlayModel>
       <audio
         className="music-player-audio"
         src=""
@@ -734,6 +749,11 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               </span>
             </div>
           </div>
+          <div
+            class="play-mode-title"
+          >
+            Play in order
+          </div>
           <audio
             class="music-player-audio"
             src=""
@@ -886,6 +906,11 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                 音乐播放列表为空
               </span>
             </div>
+          </div>
+          <div
+            class="play-mode-title"
+          >
+            顺序播放
           </div>
           <audio
             class="music-player-audio"
@@ -1219,6 +1244,16 @@ exports[`Locale test should render locale with zh_CN 1`] = `
           </div>
         </div>
       </AudioListsPanel>
+      <PlayModel
+        value="顺序播放"
+        visible={false}
+      >
+        <div
+          className="play-mode-title"
+        >
+          顺序播放
+        </div>
+      </PlayModel>
       <audio
         className="music-player-audio"
         src=""

@@ -177,6 +177,11 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
               </span>
             </div>
           </div>
+          <div
+            class="play-mode-title"
+          >
+            Play in order
+          </div>
           <audio
             class="music-player-audio"
             src=""
@@ -479,6 +484,16 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           </div>
         </div>
       </AudioListsPanel>
+      <PlayModel
+        value="Play in order"
+        visible={false}
+      >
+        <div
+          className="play-mode-title"
+        >
+          Play in order
+        </div>
+      </PlayModel>
       <audio
         className="music-player-audio"
         src=""
