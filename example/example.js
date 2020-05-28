@@ -6,6 +6,7 @@ import swal from 'sweetalert'
 import Switch from 'rc-switch'
 import { createRandomNum } from '../src/utils'
 import lyric from './lyric'
+import { name, version } from '../package.json'
 
 import '../src/styles/index.less'
 import './example.less'
@@ -487,7 +488,7 @@ class Demo extends React.PureComponent {
   renderCustomUI = () => {
     return (
       <>
-        <h2 style={{ marginLeft: 20 }}>Custom UI</h2>
+        <h2>Custom UI</h2>
         <button onClick={() => this.audio.play()}>play</button>
         <button onClick={() => this.audio.pause()}>pause</button>
         <button onClick={() => this.audio.load()}>reload</button>
@@ -507,13 +508,15 @@ class Demo extends React.PureComponent {
     console.log('params: ', params)
     return (
       <>
+        <h1 className='title'>{name}</h1>
+        <p className='version'>version: {version}</p>
         <h2 className='example-title'>
           Drag, Click, or switch to phone mode to try{' '}
           <a
             target='_blank'
             href='https://github.com/lijinke666/react-music-player/blob/master/example/example.js'
           >
-            【DEMO SOURCE】
+            (DEMO SOURCE)
           </a>
         </h2>
         <section className='settings'>
@@ -726,7 +729,7 @@ class Demo extends React.PureComponent {
             />
             responsive
           </label>
-          <div style={{ padding: 20 }}>
+          <div className='toggle'>
             theme :{params.theme}
             <Switch
               checkedChildren={'D'}

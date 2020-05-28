@@ -119,11 +119,10 @@
     left: 0;
     color: #fff;
     height: @panel-height;
-    background-color: @panel-bg; // padding: 6px 20px;
+    background-color: @panel-bg;
     z-index: 99;
     transition: background-color @common-animate-time;
 
-    // transition: box-shadow,color @common-animate-time;
     .panel-content {
       height: 100%;
       padding: 0 30px;
@@ -566,6 +565,10 @@
       position: absolute;
       right: 0;
       top: 0;
+
+      @media screen and (max-width: 767px) {
+        right: 15px;
+      }
     }
 
     &-controller {
@@ -582,27 +585,34 @@
       z-index: 99;
       padding: 10px;
       position: fixed;
+      cursor: pointer;
       background-repeat: no-repeat;
       background-size: 100%; // animation: imgRotate 15s linear infinite;
 
       &.music-player-playing {
         &::before {
           content: '';
-          position: absolute;
+          position: fixed;
           width: @player-width;
           height: @player-height;
           border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 50%;
-          z-index: 88;
+          z-index: -1;
           animation: scale 5s linear infinite;
+          cursor: pointer;
         }
       }
 
       @media screen and (max-width: 767px) {
-        &,
-        &::before {
-          width: 60px;
-          height: 60px;
+        & {
+          width: @player-width-mobile;
+          height: @player-height-mobile;
+          &.music-player-playing {
+            &::before {
+              width: @player-width-mobile;
+              height: @player-height-mobile;
+            }
+          }
         }
       }
 

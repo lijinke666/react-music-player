@@ -1,3 +1,5 @@
+@import '../src/styles/vars.less';
+
 #root,
 body,
 html {
@@ -9,15 +11,27 @@ html {
   padding: 0;
 }
 body {
-  background: #c8c8a9;
-  overflow: hidden;
+  background: #f6f6f6;
+  color: #1a1a1a;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.version {
+  color: @primary-color;
 }
 
 h2.example-title {
-  padding: 40px 20px;
   font-weight: 500;
-  margin: 0;
+  margin-bottom: 20px;
+  padding-top: 30px;
+  border-top: 1px solid @border-color;
+
+  a {
+    color: @primary-color;
+  }
 }
+
 button {
   display: inline-block;
   margin-bottom: 0;
@@ -34,17 +48,17 @@ button {
   border-radius: 4px;
   height: 35px;
   user-select: none;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all @common-animate-time;
   position: relative;
   color: rgba(0, 0, 0, 0.65);
   background-color: #fff;
-  border-color: #e8e8e8;
+  border-color: @border-color;
   outline: none;
-  margin: 0 20px;
+  margin: 20px 20px 20px 0;
   &:hover {
-    background-color: #31c27c;
+    background-color: @primary-color;
     color: #fff;
-    border-color: #31c27c;
+    border-color: @primary-color;
   }
   > span {
     pointer-events: none;
@@ -55,5 +69,18 @@ label {
   cursor: pointer;
   font-size: 16px;
   display: inline-block;
-  margin: 20px;
+  margin: 20px 30px 20px 0;
+}
+
+.toggle {
+  padding: 20px 0;
+
+  button {
+    margin-left: 10px;
+  }
+
+  .rc-switch-checked {
+    border: @primary-color;
+    background-color: @primary-color;
+  }
 }

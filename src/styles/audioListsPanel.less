@@ -6,8 +6,7 @@
 }
 .audio-lists-panel {
   overflow: hidden;
-  position: fixed; // right: 70px;
-  // bottom:77px;
+  position: fixed;
   right: 33px;
   bottom: @music-player-panel-height;
   z-index: 999;
@@ -17,7 +16,7 @@
   transform-origin: right bottom;
   background-color: @panel-bg;
   transform: scale(0);
-  display: none\9; // .transition(.5s);
+  display: none\9;
   transition: background-color @common-animate-time;
   svg {
     font-size: 24px;
@@ -38,6 +37,7 @@
     bottom: 0;
     height: auto !important;
     transform-origin: bottom center;
+    background-color: @panel-bg-mobile;
     &.show {
       animation: fromTo @common-animate-time forwards;
       display: block\9;
@@ -45,14 +45,6 @@
     &.hide {
       animation: fromOut @common-animate-time forwards;
       display: none\9;
-    }
-  }
-  .audio-item {
-    @media screen and (max-width: 767px) {
-      background-color: rgba(64, 68, 75, 0.5) !important;
-      &.playing {
-        background-color: rgba(64, 68, 75, 0.75) !important;
-      }
     }
   }
   &-header {
@@ -114,7 +106,6 @@
       margin-left: 10px;
     }
     .audio-item {
-      background-color: @lists-panel-item-bg;
       border-bottom: @lists-panel-item-bg;
       padding: 3px 20px;
       line-height: 40px;
@@ -124,14 +115,27 @@
       font-size: 14px;
       cursor: pointer;
       transition: background-color @common-animate-time;
+
+      &:nth-child(2n + 1) {
+        background-color: @lists-panel-item-bg;
+      }
+
       &.playing {
-        background-color: lighten(@lists-panel-item-bg, 2%);
+        background-color: @lists-panel-item-bg-playing;
         svg {
           color: @primary-color;
         }
       }
+
       &.remove {
         animation: remove @common-animate-time forwards;
+      }
+
+      @media screen and (max-width: 767px) {
+        background-color: @lists-panel-item-bg-mobile !important;
+        &.playing {
+          background-color: @lists-panel-item-bg-playing-mobile !important;
+        }
       }
       .player-icons {
         display: inline-flex;
@@ -149,7 +153,7 @@
       }
       &:hover,
       &:active {
-        background-color: lighten(@lists-panel-item-bg, 2%);
+        background-color: @lists-panel-item-bg-active;
         .group:not([class='.player-delete']) {
           svg {
             color: @primary-color;
