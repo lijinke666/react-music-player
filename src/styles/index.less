@@ -14,7 +14,7 @@
   }
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: @scroll-bar-width;
     background-color: @bg-color;
   }
 
@@ -37,7 +37,7 @@
     background: transparent;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.05);
 
-    @media screen and (max-width: 767px) {
+    @media @mobile {
       font-size: @player-lyric-font-size-mobile;
 
       &:hover {
@@ -48,7 +48,7 @@
 
   .play-mode-title {
     user-select: none;
-    position: absolute;
+    position: fixed;
     right: 72px;
     bottom: @music-player-panel-height;
     padding: 5px 20px;
@@ -58,7 +58,7 @@
     text-align: center;
     transform: translate3d(100%, 0, 0);
     transform-origin: bottom center;
-    z-index: 88;
+    z-index: @mode-tip-z-index;
     opacity: 0;
     transition: all @common-animate-time;
 
@@ -95,7 +95,7 @@
     }
   }
 
-  @media screen and (max-width: 767px) {
+  @media @mobile {
     svg {
       font-size: 22px;
     }
@@ -270,7 +270,7 @@
           justify-content: center;
           align-items: center;
 
-          @media screen and (max-width: 767px) {
+          @media @mobile {
             margin: 0 6px;
           }
 
@@ -443,7 +443,7 @@
         background-color: @lists-panel-item-bg-light;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
-        @media screen and (max-width: 767px) {
+        @media @mobile {
           background-color: @lists-panel-item-bg-light !important;
 
           &.playing {
@@ -566,7 +566,7 @@
       right: 0;
       top: 0;
 
-      @media screen and (max-width: 767px) {
+      @media @mobile {
         right: 15px;
       }
     }
@@ -603,7 +603,7 @@
         }
       }
 
-      @media screen and (max-width: 767px) {
+      @media @mobile {
         & {
           width: @player-width-mobile;
           height: @player-height-mobile;

@@ -4,7 +4,7 @@
   @mobile-padding: 20px;
   width: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: @panel-z-index;
   left: 0;
   top: 0;
   right: 0;
@@ -34,7 +34,7 @@
     background-color: @primary-color;
     color: #fff;
     padding: 0 @mobile-padding;
-    z-index: 1000;
+    z-index: @mode-tip-z-index;
     box-shadow: 0 2px @mobile-padding rgba(0, 0, 0, 0.1);
     transform: translate3d(0, -105%, 0);
     transition: transform @common-animate-time;
@@ -43,7 +43,7 @@
       svg {
         animation: none !important;
         vertical-align: text-bottom !important;
-        @media screen and (max-width: 767px) {
+        @media @mobile {
           font-size: 19px;
           color: #fff !important;
         }

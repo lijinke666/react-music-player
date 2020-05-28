@@ -294,7 +294,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const DownloadComponent = showDownload && (
       <span
         className="group audio-download"
-        {...{ [IS_MOBILE ? "onTouchStart" : "onClick"]: this.onAudioDownload }}
+        {...{ [isMobile ? "onTouchStart" : "onClick"]: this.onAudioDownload }}
         title={locale.downloadText}
       >
         <DownloadIcon />
@@ -319,7 +319,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const ReloadComponent = showReload && (
       <span
         className="group reload-btn"
-        {...(IS_MOBILE
+        {...(isMobile
           ? { onTouchStart: this.onAudioReload }
           : { onClick: this.onAudioReload })}
         title={locale.reloadText}
@@ -334,7 +334,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         className={cls("group lyric-btn", {
           "lyric-btn-active": audioLyricVisible,
         })}
-        {...(IS_MOBILE
+        {...(isMobile
           ? { onTouchStart: this.toggleAudioLyric }
           : { onClick: this.toggleAudioLyric })}
         title={locale.toggleLyricText}
@@ -347,7 +347,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const PlayModeComponent = showPlayMode && (
       <span
         className={cls("group loop-btn")}
-        {...(IS_MOBILE
+        {...(isMobile
           ? { onTouchStart: this.togglePlayMode }
           : { onClick: this.togglePlayMode })}
         title={locale.playModeText[currentPlayMode]}
@@ -364,7 +364,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         className="group destroy-btn"
         ref={(node) => (this.destroyBtn = node)}
         {...(!drag || toggle
-          ? { [IS_MOBILE ? "onTouchStart" : "onClick"]: this.onDestroyPlayer }
+          ? { [isMobile ? "onTouchStart" : "onClick"]: this.onDestroyPlayer }
           : null)}
       >
         <CloseIcon />
@@ -515,7 +515,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group prev-audio"
                       title={locale.previousTrackText}
-                      {...(IS_MOBILE
+                      {...(isMobile
                         ? { onTouchStart: this.audioPrevPlay }
                         : { onClick: this.audioPrevPlay })}
                     >
@@ -524,7 +524,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group play-btn"
                       ref={(node) => (this.playBtn = node)}
-                      {...(IS_MOBILE
+                      {...(isMobile
                         ? { onTouchStart: this.onTogglePlay }
                         : { onClick: this.onTogglePlay })}
                       title={
@@ -546,7 +546,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group next-audio"
                       title={locale.nextTrackText}
-                      {...(IS_MOBILE
+                      {...(isMobile
                         ? { onTouchStart: this.audioNextPlay }
                         : { onClick: this.audioNextPlay })}
                     >
@@ -570,7 +570,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   {soundValue === 0 ? (
                     <span
                       className="sounds-icon"
-                      {...(IS_MOBILE
+                      {...(isMobile
                         ? { onTouchStart: this.onSound }
                         : { onClick: this.onSound })}
                     >
@@ -579,7 +579,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   ) : (
                     <span
                       className="sounds-icon"
-                      {...(IS_MOBILE
+                      {...(isMobile
                         ? { onTouchStart: this.onMute }
                         : { onClick: this.onMute })}
                     >
@@ -605,7 +605,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 <span
                   className="group audio-lists-btn"
                   title={locale.playListsText}
-                  {...(IS_MOBILE
+                  {...(isMobile
                     ? { onTouchStart: this.openAudioListsPanel }
                     : { onClick: this.openAudioListsPanel })}
                 >
@@ -620,7 +620,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   <span
                     className="group hide-panel"
                     title={locale.toggleMiniModeText}
-                    {...(IS_MOBILE
+                    {...(isMobile
                       ? { onTouchStart: this.onHidePanel }
                       : { onClick: this.onHidePanel })}
                   >
@@ -632,11 +632,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 {DestroyComponent}
               </div>
             </section>
-            {/* 播放模式提示框 */}
-            <PlayModel
-              visible={playModelNameVisible}
-              value={currentPlayModeName}
-            />
           </div>
         )}
         {/* 播放列表面板 */}
@@ -662,6 +657,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
           audioListsDragEnd={this.audioListsDragEnd}
           locale={locale}
         />
+        {/* 播放模式提示框 */}
+        {!isMobile && (
+          <PlayModel
+            visible={playModelNameVisible}
+            value={currentPlayModeName}
+          />
+        )}
         {/* 歌词 */}
         {audioLyricVisible && (
           <Draggable>
@@ -1895,6 +1897,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     document.removeEventListener("keydown", this.onKeyDown, false);
   };
   onKeyDown = (e) => {
+    e.preventDefault();
     const { spaceBar } = this.props;
     if (spaceBar && e.keyCode === SPACE_BAR_KEYCODE) {
       this.onTogglePlay();
