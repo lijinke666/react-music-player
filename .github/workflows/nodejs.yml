@@ -24,7 +24,7 @@ jobs:
       - name: build, and test
         run: |
           yarn lint
-          yarn build --if-present
+          yarn build
           yarn test
           yarn ci:coverage
         env:
