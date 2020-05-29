@@ -28,7 +28,7 @@ const audioList1 = [
       'http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg',
     musicSrc: () => {
       return Promise.resolve(
-        'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3'
+        'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3',
       )
     },
   },
@@ -50,7 +50,7 @@ const audioList2 = [
       'https://res.cloudinary.com/ehsanahmadi/image/upload/v1573758778/Sirvan-Khosravi-Dorost-Nemisham_glicks.jpg',
     musicSrc: () => {
       return Promise.resolve(
-        'https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3'
+        'https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3',
       )
     },
   },
@@ -64,8 +64,7 @@ const audioList2 = [
 
 const options = {
   //audio lists model
-  // audioLists: audioList1,
-  audioLists: '',
+  audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
@@ -254,7 +253,7 @@ const options = {
       errMsg,
       currentPlayId,
       audioLists,
-      audioInfo
+      audioInfo,
     )
   },
 
@@ -274,7 +273,7 @@ const options = {
       'audio play track change:',
       currentPlayId,
       audioLists,
-      audioInfo
+      audioInfo,
     )
   },
 
@@ -512,31 +511,31 @@ class Demo extends React.PureComponent {
     const { params, unmount } = this.state
     return (
       <>
-        <h1 className='title'>
+        <h1 className="title">
           {name}
-          <span className='version'>doc version: {version}</span>
+          <span className="version">doc version: {version}</span>
         </h1>
-        <p className='version'>
+        <p className="version">
           <a
-            href='https://badge.fury.io/js/react-jinke-music-playerr'
-            title='npm'
+            href="https://badge.fury.io/js/react-jinke-music-playerr"
+            title="npm"
           >
             <img
-              src='https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square'
-              alt='npm version'
+              src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square"
+              alt="npm version"
             />
           </a>
         </p>
-        <h2 className='example-title'>
+        <h2 className="example-title">
           Drag, Click, or switch to phone mode to try{' '}
           <a
-            target='_blank'
-            href='https://github.com/lijinke666/react-music-player/blob/master/example/example.js'
+            target="_blank"
+            href="https://github.com/lijinke666/react-music-player/blob/master/example/example.js"
           >
             (DEMO SOURCE)
           </a>
         </h2>
-        <section className='settings'>
+        <section className="settings">
           <button onClick={this.onChangeToFirstAudioList}>
             change to first audio list ({audioList1.length})
           </button>
@@ -554,200 +553,200 @@ class Demo extends React.PureComponent {
             change playIndex ({params.playIndex || 0})
           </button>
           <button onClick={this.unmountPlayer}>unmount player</button>
-          <label htmlFor='glassBg'>
-            <input type='checkbox' id='glassBg' onChange={this.onShowGlassBg} />
+          <label htmlFor="glassBg">
+            <input type="checkbox" id="glassBg" onChange={this.onShowGlassBg} />
             glassBg
           </label>
-          <label htmlFor='drag'>
+          <label htmlFor="drag">
             <input
-              type='checkbox'
-              id='drag'
+              type="checkbox"
+              id="drag"
               checked={params.drag}
               onChange={this.onDrag}
             />
             drag
           </label>
-          <label htmlFor='seeked'>
+          <label htmlFor="seeked">
             <input
-              type='checkbox'
-              id='seeked'
+              type="checkbox"
+              id="seeked"
               checked={params.seeked}
               onChange={this.onSeeked}
             />
             seeked
           </label>
-          <label htmlFor='toggle'>
+          <label htmlFor="toggle">
             <input
-              type='checkbox'
-              id='toggle'
+              type="checkbox"
+              id="toggle"
               checked={params.toggleMode}
               onChange={this.onToggleMode}
             />
             toggleMode
           </label>
-          <label htmlFor='autoPlay'>
+          <label htmlFor="autoPlay">
             <input
-              type='checkbox'
-              id='autoPlay'
+              type="checkbox"
+              id="autoPlay"
               checked={params.autoPlay}
               onChange={this.onAutoPlayMode}
             />
             autoPlay
           </label>
-          <label htmlFor='clearPriorAudioLists'>
+          <label htmlFor="clearPriorAudioLists">
             <input
-              type='checkbox'
-              id='clearPriorAudioLists'
+              type="checkbox"
+              id="clearPriorAudioLists"
               checked={params.clearPriorAudioLists}
               onChange={this.onClearPriorAudioLists}
             />
             clearPriorAudioLists
           </label>
-          <label htmlFor='onAutoPlayInitLoadPlayList'>
+          <label htmlFor="onAutoPlayInitLoadPlayList">
             <input
-              type='checkbox'
-              id='onAutoPlayInitLoadPlayList'
+              type="checkbox"
+              id="onAutoPlayInitLoadPlayList"
               checked={params.autoPlayInitLoadPlayList}
               onChange={this.onAutoPlayInitLoadPlayList}
             />
             autoplayInitLoadPlayList
           </label>
-          <label htmlFor='showMiniProcessBar'>
+          <label htmlFor="showMiniProcessBar">
             <input
-              type='checkbox'
-              id='showMiniProcessBar'
+              type="checkbox"
+              id="showMiniProcessBar"
               checked={params.showMiniProcessBar}
               onChange={this.showMiniProcessBar}
             />
             showMiniProcessBar
           </label>
-          <label htmlFor='showMiniModeCover'>
+          <label htmlFor="showMiniModeCover">
             <input
-              type='checkbox'
-              id='showMiniModeCover'
+              type="checkbox"
+              id="showMiniModeCover"
               checked={params.showMiniModeCover}
               onChange={this.showMiniModeCover}
             />
             showMiniModeCover
           </label>
-          <label htmlFor='showProgressLoadBar'>
+          <label htmlFor="showProgressLoadBar">
             <input
-              type='checkbox'
-              id='showProgressLoadBar'
+              type="checkbox"
+              id="showProgressLoadBar"
               checked={params.showProgressLoadBar}
               onChange={() => this.onChangeKey('showProgressLoadBar')}
             />
             showProgressLoadBar
           </label>
-          <label htmlFor='showPlay'>
+          <label htmlFor="showPlay">
             <input
-              type='checkbox'
-              id='showPlay'
+              type="checkbox"
+              id="showPlay"
               checked={params.showPlay}
               onChange={() => this.onChangeKey('showPlay')}
             />
             showPlay
           </label>
-          <label htmlFor='showReload'>
+          <label htmlFor="showReload">
             <input
-              type='checkbox'
-              id='showReload'
+              type="checkbox"
+              id="showReload"
               checked={params.showReload}
               onChange={() => this.onChangeKey('showReload')}
             />
             showReload
           </label>
-          <label htmlFor='showDownload'>
+          <label htmlFor="showDownload">
             <input
-              type='checkbox'
-              id='showDownload'
+              type="checkbox"
+              id="showDownload"
               checked={params.showDownload}
               onChange={() => this.onChangeKey('showDownload')}
             />
             showDownload
           </label>
-          <label htmlFor='showPlayMode'>
+          <label htmlFor="showPlayMode">
             <input
-              type='checkbox'
-              id='showPlayMode'
+              type="checkbox"
+              id="showPlayMode"
               checked={params.showPlayMode}
               onChange={() => this.onChangeKey('showPlayMode')}
             />
             showPlayMode
           </label>
-          <label htmlFor='showThemeSwitch'>
+          <label htmlFor="showThemeSwitch">
             <input
-              type='checkbox'
-              id='showThemeSwitch'
+              type="checkbox"
+              id="showThemeSwitch"
               checked={params.showThemeSwitch}
               onChange={() => this.onChangeKey('showThemeSwitch')}
             />
             showThemeSwitch
           </label>
-          <label htmlFor='showLyric'>
+          <label htmlFor="showLyric">
             <input
-              type='checkbox'
-              id='showLyric'
+              type="checkbox"
+              id="showLyric"
               checked={params.showLyric}
               onChange={() => this.onChangeKey('showLyric')}
             />
             showLyric
           </label>
-          <label htmlFor='showDestroy'>
+          <label htmlFor="showDestroy">
             <input
-              type='checkbox'
-              id='showDestroy'
+              type="checkbox"
+              id="showDestroy"
               checked={params.showDestroy}
               onChange={() => this.onChangeKey('showDestroy')}
             />
             showDestroy
           </label>
-          <label htmlFor='preload'>
+          <label htmlFor="preload">
             <input
-              type='checkbox'
-              id='preload'
+              type="checkbox"
+              id="preload"
               checked={params.preload}
               onChange={() => this.onChangeKey('preload')}
             />
             preload
           </label>
-          <label htmlFor='remove'>
+          <label htmlFor="remove">
             <input
-              type='checkbox'
-              id='remove'
+              type="checkbox"
+              id="remove"
               checked={params.remove}
               onChange={() => this.onChangeKey('remove')}
             />
             remove
           </label>
-          <label htmlFor='remember'>
+          <label htmlFor="remember">
             <input
-              type='checkbox'
-              id='remember'
+              type="checkbox"
+              id="remember"
               checked={params.remember}
               onChange={() => this.onChangeKey('remember')}
             />
             remember
           </label>
-          <label htmlFor='spaceBar'>
+          <label htmlFor="spaceBar">
             <input
-              type='checkbox'
-              id='spaceBar'
+              type="checkbox"
+              id="spaceBar"
               checked={params.spaceBar}
               onChange={() => this.onChangeKey('spaceBar')}
             />
             spaceBar
           </label>
-          <label htmlFor='responsive'>
+          <label htmlFor="responsive">
             <input
-              type='checkbox'
-              id='responsive'
+              type="checkbox"
+              id="responsive"
               checked={params.responsive}
               onChange={() => this.onChangeKey('responsive')}
             />
             responsive
           </label>
-          <div className='toggle'>
+          <div className="toggle">
             theme :{params.theme}
             <Switch
               checkedChildren={'D'}

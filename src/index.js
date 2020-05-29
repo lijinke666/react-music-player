@@ -1745,13 +1745,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
         artist: singer,
         album: name,
         artwork: [
-          { src: cover, sizes: '96x96', type: 'image/png' },
-          { src: cover, sizes: '128x128', type: 'image/png' },
-          { src: cover, sizes: '192x192', type: 'image/png' },
-          { src: cover, sizes: '256x256', type: 'image/png' },
-          { src: cover, sizes: '384x384', type: 'image/png' },
-          { src: cover, sizes: '512x512', type: 'image/png' },
-        ],
+          '96x96',
+          '128x128',
+          '192x192',
+          '256x256',
+          '384x384',
+          '512x512',
+        ].map((size) => ({
+          src: cover,
+          sizes: size,
+          type: 'image/png',
+        })),
       })
       this.updateMediaSessionPositionState()
     }
@@ -1840,7 +1844,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setDefaultAudioVolume()
       this.bindUnhandledRejection()
       this.bindEvents(this.audio)
-      this.onGetAudioInstance()
       this.initLyricParser()
       this.onAddMediaSession()
       if (IS_MOBILE) {
@@ -1883,6 +1886,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       } else {
         this.updateAudioLists(audioLists)
       }
+      this.initPlayer(audioLists)
     } else {
       this.updatePlayIndex(playIndex)
     }
@@ -1947,5 +1951,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   componentDidMount() {
     this.addMobileListener()
     this.initPlayer(this.props.audioLists)
+    this.onGetAudioInstance()
   }
 }
