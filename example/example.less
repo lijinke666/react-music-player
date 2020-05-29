@@ -17,10 +17,6 @@ body {
   padding: 20px;
 }
 
-.version {
-  color: @primary-color;
-}
-
 h2.example-title {
   font-weight: 500;
   margin-bottom: 20px;
@@ -82,5 +78,16 @@ label {
   .rc-switch-checked {
     border: @primary-color;
     background-color: @primary-color;
+  }
+}
+
+.title {
+  position: relative;
+  .version {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    color: @primary-color;
+    font-size: 14px;
   }
 }

@@ -49,7 +49,7 @@ module.exports = () => {
             { loader: 'style-loader' },
             {
               loader: 'css-loader',
-              options: { minimize: false, sourceMap: isDev },
+              options: { sourceMap: isDev },
             },
             {
               loader: 'less-loader',
@@ -69,7 +69,7 @@ module.exports = () => {
             { loader: 'style-loader' },
             {
               loader: 'css-loader',
-              options: { minimize: false, sourceMap: isDev },
+              options: { sourceMap: isDev },
             },
           ],
         },
@@ -104,6 +104,7 @@ module.exports = () => {
       port: PORT,
       historyApiFallback: true,
       hot: true,
+      clientLogLevel: 'none',
       stats: {
         color: true,
         errors: true,

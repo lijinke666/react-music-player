@@ -12,23 +12,25 @@ react-jinke-music-player
 
 <p align="center">
   <a href="https://www.npmjs.com/package/react-jinke-music-player" title="npm">
-    <img src="https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square" alt="npm">
+    <img src="https://img.shields.io/npm/dm/react-jinke-music-player.svg?style=flat-square" alt="npm"/>
   </a>
   <a href="https://www.npmjs.com/package/react-jinke-music-player" title="npm">
-    <img src="https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square" alt="npm">
+    <img src="https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square" alt="npm"/>
   </a>
   <a href="https://github.com/lijinke666/react-music-player/actions">
     <img src="https://github.com/lijinke666/react-music-player/workflows/Node%20CI/badge.svg" />
   </a>
    <a href="https://badge.fury.io/js/react-jinke-music-playerr" title="npm">
-    <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version">
+    <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version"/>
   </a>
-  <a href="https://lgtm.com/projects/g/lijinke666/react-music-player/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/lijinke666/react-music-player.svg?logo=lgtm&logoWidth=18"/></a>
+  <a href="https://lgtm.com/projects/g/lijinke666/react-music-player/alerts/">
+    <img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/lijinke666/react-music-player.svg?logo=lgtm&logoWidth=18"/>
+    </a>
   <a href="https://codecov.io/gh/lijinke666/react-music-player">
     <img src="https://codecov.io/gh/lijinke666/react-music-player/branch/master/graph/badge.svg" />
   </a>
      <a href="https://app.netlify.com/sites/react-jinke-music-player/deploys" title="Netlify Status">
-    <img src="https://api.netlify.com/api/v1/badges/2a5d8639-9d2a-46ee-a504-10b7846a57e4/deploy-status" alt="Coverage Status">
+    <img src="https://api.netlify.com/api/v1/badges/2a5d8639-9d2a-46ee-a504-10b7846a57e4/deploy-status" alt="Coverage Status"/>
   </a>
 </p>
 

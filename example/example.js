@@ -64,7 +64,8 @@ const audioList2 = [
 
 const options = {
   //audio lists model
-  audioLists: audioList1,
+  // audioLists: audioList1,
+  audioLists: '',
 
   //default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
@@ -375,6 +376,7 @@ class Demo extends React.PureComponent {
     this.audio = {}
   }
   state = {
+    unmount: false,
     params: {
       ...options,
       getAudioInstance: (audio) => {
@@ -485,6 +487,9 @@ class Demo extends React.PureComponent {
       params: data,
     })
   }
+  unmountPlayer = () => {
+    this.setState({ unmount: true })
+  }
   renderCustomUI = () => {
     return (
       <>
@@ -504,12 +509,24 @@ class Demo extends React.PureComponent {
     )
   }
   render() {
-    const { params } = this.state
-    console.log('params: ', params)
+    const { params, unmount } = this.state
     return (
       <>
-        <h1 className='title'>{name}</h1>
-        <p className='version'>version: {version}</p>
+        <h1 className='title'>
+          {name}
+          <span className='version'>doc version: {version}</span>
+        </h1>
+        <p className='version'>
+          <a
+            href='https://badge.fury.io/js/react-jinke-music-playerr'
+            title='npm'
+          >
+            <img
+              src='https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square'
+              alt='npm version'
+            />
+          </a>
+        </p>
         <h2 className='example-title'>
           Drag, Click, or switch to phone mode to try{' '}
           <a
@@ -536,6 +553,7 @@ class Demo extends React.PureComponent {
           <button onClick={this.changePlayIndex}>
             change playIndex ({params.playIndex || 0})
           </button>
+          <button onClick={this.unmountPlayer}>unmount player</button>
           <label htmlFor='glassBg'>
             <input type='checkbox' id='glassBg' onChange={this.onShowGlassBg} />
             glassBg
@@ -760,17 +778,19 @@ class Demo extends React.PureComponent {
           </div>
           <div>{this.renderCustomUI()}</div>
         </section>
-        <ReactJkMusicPlayer
-          {...params}
-          onThemeChange={(theme) => {
-            params.onThemeChange(theme)
-            this.updateParams({ theme })
-          }}
-          onModeChange={(mode) => {
-            params.onModeChange(mode)
-            this.updateParams({ mode })
-          }}
-        />
+        {unmount ? null : (
+          <ReactJkMusicPlayer
+            {...params}
+            onThemeChange={(theme) => {
+              params.onThemeChange(theme)
+              this.updateParams({ theme })
+            }}
+            onModeChange={(mode) => {
+              params.onModeChange(mode)
+              this.updateParams({ mode })
+            }}
+          />
+        )}
       </>
     )
   }

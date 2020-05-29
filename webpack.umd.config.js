@@ -53,9 +53,9 @@ module.exports = {
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
-            options: { minimize: false, sourceMap: false }
-          }
-        ]
+            options: { sourceMap: false },
+          },
+        ],
       },
     ],
   },

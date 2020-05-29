@@ -994,4 +994,35 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().audioListsPanelVisible).toEqual(false)
     expect(onAudioListsPanelChange).toHaveBeenCalledTimes(2)
   })
+
+  it('should not call onAudioReload when reload button clicked and audio list is empty', () => {
+    const onAudioReload = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode='full'
+        audioLists={[]}
+        onAudioReload={onAudioReload}
+      />
+    )
+    wrapper.find('.reload-btn').simulate('click')
+    expect(onAudioReload).not.toHaveBeenCalled()
+  })
+
+  // https://github.com/lijinke666/react-music-player/issues/115
+  it('should throw error when audioList is not array', () => {
+    const errSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+    mount(<ReactJkMusicPlayer mode='full' audioLists={''} />)
+
+    expect(errSpy).toHaveBeenCalled()
+    errSpy.mockRestore()
+  })
+
+  // https://github.com/lijinke666/react-music-player/issues/115
+  it('should unmount player success', () => {
+    let success = false
+    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} />)
+    wrapper.unmount()
+    success = true
+    expect(success).toEqual(true)
+  })
 })

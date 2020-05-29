@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import Locale from "./locale";
+import PropTypes from 'prop-types'
+import Locale from './locale'
 
 export default {
   audioLists: PropTypes.array.isRequired,
@@ -7,13 +7,13 @@ export default {
     PropTypes.object,
     PropTypes.oneOf(Object.values(Locale)),
   ]),
-  theme: PropTypes.oneOf(["dark", "light"]),
-  mode: PropTypes.oneOf(["mini", "full"]),
+  theme: PropTypes.oneOf(['dark', 'light']),
+  mode: PropTypes.oneOf(['mini', 'full']),
   defaultPlayMode: PropTypes.oneOf([
-    "order",
-    "orderLoop",
-    "singleLoop",
-    "shufflePlay",
+    'order',
+    'orderLoop',
+    'singleLoop',
+    'shufflePlay',
   ]),
   drag: PropTypes.bool,
   seeked: PropTypes.bool,
@@ -86,7 +86,7 @@ export default {
   loadAudioErrorPlayNext: PropTypes.bool,
   preload: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(["auto", "metadata", "none"]),
+    PropTypes.oneOf(['auto', 'metadata', 'none']),
   ]),
   glassBg: PropTypes.bool,
   remember: PropTypes.bool,
@@ -107,4 +107,4 @@ export default {
   customDownloader: PropTypes.func,
   audioTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   responsive: PropTypes.bool,
-};
+}

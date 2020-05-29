@@ -1,25 +1,41 @@
 name: Node CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: ${{ matrix.node-version }}
 
-      - name: npm install, build, and test
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
-          npm install
-          npm run lint
-          npm run build --if-present
-          npm test
-          npm run ci:coverage
+          npm install -g yarn
+          yarn
+
+      - name: build, and test
+        run: |
+          yarn lint
+          yarn build --if-present
+          yarn test
+          yarn ci:coverage
         env:
           CI: true
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -30,4 +46,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: example/dist
-          BUILD_SCRIPT: npm run build:demo
+          BUILD_SCRIPT: yarn build:demo

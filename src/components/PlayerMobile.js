@@ -1,8 +1,8 @@
-import React from "react";
-import cls from "classnames";
-import PlayModeTip from "./PlayModeTip";
+import React from 'react'
+import cls from 'classnames'
+import PlayModeTip from './PlayModeTip'
 
-const prefix = "react-jinke-music-player-mobile";
+const prefix = 'react-jinke-music-player-mobile'
 
 const PlayerMobile = ({
   name,
@@ -37,7 +37,7 @@ const PlayerMobile = ({
   LyricIcon,
   autoHiddenCover,
 }) => (
-  <div className={cls(prefix, { "default-bg": !glassBg, "glass-bg": glassBg })}>
+  <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
       prefix={prefix}
       visible={playModeTipVisible}
@@ -60,16 +60,16 @@ const PlayerMobile = ({
         <img
           src={cover}
           alt="cover"
-          className={cls("cover", {
-            "img-rotate-pause": pause || !playing || !cover,
+          className={cls('cover', {
+            'img-rotate-pause': pause || !playing || !cover,
           })}
         />
       </div>
     )}
     <div className={`${prefix}-progress group`}>
-      <span className="current-time">{loading ? "--" : currentTime}</span>
+      <span className="current-time">{loading ? '--' : currentTime}</span>
       {progressBar}
-      <span className="duration text-right">{loading ? "--" : duration}</span>
+      <span className="duration text-right">{loading ? '--' : duration}</span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>
       {loading ? (
@@ -85,7 +85,7 @@ const PlayerMobile = ({
           </span>
           <span
             className="group play-btn"
-            title={playing ? "Click to pause" : "Click to play"}
+            title={playing ? 'Click to pause' : 'Click to play'}
             onClick={onPlay}
           >
             {playing ? pauseIcon : playIcon}
@@ -116,6 +116,6 @@ const PlayerMobile = ({
       </ul>
     </div>
   </div>
-);
+)
 
-export default PlayerMobile;
+export default PlayerMobile

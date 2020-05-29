@@ -3,12 +3,17 @@ module.exports = {
     ecmaVersion: 8,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
+  },
+  settings: {
+    react: {
+      version: '16.4.2',
+    },
   },
   parser: 'babel-eslint',
   plugins: ['babel', 'react'],
-  extends: 'eslint:recommended',
+  extends: ['eslint:recommended'],
   env: {
     es6: true,
     browser: true,
@@ -17,7 +22,7 @@ module.exports = {
     node: true,
   },
   globals: {
-    MediaMetadata: true
+    MediaMetadata: true,
   },
   rules: {
     'object-shorthand': 'error',
@@ -48,6 +53,6 @@ module.exports = {
     'react/jsx-key': 'error',
     'react/no-unknown-property': 'error',
     'react/no-string-refs': 'error',
-    'react/no-direct-mutation-state': 'error'
-  }
+    'react/no-direct-mutation-state': 'error',
+  },
 }

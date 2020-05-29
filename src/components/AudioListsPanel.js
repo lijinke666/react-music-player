@@ -1,7 +1,7 @@
-import React from "react";
-import cls from "classnames";
-import ReactDragListView from "react-drag-listview/lib/ReactDragListView";
-import { NotContentIcon, ArrowDownIcon } from "./Icon";
+import React from 'react'
+import cls from 'classnames'
+import ReactDragListView from 'react-drag-listview/lib/ReactDragListView'
+import { NotContentIcon, ArrowDownIcon } from './Icon'
 
 const AudioListsPanel = ({
   audioLists,
@@ -24,8 +24,8 @@ const AudioListsPanel = ({
   locale,
 }) => (
   <div
-    className={cls("audio-lists-panel", panelToggleAnimate, {
-      "glass-bg": glassBg,
+    className={cls('audio-lists-panel', panelToggleAnimate, {
+      'glass-bg': glassBg,
     })}
   >
     <div className="audio-lists-panel-header">
@@ -50,8 +50,8 @@ const AudioListsPanel = ({
       </h2>
     </div>
     <div
-      className={cls("audio-lists-panel-content", {
-        "no-content": audioLists.length < 1,
+      className={cls('audio-lists-panel-content', {
+        'no-content': audioLists.length < 1,
       })}
     >
       {audioLists.length >= 1 ? (
@@ -63,8 +63,8 @@ const AudioListsPanel = ({
         >
           <ul>
             {audioLists.map((audio) => {
-              const { name, singer } = audio;
-              const playing = playId === audio.id;
+              const { name, singer } = audio
+              const playing = playId === audio.id
               return (
                 <li
                   key={audio.id}
@@ -76,10 +76,10 @@ const AudioListsPanel = ({
                       : locale.clickToPlayText
                   }
                   className={cls(
-                    "audio-item",
+                    'audio-item',
                     { playing },
                     { pause },
-                    { remove: removeId === audio.id }
+                    { remove: removeId === audio.id },
                   )}
                   onClick={() => onPlay(audio.id)}
                 >
@@ -106,7 +106,7 @@ const AudioListsPanel = ({
                     </span>
                   )}
                 </li>
-              );
+              )
             })}
           </ul>
         </ReactDragListView>
@@ -120,6 +120,6 @@ const AudioListsPanel = ({
       )}
     </div>
   </div>
-);
+)
 
-export default AudioListsPanel;
+export default AudioListsPanel
