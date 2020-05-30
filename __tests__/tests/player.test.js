@@ -28,15 +28,15 @@ import { SPACE_BAR_KEYCODE } from '../../src/config/keycode'
 
 describe('<ReactJkMusicPlayer/>', () => {
   it('should render a <ReactJkMusicPlayer/> components', () => {
-    const wrapper = mount(<ReactJkMusicPlayer className='text-class-name' />)
+    const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" />)
     expect(wrapper).toMatchSnapshot()
   })
   it('should render a <ReactJkMusicPlayer/> components', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
-        className='text-class-name'
+        className="text-class-name"
         showMiniProcessBar={true}
-      />
+      />,
     )
     assert(wrapper.find('.react-jinke-music-player-main').length === 1)
     assert(wrapper.find('.react-jinke-music-player').length >= 1)
@@ -66,13 +66,13 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find(PlayModeTip).length === 1)
   })
   it('should render mini of full mode', () => {
-    const wrapper = mount(<ReactJkMusicPlayer mode='full' />)
+    const wrapper = mount(<ReactJkMusicPlayer mode="full" />)
     assert(wrapper.props().mode === 'full')
     wrapper.setProps({ mode: 'mini' })
     assert(wrapper.props().mode === 'mini')
   })
   it('should render dark and light theme', () => {
-    const wrapper = mount(<ReactJkMusicPlayer theme='dark' />)
+    const wrapper = mount(<ReactJkMusicPlayer theme="dark" />)
     assert(wrapper.props().theme === 'dark')
     wrapper.setState({ theme: 'dark' })
     assert(wrapper.find('.light-theme').length === 0)
@@ -113,7 +113,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         showThemeSwitch={true}
         showReload={true}
         showPlayMode={true}
-      />
+      />,
     )
     wrapper.setState({ loading: false, toggle: true })
     assert(wrapper.find('.audio-download').length >= 1)
@@ -136,13 +136,13 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('should render extendsContent', () => {
     const extendsContent = (
       <>
-        <span className='extendsContent'>extendsText1</span>,
+        <span className="extendsContent">extendsText1</span>,
         <span>extendsText2</span>
       </>
     )
 
     const wrapper = mount(
-      <ReactJkMusicPlayer extendsContent={extendsContent} />
+      <ReactJkMusicPlayer extendsContent={extendsContent} />,
     )
     wrapper.setState({ toggle: true })
     expect(wrapper.text()).toContain('extendsText1')
@@ -156,7 +156,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       </>
     )
     const wrapper = mount(
-      <ReactJkMusicPlayer extendsContent={<ExtendsContent />} />
+      <ReactJkMusicPlayer extendsContent={<ExtendsContent />} />,
     )
     const wrapper1 = mount(<ReactJkMusicPlayer extendsContent={'extends'} />)
     wrapper.setState({ toggle: true })
@@ -192,7 +192,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
   it('should render delete btns', () => {
     const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} remove={true} />)
-    assert(wrapper.find('.delete-btn').length >= 1)
+    assert(wrapper.find('.audio-lists-panel-header-delete-btn').length >= 1)
     assert(wrapper.find('.player-delete').length === 0)
     wrapper.setState({
       audioLists: [
@@ -264,13 +264,13 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('should render music player in custom root node', () => {
     const wrapper = mount(
       <div>
-        <div className='test'>
+        <div className="test">
           <ReactJkMusicPlayer
             getContainer={() => document.querySelector('.test')}
           />
         </div>
-        <span className='test1'></span>
-      </div>
+        <span className="test1"></span>
+      </div>,
     )
     expect(wrapper.find('.test1').find(ReactJkMusicPlayer)).toHaveLength(0)
     expect(wrapper.find('.test').find(ReactJkMusicPlayer)).toHaveLength(1)
@@ -285,7 +285,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     }
   })
   it('update state theme when option theme change', () => {
-    const wrapper = mount(<ReactJkMusicPlayer theme='light' />)
+    const wrapper = mount(<ReactJkMusicPlayer theme="light" />)
     wrapper.setProps({ theme: 'dark' })
     expect(wrapper.state().theme).toEqual('dark')
     wrapper.setProps({ theme: 'xxxx' })
@@ -295,7 +295,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('trigger theme change handler when option theme change', () => {
     const onThemeChange = jest.fn()
     const wrapper = mount(
-      <ReactJkMusicPlayer theme='light' onThemeChange={onThemeChange} />
+      <ReactJkMusicPlayer theme="light" onThemeChange={onThemeChange} />,
     )
     wrapper.setProps({ theme: 'dark' })
     expect(onThemeChange).toHaveBeenCalled()
@@ -304,7 +304,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('update mode', () => {
     const onModeChange = jest.fn()
     const wrapper = mount(
-      <ReactJkMusicPlayer mode='mini' onModeChange={onModeChange} />
+      <ReactJkMusicPlayer mode="mini" onModeChange={onModeChange} />,
     )
     wrapper.setProps({ mode: 'full' })
     expect(onModeChange).toHaveBeenCalled()
@@ -318,46 +318,46 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('mode change handler when update mode', () => {
     const onModeChange = jest.fn()
     const wrapper = mount(
-      <ReactJkMusicPlayer mode='mini' onModeChange={onModeChange} />
+      <ReactJkMusicPlayer mode="mini" onModeChange={onModeChange} />,
     )
     wrapper.setProps({ mode: 'full' })
     expect(onModeChange).toHaveBeenCalled()
   })
   it('should cannot find lyric operation button', () => {
-    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} mode='full' />)
+    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} mode="full" />)
     wrapper.setState({ isMobile: true })
     expect(
-      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+      wrapper.find('.react-jinke-music-player-mobile-operation .item'),
     ).toHaveLength(4)
   })
 
   it('should find five operation button when toggle lyric option', () => {
     const wrapper = mount(
-      <ReactJkMusicPlayer audioLists={[]} mode='full' showLyric={false} />
+      <ReactJkMusicPlayer audioLists={[]} mode="full" showLyric={false} />,
     )
     wrapper.setState({ isMobile: true })
     expect(
-      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+      wrapper.find('.react-jinke-music-player-mobile-operation .item'),
     ).toHaveLength(4)
     wrapper.setProps({ showLyric: true })
     expect(
-      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+      wrapper.find('.react-jinke-music-player-mobile-operation .item'),
     ).toHaveLength(5)
   })
   it('should only render audio list menu button when ', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[]}
-        mode='full'
+        mode="full"
         showLyric={false}
         showDownload={false}
         showPlayMode={false}
         showReload={false}
-      />
+      />,
     )
     wrapper.setState({ isMobile: true })
     expect(
-      wrapper.find('.react-jinke-music-player-mobile-operation .item')
+      wrapper.find('.react-jinke-music-player-mobile-operation .item'),
     ).toHaveLength(1)
   })
   it('should cannot trigger onAudioLoadError when clear audioLists', () => {
@@ -373,9 +373,9 @@ describe('<ReactJkMusicPlayer/>', () => {
       ],
       onAudioLoadError,
     }
-    const wrapper = mount(<ReactJkMusicPlayer {...testProps} mode='full' />)
+    const wrapper = mount(<ReactJkMusicPlayer {...testProps} mode="full" />)
     wrapper.setState({ audioListsPanelVisible: true })
-    wrapper.find('.delete-btn').simulate('click')
+    wrapper.find('.audio-lists-panel-header-delete-btn').simulate('click')
     expect(onAudioLoadError).not.toHaveBeenCalled()
   })
   it('should call getAudioInstance function', () => {
@@ -384,7 +384,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x' }]}
         getAudioInstance={getAudioInstance}
-      />
+      />,
     )
     expect(getAudioInstance).toHaveBeenCalled()
   })
@@ -394,7 +394,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x' }]}
         getAudioInstance={(instance) => (_instance = instance)}
-      />
+      />,
     )
     expect(typeof _instance).toEqual('object')
     expect(typeof _instance.destroy).toBe('function')
@@ -403,9 +403,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', cover: '' }]}
-        mode='full'
+        mode="full"
         autoHiddenCover
-      />
+      />,
     )
     expect(wrapper.find('.img-content')).toHaveLength(0)
     wrapper.setProps({
@@ -422,9 +422,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', cover: '' }]}
-        mode='full'
+        mode="full"
         autoHiddenCover
-      />
+      />,
     )
     wrapper.setState({ isMobile: true })
     expect(wrapper.find('.cover')).toHaveLength(0)
@@ -449,10 +449,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', cover: '' }]}
-        mode='full'
+        mode="full"
         onBeforeAudioDownload={onBeforeAudioDownload}
         onAudioDownload={onAudioDownload}
-      />
+      />,
     )
     wrapper.find('.audio-download').simulate('click')
     expect(onBeforeAudioDownload).toHaveBeenCalled()
@@ -473,10 +473,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', cover: '' }]}
-        mode='full'
+        mode="full"
         onBeforeAudioDownload={onBeforeAudioDownload}
         customDownloader={customDownloader}
-      />
+      />,
     )
     wrapper.find('.audio-download').simulate('click')
     setTimeout(() => {
@@ -491,9 +491,9 @@ describe('<ReactJkMusicPlayer/>', () => {
           { musicSrc: 'x', cover: '' },
           { musicSrc: 'xx', cover: '' },
         ]}
-        mode='full'
+        mode="full"
         onAudioPlay={onAudioPlay}
-      />
+      />,
     )
     wrapper.find('.next-audio').simulate('click')
     expect(onAudioPlay).toHaveBeenCalled()
@@ -510,9 +510,9 @@ describe('<ReactJkMusicPlayer/>', () => {
           { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
           { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' },
         ]}
-        mode='full'
+        mode="full"
         onAudioPlay={onAudioPlay}
-      />
+      />,
     )
     wrapper.find('.next-audio').simulate('click')
     expect(_audioInfo.id).toEqual('1')
@@ -528,11 +528,11 @@ describe('<ReactJkMusicPlayer/>', () => {
           { musicSrc: 'x', name: '1', cover: '11', id: '1', customField: '1' },
           { musicSrc: 'x', name: '2', cover: '22', id: '2', customField: '2' },
         ]}
-        mode='full'
+        mode="full"
         onAudioListsChange={onAudioListsChange}
         onModeChange={onModeChange}
         onThemeChange={onThemeChange}
-      />
+      />,
     )
     wrapper.setProps({ audioLists: [] })
     expect(onAudioListsChange).toHaveBeenCalled()
@@ -544,9 +544,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         onAudioListsChange={onAudioListsChange}
-      />
+      />,
     )
     wrapper.setProps({ audioLists: [{ musicSrc: 'x', name: '1' }] })
     expect(onAudioListsChange).not.toHaveBeenCalled()
@@ -558,9 +558,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         onAudioListsChange={onAudioListsChange}
-      />
+      />,
     )
     wrapper.setProps({
       audioLists: [
@@ -580,9 +580,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         onAudioListsChange={onAudioListsChange}
-      />
+      />,
     )
     wrapper.setProps({
       clearPriorAudioLists: true,
@@ -604,9 +604,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         autoPlayInitLoadPlayList={false}
-      />
+      />,
     )
     wrapper.setProps({
       audioLists: [
@@ -623,11 +623,11 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         onAudioListsChange={onAudioListsChange}
-      />
+      />,
     )
-    wrapper.find('.delete-btn').simulate('click')
+    wrapper.find('.audio-lists-panel-header-delete-btn').simulate('click')
     expect(onAudioListsChange).toHaveBeenCalled()
   })
 
@@ -639,9 +639,9 @@ describe('<ReactJkMusicPlayer/>', () => {
           { musicSrc: 'x', name: '1' },
           { musicSrc: 'xx', name: '2' },
         ]}
-        mode='full'
+        mode="full"
         onAudioListsChange={onAudioListsChange}
-      />
+      />,
     )
     wrapper.setProps({
       audioLists: [],
@@ -661,18 +661,18 @@ describe('<ReactJkMusicPlayer/>', () => {
     }
     const triggerKeyDown = () => {
       document.dispatchEvent(
-        new KeyboardEvent('keydown', { keyCode: SPACE_BAR_KEYCODE })
+        new KeyboardEvent('keydown', { keyCode: SPACE_BAR_KEYCODE }),
       )
     }
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         autoPlay={false}
         spaceBar
         onAudioPause={onAudioPause}
         onAudioPlay={onAudioPlay}
-      />
+      />,
     )
     wrapper.find('.music-player-panel').simulate('focus')
     wrapper.find('.music-player-panel').simulate('click')
@@ -687,8 +687,8 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
-      />
+        mode="full"
+      />,
     )
     expect(wrapper.find('.destroy-btn')).toHaveLength(0)
     wrapper.setProps({ showDestroy: true })
@@ -702,10 +702,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         showDestroy
         onDestroyed={onDestroyed}
-      />
+      />,
     )
     wrapper.find('.destroy-btn').simulate('click')
     expect(onDestroyed).toHaveBeenCalled()
@@ -716,10 +716,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         showDestroy
         onBeforeDestroy={onBeforeDestroy}
-      />
+      />,
     )
     wrapper.find('.destroy-btn').simulate('click')
     expect(onBeforeDestroy).toHaveBeenCalled()
@@ -732,11 +732,11 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapperRes = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         showDestroy
         onBeforeDestroy={onBeforeDestroyRes}
         onDestroyed={onDestroyed}
-      />
+      />,
     )
     wrapperRes.find('.destroy-btn').simulate('click')
     // Promise 微任务 , setTimeout 宏任务
@@ -747,11 +747,11 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapperRej = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         showDestroy
         onBeforeDestroy={onBeforeDestroyRej}
         onDestroyed={onDestroyed}
-      />
+      />,
     )
     wrapperRej.find('.destroy-btn').simulate('click')
     expect(onDestroyed).not.toHaveBeenCalled()
@@ -762,10 +762,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         showDestroy
         onDestroyed={onDestroyed}
-      />
+      />,
     )
     wrapper.unmount()
     expect(onDestroyed).toHaveBeenCalled()
@@ -778,9 +778,9 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
         autoPlay={false}
-        mode='full'
+        mode="full"
         onAudioPlay={onAudioPlay}
-      />
+      />,
     )
     wrapper.find('.play-btn').simulate('click')
     expect(wrapper.state().playing).toEqual(true)
@@ -791,9 +791,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         defaultVolume={1}
-      />
+      />,
     )
     wrapper.find('.sounds-icon').simulate('click')
     expect(wrapper.state().soundValue).toEqual(0)
@@ -807,8 +807,8 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
         showDestroy
-        mode='mini'
-      />
+        mode="mini"
+      />,
     )
     wrapper.setProps({ showDestroy: false })
     wrapper.find('.music-player-controller').simulate('click')
@@ -826,8 +826,8 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: getMusicSrc, name: '1' }]}
-        mode='full'
-      />
+        mode="full"
+      />,
     )
     setTimeout(() => {
       expect(wrapper.state().musicSrc).toEqual('xxx.mp3')
@@ -843,9 +843,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: getMusicSrc, name: '1' }]}
-        mode='full'
+        mode="full"
         onAudioLoadError={onAudioLoadError}
-      />
+      />,
     )
 
     setTimeout(() => {
@@ -856,14 +856,14 @@ describe('<ReactJkMusicPlayer/>', () => {
   // https://github.com/lijinke666/react-music-player/issues/101
   it('should render light theme when audio lists is empty', () => {
     const wrapper = mount(
-      <ReactJkMusicPlayer audioLists={[]} mode='full' theme='light' />
+      <ReactJkMusicPlayer audioLists={[]} mode="full" theme="light" />,
     )
     expect(
-      wrapper.find('.react-jinke-music-player-main.light-theme')
+      wrapper.find('.react-jinke-music-player-main.light-theme'),
     ).toHaveLength(1)
     wrapper.setProps({ mode: 'mini' })
     expect(
-      wrapper.find('.react-jinke-music-player-main.light-theme')
+      wrapper.find('.react-jinke-music-player-main.light-theme'),
     ).toHaveLength(1)
   })
 
@@ -872,9 +872,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[]}
-        mode='full'
+        mode="full"
         onAudioVolumeChange={onAudioVolumeChange}
-      />
+      />,
     )
     expect(wrapper.find(MdVolumeDownIcon)).toHaveLength(1)
     expect(wrapper.find(MdVolumeMuteIcon)).toHaveLength(0)
@@ -889,9 +889,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        mode='full'
+        mode="full"
         onAudioVolumeChange={onAudioVolumeChange}
-      />
+      />,
     )
     wrapper.find('.sounds-icon').simulate('click')
     expect(onAudioVolumeChange).toHaveBeenCalled()
@@ -906,10 +906,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const onAudioVolumeChange = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
-        mode='full'
+        mode="full"
         responsive
         onAudioVolumeChange={onAudioVolumeChange}
-      />
+      />,
     )
     expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
     expect(wrapper.find('.music-player-panel')).toHaveLength(1)
@@ -923,10 +923,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const onAudioVolumeChange = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
-        mode='full'
+        mode="full"
         responsive={false}
         onAudioVolumeChange={onAudioVolumeChange}
-      />
+      />,
     )
     expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
     expect(wrapper.find('.music-player-panel')).toHaveLength(1)
@@ -941,17 +941,17 @@ describe('<ReactJkMusicPlayer/>', () => {
     const customAudioDuration = 70.01
     const wrapper = mount(
       <ReactJkMusicPlayer
-        mode='full'
+        mode="full"
         audioLists={[
           {
             duration: customAudioDuration,
           },
         ]}
-      />
+      />,
     )
     expect(wrapper.find('.duration').text()).toContain('01:10')
     expect(wrapper.instance().getBaseAudioInfo().duration).toStrictEqual(
-      customAudioDuration
+      customAudioDuration,
     )
   })
 
@@ -959,13 +959,13 @@ describe('<ReactJkMusicPlayer/>', () => {
     const customAudioDuration = 104.0
     const wrapper = mount(
       <ReactJkMusicPlayer
-        mode='full'
+        mode="full"
         audioLists={[
           {
             duration: customAudioDuration,
           },
         ]}
-      />
+      />,
     )
     expect(wrapper.find('.duration').text()).toEqual('01:44')
 
@@ -975,7 +975,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       },
       () => {
         expect(wrapper.find('.duration').text()).toEqual('00:00')
-      }
+      },
     )
   })
 
@@ -983,10 +983,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const onAudioListsPanelChange = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
-        mode='full'
+        mode="full"
         audioLists={[{ musicSrc: 'x', name: '1' }]}
         onAudioListsPanelChange={onAudioListsPanelChange}
-      />
+      />,
     )
     wrapper.find('.audio-lists-btn').simulate('click')
     expect(wrapper.state().audioListsPanelVisible).toEqual(true)
@@ -999,10 +999,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     const onAudioReload = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
-        mode='full'
+        mode="full"
         audioLists={[]}
         onAudioReload={onAudioReload}
-      />
+      />,
     )
     wrapper.find('.reload-btn').simulate('click')
     expect(onAudioReload).not.toHaveBeenCalled()
@@ -1011,7 +1011,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   // https://github.com/lijinke666/react-music-player/issues/115
   it('should throw error when audioList is not array', () => {
     const errSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
-    mount(<ReactJkMusicPlayer mode='full' audioLists={''} />)
+    mount(<ReactJkMusicPlayer mode="full" audioLists={''} />)
 
     expect(errSpy).toHaveBeenCalled()
     errSpy.mockRestore()

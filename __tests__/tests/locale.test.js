@@ -13,7 +13,7 @@ const getTitle = (wrapper, className, at) => {
 describe('Locale test', () => {
   it('should render default locale with en_US', () => {
     const wrapper = mount(
-      <ReactJkMusicPlayer className='text-class-name' showLyric showDestroy />
+      <ReactJkMusicPlayer className="text-class-name" showLyric showDestroy />,
     )
 
     expect(wrapper).toMatchSnapshot()
@@ -22,18 +22,18 @@ describe('Locale test', () => {
   it('should render locale with zh_CN', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
-        className='text-class-name'
+        className="text-class-name"
         showLyric
         showDestroy
-        locale='zh_CN'
-      />
+        locale="zh_CN"
+      />,
     )
     expect(wrapper).toMatchSnapshot()
   })
   it('should override locale with en_US', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
-        className='text-class-name'
+        className="text-class-name"
         showLyric
         showDestroy
         locale={{
@@ -45,10 +45,10 @@ describe('Locale test', () => {
             name: 'audioName',
           },
         ]}
-      />
+      />,
     )
     expect(wrapper.find('.music-player-controller-setting').text()).toContain(
-      'Open'
+      'Open',
     )
     expect(wrapper.find(FaHeadphonesIcon)).toHaveLength(1)
 
@@ -72,18 +72,20 @@ describe('Locale test', () => {
 
     // 打开播放列表
     wrapper.find('.audio-lists-btn').simulate('click')
-    expect(wrapper.find('.audio-lists-panel .title').text()).toContain(
-      'Playlists'
+    expect(wrapper.find('.audio-lists-panel-header-title').text()).toContain(
+      'Playlists',
     )
-    expect(getTitle(wrapper, '.audio-lists-panel .delete-btn')).toEqual(
-      'Delete audio lists'
+    expect(getTitle(wrapper, '.audio-lists-panel-header-delete-btn')).toEqual(
+      'Delete audio lists',
     )
-    expect(getTitle(wrapper, '.audio-lists-panel .close-btn')).toEqual('Close')
+    expect(getTitle(wrapper, '.audio-lists-panel-header-close-btn')).toEqual(
+      'Close',
+    )
     expect(getTitle(wrapper, '.audio-lists-panel .audio-item', 0)).toEqual(
-      'Click to play'
+      'Click to play',
     )
     expect(getTitle(wrapper, '.audio-lists-panel .player-delete', 0)).toEqual(
-      'Click to delete audioName'
+      'Click to delete audioName',
     )
   })
 
@@ -92,7 +94,7 @@ describe('Locale test', () => {
       <ReactJkMusicPlayer
         showLyric
         showDestroy
-        locale='zh_CN'
+        locale="zh_CN"
         audioLists={[
           {
             musicSrc: 'xx',
@@ -100,10 +102,10 @@ describe('Locale test', () => {
             singer: 'singerName',
           },
         ]}
-      />
+      />,
     )
     expect(wrapper.find('.music-player-controller-setting').text()).toContain(
-      '打开'
+      '打开',
     )
     expect(wrapper.find(FaHeadphonesIcon)).toHaveLength(1)
 
@@ -127,18 +129,20 @@ describe('Locale test', () => {
 
     // 打开播放列表
     wrapper.find('.audio-lists-btn').simulate('click')
-    expect(wrapper.find('.audio-lists-panel .title').text()).toContain(
-      '播放列表 / 1'
+    expect(
+      wrapper.find('.audio-lists-panel .audio-lists-panel-header-title').text(),
+    ).toContain('播放列表 / 1')
+    expect(getTitle(wrapper, '.audio-lists-panel-header-delete-btn')).toEqual(
+      '清空播放列表',
     )
-    expect(getTitle(wrapper, '.audio-lists-panel .delete-btn')).toEqual(
-      '清空播放列表'
+    expect(getTitle(wrapper, '.audio-lists-panel-header-close-btn')).toEqual(
+      '关闭',
     )
-    expect(getTitle(wrapper, '.audio-lists-panel .close-btn')).toEqual('关闭')
     expect(getTitle(wrapper, '.audio-lists-panel .audio-item', 0)).toEqual(
-      '点击播放'
+      '点击播放',
     )
     expect(getTitle(wrapper, '.audio-lists-panel .player-delete', 0)).toEqual(
-      '点击删除 audioName'
+      '点击删除 audioName',
     )
   })
 
@@ -148,10 +152,10 @@ describe('Locale test', () => {
         locale={{
           openText: 'test',
         }}
-      />
+      />,
     )
     expect(wrapper.find('.music-player-controller-setting').text()).toContain(
-      'test'
+      'test',
     )
   })
 
@@ -159,7 +163,7 @@ describe('Locale test', () => {
   it('should render locale with functional audioTitle', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
-        className='text-class-name'
+        className="text-class-name"
         showMiniProcessBar={true}
         showLyric
         showDestroy
@@ -172,7 +176,7 @@ describe('Locale test', () => {
             name: 'audioName',
           },
         ]}
-      />
+      />,
     )
     expect(getTitle(wrapper, 'audio')).toEqual('test-audioName')
   })

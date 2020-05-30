@@ -116,19 +116,19 @@ exports[`Locale test should render default locale with en_US 1`] = `
               class="audio-lists-panel-header"
             >
               <h2
-                class="title"
+                class="audio-lists-panel-header-title"
               >
                 <span>
                   Playlists
                    / 
                 </span>
                 <span
-                  class="num"
+                  class="audio-lists-panel-header-num"
                 >
                   0
                 </span>
                 <span
-                  class="close-btn"
+                  class="audio-lists-panel-header-close-btn"
                   title="Close"
                 >
                   <svg
@@ -147,10 +147,10 @@ exports[`Locale test should render default locale with en_US 1`] = `
                   </svg>
                 </span>
                 <span
-                  class="line"
+                  class="audio-lists-panel-header-line"
                 />
                 <span
-                  class="delete-btn"
+                  class="audio-lists-panel-header-delete-btn"
                   title="Delete audio lists"
                 >
                   <svg
@@ -417,19 +417,19 @@ exports[`Locale test should render default locale with en_US 1`] = `
             className="audio-lists-panel-header"
           >
             <h2
-              className="title"
+              className="audio-lists-panel-header-title"
             >
               <span>
                 Playlists
                  / 
               </span>
               <span
-                className="num"
+                className="audio-lists-panel-header-num"
               >
                 0
               </span>
               <span
-                className="close-btn"
+                className="audio-lists-panel-header-close-btn"
                 onClick={[Function]}
                 title="Close"
               >
@@ -460,10 +460,10 @@ exports[`Locale test should render default locale with en_US 1`] = `
                 </MdClose>
               </span>
               <span
-                className="line"
+                className="audio-lists-panel-header-line"
               />
               <span
-                className="delete-btn"
+                className="audio-lists-panel-header-delete-btn"
                 onClick={[Function]}
                 title="Delete audio lists"
               >
@@ -669,19 +669,19 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               class="audio-lists-panel-header"
             >
               <h2
-                class="title"
+                class="audio-lists-panel-header-title"
               >
                 <span>
                   Playlists
                    / 
                 </span>
                 <span
-                  class="num"
+                  class="audio-lists-panel-header-num"
                 >
                   0
                 </span>
                 <span
-                  class="close-btn"
+                  class="audio-lists-panel-header-close-btn"
                   title="Close"
                 >
                   <svg
@@ -700,10 +700,10 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                   </svg>
                 </span>
                 <span
-                  class="line"
+                  class="audio-lists-panel-header-line"
                 />
                 <span
-                  class="delete-btn"
+                  class="audio-lists-panel-header-delete-btn"
                   title="Delete audio lists"
                 >
                   <svg
@@ -827,19 +827,19 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               class="audio-lists-panel-header"
             >
               <h2
-                class="title"
+                class="audio-lists-panel-header-title"
               >
                 <span>
                   播放列表
                    / 
                 </span>
                 <span
-                  class="num"
+                  class="audio-lists-panel-header-num"
                 >
                   0
                 </span>
                 <span
-                  class="close-btn"
+                  class="audio-lists-panel-header-close-btn"
                   title="关闭"
                 >
                   <svg
@@ -858,10 +858,10 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                   </svg>
                 </span>
                 <span
-                  class="line"
+                  class="audio-lists-panel-header-line"
                 />
                 <span
-                  class="delete-btn"
+                  class="audio-lists-panel-header-delete-btn"
                   title="清空播放列表"
                 >
                   <svg
@@ -1128,19 +1128,19 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             className="audio-lists-panel-header"
           >
             <h2
-              className="title"
+              className="audio-lists-panel-header-title"
             >
               <span>
                 播放列表
                  / 
               </span>
               <span
-                className="num"
+                className="audio-lists-panel-header-num"
               >
                 0
               </span>
               <span
-                className="close-btn"
+                className="audio-lists-panel-header-close-btn"
                 onClick={[Function]}
                 title="关闭"
               >
@@ -1171,10 +1171,10 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                 </MdClose>
               </span>
               <span
-                className="line"
+                className="audio-lists-panel-header-line"
               />
               <span
-                className="delete-btn"
+                className="audio-lists-panel-header-delete-btn"
                 onClick={[Function]}
                 title="清空播放列表"
               >
