@@ -29,17 +29,23 @@ const AudioListsPanel = ({
     })}
   >
     <div className="audio-lists-panel-header">
-      <h2 className="title">
+      <h2 className="audio-lists-panel-header-title">
         <span>{locale.playListsText} / </span>
-        <span className="num">{audioLists.length}</span>
-        <span className="close-btn" title={locale.closeText} onClick={onCancel}>
+        <span className="audio-lists-panel-header-num">
+          {audioLists.length}
+        </span>
+        <span
+          className="audio-lists-panel-header-close-btn"
+          title={locale.closeText}
+          onClick={onCancel}
+        >
           {isMobile ? <ArrowDownIcon /> : closeIcon}
         </span>
         {remove && (
           <>
-            <span className="line" />
+            <span className="audio-lists-panel-header-line" />
             <span
-              className="delete-btn"
+              className="audio-lists-panel-header-delete-btn"
               title={locale.removeAudioListsText}
               onClick={onDelete()}
             >
@@ -95,7 +101,7 @@ const AudioListsPanel = ({
                     </span>
                   </span>
                   <span className="group player-name">{name}</span>
-                  <span className="group player-time">{singer}</span>
+                  <span className="group player-singer">{singer}</span>
                   {remove && (
                     <span
                       className="group player-delete"

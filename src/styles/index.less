@@ -141,7 +141,7 @@
         background-repeat: no-repeat;
         box-shadow: 0 0 10px rgba(0, 34, 77, 0.05);
 
-        @media screen and (max-width: 768px) {
+        @media @mobile {
           width: 40px;
           height: 40px;
         }
@@ -162,7 +162,7 @@
         margin-left: 15px;
       }
 
-      @media screen and (max-width: 768px) {
+      @media @mobile {
         .progress-bar-content {
           .hidden();
         }
@@ -288,16 +288,13 @@
           }
         }
 
-        // >.group:last-child{
-        //     margin-10px;
-        // }
         .theme-switch {
           .rc-switch {
             background-color: transparent;
           }
         }
 
-        @media screen and (max-width: 768px) {
+        @media @mobile {
           .play-sounds {
             .hidden();
           }
@@ -443,16 +440,28 @@
 
       .audio-item {
         background-color: @lists-panel-item-bg-light;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
+        &:nth-child(2n + 1) {
+          background-color: @lists-panel-item-bg-active-light !important;
+        }
+
+        &.playing {
+          background-color: @lists-panel-item-bg-playing-light !important;
+
+          &,
+          svg {
+            color: @primary-color !important;
+          }
+        }
         @media @mobile {
           background-color: @lists-panel-item-bg-light !important;
 
           &.playing {
-            background-color: darken(@lists-panel-item-bg-light, 2%) !important;
+            background-color: @lists-panel-item-bg-playing-light !important;
 
+            &,
             svg {
-              color: @primary-color;
+              color: @primary-color !important;
             }
           }
         }
@@ -489,11 +498,15 @@
         svg {
           color: @primary-color;
         }
-      }
-    }
 
-    .player-time {
-      color: rgba(162, 162, 162, 0.45) !important;
+        .player-singer {
+          color: @primary-color !important;
+        }
+      }
+
+      .player-singer {
+        color: @lists-panel-item-signer-color-light !important;
+      }
     }
 
     .react-jinke-music-player-mobile {
@@ -527,7 +540,7 @@
       }
 
       &-singer {
-        .name {
+        &-name {
           color: @font-color;
           transition: color @common-animate-time;
 
@@ -640,7 +653,7 @@
         font-size: 14px;
       }
 
-      @media screen and (max-width: 768px) {
+      @media @mobile {
         i {
           font-size: 20px;
         }
@@ -696,7 +709,7 @@
       transition: stroke-dasharray @common-animate-time;
       transform: matrix(0, -1, 1, 0, 0, 80);
 
-      @media screen and (max-width: 768px) {
+      @media @mobile {
         transform: matrix(0, -1, 1, 0, 0, 60);
       }
     }

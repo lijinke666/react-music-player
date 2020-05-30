@@ -512,7 +512,7 @@ class Demo extends React.PureComponent {
     return (
       <>
         <h1 className="title">
-          {name}
+          <span className="name">{name}</span>
           <span className="version">doc version: {version}</span>
         </h1>
         <p className="version">

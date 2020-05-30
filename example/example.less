@@ -17,17 +17,6 @@ body {
   padding: 20px;
 }
 
-h2.example-title {
-  font-weight: 500;
-  margin-bottom: 20px;
-  padding-top: 30px;
-  border-top: 1px solid @border-color;
-
-  a {
-    color: @primary-color;
-  }
-}
-
 button {
   display: inline-block;
   margin-bottom: 0;
@@ -83,10 +72,18 @@ label {
 
 .title {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .name {
+    @media @mobile {
+      margin-bottom: 10px;
+    }
+  }
+
   .version {
-    position: absolute;
-    right: 20px;
-    top: 0;
     color: @primary-color;
     font-size: 14px;
   }

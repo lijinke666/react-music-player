@@ -3,8 +3,8 @@ import cls from 'classnames'
 
 const PlayModeTip = ({ prefix, visible, title, text }) => (
   <div className={cls(`${prefix}-play-model-tip`, { show: visible })}>
-    <span className="title">{title}</span>
-    <span className="text">{text}</span>
+    <span className={`${prefix}-play-model-tip-title`}>{title}</span>
+    <span className={`${prefix}-play-model-tip-text`}>{text}</span>
   </div>
 )
 

@@ -45,14 +45,14 @@ const PlayerMobile = ({
       text={currentPlayModeName}
     />
     <div className={`${prefix}-header group`}>
-      <div className="left item" />
-      <div className="title">{name}</div>
-      <div className="right item" onClick={onClose}>
+      <div className={`${prefix}-header-left`} />
+      <div className={`${prefix}-header-title`}>{name}</div>
+      <div className={`${prefix}-header-right`} onClick={onClose}>
         {closeIcon}
       </div>
     </div>
     <div className={`${prefix}-singer text-center group`}>
-      <span className="name">{singer}</span>
+      <span className={`${prefix}-singer-name`}>{singer}</span>
     </div>
     <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
     {(!autoHiddenCover || (autoHiddenCover && cover)) && (
