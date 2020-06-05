@@ -77,15 +77,24 @@ label {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  color: @primary-color;
 
   .name {
+    a {
+      &,
+      &:focus,
+      &:active,
+      &:visited {
+        color: @primary-color;
+        text-decoration: none;
+      }
+    }
     @media @mobile {
       margin-bottom: 10px;
     }
   }
 
   .version {
-    color: @primary-color;
     font-size: 14px;
   }
 }

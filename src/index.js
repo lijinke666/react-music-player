@@ -182,6 +182,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     //播放模式配置
     this._PLAY_MODE_ = Object.values(PLAY_MODE)
     this._PLAY_MODE_LENGTH_ = this._PLAY_MODE_.length
+
+    this.player = React.createRef()
   }
   render() {
     const {
@@ -242,6 +244,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       removeId,
       currentLyric,
       audioLyricVisible,
+      isPlayDestroyed,
     } = this.state
 
     const preloadState =
@@ -407,6 +410,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const container = getContainer() || document.body
     const audioTitle = this.getAudioTitle()
 
+    if (isPlayDestroyed) {
+      return null
+    }
     return createPortal(
       <div
         className={cls(
@@ -418,7 +424,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           className,
         )}
         style={style}
-        ref={(player) => (this.player = player)}
+        ref={this.player}
       >
         {toggle && isMobile && responsive && (
           <AudioPlayerMobile
@@ -1013,11 +1019,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   _onDestroyPlayer = () => {
-    this.componentWillUnmount()
-    this.player.remove()
+    this.unInstallPlayer()
   }
 
   _onDestroyed = () => {
+    this.setState({ isPlayDestroyed: true })
     if (this.props.onDestroyed) {
       this.props.onDestroyed(
         this.state.playId,
@@ -1048,7 +1054,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       paused,
       ended,
       startDate,
-    } = this.audio
+    } = this.audio || {}
 
     const currentPlayIndex = audioLists.findIndex(
       (audio) => audio.id === playId,
@@ -1470,11 +1476,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const { once } = this.props
     for (let name in eventsNames) {
       const _events = eventsNames[name]
-      bind
-        ? target.addEventListener(name, _events, {
-            once: !!(once && name === 'play'),
-          })
-        : target.removeEventListener(name, _events)
+      if (target) {
+        bind
+          ? target.addEventListener(name, _events, {
+              once: !!(once && name === 'play'),
+            })
+          : target.removeEventListener(name, _events)
+      }
     }
   }
 
@@ -1872,7 +1880,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   unInstallPlayer = () => {
-    this._onDestroyed()
     this.unBindEvents(this.audio, undefined, false)
     this.unBindUnhandledRejection()
     this.unBindKeyDownEvents()
@@ -1884,6 +1891,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.lyric.stop()
       this.lyric = undefined
     }
+    this._onDestroyed()
   }
 
   // eslint-disable-next-line camelcase

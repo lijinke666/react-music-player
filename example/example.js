@@ -7,7 +7,7 @@ import Switch from 'rc-switch'
 import { createRandomNum } from '../src/utils'
 import PLAY_MODE from '../src/config/playMode'
 import lyric from './lyric'
-import { name, version } from '../package.json'
+import { name, version, repository } from '../package.json'
 
 import '../src/styles/index.less'
 import './example.less'
@@ -521,7 +521,11 @@ class Demo extends React.PureComponent {
     return (
       <>
         <h1 className="title">
-          <span className="name">{name}</span>
+          <span className="name">
+            <a href={repository.url} target="_blank" rel="noopener noreferrer" title="go to github">
+              {name}
+            </a>
+          </span>
           <span className="version">doc version: {version}</span>
         </h1>
         <p className="version">
@@ -764,6 +768,15 @@ class Demo extends React.PureComponent {
             />
             responsive
           </label>
+          <label htmlFor="autoHiddenCover">
+            <input
+              type="checkbox"
+              id="autoHiddenCover"
+              checked={params.autoHiddenCover}
+              onChange={() => this.onChangeKey('autoHiddenCover')}
+            />
+            autoHiddenCover
+          </label>
           <div className="toggle">
             theme :{params.theme}
             <Switch
@@ -799,15 +812,15 @@ class Demo extends React.PureComponent {
           <ReactJkMusicPlayer
             {...params}
             onThemeChange={(theme) => {
-              console.log('onThemeChange: ', theme);
+              console.log('onThemeChange: ', theme)
               this.updateParams({ theme })
             }}
             onModeChange={(mode) => {
-              console.log('onModeChange: ', mode);
+              console.log('onModeChange: ', mode)
               this.updateParams({ mode })
             }}
             onPlayModeChange={(playMode) => {
-              console.log('onPlayModeChange: ', playMode);
+              console.log('onPlayModeChange: ', playMode)
               this.updateParams({ playMode })
             }}
           />
