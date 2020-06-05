@@ -1608,7 +1608,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       (theme === this.lightThemeName || theme === this.darkThemeName)
     ) {
       this.setState({ theme })
-      this.props.onThemeChange && this.props.onThemeChange(theme)
     }
   }
 
@@ -1619,7 +1618,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       (mode === this.toggleModeName.full || mode === this.toggleModeName.mini)
     ) {
       this.setState({ toggle: mode === this.toggleModeName.full })
-      this.props.onModeChange && this.props.onModeChange(mode)
       if (mode === this.toggleModeName.mini) {
         this._closeAudioListsPanel()
       }

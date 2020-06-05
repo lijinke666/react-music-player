@@ -5,6 +5,7 @@ import Locale from '../src/config/locale'
 import swal from 'sweetalert'
 import Switch from 'rc-switch'
 import { createRandomNum } from '../src/utils'
+import PLAY_MODE from '../src/config/playMode'
 import lyric from './lyric'
 import { name, version } from '../package.json'
 
@@ -114,6 +115,10 @@ const options = {
   },
 
   defaultPlayMode: 'order',
+
+  // if you want dynamic change current play mode you can change it
+  // [type`order | orderLoop | singleLoop | shufflePlay`, default `order`]
+  // playMode: 'order',
 
   //audio mode        mini | full          [type `String`  default `mini`]
   mode: 'mini',
@@ -258,9 +263,9 @@ const options = {
   },
 
   //theme change handle
-  onThemeChange(theme) {
-    console.log('theme change:', theme)
-  },
+  // onThemeChange(theme) {
+  //   console.log('theme change:', theme)
+  // },
 
   onAudioListsChange(currentPlayId, audioLists, audioInfo) {
     console.log('[currentPlayId] audio lists change:', currentPlayId)
@@ -277,13 +282,13 @@ const options = {
     )
   },
 
-  onPlayModeChange(playMode) {
-    console.log('play mode change:', playMode)
-  },
+  // onPlayModeChange(playMode) {
+  //   console.log('play mode change:', playMode)
+  // },
 
-  onModeChange(mode) {
-    console.log('mode change:', mode)
-  },
+  // onModeChange(mode) {
+  //   console.log('mode change:', mode)
+  // },
 
   onAudioListsPanelChange(panelVisible) {
     console.log('audio lists panel visible:', panelVisible)
@@ -489,6 +494,10 @@ class Demo extends React.PureComponent {
   unmountPlayer = () => {
     this.setState({ unmount: true })
   }
+
+  onPlayModeChange = (e) => {
+    this.updateParams({ playMode: e.target.value })
+  }
   renderCustomUI = () => {
     return (
       <>
@@ -552,7 +561,16 @@ class Demo extends React.PureComponent {
           <button onClick={this.changePlayIndex}>
             change playIndex ({params.playIndex || 0})
           </button>
+          <select onChange={this.onPlayModeChange} value={params.playMode}>
+            {Object.values(PLAY_MODE).map((playMode) => (
+              <option value={playMode} key={playMode}>
+                {playMode}
+              </option>
+            ))}
+          </select>
           <button onClick={this.unmountPlayer}>unmount player</button>
+          <br />
+          <br />
           <label htmlFor="glassBg">
             <input type="checkbox" id="glassBg" onChange={this.onShowGlassBg} />
             glassBg
@@ -781,12 +799,16 @@ class Demo extends React.PureComponent {
           <ReactJkMusicPlayer
             {...params}
             onThemeChange={(theme) => {
-              params.onThemeChange(theme)
+              console.log('onThemeChange: ', theme);
               this.updateParams({ theme })
             }}
             onModeChange={(mode) => {
-              params.onModeChange(mode)
+              console.log('onModeChange: ', mode);
               this.updateParams({ mode })
+            }}
+            onPlayModeChange={(playMode) => {
+              console.log('onPlayModeChange: ', playMode);
+              this.updateParams({ playMode })
             }}
           />
         )}
