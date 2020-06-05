@@ -360,8 +360,8 @@ describe('<ReactJkMusicPlayer/>', () => {
       wrapper.find('.react-jinke-music-player-mobile-operation .item'),
     ).toHaveLength(1)
   })
-  it('should cannot trigger onAudioLoadError when clear audioLists', () => {
-    const onAudioLoadError = jest.fn()
+  it('should cannot trigger onAudioError when clear audioLists', () => {
+    const onAudioError = jest.fn()
     const testProps = {
       audioLists: [
         {
@@ -371,12 +371,12 @@ describe('<ReactJkMusicPlayer/>', () => {
           musicSrc: 'test.mp3',
         },
       ],
-      onAudioLoadError,
+      onAudioError,
     }
     const wrapper = mount(<ReactJkMusicPlayer {...testProps} mode="full" />)
     wrapper.setState({ audioListsPanelVisible: true })
     wrapper.find('.audio-lists-panel-header-delete-btn').simulate('click')
-    expect(onAudioLoadError).not.toHaveBeenCalled()
+    expect(onAudioError).not.toHaveBeenCalled()
   })
   it('should call getAudioInstance function', () => {
     const getAudioInstance = jest.fn()
@@ -833,8 +833,8 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(wrapper.state().musicSrc).toEqual('xxx.mp3')
     }, 2000)
   })
-  it('should call onAudioLoadError when async load music src failed', () => {
-    const onAudioLoadError = jest.fn()
+  it('should call onAudioError when async load music src failed', () => {
+    const onAudioError = jest.fn()
     const getMusicSrc = new Promise((res, rej) => {
       setTimeout(() => {
         rej()
@@ -844,12 +844,12 @@ describe('<ReactJkMusicPlayer/>', () => {
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: getMusicSrc, name: '1' }]}
         mode="full"
-        onAudioLoadError={onAudioLoadError}
+        onAudioError={onAudioError}
       />,
     )
 
     setTimeout(() => {
-      expect(onAudioLoadError).toHaveBeenCalled()
+      expect(onAudioError).toHaveBeenCalled()
     }, 2000)
   })
 

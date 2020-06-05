@@ -102,7 +102,7 @@ export interface ReactJkMusicPlayerProps {
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   onAudioVolumeChange?: (volume: number) => void
-  onAudioLoadError?: (
+  onAudioError?: (
     errMsg: any,
     currentPlayId: string,
     audioLists: Array<ReactJkMusicPlayerAudioListProps>,

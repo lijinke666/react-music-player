@@ -1,5 +1,5 @@
 /**
- * @version 4.14.1
+ * @version 4.14.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -102,7 +102,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     removeId: -1,
     isNeedMobileHack: IS_MOBILE,
     audioLyricVisible: false,
-    isAudioListsChange: false,
     notAutoPlayUntilPlayClicked: false,
   }
   static defaultProps = {
@@ -799,7 +798,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       case 'function':
         musicSrc().then((originMusicSrc) => {
           loadAudio(originMusicSrc)
-        }, this.onAudioLoadError)
+        }, this.onAudioError)
         break
       default:
         loadAudio(musicSrc)
@@ -1092,7 +1091,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({
       loading: false,
       playing: false,
-      isAudioListsChange: false,
     })
 
     if (this.state.isInitAutoplay) {
@@ -1148,10 +1146,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
         },
       )
     } else {
-      this.onAudioLoadError()
+      this.onAudioError({
+        reason:
+          '[loadAndPlayAudio]: Failed to load because no supported source was found.',
+      })
     }
   }
-  onAudioLoadError = (error) => {
+  onAudioError = (error) => {
     const { playMode, audioLists, playId, musicSrc } = this.state
     const { loadAudioErrorPlayNext } = this.props
     const isSingleLoop = playMode === PLAY_MODE.singleLoop
@@ -1172,8 +1173,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     // 如果删除歌曲或其他原因导致列表为空时
     // 这时候会触发 https://developer.mozilla.org/en-US/docs/Web/API/MediaError
     if (musicSrc) {
-      this.props.onAudioLoadError &&
-        this.props.onAudioLoadError(
+      this.props.onAudioError &&
+        this.props.onAudioError(
           this.audio.error || (error && error.reason) || null,
           playId,
           audioLists,
@@ -1454,14 +1455,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     eventsNames = {
       waiting: this.loadAndPlayAudio,
       canplay: this.canPlay,
-      error: this.onAudioLoadError,
+      error: this.onAudioError,
       ended: this.audioEnd,
       seeked: this.onAudioSeeked,
       pause: this.onPauseAudio,
       play: this.onAudioPlay,
       timeupdate: this.audioTimeUpdate,
       volumechange: this.onAudioVolumeChange,
-      stalled: this.onAudioLoadError, //当浏览器尝试获取媒体数据，但数据不可用时
+      stalled: this.onAudioError, //当浏览器尝试获取媒体数据，但数据不可用时
       abort: this.onAudioAbort,
     },
     bind = true,
@@ -1549,7 +1550,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       case 'function':
         info.musicSrc().then((originMusicSrc) => {
           this.setState({ ...info, musicSrc: originMusicSrc }, cb)
-        }, this.onAudioLoadError)
+        }, this.onAudioError)
         break
       default:
         this.setState(info, cb)
@@ -1653,16 +1654,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
       )
   }
 
-  loadNewAudioLists = (
+  loadNewAudioLists = ({
     audioLists,
-    {
-      remember,
-      defaultPlayIndex,
-      defaultPlayMode,
-      theme,
-      autoPlayInitLoadPlayList,
-    },
-  ) => {
+    remember,
+    defaultPlayIndex,
+    defaultPlayMode,
+    theme,
+    autoPlayInitLoadPlayList,
+  }) => {
     if (audioLists.length >= 1) {
       const info = this.getPlayInfoOfNewList(audioLists)
       const lastPlayStatus = remember
@@ -1672,35 +1671,43 @@ export default class ReactJkMusicPlayer extends PureComponent {
       switch (typeof info.musicSrc) {
         case 'function':
           info.musicSrc().then((val) => {
-            this.setState({
-              ...info,
-              musicSrc: val,
-              isInitAutoplay: autoPlayInitLoadPlayList,
-              ...lastPlayStatus,
-            })
-          }, this.onAudioLoadError)
+            this.setState(
+              {
+                ...info,
+                musicSrc: val,
+                isInitAutoplay: autoPlayInitLoadPlayList,
+                ...lastPlayStatus,
+              },
+              () => {
+                this.audio.load()
+              },
+            )
+          }, this.onAudioError)
           break
         default:
-          this.setState({
-            ...info,
-            isInitAutoplay: autoPlayInitLoadPlayList,
-            ...lastPlayStatus,
-          })
+          this.setState(
+            {
+              ...info,
+              isInitAutoplay: autoPlayInitLoadPlayList,
+              ...lastPlayStatus,
+            },
+            () => {
+              this.audio.load()
+            },
+          )
       }
     }
   }
 
-  // FIXME: 更新列表后 没有在第一首歌播放
-  changeAudioLists = (audioLists) => {
+  changeAudioLists = (nextProps) => {
     this.resetAudioStatus()
-    this.loadNewAudioLists(audioLists, this.props)
+    this.loadNewAudioLists(nextProps)
     this.props.onAudioListsChange &&
       this.props.onAudioListsChange(
         this.state.playId,
-        audioLists,
+        nextProps.audioLists,
         this.getBaseAudioInfo(),
       )
-    this.setState({ isAudioListsChange: true })
   }
 
   resetPlayList = (state) => {
@@ -1824,10 +1831,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   bindUnhandledRejection = () => {
-    window.addEventListener('unhandledrejection', this.onAudioLoadError)
+    window.addEventListener('unhandledrejection', this.onAudioError)
   }
   unBindUnhandledRejection = () => {
-    window.removeEventListener('unhandledrejection', this.onAudioLoadError)
+    window.removeEventListener('unhandledrejection', this.onAudioError)
   }
   bindKeyDownEvents = () => {
     document.addEventListener('keydown', this.onKeyDown, false)
@@ -1880,17 +1887,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps({
-    audioLists,
-    playIndex,
-    theme,
-    mode,
-    playMode,
-    clearPriorAudioLists,
-  }) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const {
+      audioLists,
+      playIndex,
+      theme,
+      mode,
+      playMode,
+      clearPriorAudioLists,
+    } = nextProps
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
       if (clearPriorAudioLists) {
-        this.changeAudioLists(audioLists)
+        this.changeAudioLists(nextProps)
       } else {
         this.updateAudioLists(audioLists)
       }
@@ -1901,15 +1909,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.updateTheme(theme)
     this.updateMode(mode)
     this.updatePlayMode(playMode)
-  }
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillUpdate(nextProps, nextState) {
-    if (nextProps.clearPriorAudioLists) {
-      if (nextState.isAudioListsChange !== this.state.isAudioListsChange) {
-        this.resetPlayList(nextState)
-      }
-    }
   }
 
   // eslint-disable-next-line camelcase
@@ -1944,7 +1943,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               musicSrc: val,
               ...lastPlayStatus,
             })
-          }, this.onAudioLoadError)
+          }, this.onAudioError)
           break
         default:
           this.setState({

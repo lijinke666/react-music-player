@@ -252,7 +252,7 @@ const options = {
   },
 
   //audio load failed error handle
-  onAudioLoadError(errMsg, currentPlayId, audioLists, audioInfo) {
+  onAudioError(errMsg, currentPlayId, audioLists, audioInfo) {
     console.error(
       'audio load error',
       errMsg,
@@ -564,7 +564,7 @@ class Demo extends React.PureComponent {
           <select onChange={this.onPlayModeChange} value={params.playMode}>
             {Object.values(PLAY_MODE).map((playMode) => (
               <option value={playMode} key={playMode}>
-                {playMode}
+                playMode: {playMode}
               </option>
             ))}
           </select>

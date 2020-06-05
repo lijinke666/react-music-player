@@ -10,3 +10,4 @@ npm-error.log
 yarn-error.log
 coverage
 example/dist
+.vscode

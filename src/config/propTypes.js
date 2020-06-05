@@ -51,7 +51,7 @@ export default {
   onAudioEnded: PropTypes.func,
   onAudioAbort: PropTypes.func,
   onAudioVolumeChange: PropTypes.func,
-  onAudioLoadError: PropTypes.func,
+  onAudioError: PropTypes.func,
   onAudioProgress: PropTypes.func,
   onAudioSeeked: PropTypes.func,
   onAudioDownload: PropTypes.func,

@@ -148,7 +148,7 @@ ReactDOM.render(
 | onAudioEnded             | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 当前音频播放结束的 钩子函数                                                                                                                    |
 | onAudioAbort             | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 当前音频播放中断的 钩子函数                                                                                                                    |
 | onAudioProgress          | `function(audioInfo)`                                                               | `-`                                                                                         | 音频正在播放中的 钩子函数                                                                                                                      |
-| onAudioLoadError         | `function(errMsg,currentPlayId,audioLists,audioInfo)`                               | `-`                                                                                         | 音频播放失败的 钩子函数                                                                                                                        |
+| onAudioError         | `function(errMsg,currentPlayId,audioLists,audioInfo)`                               | `-`                                                                                         | 音频播放失败的 钩子函数                                                                                                                        |
 | onAudioReload            | `function(audioInfo)`                                                               | `-`                                                                                         | 音频重新播放的 钩子函数                                                                                                                        |
 | onAudioListsChange       | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 播放列表发生改变时的 钩子函数                                                                                                                  |
 | onAudioPlayTrackChange   | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`                                                                                         | 当前播放的音乐发生改变时的 钩子函数                                                                                                            |
@@ -371,7 +371,7 @@ export interface ReactJkMusicPlayerProps {
     audioInfo: ReactJkMusicPlayerAudioInfo
   ) => void
   onAudioVolumeChange?: (volume: number) => void
-  onAudioLoadError?: (
+  onAudioError?: (
     errMsg: any,
     currentPlayId: string,
     audioLists: Array<ReactJkMusicPlayerAudioList>,
