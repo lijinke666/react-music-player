@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "unpkg": "dist/react-jinke-music-player.min.js",
-  "typing": "index.d.ts",
+  "typings": "index.d.ts",
   "files": [
     "lib",
     "es",
