@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types'
 import Locale from './locale'
 
+const playModePropTypes = PropTypes.oneOf([
+  'order',
+  'orderLoop',
+  'singleLoop',
+  'shufflePlay',
+])
+
 export default {
   audioLists: PropTypes.array.isRequired,
   locale: PropTypes.oneOfType([
@@ -9,12 +16,8 @@ export default {
   ]),
   theme: PropTypes.oneOf(['dark', 'light']),
   mode: PropTypes.oneOf(['mini', 'full']),
-  defaultPlayMode: PropTypes.oneOf([
-    'order',
-    'orderLoop',
-    'singleLoop',
-    'shufflePlay',
-  ]),
+  defaultPlayMode: playModePropTypes,
+  playMode: playModePropTypes,
   drag: PropTypes.bool,
   seeked: PropTypes.bool,
   autoPlay: PropTypes.bool,

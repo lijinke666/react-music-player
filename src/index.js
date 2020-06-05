@@ -93,7 +93,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     playModelNameVisible: false,
     theme: this.darkThemeName,
     extendsContent: null, //自定义扩展功能按钮
-    playMode: '', //当前播放模式
+    playMode: this.props.playMode || this.props.defaultPlayMode || '', //当前播放模式
     currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
     initAnimate: false,
     isInitAutoplay: false,
@@ -109,7 +109,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioLists: [],
     theme: 'dark',
     mode: 'mini',
-    defaultPlayMode: 'order',
+    defaultPlayMode: PLAY_MODE.order,
     defaultPosition: {
       left: 0,
       top: 0,
@@ -1626,6 +1626,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
+  updatePlayMode = (playMode) => {
+    if (!Object.values(PLAY_MODE).includes(playMode)) {
+      return
+    }
+    if (playMode !== this.props.playMode) {
+      this.setState({ playMode })
+    }
+  }
+
   updateAudioLists = (audioLists) => {
     const newAudioLists = [
       ...this.state.audioLists,
@@ -1878,6 +1887,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     playIndex,
     theme,
     mode,
+    playMode,
     clearPriorAudioLists,
   }) {
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
@@ -1892,6 +1902,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
     this.updateTheme(theme)
     this.updateMode(mode)
+    this.updatePlayMode(playMode)
   }
 
   // eslint-disable-next-line camelcase

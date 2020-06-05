@@ -78,6 +78,7 @@ export interface ReactJkMusicPlayerProps {
   theme?: ReactJkMusicPlayerTheme
   mode?: ReactJkMusicPlayerMode
   defaultPlayMode?: ReactJkMusicPlayerPlayMode
+  playMode?: ReactJkMusicPlayerPlayMode
   drag?: boolean
   seeked?: boolean
   autoPlay?: boolean

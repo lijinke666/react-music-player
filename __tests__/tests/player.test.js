@@ -1025,4 +1025,29 @@ describe('<ReactJkMusicPlayer/>', () => {
     success = true
     expect(success).toEqual(true)
   })
+
+  it('should only update defaultPlayMode once', () => {
+    const wrapper = mount(<ReactJkMusicPlayer defaultPlayMode="order" audioLists={[]} />)
+    expect(wrapper.state().playMode).toEqual('order')
+    wrapper.setProps({ defaultPlayMode: 'orderLoop' })
+    wrapper.update()
+    expect(wrapper.state().playMode).toEqual('order')
+  })
+
+  it('should use playMode options if all with playMode and defaultPlayMode ', () => {
+    const wrapper = mount(<ReactJkMusicPlayer playMode="orderLoop" defaultPlayMode="order" audioLists={[]} />)
+    expect(wrapper.state().playMode).toEqual('orderLoop')
+  })
+
+  // https://github.com/lijinke666/react-music-player/issues/117
+  it('should update play mode', () => {
+    const wrapper = mount(<ReactJkMusicPlayer playMode="order" audioLists={[]} />)
+    expect(wrapper.state().playMode).toEqual('order')
+    wrapper.setProps({ playMode: 'orderLoop' })
+    wrapper.update()
+    expect(wrapper.state().playMode).toEqual('orderLoop')
+    wrapper.setProps({ playMode: 'xxxxx' })
+    wrapper.update()
+    expect(wrapper.state().playMode).toEqual('orderLoop')
+  })
 })
