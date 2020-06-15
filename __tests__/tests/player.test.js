@@ -1064,4 +1064,26 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().playMode).toEqual('orderLoop')
     expect(onPlayModeChange).not.toHaveBeenCalled()
   })
+
+  it('should call onCoverClick', () => {
+    const onCoverClick = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[
+          {
+            cover: 'http://test.jpg',
+            musicSrc: 'test.mp3',
+            singer: 'xx',
+          },
+        ]}
+        onCoverClick={onCoverClick}
+      />,
+    )
+    wrapper.find('.img-content').simulate('click')
+    expect(onCoverClick).toHaveBeenCalledTimes(1)
+    wrapper.setState({ isMobile: true })
+    wrapper.find('.react-jinke-music-player-mobile-cover').simulate('click')
+    expect(onCoverClick).toHaveBeenCalledTimes(2)
+  })
 })

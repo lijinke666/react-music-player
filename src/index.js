@@ -459,6 +459,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             glassBg={glassBg}
             LyricIcon={LyricComponent}
             autoHiddenCover={autoHiddenCover}
+            onCoverClick={this.onCoverClick}
           />
         )}
 
@@ -488,6 +489,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     'img-rotate-pause': pause || !playing || !cover,
                   })}
                   style={{ backgroundImage: `url(${cover})` }}
+                  onClick={() => this.onCoverClick()}
                 />
               )}
               <div className="progress-bar-content">
@@ -687,6 +689,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
       </div>,
       container,
     )
+  }
+
+  onCoverClick = (mode = this.toggleModeName.full) => {
+    if (this.props.onCoverClick) {
+      this.props.onCoverClick(
+        mode,
+        this.state.audioLists,
+        this.getBaseAudioInfo(),
+      )
+    }
   }
 
   getAudioTitle = () => {
@@ -938,6 +950,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.setState({ isNeedMobileHack: false })
       }
       this.openPanel()
+      this.onCoverClick(this.toggleModeName.mini)
     }
     this.setState({ moveX: x, moveY: y })
   }

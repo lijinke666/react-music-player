@@ -337,6 +337,10 @@ const options = {
     console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
   },
 
+  onCoverClick (mode, audioLists, audioInfo) {
+    console.log('onCoverClick: ', mode, audioLists, audioInfo);
+  }
+
   // transform audio info like return a Promise
 
   /**

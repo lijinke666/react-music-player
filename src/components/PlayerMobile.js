@@ -35,6 +35,7 @@ const PlayerMobile = ({
   onPlay,
   glassBg,
   LyricIcon,
+  onCoverClick,
   autoHiddenCover,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
@@ -56,7 +57,10 @@ const PlayerMobile = ({
     </div>
     <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
     {(!autoHiddenCover || (autoHiddenCover && cover)) && (
-      <div className={`${prefix}-cover text-center`}>
+      <div
+        className={`${prefix}-cover text-center`}
+        onClick={() => onCoverClick()}
+      >
         <img
           src={cover}
           alt="cover"
