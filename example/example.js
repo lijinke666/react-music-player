@@ -68,10 +68,10 @@ const options = {
   audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
-  defaultPlayIndex: 0,
+  defaultPlayIndex: 1,
 
   //if you want dynamic change current play audio you can change it [type `number` default `0`]
-  // playIndex: 0,
+  // playIndex: 1,
 
   //color of the music player theme    [ type `string`: 'light' or 'dark'  default `dark` ]
   theme: 'dark',
@@ -483,7 +483,7 @@ class Demo extends React.PureComponent {
   }
   changePlayIndex = () => {
     this.updateParams({
-      playIndex: createRandomNum(0, this.state.params.audioLists.length),
+      playIndex: createRandomNum(0, this.state.params.audioLists.length - 1),
     })
   }
   updateParams = (params) => {
@@ -520,10 +520,17 @@ class Demo extends React.PureComponent {
       </>
     )
   }
+
+  // componentDidMount () {
+  //   setInterval(() => {
+  //     this.setState({ time: Date.now()})
+  //   }, 100)
+  // }
   render() {
     const { params, unmount } = this.state
     return (
       <>
+        {this.state.time}
         <h1 className="title">
           <span className="name">
             <a href={repository.url} target="_blank" rel="noopener noreferrer" title="go to github">

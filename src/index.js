@@ -64,6 +64,8 @@ import LOCALE_CONFIG from './locale'
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
+import { THEME } from './config/theme'
+import { MODE } from './config/mode'
 
 const IS_MOBILE = isMobile()
 
@@ -103,6 +105,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     isNeedMobileHack: IS_MOBILE,
     audioLyricVisible: false,
     notAutoPlayUntilPlayClicked: false,
+    playIndex: this.props.playIndex || this.props.defaultPlayIndex || 0,
   }
   static defaultProps = {
     audioLists: [],
@@ -137,6 +140,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     remember: false, //是否记住当前播放状态
     remove: true, //音乐是否可以删除
     defaultPlayIndex: 0, //默认播放索引
+    playIndex: 0,
     getContainer: () => document.body, // 播放器挂载的节点
     autoHiddenCover: false, // 当前播放歌曲没有封面时是否自动隐藏
     onBeforeAudioDownload: () => {}, // 下载前转换音频地址等
@@ -166,17 +170,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return Math.max(Number(duration) || this.audio.duration || 0, 0)
   }
 
+  get playIndex() {
+    return this.getPlayIndex()
+  }
+
   constructor(props) {
     super(props)
 
-    this.audio = null //当前播放器
-    this.lightThemeName = 'light'
-    this.darkThemeName = 'dark'
-    //模式配置
-    this.toggleModeName = {
-      full: 'full',
-      mini: 'mini',
-    }
+    this.audio = null
     this.targetId = 'music-player-controller'
 
     //播放模式配置
@@ -311,7 +312,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           onChange={this.themeChange}
           checkedChildren={locale.lightThemeText}
           unCheckedChildren={locale.darkThemeText}
-          checked={theme === this.lightThemeName}
+          checked={theme === THEME.LIGHT}
           title={locale.switchThemeText}
         />
       </span>
@@ -418,8 +419,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         className={cls(
           'react-jinke-music-player-main',
           {
-            'light-theme': theme === this.lightThemeName,
-            'dark-theme': theme === this.darkThemeName,
+            'light-theme': theme === THEME.LIGHT,
+            'dark-theme': theme === THEME.DARK,
           },
           className,
         )}
@@ -691,7 +692,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
   }
 
-  onCoverClick = (mode = this.toggleModeName.full) => {
+  getPlayIndex = (playIndex = this.state.playIndex) => {
+    return Math.max(0, Math.min(this.state.audioLists.length - 1, playIndex))
+  }
+
+  onCoverClick = (mode = MODE.FULL) => {
     if (this.props.onCoverClick) {
       this.props.onCoverClick(
         mode,
@@ -895,7 +900,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.props.onAudioListsPanelChange(false)
   }
   themeChange = (isLight) => {
-    const theme = isLight ? this.lightThemeName : this.darkThemeName
+    const theme = isLight ? THEME.LIGHT : THEME.DARK
     this.setState({
       theme,
     })
@@ -950,7 +955,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.setState({ isNeedMobileHack: false })
       }
       this.openPanel()
-      this.onCoverClick(this.toggleModeName.mini)
+      this.onCoverClick(MODE.MINI)
     }
     this.setState({ moveX: x, moveY: y })
   }
@@ -998,14 +1003,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
   openPanel = () => {
     if (this.props.toggleMode) {
       this.setState({ toggle: true })
-      this.props.onModeChange &&
-        this.props.onModeChange(this.toggleModeName.full)
+      this.props.onModeChange && this.props.onModeChange(MODE.FULL)
     }
   }
   //收起播放器
   onHidePanel = () => {
     this.setState({ toggle: false, audioListsPanelVisible: false })
-    this.props.onModeChange && this.props.onModeChange(this.toggleModeName.mini)
+    this.props.onModeChange && this.props.onModeChange(MODE.MINI)
   }
 
   onDestroyPlayer = () => {
@@ -1046,17 +1050,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
+  getCurrentPlayIndex = () => {
+    return this.state.audioLists.findIndex(
+      (audio) => audio.id === this.state.playId,
+    )
+  }
+
   //返回给使用者的 音乐信息
   getBaseAudioInfo() {
-    const {
-      playId,
-      cover,
-      name,
-      musicSrc,
-      soundValue,
-      lyric,
-      audioLists,
-    } = this.state
+    const { cover, name, musicSrc, soundValue, lyric, audioLists } = this.state
 
     const {
       currentTime,
@@ -1069,9 +1071,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       startDate,
     } = this.audio || {}
 
-    const currentPlayIndex = audioLists.findIndex(
-      (audio) => audio.id === playId,
-    )
+    const currentPlayIndex = this.getCurrentPlayIndex()
     const currentAudioListInfo = audioLists[currentPlayIndex] || {}
 
     return {
@@ -1090,6 +1090,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ended,
       startDate,
       lyric,
+      playIndex: currentPlayIndex,
     }
   }
   //播放
@@ -1208,9 +1209,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (!audioListsLen) {
       return
     }
-    const currentPlayIndex = audioLists.findIndex(
-      (audio) => audio.id === playId,
-    )
+    const currentPlayIndex = this.getCurrentPlayIndex()
+
     switch (playMode) {
       //顺序播放
       case PLAY_MODE.order:
@@ -1248,6 +1248,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       case PLAY_MODE.shufflePlay:
         {
           let randomIndex = createRandomNum(0, audioListsLen - 1)
+          const currentPlayIndex = this.getCurrentPlayIndex()
+          if (randomIndex === currentPlayIndex) {
+            randomIndex = this.getPlayIndex(randomIndex + 1)
+          }
           const randomPlayId = (audioLists[randomIndex] || {}).id
           this.audioListsPlay(randomPlayId, true)
         }
@@ -1357,7 +1361,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   //切换播放器模式
   toggleMode = (mode) => {
-    if (mode === this.toggleModeName['full']) {
+    if (mode === MODE.FULL) {
       this.setState({ toggle: true })
     }
   }
@@ -1414,11 +1418,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
     localStorage.setItem('lastPlayStatus', lastPlayStatus)
   }
   getLastPlayStatus = () => {
-    const { theme, defaultPlayMode } = this.props
+    const {
+      theme,
+      defaultPlayMode,
+      playMode,
+      defaultPlayIndex,
+      playIndex,
+    } = this.props
 
     let status = {
       currentTime: 0,
-      playMode: defaultPlayMode,
+      playMode: playMode || defaultPlayMode || PLAY_MODE.order,
       name: '',
       cover: '',
       singer: '',
@@ -1427,6 +1437,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playId: this.getDefaultPlayId(),
       theme,
       pause: false,
+      playIndex: playIndex || defaultPlayIndex || 0,
     }
     try {
       return JSON.parse(localStorage.getItem('lastPlayStatus')) || status
@@ -1500,12 +1511,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   getPlayId = (audioLists = this.state.audioLists) => {
-    const playIndex = Math.max(
-      0,
-      Math.min(audioLists.length, this.props.defaultPlayIndex),
-    )
     const playId =
-      this.state.playId || (audioLists[playIndex] && audioLists[playIndex].id)
+      this.state.playId ||
+      (audioLists[this.playIndex] && audioLists[this.playIndex].id)
     return playId
   }
 
@@ -1544,12 +1552,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       }
     })
 
-    const playIndex = Math.max(
-      0,
-      Math.min(_audioLists.length, this.props.defaultPlayIndex),
-    )
-
-    const playId = this.state.playId || _audioLists[playIndex].id
+    const playId = this.getPlayId(_audioLists)
 
     const { name = '', cover = '', singer = '', musicSrc = '', lyric = '' } =
       _audioLists.find(({ id }) => id === playId) || {}
@@ -1597,11 +1600,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setAudioVolume(remember ? soundValue : this.defaultVolume)
   }
   getDefaultPlayId = (audioLists = this.props.audioLists) => {
-    const playIndex = Math.max(
-      0,
-      Math.min(audioLists.length, this.props.defaultPlayIndex),
-    )
-    return audioLists[playIndex] && audioLists[playIndex].id
+    return audioLists[this.playIndex] && audioLists[this.playIndex].id
   }
   getLyricPlayTime = () => {
     const [m, s] = formatTime(this.audio.currentTime).split(':')
@@ -1627,7 +1626,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (
       theme &&
       theme !== this.props.theme &&
-      (theme === this.lightThemeName || theme === this.darkThemeName)
+      Object.values(THEME).includes(theme)
     ) {
       this.setState({ theme })
     }
@@ -1637,10 +1636,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (
       mode &&
       mode !== this.props.mode &&
-      (mode === this.toggleModeName.full || mode === this.toggleModeName.mini)
+      Object.values(MODE).includes(mode)
     ) {
-      this.setState({ toggle: mode === this.toggleModeName.full })
-      if (mode === this.toggleModeName.mini) {
+      this.setState({ toggle: mode === MODE.FULL })
+      if (mode === MODE.MINI) {
         this._closeAudioListsPanel()
       }
     }
@@ -1678,7 +1677,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   loadNewAudioLists = ({
     audioLists,
     remember,
-    defaultPlayIndex,
+    playMode,
     defaultPlayMode,
     theme,
     autoPlayInitLoadPlayList,
@@ -1686,8 +1685,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (audioLists.length >= 1) {
       const info = this.getPlayInfoOfNewList(audioLists)
       const lastPlayStatus = remember
-        ? this.getLastPlayStatus(defaultPlayIndex)
-        : { playMode: defaultPlayMode, theme }
+        ? this.getLastPlayStatus()
+        : { playMode: playMode || defaultPlayMode || PLAY_MODE.order, theme }
 
       switch (typeof info.musicSrc) {
         case 'function':
@@ -1731,29 +1730,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
       )
   }
 
-  resetPlayList = (state) => {
-    const _playIndex = Math.max(
-      0,
-      Math.min(state.audioLists.length, this.props.defaultPlayIndex),
-    )
-
-    const currentPlay = state.audioLists[_playIndex]
-    if (currentPlay && currentPlay.id) {
-      this.audioListsPlay(currentPlay.id, true, state)
-    }
-  }
-
   updatePlayIndex = (playIndex) => {
     // 播放索引 改变
-    const currentPlayIndex = this.state.audioLists.findIndex(
-      (audio) => audio.id === this.state.playId,
-    )
+    const currentPlayIndex = this.getCurrentPlayIndex()
     if (currentPlayIndex !== playIndex) {
-      const _playIndex = Math.max(
-        0,
-        Math.min(this.state.audioLists.length, playIndex),
-      )
-      const currentPlay = this.state.audioLists[_playIndex]
+      const currentPlay = this.state.audioLists[this.getPlayIndex(playIndex)]
       if (currentPlay && currentPlay.id) {
         this.audioListsPlay(currentPlay.id, true)
       }
