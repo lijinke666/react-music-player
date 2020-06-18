@@ -24,6 +24,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   mode="mini"
   onBeforeAudioDownload={[Function]}
   once={false}
+  playIndex={0}
   playModeShowTime={600}
   playModeTipVisible={false}
   preload={false}

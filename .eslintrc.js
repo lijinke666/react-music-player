@@ -54,5 +54,6 @@ module.exports = {
     'react/no-unknown-property': 'error',
     'react/no-string-refs': 'error',
     'react/no-direct-mutation-state': 'error',
+    'react/no-unused-state': 'error'
   },
 }

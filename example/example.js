@@ -339,6 +339,10 @@ const options = {
 
   onCoverClick (mode, audioLists, audioInfo) {
     console.log('onCoverClick: ', mode, audioLists, audioInfo);
+  },
+
+  onPlayIndexChange (playIndex) {
+    console.log('onPlayIndexChange: ', playIndex);
   }
 
   // transform audio info like return a Promise
@@ -521,16 +525,10 @@ class Demo extends React.PureComponent {
     )
   }
 
-  // componentDidMount () {
-  //   setInterval(() => {
-  //     this.setState({ time: Date.now()})
-  //   }, 100)
-  // }
   render() {
     const { params, unmount } = this.state
     return (
       <>
-        {this.state.time}
         <h1 className="title">
           <span className="name">
             <a href={repository.url} target="_blank" rel="noopener noreferrer" title="go to github">

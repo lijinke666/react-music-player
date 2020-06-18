@@ -1086,4 +1086,36 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.react-jinke-music-player-mobile-cover').simulate('click')
     expect(onCoverClick).toHaveBeenCalledTimes(2)
   })
+
+  it('should trigger onPlayIndexChange hook when audio track list change', () => {
+    const onPlayIndexChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' },
+        ]}
+        mode="full"
+        onPlayIndexChange={onPlayIndexChange}
+      />,
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
+  })
+
+  it('should trigger onAudioPlayTrackChange hook when audio track list change', () => {
+    const onAudioPlayTrackChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' },
+        ]}
+        mode="full"
+        onAudioPlayTrackChange={onAudioPlayTrackChange}
+      />,
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(onAudioPlayTrackChange).toHaveBeenCalledTimes(1)
+  })
 })

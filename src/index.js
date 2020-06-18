@@ -10,6 +10,8 @@
     8. 移除歌词功能
  */
 
+// FIXME: 如果指定了 playIndex, 需要变成受控模式
+
 import React, { PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import cls from 'classnames'
@@ -59,13 +61,13 @@ import LOCALE from './config/locale'
 import NETWORK_STATE from './config/networkState'
 import { AUDIO_LIST_REMOVE_ANIMATE_TIME } from './config/animate'
 import PLAY_MODE from './config/playMode'
+import { THEME } from './config/theme'
+import { MODE } from './config/mode'
 
 import LOCALE_CONFIG from './locale'
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
-import { THEME } from './config/theme'
-import { MODE } from './config/mode'
 
 const IS_MOBILE = isMobile()
 
@@ -94,7 +96,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioListsPanelVisible: false,
     playModelNameVisible: false,
     theme: this.darkThemeName,
-    extendsContent: null, //自定义扩展功能按钮
     playMode: this.props.playMode || this.props.defaultPlayMode || '', //当前播放模式
     currentAudioVolume: 0, //当前音量  静音后恢复到之前记录的音量
     initAnimate: false,
@@ -784,9 +785,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return pause ? this.audio.play() : this._pauseAudio()
     }
 
-    const { name, cover, musicSrc, singer, lyric = '' } = audioLists.find(
-      (audio) => audio.id === playId,
-    )
+    const playIndex = audioLists.findIndex((audio) => audio.id === playId)
+    const { name, cover, musicSrc, singer, lyric = '' } =
+      audioLists[playIndex] || {}
 
     const loadAudio = (musicSrc) => {
       this.setState(
@@ -815,13 +816,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
           audioLists,
           this.getBaseAudioInfo(),
         )
+      this.props.onPlayIndexChange && this.props.onPlayIndexChange(playIndex)
     }
 
     switch (typeof musicSrc) {
       case 'function':
-        musicSrc().then((originMusicSrc) => {
-          loadAudio(originMusicSrc)
-        }, this.onAudioError)
+        musicSrc().then(loadAudio, this.onAudioError)
         break
       default:
         loadAudio(musicSrc)

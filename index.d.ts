@@ -184,7 +184,8 @@ export interface ReactJkMusicPlayerProps {
     mode: ReactJkMusicPlayerMode,
     audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo,
-  ) => void
+  ) => void,
+  onPlayIndexChange?: (playIndex: number) => void
 }
 
 export default class ReactJkMusicPlayer extends React.PureComponent<
