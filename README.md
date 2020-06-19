@@ -182,7 +182,8 @@ ReactDOM.render(
 | onBeforeDestroy          | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | custom destroy handler before                                                                                                                                                                                                                                                                                                                               |
 | onDestroyed              | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | player destroyed handle                                                                                                                                                                                                                                                                                                                                     |
 | customDownloader         | `function(downloadInfo: TransformedDownloadAudioInfo)`                              | `-`              | custom download handle                                                                                                                                                                                                                                                                                                                                      |
-
+| onCoverClick         | `function(mode,audioLists,audioInfo)`                              | `-`              | audio cover clicked handle |
+| onPlayIndexChange         | `function(playIndex)`                              | `-`              | audio play index change handle |
 ## :bulb: Custom operation ui
 
 Support feature:
