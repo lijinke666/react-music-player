@@ -379,7 +379,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
 
     const AudioController = (
-      <div className={cls('react-jinke-music-player')} style={defaultPosition}>
+      <div
+        className={cls('react-jinke-music-player')}
+        style={defaultPosition}
+        tabIndex="-1"
+      >
         <div className={cls('music-player')}>
           {showMiniProcessBar && (
             <CircleProcessBar
@@ -430,6 +434,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         )}
         style={style}
         ref={this.player}
+        tabIndex="-1"
       >
         {toggle && isMobile && responsive && (
           <AudioPlayerMobile
@@ -1010,9 +1015,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
   openPanel = () => {
-    if (this.props.toggleMode) {
+    const { toggleMode, spaceBar } = this.props
+    if (toggleMode) {
       this.setState({ toggle: true })
       this.props.onModeChange && this.props.onModeChange(MODE.FULL)
+      if (spaceBar && this.player.current) {
+        this.player.current.focus()
+      }
     }
   }
   //收起播放器
@@ -1840,15 +1849,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
     window.removeEventListener('unhandledrejection', this.onAudioError)
   }
   bindKeyDownEvents = () => {
-    // FIXME: 不要在 document 绑定
-    document.addEventListener('keydown', this.onKeyDown, false)
+    this.player.current.addEventListener('keydown', this.onKeyDown, false)
+    if (this.props.spaceBar) {
+      this.player.current && this.player.current.focus()
+    }
   }
   unBindKeyDownEvents = () => {
-    document.removeEventListener('keydown', this.onKeyDown, false)
+    this.player.current.removeEventListener('keydown', this.onKeyDown, false)
   }
   onKeyDown = (e) => {
     const { spaceBar } = this.props
     if (spaceBar && e.keyCode === SPACE_BAR_KEYCODE) {
+      console.log('spaceBar@@@@@@: ', spaceBar, e.keyCode)
       this.onTogglePlay()
     }
   }

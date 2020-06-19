@@ -565,12 +565,18 @@
   width: @player-width;
   height: @player-height;
   z-index: 999;
+  &:focus {
+    outline: none;
+  }
 
   .music-player {
     cursor: pointer;
     position: relative;
     width: @player-width;
     height: @player-height;
+    &:focus {
+      outline: none;
+    }
 
     &-audio {
       .hidden();
@@ -604,6 +610,9 @@
       cursor: pointer;
       background-repeat: no-repeat;
       background-size: 100%; // animation: imgRotate 15s linear infinite;
+      &:focus {
+        outline: none;
+      }
 
       &.music-player-playing {
         &::before {

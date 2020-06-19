@@ -52,10 +52,12 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
       <body>
         <div
           class="react-jinke-music-player-main dark-theme text-class-name"
+          tabindex="-1"
         >
           <div
             class="react-jinke-music-player react-draggable"
             style="left: 0px; top: 0px; transform: translate(0px,0px);"
+            tabindex="-1"
           >
             <div
               class="music-player"
@@ -194,6 +196,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   >
     <div
       className="react-jinke-music-player-main dark-theme text-class-name"
+      tabIndex="-1"
     >
       <Draggable
         allowAnyClick={false}
@@ -254,6 +257,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
                 "transform": "translate(0px,0px)",
               }
             }
+            tabIndex="-1"
             transform={null}
           >
             <div

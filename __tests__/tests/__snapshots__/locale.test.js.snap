@@ -52,10 +52,12 @@ exports[`Locale test should render default locale with en_US 1`] = `
       <body>
         <div
           class="react-jinke-music-player-main dark-theme text-class-name"
+          tabindex="-1"
         >
           <div
             class="react-jinke-music-player react-draggable"
             style="left: 0px; top: 0px; transform: translate(0px,0px);"
+            tabindex="-1"
           >
             <div
               class="music-player"
@@ -213,6 +215,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
   >
     <div
       className="react-jinke-music-player-main dark-theme text-class-name"
+      tabIndex="-1"
     >
       <Draggable
         allowAnyClick={false}
@@ -273,6 +276,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
                 "transform": "translate(0px,0px)",
               }
             }
+            tabIndex="-1"
             transform={null}
           >
             <div
@@ -606,10 +610,12 @@ exports[`Locale test should render locale with zh_CN 1`] = `
       <body>
         <div
           class="react-jinke-music-player-main dark-theme text-class-name"
+          tabindex="-1"
         >
           <div
             class="react-jinke-music-player react-draggable"
             style="left: 0px; top: 0px; transform: translate(0px,0px);"
+            tabindex="-1"
           >
             <div
               class="music-player"
@@ -764,10 +770,12 @@ exports[`Locale test should render locale with zh_CN 1`] = `
         </div>
         <div
           class="react-jinke-music-player-main dark-theme text-class-name"
+          tabindex="-1"
         >
           <div
             class="react-jinke-music-player react-draggable"
             style="left: 0px; top: 0px; transform: translate(0px,0px);"
+            tabindex="-1"
           >
             <div
               class="music-player"
@@ -925,6 +933,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
   >
     <div
       className="react-jinke-music-player-main dark-theme text-class-name"
+      tabIndex="-1"
     >
       <Draggable
         allowAnyClick={false}
@@ -985,6 +994,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                 "transform": "translate(0px,0px)",
               }
             }
+            tabIndex="-1"
             transform={null}
           >
             <div

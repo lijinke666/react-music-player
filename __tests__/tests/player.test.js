@@ -26,6 +26,13 @@ import CircleProcessBar from '../../src/components/CircleProcessBar'
 import Load from '../../src/components/Load'
 import { SPACE_BAR_KEYCODE } from '../../src/config/keycode'
 
+export const sleep = (duration) => new Promise((res) => {
+  setTimeout(() => {
+    res();
+  }, duration);
+});
+
+
 describe('<ReactJkMusicPlayer/>', () => {
   it('should render a <ReactJkMusicPlayer/> components', () => {
     const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" />)
@@ -660,7 +667,9 @@ describe('<ReactJkMusicPlayer/>', () => {
       onAudioPause()
     }
     const triggerKeyDown = () => {
-      document.dispatchEvent(
+      const player = document.querySelector('.react-jinke-music-player-main')
+      player.focus()
+      player.dispatchEvent(
         new KeyboardEvent('keydown', { keyCode: SPACE_BAR_KEYCODE }),
       )
     }
@@ -674,13 +683,25 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioPlay={onAudioPlay}
       />,
     )
-    wrapper.find('.music-player-panel').simulate('focus')
-    wrapper.find('.music-player-panel').simulate('click')
     triggerKeyDown()
-    expect(onAudioPause).not.toHaveBeenCalled()
-    expect(onAudioPlay).toHaveBeenCalledTimes(1)
+    sleep(1000).then(() => {
+      expect(wrapper.state().isAutoPlayWhenUserClicked).toBe(true)
+      expect(onAudioPause).not.toHaveBeenCalled()
+      expect(onAudioPlay).toHaveBeenCalledTimes(1)
+    })
     triggerKeyDown()
-    expect(onAudioPause).toHaveBeenCalledTimes(1)
+    sleep(1000).then(() => {
+      expect(onAudioPause).toHaveBeenCalledTimes(1)
+    })
+    wrapper.setProps({ mode: 'mini' })
+    triggerKeyDown()
+    sleep(1000).then(() => {
+      expect(onAudioPlay).toHaveBeenCalledTimes(2)
+    })
+    triggerKeyDown()
+    sleep(1000).then(() => {
+      expect(onAudioPause).toHaveBeenCalledTimes(2)
+    })
   })
 
   it('should find destroy button', () => {
@@ -1179,5 +1200,35 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().musicSrc).toEqual('b')
     expect(wrapper.state().cover).toEqual('b')
     expect(wrapper.state().name).toEqual('b')
+  })
+
+  it('should auto play audio clicked in audio panel list', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+          { musicSrc: 'b', cover: 'b', name: 'b' },
+        ]}
+        autoPlay={false}
+      />,
+    )
+    wrapper.find('.audio-item').last().simulate('click')
+    expect(wrapper.state().isAutoPlayWhenUserClicked).toBe(true)
+  })
+
+  it('should auto play audio clicked by prev or next audio button', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+          { musicSrc: 'b', cover: 'b', name: 'b' },
+        ]}
+        autoPlay={false}
+      />,
+    )
+    wrapper.find('.next-audio').simulate('click')
+    expect(wrapper.state().isAutoPlayWhenUserClicked).toBe(true)
   })
 })
