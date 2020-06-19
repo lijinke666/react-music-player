@@ -1,5 +1,5 @@
 /**
- * @version 4.14.3
+ * @version 4.15.1
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -1858,7 +1858,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onKeyDown = (e) => {
     const { spaceBar } = this.props
     if (spaceBar && e.keyCode === SPACE_BAR_KEYCODE) {
-      console.log('spaceBar@@@@@@: ', spaceBar, e.keyCode)
       this.onTogglePlay()
     }
   }
@@ -1909,7 +1908,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playMode,
       clearPriorAudioLists,
     } = nextProps
-    console.log('playIndex: ', playIndex)
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
       if (clearPriorAudioLists) {
         this.changeAudioLists(nextProps)

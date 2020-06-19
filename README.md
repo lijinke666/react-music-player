@@ -57,9 +57,7 @@ npm install react-jinke-music-player --save
 ## :framed_picture: Screenshots
 
 > mini mode <br/>
-
 > ![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png)
-
 > Light Theme <br/>
 
 ![light theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
@@ -161,7 +159,7 @@ ReactDOM.render(
 | onAudioEnded             | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | The single song is ended handle                                                                                                                                                                                                                                                                                                                             |
 | onAudioAbort             | `function(currentPlayId, audioLists, audioInfo)`                                    | `-`              | audio load abort The target event like {...,audioName:xx,audioSrc:xx,playMode:xx}                                                                                                                                                                                                                                                                           |
 | onAudioProgress          | `function(audioInfo)`                                                               | `-`              | audio play progress handle                                                                                                                                                                                                                                                                                                                                  |
-| onAudioError         | `function(errMsg,currentPlayId, audioLists, audioInfo)`                             | `-`              | audio load failed error handle                                                                                                                                                                                                                                                                                                                              |
+| onAudioError             | `function(errMsg,currentPlayId, audioLists, audioInfo)`                             | `-`              | audio load failed error handle                                                                                                                                                                                                                                                                                                                              |
 | onAudioReload            | `function(audioInfo)`                                                               | `-`              | audio reload handle                                                                                                                                                                                                                                                                                                                                         |
 | onAudioListsChange       | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | audio lists change handle                                                                                                                                                                                                                                                                                                                                   |
 | onAudioPlayTrackChange   | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | audio current play track change handle                                                                                                                                                                                                                                                                                                                      |
@@ -182,8 +180,9 @@ ReactDOM.render(
 | onBeforeDestroy          | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | custom destroy handler before                                                                                                                                                                                                                                                                                                                               |
 | onDestroyed              | `function(currentPlayId,audioLists,audioInfo)`                                      | `-`              | player destroyed handle                                                                                                                                                                                                                                                                                                                                     |
 | customDownloader         | `function(downloadInfo: TransformedDownloadAudioInfo)`                              | `-`              | custom download handle                                                                                                                                                                                                                                                                                                                                      |
-| onCoverClick         | `function(mode,audioLists,audioInfo)`                              | `-`              | audio cover clicked handle |
-| onPlayIndexChange         | `function(playIndex)`                              | `-`              | audio play index change handle |
+| onCoverClick             | `function(mode,audioLists,audioInfo)`                                               | `-`              | audio cover clicked handle                                                                                                                                                                                                                                                                                                                                  |
+| onPlayIndexChange        | `function(playIndex)`                                                               | `-`              | audio play index change handle                                                                                                                                                                                                                                                                                                                              |
+
 ## :bulb: Custom operation ui
 
 Support feature:
@@ -299,6 +298,7 @@ const onDestroyed = (currentPlayId, audioLists, audioInfo) => {
 // so cool, so easy !!!
 <ReactJkMusicPlayer showMediaSession />
 ```
+
 <img src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-destop.png" max-width="100%"/>
 <img src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/media-session-mobile.jpeg" width="400" max-width="100%"/>
 
