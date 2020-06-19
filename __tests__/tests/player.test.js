@@ -1118,4 +1118,66 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.next-audio').simulate('click')
     expect(onAudioPlayTrackChange).toHaveBeenCalledTimes(1)
   })
+  it('should trigger onPlayIndexChange hook when playIndex props update', () => {
+    const onPlayIndexChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        playIndex={0}
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' },
+        ]}
+        onPlayIndexChange={onPlayIndexChange}
+      />,
+    )
+    expect(onPlayIndexChange).not.toHaveBeenCalled()
+    wrapper.setProps({ playIndex: 1 })
+    wrapper.update()
+    expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
+  })
+  it('should get first audio info by default play index', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        defaultPlayIndex={0}
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+          { musicSrc: 'b', cover: 'b', name: 'b' },
+        ]}
+      />,
+    )
+    expect(wrapper.state().musicSrc).toEqual('a')
+    expect(wrapper.state().cover).toEqual('a')
+    expect(wrapper.state().name).toEqual('a')
+  })
+
+  it('should get secondary audio info by default play index', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        defaultPlayIndex={1}
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+          { musicSrc: 'b', cover: 'b', name: 'b' },
+        ]}
+      />,
+    )
+    expect(wrapper.state().musicSrc).toEqual('b')
+    expect(wrapper.state().cover).toEqual('b')
+    expect(wrapper.state().name).toEqual('b')
+  })
+
+
+  it('should get secondary audio info by play index', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        playIndex={1}
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+          { musicSrc: 'b', cover: 'b', name: 'b' },
+        ]}
+      />,
+    )
+    expect(wrapper.state().musicSrc).toEqual('b')
+    expect(wrapper.state().cover).toEqual('b')
+    expect(wrapper.state().name).toEqual('b')
+  })
 })

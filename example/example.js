@@ -68,12 +68,12 @@ const options = {
   audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
-  defaultPlayIndex: 1,
+  // defaultPlayIndex: 1,
 
   //if you want dynamic change current play audio you can change it [type `number` default `0`]
-  // playIndex: 1,
+  playIndex: 1,
 
-  //color of the music player theme    [ type `string`: 'light' or 'dark'  default `dark` ]
+  //color of the music player theme    [ type: 'light' | 'dark'  default `dark` ]
   theme: 'dark',
 
   // Specifies movement boundaries. Accepted values:
@@ -341,9 +341,9 @@ const options = {
     console.log('onCoverClick: ', mode, audioLists, audioInfo);
   },
 
-  onPlayIndexChange (playIndex) {
-    console.log('onPlayIndexChange: ', playIndex);
-  }
+  // onPlayIndexChange (playIndex) {
+  //   console.log('onPlayIndexChange: ', playIndex);
+  // }
 
   // transform audio info like return a Promise
 
@@ -506,6 +506,7 @@ class Demo extends React.PureComponent {
   onPlayModeChange = (e) => {
     this.updateParams({ playMode: e.target.value })
   }
+
   renderCustomUI = () => {
     return (
       <>
@@ -525,10 +526,17 @@ class Demo extends React.PureComponent {
     )
   }
 
+  // componentDidMount () {
+  //   setInterval(() => {
+  //     this.setState({ time : Date.now()})
+  //   }, 200)
+  // }
+
   render() {
     const { params, unmount } = this.state
     return (
       <>
+        {this.state.time}
         <h1 className="title">
           <span className="name">
             <a href={repository.url} target="_blank" rel="noopener noreferrer" title="go to github">
@@ -831,6 +839,10 @@ class Demo extends React.PureComponent {
             onPlayModeChange={(playMode) => {
               console.log('onPlayModeChange: ', playMode)
               this.updateParams({ playMode })
+            }}
+            onPlayIndexChange={(playIndex) => {
+              console.log('onPlayIndexChange: ', playIndex)
+              this.updateParams({ playIndex })
             }}
           />
         )}

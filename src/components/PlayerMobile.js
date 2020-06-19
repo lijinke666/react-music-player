@@ -56,6 +56,7 @@ const PlayerMobile = ({
       <span className={`${prefix}-singer-name`}>{singer}</span>
     </div>
     <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
+    {/* lgtm [js/trivial-conditional] */}
     {(!autoHiddenCover || (autoHiddenCover && cover)) && (
       <div
         className={`${prefix}-cover text-center`}
