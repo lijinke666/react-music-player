@@ -68,7 +68,7 @@ const options = {
   audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
-  // defaultPlayIndex: 1,
+  // defaultPlayIndex: 0,
 
   //if you want dynamic change current play audio you can change it [type `number` default `0`]
   playIndex: 1,
@@ -526,17 +526,10 @@ class Demo extends React.PureComponent {
     )
   }
 
-  // componentDidMount () {
-  //   setInterval(() => {
-  //     this.setState({ time : Date.now()})
-  //   }, 200)
-  // }
-
   render() {
     const { params, unmount } = this.state
     return (
       <>
-        {this.state.time}
         <h1 className="title">
           <span className="name">
             <a href={repository.url} target="_blank" rel="noopener noreferrer" title="go to github">

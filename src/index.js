@@ -1,5 +1,5 @@
 /**
- * @version 4.14.2
+ * @version 4.14.3
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -11,7 +11,6 @@
  */
 
 // FIXME: 歌词不能暂停
-// FIXME: defaultPlayIndex 不生效
 
 import React, { PureComponent } from 'react'
 import { createPortal } from 'react-dom'
@@ -111,8 +110,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   static defaultProps = {
     audioLists: [],
-    theme: 'dark',
-    mode: 'mini',
+    theme: THEME.DARK,
+    mode: MODE.MINI,
     defaultPlayMode: PLAY_MODE.order,
     defaultPosition: {
       left: 0,
@@ -142,7 +141,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     remember: false, //是否记住当前播放状态
     remove: true, //音乐是否可以删除
     defaultPlayIndex: 0, //默认播放索引
-    playIndex: 0,
     getContainer: () => document.body, // 播放器挂载的节点
     autoHiddenCover: false, // 当前播放歌曲没有封面时是否自动隐藏
     onBeforeAudioDownload: () => {}, // 下载前转换音频地址等
@@ -1743,7 +1741,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   updatePlayIndex = (playIndex) => {
     const currentPlayIndex = this.getCurrentPlayIndex()
-    if (currentPlayIndex !== playIndex) {
+    if (playIndex !== undefined && currentPlayIndex !== playIndex) {
       const currentPlay = this.state.audioLists[this.getPlayIndex(playIndex)]
       if (currentPlay && currentPlay.id) {
         this.audioListsPlay(currentPlay.id, true)
@@ -1911,6 +1909,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playMode,
       clearPriorAudioLists,
     } = nextProps
+    console.log('playIndex: ', playIndex)
     if (!arrayEqual(audioLists)(this.props.audioLists)) {
       if (clearPriorAudioLists) {
         this.changeAudioLists(nextProps)

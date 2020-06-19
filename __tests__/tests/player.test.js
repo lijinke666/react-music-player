@@ -1231,4 +1231,26 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.next-audio').simulate('click')
     expect(wrapper.state().isAutoPlayWhenUserClicked).toBe(true)
   })
+
+  it('should cannot trigger onPlayIndexChange when open full mode', () => {
+    const onAudioPlay = jest.fn()
+    const onPlayIndexChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        defaultPlayIndex={1}
+        mode="mini"
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+          { musicSrc: 'b', cover: 'b', name: 'b' },
+        ]}
+        autoPlay={false}
+        onAudioPlay={onAudioPlay}
+        onPlayIndexChange={onPlayIndexChange}
+      />,
+    )
+    wrapper.find('.music-player-controller').simulate('click')
+    expect(onAudioPlay).not.toHaveBeenCalled()
+    expect(onPlayIndexChange).not.toHaveBeenCalled()
+    expect(wrapper.state().name).toEqual('b')
+  })
 })
