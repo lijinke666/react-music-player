@@ -15,6 +15,8 @@ export interface ReactJkMusicPlayerAudioInfo {
   startDate: any,
   volume: number,
   lyric: string,
+  currentLyric: string,
+  playIndex: number,
   [key: string]: any
 }
 

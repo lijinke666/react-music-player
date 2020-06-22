@@ -13,14 +13,12 @@ const tagRegMap = {
   by: 'by',
 }
 
-function noop() {}
-
 export default class Lyric {
-  constructor(lrc, hanlder = noop) {
+  constructor(lrc, handler = () => {}) {
     this.lrc = lrc
     this.tags = {}
     this.lines = []
-    this.handler = hanlder
+    this.handler = handler
     this.state = STATE_PAUSE
     this.curLine = 0
 
@@ -44,6 +42,7 @@ export default class Lyric {
 
   _initLines() {
     const lines = this.lrc.split('\n')
+    const offset = parseInt(this.tags['offset']) || 0
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i]
       let result = timeExp.exec(line)
@@ -52,7 +51,10 @@ export default class Lyric {
         if (txt) {
           this.lines.push({
             time:
-              result[1] * 60 * 1000 + result[2] * 1000 + (result[3] || 0) * 10,
+              result[1] * 60 * 1000 +
+              result[2] * 1000 +
+              (result[3] || 0) * 10 +
+              offset,
             txt,
           })
         }

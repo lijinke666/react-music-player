@@ -68,10 +68,10 @@ const options = {
   audioLists: audioList1,
 
   //default play index of the audio player  [type `number` default `0`]
-  // defaultPlayIndex: 0,
+  defaultPlayIndex: 0,
 
   //if you want dynamic change current play audio you can change it [type `number` default `0`]
-  playIndex: 1,
+  // playIndex: 0,
 
   //color of the music player theme    [ type: 'light' | 'dark'  default `dark` ]
   theme: 'dark',
@@ -121,7 +121,7 @@ const options = {
   // playMode: 'order',
 
   //audio mode        mini | full          [type `String`  default `mini`]
-  mode: 'mini',
+  mode: 'full',
 
   /**
    * [ type `Boolean` default 'false' ]
@@ -299,7 +299,7 @@ const options = {
   },
 
   onAudioLyricChange(lineNum, currentLyric) {
-    // console.log('audio lyric change:', lineNum, currentLyric)
+    console.log('audio lyric change:', lineNum, currentLyric)
   },
 
   // custom music player root node

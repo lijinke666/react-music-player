@@ -7,7 +7,6 @@
     1. 使用 typescript + react hooks 重构 :)
     4. 精简api
     6. 使用 antd icon
-    8. 移除歌词功能
  */
 
 // FIXME: 歌词不能暂停
@@ -792,7 +791,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     //如果点击当前项 就暂停 或者播放
     if (playId === currentPlayId && !ignore) {
       this.setState({ pause: !pause, playing: !playing })
-      return pause ? this.audio.play() : this._pauseAudio()
+      return pause ? this.audio.play() : this.audio.pause()
     }
 
     const playIndex = audioLists.findIndex((audio) => audio.id === playId)
@@ -817,7 +816,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         },
         () => {
           this.audio.load()
-          this.initLyricParser()
+          // this.initLyricParser()
           this.updateMediaSessionMetadata()
         },
       )
@@ -1074,7 +1073,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   //返回给使用者的 音乐信息
   getBaseAudioInfo() {
-    const { cover, name, musicSrc, soundValue, lyric, audioLists } = this.state
+    const {
+      cover,
+      name,
+      musicSrc,
+      soundValue,
+      lyric,
+      audioLists,
+      currentLyric,
+    } = this.state
 
     const {
       currentTime,
@@ -1106,15 +1113,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ended,
       startDate,
       lyric,
+      currentLyric,
       playIndex: currentPlayIndex,
     }
   }
   //播放
   onTogglePlay = () => {
     if (this.state.audioLists.length >= 1) {
-      this.lyric.togglePlay()
+      this.lyric && this.lyric.togglePlay()
       if (this.state.playing) {
-        return this._pauseAudio()
+        return this.audio.pause()
       }
       this.setState(
         // lgtm [js/react/inconsistent-state-update]
@@ -1135,18 +1143,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  //暂停
-  _pauseAudio = () => {
-    this.audio.pause()
-    this.setState({ playing: false, pause: true }, () => {
-      this.lyric && this.lyric.stop()
-    })
-  }
   onPauseAudio = () => {
-    this._pauseAudio()
-    this.lyric && this.lyric.stop()
+    this.setState({ playing: false, pause: true })
     this.props.onAudioPause && this.props.onAudioPause(this.getBaseAudioInfo())
   }
+
   //加载音频
   loadAndPlayAudio = () => {
     const { remember } = this.props
@@ -1230,7 +1231,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       //顺序播放
       case PLAY_MODE.order:
         // 拖拽排序后 或者 正常播放 到最后一首歌 就暂停
-        if (currentPlayIndex === audioListsLen - 1) return this._pauseAudio()
+        if (currentPlayIndex === audioListsLen - 1) {
+          this.audio.pause()
+          return
+        }
         this.audioListsPlay(
           isNext
             ? audioLists[currentPlayIndex + 1].id
@@ -1333,7 +1337,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.props.onAudioVolumeChange && this.props.onAudioVolumeChange(volume)
   }
   onAudioPlay = () => {
-    this.setState({ playing: true, loading: false }, this.initLyricParser)
+    this.setState({ playing: true, loading: false })
     this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
   }
   //进度条跳跃
@@ -1616,11 +1620,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return m * 1000 + s * 10
   }
   initLyricParser = () => {
-    this.lyric = undefined
     this.lyric = new Lyric(this.state.lyric, this.onLyricChange)
-    this.lyric.stop()
+    this.setState({ currentLyric: this.lyric.lines[0].text })
     if (this.props.showLyric && this.state.playing) {
-      this.lyric.seek(this.getLyricPlayTime())
+      // this.lyric.seek(this.getLyricPlayTime())
       this.lyric.play()
     }
   }
@@ -1862,7 +1865,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  initPlayer = (audioLists) => {
+  initPlayer = (audioLists = this.props.audioLists) => {
     if (!Array.isArray(audioLists)) {
       return
     }
@@ -1953,7 +1956,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   componentDidMount() {
     this.addMobileListener()
-    this.initPlayer(this.props.audioLists)
+    this.initPlayer()
     this.onGetAudioInstance()
   }
 }

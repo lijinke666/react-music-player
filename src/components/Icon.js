@@ -4,7 +4,7 @@ import FaPauseCircle from 'react-icons/lib/fa/pause-circle'
 
 export { default as FaHeadphonesIcon } from 'react-icons/lib/fa/headphones'
 export { default as FaMinusSquareOIcon } from 'react-icons/lib/fa/minus-square-o'
-export { default as LyricIcon } from 'react-icons/lib/fa/angellist'
+export { default as LyricIcon } from 'react-icons/lib/fa/book'
 export { default as ReloadIcon } from 'react-icons/lib/fa/refresh'
 export { default as MdVolumeDownIcon } from 'react-icons/lib/md/volume-up'
 export { default as MdVolumeMuteIcon } from 'react-icons/lib/md/volume-off'
