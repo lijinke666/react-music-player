@@ -41,6 +41,7 @@ module.exports = {
     'no-unused-vars': ['error', { args: 'none' }],
     'no-use-before-define': ['error', 'nofunc'],
     'no-var': 'error',
+    'no-console': 'error',
     'prefer-arrow-callback': 'error',
     'prefer-spread': 'error',
     'prefer-template': 'error',

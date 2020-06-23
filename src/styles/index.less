@@ -35,7 +35,6 @@
     cursor: move;
     z-index: @player-lyric-z-index;
     bottom: @music-player-panel-height + 20px;
-    padding: 20px;
     width: 100%;
     left: 0;
     text-align: center;
@@ -45,6 +44,7 @@
 
     @media @mobile {
       font-size: @player-lyric-font-size-mobile;
+      z-index: @player-lyric-z-index-mobile;
 
       &:hover {
         box-shadow: 2px 2px 20px @border-color;
@@ -570,7 +570,7 @@
   position: fixed;
   width: @player-width;
   height: @player-height;
-  z-index: 999;
+  z-index: @player-mini-z-index;
   &:focus {
     outline: none;
   }

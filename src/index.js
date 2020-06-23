@@ -1,5 +1,5 @@
 /**
- * @version 4.15.1
+ * @version 4.15.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
@@ -8,8 +8,6 @@
     4. 精简api
     6. 使用 antd icon
  */
-
-// FIXME: 歌词不能暂停
 
 import React, { PureComponent } from 'react'
 import { createPortal } from 'react-dom'
@@ -211,7 +209,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       remove,
       lyricClassName,
       showLyric,
-      emptyLyricText,
       getContainer,
       autoHiddenCover,
       showDestroy,
@@ -683,7 +680,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {audioLyricVisible && (
           <Draggable>
             <div className={cls('music-player-lyric', lyricClassName)}>
-              {currentLyric || emptyLyricText}
+              {currentLyric || locale.emptyLyricText}
             </div>
           </Draggable>
         )}
@@ -784,6 +781,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   audioListsPlay = (playId, ignore = false, state = this.state) => {
     const { playId: currentPlayId, pause, playing, audioLists } = state
     if (Array.isArray(audioLists) && audioLists.length === 0) {
+      // eslint-disable-next-line no-console
       return console.warn(
         'Warning: Your playlist has no songs. and cannot play !',
       )
@@ -815,9 +813,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
           isAutoPlayWhenUserClicked: true,
         },
         () => {
+          this.lyric && this.lyric.stop()
           this.audio.load()
-          // this.initLyricParser()
           this.updateMediaSessionMetadata()
+          setTimeout(() => {
+            this.initLyricParser()
+          }, 0)
         },
       )
       this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
@@ -841,12 +842,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   resetAudioStatus = () => {
     this.audio.pause()
+    this.lyric && this.lyric.stop()
     this.initPlayInfo([])
     this.setState({
       currentTime: 0,
       loading: false,
       playing: false,
       pause: true,
+      lyric: '',
       currentLyric: '',
       playId: this.initPlayId,
     })
@@ -1120,7 +1123,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   //播放
   onTogglePlay = () => {
     if (this.state.audioLists.length >= 1) {
-      this.lyric && this.lyric.togglePlay()
       if (this.state.playing) {
         return this.audio.pause()
       }
@@ -1143,9 +1145,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  onPauseAudio = () => {
+  onAudioPause = () => {
     this.setState({ playing: false, pause: true })
     this.props.onAudioPause && this.props.onAudioPause(this.getBaseAudioInfo())
+    if (this.state.lyric && this.lyric) {
+      this.lyric.togglePlay()
+    }
+  }
+
+  onAudioPlay = () => {
+    this.setState({ playing: true, loading: false })
+    this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
+    if (this.state.lyric && this.lyric) {
+      this.lyric.togglePlay()
+    }
   }
 
   //加载音频
@@ -1194,7 +1207,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const isSingleLoop = playMode === PLAY_MODE.singleLoop
     const currentPlayMode = isSingleLoop ? PLAY_MODE.order : playMode
 
-    this.lyric.stop()
+    this.lyric && this.lyric.stop()
 
     //如果当前音乐加载出错 尝试播放下一首
     if (loadAudioErrorPlayNext && audioLists.length) {
@@ -1336,17 +1349,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
     this.props.onAudioVolumeChange && this.props.onAudioVolumeChange(volume)
   }
-  onAudioPlay = () => {
-    this.setState({ playing: true, loading: false })
-    this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
-  }
   //进度条跳跃
   onAudioSeeked = () => {
     if (this.state.audioLists.length >= 1) {
       if (this.state.playing) {
         this.setState({ playing: true }, () => {
           this.loadAndPlayAudio()
-          this.lyric.seek(this.getLyricPlayTime())
+          this.lyric.seek(this.audio.currentTime * 1000)
         })
       }
       this.props.onAudioSeeked &&
@@ -1375,7 +1384,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (audioLists.length) {
       this.audio.pause()
       this.state.isInitAutoPlay && this.audio.play()
-      this.lyric.stop()
+      this.lyric && this.lyric.stop()
     }
   }
   //切换播放器模式
@@ -1507,7 +1516,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       error: this.onAudioError,
       ended: this.audioEnd,
       seeked: this.onAudioSeeked,
-      pause: this.onPauseAudio,
+      pause: this.onAudioPause,
       play: this.onAudioPlay,
       timeupdate: this.audioTimeUpdate,
       volumechange: this.onAudioVolumeChange,
@@ -1602,7 +1611,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.media = window.matchMedia(
       '(max-width: 768px) and (orientation : portrait)',
     )
-    this.media.addListener(this.listenerIsMobile)
+    this.media.addEventListener('change', this.listenerIsMobile)
+  }
+  removeMobileListener = () => {
+    if (this.media) {
+      this.media.removeEventListener('change', this.listenerIsMobile)
+      this.media = undefined
+    }
   }
   setDefaultAudioVolume = () => {
     const { defaultVolume, remember } = this.props
@@ -1615,20 +1630,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const playIndex = this.getPlayIndex()
     return audioLists[playIndex] && audioLists[playIndex].id
   }
-  getLyricPlayTime = () => {
-    const [m, s] = formatTime(this.audio.currentTime).split(':')
-    return m * 1000 + s * 10
-  }
   initLyricParser = () => {
-    if (this.state.lyric) {
-      this.lyric = new Lyric(this.state.lyric, this.onLyricChange)
-      this.setState({
-        currentLyric: this.lyric.lines[0] && this.lyric.lines[0].text,
-      })
-      if (this.props.showLyric && this.state.playing) {
-        this.lyric.play()
-      }
-    }
+    this.lyric = new Lyric(this.state.lyric, this.onLyricChange)
+    this.setState({
+      currentLyric: this.lyric.lines[0] && this.lyric.lines[0].text,
+    })
   }
   onLyricChange = ({ lineNum, txt }) => {
     this.setState({
@@ -1801,6 +1807,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           position: audio.currentTime || 0,
         })
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('setPositionState error: ', error)
       }
     }
@@ -1839,6 +1846,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.updateMediaSessionPositionState()
         })
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.warn(
           'Warning! The "seekto" media session action is not supported.',
         )
@@ -1889,18 +1897,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  unInstallPlayer = () => {
-    this.unBindEvents(this.audio, undefined, false)
-    this.unBindUnhandledRejection()
-    this.unBindKeyDownEvents()
-    if (this.media) {
-      this.media.removeListener(this.listenerIsMobile)
-      this.media = undefined
-    }
+  removeLyric = () => {
     if (this.lyric) {
       this.lyric.stop()
       this.lyric = undefined
     }
+  }
+
+  unInstallPlayer = () => {
+    this.unBindEvents(this.audio, undefined, false)
+    this.unBindUnhandledRejection()
+    this.unBindKeyDownEvents()
+    this.removeMobileListener()
+    this.removeLyric()
     this._onDestroyed()
   }
 

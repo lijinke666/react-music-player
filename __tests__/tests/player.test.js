@@ -25,13 +25,7 @@ import PlayModel from '../../src/components/PlayModel'
 import CircleProcessBar from '../../src/components/CircleProcessBar'
 import Load from '../../src/components/Load'
 import { SPACE_BAR_KEYCODE } from '../../src/config/keycode'
-
-export const sleep = (duration) => new Promise((res) => {
-  setTimeout(() => {
-    res();
-  }, duration);
-});
-
+import { sleep } from './utils'
 
 describe('<ReactJkMusicPlayer/>', () => {
   it('should render a <ReactJkMusicPlayer/> components', () => {

@@ -47,6 +47,7 @@ describe('Locale test', () => {
         ]}
       />,
     )
+    wrapper.setState({ audioLyricVisible: true })
     expect(wrapper.find('.music-player-controller-setting').text()).toContain(
       'Open',
     )
@@ -66,6 +67,7 @@ describe('Locale test', () => {
     expect(getTitle(wrapper, '.audio-lists-btn')).toEqual('Playlists')
     expect(getTitle(wrapper, '.hide-panel')).toEqual('Minimize')
     expect(getTitle(wrapper, '.destroy-btn')).toEqual('Destroy')
+    expect(wrapper.find('.music-player-lyric').text()).toContain('No lyric')
     expect(wrapper.find('.rc-switch-inner').text()).toContain('D')
     wrapper.find('.rc-switch').simulate('click')
     expect(wrapper.find('.rc-switch-inner').text()).toContain('L')
@@ -104,6 +106,7 @@ describe('Locale test', () => {
         ]}
       />,
     )
+    wrapper.setState({ audioLyricVisible: true })
     expect(wrapper.find('.music-player-controller-setting').text()).toContain(
       '打开',
     )
@@ -123,6 +126,7 @@ describe('Locale test', () => {
     expect(getTitle(wrapper, '.audio-lists-btn')).toEqual('播放列表')
     expect(getTitle(wrapper, '.hide-panel')).toEqual('切换至迷你模式')
     expect(getTitle(wrapper, '.destroy-btn')).toEqual('移除播放器')
+    expect(wrapper.find('.music-player-lyric').text()).toContain('暂无歌词')
     expect(wrapper.find('.rc-switch-inner').text()).toContain('暗')
     wrapper.find('.rc-switch').simulate('click')
     expect(wrapper.find('.rc-switch-inner').text()).toContain('亮')
