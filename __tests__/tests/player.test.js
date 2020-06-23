@@ -1247,4 +1247,36 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onPlayIndexChange).not.toHaveBeenCalled()
     expect(wrapper.state().name).toEqual('b')
   })
+
+  it('should not throw error when unmount player', () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+        ]}
+        autoPlay={false}
+      />,
+    )
+    wrapper.unmount()
+    expect(errorSpy).not.toHaveBeenCalled()
+  })
+
+  it('should not throw error when unmount player after destroyed', () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[
+          { musicSrc: 'a', cover: 'a', name: 'a' },
+        ]}
+        autoPlay={false}
+        showDestroy
+      />,
+    )
+    wrapper.find('.destroy-btn').simulate('click')
+    wrapper.unmount()
+    expect(errorSpy).not.toHaveBeenCalled()
+  })
 })
