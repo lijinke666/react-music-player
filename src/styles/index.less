@@ -24,7 +24,9 @@
     }
 
     &-active {
-      color: @primary-color;
+      &, svg {
+        color: @primary-color !important;
+      }
     }
   }
 

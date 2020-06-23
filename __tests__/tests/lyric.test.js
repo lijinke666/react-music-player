@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import ReactJkMusicPlayer from '../../src'
 import lyric from '../../example/lyric'
-import { sleep } from './utils'
+import { sleep } from '../utils'
 
 const createPlayer = (props) => (
   <ReactJkMusicPlayer
