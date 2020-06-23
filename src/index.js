@@ -1620,11 +1620,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     return m * 1000 + s * 10
   }
   initLyricParser = () => {
-    this.lyric = new Lyric(this.state.lyric, this.onLyricChange)
-    this.setState({ currentLyric: this.lyric.lines[0].text })
-    if (this.props.showLyric && this.state.playing) {
-      // this.lyric.seek(this.getLyricPlayTime())
-      this.lyric.play()
+    if (this.state.lyric) {
+      this.lyric = new Lyric(this.state.lyric, this.onLyricChange)
+      this.setState({
+        currentLyric: this.lyric.lines[0] && this.lyric.lines[0].text,
+      })
+      if (this.props.showLyric && this.state.playing) {
+        this.lyric.play()
+      }
     }
   }
   onLyricChange = ({ lineNum, txt }) => {
