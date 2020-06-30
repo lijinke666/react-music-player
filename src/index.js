@@ -275,7 +275,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const progressHandler = seeked
       ? {
-          onChange: this.onHandleProgress,
+          onChange: this.onProgressChange,
           onAfterChange: this.onAudioSeeked,
         }
       : {}
@@ -974,9 +974,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({ moveX: x, moveY: y })
   }
 
-  onHandleProgress = (value) => {
-    this.audio.currentTime = value
-  }
   onSound = () => {
     this.setAudioVolume(this.state.currentAudioVolume)
   }
@@ -1349,14 +1346,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
     this.props.onAudioVolumeChange && this.props.onAudioVolumeChange(volume)
   }
+
+  onProgressChange = (value) => {
+    this.audio.currentTime = value
+  }
+
   //进度条跳跃
   onAudioSeeked = () => {
     if (this.state.audioLists.length >= 1) {
-      if (this.state.playing) {
+      this.lyric && this.lyric.seek(this.audio.currentTime * 1000)
+      if (this.state.playing && !this.state.pause) {
         this.setState({ playing: true }, () => {
           this.loadAndPlayAudio()
-          this.lyric.seek(this.audio.currentTime * 1000)
         })
+      } else {
+        this.lyric && this.lyric.stop()
       }
       this.props.onAudioSeeked &&
         this.props.onAudioSeeked(this.getBaseAudioInfo())
@@ -1515,7 +1519,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       canplay: this.canPlay,
       error: this.onAudioError,
       ended: this.audioEnd,
-      seeked: this.onAudioSeeked,
       pause: this.onAudioPause,
       play: this.onAudioPlay,
       timeupdate: this.audioTimeUpdate,
