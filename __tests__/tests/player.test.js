@@ -380,27 +380,6 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.audio-lists-panel-header-delete-btn').simulate('click')
     expect(onAudioError).not.toHaveBeenCalled()
   })
-  it('should call getAudioInstance function', () => {
-    const getAudioInstance = jest.fn()
-    mount(
-      <ReactJkMusicPlayer
-        audioLists={[{ musicSrc: 'x' }]}
-        getAudioInstance={getAudioInstance}
-      />,
-    )
-    expect(getAudioInstance).toHaveBeenCalled()
-  })
-  it('should get audio instance', () => {
-    let _instance
-    mount(
-      <ReactJkMusicPlayer
-        audioLists={[{ musicSrc: 'x' }]}
-        getAudioInstance={(instance) => (_instance = instance)}
-      />,
-    )
-    expect(typeof _instance).toEqual('object')
-    expect(typeof _instance.destroy).toBe('function')
-  })
   it('should auto hide the cover photo if no cover photo is available for pc', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer

@@ -79,6 +79,8 @@ npm install react-jinke-music-player --save
 - [x] Responsive
 - [x] Support theme switch
 - [x] Support typescript (d.ts)
+- [x] Support lyric
+- [x] Play list
 - [x] [Complete hook function](#clipboard-api)
 - [x] [Custom operation ui](#bulb-custom-operation-ui)
 - [x] [Custom downloader](#bulb-custom-downloader)
@@ -88,6 +90,7 @@ npm install react-jinke-music-player --save
 - [x] [Support internationalization](#bulb-internationalization) (v4.11.0)
 - [x] [Customize theme](#bulb-customize-theme) (v4.11.0)
 - [x] [Customize audio duration](#bulb-customize-audio-duration) (v4.13.0)
+- [x] [Follow the theme of the system](#bulb-follow-the-theme-of-the-system) (v4.16.0)
 
 ## :eyes: Example
 
@@ -197,6 +200,14 @@ Support feature:
 - `change playbackRate`
 - `change volume`
 - `destroy audio player`
+- `append some audio to current audio lists`
+- `toggle play`
+- `clear audio list`
+- `toggle play`
+- `play next audio`
+- `play prev audio`
+- `play audio by custom play index`
+- `update play index`
 
 ```jsx
 class App extends React.Component{
@@ -218,6 +229,13 @@ class App extends React.Component{
         </button>
         <button onClick={() => (this.audioInstance.volume = 0.2)}>change volume</button>
         <button onClick={() => this.audioInstance.destroy()}>destroy player</button>
+        <button onClick={() => this.audio.appendAudio(1, [{ musicSrc: 'x', name: "xx" }])}>append audio</button>
+        <button onClick={this.audio.togglePlay}>toggle play</button>
+        <button onClick={this.audio.clear}>clear audio lists</button>
+        <button onClick={this.audio.playNext}>play next</button>
+        <button onClick={this.audio.playPrev}>play prev</button>
+        <button onClick={() => this.audio.playByIndex(1)}>play by index</button>
+        <button onClick={() => this.audio.updatePlayIndex(1)}>updatePlayIndex</button>
       </>
     )
   }
@@ -437,7 +455,16 @@ module.exports = {
   ...
   duration: 100.00
 }]} />
+
 ```
+
+## :bulb: Follow the theme of the system
+
+```jsx
+<ReactJkMusicPlayer theme="auto" />
+```
+
+![auto-theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/auto-theme.gif)
 
 ## :pencil: Development
 

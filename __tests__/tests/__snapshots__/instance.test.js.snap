@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioInstance test should get audio instance 1`] = `
+<audio
+  class="music-player-audio"
+  src="a"
+  title=" "
+/>
+`;

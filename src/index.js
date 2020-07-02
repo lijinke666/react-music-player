@@ -665,7 +665,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           cover={cover}
           remove={remove}
           deleteIcon={<DeleteIcon />}
-          onDelete={this.deleteAudioLists}
+          onDelete={this.onDeleteAudioLists}
           removeId={removeId}
           audioListsDragEnd={this.audioListsDragEnd}
           locale={locale}
@@ -855,7 +855,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playId: this.initPlayId,
     })
   }
-  deleteAudioLists = (audioId) => (e) => {
+
+  clearAudioLists = () => {
+    this.props.onAudioListsChange && this.props.onAudioListsChange('', [], {})
+    this.resetAudioStatus()
+  }
+
+  onDeleteAudioLists = (audioId) => (e) => {
     e.stopPropagation()
     //如果不 传 id  删除全部
     const { audioLists, playId } = this.state
@@ -864,8 +870,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
     this.lyric && this.lyric.stop()
     if (!audioId) {
-      this.props.onAudioListsChange && this.props.onAudioListsChange('', [], {})
-      return this.resetAudioStatus()
+      this.clearAudioLists()
+      return
     }
     const newAudioLists = [...audioLists].filter(
       (audio) => audio.id !== audioId,
@@ -1804,15 +1810,80 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  onGetAudioInstance = () => {
-    if (this.props.getAudioInstance) {
-      Object.defineProperty(this.audio, 'destroy', {
-        value: () => {
-          this.onDestroyPlayer()
-        },
+  playByIndex = (index) => {
+    this.updatePlayIndex(index)
+  }
+
+  appendAudio = (fromIndex, audioLists = []) => {
+    if (!fromIndex && fromIndex !== 0) {
+      // eslint-disable-next-line no-console
+      console.error('Warning! function appendAudio(){} must have formIndex!')
+      return
+    }
+    const newAudioLists = [...this.state.audioLists]
+    const addedAudioLists = audioLists.map((audioInfo) => {
+      return {
+        id: uuId(),
+        ...audioInfo,
+      }
+    })
+    newAudioLists.splice(fromIndex, 0, ...addedAudioLists)
+    this.setState({ audioLists: newAudioLists })
+    this.props.onAudioListsChange &&
+      this.props.onAudioListsChange(
+        this.state.playId,
+        newAudioLists,
+        this.getBaseAudioInfo(),
+      )
+  }
+
+  getEnhanceAudio = () => {
+    const audio = this.audio
+    ;[
+      {
+        name: 'destroy',
+        value: this.onDestroyPlayer,
+      },
+      {
+        name: 'updatePlayIndex',
+        value: this.updatePlayIndex,
+      },
+      {
+        name: 'playByIndex',
+        value: this.playByIndex,
+      },
+      {
+        name: 'playNext',
+        value: this.audioNextPlay,
+      },
+      {
+        name: 'playPrev',
+        value: this.audioPrevPlay,
+      },
+      {
+        name: 'togglePlay',
+        value: this.onTogglePlay,
+      },
+      {
+        name: 'clear',
+        value: this.clearAudioLists,
+      },
+      {
+        name: 'appendAudio',
+        value: this.appendAudio,
+      },
+    ].forEach(({ name, value }) => {
+      Object.defineProperty(audio, name, {
+        value,
         writable: false,
       })
-      this.props.getAudioInstance(this.audio)
+    })
+    return audio
+  }
+
+  onGetAudioInstance = () => {
+    if (this.props.getAudioInstance) {
+      this.props.getAudioInstance(this.getEnhanceAudio())
     }
   }
 
