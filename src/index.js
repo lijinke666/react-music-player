@@ -1348,7 +1348,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onProgressChange = (value) => {
-    this.audio.currentTime = value
+    if (this.audio) {
+      this.audio.currentTime = value
+    }
   }
 
   //进度条跳跃
