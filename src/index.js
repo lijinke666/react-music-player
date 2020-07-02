@@ -1614,11 +1614,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.media = window.matchMedia(
       '(max-width: 768px) and (orientation : portrait)',
     )
-    this.media.addEventListener('change', this.listenerIsMobile)
+    if (typeof this.media.addEventListener !== 'undefined') {
+      this.media.addEventListener('change', this.listenerIsMobile)
+    } else {
+      this.media.addListener(this.listenerIsMobile)
+    }
   }
   removeMobileListener = () => {
     if (this.media) {
-      this.media.removeEventListener('change', this.listenerIsMobile)
+      if (typeof this.media.addEventListener !== 'undefined') {
+        this.media.removeEventListener('change', this.listenerIsMobile)
+      } else {
+        this.media.removeListener(this.listenerIsMobile)
+      }
       this.media = undefined
     }
   }
