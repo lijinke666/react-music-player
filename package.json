@@ -48,7 +48,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
     }
   },
   "author": "Jinke.Li <1359518268@qq.com>",
@@ -105,6 +107,7 @@
     "@babel/preset-env": "7.10.1",
     "@babel/preset-react": "^7.9.4",
     "@babel/runtime": "7.10.1",
+    "@commitlint/config-conventional": "^9.0.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "autoprefixer": "^9.8.0",
@@ -117,6 +120,7 @@
     "bundlesize": "^0.18.0",
     "clean-webpack-plugin": "^3.0.0",
     "codecov": "^3.6.5",
+    "commitlint": "^9.0.1",
     "copy-webpack-plugin": "latest",
     "coveralls": "^3.0.11",
     "cross-env": "^7.0.2",
