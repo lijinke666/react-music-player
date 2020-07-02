@@ -127,7 +127,7 @@
     left: 0;
     color: #fff;
     height: @panel-height;
-    background-color: @panel-bg;
+    background-color: @panel-bg-dark;
     z-index: 99;
     transition: background-color @common-animate-time;
 
@@ -398,9 +398,14 @@
       background-color: @progress-bar-bg-color-light !important;
     }
 
+    .music-player-controller {
+      border-color: @primary-color-light;
+      background-color: @controller-bg-light;
+    }
+
     .music-player-panel {
       box-shadow: 0 1px 2px 0 rgba(0, 34, 77, 0.05);
-      background-color: @light-theme-panel-bg;
+      background-color: @panel-bg-light;
       color: #7d7d7d;
 
       .img-content {
@@ -479,7 +484,7 @@
 
     .audio-lists-panel-header {
       color: @font-color;
-      background-color: #fff;
+      background-color: @primary-color-light;
       border-bottom: 1px solid #f4f4f7;
 
       .line {
@@ -519,7 +524,7 @@
     }
 
     .react-jinke-music-player-mobile {
-      background-color: @light-theme-panel-bg;
+      background-color: @panel-bg-light;
       color: @font-color;
 
       &-cover {
@@ -562,7 +567,7 @@
     }
 
     .play-mode-title {
-      background-color: @light-theme-panel-bg;
+      background-color: @panel-bg-light;
       color: @primary-color;
     }
   }
@@ -605,8 +610,8 @@
       width: @player-width;
       height: @player-height;
       border-radius: 50%;
-      border: 2px solid @light-theme-controller-bg;
-      background-color: @light-theme-controller-bg;
+      border: 1px solid @controller-bg-dark;
+      background-color: @controller-bg-dark;
       color: @primary-color;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
       font-size: 20px;

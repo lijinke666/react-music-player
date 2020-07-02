@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 import Locale from './locale'
+import { THEME } from './theme'
+import { MODE } from './mode'
 
 const playModePropTypes = PropTypes.oneOf([
   'order',
@@ -14,8 +16,8 @@ export default {
     PropTypes.object,
     PropTypes.oneOf(Object.values(Locale)),
   ]),
-  theme: PropTypes.oneOf(['dark', 'light']),
-  mode: PropTypes.oneOf(['mini', 'full']),
+  theme: PropTypes.oneOf(Object.values(THEME)),
+  mode: PropTypes.oneOf(Object.values(MODE)),
   defaultPlayMode: playModePropTypes,
   playMode: playModePropTypes,
   drag: PropTypes.bool,

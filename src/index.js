@@ -65,6 +65,7 @@ import LOCALE_CONFIG from './locale'
 
 import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
+import { MEDIA_QUERY } from './config/mediaQuery'
 
 const IS_MOBILE = isMobile()
 
@@ -583,8 +584,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="sounds-icon"
                       {...(isMobile
-                        ? { onTouchStart: this.onSound }
-                        : { onClick: this.onSound })}
+                        ? { onTouchStart: this.onResetVolume }
+                        : { onClick: this.onResetVolume })}
                     >
                       <MdVolumeMuteIcon />
                     </span>
@@ -974,8 +975,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({ moveX: x, moveY: y })
   }
 
-  onSound = () => {
-    this.setAudioVolume(this.state.currentAudioVolume)
+  onResetVolume = () => {
+    const { currentAudioVolume } = this.state
+    this.setAudioVolume(currentAudioVolume)
   }
   setAudioVolume = (value) => {
     this.audio.volume = value
@@ -1607,31 +1609,58 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  listenerIsMobile = ({ matches }) => {
+  addMatchMediaListener = (query, handler) => {
+    const media = window.matchMedia(query)
+    if ('addEventListener' in media) {
+      media.addEventListener('change', handler)
+    } else {
+      media.addListener(handler)
+    }
+    return media
+  }
+  removeMatchMediaListener = (media, handler) => {
+    if (media) {
+      if ('removeEventListener' in media) {
+        media.removeEventListener('change', handler)
+      } else {
+        media.removeListener(handler)
+      }
+    }
+  }
+  addMobileListener = () => {
+    this.mobileMedia = this.addMatchMediaListener(
+      MEDIA_QUERY.MOBILE,
+      this.mobileMediaHandler,
+    )
+  }
+  removeMobileListener = () => {
+    this.removeMatchMediaListener(this.mobileMedia, this.mobileMediaHandler)
+  }
+  addSystemThemeListener = () => {
+    this.systemThemeMedia = this.addMatchMediaListener(
+      MEDIA_QUERY.DARK_THEME,
+      this.systemThemeMediaHandler,
+    )
+  }
+  removeSystemThemeListener = () => {
+    this.removeMatchMediaListener(
+      this.systemThemeMedia,
+      this.systemThemeMediaHandler,
+    )
+  }
+  mobileMediaHandler = ({ matches }) => {
     this.setState({
       isMobile: !!matches,
     })
   }
-  addMobileListener = () => {
-    this.media = window.matchMedia(
-      '(max-width: 768px) and (orientation : portrait)',
-    )
-    if (typeof this.media.addEventListener !== 'undefined') {
-      this.media.addEventListener('change', this.listenerIsMobile)
-    } else {
-      this.media.addListener(this.listenerIsMobile)
+
+  systemThemeMediaHandler = ({ matches }) => {
+    if (this.props.theme === THEME.AUTO) {
+      const theme = matches ? THEME.DARK : THEME.LIGHT
+      this.updateTheme(theme)
     }
   }
-  removeMobileListener = () => {
-    if (this.media) {
-      if (typeof this.media.addEventListener !== 'undefined') {
-        this.media.removeEventListener('change', this.listenerIsMobile)
-      } else {
-        this.media.removeListener(this.listenerIsMobile)
-      }
-      this.media = undefined
-    }
-  }
+
   setDefaultAudioVolume = () => {
     const { defaultVolume, remember } = this.props
     //音量 [0-1]
@@ -1983,6 +2012,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
   componentDidMount() {
     this.addMobileListener()
+    this.addSystemThemeListener()
     this.initPlayer()
     this.onGetAudioInstance()
   }

@@ -73,8 +73,8 @@ const options = {
   //if you want dynamic change current play audio you can change it [type `number` default `0`]
   // playIndex: 0,
 
-  //color of the music player theme    [ type: 'light' | 'dark'  default `dark` ]
-  theme: 'dark',
+  //color of the music player theme    [ type: 'light' | 'dark' | 'auto'  default `dark` ]
+  theme: 'auto',
 
   // Specifies movement boundaries. Accepted values:
   // - `parent` restricts movement within the node's offsetParent
