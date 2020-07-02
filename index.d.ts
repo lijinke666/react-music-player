@@ -39,7 +39,14 @@ export interface ReactJkMusicPlayerAudioListProps {
 }
 
 export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
-  destroy: () => void
+  destroy?: () => void,
+  updatePlayIndex?: (index: number) => void,
+  playByIndex?: (index: number) => void,
+  playNext?: () => void,
+  playPrev?: () => void,
+  togglePlay?: () => void,
+  clear?: () => void,
+  appendAudio?: (fromIndex: number, audioLists: ReactJkMusicPlayerAudioListProps[]) => void,
 }
 
 export interface ReactJkMusicPlayerCustomLocale {
