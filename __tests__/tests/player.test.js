@@ -26,6 +26,7 @@ import CircleProcessBar from '../../src/components/CircleProcessBar'
 import Load from '../../src/components/Load'
 import { SPACE_BAR_KEYCODE } from '../../src/config/keycode'
 import { sleep } from '../utils'
+import { MEDIA_QUERY } from '../../src/config/mediaQuery'
 
 describe('<ReactJkMusicPlayer/>', () => {
   it('should render a <ReactJkMusicPlayer/> components', () => {
@@ -1180,7 +1181,6 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().name).toEqual('b')
   })
 
-
   it('should get secondary audio info by play index', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -1249,13 +1249,11 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
 
   it('should not throw error when unmount player', () => {
-    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
     const wrapper = mount(
       <ReactJkMusicPlayer
         mode="full"
-        audioLists={[
-          { musicSrc: 'a', cover: 'a', name: 'a' },
-        ]}
+        audioLists={[{ musicSrc: 'a', cover: 'a', name: 'a' }]}
         autoPlay={false}
       />,
     )
@@ -1264,13 +1262,11 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
 
   it('should not throw error when unmount player after destroyed', () => {
-    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
     const wrapper = mount(
       <ReactJkMusicPlayer
         mode="full"
-        audioLists={[
-          { musicSrc: 'a', cover: 'a', name: 'a' },
-        ]}
+        audioLists={[{ musicSrc: 'a', cover: 'a', name: 'a' }]}
         autoPlay={false}
         showDestroy
       />,
@@ -1278,5 +1274,47 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.destroy-btn').simulate('click')
     wrapper.unmount()
     expect(errorSpy).not.toHaveBeenCalled()
+  })
+
+  it('should reset volume if current is mute and mute icon clicked', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[{ musicSrc: 'a', cover: 'a', name: 'a' }]}
+        autoPlay={false}
+      />,
+    )
+    wrapper.setState({ currentAudioVolume: 0 })
+    wrapper.find('.sounds-icon').simulate('click')
+    expect(wrapper.state().currentAudioVolume).not.toEqual(0)
+  })
+
+  it('should set theme to dark if media dark theme matches', () => {
+    window.matchMedia = jest.fn().mockImplementation((query) => {
+      return {
+        matches: query === MEDIA_QUERY.DARK_THEME,
+        addListener: jest.fn(),
+      }
+    })
+    const wrapper = mount(<ReactJkMusicPlayer theme="auto" autoPlay={false} />)
+    expect(wrapper.state().theme).toEqual('dark')
+  })
+
+  it('should set theme to light if media dark theme not matches', () => {
+    window.matchMedia = jest.fn().mockImplementation((query) => {
+      return {
+        matches: query === MEDIA_QUERY.LIGHT_THEME,
+        addListener: jest.fn(),
+      }
+    })
+    const wrapper = mount(<ReactJkMusicPlayer theme="auto" autoPlay={false} />)
+    expect(wrapper.state().theme).toEqual('light')
+  })
+
+  it('should update auto theme props', () => {
+    const wrapper = mount(<ReactJkMusicPlayer autoPlay={false} />)
+
+    wrapper.setProps({ theme: 'auto' })
+    expect(wrapper.state().theme).toEqual('auto')
   })
 })

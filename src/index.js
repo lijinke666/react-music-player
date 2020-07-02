@@ -977,7 +977,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   onResetVolume = () => {
     const { currentAudioVolume } = this.state
-    this.setAudioVolume(currentAudioVolume)
+    this.setAudioVolume(currentAudioVolume || 0.1)
   }
   setAudioVolume = (value) => {
     this.audio.volume = value
@@ -1611,6 +1611,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   addMatchMediaListener = (query, handler) => {
     const media = window.matchMedia(query)
+    handler(media)
     if ('addEventListener' in media) {
       media.addEventListener('change', handler)
     } else {
