@@ -1,3 +1,10 @@
+## [4.16.1](https://github.com/lijinke666/react-music-player/compare/v4.16.0...v4.16.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* modify theme type define ([c324ae9](https://github.com/lijinke666/react-music-player/commit/c324ae94cb03f5da829181d7916334ef0689fdc0))
+
 ## [4.16.0](https://github.com/lijinke666/react-music-player/compare/v4.15.5...v4.16.0) (2020-07-02)
 
 
