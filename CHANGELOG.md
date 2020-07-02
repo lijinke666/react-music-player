@@ -1,3 +1,17 @@
+## [4.16.0](https://github.com/lijinke666/react-music-player/compare/v4.15.5...v4.16.0) (2020-07-02)
+
+
+### Bug Fixes
+
+* reset volume to 0.1 if last is mute when toggle mute button ([0dc4be5](https://github.com/lijinke666/react-music-player/commit/0dc4be5d32e704fd6f9dc889e89df56fc8be7617))
+
+
+### Features
+
+* add audio instance api, like appedAudio, togglePlay [#114](https://github.com/lijinke666/react-music-player/issues/114) ([42bcda1](https://github.com/lijinke666/react-music-player/commit/42bcda1d2851d7a73871bd9f9e4a7e3d3f03b81b))
+* support follow system auto set theme ([aeb1630](https://github.com/lijinke666/react-music-player/commit/aeb163063fbaebbc195d2f2d71a26b731f6ec50e))
+* update instance type define ([5167a5d](https://github.com/lijinke666/react-music-player/commit/5167a5d960f585fcb248bebfc3b48c3f89529ca9))
+
 ## [4.15.5](https://github.com/lijinke666/react-music-player/compare/v4.15.4...v4.15.5) (2020-07-02)
 
 

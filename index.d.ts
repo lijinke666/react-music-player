@@ -20,7 +20,7 @@ export interface ReactJkMusicPlayerAudioInfo {
   [key: string]: any
 }
 
-export type ReactJkMusicPlayerTheme = 'dark' | 'light'
+export type ReactJkMusicPlayerTheme = 'dark' | 'light' | 'auto'
 export type ReactJkMusicPlayerMode = 'mini' | 'full'
 export type ReactJkMusicPlayerPlayMode =
   | 'order'
