@@ -32,7 +32,8 @@
     "test": "jest __tests__/tests",
     "coverage": "yarn test --coverage",
     "ci:coverage": "npm run coverage && codecov",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "release": "semantic-release"
   },
   "sideEffects": [
     "assets/*",
@@ -108,6 +109,8 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/runtime": "7.10.1",
     "@commitlint/config-conventional": "^9.0.1",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "autoprefixer": "^9.8.0",
@@ -156,6 +159,7 @@
     "react-hot-loader": "^4.12.20",
     "react-loader": "^2.4.7",
     "rimraf": "^3.0.2",
+    "semantic-release": "^17.1.1",
     "style-loader": "~1.2.1",
     "sweetalert": "^2.1.0",
     "uglifyjs-webpack-plugin": "^2.1.3",

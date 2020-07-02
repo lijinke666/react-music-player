@@ -29,8 +29,11 @@ react-jinke-music-player
   <a href="https://codecov.io/gh/lijinke666/react-music-player">
     <img src="https://codecov.io/gh/lijinke666/react-music-player/branch/master/graph/badge.svg" />
   </a>
-     <a href="https://app.netlify.com/sites/react-jinke-music-player/deploys" title="Netlify Status">
-    <img src="https://api.netlify.com/api/v1/badges/2a5d8639-9d2a-46ee-a504-10b7846a57e4/deploy-status" alt="Coverage Status"/>
+  <a href="https://app.netlify.com/sites/react-jinke-music-player/deploys" title="Netlify Status">
+    <img src="https://api.netlify.com/api/v1/badges/2a5d8639-9d2a-46ee-a504-10b7846a57e4/deploy-status" alt="netlify status"/>
+  </a>
+  <a href="https://github.com/semantic-release/semantic-release" title="semantic-release">
+    <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic release"/>
   </a>
 </p>
 
