@@ -56,11 +56,11 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Build example page
-        if: github.event_name == 'push' && startsWith( env.commitmsg , 'chore(release):' )
+        if: github.event_name == 'push' && startsWith( env.commitmsg , 'chore(release):' ) || startsWith( env.commitmsg , 'docs:' )
         run: yarn build:demo
 
       - name: Deploy github pages
-        if: github.event_name == 'push' && startsWith( env.commitmsg , 'chore(release):' )
+        if: github.event_name == 'push' && startsWith( env.commitmsg , 'chore(release):' ) || startsWith( env.commitmsg , 'docs:' )
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
