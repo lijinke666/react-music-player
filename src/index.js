@@ -1,19 +1,17 @@
 /**
- * @version 4.16.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
+ * @license MIT
  */
 
+import React, { PureComponent } from 'react'
+import { createPortal } from 'react-dom'
 import cls from 'classnames'
 import download from 'downloadjs'
 import isMobile from 'is-mobile'
-import 'rc-slider/assets/index.css'
 import Slider from 'rc-slider/lib/Slider'
 import Switch from 'rc-switch'
-import 'rc-switch/assets/index.css'
-import React, { PureComponent } from 'react'
-import { createPortal } from 'react-dom'
 import Draggable from 'react-draggable'
 import AudioListsPanel from './components/AudioListsPanel'
 import CircleProcessBar from './components/CircleProcessBar'
@@ -58,6 +56,9 @@ import {
   isSafari,
   uuId,
 } from './utils'
+
+import 'rc-slider/assets/index.css'
+import 'rc-switch/assets/index.css'
 
 const IS_MOBILE = isMobile()
 
@@ -1931,6 +1932,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       navigator.mediaSession.setActionHandler('seekbackward', (details) => {
         const skipTime = details.seekOffset || defaultSkipTime
         this.audio.currentTime = Math.max(this.audio.currentTime - skipTime, 0)
+        this.props.onAudioSeeked &&
+          this.props.onAudioSeeked(this.getBaseAudioInfo())
       })
       navigator.mediaSession.setActionHandler('seekforward', (details) => {
         const skipTime = details.seekOffset || defaultSkipTime
@@ -1938,6 +1941,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.audio.currentTime + skipTime,
           this.audioDuration,
         )
+        this.props.onAudioSeeked &&
+          this.props.onAudioSeeked(this.getBaseAudioInfo())
       })
       navigator.mediaSession.setActionHandler(
         'previoustrack',
