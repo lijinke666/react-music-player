@@ -1,3 +1,11 @@
+## [4.16.2](https://github.com/lijinke666/react-music-player/compare/v4.16.1...v4.16.2) (2020-07-17)
+
+
+### Bug Fixes
+
+* **media-session:** cannot trigger onAudioSeeked handle if backward or forward from media session ([4f59ff6](https://github.com/lijinke666/react-music-player/commit/4f59ff6b67851a1a2b6b831dd384daf334132973))
+* **media-session:** support no cover case [#130](https://github.com/lijinke666/react-music-player/issues/130) ([c0121b5](https://github.com/lijinke666/react-music-player/commit/c0121b51f349f6ab89d093acbe3d1ac332421634))
+
 ## [4.16.1](https://github.com/lijinke666/react-music-player/compare/v4.16.0...v4.16.1) (2020-07-02)
 
 
