@@ -1,3 +1,10 @@
+## [4.16.3](https://github.com/lijinke666/react-music-player/compare/v4.16.2...v4.16.3) (2020-07-17)
+
+
+### Bug Fixes
+
+* repeat react key ([b17fb8e](https://github.com/lijinke666/react-music-player/commit/b17fb8ec95a3fad8ed4a36c9c3addd752a3d1d54))
+
 ## [4.16.2](https://github.com/lijinke666/react-music-player/compare/v4.16.1...v4.16.2) (2020-07-17)
 
 
