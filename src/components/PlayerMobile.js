@@ -109,8 +109,8 @@ const PlayerMobile = ({
       <ul className="items">
         {[playMode, downloadIcon, reloadIcon, LyricIcon]
           .filter(Boolean)
-          .map((icon, i) => (
-            <li className="item" key={i}>
+          .map((icon) => (
+            <li className="item" key={String(icon)}>
               {icon}
             </li>
           ))}

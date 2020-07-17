@@ -1,13 +1,12 @@
-//迷你模式进度条
+// 迷你模式进度条
 import React from 'react'
 
 const CircleProcessBar = ({ progress = 0, r = 40 } = {}) => {
-  const _progress = progress.toFixed(2)
+  const currentProgress = progress.toFixed(2)
   const perimeter = Math.PI * 2 * r
-  const strokeDasharray = `${~~(perimeter * _progress)} ${~~(
-    perimeter *
-    (1 - _progress)
-  )}`
+  const strokeDasharray = `${Math.floor(
+    perimeter * currentProgress,
+  )} ${Math.floor(perimeter * (1 - currentProgress))}`
   return (
     <svg className="audio-circle-process-bar">
       <circle

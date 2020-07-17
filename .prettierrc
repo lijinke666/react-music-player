@@ -4,6 +4,7 @@
   "printWidth": 80,
   "proseWrap": "never",
   "semi": false,
+  "endOfLine": "lf",
   "overrides": [
     {
       "files": ".prettierrc",

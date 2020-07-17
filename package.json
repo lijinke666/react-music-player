@@ -17,7 +17,8 @@
   "scripts": {
     "start": "yarn demo",
     "build:clean": "rimraf lib es dist assets",
-    "lint": "prettier -c --write \"src/**/*.js\" && eslint src",
+    "lint": "./node_modules/.bin/eslint ./src/**/*.js",
+    "lint:fix": "yarn lint --fix",
     "postcss": "postcss -u autoprefixer -c postcss.config.json --no-map -o assets/index.css  assets/index.css",
     "build:css": "lessc src/styles/index.less assets/index.css && yarn postcss",
     "build:js": "yarn build:cjs && yarn build:es && yarn build:umd",
@@ -41,10 +42,11 @@
     "*.less"
   ],
   "lint-staged": {
-    "src/**/*.js": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
+    "*.{js,jsx}": [
+      "eslint --fix"
+    ],
+    "*.{less,json,md}": [
+      "prettier --write"
     ]
   },
   "husky": {
@@ -123,17 +125,22 @@
     "bundlesize": "^0.18.0",
     "clean-webpack-plugin": "^3.0.0",
     "codecov": "^3.6.5",
-    "commitlint": "^9.0.1",
+    "commitlint": "^9.1.0",
     "copy-webpack-plugin": "latest",
-    "coveralls": "^3.0.11",
+    "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.5.3",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.3.3",
-    "eslint": "^7.1.0",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-react": "^7.19.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
     "eslint_d": "^8.1.1",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-loader": "^6.0.0",
@@ -153,7 +160,7 @@
     "postcss-loader": "^3.0.0",
     "power-assert": "^1.5.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-hot-loader": "^4.12.20",
