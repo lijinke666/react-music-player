@@ -1,11 +1,11 @@
-/*eslint-disable no-console */
+/* eslint-disable no-console */
 const Enzyme = require('enzyme')
 const Adapter = require('enzyme-adapter-react-16')
 
 global.window = window
 global.document = window.document
 global.navigator = {
-  userAgent: 'node.js'
+  userAgent: 'node.js',
 }
 if (typeof window !== 'undefined') {
   global.window.resizeTo = (width, height) => {
@@ -27,7 +27,7 @@ if (typeof window !== 'undefined') {
       removeListener: jest.fn(), // deprecated
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn()
+      dispatchEvent: jest.fn(),
     }
   })
   global.window.HTMLMediaElement.prototype.load = () => {}

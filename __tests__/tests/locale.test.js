@@ -168,7 +168,7 @@ describe('Locale test', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         className="text-class-name"
-        showMiniProcessBar={true}
+        showMiniProcessBar
         showLyric
         showDestroy
         locale={{

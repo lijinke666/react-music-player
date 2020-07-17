@@ -1,4 +1,4 @@
-/*eslint-disable no-console */
+/* eslint-disable no-console */
 import React from 'react'
 import assert from 'power-assert'
 import { mount } from 'enzyme'
@@ -12,17 +12,17 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
     wrapper.find('.react-jinke-music-player').simulate('click')
     wrapper.setState({ toggle: true })
     assert(wrapper.find('.music-player-panel').length >= 1)
-    //展开歌曲列表
+    // 展开歌曲列表
     wrapper.find('.audio-lists-btn').simulate('click')
     assert(wrapper.find(AudioListsPanel).length === 1)
     assert(wrapper.state().audioListsPanelVisible === true)
 
-    //关闭歌曲列表
+    // 关闭歌曲列表
     wrapper.find('.audio-lists-panel-header-close-btn').simulate('click')
     assert(wrapper.find(AudioListsPanel).length === 1)
     assert(wrapper.state().audioListsPanelVisible === false)
 
-    //切换到迷你模式
+    // 切换到迷你模式
     wrapper.find('.hide-panel').simulate('click')
     assert(wrapper.find(AudioListsPanel).length === 1)
     assert(wrapper.state().audioListsPanelVisible === false)
@@ -58,12 +58,12 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
     })
     wrapper.find('.react-jinke-music-player').simulate('click')
     assert(wrapper.state().audioLists.length === 1)
-    //删除列表
+    // 删除列表
     wrapper.find('.audio-lists-panel-header-delete-btn').simulate('click')
     assert(wrapper.state().audioLists.length === 0)
     assert(wrapper.state().currentTime === 0)
 
-    //列表更新
+    // 列表更新
     wrapper.setProps({
       audioLists: [
         {
@@ -101,7 +101,7 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
   })
   it('click pause and play button', () => {
     const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} mode="full" />)
-    //暂停
+    // 暂停
     wrapper.find('.play-btn').simulate('click')
     assert(wrapper.state().pause === true)
     assert(wrapper.state().playing === false)
@@ -136,7 +136,7 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer audioLists={[]} mode="full" defaultVolume={100} />,
     )
-    //静音
+    // 静音
     wrapper.find('.sounds-icon').simulate('click')
     assert(wrapper.state().soundValue === 0)
   })

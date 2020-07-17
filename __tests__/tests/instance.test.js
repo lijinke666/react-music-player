@@ -8,7 +8,9 @@ const getApp = (props) => {
     <ReactJkMusicPlayer
       audioLists={[{ musicSrc: 'a' }, { musicSrc: 'b' }]}
       autoPlay={false}
-      getAudioInstance={(instance) => (_instance = instance)}
+      getAudioInstance={(instance) => {
+        _instance = instance
+      }}
       {...props}
     />,
   )

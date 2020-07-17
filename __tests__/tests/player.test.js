@@ -1,4 +1,4 @@
-/*eslint-disable no-console */
+/* eslint-disable no-console */
 import React from 'react'
 import assert from 'power-assert'
 import { shallow, mount } from 'enzyme'
@@ -19,7 +19,6 @@ import {
 } from '../../src/utils'
 import PlayerMobile from '../../src/components/PlayerMobile'
 import PlayModeTip from '../../src/components/PlayModeTip'
-import AudioPlayerMobile from '../../src/components/PlayerMobile'
 import AudioListsPanel from '../../src/components/AudioListsPanel'
 import PlayModel from '../../src/components/PlayModel'
 import CircleProcessBar from '../../src/components/CircleProcessBar'
@@ -35,10 +34,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
   it('should render a <ReactJkMusicPlayer/> components', () => {
     const wrapper = mount(
-      <ReactJkMusicPlayer
-        className="text-class-name"
-        showMiniProcessBar={true}
-      />,
+      <ReactJkMusicPlayer className="text-class-name" showMiniProcessBar />,
     )
     assert(wrapper.find('.react-jinke-music-player-main').length === 1)
     assert(wrapper.find('.react-jinke-music-player').length >= 1)
@@ -111,10 +107,10 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('should toggle group setting buttons', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
-        showDownload={true}
-        showThemeSwitch={true}
-        showReload={true}
-        showPlayMode={true}
+        showDownload
+        showThemeSwitch
+        showReload
+        showPlayMode
       />,
     )
     wrapper.setState({ loading: false, toggle: true })
@@ -130,7 +126,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.loop-btn').length === 0)
   })
   it('should render seeked', () => {
-    const wrapper = mount(<ReactJkMusicPlayer seeked={true} />)
+    const wrapper = mount(<ReactJkMusicPlayer seeked />)
     assert(wrapper.props().seeked === true)
     wrapper.setProps({ seeked: false })
     assert(wrapper.props().seeked === false)
@@ -154,13 +150,13 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('should render extendsContent with react fragment', () => {
     const ExtendsContent = () => (
       <>
-        <button>1</button>
+        <button type="button">1</button>
       </>
     )
     const wrapper = mount(
       <ReactJkMusicPlayer extendsContent={<ExtendsContent />} />,
     )
-    const wrapper1 = mount(<ReactJkMusicPlayer extendsContent={'extends'} />)
+    const wrapper1 = mount(<ReactJkMusicPlayer extendsContent="extends" />)
     wrapper.setState({ toggle: true })
     wrapper1.setState({ toggle: true })
     assert(wrapper.find(ExtendsContent).length === 1)
@@ -188,12 +184,12 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.props().autoPlay === true)
   })
   it('should render glass background', () => {
-    const wrapper = mount(<ReactJkMusicPlayer glassBg={true} />)
+    const wrapper = mount(<ReactJkMusicPlayer glassBg />)
     assert(wrapper.props().glassBg === true)
     assert(wrapper.find('.glass-bg').length >= 1)
   })
   it('should render delete btns', () => {
-    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} remove={true} />)
+    const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} remove />)
     assert(wrapper.find('.audio-lists-panel-header-delete-btn').length >= 1)
     assert(wrapper.find('.player-delete').length === 0)
     wrapper.setState({
@@ -209,7 +205,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.player-delete').length === 1)
   })
   it('should render progress load bar', () => {
-    const wrapper = mount(<ReactJkMusicPlayer showProgressLoadBar={true} />)
+    const wrapper = mount(<ReactJkMusicPlayer showProgressLoadBar />)
     wrapper.setState({ toggle: true })
     assert(wrapper.props().showProgressLoadBar === true)
     assert(wrapper.find('.progress-load-bar').length === 1)
@@ -271,7 +267,7 @@ describe('<ReactJkMusicPlayer/>', () => {
             getContainer={() => document.querySelector('.test')}
           />
         </div>
-        <span className="test1"></span>
+        <span className="test1" />
       </div>,
     )
     expect(wrapper.find('.test1').find(ReactJkMusicPlayer)).toHaveLength(0)
@@ -906,10 +902,10 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioVolumeChange={onAudioVolumeChange}
       />,
     )
-    expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
+    expect(wrapper.find(PlayerMobile)).toHaveLength(0)
     expect(wrapper.find('.music-player-panel')).toHaveLength(1)
     wrapper.setState({ isMobile: true }, () => {
-      expect(wrapper.find(AudioPlayerMobile)).toHaveLength(1)
+      expect(wrapper.find(PlayerMobile)).toHaveLength(1)
       expect(wrapper.find('.music-player-panel')).toHaveLength(0)
     })
   })
@@ -923,10 +919,10 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioVolumeChange={onAudioVolumeChange}
       />,
     )
-    expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
+    expect(wrapper.find(PlayerMobile)).toHaveLength(0)
     expect(wrapper.find('.music-player-panel')).toHaveLength(1)
     wrapper.setState({ isMobile: true }, () => {
-      expect(wrapper.find(AudioPlayerMobile)).toHaveLength(0)
+      expect(wrapper.find(PlayerMobile)).toHaveLength(0)
       expect(wrapper.find('.music-player-panel')).toHaveLength(1)
     })
   })
@@ -1006,7 +1002,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   // https://github.com/lijinke666/react-music-player/issues/115
   it('should throw error when audioList is not array', () => {
     const errSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
-    mount(<ReactJkMusicPlayer mode="full" audioLists={''} />)
+    mount(<ReactJkMusicPlayer mode="full" audioLists="" />)
 
     expect(errSpy).toHaveBeenCalled()
     errSpy.mockRestore()

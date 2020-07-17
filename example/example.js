@@ -17,7 +17,8 @@ const audioList1 = [
     singer: 'Luis Fonsi',
     cover:
       'http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg',
-    musicSrc: 'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3',
+    musicSrc:
+      'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3',
     // support async fetch music src. eg.
     // musicSrc: async () => {
     //   return await fetch('/api')
@@ -28,7 +29,8 @@ const audioList1 = [
     singer: 'Sirvan Khosravi',
     cover:
       'https://res.cloudinary.com/ehsanahmadi/image/upload/v1573758778/Sirvan-Khosravi-Dorost-Nemisham_glicks.jpg',
-    musicSrc: 'https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3',
+    musicSrc:
+      'https://res.cloudinary.com/ehsanahmadi/video/upload/v1573550770/Sirvan-Khosravi-Dorost-Nemisham-128_kb8urq.mp3',
   },
 ]
 
@@ -57,21 +59,22 @@ const audioList2 = [
     singer: 'Luis Fonsi',
     cover:
       'http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg',
-    musicSrc: 'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3'
+    musicSrc:
+      'http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3',
   },
 ]
 
 const options = {
-  //audio lists model
+  // audio lists model
   audioLists: audioList1,
 
-  //default play index of the audio player  [type `number` default `0`]
+  // default play index of the audio player  [type `number` default `0`]
   defaultPlayIndex: 0,
 
-  //if you want dynamic change current play audio you can change it [type `number` default `0`]
+  // if you want dynamic change current play audio you can change it [type `number` default `0`]
   // playIndex: 0,
 
-  //color of the music player theme    [ type: 'light' | 'dark' | 'auto'  default `dark` ]
+  // color of the music player theme    [ type: 'light' | 'dark' | 'auto'  default `dark` ]
   theme: 'auto',
 
   // Specifies movement boundaries. Accepted values:
@@ -93,20 +96,20 @@ const options = {
   // [type `boolean`, default `false`]
   autoPlayInitLoadPlayList: false,
 
-  //Whether to load audio immediately after the page loads.  [type `Boolean | String`, default `false`]
-  //"auto|metadata|none" "true| false"
+  // Whether to load audio immediately after the page loads.  [type `Boolean | String`, default `false`]
+  // "auto|metadata|none" "true| false"
   preload: false,
 
-  //Whether the player's background displays frosted glass effect  [type `Boolean`, default `false`]
+  // Whether the player's background displays frosted glass effect  [type `Boolean`, default `false`]
   glassBg: false,
 
-  //The next time you access the player, do you keep the last state  [type `Boolean` default `false`]
+  // The next time you access the player, do you keep the last state  [type `Boolean` default `false`]
   remember: false,
 
-  //The Audio Can be deleted  [type `Boolean`, default `true`]
+  // The Audio Can be deleted  [type `Boolean`, default `true`]
   remove: true,
 
-  //audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
+  // audio controller initial position    [ type `Object` default '{top:0,left:0}' ]
   defaultPosition: {
     right: 100,
     bottom: 120,
@@ -118,7 +121,7 @@ const options = {
   // [type`order | orderLoop | singleLoop | shufflePlay`, default `order`]
   // playMode: 'order',
 
-  //audio mode        mini | full          [type `String`  default `mini`]
+  // audio mode        mini | full          [type `String`  default `mini`]
   mode: 'mini',
 
   /**
@@ -127,61 +130,61 @@ const options = {
    */
   once: false,
 
-  //Whether the audio is played after loading is completed. [type `Boolean` default 'true']
+  // Whether the audio is played after loading is completed. [type `Boolean` default 'true']
   autoPlay: false,
 
-  //Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
+  // Whether you can switch between two modes, full => mini  or mini => full   [type 'Boolean' default 'true']
   toggleMode: true,
 
-  //audio cover is show of the "mini" mode [type `Boolean` default 'true']
+  // audio cover is show of the "mini" mode [type `Boolean` default 'true']
   showMiniModeCover: true,
 
-  //audio playing progress is show of the "mini"  mode
+  // audio playing progress is show of the "mini"  mode
   showMiniProcessBar: false,
 
-  //audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
+  // audio controller is can be drag of the "mini" mode     [type `Boolean` default `true`]
   drag: true,
 
-  //drag the audio progress bar [type `Boolean` default `true`]
+  // drag the audio progress bar [type `Boolean` default `true`]
   seeked: true,
 
-  //Display chrome media session.  [type `Boolean` default `false`]
+  // Display chrome media session.  [type `Boolean` default `false`]
   showMediaSession: true,
 
-  //Displays the audio load progress bar.  [type `Boolean` default `true`]
+  // Displays the audio load progress bar.  [type `Boolean` default `true`]
   showProgressLoadBar: true,
 
-  //play button display of the audio player panel   [type `Boolean` default `true`]
+  // play button display of the audio player panel   [type `Boolean` default `true`]
   showPlay: true,
 
-  //reload button display of the audio player panel   [type `Boolean` default `true`]
+  // reload button display of the audio player panel   [type `Boolean` default `true`]
   showReload: true,
 
-  //download button display of the audio player panel   [type `Boolean` default `true`]
+  // download button display of the audio player panel   [type `Boolean` default `true`]
   showDownload: true,
 
-  //loop button display of the audio player panel   [type `Boolean` default `true`]
+  // loop button display of the audio player panel   [type `Boolean` default `true`]
   showPlayMode: true,
 
-  //theme toggle switch  display of the audio player panel   [type `Boolean` default `true`]
+  // theme toggle switch  display of the audio player panel   [type `Boolean` default `true`]
   showThemeSwitch: true,
 
-  //lyric display of the audio player panel   [type `Boolean` default `false`]
+  // lyric display of the audio player panel   [type `Boolean` default `false`]
   showLyric: true,
 
-  //destroy player button display  [type `Boolean` default `false`]
+  // destroy player button display  [type `Boolean` default `false`]
   showDestroy: true,
 
-  //Extensible custom content       [type 'Array' default '-' ]
+  // Extensible custom content       [type 'Array' default '-' ]
   extendsContent: null,
 
-  //default volume of the audio player [type `Number` default `1` range `0-1`]
+  // default volume of the audio player [type `Number` default `1` range `0-1`]
   defaultVolume: 1,
 
-  //playModeText show time [type `Number(ms)` default `700`]
+  // playModeText show time [type `Number(ms)` default `700`]
   playModeShowTime: 600,
 
-  //Whether to try playing the next audio when the current audio playback fails [type `Boolean` default `true`]
+  // Whether to try playing the next audio when the current audio playback fails [type `Boolean` default `true`]
   loadAudioErrorPlayNext: true,
 
   // Auto hide the cover photo if no cover photo is available [type `Boolean` default `false`]
@@ -204,52 +207,53 @@ const options = {
 
   // audioTitle: 'xxxx',
 
-  //Music is downloaded handle
+  // Music is downloaded handle
   onAudioDownload(audioInfo) {
     console.log('audio download', audioInfo)
   },
 
-  //audio play handle
+  // audio play handle
   onAudioPlay(audioInfo) {
     console.log('audio playing', audioInfo)
   },
 
-  //audio pause handle
+  // audio pause handle
   onAudioPause(audioInfo) {
     console.log('audio pause', audioInfo)
   },
 
-  //When the user has moved/jumped to a new location in audio
+  // When the user has moved/jumped to a new location in audio
   onAudioSeeked(audioInfo) {
     console.log('audio seeked', audioInfo)
   },
 
-  //When the volume has changed  min = 0.0  max = 1.0
+  // When the volume has changed  min = 0.0  max = 1.0
   onAudioVolumeChange(currentVolume) {
     console.log('audio volume change', currentVolume)
   },
 
-  //The single song is ended handle
+  // The single song is ended handle
   onAudioEnded(currentPlayId, audioLists, audioInfo) {
     console.log('audio ended', currentPlayId, audioLists, audioInfo)
   },
 
-  //audio load abort
+  // audio load abort
   onAudioAbort(currentPlayId, audioLists, audioInfo) {
     console.log('audio abort', currentPlayId, audioLists, audioInfo)
   },
 
-  //audio play progress handle
+  // audio play progress handle
+  // eslint-disable-next-line no-unused-vars
   onAudioProgress(audioInfo) {
     // console.log('audio progress',audioInfo);
   },
 
-  //audio reload handle
+  // audio reload handle
   onAudioReload(audioInfo) {
     console.log('audio reload:', audioInfo)
   },
 
-  //audio load failed error handle
+  // audio load failed error handle
   onAudioError(errMsg, currentPlayId, audioLists, audioInfo) {
     console.error(
       'audio load error',
@@ -260,7 +264,7 @@ const options = {
     )
   },
 
-  //theme change handle
+  // theme change handle
   // onThemeChange(theme) {
   //   console.log('theme change:', theme)
   // },
@@ -335,8 +339,8 @@ const options = {
     console.log('onDestroyed:', currentPlayId, audioLists, audioInfo)
   },
 
-  onCoverClick (mode, audioLists, audioInfo) {
-    console.log('onCoverClick: ', mode, audioLists, audioInfo);
+  onCoverClick(mode, audioLists, audioInfo) {
+    console.log('onCoverClick: ', mode, audioLists, audioInfo)
   },
 
   // onPlayIndexChange (playIndex) {
@@ -385,6 +389,7 @@ class Demo extends React.PureComponent {
     super(props)
     this.audio = {}
   }
+
   state = {
     unmount: false,
     params: {
@@ -394,6 +399,7 @@ class Demo extends React.PureComponent {
       },
     },
   }
+
   onAddAudio = () => {
     this.updateParams({
       clearPriorAudioLists: false,
@@ -408,10 +414,18 @@ class Demo extends React.PureComponent {
       ],
     })
   }
+
   extendsContent = () => {
     this.updateParams({
       extendsContent: (
-        <button onClick={() => swal("I'm extends content")}>button</button>
+        <button
+          type="button"
+          onClick={() => {
+            swal("I'm extends content")
+          }}
+        >
+          button
+        </button>
       ),
     })
   }
@@ -426,6 +440,7 @@ class Demo extends React.PureComponent {
   onChangeToSecondAudioList = () => {
     this.updateParams({ clearPriorAudioLists: true, audioLists: audioList2 })
   }
+
   onAutoPlayMode = () => {
     this.updateParams({
       autoPlay: !this.state.params.autoPlay,
@@ -447,15 +462,19 @@ class Demo extends React.PureComponent {
   onShowGlassBg = () => {
     this.onChangeKey('glassBg')
   }
+
   onDrag = () => {
     this.onChangeKey('drag')
   }
+
   onToggleMode = () => {
     this.onChangeKey('toggleMode')
   }
+
   onSeeked = () => {
     this.onChangeKey('seeked')
   }
+
   onChangeKey = (key) => {
     const data = {
       ...this.state.params,
@@ -472,22 +491,27 @@ class Demo extends React.PureComponent {
     }
     this.setState({ params: data })
   }
+
   showMiniProcessBar = () => {
     this.onChangeKey('showMiniProcessBar')
   }
+
   showMiniModeCover = () => {
     this.onChangeKey('showMiniModeCover')
   }
+
   playModeShowTime = () => {
     this.updateParams({
       playModeShowTime: createRandomNum(200, 2000),
     })
   }
+
   changePlayIndex = () => {
     this.updateParams({
       playIndex: createRandomNum(0, this.state.params.audioLists.length - 1),
     })
   }
+
   updateParams = (params) => {
     const data = {
       ...this.state.params,
@@ -497,6 +521,7 @@ class Demo extends React.PureComponent {
       params: data,
     })
   }
+
   unmountPlayer = () => {
     this.setState({ unmount: true })
   }
@@ -509,24 +534,83 @@ class Demo extends React.PureComponent {
     return (
       <>
         <h2>Custom UI</h2>
-        <button onClick={() => this.audio.play()}>play</button>
-        <button onClick={() => this.audio.pause()}>pause</button>
-        <button onClick={() => this.audio.load()}>reload</button>
-        <button onClick={() => (this.audio.currentTime = 40)}>
+        <button type="button" onClick={() => this.audio.play()}>
+          play
+        </button>
+        <button type="button" onClick={() => this.audio.pause()}>
+          pause
+        </button>
+        <button type="button" onClick={() => this.audio.load()}>
+          reload
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.currentTime = 40
+          }}
+        >
           change current play time
         </button>
-        <button onClick={() => (this.audio.playbackRate = 2)}>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.playbackRate = 2
+          }}
+        >
           change play back rate
         </button>
-        <button onClick={() => (this.audio.volume = 0.2)}>change volume</button>
-        <button onClick={() => this.audio.destroy()}>destroy player</button>
-        <button onClick={() => this.audio.appendAudio(1, audioList2)}>append audio</button>
-        <button onClick={this.audio.togglePlay}>toggle play</button>
-        <button onClick={this.audio.clear}>clear audio lists</button>
-        <button onClick={this.audio.playNext}>play next</button>
-        <button onClick={this.audio.playPrev}>play prev</button>
-        <button onClick={() => this.audio.playByIndex(1)}>play by index</button>
-        <button onClick={() => this.audio.updatePlayIndex(1)}>updatePlayIndex</button>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.volume = 0.2
+          }}
+        >
+          change volume
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.destroy()
+          }}
+        >
+          destroy player
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.appendAudio(1, audioList2)
+          }}
+        >
+          append audio
+        </button>
+        <button type="button" onClick={this.audio.togglePlay}>
+          toggle play
+        </button>
+        <button type="button" onClick={this.audio.clear}>
+          clear audio lists
+        </button>
+        <button type="button" onClick={this.audio.playNext}>
+          play next
+        </button>
+        <button type="button" onClick={this.audio.playPrev}>
+          play prev
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.playByIndex(1)
+          }}
+        >
+          play by index
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            this.audio.updatePlayIndex(1)
+          }}
+        >
+          updatePlayIndex
+        </button>
       </>
     )
   }
@@ -537,7 +621,12 @@ class Demo extends React.PureComponent {
       <>
         <h1 className="title">
           <span className="name">
-            <a href={repository.url} target="_blank" rel="noopener noreferrer" title="go to github">
+            <a
+              href={repository.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="go to github"
+            >
               {name}
             </a>
           </span>
@@ -558,26 +647,29 @@ class Demo extends React.PureComponent {
           Drag, Click, or switch to phone mode to try{' '}
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href="https://github.com/lijinke666/react-music-player/blob/master/example/example.js"
           >
             (DEMO SOURCE)
           </a>
         </h2>
         <section className="settings">
-          <button onClick={this.onChangeToFirstAudioList}>
+          <button type="button" onClick={this.onChangeToFirstAudioList}>
             change to first audio list ({audioList1.length})
           </button>
-          <button onClick={this.onChangeToSecondAudioList}>
+          <button type="button" onClick={this.onChangeToSecondAudioList}>
             change to second audio list ({audioList2.length})
           </button>
-          <button onClick={this.onAddAudio}>
+          <button type="button" onClick={this.onAddAudio}>
             + add audio ({params.audioLists.length})
           </button>
-          <button onClick={this.extendsContent}>+ add extends content</button>
-          <button onClick={this.playModeShowTime}>
+          <button type="button" onClick={this.extendsContent}>
+            + add extends content
+          </button>
+          <button type="button" onClick={this.playModeShowTime}>
             change play mode show time ({params.playModeShowTime} ms)
           </button>
-          <button onClick={this.changePlayIndex}>
+          <button type="button" onClick={this.changePlayIndex}>
             change playIndex ({params.playIndex || 0})
           </button>
           <select onChange={this.onPlayModeChange} value={params.playMode}>
@@ -587,7 +679,9 @@ class Demo extends React.PureComponent {
               </option>
             ))}
           </select>
-          <button onClick={this.unmountPlayer}>unmount player</button>
+          <button type="button" onClick={this.unmountPlayer}>
+            unmount player
+          </button>
           <br />
           <br />
           <label htmlFor="glassBg">
@@ -795,8 +889,8 @@ class Demo extends React.PureComponent {
           <div className="toggle">
             theme :{params.theme}
             <Switch
-              checkedChildren={'D'}
-              unCheckedChildren={'L'}
+              checkedChildren="D"
+              unCheckedChildren="L"
               checked={params.theme === 'light'}
               onChange={(checked) =>
                 this.onChangeKey(checked ? 'light' : 'dark')
@@ -804,8 +898,8 @@ class Demo extends React.PureComponent {
             />
             mode :{params.mode}
             <Switch
-              checkedChildren={'M'}
-              unCheckedChildren={'F'}
+              checkedChildren="M"
+              unCheckedChildren="F"
               checked={params.mode === 'mini'}
               onChange={(checked) =>
                 this.onChangeKey(checked ? 'mini' : 'full')
@@ -813,8 +907,8 @@ class Demo extends React.PureComponent {
             />
             language :{params.locale}
             <Switch
-              checkedChildren={'zh'}
-              unCheckedChildren={'en'}
+              checkedChildren="zh"
+              unCheckedChildren="en"
               checked={params.locale === Locale.zh_CN}
               onChange={(checked) =>
                 this.onChangeKey(checked ? Locale.zh_CN : Locale.en_US)
