@@ -1,71 +1,63 @@
 /**
- * @version 4.15.4
+ * @version 4.16.2
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
  * @author Jinke.Li <1359518268@qq.com>
- * TODO: 如果有空的话 (估计没有),发布 5.0,
-    1. 使用 typescript + react hooks 重构 :)
-    4. 精简api
-    6. 使用 antd icon
  */
 
-import React, { PureComponent } from 'react'
-import { createPortal } from 'react-dom'
 import cls from 'classnames'
+import download from 'downloadjs'
 import isMobile from 'is-mobile'
+import 'rc-slider/assets/index.css'
 import Slider from 'rc-slider/lib/Slider'
 import Switch from 'rc-switch'
-import download from 'downloadjs'
+import 'rc-switch/assets/index.css'
+import React, { PureComponent } from 'react'
+import { createPortal } from 'react-dom'
 import Draggable from 'react-draggable'
-import {
-  formatTime,
-  createRandomNum,
-  arrayEqual,
-  uuId,
-  isSafari,
-} from './utils'
 import AudioListsPanel from './components/AudioListsPanel'
-import AudioPlayerMobile from './components/PlayerMobile'
-import Lyric from './lyric'
-
+import CircleProcessBar from './components/CircleProcessBar'
 import {
-  FaMinusSquareOIcon,
-  LyricIcon,
-  ReloadIcon,
-  MdVolumeDownIcon,
-  MdVolumeMuteIcon,
-  DownloadIcon,
-  LoopIcon,
-  RepeatIcon,
-  ShufflePlayIcon,
-  OrderPlayIcon,
-  PlayLists,
-  NextAudioIcon,
-  PrevAudioIcon,
+  AnimatePauseIcon,
+  AnimatePlayIcon,
   CloseIcon,
   DeleteIcon,
-  AnimatePlayIcon,
-  AnimatePauseIcon,
+  DownloadIcon,
+  FaMinusSquareOIcon,
+  LoopIcon,
+  LyricIcon,
+  MdVolumeDownIcon,
+  MdVolumeMuteIcon,
+  NextAudioIcon,
+  OrderPlayIcon,
+  PlayLists,
+  PrevAudioIcon,
+  ReloadIcon,
+  RepeatIcon,
+  ShufflePlayIcon,
 } from './components/Icon'
-import CircleProcessBar from './components/CircleProcessBar'
 import Load from './components/Load'
+import AudioPlayerMobile from './components/PlayerMobile'
 import PlayModel from './components/PlayModel'
-
-import { sliderBaseOptions } from './config/slider'
-import { SPACE_BAR_KEYCODE } from './config/keycode'
-import PROP_TYPES from './config/propTypes'
-import LOCALE from './config/locale'
-import NETWORK_STATE from './config/networkState'
 import { AUDIO_LIST_REMOVE_ANIMATE_TIME } from './config/animate'
-import PLAY_MODE from './config/playMode'
-import { THEME } from './config/theme'
-import { MODE } from './config/mode'
-
-import LOCALE_CONFIG from './locale'
-
-import 'rc-slider/assets/index.css'
-import 'rc-switch/assets/index.css'
+import { SPACE_BAR_KEYCODE } from './config/keycode'
+import LOCALE from './config/locale'
 import { MEDIA_QUERY } from './config/mediaQuery'
+import { MODE } from './config/mode'
+import NETWORK_STATE from './config/networkState'
+import PLAY_MODE from './config/playMode'
+import PROP_TYPES from './config/propTypes'
+import { sliderBaseOptions } from './config/slider'
+import { THEME } from './config/theme'
+import LOCALE_CONFIG from './locale'
+import Lyric from './lyric'
+import {
+  arrayEqual,
+  createRandomNum,
+  formatTime,
+  isSafari,
+  uuId,
+} from './utils'
 
 const IS_MOBILE = isMobile()
 
@@ -1563,6 +1555,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     const { name = '', cover = '', singer = '', musicSrc = '', lyric = '' } =
       audioLists.find(({ id }) => id === playId) || {}
+
     return {
       name,
       cover,
@@ -1890,11 +1883,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
   updateMediaSessionMetadata = () => {
     if ('mediaSession' in navigator && this.props.showMediaSession) {
       const { name, cover, singer } = this.state
-      navigator.mediaSession.metadata = new MediaMetadata({
+      const mediaMetaDataConfig = {
         title: name,
         artist: singer,
         album: name,
-        artwork: [
+      }
+      if (cover) {
+        mediaMetaDataConfig.artwork = [
           '96x96',
           '128x128',
           '192x192',
@@ -1905,8 +1900,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
           src: cover,
           sizes: size,
           type: 'image/png',
-        })),
-      })
+        }))
+      }
+      navigator.mediaSession.metadata = new MediaMetadata(mediaMetaDataConfig)
       this.updateMediaSessionPositionState()
     }
   }
@@ -1922,7 +1918,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         })
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error('setPositionState error: ', error)
+        console.error('Update media session position state failed: ', error)
       }
     }
   }
@@ -1930,7 +1926,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onAddMediaSession = () => {
     if ('mediaSession' in navigator && this.props.showMediaSession) {
       const defaultSkipTime = 10
-      this.updateMediaSessionMetadata()
       navigator.mediaSession.setActionHandler('play', this.onTogglePlay)
       navigator.mediaSession.setActionHandler('pause', this.onTogglePlay)
       navigator.mediaSession.setActionHandler('seekbackward', (details) => {
@@ -1949,6 +1944,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.audioPrevPlay,
       )
       navigator.mediaSession.setActionHandler('nexttrack', this.audioNextPlay)
+
+      setTimeout(() => {
+        this.updateMediaSessionMetadata()
+      }, 0)
 
       try {
         navigator.mediaSession.setActionHandler('seekto', (event) => {
