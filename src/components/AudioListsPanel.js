@@ -100,8 +100,12 @@ const AudioListsPanel = ({
                         : undefined}
                     </span>
                   </span>
-                  <span className="group player-name">{name}</span>
-                  <span className="group player-singer">{singer}</span>
+                  <span className="group player-name" title={name}>
+                    {name}
+                  </span>
+                  <span className="group player-singer" title={singer}>
+                    {singer}
+                  </span>
                   {remove && (
                     <span
                       className="group player-delete"
