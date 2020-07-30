@@ -1032,8 +1032,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState({ toggle: true })
       this.props.onModeChange && this.props.onModeChange(MODE.FULL)
       if (spaceBar && this.player.current) {
-        // FIXME: focus 后 如果有滚动条 会滚动到底部
-        this.player.current.focus()
+        this.player.current.focus({ preventScroll: true })
       }
     }
   }
@@ -2029,7 +2028,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   bindKeyDownEvents = () => {
     if (this.props.spaceBar && this.player.current) {
       this.player.current.addEventListener('keydown', this.onKeyDown, false)
-      this.player.current.focus()
+      this.player.current.focus({ preventScroll: true })
     }
   }
 
