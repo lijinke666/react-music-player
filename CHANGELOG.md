@@ -1,3 +1,11 @@
+## [4.16.4](https://github.com/lijinke666/react-music-player/compare/v4.16.3...v4.16.4) (2020-07-30)
+
+
+### Bug Fixes
+
+* pages scroll down when audioList is modified [#133](https://github.com/lijinke666/react-music-player/issues/133) ([a9ce0ca](https://github.com/lijinke666/react-music-player/commit/a9ce0cadaff652c4a262f778ed7265f544778b3c))
+* prevent scroll if audio player focus ([4f9087a](https://github.com/lijinke666/react-music-player/commit/4f9087a9489d829238db9a31267c7f1890bb7654))
+
 ## [4.16.3](https://github.com/lijinke666/react-music-player/compare/v4.16.2...v4.16.3) (2020-07-17)
 
 
