@@ -1,9 +1,8 @@
 ---
 name: Bug report
 about: Let us know something is wrong.
-title: ""
+title: ''
 labels: Bug report
-
 ---
 
 ### Version
@@ -16,9 +15,9 @@ labels: Bug report
 /**
  * code
  */
-
-
 ```
+
+### Reproduce Link
 
 ### Steps to Reproduce
 

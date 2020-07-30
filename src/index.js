@@ -81,7 +81,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     pause: true,
     playing: false,
     currentTime: 0,
-    isLoop: false,
     soundValue: 100,
     moveX: 0,
     moveY: 0,
@@ -415,6 +414,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (isPlayDestroyed) {
       return null
     }
+
     return createPortal(
       <div
         className={cls(
@@ -1018,16 +1018,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  // 循环播放
-  audioLoop = () => {
-    this.setState(({ isLoop }) => {
-      return {
-        isLoop: !isLoop,
-      }
-    })
-  }
-
-  // 重新播放
   onAudioReload = () => {
     if (this.props.audioLists.length) {
       this.handlePlay(PLAY_MODE.singleLoop)
@@ -1042,12 +1032,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState({ toggle: true })
       this.props.onModeChange && this.props.onModeChange(MODE.FULL)
       if (spaceBar && this.player.current) {
+        // FIXME: focus 后 如果有滚动条 会滚动到底部
         this.player.current.focus()
       }
     }
   }
 
-  // 收起播放器
   onHidePanel = () => {
     this.setState({ toggle: false, audioListsPanelVisible: false })
     this.props.onModeChange && this.props.onModeChange(MODE.MINI)
@@ -1319,7 +1309,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   // 音频播放结束
-  audioEnd = () => {
+  onAudioEnd = () => {
     this.props.onAudioEnded &&
       this.props.onAudioEnded(
         this.state.playId,
@@ -1567,7 +1557,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       waiting: this.loadAndPlayAudio,
       canplay: this.canPlay,
       error: this.onAudioError,
-      ended: this.audioEnd,
+      ended: this.onAudioEnd,
       pause: this.onAudioPause,
       play: this.onAudioPlay,
       timeupdate: this.audioTimeUpdate,
@@ -2037,9 +2027,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   bindKeyDownEvents = () => {
-    this.player.current.addEventListener('keydown', this.onKeyDown, false)
-    if (this.props.spaceBar) {
-      this.player.current && this.player.current.focus()
+    if (this.props.spaceBar && this.player.current) {
+      this.player.current.addEventListener('keydown', this.onKeyDown, false)
+      this.player.current.focus()
     }
   }
 
@@ -2056,7 +2046,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  initPlayer = (audioLists = this.props.audioLists) => {
+  initPlayer = (
+    audioLists = this.props.audioLists,
+    isBindKeyDownEvents = true,
+  ) => {
     if (!Array.isArray(audioLists)) {
       return
     }
@@ -2069,10 +2062,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       if (IS_MOBILE) {
         this.bindMobileAutoPlayEvents()
       } else {
-        this.bindKeyDownEvents()
-      }
-      if (!IS_MOBILE && isSafari()) {
-        this.bindSafariAutoPlayEvents()
+        if (isBindKeyDownEvents) {
+          this.bindKeyDownEvents()
+        }
+        if (isSafari()) {
+          this.bindSafariAutoPlayEvents()
+        }
       }
     }
   }
@@ -2109,7 +2104,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       } else {
         this.updateAudioLists(audioLists)
       }
-      this.initPlayer(audioLists)
+      this.initPlayer(audioLists, false)
     }
     this.updatePlayIndex(playIndex)
     this.updateTheme(theme)
