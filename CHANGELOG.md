@@ -1,3 +1,10 @@
+## [4.16.5](https://github.com/lijinke666/react-music-player/compare/v4.16.4...v4.16.5) (2020-08-04)
+
+
+### Bug Fixes
+
+* remove audio title max width [#141](https://github.com/lijinke666/react-music-player/issues/141) ([7ec856e](https://github.com/lijinke666/react-music-player/commit/7ec856ec864078a8ff8345e465aa00d0344b8f4d))
+
 ## [4.16.4](https://github.com/lijinke666/react-music-player/compare/v4.16.3...v4.16.4) (2020-07-30)
 
 
