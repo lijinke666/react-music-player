@@ -24,7 +24,8 @@
     }
 
     &-active {
-      &, svg {
+      &,
+      svg {
         color: @primary-color !important;
       }
     }
@@ -180,12 +181,13 @@
       .progress-bar-content {
         flex: 1;
         padding: 0 20px;
+        overflow: hidden;
 
         .audio-title {
           transition: color @common-animate-time;
           .ellipsis-1();
           display: inline-block;
-          max-width: 400px;
+          width: 100%;
         }
 
         .audio-main {

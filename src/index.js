@@ -497,9 +497,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 />
               )}
               <div className="progress-bar-content">
-                <span className="audio-title">{audioTitle}</span>
+                <span className="audio-title" title={audioTitle}>
+                  {audioTitle}
+                </span>
                 <section className="audio-main">
-                  <span className="current-time">
+                  <span className="current-time" title={formattedCurrentTime}>
                     {loading ? '--' : formattedCurrentTime}
                   </span>
                   <div className="progress-bar">
@@ -512,7 +514,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                     {ProgressBar}
                   </div>
-                  <span className="duration">
+                  <span className="duration" title={formattedAudioDuration}>
                     {loading ? '--' : formattedAudioDuration}
                   </span>
                 </section>
