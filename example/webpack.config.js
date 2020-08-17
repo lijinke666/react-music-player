@@ -31,7 +31,7 @@ module.exports = () => {
       filename: '[name].[hash:8].js',
       publicPath: getPublicPath(),
     },
-    //模块加载器
+    // 模块加载器
     module: {
       rules: [
         {
@@ -87,7 +87,6 @@ module.exports = () => {
       ],
     },
     devtool: isDev ? 'nosources-source-map' : false,
-    //自动补全后缀
     resolve: {
       enforceExtension: false,
       extensions: ['.js', '.jsx', '.json'],
@@ -104,7 +103,7 @@ module.exports = () => {
       port: PORT,
       historyApiFallback: true,
       hot: true,
-      clientLogLevel: 'none',
+      clientLogLevel: 'silent',
       stats: {
         color: true,
         errors: true,
