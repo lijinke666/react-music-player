@@ -87,11 +87,6 @@ const options = {
   // Ref: https://github.com/STRML/react-draggable#draggable-api
   bounds: 'body',
 
-  icon: {
-    play: '1',
-    loading: <div>L</div>,
-  },
-
   // Replace a new playlist with the first loaded playlist
   // instead of adding it at the end of it.
   // [type `boolean`, default `false`]
