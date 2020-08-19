@@ -1,3 +1,10 @@
+# [4.17.0](https://github.com/lijinke666/react-music-player/compare/v4.16.5...v4.17.0) (2020-08-19)
+
+
+### Features
+
+* support custom icons [#142](https://github.com/lijinke666/react-music-player/issues/142) ([9761a90](https://github.com/lijinke666/react-music-player/commit/9761a90947f701c4aa5539e8911f3e3f1a96aeac))
+
 ## [4.16.5](https://github.com/lijinke666/react-music-player/compare/v4.16.4...v4.16.5) (2020-08-04)
 
 
