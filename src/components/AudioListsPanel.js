@@ -11,10 +11,6 @@ const AudioListsPanel = ({
   pause,
   playId,
   loading,
-  playIcon,
-  pauseIcon,
-  closeIcon,
-  deleteIcon,
   panelToggleAnimate,
   glassBg,
   remove,
@@ -22,6 +18,7 @@ const AudioListsPanel = ({
   audioListsDragEnd,
   isMobile,
   locale,
+  icon,
 }) => (
   <div
     className={cls('audio-lists-panel', panelToggleAnimate, {
@@ -39,7 +36,7 @@ const AudioListsPanel = ({
           title={locale.closeText}
           onClick={onCancel}
         >
-          {isMobile ? <ArrowDownIcon /> : closeIcon}
+          {isMobile ? <ArrowDownIcon /> : icon.close}
         </span>
         {remove && (
           <>
@@ -49,7 +46,7 @@ const AudioListsPanel = ({
               title={locale.removeAudioListsText}
               onClick={onDelete()}
             >
-              {deleteIcon}
+              {icon.delete}
             </span>
           </>
         )}
@@ -92,11 +89,11 @@ const AudioListsPanel = ({
                   <span className="group player-status">
                     <span className="player-icons">
                       {playing && loading
-                        ? loading
+                        ? icon.loading
                         : playing
                         ? pause
-                          ? playIcon
-                          : pauseIcon
+                          ? icon.play
+                          : icon.pause
                         : undefined}
                     </span>
                   </span>
@@ -112,7 +109,7 @@ const AudioListsPanel = ({
                       title={locale.clickToDeleteText(name)}
                       onClick={onDelete(audio.id)}
                     >
-                      {closeIcon}
+                      {icon.close}
                     </span>
                   )}
                 </li>

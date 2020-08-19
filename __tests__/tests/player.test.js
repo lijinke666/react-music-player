@@ -22,7 +22,6 @@ import PlayModeTip from '../../src/components/PlayModeTip'
 import AudioListsPanel from '../../src/components/AudioListsPanel'
 import PlayModel from '../../src/components/PlayModel'
 import CircleProcessBar from '../../src/components/CircleProcessBar'
-import Load from '../../src/components/Load'
 import { SPACE_BAR_KEYCODE } from '../../src/config/keycode'
 import { sleep } from '../utils'
 import { MEDIA_QUERY } from '../../src/config/mediaQuery'
@@ -30,7 +29,7 @@ import { MEDIA_QUERY } from '../../src/config/mediaQuery'
 describe('<ReactJkMusicPlayer/>', () => {
   it('should render a <ReactJkMusicPlayer/> components', () => {
     const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" />)
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper.render()).toMatchSnapshot()
   })
   it('should render a <ReactJkMusicPlayer/> components', () => {
     const wrapper = mount(
@@ -47,7 +46,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setState({ pause: true, playing: false })
     assert(wrapper.find(AnimatePlayIcon).length >= 1)
     wrapper.setState({ loading: true })
-    assert(wrapper.find(Load).length >= 1)
+    assert(wrapper.find('.loading').length >= 1)
     assert(wrapper.find(PlayModel).length >= 1)
     wrapper.setState({ toggle: false })
     wrapper.setProps({ showMiniProcessBar: true })

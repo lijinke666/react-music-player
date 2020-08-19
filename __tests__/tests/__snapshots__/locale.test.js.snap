@@ -19,6 +19,29 @@ exports[`Locale test should render default locale with en_US 1`] = `
   drag={true}
   getContainer={[Function]}
   glassBg={false}
+  icon={
+    Object {
+      "close": <MdClose />,
+      "delete": <FaTrashO />,
+      "destroy": <MdClose />,
+      "download": <FaCloudDownload />,
+      "loading": <FaSpinner />,
+      "loop": <MdRepeatOne />,
+      "lyric": <FaBook />,
+      "mute": <MdVolumeOff />,
+      "next": <MdSkipNext />,
+      "order": <MdViewHeadline />,
+      "orderLoop": <MdRepeat />,
+      "pause": <AnimatePauseIcon />,
+      "play": <AnimatePlayIcon />,
+      "playLists": <MdQueueMusic />,
+      "prev": <MdSkipPrevious />,
+      "reload": <FaRefresh />,
+      "shuffle": <TiArrowShuffle />,
+      "toggle": <FaMinusSquareO />,
+      "volume": <MdVolumeUp />,
+    }
+  }
   loadAudioErrorPlayNext={true}
   locale="en_US"
   mode="mini"
@@ -362,11 +385,33 @@ exports[`Locale test should render default locale with en_US 1`] = `
       <AudioListsPanel
         audioLists={Array []}
         audioListsDragEnd={[Function]}
-        closeIcon={<MdClose />}
         cover=""
-        deleteIcon={<FaTrashO />}
         glassBg={false}
+        icon={
+          Object {
+            "close": <MdClose />,
+            "delete": <FaTrashO />,
+            "destroy": <MdClose />,
+            "download": <FaCloudDownload />,
+            "loading": <Spin />,
+            "loop": <MdRepeatOne />,
+            "lyric": <FaBook />,
+            "mute": <MdVolumeOff />,
+            "next": <MdSkipNext />,
+            "order": <MdViewHeadline />,
+            "orderLoop": <MdRepeat />,
+            "pause": <AnimatePauseIcon />,
+            "play": <AnimatePlayIcon />,
+            "playLists": <MdQueueMusic />,
+            "prev": <MdSkipPrevious />,
+            "reload": <FaRefresh />,
+            "shuffle": <TiArrowShuffle />,
+            "toggle": <FaMinusSquareO />,
+            "volume": <MdVolumeUp />,
+          }
+        }
         isMobile={false}
+        loading={false}
         locale={
           Object {
             "clickToDeleteText": [Function],
@@ -407,8 +452,6 @@ exports[`Locale test should render default locale with en_US 1`] = `
           }
         }
         pause={true}
-        pauseIcon={<AnimatePauseIcon />}
-        playIcon={<AnimatePlayIcon />}
         playId=""
         remove={true}
         removeId={-1}
@@ -576,6 +619,29 @@ exports[`Locale test should render locale with zh_CN 1`] = `
   drag={true}
   getContainer={[Function]}
   glassBg={false}
+  icon={
+    Object {
+      "close": <MdClose />,
+      "delete": <FaTrashO />,
+      "destroy": <MdClose />,
+      "download": <FaCloudDownload />,
+      "loading": <FaSpinner />,
+      "loop": <MdRepeatOne />,
+      "lyric": <FaBook />,
+      "mute": <MdVolumeOff />,
+      "next": <MdSkipNext />,
+      "order": <MdViewHeadline />,
+      "orderLoop": <MdRepeat />,
+      "pause": <AnimatePauseIcon />,
+      "play": <AnimatePlayIcon />,
+      "playLists": <MdQueueMusic />,
+      "prev": <MdSkipPrevious />,
+      "reload": <FaRefresh />,
+      "shuffle": <TiArrowShuffle />,
+      "toggle": <FaMinusSquareO />,
+      "volume": <MdVolumeUp />,
+    }
+  }
   loadAudioErrorPlayNext={true}
   locale="zh_CN"
   mode="mini"
@@ -1079,11 +1145,33 @@ exports[`Locale test should render locale with zh_CN 1`] = `
       <AudioListsPanel
         audioLists={Array []}
         audioListsDragEnd={[Function]}
-        closeIcon={<MdClose />}
         cover=""
-        deleteIcon={<FaTrashO />}
         glassBg={false}
+        icon={
+          Object {
+            "close": <MdClose />,
+            "delete": <FaTrashO />,
+            "destroy": <MdClose />,
+            "download": <FaCloudDownload />,
+            "loading": <Spin />,
+            "loop": <MdRepeatOne />,
+            "lyric": <FaBook />,
+            "mute": <MdVolumeOff />,
+            "next": <MdSkipNext />,
+            "order": <MdViewHeadline />,
+            "orderLoop": <MdRepeat />,
+            "pause": <AnimatePauseIcon />,
+            "play": <AnimatePlayIcon />,
+            "playLists": <MdQueueMusic />,
+            "prev": <MdSkipPrevious />,
+            "reload": <FaRefresh />,
+            "shuffle": <TiArrowShuffle />,
+            "toggle": <FaMinusSquareO />,
+            "volume": <MdVolumeUp />,
+          }
+        }
         isMobile={false}
+        loading={false}
         locale={
           Object {
             "clickToDeleteText": [Function],
@@ -1124,8 +1212,6 @@ exports[`Locale test should render locale with zh_CN 1`] = `
           }
         }
         pause={true}
-        pauseIcon={<AnimatePauseIcon />}
-        playIcon={<AnimatePlayIcon />}
         playId=""
         remove={true}
         removeId={-1}

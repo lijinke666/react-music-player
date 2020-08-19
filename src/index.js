@@ -5,7 +5,7 @@
  * @license MIT
  */
 
-import React, { PureComponent, createRef } from 'react'
+import React, { PureComponent, createRef, cloneElement } from 'react'
 import { createPortal } from 'react-dom'
 import cls from 'classnames'
 import download from 'downloadjs'
@@ -28,13 +28,14 @@ import {
   MdVolumeMuteIcon,
   NextAudioIcon,
   OrderPlayIcon,
-  PlayLists,
+  PlayListsIcon,
   PrevAudioIcon,
   ReloadIcon,
   RepeatIcon,
   ShufflePlayIcon,
+  LoadIcon,
 } from './components/Icon'
-import Load from './components/Load'
+
 import AudioPlayerMobile from './components/PlayerMobile'
 import PlayModel from './components/PlayModel'
 import { AUDIO_LIST_REMOVE_ANIMATE_TIME } from './config/animate'
@@ -61,6 +62,28 @@ import 'rc-slider/assets/index.css'
 import 'rc-switch/assets/index.css'
 
 const IS_MOBILE = getIsMobile()
+
+const DEFAULT_ICON = {
+  pause: <AnimatePauseIcon />,
+  play: <AnimatePlayIcon />,
+  destroy: <CloseIcon />,
+  close: <CloseIcon />,
+  delete: <DeleteIcon />,
+  download: <DownloadIcon />,
+  toggle: <FaMinusSquareOIcon />,
+  lyric: <LyricIcon />,
+  volume: <MdVolumeDownIcon />,
+  mute: <MdVolumeMuteIcon />,
+  next: <NextAudioIcon />,
+  prev: <PrevAudioIcon />,
+  playLists: <PlayListsIcon />,
+  reload: <ReloadIcon />,
+  loop: <LoopIcon />,
+  order: <OrderPlayIcon />,
+  orderLoop: <RepeatIcon />,
+  shuffle: <ShufflePlayIcon />,
+  loading: <LoadIcon />,
+}
 
 export default class ReactJkMusicPlayer extends PureComponent {
   isDrag = false
@@ -142,6 +165,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     showMediaSession: false,
     locale: LOCALE.en_US,
     responsive: true,
+    icon: DEFAULT_ICON,
   }
 
   static propTypes = PROP_TYPES
@@ -168,6 +192,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const { autoPlay } = this.props
     const { isInitAutoPlay, isAutoPlayWhenUserClicked } = this.state
     return isInitAutoPlay || autoPlay || isAutoPlayWhenUserClicked
+  }
+
+  get iconMap() {
+    const Spin = () => (
+      <span className="loading group">{this.props.icon.loading}</span>
+    )
+    return { ...DEFAULT_ICON, ...this.props.icon, loading: <Spin /> }
   }
 
   constructor(props) {
@@ -259,7 +290,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       PLAY_MODE[playMode || defaultPlayMode] || PLAY_MODE.order
     const currentPlayModeName = locale.playModeText[currentPlayMode]
 
-    const isShowMiniModeCover =
+    const miniModeCoverConfig =
       (showMiniModeCover && !autoHiddenCover) || (autoHiddenCover && cover)
         ? {
             style: {
@@ -296,7 +327,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {...{ [isMobile ? 'onTouchStart' : 'onClick']: this.onAudioDownload }}
         title={locale.downloadText}
       >
-        <DownloadIcon />
+        {this.iconMap.download}
       </span>
     )
 
@@ -323,7 +354,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           : { onClick: this.onAudioReload })}
         title={locale.reloadText}
       >
-        <ReloadIcon />
+        {this.iconMap.reload}
       </span>
     )
 
@@ -338,7 +369,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           : { onClick: this.toggleAudioLyric })}
         title={locale.toggleLyricText}
       >
-        <LyricIcon />
+        {this.iconMap.lyric}
       </span>
     )
 
@@ -366,7 +397,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           ? { [isMobile ? 'onTouchStart' : 'onClick']: this.onDestroyPlayer }
           : null)}
       >
-        <CloseIcon />
+        {this.iconMap.destroy}
       </span>
     )
 
@@ -388,10 +419,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
             className={cls('scale', 'music-player-controller', {
               'music-player-playing': this.state.playing,
             })}
-            {...isShowMiniModeCover}
+            {...miniModeCoverConfig}
           >
             {loading ? (
-              <Load />
+              this.iconMap.loading
             ) : (
               <>
                 <span className="controller-title">
@@ -446,15 +477,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
             playMode={PlayModeComponent}
             audioNextPlay={this.audioNextPlay}
             audioPrevPlay={this.audioPrevPlay}
-            playListsIcon={<PlayLists />}
-            reloadIcon={ReloadComponent}
-            downloadIcon={DownloadComponent}
-            nextAudioIcon={<NextAudioIcon />}
-            prevAudioIcon={<PrevAudioIcon />}
-            playIcon={<AnimatePlayIcon />}
-            pauseIcon={<AnimatePauseIcon />}
-            closeIcon={<CloseIcon />}
-            loadingIcon={<Load />}
+            icon={{
+              ...this.iconMap,
+              reload: ReloadComponent,
+              download: DownloadComponent,
+            }}
             playModeTipVisible={playModeTipVisible}
             openAudioListsPanel={this.openAudioListsPanel}
             onClose={this.onHidePanel}
@@ -520,9 +547,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 </section>
               </div>
               <div className="player-content">
-                {/* 播放按钮 */}
                 {loading ? (
-                  <Load />
+                  this.iconMap.loading
                 ) : showPlay ? (
                   <span className="group">
                     <span
@@ -532,7 +558,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         ? { onTouchStart: this.audioPrevPlay }
                         : { onClick: this.audioPrevPlay })}
                     >
-                      <PrevAudioIcon />
+                      {this.iconMap.prev}
                     </span>
                     <span
                       className="group play-btn"
@@ -546,13 +572,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       }
                     >
                       {playing ? (
-                        <span>
-                          <AnimatePauseIcon />
-                        </span>
+                        <span>{this.iconMap.pause}</span>
                       ) : (
-                        <span>
-                          <AnimatePlayIcon />
-                        </span>
+                        <span>{this.iconMap.play}</span>
                       )}
                     </span>
                     <span
@@ -562,19 +584,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         ? { onTouchStart: this.audioNextPlay }
                         : { onClick: this.audioNextPlay })}
                     >
-                      <NextAudioIcon />
+                      {this.iconMap.next}
                     </span>
                   </span>
                 ) : undefined}
 
-                {/* 重播 */}
                 {ReloadComponent}
-                {/* 下载歌曲 */}
                 {DownloadComponent}
-                {/* 主题选择 */}
                 {ThemeSwitchComponent}
-
-                {/* 自定义扩展按钮 */}
                 {extendsContent || null}
 
                 {/* 音量控制 */}
@@ -586,7 +603,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         ? { onTouchStart: this.onResetVolume }
                         : { onClick: this.onResetVolume })}
                     >
-                      <MdVolumeMuteIcon />
+                      {this.iconMap.mute}
                     </span>
                   ) : (
                     <span
@@ -595,7 +612,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         ? { onTouchStart: this.onMute }
                         : { onClick: this.onMute })}
                     >
-                      <MdVolumeDownIcon />
+                      {this.iconMap.volume}
                     </span>
                   )}
                   <Slider
@@ -607,13 +624,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   />
                 </span>
 
-                {/* 播放模式 */}
                 {PlayModeComponent}
 
-                {/* 歌词按钮 */}
                 {LyricComponent}
 
-                {/* 播放列表按钮 */}
                 <span
                   className="group audio-lists-btn"
                   title={locale.playListsText}
@@ -622,12 +636,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     : { onClick: this.openAudioListsPanel })}
                 >
                   <span className="audio-lists-icon">
-                    <PlayLists />
+                    {this.iconMap.playLists}
                   </span>
                   <span className="audio-lists-num">{audioLists.length}</span>
                 </span>
 
-                {/* 收起面板 */}
                 {toggleMode && (
                   <span
                     className="group hide-panel"
@@ -636,11 +649,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       ? { onTouchStart: this.onHidePanel }
                       : { onClick: this.onHidePanel })}
                   >
-                    <FaMinusSquareOIcon />
+                    {this.iconMap.toggle}
                   </span>
                 )}
 
-                {/* 销毁播放器 */}
                 {DestroyComponent}
               </div>
             </section>
@@ -650,20 +662,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
         <AudioListsPanel
           playId={playId}
           pause={pause}
-          loading={loading ? <Load /> : undefined}
+          loading={loading}
           visible={audioListsPanelVisible}
           audioLists={audioLists}
           onPlay={this.audioListsPlay}
           onCancel={this.closeAudioListsPanel}
-          playIcon={<AnimatePlayIcon />}
-          pauseIcon={<AnimatePauseIcon />}
-          closeIcon={<CloseIcon />}
+          icon={this.iconMap}
           isMobile={isMobile}
           panelToggleAnimate={panelToggleAnimate}
           glassBg={glassBg}
           cover={cover}
           remove={remove}
-          deleteIcon={<DeleteIcon />}
           onDelete={this.onDeleteAudioLists}
           removeId={removeId}
           audioListsDragEnd={this.audioListsDragEnd}
@@ -755,23 +764,25 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   // 渲染播放模式 对应按钮
   renderPlayModeIcon = (playMode) => {
-    let IconNode = ''
-    const animateName = 'react-jinke-music-player-mode-icon'
+    const animateProps = {
+      className: 'react-jinke-music-player-mode-icon',
+    }
+    let IconNode = null
     switch (playMode) {
       case PLAY_MODE.order:
-        IconNode = <OrderPlayIcon className={animateName} />
+        IconNode = cloneElement(this.iconMap.order, animateProps)
         break
       case PLAY_MODE.orderLoop:
-        IconNode = <RepeatIcon className={animateName} />
+        IconNode = cloneElement(this.iconMap.orderLoop, animateProps)
         break
       case PLAY_MODE.singleLoop:
-        IconNode = <LoopIcon className={animateName} />
+        IconNode = cloneElement(this.iconMap.loop, animateProps)
         break
       case PLAY_MODE.shufflePlay:
-        IconNode = <ShufflePlayIcon className={animateName} />
+        IconNode = cloneElement(this.iconMap.shuffle, animateProps)
         break
       default:
-        IconNode = <OrderPlayIcon className={animateName} />
+        IconNode = cloneElement(this.iconMap.order, animateProps)
     }
     return IconNode
   }

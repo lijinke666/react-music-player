@@ -12,21 +12,12 @@ const PlayerMobile = ({
   duration,
   currentTime,
   loading,
-  loadingIcon,
   themeSwitch,
   progressBar,
   openAudioListsPanel,
   audioPrevPlay,
   audioNextPlay,
-  prevAudioIcon,
-  nextAudioIcon,
-  playIcon,
-  pauseIcon,
   playMode,
-  downloadIcon,
-  reloadIcon,
-  playListsIcon,
-  closeIcon,
   onClose,
   pause,
   playModeTipVisible,
@@ -37,6 +28,7 @@ const PlayerMobile = ({
   LyricIcon,
   onCoverClick,
   autoHiddenCover,
+  icon,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -49,7 +41,7 @@ const PlayerMobile = ({
       <div className={`${prefix}-header-left`} />
       <div className={`${prefix}-header-title`}>{name}</div>
       <div className={`${prefix}-header-right`} onClick={onClose}>
-        {closeIcon}
+        {icon.close}
       </div>
     </div>
     <div className={`${prefix}-singer text-center group`}>
@@ -78,7 +70,7 @@ const PlayerMobile = ({
     </div>
     <div className={`${prefix}-toggle text-center group`}>
       {loading ? (
-        loadingIcon
+        icon.loading
       ) : (
         <>
           <span
@@ -86,41 +78,45 @@ const PlayerMobile = ({
             title="Previous track"
             onClick={audioPrevPlay}
           >
-            {prevAudioIcon}
+            {icon.prev}
           </span>
           <span
             className="group play-btn"
             title={playing ? 'Click to pause' : 'Click to play'}
             onClick={onPlay}
           >
-            {playing ? pauseIcon : playIcon}
+            {playing ? icon.pause : icon.play}
           </span>
           <span
             className="group next-audio"
             title="Next track"
             onClick={audioNextPlay}
           >
-            {nextAudioIcon}
+            {icon.next}
           </span>
         </>
       )}
     </div>
     <div className={`${prefix}-operation group`}>
       <ul className="items">
-        {[playMode, downloadIcon, reloadIcon, LyricIcon]
+        {[playMode, icon.download, icon.reload, LyricIcon]
           .filter(Boolean)
-          .map((icon) => (
-            <li className="item" key={icon.props.className}>
-              {icon}
+          .map((item) => (
+            <li className="item" key={item.props.className}>
+              {item}
             </li>
           ))}
         {extendsContent}
         <li className="item" onClick={openAudioListsPanel}>
-          {playListsIcon}
+          {icon.playLists}
         </li>
       </ul>
     </div>
   </div>
 )
+
+PlayerMobile.defaultProps = {
+  icon: {},
+}
 
 export default PlayerMobile

@@ -49,6 +49,28 @@ export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
   appendAudio?: (fromIndex: number, audioLists: ReactJkMusicPlayerAudioListProps[]) => void,
 }
 
+export interface ReactJkMusicPlayerIcon {
+  pause?: React.ReactNode | string,
+  play?: React.ReactNode | string,
+  destroy?: React.ReactNode | string,
+  close?: React.ReactNode | string,
+  delete?: React.ReactNode | string,
+  download?: React.ReactNode | string,
+  toggle?: React.ReactNode | string,
+  lyric?: React.ReactNode | string,
+  volume?: React.ReactNode | string,
+  mute?: React.ReactNode | string,
+  next?: React.ReactNode | string,
+  prev?: React.ReactNode | string,
+  playLists?: React.ReactNode | string,
+  reload?: React.ReactNode | string,
+  loop?: React.ReactNode | string,
+  order?: React.ReactNode | string,
+  orderLoop?: React.ReactNode | string,
+  shuffle?: React.ReactNode | string,
+  loading?: React.ReactNode | string,
+}
+
 export interface ReactJkMusicPlayerCustomLocale {
   playModeText: {
     order: string | React.ReactNode,
@@ -90,6 +112,7 @@ export interface TransformedDownloadAudioInfo {
 export interface ReactJkMusicPlayerProps {
   audioLists: Array<ReactJkMusicPlayerAudioListProps>,
   locale?: ReactJkMusicPlayerLocale,
+  icon?: ReactJkMusicPlayerIcon,
   theme?: ReactJkMusicPlayerTheme,
   mode?: ReactJkMusicPlayerMode,
   defaultPlayMode?: ReactJkMusicPlayerPlayMode,

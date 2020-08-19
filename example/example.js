@@ -87,6 +87,11 @@ const options = {
   // Ref: https://github.com/STRML/react-draggable#draggable-api
   bounds: 'body',
 
+  icon: {
+    play: '1',
+    loading: <div>L</div>,
+  },
+
   // Replace a new playlist with the first loaded playlist
   // instead of adding it at the end of it.
   // [type `boolean`, default `false`]
@@ -325,6 +330,7 @@ const options = {
     console.log('audioInfo: ', audioInfo)
     return new Promise((resolve, reject) => {
       // your custom validate
+      // eslint-disable-next-line no-alert
       if (window.confirm('Are you confirm destroy the player?')) {
         // if resolve, player destroyed
         resolve()

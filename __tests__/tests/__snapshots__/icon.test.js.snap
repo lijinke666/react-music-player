@@ -1,0 +1,678 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Player custom icon test should render custom icon 1`] = `
+<div
+  class="react-jinke-music-player-main dark-theme"
+  tabindex="-1"
+>
+  <div
+    class="music-player-panel translate"
+  >
+    <section
+      class="panel-content"
+    >
+      <div
+        class="img-content img-rotate img-rotate-pause"
+        style="background-image: url();"
+      />
+      <div
+        class="progress-bar-content"
+      >
+        <span
+          class="audio-title"
+          title="audioName "
+        >
+          audioName 
+        </span>
+        <section
+          class="audio-main"
+        >
+          <span
+            class="current-time"
+            title="00:00"
+          >
+            00:00
+          </span>
+          <div
+            class="progress-bar"
+          >
+            <div
+              class="progress-load-bar"
+              style="width: 0%;"
+            />
+            <div
+              class="rc-slider"
+            >
+              <div
+                class="rc-slider-rail"
+              />
+              <div
+                class="rc-slider-track"
+                style="left: 0%;"
+              />
+              <div
+                class="rc-slider-step"
+              />
+              <div
+                aria-disabled="false"
+                aria-valuemax="0"
+                aria-valuemin="0"
+                aria-valuenow="0"
+                class="rc-slider-handle"
+                role="slider"
+                style="transform: translateX(-50%);"
+                tabindex="0"
+              />
+              <div
+                class="rc-slider-mark"
+              />
+            </div>
+          </div>
+          <span
+            class="duration"
+            title="00:00"
+          >
+            00:00
+          </span>
+        </section>
+      </div>
+      <div
+        class="player-content"
+      >
+        <span
+          class="group"
+        >
+          <span
+            class="group prev-audio"
+            title="Previous track"
+          >
+            <div>
+              1
+            </div>
+          </span>
+          <span
+            class="group play-btn"
+            title="Click to play"
+          >
+            <span>
+              <div>
+                1
+              </div>
+            </span>
+          </span>
+          <span
+            class="group next-audio"
+            title="Next track"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </span>
+        <span
+          class="group reload-btn"
+          title="Reload"
+        >
+          <div>
+            1
+          </div>
+        </span>
+        <span
+          class="group audio-download"
+          title="Download"
+        >
+          <div>
+            1
+          </div>
+        </span>
+        <span
+          class="group theme-switch"
+        >
+          <button
+            aria-checked="false"
+            class="rc-switch theme-switch-container"
+            role="switch"
+            title="Dark/Light mode"
+            type="button"
+          >
+            <span
+              class="rc-switch-inner"
+            >
+              D
+            </span>
+          </button>
+        </span>
+        <span
+          class="group play-sounds"
+          title="Volume"
+        >
+          <span
+            class="sounds-icon"
+          >
+            <div>
+              1
+            </div>
+          </span>
+          <div
+            class="rc-slider sound-operation"
+          >
+            <div
+              class="rc-slider-rail"
+            />
+            <div
+              class="rc-slider-track"
+              style="left: 0%; width: 100%;"
+            />
+            <div
+              class="rc-slider-step"
+            />
+            <div
+              aria-disabled="false"
+              aria-valuemax="1"
+              aria-valuemin="0"
+              aria-valuenow="1"
+              class="rc-slider-handle"
+              role="slider"
+              style="left: 100%; transform: translateX(-50%);"
+              tabindex="0"
+            />
+            <div
+              class="rc-slider-mark"
+            />
+          </div>
+        </span>
+        <span
+          class="group loop-btn"
+          title="Play in order"
+        >
+          <div>
+            1
+          </div>
+        </span>
+        <span
+          class="group audio-lists-btn"
+          title="Playlists"
+        >
+          <span
+            class="audio-lists-icon"
+          >
+            <div>
+              1
+            </div>
+          </span>
+          <span
+            class="audio-lists-num"
+          >
+            2
+          </span>
+        </span>
+        <span
+          class="group hide-panel"
+          title="Minimize"
+        >
+          <div>
+            1
+          </div>
+        </span>
+      </div>
+    </section>
+  </div>
+  <div
+    class="audio-lists-panel show"
+  >
+    <div
+      class="audio-lists-panel-header"
+    >
+      <h2
+        class="audio-lists-panel-header-title"
+      >
+        <span>
+          Playlists / 
+        </span>
+        <span
+          class="audio-lists-panel-header-num"
+        >
+          2
+        </span>
+        <span
+          class="audio-lists-panel-header-close-btn"
+          title="Close"
+        >
+          <div>
+            1
+          </div>
+        </span>
+        <span
+          class="audio-lists-panel-header-line"
+        />
+        <span
+          class="audio-lists-panel-header-delete-btn"
+          title="Delete audio lists"
+        >
+          <div>
+            1
+          </div>
+        </span>
+      </h2>
+    </div>
+    <div
+      class="audio-lists-panel-content"
+    >
+      <div
+        role="presentation"
+      >
+        <ul>
+          <li
+            class="audio-item playing pause"
+            title="Click to play"
+          >
+            <span
+              class="group player-status"
+            >
+              <span
+                class="player-icons"
+              >
+                <div>
+                  1
+                </div>
+              </span>
+            </span>
+            <span
+              class="group player-name"
+              title="audioName"
+            >
+              audioName
+            </span>
+            <span
+              class="group player-singer"
+            />
+            <span
+              class="group player-delete"
+              title="Click to delete audioName"
+            >
+              <div>
+                1
+              </div>
+            </span>
+          </li>
+          <li
+            class="audio-item pause"
+            title="Click to play"
+          >
+            <span
+              class="group player-status"
+            >
+              <span
+                class="player-icons"
+              />
+            </span>
+            <span
+              class="group player-name"
+              title="audioName2"
+            >
+              audioName2
+            </span>
+            <span
+              class="group player-singer"
+            />
+            <span
+              class="group player-delete"
+              title="Click to delete audioName2"
+            >
+              <div>
+                1
+              </div>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    class="play-mode-title"
+  >
+    Play in order
+  </div>
+  <audio
+    class="music-player-audio"
+    src="xx"
+    title="audioName "
+  />
+</div>
+`;
+
+exports[`Player custom icon test should render custom icon in mobile mode 1`] = `
+<div
+  class="react-jinke-music-player-main dark-theme"
+  tabindex="-1"
+>
+  <div
+    class="react-jinke-music-player-mobile default-bg"
+  >
+    <div
+      class="react-jinke-music-player-mobile-play-model-tip"
+    >
+      <span
+        class="react-jinke-music-player-mobile-play-model-tip-title"
+      >
+        <span
+          class="group loop-btn"
+          title="Play in order"
+        >
+          <div>
+            1
+          </div>
+        </span>
+      </span>
+      <span
+        class="react-jinke-music-player-mobile-play-model-tip-text"
+      >
+        Play in order
+      </span>
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-header group"
+    >
+      <div
+        class="react-jinke-music-player-mobile-header-left"
+      />
+      <div
+        class="react-jinke-music-player-mobile-header-title"
+      >
+        audioName
+      </div>
+      <div
+        class="react-jinke-music-player-mobile-header-right"
+      >
+        <div>
+          1
+        </div>
+      </div>
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-singer text-center group"
+    >
+      <span
+        class="react-jinke-music-player-mobile-singer-name"
+      />
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-switch text-center group"
+    >
+      <span
+        class="group theme-switch"
+      >
+        <button
+          aria-checked="false"
+          class="rc-switch theme-switch-container"
+          role="switch"
+          title="Dark/Light mode"
+          type="button"
+        >
+          <span
+            class="rc-switch-inner"
+          >
+            D
+          </span>
+        </button>
+      </span>
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-cover text-center"
+    >
+      <img
+        alt="cover"
+        class="cover img-rotate-pause"
+        src=""
+      />
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-progress group"
+    >
+      <span
+        class="current-time"
+      >
+        00:00
+      </span>
+      <div
+        class="rc-slider"
+      >
+        <div
+          class="rc-slider-rail"
+        />
+        <div
+          class="rc-slider-track"
+          style="left: 0%;"
+        />
+        <div
+          class="rc-slider-step"
+        />
+        <div
+          aria-disabled="false"
+          aria-valuemax="0"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          class="rc-slider-handle"
+          role="slider"
+          style="transform: translateX(-50%);"
+          tabindex="0"
+        />
+        <div
+          class="rc-slider-mark"
+        />
+      </div>
+      <span
+        class="duration text-right"
+      >
+        00:00
+      </span>
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-toggle text-center group"
+    >
+      <span
+        class="group prev-audio"
+        title="Previous track"
+      >
+        <div>
+          1
+        </div>
+      </span>
+      <span
+        class="group play-btn"
+        title="Click to play"
+      >
+        <div>
+          1
+        </div>
+      </span>
+      <span
+        class="group next-audio"
+        title="Next track"
+      >
+        <div>
+          1
+        </div>
+      </span>
+    </div>
+    <div
+      class="react-jinke-music-player-mobile-operation group"
+    >
+      <ul
+        class="items"
+      >
+        <li
+          class="item"
+        >
+          <span
+            class="group loop-btn"
+            title="Play in order"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+        <li
+          class="item"
+        >
+          <span
+            class="group audio-download"
+            title="Download"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+        <li
+          class="item"
+        >
+          <span
+            class="group reload-btn"
+            title="Reload"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+        <li
+          class="item"
+        >
+          <div>
+            1
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="audio-lists-panel"
+  >
+    <div
+      class="audio-lists-panel-header"
+    >
+      <h2
+        class="audio-lists-panel-header-title"
+      >
+        <span>
+          Playlists / 
+        </span>
+        <span
+          class="audio-lists-panel-header-num"
+        >
+          2
+        </span>
+        <span
+          class="audio-lists-panel-header-close-btn"
+          title="Close"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            style="vertical-align: middle;"
+            viewBox="0 0 40 40"
+            width="1em"
+          >
+            <g>
+              <path
+                d="m31 19.3q0 0.3-0.2 0.5l-10.4 10.4q-0.3 0.2-0.5 0.2t-0.6-0.2l-10.4-10.4q-0.2-0.2-0.2-0.5t0.2-0.5l1.2-1.1q0.2-0.3 0.5-0.3t0.5 0.3l8.8 8.7 8.7-8.7q0.3-0.3 0.5-0.3t0.6 0.3l1.1 1.1q0.2 0.2 0.2 0.5z m0-8.6q0 0.3-0.2 0.5l-10.4 10.4q-0.3 0.3-0.5 0.3t-0.6-0.3l-10.4-10.4q-0.2-0.2-0.2-0.5t0.2-0.5l1.2-1.1q0.2-0.2 0.5-0.2t0.5 0.2l8.8 8.8 8.7-8.8q0.3-0.2 0.5-0.2t0.6 0.2l1.1 1.1q0.2 0.2 0.2 0.5z"
+              />
+            </g>
+          </svg>
+        </span>
+        <span
+          class="audio-lists-panel-header-line"
+        />
+        <span
+          class="audio-lists-panel-header-delete-btn"
+          title="Delete audio lists"
+        >
+          <div>
+            1
+          </div>
+        </span>
+      </h2>
+    </div>
+    <div
+      class="audio-lists-panel-content"
+    >
+      <div
+        role="presentation"
+      >
+        <ul>
+          <li
+            class="audio-item playing pause"
+            title="Click to play"
+          >
+            <span
+              class="group player-status"
+            >
+              <span
+                class="player-icons"
+              >
+                <div>
+                  1
+                </div>
+              </span>
+            </span>
+            <span
+              class="group player-name"
+              title="audioName"
+            >
+              audioName
+            </span>
+            <span
+              class="group player-singer"
+            />
+            <span
+              class="group player-delete"
+              title="Click to delete audioName"
+            >
+              <div>
+                1
+              </div>
+            </span>
+          </li>
+          <li
+            class="audio-item pause"
+            title="Click to play"
+          >
+            <span
+              class="group player-status"
+            >
+              <span
+                class="player-icons"
+              />
+            </span>
+            <span
+              class="group player-name"
+              title="audioName2"
+            >
+              audioName2
+            </span>
+            <span
+              class="group player-singer"
+            />
+            <span
+              class="group player-delete"
+              title="Click to delete audioName2"
+            >
+              <div>
+                1
+              </div>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <audio
+    class="music-player-audio"
+    src="xx"
+    title="audioName "
+  />
+</div>
+`;
