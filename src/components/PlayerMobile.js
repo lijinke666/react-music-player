@@ -69,7 +69,7 @@ const PlayerMobile = ({
     )}
     <div className={`${prefix}-progress group`}>
       <span className="current-time">{loading ? '--' : currentTime}</span>
-      {progressBar}
+      <span className={`${prefix}-progress-bar`}>{progressBar}</span>
       <span className="duration text-right">{loading ? '--' : duration}</span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>

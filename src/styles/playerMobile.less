@@ -1,5 +1,6 @@
 @import './vars.less';
 @import './mixins.less';
+
 .react-jinke-music-player-mobile {
   @mobile-padding: 20px;
   width: 100%;
@@ -16,6 +17,7 @@
   justify-content: space-between;
   background-color: @panel-bg-mobile;
   overflow: hidden;
+
   > .group {
     flex: 1 1 auto;
   }
@@ -164,6 +166,23 @@
       flex: 1 1 auto;
     }
     .overwrite-progress-bar();
+
+    &-bar {
+      position: relative;
+      display: flex;
+      width: 100%;
+
+      .progress-load-bar {
+        position: absolute;
+        width: 0%;
+        height: @progress-bar-height - 1px;
+        background-color: @progress-load-bar-bg-color;
+        transition: width, background-color @common-animate-time;
+        left: 0;
+        top: 5px;
+        z-index: @progress-load-bar-z-index;
+      }
+    }
   }
   &-switch {
     animation: fromDown @common-animate-time forwards;

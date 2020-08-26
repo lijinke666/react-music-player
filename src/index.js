@@ -311,13 +311,21 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     // 进度条
     const ProgressBar = (
-      <Slider
-        max={Math.ceil(this.audioDuration)}
-        defaultValue={0}
-        value={Math.ceil(currentTime)}
-        {...progressHandler}
-        {...sliderBaseOptions}
-      />
+      <>
+        {showProgressLoadBar && (
+          <div
+            className="progress-load-bar"
+            style={{ width: `${Math.min(loadedProgress, 100)}%` }}
+          />
+        )}
+        <Slider
+          max={Math.ceil(this.audioDuration)}
+          defaultValue={0}
+          value={Math.ceil(currentTime)}
+          {...progressHandler}
+          {...sliderBaseOptions}
+        />
+      </>
     )
 
     // 下载按钮
@@ -524,15 +532,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   <span className="current-time" title={formattedCurrentTime}>
                     {loading ? '--' : formattedCurrentTime}
                   </span>
-                  <div className="progress-bar">
-                    {showProgressLoadBar && (
-                      <div
-                        className="progress-load-bar"
-                        style={{ width: `${Math.min(loadedProgress, 100)}%` }}
-                      />
-                    )}
-                    {ProgressBar}
-                  </div>
+                  <div className="progress-bar">{ProgressBar}</div>
                   <span className="duration" title={formattedAudioDuration}>
                     {loading ? '--' : formattedAudioDuration}
                   </span>

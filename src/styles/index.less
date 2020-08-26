@@ -208,16 +208,14 @@
 
         .progress-bar {
           flex: 1 1 auto;
-          @progress-height: 5px;
           width: 100%;
           margin: 2px 20px 0 20px;
           position: relative;
-          @load-bar-z-index: 77;
 
           .progress {
             position: absolute;
             display: inline-block;
-            height: @progress-height;
+            height: @progress-bar-height;
             left: 0;
             top: 0;
             transition: width @common-animate-time;
@@ -247,20 +245,20 @@
           .progress-load-bar {
             position: absolute;
             width: 0%;
-            height: @progress-height - 1px;
+            height: @progress-bar-height - 1px;
             background-color: @progress-load-bar-bg-color;
             transition: width, background-color @common-animate-time;
             left: 0;
             top: 5px;
-            z-index: @load-bar-z-index;
+            z-index: @progress-load-bar-z-index;
           }
 
           .rc-slider-track {
-            z-index: @load-bar-z-index+1;
+            z-index: @progress-load-bar-z-index+1;
           }
 
           .rc-slider-handle {
-            z-index: @load-bar-z-index+2;
+            z-index: @progress-load-bar-z-index+2;
           }
         }
       }
