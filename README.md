@@ -62,7 +62,11 @@ npm install react-jinke-music-player --save
 
 ## :framed_picture: Screenshots
 
-> mini mode <br/> > ![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png) Light Theme <br/>
+> mini mode <br/>
+
+![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png)
+
+> Light Theme <br/>
 
 ![light theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
 

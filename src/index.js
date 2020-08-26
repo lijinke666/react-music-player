@@ -116,7 +116,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     initAnimate: false,
     isInitAutoPlay: this.props.autoPlay,
     isInitRemember: false,
-    loadProgress: 0,
+    loadedProgress: 0,
     removeId: -1,
     isNeedMobileHack: IS_MOBILE,
     audioLyricVisible: false,
@@ -267,7 +267,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playModeTipVisible,
       playModelNameVisible,
       initAnimate,
-      loadProgress,
+      loadedProgress,
       audioLists,
       removeId,
       currentLyric,
@@ -528,10 +528,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     {showProgressLoadBar && (
                       <div
                         className="progress-load-bar"
-                        style={{ width: `${Math.min(loadProgress, 100)}%` }}
+                        style={{ width: `${Math.min(loadedProgress, 100)}%` }}
                       />
                     )}
-
                     {ProgressBar}
                   </div>
                   <span className="duration" title={formattedAudioDuration}>
@@ -797,7 +796,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           currentTime: 0,
           playing: false,
           loading: true,
-          loadProgress: 0,
+          loadedProgress: 0,
           playIndex,
           isAutoPlayWhenUserClicked: true,
         },
@@ -1160,16 +1159,24 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
+  onSetAudioLoadedProgress = () => {
+    const { buffered: timeRanges, duration } = this.audio
+    if (timeRanges.length && timeRanges.end) {
+      const loadedProgress =
+        (timeRanges.end(timeRanges.length - 1) / duration) * 100
+
+      this.setState({ loadedProgress })
+    }
+  }
+
   // 加载音频
   loadAndPlayAudio = () => {
     const { remember } = this.props
-    const { isInitRemember, loadProgress } = this.state
+    const { isInitRemember } = this.state
     const { networkState } = this.audio
-    const maxLoadProgress = 100
+
     this.setState({ loading: true })
-    if (loadProgress < maxLoadProgress) {
-      this.setState({ loadProgress: loadProgress + 1 })
-    }
+
     if (networkState !== NETWORK_STATE.NETWORK_NO_SOURCE) {
       const { pause } = this.getLastPlayStatus()
       const isLastPause = remember && !isInitRemember && pause
@@ -1178,7 +1185,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
           playing: remember ? !isLastPause : this.isAudioCanPlay,
           loading: false,
           pause: remember ? isLastPause : !this.isAudioCanPlay,
-          loadProgress: maxLoadProgress,
         },
         () => {
           if (remember ? !isLastPause : this.isAudioCanPlay) {
@@ -1549,6 +1555,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       volumechange: this.onAudioVolumeChange,
       stalled: this.onAudioError, // 当浏览器尝试获取媒体数据，但数据不可用时
       abort: this.onAudioAbort,
+      progress: this.onSetAudioLoadedProgress,
     },
     bind = true,
   ) => {
