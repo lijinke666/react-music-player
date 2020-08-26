@@ -1,3 +1,13 @@
+## [4.17.1](https://github.com/lijinke666/react-music-player/compare/v4.17.0...v4.17.1) (2020-08-26)
+
+
+### Bug Fixes
+
+* adjust player mini mode size in mobile ([07fd649](https://github.com/lijinke666/react-music-player/commit/07fd649edb7199ce52f2b97e2945ae8c12127bc4))
+* cannot show progress load bar in mobile full mode ([88eadb3](https://github.com/lijinke666/react-music-player/commit/88eadb3a15d5fafe2d12066f8194ad0ca5d24dfe))
+* cannot trigger touch action in Firefox and Safari in mobile mode [#145](https://github.com/lijinke666/react-music-player/issues/145) ([d9aac9e](https://github.com/lijinke666/react-music-player/commit/d9aac9ef1dc4d5504e8c30702df3a79f48eec3bd))
+* optimize audio loaded progress ([2bf7b03](https://github.com/lijinke666/react-music-player/commit/2bf7b03b12d796e21e6b62375e030c2a1aa6de37))
+
 # [4.17.0](https://github.com/lijinke666/react-music-player/compare/v4.16.5...v4.17.0) (2020-08-19)
 
 
