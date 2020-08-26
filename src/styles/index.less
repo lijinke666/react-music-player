@@ -580,6 +580,12 @@
   width: @player-width;
   height: @player-height;
   z-index: @player-mini-z-index;
+
+  @media @mobile {
+    width: @player-width-mobile;
+    height: @player-height-mobile;
+  }
+
   &:focus {
     outline: none;
   }
@@ -589,6 +595,12 @@
     position: relative;
     width: @player-width;
     height: @player-height;
+
+    @media @mobile {
+      width: @player-width-mobile;
+      height: @player-height-mobile;
+    }
+
     &:focus {
       outline: none;
     }
@@ -602,10 +614,6 @@
       position: absolute;
       right: 0;
       top: 0;
-
-      @media @mobile {
-        right: 15px;
-      }
     }
 
     &-controller {
