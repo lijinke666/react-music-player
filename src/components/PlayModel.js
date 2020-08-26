@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import cls from 'classnames'
 
 const PlayModel = ({ visible, value }) => (
@@ -11,4 +11,4 @@ const PlayModel = ({ visible, value }) => (
   </div>
 )
 
-export default PlayModel
+export default memo(PlayModel)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import cls from 'classnames'
 import ReactDragListView from 'react-drag-listview/lib/ReactDragListView'
 import { NotContentIcon, ArrowDownIcon } from './Icon'
@@ -129,4 +129,4 @@ const AudioListsPanel = ({
   </div>
 )
 
-export default AudioListsPanel
+export default memo(AudioListsPanel)

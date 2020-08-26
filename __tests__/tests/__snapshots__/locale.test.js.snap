@@ -382,7 +382,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
           </div>
         </DraggableCore>
       </Draggable>
-      <AudioListsPanel
+      <Memo(AudioListsPanel)
         audioLists={Array []}
         audioListsDragEnd={[Function]}
         cover=""
@@ -579,8 +579,8 @@ exports[`Locale test should render default locale with en_US 1`] = `
             </span>
           </div>
         </div>
-      </AudioListsPanel>
-      <PlayModel
+      </Memo(AudioListsPanel)>
+      <Memo(PlayModel)
         value="Play in order"
         visible={false}
       >
@@ -589,7 +589,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
         >
           Play in order
         </div>
-      </PlayModel>
+      </Memo(PlayModel)>
       <audio
         className="music-player-audio"
         src=""
@@ -1142,7 +1142,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
           </div>
         </DraggableCore>
       </Draggable>
-      <AudioListsPanel
+      <Memo(AudioListsPanel)
         audioLists={Array []}
         audioListsDragEnd={[Function]}
         cover=""
@@ -1339,8 +1339,8 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             </span>
           </div>
         </div>
-      </AudioListsPanel>
-      <PlayModel
+      </Memo(AudioListsPanel)>
+      <Memo(PlayModel)
         value="顺序播放"
         visible={false}
       >
@@ -1349,7 +1349,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
         >
           顺序播放
         </div>
-      </PlayModel>
+      </Memo(PlayModel)>
       <audio
         className="music-player-audio"
         src=""

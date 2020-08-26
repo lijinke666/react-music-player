@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { isValidElement, memo } from 'react'
 import cls from 'classnames'
 import PlayModeTip from './PlayModeTip'
 
@@ -25,10 +25,10 @@ const PlayerMobile = ({
   extendsContent,
   onPlay,
   glassBg,
-  LyricIcon,
   onCoverClick,
   autoHiddenCover,
   icon,
+  locale,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -39,13 +39,17 @@ const PlayerMobile = ({
     />
     <div className={`${prefix}-header group`}>
       <div className={`${prefix}-header-left`} />
-      <div className={`${prefix}-header-title`}>{name}</div>
+      <div className={`${prefix}-header-title`} title={name}>
+        {name}
+      </div>
       <div className={`${prefix}-header-right`} onClick={onClose}>
         {icon.close}
       </div>
     </div>
     <div className={`${prefix}-singer text-center group`}>
-      <span className={`${prefix}-singer-name`}>{singer}</span>
+      <span className={`${prefix}-singer-name`} title={singer}>
+        {singer}
+      </span>
     </div>
     <div className={`${prefix}-switch text-center group`}>{themeSwitch}</div>
     {/* lgtm [js/trivial-conditional] */}
@@ -75,21 +79,21 @@ const PlayerMobile = ({
         <>
           <span
             className="group prev-audio"
-            title="Previous track"
+            title={locale.previousTrackText}
             onClick={audioPrevPlay}
           >
             {icon.prev}
           </span>
           <span
             className="group play-btn"
-            title={playing ? 'Click to pause' : 'Click to play'}
+            title={playing ? locale.clickToPauseText : locale.clickToPlayText}
             onClick={onPlay}
           >
             {playing ? icon.pause : icon.play}
           </span>
           <span
             className="group next-audio"
-            title="Next track"
+            title={locale.nextTrackText}
             onClick={audioNextPlay}
           >
             {icon.next}
@@ -99,8 +103,8 @@ const PlayerMobile = ({
     </div>
     <div className={`${prefix}-operation group`}>
       <ul className="items">
-        {[playMode, icon.download, icon.reload, LyricIcon]
-          .filter(Boolean)
+        {[playMode, icon.download, icon.reload, icon.lyric]
+          .filter(isValidElement)
           .map((item) => (
             <li className="item" key={item.props.className}>
               {item}
@@ -119,4 +123,4 @@ PlayerMobile.defaultProps = {
   icon: {},
 }
 
-export default PlayerMobile
+export default memo(PlayerMobile)

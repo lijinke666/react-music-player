@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import cls from 'classnames'
 
 const PlayModeTip = ({ prefix, visible, title, text }) => (
@@ -8,4 +8,4 @@ const PlayModeTip = ({ prefix, visible, title, text }) => (
   </div>
 )
 
-export default PlayModeTip
+export default memo(PlayModeTip)

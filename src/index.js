@@ -324,7 +324,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const DownloadComponent = showDownload && (
       <span
         className="group audio-download"
-        {...{ [isMobile ? 'onTouchStart' : 'onClick']: this.onAudioDownload }}
+        onClick={this.onAudioDownload}
         title={locale.downloadText}
       >
         {this.iconMap.download}
@@ -349,9 +349,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const ReloadComponent = showReload && (
       <span
         className="group reload-btn"
-        {...(isMobile
-          ? { onTouchStart: this.onAudioReload }
-          : { onClick: this.onAudioReload })}
+        onClick={this.onAudioReload}
         title={locale.reloadText}
       >
         {this.iconMap.reload}
@@ -364,9 +362,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         className={cls('group lyric-btn', {
           'lyric-btn-active': audioLyricVisible,
         })}
-        {...(isMobile
-          ? { onTouchStart: this.toggleAudioLyric }
-          : { onClick: this.toggleAudioLyric })}
+        onClick={this.toggleAudioLyric}
         title={locale.toggleLyricText}
       >
         {this.iconMap.lyric}
@@ -377,9 +373,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const PlayModeComponent = showPlayMode && (
       <span
         className={cls('group loop-btn')}
-        {...(isMobile
-          ? { onTouchStart: this.togglePlayMode }
-          : { onClick: this.togglePlayMode })}
+        onClick={this.togglePlayMode}
         title={locale.playModeText[currentPlayMode]}
       >
         {this.renderPlayModeIcon(currentPlayMode)}
@@ -393,9 +387,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         title={locale.destroyText}
         className="group destroy-btn"
         ref={this.destroyBtn}
-        {...(!drag || toggle
-          ? { [isMobile ? 'onTouchStart' : 'onClick']: this.onDestroyPlayer }
-          : null)}
+        onClick={!drag || toggle ? this.onDestroyPlayer : undefined}
       >
         {this.iconMap.destroy}
       </span>
@@ -481,15 +473,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
               ...this.iconMap,
               reload: ReloadComponent,
               download: DownloadComponent,
+              lyric: LyricComponent,
             }}
             playModeTipVisible={playModeTipVisible}
             openAudioListsPanel={this.openAudioListsPanel}
             onClose={this.onHidePanel}
             extendsContent={extendsContent}
             glassBg={glassBg}
-            LyricIcon={LyricComponent}
             autoHiddenCover={autoHiddenCover}
             onCoverClick={this.onCoverClick}
+            locale={locale}
           />
         )}
 
@@ -554,17 +547,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group prev-audio"
                       title={locale.previousTrackText}
-                      {...(isMobile
-                        ? { onTouchStart: this.audioPrevPlay }
-                        : { onClick: this.audioPrevPlay })}
+                      onClick={this.audioPrevPlay}
                     >
                       {this.iconMap.prev}
                     </span>
                     <span
                       className="group play-btn"
-                      {...(isMobile
-                        ? { onTouchStart: this.onTogglePlay }
-                        : { onClick: this.onTogglePlay })}
+                      onClick={this.onTogglePlay}
                       title={
                         playing
                           ? locale.clickToPauseText
@@ -580,9 +569,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group next-audio"
                       title={locale.nextTrackText}
-                      {...(isMobile
-                        ? { onTouchStart: this.audioNextPlay }
-                        : { onClick: this.audioNextPlay })}
+                      onClick={this.audioNextPlay}
                     >
                       {this.iconMap.next}
                     </span>
@@ -597,21 +584,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 {/* 音量控制 */}
                 <span className="group play-sounds" title={locale.volumeText}>
                   {soundValue === 0 ? (
-                    <span
-                      className="sounds-icon"
-                      {...(isMobile
-                        ? { onTouchStart: this.onResetVolume }
-                        : { onClick: this.onResetVolume })}
-                    >
+                    <span className="sounds-icon" onClick={this.onResetVolume}>
                       {this.iconMap.mute}
                     </span>
                   ) : (
-                    <span
-                      className="sounds-icon"
-                      {...(isMobile
-                        ? { onTouchStart: this.onMute }
-                        : { onClick: this.onMute })}
-                    >
+                    <span className="sounds-icon" onClick={this.onMute}>
                       {this.iconMap.volume}
                     </span>
                   )}
@@ -631,9 +608,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 <span
                   className="group audio-lists-btn"
                   title={locale.playListsText}
-                  {...(isMobile
-                    ? { onTouchStart: this.openAudioListsPanel }
-                    : { onClick: this.openAudioListsPanel })}
+                  onClick={this.openAudioListsPanel}
                 >
                   <span className="audio-lists-icon">
                     {this.iconMap.playLists}
@@ -645,9 +620,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   <span
                     className="group hide-panel"
                     title={locale.toggleMiniModeText}
-                    {...(isMobile
-                      ? { onTouchStart: this.onHidePanel }
-                      : { onClick: this.onHidePanel })}
+                    onClick={this.onHidePanel}
                   >
                     {this.iconMap.toggle}
                   </span>

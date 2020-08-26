@@ -58,7 +58,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.audio-lists-panel').length === 1)
   })
   it('should find a <PlayerMobile/> components', () => {
-    const wrapper = shallow(<PlayerMobile />)
+    const wrapper = shallow(<PlayerMobile locale={{}} />)
     assert(wrapper.find('.react-jinke-music-player-mobile').length === 1)
     assert(wrapper.find(PlayModeTip).length === 1)
   })

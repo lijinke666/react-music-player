@@ -1,5 +1,5 @@
 // 迷你模式进度条
-import React from 'react'
+import React, { memo } from 'react'
 
 const CircleProcessBar = ({ progress = 0, r = 40 } = {}) => {
   const currentProgress = progress.toFixed(2)
@@ -29,4 +29,4 @@ const CircleProcessBar = ({ progress = 0, r = 40 } = {}) => {
   )
 }
 
-export default CircleProcessBar
+export default memo(CircleProcessBar)
