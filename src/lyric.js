@@ -32,7 +32,7 @@ export default class Lyric {
   }
 
   _initTag() {
-    for (let tag in tagRegMap) {
+    for (const tag in tagRegMap) {
       const matches = this.lrc.match(
         new RegExp(`\\[${tagRegMap[tag]}:([^\\]]*)]`, 'i'),
       )
@@ -42,10 +42,10 @@ export default class Lyric {
 
   _initLines() {
     const lines = this.lrc.split('\n')
-    const offset = parseInt(this.tags['offset']) || 0
+    const offset = parseInt(this.tags.offset, 10) || 0
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i]
-      let result = timeExp.exec(line)
+      const result = timeExp.exec(line)
       if (result) {
         const txt = line.replace(timeExp, '').trim()
         if (txt) {
@@ -86,8 +86,8 @@ export default class Lyric {
   }
 
   _playRest() {
-    let line = this.lines[this.curNum]
-    let delay = line.time - (+new Date() - this.startStamp)
+    const line = this.lines[this.curNum]
+    const delay = line.time - (+new Date() - this.startStamp)
 
     this.timer = setTimeout(() => {
       this._callHandler(this.curNum++)
