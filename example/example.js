@@ -320,9 +320,9 @@ const options = {
   },
 
   onBeforeDestroy(currentPlayId, audioLists, audioInfo) {
-    console.log('currentPlayId: ', currentPlayId)
-    console.log('audioLists: ', audioLists)
-    console.log('audioInfo: ', audioInfo)
+    console.log('onBeforeDestroy currentPlayId: ', currentPlayId)
+    console.log('onBeforeDestroy audioLists: ', audioLists)
+    console.log('onBeforeDestroy audioInfo: ', audioInfo)
     return new Promise((resolve, reject) => {
       // your custom validate
       // eslint-disable-next-line no-alert

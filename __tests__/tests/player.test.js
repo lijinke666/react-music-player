@@ -1307,12 +1307,34 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(
       wrapper.find('.react-jinke-music-player').hasClass('react-draggable'),
     ).toBeFalsy()
-    wrapper.find('.react-jinke-music-player').simulate('click')
+    wrapper.find('.music-player-controller').simulate('click')
     expect(onModeChange).toHaveBeenCalledTimes(1)
     expect(onCoverClick).toHaveBeenCalledTimes(1)
     expect(wrapper.find('.music-player-panel')).toHaveLength(1)
     expect(wrapper.state().toggle).toBeTruthy()
     wrapper.find('.hide-panel').simulate('click')
+    expect(wrapper.state().toggle).toBeFalsy()
+  })
+
+  it('should cannot toggle mode if drag disabled and destroy button clicked', () => {
+    const onModeChange = jest.fn()
+    const onCoverClick = jest.fn()
+    const onDestroyed = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="mini"
+        drag={false}
+        showDestroy
+        onModeChange={onModeChange}
+        onCoverClick={onCoverClick}
+        onDestroyed={onDestroyed}
+      />,
+    )
+    wrapper.find('.destroy-btn').simulate('click')
+    expect(onModeChange).not.toHaveBeenCalled()
+    expect(onCoverClick).not.toHaveBeenCalled()
+    expect(onDestroyed).toHaveBeenCalledTimes(1)
+    expect(wrapper.find('.music-player-panel')).toHaveLength(0)
     expect(wrapper.state().toggle).toBeFalsy()
   })
 })

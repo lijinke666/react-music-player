@@ -403,7 +403,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
         className={cls('react-jinke-music-player')}
         style={defaultPosition}
         tabIndex="-1"
-        onClick={!drag ? this.onOpenPanel : undefined}
       >
         <div className={cls('music-player')}>
           {showMiniProcessBar && (
@@ -418,6 +417,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               'music-player-playing': this.state.playing,
             })}
             {...miniModeCoverConfig}
+            onClick={!drag ? this.onOpenPanel : undefined}
           >
             {loading ? (
               this.iconMap.loading
@@ -1652,7 +1652,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       if ('removeEventListener' in media) {
         media.removeEventListener('change', handler)
       } else {
-        media.removeListener(handler)
+        media.removeListener && media.removeListener(handler)
       }
     }
   }
