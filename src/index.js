@@ -403,6 +403,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         className={cls('react-jinke-music-player')}
         style={defaultPosition}
         tabIndex="-1"
+        onClick={!drag ? this.onOpenPanel : undefined}
       >
         <div className={cls('music-player')}>
           {showMiniProcessBar && (
@@ -968,8 +969,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.loadAndPlayAudio()
         this.setState({ isNeedMobileHack: false })
       }
-      this.openPanel()
-      this.onCoverClick(MODE.MINI)
+      this.onOpenPanel()
     }
     this.setState({ moveX: x, moveY: y })
   }
@@ -1008,7 +1008,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  openPanel = () => {
+  onOpenPanel = () => {
     const { toggleMode, spaceBar } = this.props
     if (toggleMode) {
       this.setState({ toggle: true })
@@ -1017,6 +1017,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.player.current.focus({ preventScroll: true })
       }
     }
+    this.onCoverClick(MODE.MINI)
   }
 
   onHidePanel = () => {

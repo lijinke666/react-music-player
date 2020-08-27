@@ -1291,4 +1291,28 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setProps({ theme: 'auto' })
     expect(wrapper.state().theme).toEqual('auto')
   })
+
+  // https://github.com/lijinke666/react-music-player/issues/147
+  it('should toggle mode if drag disabled', () => {
+    const onModeChange = jest.fn()
+    const onCoverClick = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="mini"
+        drag={false}
+        onModeChange={onModeChange}
+        onCoverClick={onCoverClick}
+      />,
+    )
+    expect(
+      wrapper.find('.react-jinke-music-player').hasClass('react-draggable'),
+    ).toBeFalsy()
+    wrapper.find('.react-jinke-music-player').simulate('click')
+    expect(onModeChange).toHaveBeenCalledTimes(1)
+    expect(onCoverClick).toHaveBeenCalledTimes(1)
+    expect(wrapper.find('.music-player-panel')).toHaveLength(1)
+    expect(wrapper.state().toggle).toBeTruthy()
+    wrapper.find('.hide-panel').simulate('click')
+    expect(wrapper.state().toggle).toBeFalsy()
+  })
 })

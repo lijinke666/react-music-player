@@ -112,6 +112,7 @@
     "@commitlint/config-conventional": "^9.1.2",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^26.0.10",
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
     "autoprefixer": "^9.8.6",
