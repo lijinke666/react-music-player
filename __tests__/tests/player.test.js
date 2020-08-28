@@ -1,30 +1,28 @@
 /* eslint-disable no-console */
-import React from 'react'
+import { mount, shallow } from 'enzyme'
 import assert from 'power-assert'
-import { shallow, mount } from 'enzyme'
-
+import React from 'react'
 import ReactJkMusicPlayer from '../../src'
-
+import AudioListsPanel from '../../src/components/AudioListsPanel'
+import CircleProcessBar from '../../src/components/CircleProcessBar'
 import {
-  AnimatePlayIcon,
   AnimatePauseIcon,
+  AnimatePlayIcon,
   MdVolumeDownIcon,
   MdVolumeMuteIcon,
 } from '../../src/components/Icon'
-import {
-  createRandomNum,
-  formatTime,
-  arrayEqual,
-  distinct,
-} from '../../src/utils'
 import PlayerMobile from '../../src/components/PlayerMobile'
-import PlayModeTip from '../../src/components/PlayModeTip'
-import AudioListsPanel from '../../src/components/AudioListsPanel'
 import PlayModel from '../../src/components/PlayModel'
-import CircleProcessBar from '../../src/components/CircleProcessBar'
+import PlayModeTip from '../../src/components/PlayModeTip'
 import { SPACE_BAR_KEYCODE } from '../../src/config/keycode'
-import { sleep } from '../utils'
 import { MEDIA_QUERY } from '../../src/config/mediaQuery'
+import {
+  arrayEqual,
+  createRandomNum,
+  distinct,
+  formatTime,
+} from '../../src/utils'
+import { sleep } from '../utils'
 
 describe('<ReactJkMusicPlayer/>', () => {
   it('should render a <ReactJkMusicPlayer/> components', () => {
@@ -1336,5 +1334,16 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onDestroyed).toHaveBeenCalledTimes(1)
     expect(wrapper.find('.music-player-panel')).toHaveLength(0)
     expect(wrapper.state().toggle).toBeFalsy()
+  })
+
+  // https://github.com/lijinke666/react-music-player/issues/149
+  it('should not change theme to dark when audio list changed if theme is auto', () => {
+    const wrapper = mount(<ReactJkMusicPlayer theme="auto" />)
+    wrapper.setProps({
+      audioList: [{ musicSrc: 'xxx', name: 'xxx' }],
+      clearPriorAudioLists: true,
+    })
+    wrapper.update()
+    expect(wrapper.state().theme).toEqual('light')
   })
 })

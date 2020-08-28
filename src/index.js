@@ -1787,9 +1787,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
         ? this.getLastPlayStatus()
         : {
             playMode: playMode || PLAY_MODE.order,
-            theme,
             playIndex: playIndex || 0,
           }
+
+      if (theme !== THEME.AUTO) {
+        lastPlayStatus.theme = theme
+      }
 
       const audioInfo = {
         ...info,
@@ -1812,6 +1815,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           break
         default:
           this.setState(audioInfo, () => {
+            // 预加载, 防止非自动播放, 直接点击播放列表无法播放的情况
             this.audio.load()
           })
       }
