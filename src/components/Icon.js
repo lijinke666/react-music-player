@@ -1,26 +1,31 @@
 import React from 'react'
-import FaPlayCircle from 'react-icons/lib/fa/play-circle'
-import FaPauseCircle from 'react-icons/lib/fa/pause-circle'
+import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa'
 
-export { default as FaHeadphonesIcon } from 'react-icons/lib/fa/headphones'
-export { default as FaMinusSquareOIcon } from 'react-icons/lib/fa/minus-square-o'
-export { default as LyricIcon } from 'react-icons/lib/fa/book'
-export { default as ReloadIcon } from 'react-icons/lib/fa/refresh'
-export { default as MdVolumeDownIcon } from 'react-icons/lib/md/volume-up'
-export { default as MdVolumeMuteIcon } from 'react-icons/lib/md/volume-off'
-export { default as DownloadIcon } from 'react-icons/lib/fa/cloud-download'
-export { default as LoadIcon } from 'react-icons/lib/fa/spinner'
-export { default as LoopIcon } from 'react-icons/lib/md/repeat-one'
-export { default as RepeatIcon } from 'react-icons/lib/md/repeat'
-export { default as ShufflePlayIcon } from 'react-icons/lib/ti/arrow-shuffle'
-export { default as NextAudioIcon } from 'react-icons/lib/md/skip-next'
-export { default as PrevAudioIcon } from 'react-icons/lib/md/skip-previous'
-export { default as OrderPlayIcon } from 'react-icons/lib/md/view-headline'
-export { default as PlayListsIcon } from 'react-icons/lib/md/queue-music'
-export { default as CloseIcon } from 'react-icons/lib/md/close'
-export { default as DeleteIcon } from 'react-icons/lib/fa/trash-o'
-export { default as NotContentIcon } from 'react-icons/lib/md/library-music'
-export { default as ArrowDownIcon } from 'react-icons/lib/fa/angle-double-down'
+export {
+  FaHeadphones as FaHeadphonesIcon,
+  FaRegMinusSquare as FaMinusSquareOIcon,
+  FaBook as LyricIcon,
+  FaSyncAlt as ReloadIcon,
+  FaCloudDownloadAlt as DownloadIcon,
+  FaSpinner as LoadIcon,
+  FaTrashAlt as DeleteIcon,
+  FaAngleDoubleDown as ArrowDownIcon,
+} from 'react-icons/fa'
+
+export {
+  MdVolumeUp as MdVolumeDownIcon,
+  MdVolumeMute as MdVolumeMuteIcon,
+  MdRepeatOne as LoopIcon,
+  MdRepeat as RepeatIcon,
+  MdSkipNext as NextAudioIcon,
+  MdSkipPrevious as PrevAudioIcon,
+  MdViewHeadline as OrderPlayIcon,
+  MdQueueMusic as PlayListsIcon,
+  MdClose as CloseIcon,
+  MdLibraryMusic as NotContentIcon,
+} from 'react-icons/md'
+
+export { TiArrowShuffle as ShufflePlayIcon } from 'react-icons/ti'
 
 export const AnimatePlayIcon = () => (
   <FaPlayCircle className="react-jinke-music-player-play-icon" />
