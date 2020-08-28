@@ -1,6 +1,19 @@
 const env = process.env.BABEL_ENV || process.env.NODE_ENV
 const outputModule = process.env.OUTPUT_MODULE
 
+const plugins = [
+  '@babel/plugin-proposal-object-rest-spread',
+  '@babel/plugin-proposal-class-properties',
+]
+
+if (env === 'test') {
+  plugins.push('@babel/plugin-transform-modules-commonjs', '@babel/plugin-transform-runtime')
+}
+
+if (env === 'development') {
+  plugins.push('react-hot-loader/babel')
+}
+
 module.exports = {
   presets: [
     [
@@ -11,10 +24,5 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
-  plugins: [
-    '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-proposal-class-properties',
-    env === 'test' && '@babel/plugin-transform-modules-commonjs',
-    env === 'development' && 'react-hot-loader/babel',
-  ].filter(Boolean),
+  plugins: plugins.filter(Boolean),
 }

@@ -7,8 +7,8 @@ import { name, repository, version } from '../package.json'
 import ReactJkMusicPlayer from '../src'
 import Locale from '../src/config/locale'
 import PLAY_MODE from '../src/config/playMode'
-import { createRandomNum } from '../src/utils'
 import '../src/styles/index.less'
+import { createRandomNum } from '../src/utils'
 import './example.less'
 
 const audioList1 = [
@@ -122,7 +122,7 @@ const options = {
   // playMode: 'order',
 
   // audio mode        mini | full          [type `String`  default `mini`]
-  mode: 'mini',
+  mode: 'full',
 
   /**
    * [ type `Boolean` default 'false' ]
@@ -270,9 +270,7 @@ const options = {
   // },
 
   onAudioListsChange(currentPlayId, audioLists, audioInfo) {
-    console.log('[currentPlayId] audio lists change:', currentPlayId)
-    console.log('[audioLists] audio lists change:', audioLists)
-    console.log('[audioInfo] audio lists change:', audioInfo)
+    console.log('audio lists change:', currentPlayId, audioLists, audioInfo)
   },
 
   onAudioPlayTrackChange(currentPlayId, audioLists, audioInfo) {
@@ -579,7 +577,14 @@ class Demo extends React.PureComponent {
         <button
           type="button"
           onClick={() => {
-            this.audio.appendAudio(1, audioList2)
+            this.audio.appendAudio(0, [
+              {
+                name: 'name',
+                singer: 'signer',
+                musicSrc:
+                  'http://podcasts.protocol-radio.com/podcast/protocol-radio-331.m4a',
+              },
+            ])
           }}
         >
           append audio

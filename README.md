@@ -246,7 +246,7 @@ class App extends React.Component {
         </button>
         <button
           onClick={() =>
-            this.audio.appendAudio(1, [{ musicSrc: 'x', name: 'xx' }])
+            this.audio.appendAudio(1, [{ musicSrc: 'x', name: 'xx', singer: 'xx }])
           }
         >
           append audio

@@ -5,13 +5,13 @@
  * @license MIT
  */
 
-import React, { PureComponent, createRef, cloneElement } from 'react'
-import { createPortal } from 'react-dom'
 import cls from 'classnames'
 import download from 'downloadjs'
 import getIsMobile from 'is-mobile'
 import Slider from 'rc-slider/lib/Slider'
 import Switch from 'rc-switch'
+import React, { cloneElement, createRef, PureComponent } from 'react'
+import { createPortal } from 'react-dom'
 import Draggable from 'react-draggable'
 import AudioListsPanel from './components/AudioListsPanel'
 import CircleProcessBar from './components/CircleProcessBar'
@@ -22,6 +22,7 @@ import {
   DeleteIcon,
   DownloadIcon,
   FaMinusSquareOIcon,
+  LoadIcon,
   LoopIcon,
   LyricIcon,
   MdVolumeDownIcon,
@@ -33,9 +34,7 @@ import {
   ReloadIcon,
   RepeatIcon,
   ShufflePlayIcon,
-  LoadIcon,
 } from './components/Icon'
-
 import AudioPlayerMobile from './components/PlayerMobile'
 import PlayModel from './components/PlayModel'
 import { AUDIO_LIST_REMOVE_ANIMATE_TIME } from './config/animate'
@@ -1858,13 +1857,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       }
     })
     newAudioLists.splice(fromIndex, 0, ...addedAudioLists)
-    this.setState({ audioLists: newAudioLists })
-    this.props.onAudioListsChange &&
-      this.props.onAudioListsChange(
-        this.state.playId,
-        newAudioLists,
-        this.getBaseAudioInfo(),
-      )
+    this.changeAudioLists({ ...this.props, audioLists: newAudioLists })
   }
 
   getEnhanceAudio = () => {
