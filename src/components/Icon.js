@@ -5,10 +5,10 @@ export {
   FaHeadphones as FaHeadphonesIcon,
   FaMinusSquare as FaMinusSquareOIcon,
   FaBook as LyricIcon,
-  FaSync as ReloadIcon,
+  FaSyncAlt as ReloadIcon,
   FaCloudDownloadAlt as DownloadIcon,
   FaSpinner as LoadIcon,
-  FaRegTrashAlt as DeleteIcon,
+  FaTrashAlt as DeleteIcon,
   FaAngleDoubleDown as ArrowDownIcon,
 } from 'react-icons/fa'
 

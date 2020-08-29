@@ -56,7 +56,7 @@
     transition: background-color, border-bottom @common-animate-time;
     &-close-btn,
     &-delete-btn {
-      float: right;
+      display: flex;
       cursor: pointer;
     }
     &-delete-btn {
@@ -77,19 +77,25 @@
     &-line {
       width: 1px;
       background: #fff;
-      float: right;
       height: 20px;
-      margin: 18px 10px 0 10px;
+      margin: 0 10px;
     }
     &-title {
       height: @panel-header-height;
-      line-height: @panel-header-height;
+      display: flex;
+      align-items: center;
       padding: 0 20px;
       font-size: 16px;
       margin: 0;
       text-align: left;
       font-weight: 500;
       transition: color @common-animate-time;
+    }
+    &-actions {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+      align-items: center;
     }
   }
   &-content {

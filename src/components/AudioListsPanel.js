@@ -31,25 +31,27 @@ const AudioListsPanel = ({
         <span className="audio-lists-panel-header-num">
           {audioLists.length}
         </span>
-        <span
-          className="audio-lists-panel-header-close-btn"
-          title={locale.closeText}
-          onClick={onCancel}
-        >
-          {isMobile ? <ArrowDownIcon /> : icon.close}
+        <span className="audio-lists-panel-header-actions">
+          {remove && (
+            <>
+              <span
+                className="audio-lists-panel-header-delete-btn"
+                title={locale.removeAudioListsText}
+                onClick={onDelete()}
+              >
+                {icon.delete}
+              </span>
+              <span className="audio-lists-panel-header-line" />
+            </>
+          )}
+          <span
+            className="audio-lists-panel-header-close-btn"
+            title={locale.closeText}
+            onClick={onCancel}
+          >
+            {isMobile ? <ArrowDownIcon /> : icon.close}
+          </span>
         </span>
-        {remove && (
-          <>
-            <span className="audio-lists-panel-header-line" />
-            <span
-              className="audio-lists-panel-header-delete-btn"
-              title={locale.removeAudioListsText}
-              onClick={onDelete()}
-            >
-              {icon.delete}
-            </span>
-          </>
-        )}
       </h2>
     </div>
     <div
