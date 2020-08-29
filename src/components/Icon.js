@@ -3,7 +3,7 @@ import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa'
 
 export {
   FaHeadphones as FaHeadphonesIcon,
-  FaMinusSquare as FaMinusSquareOIcon,
+  FaRegMinusSquare as FaMinusSquareOIcon,
   FaBook as LyricIcon,
   FaSyncAlt as ReloadIcon,
   FaCloudDownloadAlt as DownloadIcon,

@@ -40,7 +40,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
       "prev": <MdSkipPrevious />,
       "reload": <FaSyncAlt />,
       "shuffle": <TiArrowShuffle />,
-      "toggle": <FaMinusSquare />,
+      "toggle": <FaRegMinusSquare />,
       "volume": <MdVolumeUp />,
     }
   }
@@ -418,7 +418,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
             "prev": <MdSkipPrevious />,
             "reload": <FaSyncAlt />,
             "shuffle": <TiArrowShuffle />,
-            "toggle": <FaMinusSquare />,
+            "toggle": <FaRegMinusSquare />,
             "volume": <MdVolumeUp />,
           }
         }
@@ -672,7 +672,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
       "prev": <MdSkipPrevious />,
       "reload": <FaSyncAlt />,
       "shuffle": <TiArrowShuffle />,
-      "toggle": <FaMinusSquare />,
+      "toggle": <FaRegMinusSquare />,
       "volume": <MdVolumeUp />,
     }
   }
@@ -1210,7 +1210,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             "prev": <MdSkipPrevious />,
             "reload": <FaSyncAlt />,
             "shuffle": <TiArrowShuffle />,
-            "toggle": <FaMinusSquare />,
+            "toggle": <FaRegMinusSquare />,
             "volume": <MdVolumeUp />,
           }
         }
