@@ -24,16 +24,15 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           <svg
             fill="currentColor"
             height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            style="vertical-align: middle;"
-            viewBox="0 0 40 40"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 512 512"
             width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <g>
-              <path
-                d="m38.6 19.8q0 3.7-1.3 7l-0.4 1.1-4.2 0.7q-0.5 1.9-2 3.1t-3.5 1.2v0.7q0 0.3-0.2 0.5t-0.5 0.2h-1.4q-0.3 0-0.5-0.2t-0.2-0.5v-12.9q0-0.3 0.2-0.5t0.5-0.2h1.4q0.3 0 0.5 0.2t0.2 0.5v0.7q1.6 0 2.9 0.8t2.1 2.2l1.5-0.3q0.7-2.1 0.7-4.3 0-3.3-2-6.3t-5.3-4.6-7-1.8-7.1 1.8-5.2 4.6-2 6.3q0 2.2 0.6 4.3l1.6 0.2q0.7-1.3 2-2.1t2.9-0.8v-0.7q0-0.3 0.2-0.5t0.5-0.2h1.5q0.3 0 0.5 0.2t0.2 0.5v12.9q0 0.3-0.2 0.5t-0.5 0.2h-1.5q-0.3 0-0.5-0.2t-0.2-0.5v-0.7q-1.9 0-3.5-1.2t-2-3.1l-4.1-0.7-0.5-1.1q-1.3-3.3-1.3-7 0-3.4 1.5-6.5t4-5.4 5.9-3.7 7.2-1.3 7.1 1.3 6 3.7 4 5.4 1.5 6.5z"
-              />
-            </g>
+            <path
+              d="M256 32C114.52 32 0 146.496 0 288v48a32 32 0 0 0 17.689 28.622l14.383 7.191C34.083 431.903 83.421 480 144 480h24c13.255 0 24-10.745 24-24V280c0-13.255-10.745-24-24-24h-24c-31.342 0-59.671 12.879-80 33.627V288c0-105.869 86.131-192 192-192s192 86.131 192 192v1.627C427.671 268.879 399.342 256 368 256h-24c-13.255 0-24 10.745-24 24v176c0 13.255 10.745 24 24 24h24c60.579 0 109.917-48.098 111.928-108.187l14.382-7.191A32 32 0 0 0 512 336v-48c0-141.479-114.496-256-256-256z"
+            />
           </svg>
         </span>
         <div
@@ -68,16 +67,15 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           <svg
             fill="currentColor"
             height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            style="vertical-align: middle;"
-            viewBox="0 0 40 40"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
             width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <g>
-              <path
-                d="m31.6 10.7l-9.3 9.3 9.3 9.3-2.3 2.3-9.3-9.3-9.3 9.3-2.3-2.3 9.3-9.3-9.3-9.3 2.3-2.3 9.3 9.3 9.3-9.3z"
-              />
-            </g>
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
           </svg>
         </span>
         <span
@@ -90,16 +88,15 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
           <svg
             fill="currentColor"
             height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            style="vertical-align: middle;"
-            viewBox="0 0 40 40"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 448 512"
             width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <g>
-              <path
-                d="m15.9 16.4v12.9q0 0.3-0.2 0.5t-0.5 0.2h-1.4q-0.3 0-0.5-0.2t-0.2-0.5v-12.9q0-0.3 0.2-0.5t0.5-0.2h1.4q0.3 0 0.5 0.2t0.2 0.5z m5.7 0v12.9q0 0.3-0.2 0.5t-0.5 0.2h-1.4q-0.3 0-0.5-0.2t-0.2-0.5v-12.9q0-0.3 0.2-0.5t0.5-0.2h1.4q0.3 0 0.5 0.2t0.2 0.5z m5.8 0v12.9q0 0.3-0.2 0.5t-0.6 0.2h-1.4q-0.3 0-0.5-0.2t-0.2-0.5v-12.9q0-0.3 0.2-0.5t0.5-0.2h1.4q0.4 0 0.6 0.2t0.2 0.5z m2.8 16.2v-21.2h-20v21.2q0 0.5 0.2 0.9t0.3 0.6 0.2 0.2h18.6q0.1 0 0.2-0.2t0.4-0.6 0.1-0.9z m-15-24h10l-1.1-2.6q-0.1-0.2-0.3-0.3h-7.1q-0.2 0.1-0.4 0.3z m20.7 0.7v1.4q0 0.3-0.2 0.5t-0.5 0.2h-2.1v21.2q0 1.8-1.1 3.2t-2.5 1.3h-18.6q-1.4 0-2.5-1.3t-1-3.1v-21.3h-2.2q-0.3 0-0.5-0.2t-0.2-0.5v-1.4q0-0.3 0.2-0.5t0.5-0.2h6.9l1.6-3.8q0.3-0.8 1.2-1.4t1.7-0.5h7.2q0.9 0 1.8 0.5t1.2 1.4l1.5 3.8h6.9q0.3 0 0.5 0.2t0.2 0.5z"
-              />
-            </g>
+            <path
+              d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+            />
           </svg>
         </span>
       </h2>
@@ -111,16 +108,15 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
         <svg
           fill="currentColor"
           height="1em"
-          preserveAspectRatio="xMidYMid meet"
-          style="vertical-align: middle;"
-          viewBox="0 0 40 40"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
           width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <g>
-            <path
-              d="m6.6 10v23.4h23.4v3.2h-23.4c-1.8 0-3.2-1.4-3.2-3.2v-23.4h3.2z m23.4 1.6v-3.2h-6.6v9.1c-0.7-0.6-1.6-0.9-2.5-0.9-2.3 0-4.3 2-4.3 4.3s2 4.1 4.3 4.1 4.1-1.9 4.1-4.1v-9.3h5z m3.4-8.2c1.8 0 3.2 1.4 3.2 3.2v20c0 1.8-1.4 3.4-3.2 3.4h-20c-1.8 0-3.4-1.6-3.4-3.4v-20c0-1.8 1.6-3.2 3.4-3.2h20z"
-            />
-          </g>
+          <path
+            d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 5h-3v5.5c0 1.38-1.12 2.5-2.5 2.5S10 13.88 10 12.5s1.12-2.5 2.5-2.5c.57 0 1.08.19 1.5.51V5h4v2zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"
+          />
         </svg>
       </span>
       <span
