@@ -41,6 +41,8 @@
     box-shadow: 0 2px @mobile-padding rgba(0, 0, 0, 0.1);
     transform: translate3d(0, -105%, 0);
     transition: transform @common-animate-time;
+    display: flex;
+    align-items: center;
 
     &-title {
       margin-right: 12px;
@@ -51,6 +53,9 @@
           font-size: 19px;
           color: #fff !important;
         }
+      }
+      .loop-btn {
+        display: flex;
       }
     }
     &-text {

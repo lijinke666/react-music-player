@@ -48,7 +48,7 @@ const AudioListsPanel = ({
             title={locale.closeText}
             onClick={onCancel}
           >
-            {isMobile ? icon.packUp : icon.close}
+            {isMobile ? icon.packUpPanelMobile : icon.close}
           </span>
         </span>
       </h2>

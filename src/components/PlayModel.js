@@ -1,5 +1,5 @@
-import React, { memo } from 'react'
 import cls from 'classnames'
+import React, { memo } from 'react'
 
 const PlayModel = ({ visible, value }) => (
   <div

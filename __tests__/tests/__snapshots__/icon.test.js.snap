@@ -593,7 +593,11 @@ exports[`Player custom icon test should render custom icon in mobile mode 1`] = 
           <span
             class="audio-lists-panel-header-close-btn"
             title="Close"
-          />
+          >
+            <div>
+              1
+            </div>
+          </span>
         </span>
       </h2>
     </div>

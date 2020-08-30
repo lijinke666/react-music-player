@@ -1,5 +1,5 @@
-import React, { isValidElement, memo } from 'react'
 import cls from 'classnames'
+import React, { isValidElement, memo } from 'react'
 import PlayModeTip from './PlayModeTip'
 
 const prefix = 'react-jinke-music-player-mobile'
