@@ -278,6 +278,10 @@
             cursor: pointer;
           }
 
+          .group {
+            display: flex;
+          }
+
           text-align: center;
           flex: 1;
           margin: 0 10px;
@@ -342,6 +346,7 @@
           }
 
           .sounds-icon {
+            display: flex;
             margin-right: 15px;
             flex: 1 1 auto;
           }
@@ -351,16 +356,26 @@
           }
         }
 
+        .destroy-btn {
+          svg {
+            font-size: 28px;
+          }
+        }
+
         .audio-lists-btn {
           user-select: none;
           min-width: 60px;
-          height: 23px;
+          height: 28px;
           border-radius: 40px;
           background-color: rgba(0, 0, 0, 0.3);
           padding: 0 10px;
           box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.02);
           position: relative;
           transition: color, background-color @common-animate-time;
+
+          .audio-lists-icon {
+            display: flex;
+          }
 
           > .group:hover {
             &,

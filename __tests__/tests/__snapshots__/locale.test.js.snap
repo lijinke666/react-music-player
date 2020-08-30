@@ -145,7 +145,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
               >
                 <span>
                   Playlists
-                   / 
+                   /
                 </span>
                 <span
                   class="audio-lists-panel-header-num"
@@ -437,7 +437,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
             "emptyLyricText": "No lyric",
             "lightThemeText": "L",
             "nextTrackText": "Next track",
-            "notContentText": "No music",
+            "emptyText": "No music",
             "openText": "Open",
             "playListsText": "Playlists",
             "playModeText": Object {
@@ -480,7 +480,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
             >
               <span>
                 Playlists
-                 / 
+                 /
               </span>
               <span
                 className="audio-lists-panel-header-num"
@@ -777,7 +777,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               >
                 <span>
                   Playlists
-                   / 
+                   /
                 </span>
                 <span
                   class="audio-lists-panel-header-num"
@@ -937,7 +937,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               >
                 <span>
                   播放列表
-                   / 
+                   /
                 </span>
                 <span
                   class="audio-lists-panel-header-num"
@@ -1229,7 +1229,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             "emptyLyricText": "暂无歌词",
             "lightThemeText": "亮",
             "nextTrackText": "下一首",
-            "notContentText": "音乐播放列表为空",
+            "emptyText": "音乐播放列表为空",
             "openText": "打开",
             "playListsText": "播放列表",
             "playModeText": Object {
@@ -1272,7 +1272,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             >
               <span>
                 播放列表
-                 / 
+                 /
               </span>
               <span
                 className="audio-lists-panel-header-num"

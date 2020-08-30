@@ -1,7 +1,7 @@
-import React from 'react'
 import { mount } from 'enzyme'
-import ReactJkMusicPlayer from '../../src'
+import React from 'react'
 import lyric from '../../example/lyric'
+import ReactJkMusicPlayer from '../../src'
 
 const PauseIcon = () => <div>1</div>
 const PlayIcon = () => <div>1</div>
@@ -22,6 +22,8 @@ const OrderIcon = () => <div>1</div>
 const OrderLoopIcon = () => <div>1</div>
 const ShuffleIcon = () => <div>1</div>
 const LoadingIcon = () => <div>1</div>
+const PackUpPanelMobileIcon = () => <div>1</div>
+const EmptyIcon = () => <div>1</div>
 
 const createPlayer = (props) => (
   <ReactJkMusicPlayer
@@ -57,6 +59,8 @@ const createPlayer = (props) => (
       orderLoop: <OrderLoopIcon />,
       shuffle: <ShuffleIcon />,
       loading: <LoadingIcon />,
+      packUpPanelMobile: <PackUpPanelMobileIcon />,
+      empty: <EmptyIcon />,
     }}
     {...props}
   />

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Locale from './locale'
-import { THEME } from './theme'
 import { MODE } from './mode'
+import { THEME } from './theme'
 
 const playModePropTypes = PropTypes.oneOf([
   'order',
@@ -40,7 +40,7 @@ export default {
   toggleMiniModeText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   destroyText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   downloadText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  notContentText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  emptyText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   controllerTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   defaultPosition: PropTypes.shape({
     top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

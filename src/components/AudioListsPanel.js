@@ -1,7 +1,6 @@
-import React, { memo } from 'react'
 import cls from 'classnames'
+import React, { memo } from 'react'
 import ReactDragListView from 'react-drag-listview/lib/ReactDragListView'
-import { NotContentIcon, ArrowDownIcon } from './Icon'
 
 const AudioListsPanel = ({
   audioLists,
@@ -49,7 +48,7 @@ const AudioListsPanel = ({
             title={locale.closeText}
             onClick={onCancel}
           >
-            {isMobile ? <ArrowDownIcon /> : icon.close}
+            {isMobile ? icon.packUp : icon.close}
           </span>
         </span>
       </h2>
@@ -121,10 +120,10 @@ const AudioListsPanel = ({
         </ReactDragListView>
       ) : (
         <>
-          <span>
-            <NotContentIcon />
+          <span>{icon.empty}</span>
+          <span className="no-data">
+            {locale.emptyText || locale.notContentText}
           </span>
-          <span className="no-data">{locale.notContentText}</span>
         </>
       )}
     </div>

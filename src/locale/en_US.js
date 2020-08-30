@@ -10,7 +10,7 @@ export default {
   },
   openText: 'Open',
   closeText: 'Close',
-  notContentText: 'No music',
+  emptyText: 'No music',
   clickToPlayText: 'Click to play',
   clickToPauseText: 'Click to pause',
   nextTrackText: 'Next track',

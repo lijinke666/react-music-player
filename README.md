@@ -373,7 +373,7 @@ const customLocale = {
   },
   openText: '',
   closeText: '',
-  notContentText: '',
+  emptyText: '',
   clickToPlayText: '',
   clickToPauseText: '',
   nextTrackText: '',

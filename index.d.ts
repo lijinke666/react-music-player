@@ -80,7 +80,7 @@ export interface ReactJkMusicPlayerCustomLocale {
   },
   openText: string | React.ReactNode,
   closeText: string | React.ReactNode,
-  notContentText: string | React.ReactNode,
+  emptyText: string | React.ReactNode,
   clickToPlayText: string | React.ReactNode,
   clickToPauseText: string | React.ReactNode,
   nextTrackText: string | React.ReactNode,

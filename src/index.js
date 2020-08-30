@@ -18,15 +18,15 @@ import CircleProcessBar from './components/CircleProcessBar'
 import {
   AnimatePauseIcon,
   AnimatePlayIcon,
+  ArrowDownIcon,
   CloseIcon,
   DeleteIcon,
   DownloadIcon,
+  EmptyIcon,
   FaMinusSquareOIcon,
   LoadIcon,
   LoopIcon,
   LyricIcon,
-  MdVolumeDownIcon,
-  MdVolumeMuteIcon,
   NextAudioIcon,
   OrderPlayIcon,
   PlayListsIcon,
@@ -34,6 +34,8 @@ import {
   ReloadIcon,
   RepeatIcon,
   ShufflePlayIcon,
+  VolumeMuteIcon,
+  VolumeUnmuteIcon,
 } from './components/Icon'
 import AudioPlayerMobile from './components/PlayerMobile'
 import PlayModel from './components/PlayModel'
@@ -64,21 +66,23 @@ const DEFAULT_ICON = {
   play: <AnimatePlayIcon />,
   destroy: <CloseIcon />,
   close: <CloseIcon />,
-  delete: <DeleteIcon size={20} />,
-  download: <DownloadIcon />,
+  delete: <DeleteIcon size={24} />,
+  download: <DownloadIcon size={26} />,
   toggle: <FaMinusSquareOIcon />,
   lyric: <LyricIcon />,
-  volume: <MdVolumeDownIcon />,
-  mute: <MdVolumeMuteIcon />,
+  volume: <VolumeUnmuteIcon size={26} />,
+  mute: <VolumeMuteIcon size={26} />,
   next: <NextAudioIcon />,
   prev: <PrevAudioIcon />,
   playLists: <PlayListsIcon />,
-  reload: <ReloadIcon />,
-  loop: <LoopIcon />,
-  order: <OrderPlayIcon />,
-  orderLoop: <RepeatIcon />,
-  shuffle: <ShufflePlayIcon />,
+  reload: <ReloadIcon size={22} />,
+  loop: <LoopIcon size={26} />,
+  order: <OrderPlayIcon size={26} />,
+  orderLoop: <RepeatIcon size={26} />,
+  shuffle: <ShufflePlayIcon size={26} />,
   loading: <LoadIcon />,
+  packUpPanelMobile: <ArrowDownIcon size={26} />,
+  empty: <EmptyIcon />,
 }
 
 export default class ReactJkMusicPlayer extends PureComponent {
@@ -556,11 +560,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                           : locale.clickToPlayText
                       }
                     >
-                      {playing ? (
-                        <span>{this.iconMap.pause}</span>
-                      ) : (
-                        <span>{this.iconMap.play}</span>
-                      )}
+                      {playing ? this.iconMap.pause : this.iconMap.play}
                     </span>
                     <span
                       className="group next-audio"

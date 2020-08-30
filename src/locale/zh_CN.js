@@ -10,7 +10,7 @@ export default {
   },
   openText: '打开',
   closeText: '关闭',
-  notContentText: '音乐播放列表为空',
+  emptyText: '音乐播放列表为空',
   clickToPlayText: '点击播放',
   clickToPauseText: '点击暂停',
   nextTrackText: '下一首',

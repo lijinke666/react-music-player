@@ -1,31 +1,35 @@
 import React from 'react'
-import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa'
+import { FaPauseCircle, FaPlayCircle } from 'react-icons/fa'
 
 export {
+  FaBook as LyricIcon,
   FaHeadphones as FaHeadphonesIcon,
   FaRegMinusSquare as FaMinusSquareOIcon,
-  FaBook as LyricIcon,
-  FaSyncAlt as ReloadIcon,
-  FaCloudDownloadAlt as DownloadIcon,
   FaSpinner as LoadIcon,
-  FaTrashAlt as DeleteIcon,
-  FaAngleDoubleDown as ArrowDownIcon,
+  FaSyncAlt as ReloadIcon,
 } from 'react-icons/fa'
-
+export { FiChevronsDown as ArrowDownIcon } from 'react-icons/fi'
 export {
-  MdVolumeUp as MdVolumeDownIcon,
-  MdVolumeMute as MdVolumeMuteIcon,
-  MdRepeatOne as LoopIcon,
+  GoMute as VolumeMuteIcon,
+  GoUnmute as VolumeUnmuteIcon,
+} from 'react-icons/go'
+export {
+  MdClose as CloseIcon,
+  MdLibraryMusic as EmptyIcon,
   MdRepeat as RepeatIcon,
+  MdRepeatOne as LoopIcon,
   MdSkipNext as NextAudioIcon,
   MdSkipPrevious as PrevAudioIcon,
   MdViewHeadline as OrderPlayIcon,
-  MdQueueMusic as PlayListsIcon,
-  MdClose as CloseIcon,
-  MdLibraryMusic as NotContentIcon,
 } from 'react-icons/md'
-
-export { TiArrowShuffle as ShufflePlayIcon } from 'react-icons/ti'
+export {
+  RiDeleteBinLine as DeleteIcon,
+  RiPlayList2Fill as PlayListsIcon,
+} from 'react-icons/ri'
+export {
+  TiArrowShuffle as ShufflePlayIcon,
+  TiDownload as DownloadIcon,
+} from 'react-icons/ti'
 
 export const AnimatePlayIcon = () => (
   <FaPlayCircle className="react-jinke-music-player-play-icon" />
