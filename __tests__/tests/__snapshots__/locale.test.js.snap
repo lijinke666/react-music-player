@@ -22,26 +22,46 @@ exports[`Locale test should render default locale with en_US 1`] = `
   icon={
     Object {
       "close": <MdClose />,
-      "delete": <FaTrashAlt
-        size={20}
+      "delete": <RiDeleteBinLine
+        size={24}
       />,
       "destroy": <MdClose />,
-      "download": <FaCloudDownloadAlt />,
+      "download": <TiDownload
+        size={26}
+      />,
+      "empty": <MdLibraryMusic />,
       "loading": <FaSpinner />,
-      "loop": <MdRepeatOne />,
+      "loop": <MdRepeatOne
+        size={26}
+      />,
       "lyric": <FaBook />,
-      "mute": <MdVolumeMute />,
+      "mute": <GoMute
+        size={26}
+      />,
       "next": <MdSkipNext />,
-      "order": <MdViewHeadline />,
-      "orderLoop": <MdRepeat />,
+      "order": <MdViewHeadline
+        size={26}
+      />,
+      "orderLoop": <MdRepeat
+        size={26}
+      />,
+      "packUpPanelMobile": <FiChevronsDown
+        size={26}
+      />,
       "pause": <AnimatePauseIcon />,
       "play": <AnimatePlayIcon />,
-      "playLists": <MdQueueMusic />,
+      "playLists": <RiPlayList2Fill />,
       "prev": <MdSkipPrevious />,
-      "reload": <FaSyncAlt />,
-      "shuffle": <TiArrowShuffle />,
+      "reload": <FaSyncAlt
+        size={22}
+      />,
+      "shuffle": <TiArrowShuffle
+        size={26}
+      />,
       "toggle": <FaRegMinusSquare />,
-      "volume": <MdVolumeUp />,
+      "volume": <GoUnmute
+        size={26}
+      />,
     }
   }
   loadAudioErrorPlayNext={true}
@@ -145,7 +165,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
               >
                 <span>
                   Playlists
-                   /
+                   / 
                 </span>
                 <span
                   class="audio-lists-panel-header-num"
@@ -161,17 +181,23 @@ exports[`Locale test should render default locale with en_US 1`] = `
                   >
                     <svg
                       fill="currentColor"
-                      height="20"
-                      size="20"
+                      height="24"
+                      size="24"
                       stroke="currentColor"
                       stroke-width="0"
-                      viewBox="0 0 448 512"
-                      width="20"
+                      viewBox="0 0 24 24"
+                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
-                      />
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                        />
+                      </g>
                     </svg>
                   </span>
                   <span
@@ -400,26 +426,46 @@ exports[`Locale test should render default locale with en_US 1`] = `
         icon={
           Object {
             "close": <MdClose />,
-            "delete": <FaTrashAlt
-              size={20}
+            "delete": <RiDeleteBinLine
+              size={24}
             />,
             "destroy": <MdClose />,
-            "download": <FaCloudDownloadAlt />,
+            "download": <TiDownload
+              size={26}
+            />,
+            "empty": <MdLibraryMusic />,
             "loading": <Spin />,
-            "loop": <MdRepeatOne />,
+            "loop": <MdRepeatOne
+              size={26}
+            />,
             "lyric": <FaBook />,
-            "mute": <MdVolumeMute />,
+            "mute": <GoMute
+              size={26}
+            />,
             "next": <MdSkipNext />,
-            "order": <MdViewHeadline />,
-            "orderLoop": <MdRepeat />,
+            "order": <MdViewHeadline
+              size={26}
+            />,
+            "orderLoop": <MdRepeat
+              size={26}
+            />,
+            "packUpPanelMobile": <FiChevronsDown
+              size={26}
+            />,
             "pause": <AnimatePauseIcon />,
             "play": <AnimatePlayIcon />,
-            "playLists": <MdQueueMusic />,
+            "playLists": <RiPlayList2Fill />,
             "prev": <MdSkipPrevious />,
-            "reload": <FaSyncAlt />,
-            "shuffle": <TiArrowShuffle />,
+            "reload": <FaSyncAlt
+              size={22}
+            />,
+            "shuffle": <TiArrowShuffle
+              size={26}
+            />,
             "toggle": <FaRegMinusSquare />,
-            "volume": <MdVolumeUp />,
+            "volume": <GoUnmute
+              size={26}
+            />,
           }
         }
         isMobile={false}
@@ -435,9 +481,9 @@ exports[`Locale test should render default locale with en_US 1`] = `
             "destroyText": "Destroy",
             "downloadText": "Download",
             "emptyLyricText": "No lyric",
+            "emptyText": "No music",
             "lightThemeText": "L",
             "nextTrackText": "Next track",
-            "emptyText": "No music",
             "openText": "Open",
             "playListsText": "Playlists",
             "playModeText": Object {
@@ -480,7 +526,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
             >
               <span>
                 Playlists
-                 /
+                 / 
               </span>
               <span
                 className="audio-lists-panel-header-num"
@@ -495,21 +541,21 @@ exports[`Locale test should render default locale with en_US 1`] = `
                   onClick={[Function]}
                   title="Delete audio lists"
                 >
-                  <FaTrashAlt
-                    size={20}
+                  <RiDeleteBinLine
+                    size={24}
                   >
                     <IconBase
                       attr={
                         Object {
-                          "viewBox": "0 0 448 512",
+                          "viewBox": "0 0 24 24",
                         }
                       }
-                      size={20}
+                      size={24}
                     >
                       <svg
                         fill="currentColor"
-                        height={20}
-                        size={20}
+                        height={24}
+                        size={24}
                         stroke="currentColor"
                         strokeWidth="0"
                         style={
@@ -517,17 +563,26 @@ exports[`Locale test should render default locale with en_US 1`] = `
                             "color": undefined,
                           }
                         }
-                        viewBox="0 0 448 512"
-                        width={20}
+                        viewBox="0 0 24 24"
+                        width={24}
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path
-                          d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
+                        <g
                           key="0"
-                        />
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                            key="0"
+                          />
+                          <path
+                            d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                            key="1"
+                          />
+                        </g>
                       </svg>
                     </IconBase>
-                  </FaTrashAlt>
+                  </RiDeleteBinLine>
                 </span>
                 <span
                   className="audio-lists-panel-header-line"
@@ -654,26 +709,46 @@ exports[`Locale test should render locale with zh_CN 1`] = `
   icon={
     Object {
       "close": <MdClose />,
-      "delete": <FaTrashAlt
-        size={20}
+      "delete": <RiDeleteBinLine
+        size={24}
       />,
       "destroy": <MdClose />,
-      "download": <FaCloudDownloadAlt />,
+      "download": <TiDownload
+        size={26}
+      />,
+      "empty": <MdLibraryMusic />,
       "loading": <FaSpinner />,
-      "loop": <MdRepeatOne />,
+      "loop": <MdRepeatOne
+        size={26}
+      />,
       "lyric": <FaBook />,
-      "mute": <MdVolumeMute />,
+      "mute": <GoMute
+        size={26}
+      />,
       "next": <MdSkipNext />,
-      "order": <MdViewHeadline />,
-      "orderLoop": <MdRepeat />,
+      "order": <MdViewHeadline
+        size={26}
+      />,
+      "orderLoop": <MdRepeat
+        size={26}
+      />,
+      "packUpPanelMobile": <FiChevronsDown
+        size={26}
+      />,
       "pause": <AnimatePauseIcon />,
       "play": <AnimatePlayIcon />,
-      "playLists": <MdQueueMusic />,
+      "playLists": <RiPlayList2Fill />,
       "prev": <MdSkipPrevious />,
-      "reload": <FaSyncAlt />,
-      "shuffle": <TiArrowShuffle />,
+      "reload": <FaSyncAlt
+        size={22}
+      />,
+      "shuffle": <TiArrowShuffle
+        size={26}
+      />,
       "toggle": <FaRegMinusSquare />,
-      "volume": <MdVolumeUp />,
+      "volume": <GoUnmute
+        size={26}
+      />,
     }
   }
   loadAudioErrorPlayNext={true}
@@ -777,7 +852,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               >
                 <span>
                   Playlists
-                   /
+                   / 
                 </span>
                 <span
                   class="audio-lists-panel-header-num"
@@ -793,17 +868,23 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                   >
                     <svg
                       fill="currentColor"
-                      height="20"
-                      size="20"
+                      height="24"
+                      size="24"
                       stroke="currentColor"
                       stroke-width="0"
-                      viewBox="0 0 448 512"
-                      width="20"
+                      viewBox="0 0 24 24"
+                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
-                      />
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                        />
+                      </g>
                     </svg>
                   </span>
                   <span
@@ -937,7 +1018,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
               >
                 <span>
                   播放列表
-                   /
+                   / 
                 </span>
                 <span
                   class="audio-lists-panel-header-num"
@@ -953,17 +1034,23 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                   >
                     <svg
                       fill="currentColor"
-                      height="20"
-                      size="20"
+                      height="24"
+                      size="24"
                       stroke="currentColor"
                       stroke-width="0"
-                      viewBox="0 0 448 512"
-                      width="20"
+                      viewBox="0 0 24 24"
+                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
-                      />
+                      <g>
+                        <path
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        />
+                        <path
+                          d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                        />
+                      </g>
                     </svg>
                   </span>
                   <span
@@ -1192,26 +1279,46 @@ exports[`Locale test should render locale with zh_CN 1`] = `
         icon={
           Object {
             "close": <MdClose />,
-            "delete": <FaTrashAlt
-              size={20}
+            "delete": <RiDeleteBinLine
+              size={24}
             />,
             "destroy": <MdClose />,
-            "download": <FaCloudDownloadAlt />,
+            "download": <TiDownload
+              size={26}
+            />,
+            "empty": <MdLibraryMusic />,
             "loading": <Spin />,
-            "loop": <MdRepeatOne />,
+            "loop": <MdRepeatOne
+              size={26}
+            />,
             "lyric": <FaBook />,
-            "mute": <MdVolumeMute />,
+            "mute": <GoMute
+              size={26}
+            />,
             "next": <MdSkipNext />,
-            "order": <MdViewHeadline />,
-            "orderLoop": <MdRepeat />,
+            "order": <MdViewHeadline
+              size={26}
+            />,
+            "orderLoop": <MdRepeat
+              size={26}
+            />,
+            "packUpPanelMobile": <FiChevronsDown
+              size={26}
+            />,
             "pause": <AnimatePauseIcon />,
             "play": <AnimatePlayIcon />,
-            "playLists": <MdQueueMusic />,
+            "playLists": <RiPlayList2Fill />,
             "prev": <MdSkipPrevious />,
-            "reload": <FaSyncAlt />,
-            "shuffle": <TiArrowShuffle />,
+            "reload": <FaSyncAlt
+              size={22}
+            />,
+            "shuffle": <TiArrowShuffle
+              size={26}
+            />,
             "toggle": <FaRegMinusSquare />,
-            "volume": <MdVolumeUp />,
+            "volume": <GoUnmute
+              size={26}
+            />,
           }
         }
         isMobile={false}
@@ -1227,9 +1334,9 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             "destroyText": "移除播放器",
             "downloadText": "下载",
             "emptyLyricText": "暂无歌词",
+            "emptyText": "音乐播放列表为空",
             "lightThemeText": "亮",
             "nextTrackText": "下一首",
-            "emptyText": "音乐播放列表为空",
             "openText": "打开",
             "playListsText": "播放列表",
             "playModeText": Object {
@@ -1272,7 +1379,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             >
               <span>
                 播放列表
-                 /
+                 / 
               </span>
               <span
                 className="audio-lists-panel-header-num"
@@ -1287,21 +1394,21 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                   onClick={[Function]}
                   title="清空播放列表"
                 >
-                  <FaTrashAlt
-                    size={20}
+                  <RiDeleteBinLine
+                    size={24}
                   >
                     <IconBase
                       attr={
                         Object {
-                          "viewBox": "0 0 448 512",
+                          "viewBox": "0 0 24 24",
                         }
                       }
-                      size={20}
+                      size={24}
                     >
                       <svg
                         fill="currentColor"
-                        height={20}
-                        size={20}
+                        height={24}
+                        size={24}
                         stroke="currentColor"
                         strokeWidth="0"
                         style={
@@ -1309,17 +1416,26 @@ exports[`Locale test should render locale with zh_CN 1`] = `
                             "color": undefined,
                           }
                         }
-                        viewBox="0 0 448 512"
-                        width={20}
+                        viewBox="0 0 24 24"
+                        width={24}
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path
-                          d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
+                        <g
                           key="0"
-                        />
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                            key="0"
+                          />
+                          <path
+                            d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-9 3h2v6H9v-6zm4 0h2v6h-2v-6zM9 4v2h6V4H9z"
+                            key="1"
+                          />
+                        </g>
                       </svg>
                     </IconBase>
-                  </FaTrashAlt>
+                  </RiDeleteBinLine>
                 </span>
                 <span
                   className="audio-lists-panel-header-line"

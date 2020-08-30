@@ -8,8 +8,8 @@ import CircleProcessBar from '../../src/components/CircleProcessBar'
 import {
   AnimatePauseIcon,
   AnimatePlayIcon,
-  MdVolumeDownIcon,
-  MdVolumeMuteIcon,
+  VolumeMuteIcon,
+  VolumeUnmuteIcon,
 } from '../../src/components/Icon'
 import PlayerMobile from '../../src/components/PlayerMobile'
 import PlayModel from '../../src/components/PlayModel'
@@ -864,11 +864,11 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioVolumeChange={onAudioVolumeChange}
       />,
     )
-    expect(wrapper.find(MdVolumeDownIcon)).toHaveLength(1)
-    expect(wrapper.find(MdVolumeMuteIcon)).toHaveLength(0)
+    expect(wrapper.find(VolumeUnmuteIcon)).toHaveLength(1)
+    expect(wrapper.find(VolumeMuteIcon)).toHaveLength(0)
     wrapper.find('.sounds-icon').simulate('click')
-    expect(wrapper.find(MdVolumeDownIcon)).toHaveLength(0)
-    expect(wrapper.find(MdVolumeMuteIcon)).toHaveLength(1)
+    expect(wrapper.find(VolumeUnmuteIcon)).toHaveLength(0)
+    expect(wrapper.find(VolumeMuteIcon)).toHaveLength(1)
     expect(onAudioVolumeChange).not.toHaveBeenCalled()
   })
 
