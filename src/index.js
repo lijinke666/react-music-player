@@ -1129,7 +1129,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  canPlay = () => {
+  onAudioCanPlay = () => {
     this.setState({
       loading: false,
       playing: false,
@@ -1543,7 +1543,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     target = this.audio,
     eventsNames = {
       waiting: this.loadAndPlayAudio,
-      canplay: this.canPlay,
+      canplay: this.onAudioCanPlay,
       error: this.onAudioError,
       ended: this.onAudioEnd,
       pause: this.onAudioPause,
@@ -1863,6 +1863,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
     newAudioLists.splice(fromIndex, 0, ...addedAudioLists)
     this.changeAudioLists({ ...this.props, audioLists: newAudioLists })
+    this.onAudioCanPlay()
   }
 
   getEnhanceAudio = () => {

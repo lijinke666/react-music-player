@@ -1,5 +1,5 @@
-import React from 'react'
 import { mount } from 'enzyme'
+import React from 'react'
 import ReactJkMusicPlayer from '../../src'
 
 const getApp = (props) => {
@@ -175,5 +175,36 @@ describe('AudioInstance test', () => {
       'a',
       'b',
     ])
+  })
+
+  it('should set audio info when append audio list', () => {
+    const { instance, wrapper } = getApp()
+    const audioInfo = {
+      name: 'a',
+      singer: 'a',
+      musicSrc: 'c',
+    }
+    instance.appendAudio(0, [audioInfo])
+    expect(wrapper.state().name).toEqual(audioInfo.name)
+    expect(wrapper.state().musicSrc).toEqual(audioInfo.musicSrc)
+    expect(wrapper.state().singer).toEqual(audioInfo.singer)
+  })
+
+  it('should auto load if autoplayInitLoadPlayList is true when append audio list', () => {
+    const onAudioLoad = jest.fn()
+    window.HTMLMediaElement.prototype.load = () => {
+      onAudioLoad()
+    }
+    const { instance } = getApp({
+      autoplayInitLoadPlayList: true,
+      onAudioLoad,
+    })
+    const audioInfo = {
+      name: 'a',
+      singer: 'a',
+      musicSrc: 'c',
+    }
+    instance.appendAudio(0, [audioInfo])
+    expect(onAudioLoad).toHaveBeenCalled()
   })
 })
