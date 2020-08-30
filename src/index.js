@@ -1841,6 +1841,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.audioListsPlay(currentPlay.id, true)
       }
     }
+    this.setState({ isAutoPlayWhenUserClicked: false })
   }
 
   playByIndex = (index) => {

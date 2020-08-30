@@ -7,6 +7,7 @@ global.document = window.document
 global.navigator = {
   userAgent: 'node.js',
 }
+global.URL.createObjectURL = jest.fn()
 if (typeof window !== 'undefined') {
   global.window.resizeTo = (width, height) => {
     global.window.innerWidth = width || global.window.innerWidth
@@ -33,6 +34,7 @@ if (typeof window !== 'undefined') {
   global.window.HTMLMediaElement.prototype.load = () => {}
   global.window.HTMLMediaElement.prototype.play = () => {}
   global.window.HTMLMediaElement.prototype.pause = () => {}
+  global.window.URL.createObjectURL = jest.fn()
 }
 
 Enzyme.configure({ adapter: new Adapter() })

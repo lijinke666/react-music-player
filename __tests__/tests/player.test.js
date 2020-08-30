@@ -1346,4 +1346,14 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.update()
     expect(wrapper.state().theme).toEqual('light')
   })
+
+  it('should cannot set isAutoPlayWhenUserClicked to true if audioList updated', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer autoPlay={false} clearPriorAudioLists />,
+    )
+    wrapper.setProps({
+      audioLists: [{ musicSrc: 'xxx', name: 'xxx' }],
+    })
+    expect(wrapper.state().isAutoPlayWhenUserClicked).toBeFalsy()
+  })
 })
