@@ -127,6 +127,7 @@ export interface ReactJkMusicPlayerProps {
     bottom?: number | string,
   },
   responsive?: boolean,
+  quietUpdate?: boolean,
   onAudioPlay?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioPause?: (audioInfo: ReactJkMusicPlayerAudioInfo) => void,
   onAudioEnded?: (

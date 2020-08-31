@@ -112,4 +112,5 @@ export default {
   customDownloader: PropTypes.func,
   audioTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   responsive: PropTypes.bool,
+  quietUpdate: PropTypes.bool,
 }

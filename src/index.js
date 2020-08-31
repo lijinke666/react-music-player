@@ -166,6 +166,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     locale: LOCALE.en_US,
     responsive: true,
     icon: DEFAULT_ICON,
+    quietUpdate: false, // 更新后的播放列表如果有当前正在播放的歌曲不打断当前播放状态
   }
 
   static propTypes = PROP_TYPES
@@ -816,12 +817,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.props.onPlayIndexChange && this.props.onPlayIndexChange(playIndex)
     }
 
-    switch (typeof musicSrc) {
-      case 'function':
-        musicSrc().then(loadAudio, this.onAudioError)
-        break
-      default:
-        loadAudio(musicSrc)
+    if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists()) {
+      switch (typeof musicSrc) {
+        case 'function':
+          musicSrc().then(loadAudio, this.onAudioError)
+          break
+        default:
+          loadAudio(musicSrc)
+      }
     }
   }
 
@@ -1402,6 +1405,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const mergedAudioInfo = { ...e, ...audioInfo }
     this.props.onAudioAbort &&
       this.props.onAudioAbort(playId, audioLists, mergedAudioInfo)
+
     if (audioLists.length) {
       this.audio.pause()
       this.state.isInitAutoPlay && this.audio.play()
@@ -1498,6 +1502,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
     } catch (error) {
       return status
     }
+  }
+
+  checkCurrentPlayingAudioIsInUpdatedAudioLists = (nextProps = this.props) => {
+    const { playId, audioLists } = this.state
+    if (
+      !nextProps.quietUpdate ||
+      !Array.isArray(nextProps.audioLists) ||
+      nextProps.audioLists.length !== audioLists.length
+    ) {
+      return false
+    }
+
+    // FIXME: 比较更新之后有没有当前正在播放的这首歌
+    return playId && nextProps.audioLists.some(({ id }) => id === playId)
   }
 
   mockAutoPlayForMobile = () => {
@@ -1610,11 +1628,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   // I change the name of getPlayInfo to getPlayInfoOfNewList because i didn't want to change the prior changes
   // the only thing this function does is to add id to audiolist elements.
-  getPlayInfoOfNewList = (audioLists = []) => {
-    const _audioLists = audioLists.map((info) => {
+  getPlayInfoOfNewList = (nextProps) => {
+    const { audioLists = [] } = nextProps
+    const _audioLists = audioLists.map((info, i) => {
+      const currentPlayIdBeforeUpdate =
+        this.state.playIndex === i &&
+        this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps) &&
+        this.state.playId
       return {
         ...info,
-        id: uuId(),
+        id: currentPlayIdBeforeUpdate || uuId(),
       }
     })
 
@@ -1773,57 +1796,67 @@ export default class ReactJkMusicPlayer extends PureComponent {
       )
   }
 
-  loadNewAudioLists = ({
-    audioLists,
-    remember,
-    playMode,
-    theme,
-    autoPlayInitLoadPlayList,
-    playIndex,
-  }) => {
-    if (audioLists.length >= 1) {
-      const info = this.getPlayInfoOfNewList(audioLists)
-      const lastPlayStatus = remember
-        ? this.getLastPlayStatus()
-        : {
-            playMode: playMode || PLAY_MODE.order,
-            playIndex: playIndex || 0,
-          }
+  loadNewAudioLists = (nextProps) => {
+    const {
+      audioLists,
+      remember,
+      playMode,
+      theme,
+      autoPlayInitLoadPlayList,
+      playIndex,
+    } = nextProps
+    if (!Array.isArray(audioLists) || !audioLists.length) {
+      return
+    }
+    const info = this.getPlayInfoOfNewList(nextProps)
+    const lastPlayStatus = remember
+      ? this.getLastPlayStatus()
+      : {
+          playMode: playMode || PLAY_MODE.order,
+          playIndex: playIndex || 0,
+        }
 
-      if (theme !== THEME.AUTO) {
-        lastPlayStatus.theme = theme
-      }
+    if (theme !== THEME.AUTO) {
+      lastPlayStatus.theme = theme
+    }
 
-      const audioInfo = {
-        ...info,
-        ...lastPlayStatus,
-        isInitAutoPlay: autoPlayInitLoadPlayList,
-      }
-      switch (typeof info.musicSrc) {
-        case 'function':
-          info.musicSrc().then((musicSrc) => {
-            this.setState(
-              {
-                ...audioInfo,
-                musicSrc,
-              },
-              () => {
-                this.audio.load()
-              },
-            )
-          }, this.onAudioError)
-          break
-        default:
-          this.setState(audioInfo, () => {
-            // 预加载, 防止非自动播放, 直接点击播放列表无法播放的情况
-            this.audio.load()
-          })
-      }
+    const audioInfo = {
+      ...info,
+      ...lastPlayStatus,
+      isInitAutoPlay: autoPlayInitLoadPlayList,
+    }
+
+    if (this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
+      this.setState({ audioLists: info.audioLists })
+      return
+    }
+
+    switch (typeof info.musicSrc) {
+      case 'function':
+        info.musicSrc().then((musicSrc) => {
+          this.setState(
+            {
+              ...audioInfo,
+              musicSrc,
+            },
+            () => {
+              this.audio.load()
+            },
+          )
+        }, this.onAudioError)
+        break
+      default:
+        this.setState(audioInfo, () => {
+          // 预加载, 防止非自动播放, 直接点击播放列表无法播放的情况
+          this.audio.load()
+        })
     }
   }
 
   changeAudioLists = (nextProps) => {
-    this.resetAudioStatus()
+    if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
+      this.resetAudioStatus()
+    }
     this.loadNewAudioLists(nextProps)
     this.props.onAudioListsChange &&
       this.props.onAudioListsChange(
@@ -2039,24 +2072,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioLists = this.props.audioLists,
     isBindKeyDownEvents = true,
   ) => {
-    if (!Array.isArray(audioLists)) {
+    if (!Array.isArray(audioLists) || !audioLists.length) {
       return
     }
-    if (audioLists.length) {
-      this.setDefaultAudioVolume()
-      this.bindUnhandledRejection()
-      this.bindEvents(this.audio)
-      this.initLyricParser()
-      this.onAddMediaSession()
-      if (IS_MOBILE) {
-        this.bindMobileAutoPlayEvents()
-      } else {
-        if (isBindKeyDownEvents) {
-          this.bindKeyDownEvents()
-        }
-        if (isSafari()) {
-          this.bindSafariAutoPlayEvents()
-        }
+    this.setDefaultAudioVolume()
+    this.bindUnhandledRejection()
+    this.bindEvents(this.audio)
+    this.initLyricParser()
+    this.onAddMediaSession()
+    if (IS_MOBILE) {
+      this.bindMobileAutoPlayEvents()
+    } else {
+      if (isBindKeyDownEvents) {
+        this.bindKeyDownEvents()
+      }
+      if (isSafari()) {
+        this.bindSafariAutoPlayEvents()
       }
     }
   }
@@ -2093,7 +2124,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       } else {
         this.updateAudioLists(audioLists)
       }
-      this.initPlayer(audioLists, false)
+      if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
+        this.initPlayer(audioLists, false)
+      }
     }
     this.updatePlayIndex(playIndex)
     this.updateTheme(theme)
