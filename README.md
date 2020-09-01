@@ -428,9 +428,10 @@ import 'react-jinke-music-player/lib/styles/index.less'
 @player-width: 80px;
 @player-height: @player-width;
 @base-color: rgba(255, 255, 255, 0.6);
-@progress-load-bar-bg-color: rgba(0, 0, 0, 0.06);
 @common-animate-type: cubic-bezier(0.43, -0.1, 0.16, 1.1);
 @common-animate-time: 350ms @common-animate-type;
+@progress-load-bar-bg-color: rgba(0, 0, 0, 0.11);
+@progress-load-bar-bg-color-light: rgba(0, 0, 0, 0.06);
 @progress-bar-bg-color-light: rgba(0, 0, 0, 0.09);
 @progress-bar-bg-color-dark: #fff;
 @player-lyric-color: @primary-color;
