@@ -1,3 +1,28 @@
+# [4.18.0](https://github.com/lijinke666/react-music-player/compare/v4.17.1...v4.18.0) (2020-09-06)
+
+
+### Bug Fixes
+
+* audio auto play when appended new audio if enable autoplayInitLoadPlayList [#146](https://github.com/lijinke666/react-music-player/issues/146) ([c3c40b3](https://github.com/lijinke666/react-music-player/commit/c3c40b3974332eea270bd58046dec77b7355f4a5))
+* auto play when audio list changed if autoplayInitLoadPlayList is false [#154](https://github.com/lijinke666/react-music-player/issues/154) ([3f08c70](https://github.com/lijinke666/react-music-player/commit/3f08c70a9625ec64c03e0e0326151f3caf2c5f76))
+* call onModeChange and onCoverChange  when destroy button clicked if drag disabled ([c608cea](https://github.com/lijinke666/react-music-player/commit/c608cea5f3f8c6dd25fe7134b1861b64e6498aa3))
+* cannot show audio info if audio list is empty by appendAudio [#146](https://github.com/lijinke666/react-music-player/issues/146) ([2c225da](https://github.com/lijinke666/react-music-player/commit/2c225da4b5c71460719eb6e1694113417ff594a6))
+* cannot toggle mode if drag disabled [#147](https://github.com/lijinke666/react-music-player/issues/147) ([ca5c5ff](https://github.com/lijinke666/react-music-player/commit/ca5c5ff3f648536f9adba21851d96b4b95f7c792))
+* destroy button position in mobile ([2500d17](https://github.com/lijinke666/react-music-player/commit/2500d171f5c79eae603a27a326534fa5d832da35))
+* mobile play mode icon align style ([5e1a819](https://github.com/lijinke666/react-music-player/commit/5e1a81941ff7579f3844df843e41f67067120ca3))
+* optimize progress load bar light theme bg color ([3127a2e](https://github.com/lijinke666/react-music-player/commit/3127a2e04ecc6b023bf240b53678c02bce5e043d))
+* reset audio loaded progress when clear audio ([813b3ab](https://github.com/lijinke666/react-music-player/commit/813b3ab68a7ab6e2493aaa25f6793618fb1a506f))
+* theme is reset to dark when audio list changed if theme is auto [#149](https://github.com/lijinke666/react-music-player/issues/149) ([7103183](https://github.com/lijinke666/react-music-player/commit/71031838178c96c4bdf848f087ec5849777447e6))
+
+
+### Features
+
+* add quietUpdate api for support don't interrupt current play state ([6e09798](https://github.com/lijinke666/react-music-player/commit/6e0979894a026bbb4cc3307366f9c0b4fb12f391))
+* new icons & add packup and empty custom icon ([529a36e](https://github.com/lijinke666/react-music-player/commit/529a36e301d5725b0448e66438332b6b79bf61ac))
+* rename locale notContentText => emptyText ([58b3ad0](https://github.com/lijinke666/react-music-player/commit/58b3ad093831d9d9ad89b473ffeb12982404e24e))
+* support quiet update audio list [#148](https://github.com/lijinke666/react-music-player/issues/148) [#114](https://github.com/lijinke666/react-music-player/issues/114) ([c98105b](https://github.com/lijinke666/react-music-player/commit/c98105b84b218af318dcf2140df433cfd3da0d93))
+* Upgrading from `react-icons` v2 to v3 ([fe3ec35](https://github.com/lijinke666/react-music-player/commit/fe3ec35beeec3fcc666cac94426aab0d4d953881))
+
 ## [4.17.1](https://github.com/lijinke666/react-music-player/compare/v4.17.0...v4.17.1) (2020-08-26)
 
 
