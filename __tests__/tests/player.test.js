@@ -1356,4 +1356,49 @@ describe('<ReactJkMusicPlayer/>', () => {
     })
     expect(wrapper.state().isAutoPlayWhenUserClicked).toBeFalsy()
   })
+
+  it('should quiet update audio lists', () => {
+    const onAudioAbort = jest.fn()
+    const onAudioListsChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          {
+            musicSrc: 'aaa',
+            name: 'aaa',
+          },
+          {
+            musicSrc: 'bbb',
+            name: 'bbb',
+          },
+        ]}
+        autoPlay={false}
+        clearPriorAudioLists
+        quietUpdate
+        onAudioAbort={onAudioAbort}
+        onAudioListsChange={onAudioListsChange}
+      />,
+    )
+    const prevAudioLists = wrapper.state().audioLists
+    wrapper.setProps({
+      audioLists: [
+        { musicSrc: 'aaa', name: 'aaa' },
+        { musicSrc: 'ccc', name: 'ccc' },
+      ],
+    })
+    expect(onAudioAbort).not.toHaveBeenCalled()
+    expect(onAudioListsChange).toHaveBeenCalledTimes(1)
+    expect(wrapper.state().audioLists[0].id).toEqual(prevAudioLists[0].id)
+    expect(wrapper.state().audioLists[1].id).not.toEqual(prevAudioLists[1].id)
+
+    wrapper.setProps({
+      audioLists: [
+        { musicSrc: 'ddd', name: 'ddd' },
+        { musicSrc: 'zzz', name: 'zzz' },
+      ],
+    })
+    expect(onAudioListsChange).toHaveBeenCalledTimes(2)
+    expect(wrapper.state().audioLists[0].id).not.toEqual(prevAudioLists[0].id)
+    expect(wrapper.state().audioLists[1].id).not.toEqual(prevAudioLists[1].id)
+  })
 })

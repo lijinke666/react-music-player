@@ -91,6 +91,17 @@ const audioList3 = [
   },
 ]
 
+const audioList4 = [
+  {
+    name: 'Bedtime Stories',
+    singer: 'Jay Chou',
+    cover:
+      'http://res.cloudinary.com/alick/image/upload/v1502375978/bedtime_stories_bywggz.jpg',
+    musicSrc:
+      'http://res.cloudinary.com/alick/video/upload/v1502375674/Bedtime_Stories.mp3',
+  },
+]
+
 const options = {
   // audio lists model
   audioLists: audioList1,
@@ -113,6 +124,19 @@ const options = {
   //   can be moved.
   // Ref: https://github.com/STRML/react-draggable#draggable-api
   bounds: 'body',
+
+  /**
+   * Don't interrupt current playing state when audio list updated
+   * audioLists eg. (A) is current playing...
+   * [A,B] => [A,C,B]
+   * [A,B] => [A,B,C]
+   *
+   * if (A) not in updated audio lists
+   * [A,B] => [C]
+   * (C) is playing
+   */
+  // [type `boolean`, default `false`]
+  quietUpdate: false,
 
   // Replace a new playlist with the first loaded playlist
   // instead of adding it at the end of it.
@@ -459,6 +483,7 @@ class Demo extends React.PureComponent {
   onChangeToFirstAudioList = () => {
     this.updateParams({
       clearPriorAudioLists: true,
+      quietUpdate: false,
       audioLists: audioList1,
     })
   }
@@ -466,7 +491,7 @@ class Demo extends React.PureComponent {
   onChangeToSecondAudioList = () => {
     this.updateParams({
       clearPriorAudioLists: true,
-      // quietUpdate: true,
+      quietUpdate: false,
       audioLists: audioList2,
     })
   }
@@ -476,6 +501,14 @@ class Demo extends React.PureComponent {
       clearPriorAudioLists: true,
       quietUpdate: true,
       audioLists: audioList3,
+    })
+  }
+
+  onQuietUpdateAudioLis2 = () => {
+    this.updateParams({
+      clearPriorAudioLists: true,
+      quietUpdate: true,
+      audioLists: audioList4,
     })
   }
 
@@ -701,6 +734,10 @@ class Demo extends React.PureComponent {
           <button type="button" onClick={this.onQuietUpdateAudioList}>
             quiet update audio list (don't interrupt current play state) (
             {audioList3.length})
+          </button>
+          <button type="button" onClick={this.onQuietUpdateAudioLis2}>
+            quiet update audio list (current playing audio not in updated list)
+            ({audioList4.length})
           </button>
           <button type="button" onClick={this.onAddAudio}>
             + add audio ({params.audioLists.length})

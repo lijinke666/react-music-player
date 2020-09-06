@@ -197,6 +197,7 @@ ReactDOM.render(
 | customDownloader | `function(downloadInfo: TransformedDownloadAudioInfo)` | `-` | custom download handle |
 | onCoverClick | `function(mode,audioLists,audioInfo)` | `-` | audio cover clicked handle |
 | onPlayIndexChange | `function(playIndex)` | `-` | audio play index change handle |
+| quietUpdate | `boolean` | `false` | [Detail](#:bulb-quiet-update) |
 
 ## :bulb: Custom operation ui
 
@@ -517,6 +518,21 @@ export interface ReactJkMusicPlayerIcon {
 ```
 
 ![auto-theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/auto-theme.gif)
+
+## :bulb: Quiet update
+
+```js
+/**
+ * Don't interrupt current playing state when audio list updated
+ * eg. (A) is current playing...
+ * [A,B] => [A,C,B]
+ * [A,B] => [A,B,C]
+ *
+ * if (A) not in updated audio lists
+ * [A,B] => [C]
+ * (C) is playing
+ */
+```
 
 ## :pencil: Development
 

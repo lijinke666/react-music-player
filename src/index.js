@@ -1506,17 +1506,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   checkCurrentPlayingAudioIsInUpdatedAudioLists = (nextProps = this.props) => {
-    const { playId, audioLists } = this.state
-    if (
-      !nextProps.quietUpdate ||
-      !Array.isArray(nextProps.audioLists) ||
-      nextProps.audioLists.length !== audioLists.length
-    ) {
+    const { playId, musicSrc } = this.state
+    if (!nextProps.quietUpdate || !Array.isArray(nextProps.audioLists)) {
       return false
     }
-
-    // FIXME: 比较更新之后有没有当前正在播放的这首歌
-    return playId && nextProps.audioLists.some(({ id }) => id === playId)
+    return (
+      playId &&
+      nextProps.audioLists.some(
+        (newAudioInfo) =>
+          newAudioInfo.id === playId || newAudioInfo.musicSrc === musicSrc,
+      )
+    )
   }
 
   mockAutoPlayForMobile = () => {
@@ -1631,14 +1631,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
   // the only thing this function does is to add id to audiolist elements.
   getPlayInfoOfNewList = (nextProps) => {
     const { audioLists = [] } = nextProps
-    const _audioLists = audioLists.map((info, i) => {
-      const currentPlayIdBeforeUpdate =
-        this.state.playIndex === i &&
-        this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps) &&
-        this.state.playId
+    const _audioLists = audioLists.map((info) => {
+      const prevAudioBeforeUpdate =
+        (nextProps.quietUpdate &&
+          this.state.audioLists.find(
+            ({ musicSrc }) => musicSrc === info.musicSrc,
+          )) ||
+        {}
       return {
         ...info,
-        id: currentPlayIdBeforeUpdate || uuId(),
+        id: prevAudioBeforeUpdate.id || uuId(),
       }
     })
 
