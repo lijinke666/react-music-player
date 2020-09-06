@@ -840,6 +840,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       lyric: '',
       currentLyric: '',
       playId: this.initPlayId,
+      loadedProgress: 0,
     })
   }
 
