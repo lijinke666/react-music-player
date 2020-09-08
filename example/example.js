@@ -649,7 +649,13 @@ class Demo extends React.PureComponent {
         <button
           type="button"
           onClick={() => {
-            this.audio.appendAudio(0, audioList2)
+            this.audio.appendAudio(0, [
+              {
+                name: 'test',
+                musicSrc:
+                  'http://podcasts.protocol-radio.com/podcast/protocol-radio-331.m4a',
+              },
+            ])
           }}
         >
           append audio

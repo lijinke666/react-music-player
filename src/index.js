@@ -1170,11 +1170,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  // 加载音频
   loadAndPlayAudio = () => {
     const { remember } = this.props
-    const { isInitRemember } = this.state
+    const { isInitRemember, musicSrc } = this.state
     const { networkState } = this.audio
+
+    if (!musicSrc) {
+      return
+    }
 
     this.setState({ loading: true })
 
@@ -1216,19 +1219,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     this.lyric && this.lyric.stop()
 
-    // 如果当前音乐加载出错 尝试播放下一首
-    if (loadAudioErrorPlayNext && audioLists.length) {
-      const isLastAudio =
-        (playMode === PLAY_MODE.order || playMode === PLAY_MODE.orderLoop) &&
-        playId === audioLists[audioLists.length - 1].id
-      if (!isLastAudio) {
-        this.handlePlay(currentPlayMode, true)
-      }
-    }
-
     // 如果删除歌曲或其他原因导致列表为空时
     // 这时候会触发 https://developer.mozilla.org/en-US/docs/Web/API/MediaError
+    // appendAudio 时也会触发一次 error 需要判断 musicSrc 存在的情况才执行 handlePlay
     if (musicSrc) {
+      // 如果当前音乐加载出错 尝试播放下一首
+      if (loadAudioErrorPlayNext && audioLists.length) {
+        const isLastAudio =
+          (playMode === PLAY_MODE.order || playMode === PLAY_MODE.orderLoop) &&
+          playId === audioLists[audioLists.length - 1].id
+        if (!isLastAudio) {
+          this.handlePlay(currentPlayMode, true)
+        }
+      }
+
       this.props.onAudioError &&
         this.props.onAudioError(
           this.audio.error || (error && error.reason) || null,
@@ -1856,17 +1860,23 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
+  resetPlayId = (cb) => {
+    this.setState({ playId: this.initPlayId }, cb)
+  }
+
   changeAudioLists = (nextProps) => {
     if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
       this.resetAudioStatus()
     }
-    this.loadNewAudioLists(nextProps)
-    this.props.onAudioListsChange &&
-      this.props.onAudioListsChange(
-        this.state.playId,
-        nextProps.audioLists,
-        this.getBaseAudioInfo(),
-      )
+    this.resetPlayId(() => {
+      this.loadNewAudioLists(nextProps)
+      this.props.onAudioListsChange &&
+        this.props.onAudioListsChange(
+          this.state.playId,
+          nextProps.audioLists,
+          this.getBaseAudioInfo(),
+        )
+    })
   }
 
   updatePlayIndex = (playIndex) => {

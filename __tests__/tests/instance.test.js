@@ -1,6 +1,8 @@
 import { mount } from 'enzyme'
 import React from 'react'
 import ReactJkMusicPlayer from '../../src'
+import { AnimatePlayIcon } from '../../src/components/Icon'
+import { sleep } from '../utils'
 
 const getApp = (props) => {
   let _instance
@@ -206,5 +208,37 @@ describe('AudioInstance test', () => {
     }
     instance.appendAudio(0, [audioInfo])
     expect(onAudioLoad).toHaveBeenCalled()
+  })
+
+  it('should init append audio info', async () => {
+    const onAudioPlay = jest.fn()
+    const { wrapper, instance } = getApp({
+      mode: 'full',
+      autoplayInitLoadPlayList: false,
+      onAudioPlay,
+    })
+    const audioInfo = {
+      name: 'name',
+      singer: 'singer',
+      musicSrc: 'c',
+    }
+    const prePlayId = wrapper.state().playId
+    instance.appendAudio(0, [audioInfo])
+    await sleep(1000)
+    wrapper.update()
+    expect(onAudioPlay).not.toHaveBeenCalled()
+    expect(wrapper.state().loading).toBeFalsy()
+    expect(wrapper.state().musicSrc).toEqual(audioInfo.musicSrc)
+    expect(wrapper.state().singer).toEqual(audioInfo.singer)
+    expect(wrapper.state().name).toEqual(audioInfo.name)
+    expect(prePlayId).not.toEqual(wrapper.state().audioLists[0].id)
+    expect(wrapper.state().playId).toEqual(wrapper.state().audioLists[0].id)
+    wrapper.find('.audio-lists-btn').simulate('click')
+    expect(
+      wrapper
+        .find('.audio-lists-panel-content .audio-item')
+        .first()
+        .find(AnimatePlayIcon),
+    ).toHaveLength(1)
   })
 })
