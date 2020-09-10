@@ -6,6 +6,8 @@
  */
 
 // FIXME: quietUpdate 改坏了
+// TODO: 去掉 pause 属性 保留 playing
+// FIXME: appendAudio 的时候 如果开启了 autoplayInitLoadPlayList 没有加载
 import cls from 'classnames'
 import download from 'downloadjs'
 import getIsMobile from 'is-mobile'

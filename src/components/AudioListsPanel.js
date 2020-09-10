@@ -85,7 +85,7 @@ const AudioListsPanel = ({
                     { pause },
                     { remove: removeId === audio.id },
                   )}
-                  onClick={() => onPlay(audio.id)}
+                  onClick={!loading ? () => onPlay(audio.id) : undefined}
                 >
                   <span className="group player-status">
                     <span className="player-icons">

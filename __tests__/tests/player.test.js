@@ -1401,4 +1401,23 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().audioLists[0].id).not.toEqual(prevAudioLists[0].id)
     expect(wrapper.state().audioLists[1].id).not.toEqual(prevAudioLists[1].id)
   })
+
+  it('should not play if audio is loading', () => {
+    const onAudioPlay = jest.fn()
+    window.HTMLMediaElement.prototype.play = () => {
+      onAudioPlay()
+    }
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'ddd', name: 'ddd' }]}
+        mode="full"
+        autoPlay={false}
+        onAudioPlay={onAudioPlay}
+      />,
+    )
+
+    wrapper.setState({ loading: true })
+    wrapper.find('.audio-item').simulate('click')
+    expect(onAudioPlay).not.toHaveBeenCalled()
+  })
 })
