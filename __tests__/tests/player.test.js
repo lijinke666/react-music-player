@@ -39,9 +39,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.audio-circle-process-bar').length >= 1)
     wrapper.setProps({ showMiniProcessBar: false })
     assert(wrapper.find('.audio-circle-process-bar').length === 0)
-    wrapper.setState({ pause: false, playing: true, toggle: true })
+    wrapper.setState({ playing: true, toggle: true })
     assert(wrapper.find(AnimatePauseIcon).length >= 1)
-    wrapper.setState({ pause: true, playing: false })
+    wrapper.setState({ playing: false })
     assert(wrapper.find(AnimatePlayIcon).length >= 1)
     wrapper.setState({ loading: true })
     assert(wrapper.find('.loading').length >= 1)
@@ -176,7 +176,6 @@ describe('<ReactJkMusicPlayer/>', () => {
   it('should autoPlay', () => {
     const wrapper = mount(<ReactJkMusicPlayer autoPlay={false} />)
     assert(wrapper.state().playing === false)
-    assert(wrapper.state().pause === true)
     wrapper.setProps({ autoPlay: true })
     assert(wrapper.props().autoPlay === true)
   })
@@ -772,7 +771,6 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
     wrapper.find('.play-btn').simulate('click')
     expect(wrapper.state().playing).toEqual(true)
-    expect(wrapper.state().pause).toEqual(false)
   })
 
   it('should toggle audio volume', () => {
@@ -1409,7 +1407,10 @@ describe('<ReactJkMusicPlayer/>', () => {
     }
     const wrapper = mount(
       <ReactJkMusicPlayer
-        audioLists={[{ musicSrc: 'ddd', name: 'ddd' }]}
+        audioLists={[
+          { musicSrc: 'aaa', name: 'aaa' },
+          { musicSrc: 'ddd', name: 'ddd' },
+        ]}
         mode="full"
         autoPlay={false}
         onAudioPlay={onAudioPlay}
@@ -1417,7 +1418,9 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
 
     wrapper.setState({ loading: true })
-    wrapper.find('.audio-item').simulate('click')
+    wrapper.find('.audio-item').first().simulate('click')
     expect(onAudioPlay).not.toHaveBeenCalled()
+    wrapper.find('.audio-item').last().simulate('click')
+    expect(onAudioPlay).toHaveBeenCalled()
   })
 })

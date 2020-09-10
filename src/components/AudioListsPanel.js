@@ -7,7 +7,6 @@ const AudioListsPanel = ({
   onCancel,
   onDelete,
   onPlay,
-  pause,
   playId,
   loading,
   panelToggleAnimate,
@@ -18,6 +17,7 @@ const AudioListsPanel = ({
   isMobile,
   locale,
   icon,
+  playing,
 }) => (
   <div
     className={cls('audio-lists-panel', panelToggleAnimate, {
@@ -68,31 +68,31 @@ const AudioListsPanel = ({
           <ul>
             {audioLists.map((audio) => {
               const { name, singer } = audio
-              const playing = playId === audio.id
+              const isCurrentPlaying = playId === audio.id
               return (
                 <li
                   key={audio.id}
                   title={
-                    pause
+                    !playing
                       ? locale.clickToPlayText
-                      : playing
+                      : isCurrentPlaying
                       ? locale.clickToPauseText
                       : locale.clickToPlayText
                   }
                   className={cls(
                     'audio-item',
-                    { playing },
-                    { pause },
+                    { playing: isCurrentPlaying },
+                    { pause: !playing },
                     { remove: removeId === audio.id },
                   )}
-                  onClick={!loading ? () => onPlay(audio.id) : undefined}
+                  onClick={() => onPlay(audio.id)}
                 >
                   <span className="group player-status">
                     <span className="player-icons">
-                      {playing && loading
+                      {isCurrentPlaying && loading
                         ? icon.loading
-                        : playing
-                        ? pause
+                        : isCurrentPlaying
+                        ? !playing
                           ? icon.play
                           : icon.pause
                         : undefined}

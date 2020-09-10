@@ -510,8 +510,8 @@ exports[`Locale test should render default locale with en_US 1`] = `
             "show": false,
           }
         }
-        pause={true}
         playId=""
+        playing={false}
         remove={true}
         removeId={-1}
         visible={false}
@@ -1364,8 +1364,8 @@ exports[`Locale test should render locale with zh_CN 1`] = `
             "show": false,
           }
         }
-        pause={true}
         playId=""
+        playing={false}
         remove={true}
         removeId={-1}
         visible={false}

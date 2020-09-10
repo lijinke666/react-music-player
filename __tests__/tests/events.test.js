@@ -103,7 +103,6 @@ describe('<ReactJkMusicPlayer/> click events tests', () => {
     const wrapper = mount(<ReactJkMusicPlayer audioLists={[]} mode="full" />)
     // 暂停
     wrapper.find('.play-btn').simulate('click')
-    assert(wrapper.state().pause === true)
     assert(wrapper.state().playing === false)
   })
   it('click prev and next audio', () => {

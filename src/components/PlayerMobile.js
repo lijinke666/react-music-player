@@ -19,7 +19,6 @@ const PlayerMobile = ({
   audioNextPlay,
   playMode,
   onClose,
-  pause,
   playModeTipVisible,
   currentPlayModeName,
   extendsContent,
@@ -62,7 +61,7 @@ const PlayerMobile = ({
           src={cover}
           alt="cover"
           className={cls('cover', {
-            'img-rotate-pause': pause || !playing || !cover,
+            'img-rotate-pause': !playing || !cover,
           })}
         />
       </div>
