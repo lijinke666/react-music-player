@@ -92,9 +92,9 @@ const AudioListsPanel = ({
                       {isCurrentPlaying && loading
                         ? icon.loading
                         : isCurrentPlaying
-                        ? !playing
-                          ? icon.play
-                          : icon.pause
+                        ? playing
+                          ? icon.pause
+                          : icon.play
                         : undefined}
                     </span>
                   </span>

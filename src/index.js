@@ -123,6 +123,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     audioLyricVisible: false,
     isAutoPlayWhenUserClicked: false,
     playIndex: this.props.playIndex || this.props.defaultPlayIndex || 0,
+    canPlay: false,
   }
 
   static defaultProps = {
@@ -192,8 +193,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   get isAudioCanPlay() {
     const { autoPlay } = this.props
-    const { isInitAutoPlay, isAutoPlayWhenUserClicked } = this.state
-    return isInitAutoPlay || autoPlay || isAutoPlayWhenUserClicked
+    const { isInitAutoPlay, isAutoPlayWhenUserClicked, canPlay } = this.state
+    return canPlay && (isInitAutoPlay || autoPlay || isAutoPlayWhenUserClicked)
   }
 
   get iconMap() {
@@ -412,7 +413,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           <div
             id={this.targetId}
             className={cls('scale', 'music-player-controller', {
-              'music-player-playing': this.state.playing,
+              'music-player-playing': playing,
             })}
             {...miniModeCoverConfig}
             onClick={!drag ? this.onOpenPanel : undefined}
@@ -790,6 +791,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           currentTime: 0,
           playing: false,
           loading: true,
+          canPlay: false,
           loadedProgress: 0,
           playIndex,
           isAutoPlayWhenUserClicked: true,
@@ -832,6 +834,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       currentTime: 0,
       loading: false,
       playing: false,
+      canPlay: false,
       lyric: '',
       currentLyric: '',
       playId: this.initPlayId,
@@ -1128,11 +1131,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  onAudioCanPlay = () => {
-    this.setAudioLoaded()
-
-    if (this.isAudioCanPlay) {
-      this.loadAndPlayAudio()
+  playAudio = (isLoaded = false) => {
+    if (this.isAudioCanPlay || isLoaded) {
+      this.setAudioLoaded()
+      this.loadAndPlayAudio(isLoaded)
     }
   }
 
@@ -1169,7 +1171,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  loadAndPlayAudio = () => {
+  loadAndPlayAudio = (isLoaded = false) => {
     const { remember } = this.props
     const { isInitRemember, musicSrc } = this.state
     const { networkState } = this.audio
@@ -1178,7 +1180,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return
     }
 
-    this.setState({ loading: true })
+    this.setState({ playing: false, loading: true })
 
     if (networkState !== NETWORK_STATE.NETWORK_NO_SOURCE) {
       const { playing } = this.getLastPlayStatus()
@@ -1186,12 +1188,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState(
         {
           playing: remember ? !isLastPause : this.isAudioCanPlay,
-          loading: networkState !== NETWORK_STATE.NETWORK_READY_SUCCESS_STATE,
+          loading: !isLoaded,
         },
         () => {
           if (remember ? !isLastPause : this.isAudioCanPlay) {
-            // fuck Safari is need muted :(
-            // this.audio.muted = true
             this.audio.play()
           }
           this.setState({
@@ -1562,8 +1562,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     target = this.audio,
     eventsNames = {
       waiting: this.loadAndPlayAudio,
-      canplay: this.onAudioCanPlay,
-      canplaythrough: this.setAudioLoaded,
+      canplaythrough: this.onAudioCanPlay,
       error: this.onAudioError,
       ended: this.onAudioEnd,
       pause: this.onAudioPause,
@@ -1829,6 +1828,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ...info,
       ...lastPlayStatus,
       isInitAutoPlay: autoPlayInitLoadPlayList,
+      playing: this.isAudioCanPlay,
     }
 
     if (this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
@@ -1881,6 +1881,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const currentPlayIndex = this.getCurrentPlayIndex()
     if (playIndex !== undefined && currentPlayIndex !== playIndex) {
       const currentPlay = this.state.audioLists[this.getPlayIndex(playIndex)]
+      // TODO: 调用两次
       if (currentPlay && currentPlay.id) {
         this.audioListsPlay(currentPlay.id, true)
       }
@@ -1907,7 +1908,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     })
     newAudioLists.splice(fromIndex, 0, ...addedAudioLists)
     this.changeAudioLists({ ...this.props, audioLists: newAudioLists })
-    this.onAudioCanPlay()
+    // this.setAudioLoaded()
+    // this.audioListsPlay()
+    // this.playAudio()
   }
 
   getEnhanceAudio = () => {
@@ -2117,6 +2120,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.removeMobileListener()
     this.removeLyric()
     this._onDestroyed()
+  }
+
+  onAudioCanPlay = () => {
+    this.setState({ canPlay: true }, () => {
+      this.playAudio(true)
+    })
   }
 
   // eslint-disable-next-line camelcase
