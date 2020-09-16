@@ -7,6 +7,8 @@
 
 // FIXME: quietUpdate 改坏了
 // FIXME: appendAudio 的时候 如果开启了 autoplayInitLoadPlayList 没有加载
+// TODO: 列表loading 和 面板 loading 时间不一致
+// FIXME: 直接点击播放歌曲, 如果还没有加载 会有问题, 特别是大文件
 import cls from 'classnames'
 import download from 'downloadjs'
 import getIsMobile from 'is-mobile'

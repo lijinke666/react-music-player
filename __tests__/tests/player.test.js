@@ -769,6 +769,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioPlay={onAudioPlay}
       />,
     )
+    wrapper.setState({ canPlay: true })
     wrapper.find('.play-btn').simulate('click')
     expect(wrapper.state().playing).toEqual(true)
   })

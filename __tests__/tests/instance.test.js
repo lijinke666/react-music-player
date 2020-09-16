@@ -129,6 +129,7 @@ describe('AudioInstance test', () => {
     }
     const { instance, wrapper } = getApp()
     wrapper.setProps({ mode: 'full' })
+    wrapper.setState({ canPlay: true })
     wrapper.update()
     instance.togglePlay()
     expect(wrapper.state().playing).toEqual(true)
