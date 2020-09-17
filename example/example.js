@@ -306,13 +306,7 @@ const options = {
 
   // audio load failed error handle
   onAudioError(errMsg, currentPlayId, audioLists, audioInfo) {
-    console.error(
-      'audio load error',
-      errMsg,
-      currentPlayId,
-      audioLists,
-      audioInfo,
-    )
+    console.error('audio error', errMsg, currentPlayId, audioLists, audioInfo)
   },
 
   // theme change handle

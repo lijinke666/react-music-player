@@ -458,6 +458,9 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
   it('should trigger onAudioPlay hook when audio track list change', () => {
     const onAudioPlay = jest.fn()
+    window.HTMLMediaElement.prototype.play = () => {
+      onAudioPlay()
+    }
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[
@@ -468,6 +471,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioPlay={onAudioPlay}
       />,
     )
+    wrapper.setState({ canPlay: true })
     wrapper.find('.next-audio').simulate('click')
     expect(onAudioPlay).toHaveBeenCalled()
   })
