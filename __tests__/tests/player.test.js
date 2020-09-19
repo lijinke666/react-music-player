@@ -1079,6 +1079,49 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onCoverClick).toHaveBeenCalledTimes(2)
   })
 
+  it('should not call onCoverClick if cover is empty', () => {
+    const onCoverClick = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="mini"
+        audioLists={[
+          {
+            cover: '',
+            musicSrc: 'test.mp3',
+          },
+        ]}
+        onCoverClick={onCoverClick}
+      />,
+    )
+    wrapper.find('.music-player-controller').simulate('click')
+    expect(onCoverClick).not.toHaveBeenCalled()
+    wrapper.setProps({ mode: 'full' })
+    wrapper.find('.img-content').simulate('click')
+    expect(onCoverClick).not.toHaveBeenCalled()
+  })
+
+  it('should not call onCoverClick if showMiniModeCover is false in mini mode', () => {
+    const onCoverClick = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="mini"
+        showMiniModeCover={false}
+        audioLists={[
+          {
+            cover: 'xxx',
+            musicSrc: 'test.mp3',
+          },
+        ]}
+        onCoverClick={onCoverClick}
+      />,
+    )
+    wrapper.find('.music-player-controller').simulate('click')
+    expect(onCoverClick).not.toHaveBeenCalled()
+    wrapper.setProps({ mode: 'full' })
+    wrapper.find('.img-content').simulate('click')
+    expect(onCoverClick).toHaveBeenCalledTimes(1)
+  })
+
   it('should trigger onPlayIndexChange hook when audio track list change', () => {
     const onPlayIndexChange = jest.fn()
     const wrapper = mount(
@@ -1305,6 +1348,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         drag={false}
         onModeChange={onModeChange}
         onCoverClick={onCoverClick}
+        audioLists={[{ cover: 'xx' }]}
       />,
     )
     expect(

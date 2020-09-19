@@ -679,7 +679,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onCoverClick = (mode = MODE.FULL) => {
-    if (this.props.onCoverClick) {
+    const { showMiniModeCover } = this.props
+    const { cover } = this.state
+    if (!showMiniModeCover && mode === MODE.MINI) {
+      return
+    }
+    if (this.props.onCoverClick && cover) {
       this.props.onCoverClick(
         mode,
         this.state.audioLists,
