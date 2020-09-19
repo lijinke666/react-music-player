@@ -1,3 +1,17 @@
+## [4.18.1](https://github.com/lijinke666/react-music-player/compare/v4.18.0...v4.18.1) (2020-09-19)
+
+
+### Bug Fixes
+
+* append audio should not auto play if autoPlay is false and autoplayInitLoadPlayList is false ([7e60d39](https://github.com/lijinke666/react-music-player/commit/7e60d39444823f9fc3d9d74dc8b71e386a0d0d1c))
+* audio can be play from play list if audio is loading ([d930cfe](https://github.com/lijinke666/react-music-player/commit/d930cfe8c1f04a3ba623c3960e29afcb2cf0f95d))
+* cannot change play audio when quietUpdate was used [#157](https://github.com/lijinke666/react-music-player/issues/157) ([d5bf3b1](https://github.com/lijinke666/react-music-player/commit/d5bf3b1e92ea2bd2a185b4cef8d034b16b791c8f))
+* infinite load when append big audio file [#146](https://github.com/lijinke666/react-music-player/issues/146) ([487502c](https://github.com/lijinke666/react-music-player/commit/487502cc35afccde46a1bd835307c5e031c83c9e))
+* loading animate time diffrence ([5aa109a](https://github.com/lijinke666/react-music-player/commit/5aa109a25820edd9cfc2633d80b4ef3b203da5f8))
+* optimize audio load and play function ([504461d](https://github.com/lijinke666/react-music-player/commit/504461d091ca4839f92bae4cffbc3d5a65900212))
+* should not call onAudioListsPanelChange if panel is closed when hide panel ([ade1774](https://github.com/lijinke666/react-music-player/commit/ade1774f68157816e979600fbde9186f8c0f401a))
+* should not call onCoverClick if cover is empty ([52ba3ae](https://github.com/lijinke666/react-music-player/commit/52ba3ae4a5257b080735d152df552569c56445b9))
+
 # [4.18.0](https://github.com/lijinke666/react-music-player/compare/v4.17.1...v4.18.0) (2020-09-06)
 
 
