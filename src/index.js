@@ -5,7 +5,6 @@
  * @license MIT
  */
 
-// FIXME: quietUpdate 更新之后 不能点击播放列表里的其他歌曲
 import cls from 'classnames'
 import download from 'downloadjs'
 import getIsMobile from 'is-mobile'
