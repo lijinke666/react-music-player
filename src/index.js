@@ -6,7 +6,6 @@
  */
 
 // FIXME: quietUpdate 更新之后 不能点击播放列表里的其他歌曲
-// FIXME: audio lists panel visible 收起时会调用
 import cls from 'classnames'
 import download from 'downloadjs'
 import getIsMobile from 'is-mobile'
@@ -917,9 +916,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   _closeAudioListsPanel = () => {
+    const { audioListsPanelVisible } = this.state
     this.setState({ audioListsPanelVisible: false })
-    this.props.onAudioListsPanelChange &&
-      this.props.onAudioListsPanelChange(false)
+    if (audioListsPanelVisible) {
+      this.props.onAudioListsPanelChange &&
+        this.props.onAudioListsPanelChange(false)
+    }
   }
 
   themeChange = (isLight) => {

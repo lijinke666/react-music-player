@@ -1478,4 +1478,21 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.instance().onAudioCanPlay()
     expect(onAudioPlay).toHaveBeenCalled()
   })
+
+  it('should not call onAudioListsPanelChange if panel is closed when hide panel', () => {
+    const onAudioListsPanelChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'aaa', name: 'aaa' },
+          { musicSrc: 'ddd', name: 'ddd' },
+        ]}
+        mode="full"
+        onAudioListsPanelChange={onAudioListsPanelChange}
+      />,
+    )
+
+    wrapper.find('.hide-panel').simulate('click')
+    expect(onAudioListsPanelChange).not.toHaveBeenCalled()
+  })
 })
