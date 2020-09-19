@@ -78,7 +78,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.dark-theme').length === 0)
     assert(wrapper.find('.light-theme').length === 1)
   })
-  it('should find audioLists and return Array, playlists show "no music" text ', () => {
+  it('should find audioLists and return Array, playlists show "no music" text ', async () => {
     const testProps = {
       audioLists: [
         {
@@ -89,17 +89,23 @@ describe('<ReactJkMusicPlayer/>', () => {
         },
       ],
     }
-    const wrapper = mount(<ReactJkMusicPlayer {...testProps} />)
+    const wrapper = mount(
+      <ReactJkMusicPlayer {...testProps} clearPriorAudioLists />,
+    )
+
+    const audioInfo = wrapper.props().audioLists[0]
     assert(wrapper.props().audioLists.length >= 1)
-    assert(wrapper.props().audioLists[0].name === 'name')
-    assert(wrapper.props().audioLists[0].singer === 'singer')
-    assert(wrapper.props().audioLists[0].cover === 'test.jpg')
-    assert(wrapper.props().audioLists[0].musicSrc === 'test.mp3')
-    wrapper.setProps({ audioLists: [] })
-    setTimeout(() => {
-      assert(wrapper.props().audioLists.length === 0)
-      expect(wrapper.text()).toContain('no music')
+    expect(audioInfo).toEqual({
+      name: 'name',
+      singer: 'singer',
+      cover: 'test.jpg',
+      musicSrc: 'test.mp3',
     })
+    wrapper.setProps({ audioLists: [] })
+
+    await sleep(500)
+    expect(wrapper.props().audioLists).toHaveLength(0)
+    expect(wrapper.text()).toContain('No music')
   })
   it('should toggle group setting buttons', () => {
     const wrapper = mount(
@@ -372,12 +378,13 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.audio-lists-panel-header-delete-btn').simulate('click')
     expect(onAudioError).not.toHaveBeenCalled()
   })
-  it('should auto hide the cover photo if no cover photo is available for pc', () => {
+  it('should auto hide the cover photo if no cover photo is available for desktop', async () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', cover: '' }]}
         mode="full"
         autoHiddenCover
+        clearPriorAudioLists
       />,
     )
     expect(wrapper.find('.img-content')).toHaveLength(0)
@@ -387,16 +394,17 @@ describe('<ReactJkMusicPlayer/>', () => {
         { musicSrc: '22', cover: 'xxxxx' },
       ],
     })
-    setTimeout(() => {
-      expect(wrapper.find('.img-content')).toHaveLength(1)
-    })
+    await sleep(300)
+    wrapper.update()
+    expect(wrapper.find('.img-content')).toHaveLength(1)
   })
-  it('should auto hide the cover photo if no cover photo is available for mobile', () => {
+  it('should auto hide the cover photo if no cover photo is available for mobile', async () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', cover: '' }]}
         mode="full"
         autoHiddenCover
+        clearPriorAudioLists
       />,
     )
     wrapper.setState({ isMobile: true })
@@ -407,9 +415,10 @@ describe('<ReactJkMusicPlayer/>', () => {
         { musicSrc: '22', cover: 'xxxxx' },
       ],
     })
-    setTimeout(() => {
-      expect(wrapper.find('.cover')).toHaveLength(1)
-    })
+
+    await sleep(300)
+    wrapper.update()
+    expect(wrapper.find('.cover')).toHaveLength(1)
   })
   it('should transform download audio info before', () => {
     const onBeforeAudioDownload = jest.fn(() => {
@@ -458,9 +467,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
   it('should trigger onAudioPlay hook when audio track list change', () => {
     const onAudioPlay = jest.fn()
-    window.HTMLMediaElement.prototype.play = () => {
-      onAudioPlay()
-    }
+    window.HTMLMediaElement.prototype.play = onAudioPlay
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[
@@ -471,12 +478,12 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioPlay={onAudioPlay}
       />,
     )
-    wrapper.setState({ canPlay: true })
+    wrapper.instance().onAudioCanPlay()
     wrapper.find('.next-audio').simulate('click')
     expect(onAudioPlay).toHaveBeenCalled()
   })
 
-  it('should export custom fields in audioLists with audio info', () => {
+  it('should export custom fields in audioLists with audio info', async () => {
     let _audioInfo
     const onAudioPlay = jest.fn((audioInfo) => {
       _audioInfo = audioInfo
@@ -492,8 +499,12 @@ describe('<ReactJkMusicPlayer/>', () => {
       />,
     )
     wrapper.find('.next-audio').simulate('click')
-    expect(_audioInfo.id).toEqual('1')
-    expect(_audioInfo.customField).toEqual('1')
+    wrapper.instance().onAudioCanPlay()
+    wrapper.instance().onAudioPlay()
+
+    await sleep(300)
+    expect(_audioInfo.id).toEqual('2')
+    expect(_audioInfo.customField).toEqual('2')
   })
   it('should trigger onAudioListsChange when audioList Change', () => {
     const onThemeChange = jest.fn()
@@ -552,7 +563,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       { musicSrc: 'xxx', name: '111' },
     ])
   })
-  it('should replace audioLists with clearPriorAudioLists option', () => {
+  it('should replace audioLists with clearPriorAudioLists option', async () => {
     const onAudioListsChange = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -568,6 +579,8 @@ describe('<ReactJkMusicPlayer/>', () => {
         { musicSrc: 'xxx', name: '111' },
       ],
     })
+
+    await sleep(300)
 
     expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
       { musicSrc: 'xx', name: '11' },
@@ -626,7 +639,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onAudioListsChange).toHaveBeenCalled()
   })
 
-  it('should pause audio when Space bar has be triggered', () => {
+  it('should pause audio when Space bar has be triggered', async () => {
     const onAudioPause = jest.fn()
     const onAudioPlay = jest.fn()
     window.HTMLMediaElement.prototype.load = () => {}
@@ -653,25 +666,12 @@ describe('<ReactJkMusicPlayer/>', () => {
         onAudioPlay={onAudioPlay}
       />,
     )
+    wrapper.setState({ canPlay: true })
     triggerKeyDown()
-    sleep(1000).then(() => {
-      expect(wrapper.state().isAutoPlayWhenUserClicked).toBe(true)
-      expect(onAudioPause).not.toHaveBeenCalled()
-      expect(onAudioPlay).toHaveBeenCalledTimes(1)
-    })
-    triggerKeyDown()
-    sleep(1000).then(() => {
-      expect(onAudioPause).toHaveBeenCalledTimes(1)
-    })
-    wrapper.setProps({ mode: 'mini' })
-    triggerKeyDown()
-    sleep(1000).then(() => {
-      expect(onAudioPlay).toHaveBeenCalledTimes(2)
-    })
-    triggerKeyDown()
-    sleep(1000).then(() => {
-      expect(onAudioPause).toHaveBeenCalledTimes(2)
-    })
+    wrapper.instance().onAudioPlay()
+    await sleep(500)
+    expect(onAudioPause).not.toHaveBeenCalled()
+    expect(onAudioPlay).toHaveBeenCalledTimes(1)
   })
 
   it('should find destroy button', () => {
@@ -793,19 +793,20 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
 
   // https://github.com/lijinke666/react-music-player/issues/91
-  it('should not call ref.contains when showDestroy is false', () => {
+  it('should not call ref.contains when showDestroy is false', async () => {
+    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[{ musicSrc: 'x', name: '1' }]}
-        showDestroy
+        showDestroy={false}
         mode="mini"
       />,
     )
-    wrapper.setProps({ showDestroy: false })
     wrapper.find('.music-player-controller').simulate('click')
-    setTimeout(() => {
-      expect(wrapper.state().toggle).toEqual(true)
-    })
+    wrapper.instance().onControllerDragStop({ target: {} }, { x: 0, y: 0 })
+    wrapper.update()
+    expect(wrapper.state().toggle).toBeTruthy()
+    expect(errorSpy).not.toHaveBeenCalled()
   })
 
   it('should async get music src', () => {
@@ -1109,7 +1110,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.next-audio').simulate('click')
     expect(onAudioPlayTrackChange).toHaveBeenCalledTimes(1)
   })
-  it('should trigger onPlayIndexChange hook when playIndex props update', () => {
+  it('should trigger onPlayIndexChange hook when playIndex props update', async () => {
     const onPlayIndexChange = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -1124,6 +1125,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onPlayIndexChange).not.toHaveBeenCalled()
     wrapper.setProps({ playIndex: 1 })
     wrapper.update()
+    await sleep(300)
     expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
   })
   it('should get first audio info by default play index', () => {
@@ -1360,7 +1362,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().isAutoPlayWhenUserClicked).toBeFalsy()
   })
 
-  it('should quiet update audio lists', () => {
+  it('should quiet update audio lists', async () => {
     const onAudioAbort = jest.fn()
     const onAudioListsChange = jest.fn()
     const wrapper = mount(
@@ -1389,6 +1391,7 @@ describe('<ReactJkMusicPlayer/>', () => {
         { musicSrc: 'ccc', name: 'ccc' },
       ],
     })
+    await sleep(300)
     expect(onAudioAbort).not.toHaveBeenCalled()
     expect(onAudioListsChange).toHaveBeenCalledTimes(1)
     expect(wrapper.state().audioLists[0].id).toEqual(prevAudioLists[0].id)
@@ -1400,6 +1403,8 @@ describe('<ReactJkMusicPlayer/>', () => {
         { musicSrc: 'zzz', name: 'zzz' },
       ],
     })
+
+    await sleep(300)
     expect(onAudioListsChange).toHaveBeenCalledTimes(2)
     expect(wrapper.state().audioLists[0].id).not.toEqual(prevAudioLists[0].id)
     expect(wrapper.state().audioLists[1].id).not.toEqual(prevAudioLists[1].id)
@@ -1426,6 +1431,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.audio-item').first().simulate('click')
     expect(onAudioPlay).not.toHaveBeenCalled()
     wrapper.find('.audio-item').last().simulate('click')
+    wrapper.instance().onAudioCanPlay()
     expect(onAudioPlay).toHaveBeenCalled()
   })
 })

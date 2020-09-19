@@ -61,37 +61,43 @@ describe('AudioInstance test', () => {
     expect(onDestroyed).toHaveBeenCalled()
   })
 
-  it('should updatePlayIndex', () => {
+  it('should updatePlayIndex', async () => {
     const onPlayIndexChange = jest.fn()
     const { instance, wrapper } = getApp({
       onPlayIndexChange,
     })
     instance.updatePlayIndex(1)
+    wrapper.instance().onAudioCanPlay()
+    await sleep(300)
     expect(wrapper.state().musicSrc).toEqual('b')
     expect(onPlayIndexChange).toHaveBeenCalled()
   })
 
-  it('should updatePlayIndex', () => {
+  it('should updatePlayIndex', async () => {
     const onPlayIndexChange = jest.fn()
     const { instance, wrapper } = getApp({
       onPlayIndexChange,
     })
     instance.updatePlayIndex(1)
+    wrapper.instance().onAudioCanPlay()
+    await sleep(300)
     expect(wrapper.state().musicSrc).toEqual('b')
     expect(onPlayIndexChange).toHaveBeenCalled()
   })
 
-  it('should playByIndex', () => {
+  it('should playByIndex', async () => {
     const onPlayIndexChange = jest.fn()
     const { instance, wrapper } = getApp({
       onPlayIndexChange,
     })
     instance.playByIndex(1)
+    wrapper.instance().onAudioCanPlay()
+    await sleep(300)
     expect(wrapper.state().musicSrc).toEqual('b')
     expect(onPlayIndexChange).toHaveBeenCalled()
   })
 
-  it('should playNext', () => {
+  it('should playNext', async () => {
     const onPlayIndexChange = jest.fn()
     const onAudioPlayTrackChange = jest.fn()
     const { instance, wrapper } = getApp({
@@ -99,12 +105,14 @@ describe('AudioInstance test', () => {
       onAudioPlayTrackChange,
     })
     instance.playNext()
+    wrapper.instance().onAudioCanPlay()
+    await sleep(300)
     expect(wrapper.state().musicSrc).toEqual('b')
     expect(onPlayIndexChange).toHaveBeenCalled()
     expect(onAudioPlayTrackChange).toHaveBeenCalled()
   })
 
-  it('should playPrev', () => {
+  it('should playPrev', async () => {
     const onPlayIndexChange = jest.fn()
     const onAudioPlayTrackChange = jest.fn()
     const { instance, wrapper } = getApp({
@@ -112,7 +120,11 @@ describe('AudioInstance test', () => {
       onAudioPlayTrackChange,
     })
     instance.updatePlayIndex(1)
+    await sleep(300)
+    wrapper.update()
     instance.playPrev()
+    wrapper.instance().onAudioCanPlay()
+    await sleep(300)
     expect(wrapper.state().musicSrc).toEqual('a')
     expect(onPlayIndexChange).toHaveBeenCalled()
     expect(onAudioPlayTrackChange).toHaveBeenCalled()
@@ -152,7 +164,7 @@ describe('AudioInstance test', () => {
     expect(wrapper.state().name).toEqual('')
   })
 
-  it('should appendAudio', () => {
+  it('should appendAudio', async () => {
     const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
     const onAudioListsChange = jest.fn()
     const { instance, wrapper } = getApp({
@@ -171,6 +183,7 @@ describe('AudioInstance test', () => {
         musicSrc: 'd',
       },
     ])
+    await sleep(300)
     expect(onAudioListsChange).toHaveBeenCalled()
     expect(wrapper.state().audioLists.map(({ musicSrc }) => musicSrc)).toEqual([
       'c',
@@ -180,7 +193,7 @@ describe('AudioInstance test', () => {
     ])
   })
 
-  it('should set audio info when append audio list', () => {
+  it('should set audio info when append audio list', async () => {
     const { instance, wrapper } = getApp()
     const audioInfo = {
       name: 'a',
@@ -188,27 +201,10 @@ describe('AudioInstance test', () => {
       musicSrc: 'c',
     }
     instance.appendAudio(0, [audioInfo])
+    await sleep(300)
     expect(wrapper.state().name).toEqual(audioInfo.name)
     expect(wrapper.state().musicSrc).toEqual(audioInfo.musicSrc)
     expect(wrapper.state().singer).toEqual(audioInfo.singer)
-  })
-
-  it('should auto load if autoplayInitLoadPlayList is true when append audio list', () => {
-    const onAudioLoad = jest.fn()
-    window.HTMLMediaElement.prototype.load = () => {
-      onAudioLoad()
-    }
-    const { instance } = getApp({
-      autoplayInitLoadPlayList: true,
-      onAudioLoad,
-    })
-    const audioInfo = {
-      name: 'a',
-      singer: 'a',
-      musicSrc: 'c',
-    }
-    instance.appendAudio(0, [audioInfo])
-    expect(onAudioLoad).toHaveBeenCalled()
   })
 
   it('should init append audio info', async () => {

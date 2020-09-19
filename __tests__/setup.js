@@ -1,6 +1,10 @@
 /* eslint-disable no-console */
 const Enzyme = require('enzyme')
 const Adapter = require('enzyme-adapter-react-16')
+const {
+  AUDIO_READY_STATE,
+  AUDIO_NETWORK_STATE,
+} = require('../src/config/audioState')
 
 global.window = window
 global.document = window.document
@@ -31,9 +35,28 @@ if (typeof window !== 'undefined') {
       dispatchEvent: jest.fn(),
     }
   })
-  global.window.HTMLMediaElement.prototype.load = () => {}
-  global.window.HTMLMediaElement.prototype.play = () => {}
-  global.window.HTMLMediaElement.prototype.pause = () => {}
+  global.window.URL.revokeObjectURL = jest.fn()
+  global.window.HTMLMediaElement.prototype.load = jest.fn()
+  global.window.HTMLMediaElement.prototype.play = jest.fn()
+  global.window.HTMLMediaElement.prototype.pause = jest.fn()
+  Object.defineProperty(
+    global.window.HTMLMediaElement.prototype,
+    'readyState',
+    {
+      get() {
+        return AUDIO_READY_STATE.HAVE_ENOUGH_DATA
+      },
+    },
+  )
+  Object.defineProperty(
+    global.window.HTMLMediaElement.prototype,
+    'networkState',
+    {
+      get() {
+        return AUDIO_NETWORK_STATE.NETWORK_READY_SUCCESS_STATE
+      },
+    },
+  )
   global.window.URL.createObjectURL = jest.fn()
 }
 

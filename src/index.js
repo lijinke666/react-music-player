@@ -5,7 +5,8 @@
  * @license MIT
  */
 
-// FIXME: quietUpdate 改坏了
+// FIXME: quietUpdate 更新之后 不能点击播放列表里的其他歌曲
+// FIXME: audio lists panel visible 收起时会调用
 import cls from 'classnames'
 import download from 'downloadjs'
 import getIsMobile from 'is-mobile'
@@ -470,8 +471,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
             onPlay={this.onTogglePlay}
             currentPlayModeName={currentPlayModeName}
             playMode={PlayModeComponent}
-            audioNextPlay={this.audioNextPlay}
-            audioPrevPlay={this.audioPrevPlay}
+            audioNextPlay={this.onPlayNextAudio}
+            audioPrevPlay={this.onPlayPrevAudio}
             icon={{
               ...this.iconMap,
               reload: ReloadComponent,
@@ -541,7 +542,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group prev-audio"
                       title={locale.previousTrackText}
-                      onClick={this.audioPrevPlay}
+                      onClick={this.onPlayPrevAudio}
                     >
                       {this.iconMap.prev}
                     </span>
@@ -559,7 +560,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     <span
                       className="group next-audio"
                       title={locale.nextTrackText}
-                      onClick={this.audioNextPlay}
+                      onClick={this.onPlayNextAudio}
                     >
                       {this.iconMap.next}
                     </span>
@@ -1140,7 +1141,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  // 播放
   onTogglePlay = () => {
     if (this.state.audioLists.length >= 1) {
       if (this.state.playing) {
@@ -1367,17 +1367,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.handlePlay(_playMode, isNext)
   }
 
-  // 上一首
-  audioPrevPlay = () => {
+  onPlayPrevAudio = () => {
     this.audioPrevAndNextBasePlayHandle(false)
   }
 
-  // 下一首
-  audioNextPlay = () => {
+  onPlayNextAudio = () => {
     this.audioPrevAndNextBasePlayHandle(true)
   }
 
-  // 播放进度更新
   audioTimeUpdate = () => {
     const { currentTime } = this.audio
     this.setState({ currentTime })
@@ -1898,17 +1895,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   updatePlayIndex = (playIndex) => {
-    this.resetAudioPlayStatus().then(() => {
-      const currentPlayIndex = this.getCurrentPlayIndex()
-      if (playIndex !== undefined && currentPlayIndex !== playIndex) {
+    const currentPlayIndex = this.getCurrentPlayIndex()
+    if (playIndex !== undefined && currentPlayIndex !== playIndex) {
+      this.resetAudioPlayStatus().then(() => {
         const currentPlayAudio = this.state.audioLists[
           this.getPlayIndex(playIndex)
         ]
         if (currentPlayAudio && currentPlayAudio.id) {
           this.audioListsPlay(currentPlayAudio.id, true)
         }
-      }
-    })
+      })
+    }
   }
 
   playByIndex = (index) => {
@@ -1949,11 +1946,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
       },
       {
         name: 'playNext',
-        value: this.audioNextPlay,
+        value: this.onPlayNextAudio,
       },
       {
         name: 'playPrev',
-        value: this.audioPrevPlay,
+        value: this.onPlayPrevAudio,
       },
       {
         name: 'togglePlay',
@@ -2047,9 +2044,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
       })
       navigator.mediaSession.setActionHandler(
         'previoustrack',
-        this.audioPrevPlay,
+        this.onPlayPrevAudio,
       )
-      navigator.mediaSession.setActionHandler('nexttrack', this.audioNextPlay)
+      navigator.mediaSession.setActionHandler('nexttrack', this.onPlayNextAudio)
 
       setTimeout(() => {
         this.updateMediaSessionMetadata()

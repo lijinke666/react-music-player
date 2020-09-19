@@ -614,7 +614,7 @@ class Demo extends React.PureComponent {
             this.audio.currentTime = 40
           }}
         >
-          change current play time
+          change current play time to 00:40
         </button>
         <button
           type="button"
@@ -622,7 +622,7 @@ class Demo extends React.PureComponent {
             this.audio.playbackRate = 2
           }}
         >
-          change play back rate
+          change play back rate to 2
         </button>
         <button
           type="button"
@@ -630,7 +630,7 @@ class Demo extends React.PureComponent {
             this.audio.volume = 0.2
           }}
         >
-          change volume
+          change volume to 0.2
         </button>
         <button
           type="button"
@@ -672,7 +672,7 @@ class Demo extends React.PureComponent {
             this.audio.playByIndex(1)
           }}
         >
-          play by index
+          play by index (1)
         </button>
         <button
           type="button"
@@ -680,7 +680,7 @@ class Demo extends React.PureComponent {
             this.audio.updatePlayIndex(1)
           }}
         >
-          updatePlayIndex
+          update play index (1)
         </button>
       </>
     )
