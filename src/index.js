@@ -830,14 +830,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       )
     this.props.onPlayIndexChange && this.props.onPlayIndexChange(playIndex)
 
-    if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists()) {
-      switch (typeof musicSrc) {
-        case 'function':
-          musicSrc().then(loadAudio, this.onAudioError)
-          break
-        default:
-          loadAudio(musicSrc)
-      }
+    switch (typeof musicSrc) {
+      case 'function':
+        musicSrc().then(loadAudio, this.onAudioError)
+        break
+      default:
+        loadAudio(musicSrc)
     }
   }
 
@@ -1261,7 +1259,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
     // 如果删除歌曲或其他原因导致列表为空时
     // 这时候会触发 https://developer.mozilla.org/en-US/docs/Web/API/MediaError
-    // appendAudio 时也会触发一次 error 需要判断 musicSrc 存在的情况才执行 handlePlay
     if (musicSrc) {
       // 如果当前音乐加载出错 尝试播放下一首
       if (loadAudioErrorPlayNext && audioLists.length) {
