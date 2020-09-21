@@ -88,6 +88,9 @@ npm install react-jinke-music-player --save
 - [x] Support typescript (d.ts)
 - [x] Support lyric
 - [x] Play list
+- [x] Full player features
+- [x] [Server-Side Rendering](#bulb-server-side-rendering)
+- [x] [Import in Browser](#bulb-import-in-browser)
 - [x] [Complete hook function](#clipboard-api)
 - [x] [Custom operation ui](#bulb-custom-operation-ui)
 - [x] [Custom downloader](#bulb-custom-downloader)
@@ -532,6 +535,49 @@ export interface ReactJkMusicPlayerIcon {
  * [A,B] => [C]
  * (C) is playing
  */
+```
+
+## :bulb: Import in browser
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/react-jinke-music-player@4.18.1/assets/index.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react-jinke-music-player@4.18.1/dist/react-jinke-music-player.min.js"></script>
+  <script>
+    ReactDOM.render(
+      React.createElement(ReactJkMusicPlayer),
+      document.getElementById('root'),
+    )
+  </script>
+</html>
+```
+
+## :bulb: Server-Side Rendering
+
+```jsx
+// components/Player.js
+import React from 'react'
+import ReactJkMusicPlayer from 'react-jinke-music-player'
+import styles from 'react-jinke-music-player/assets/index.module.css'
+
+export const Player = () => <ReactJkMusicPlayer />
+
+// pages/_app.js
+import dynamic from 'next/dynamic'
+const PlayerWithNoSSR = dynamic(() => import('../components/Player'), {
+  ssr: false,
+})
 ```
 
 ## :pencil: Development

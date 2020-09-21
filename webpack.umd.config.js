@@ -9,13 +9,13 @@ module.exports = {
   entry: {
     [name]: path.resolve(__dirname, 'src/index'),
   },
-
   output: {
-    library: name,
+    library: 'ReactJkMusicPlayer',
     libraryTarget: 'umd',
     umdNamedDefine: true, // 是否将模块名称作为 AMD 输出的命名空间
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].min.js',
+    libraryExport: 'default', // 将default默认导出, 不然会 window['xx'].default
   },
   externals: {
     react: {
