@@ -1,3 +1,10 @@
+## [4.18.2](https://github.com/lijinke666/react-music-player/compare/v4.18.1...v4.18.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* optimize umd output name & add index.module.css  [#161](https://github.com/lijinke666/react-music-player/issues/161) [#150](https://github.com/lijinke666/react-music-player/issues/150) ([7179965](https://github.com/lijinke666/react-music-player/commit/717996559ee77361a214a99b361c30fed697fa94))
+
 ## [4.18.1](https://github.com/lijinke666/react-music-player/compare/v4.18.0...v4.18.1) (2020-09-19)
 
 
