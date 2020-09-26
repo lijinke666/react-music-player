@@ -28,6 +28,7 @@ const PlayerMobile = ({
   autoHiddenCover,
   icon,
   locale,
+  toggleMode,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -41,9 +42,11 @@ const PlayerMobile = ({
       <div className={`${prefix}-header-title`} title={name}>
         {name}
       </div>
-      <div className={`${prefix}-header-right`} onClick={onClose}>
-        {icon.close}
-      </div>
+      {toggleMode && (
+        <div className={`${prefix}-header-right`} onClick={onClose}>
+          {icon.close}
+        </div>
+      )}
     </div>
     <div className={`${prefix}-singer text-center group`}>
       <span className={`${prefix}-singer-name`} title={singer}>

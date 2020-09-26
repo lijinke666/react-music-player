@@ -1495,4 +1495,12 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.find('.hide-panel').simulate('click')
     expect(onAudioListsPanelChange).not.toHaveBeenCalled()
   })
+
+  it('should not render toggle mode close button in mobile panel', () => {
+    const wrapper = mount(<ReactJkMusicPlayer mode="full" toggleMode={false} />)
+    wrapper.setState({ isMobile: true })
+    expect(
+      wrapper.find('.react-jinke-music-player-mobile-header-right'),
+    ).toHaveLength(0)
+  })
 })

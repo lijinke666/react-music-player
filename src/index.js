@@ -485,6 +485,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             autoHiddenCover={autoHiddenCover}
             onCoverClick={this.onCoverClick}
             locale={locale}
+            toggleMode={toggleMode}
           />
         )}
 
