@@ -578,7 +578,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       {this.iconMap.mute}
                     </span>
                   ) : (
-                    <span className="sounds-icon" onClick={this.onMute}>
+                    <span className="sounds-icon" onClick={this.onAudioMute}>
                       {this.iconMap.volume}
                     </span>
                   )}
@@ -638,7 +638,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           remove={remove}
           onDelete={this.onDeleteAudioLists}
           removeId={removeId}
-          audioListsDragEnd={this.audioListsDragEnd}
+          audioListsDragEnd={this.onAudioListsDragEnd}
           locale={locale}
         />
         {/* 播放模式提示框 */}
@@ -1341,7 +1341,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  // 音频播放结束
   onAudioEnd = () => {
     this.props.onAudioEnded &&
       this.props.onAudioEnded(
@@ -1408,13 +1407,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  // 进度条跳跃
   onAudioSeeked = () => {
     if (this.state.audioLists.length >= 1) {
       this.lyric && this.lyric.seek(this.audio.currentTime * 1000)
-      if (this.state.playing) {
-        this.loadAndPlayAudio()
-      } else {
+      if (!this.state.playing) {
         this.lyric && this.lyric.stop()
       }
       this.props.onAudioSeeked &&
@@ -1422,8 +1418,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  // 静音
-  onMute = () => {
+  onAudioMute = () => {
     this.setState(
       {
         soundValue: 0,
@@ -1435,7 +1430,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
   }
 
-  // 加载中断
   onAudioAbort = (e) => {
     const { audioLists, playId } = this.state
     const audioInfo = this.getBaseAudioInfo()
@@ -1444,7 +1438,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.props.onAudioAbort(playId, audioLists, mergedAudioInfo)
   }
 
-  // 切换播放器模式
   toggleMode = (mode) => {
     if (mode === MODE.FULL) {
       this.setState({ toggle: true })
@@ -1455,8 +1448,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({ theme })
   }
 
-  // 列表拖拽排序
-  audioListsDragEnd = (fromIndex, toIndex) => {
+  onAudioListsDragEnd = (fromIndex, toIndex) => {
     const { playId, audioLists } = this.state
     const _audioLists = [...audioLists]
     const item = _audioLists.splice(fromIndex, 1)[0]

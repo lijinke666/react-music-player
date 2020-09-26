@@ -67,10 +67,12 @@
         }
       }
     }
-    &-close-btn {
-      &:hover {
-        svg {
-          animation: imgRotate @common-animate-time;
+    @media @desktop {
+      &-close-btn {
+        &:hover {
+          svg {
+            animation: imgRotate @common-animate-time;
+          }
         }
       }
     }
