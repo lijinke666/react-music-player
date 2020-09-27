@@ -959,12 +959,19 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  onControllerDrag = () => {
+  onControllerDrag = (e, { x, y }) => {
+    const { moveX, moveY } = this.state
     this.isDrag = true
+
+    // mousedown will trigger drag event on android devices (react-draggable) :(
+    if (moveX === x && moveY === y) {
+      this.isDrag = false
+    }
   }
 
-  onControllerDragStart = () => {
+  onControllerDragStart = (e, { x, y }) => {
     this.isDrag = false
+    this.setState({ moveX: x, moveY: y })
   }
 
   onControllerDragStop = (e, { x, y }) => {
@@ -977,6 +984,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.onDestroyPlayer()
       return
     }
+
     if (!this.isDrag) {
       if (this.state.isNeedMobileHack) {
         this.loadAndPlayAudio()
