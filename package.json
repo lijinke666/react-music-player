@@ -32,7 +32,7 @@
     "demo": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot --config  ./example/webpack.config.js",
     "test": "jest __tests__/tests",
     "coverage": "yarn test --coverage",
-    "ci:coverage": "npm run coverage && codecov",
+    "ci:coverage": "yarn coverage && codecov",
     "prepublishOnly": "yarn build",
     "release": "semantic-release"
   },

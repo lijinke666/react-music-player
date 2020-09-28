@@ -1396,7 +1396,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.props.onAudioProgress(this.getBaseAudioInfo())
   }
 
-  // 音量改变
   audioSoundChange = (value) => {
     this.setAudioVolume(value)
   }

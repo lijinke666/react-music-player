@@ -295,7 +295,7 @@ const options = {
   // audio play progress handle
   // eslint-disable-next-line no-unused-vars
   onAudioProgress(audioInfo) {
-    // console.log('audio progress',audioInfo);
+    // console.log('audio progress', audioInfo)
   },
 
   // audio reload handle

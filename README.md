@@ -29,6 +29,7 @@ react-jinke-music-player
   <a href="https://codecov.io/gh/lijinke666/react-music-player">
     <img src="https://codecov.io/gh/lijinke666/react-music-player/branch/master/graph/badge.svg" />
   </a>
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/react-jinke-music-player?style=flat-square">
   <a href="https://david-dm.org/lijinke666/react-music-player" title="dependencies status"><img src="https://david-dm.org/lijinke666/react-music-player/status.svg"/></a>
   <a href="https://david-dm.org/lijinke666/react-music-player?type=dev" title="devDependencies status"><img src="https://david-dm.org/lijinke666/react-music-player/dev-status.svg"/></a>
   <a href="https://app.netlify.com/sites/react-jinke-music-player/deploys" title="Netlify Status">
@@ -150,7 +151,7 @@ ReactDOM.render(
 | defaultPlayMode | `string` | `order` | default play mode of the audio player options can be set to `order`,`orderLoop`,`singleLoop`,`shufflePlay` or omitted |
 | mode | `string` | `mini` | audio theme switch checkedText can be set to `mini`,`full` or omitted |
 | once | `boolean` | `false` | The default audioPlay handle function will be played again after each pause, If you only want to trigger it once, you can set 'true' |
-| autoPlay | `boolean` | `true` | Whether the audio is played after loading is completed. |
+| autoPlay | `boolean` | `true` | Whether the audio is played after loading is completed. mobile devices are invalid [autoplay-policy-changes](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes) |
 | toggleMode | `boolean` | `true` | Whether you can switch between two modes, full => mini or mini => full |
 | drag | `boolean` | `true` | audio controller is can be drag of the "mini" mode |
 | seeked | `boolean` | `true` | Whether you can drag or click the progress bar to play in the new progress. |
@@ -210,7 +211,7 @@ Support feature:
 - `pause`
 - `reload`
 - `change play time`
-- `change playbackRate`
+- `change playback rate`
 - `change volume`
 - `destroy audio player`
 - `append some audio to current audio lists`
@@ -231,18 +232,20 @@ class App extends React.Component {
     return (
       <>
         <ReactJkMusicPlayer
-          getAudioInstance={(instance) => (this.audioInstance = instance)}
+          getAudioInstance={(instance) => {
+            this.audioInstance = instance
+          }}
         />
         <button onClick={() => this.audioInstance.play()}>play</button>
         <button onClick={() => this.audioInstance.pause()}>pause</button>
         <button onClick={() => this.audioInstance.load()}>reload</button>
-        <button onClick={() => (this.audioInstance.currentTime = 40)}>
+        <button onClick={() => this.audioInstance.currentTime = 40}>
           change current play time
         </button>
-        <button onClick={() => (this.audioInstance.playbackRate = 2)}>
+        <button onClick={() => this.audioInstance.playbackRate = 2}>
           change play back rate
         </button>
-        <button onClick={() => (this.audioInstance.volume = 0.2)}>
+        <button onClick={() => this.audioInstance.volume = 0.2}>
           change volume
         </button>
         <button onClick={() => this.audioInstance.destroy()}>
@@ -261,7 +264,7 @@ class App extends React.Component {
         <button onClick={this.audio.playPrev}>play prev</button>
         <button onClick={() => this.audio.playByIndex(1)}>play by index</button>
         <button onClick={() => this.audio.updatePlayIndex(1)}>
-          updatePlayIndex
+          update play index
         </button>
       </>
     )
@@ -282,7 +285,9 @@ class App extends React.Component {
 
 ## :bulb: Custom downloader
 
-> eg. <https://www.npmjs.com/package/file-saver>
+Default use [downloadjs](https://github.com/rndme/download), you can use any download library
+
+eg. <https://www.npmjs.com/package/file-saver>, or use `download` attribute
 
 ```jsx
 const customDownloader = (downloadInfo) => {
