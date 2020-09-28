@@ -1,3 +1,12 @@
+## [4.18.3](https://github.com/lijinke666/react-music-player/compare/v4.18.2...v4.18.3) (2020-09-28)
+
+
+### Bug Fixes
+
+* cannot toggle mode on Android device [#163](https://github.com/lijinke666/react-music-player/issues/163) ([25120c3](https://github.com/lijinke666/react-music-player/commit/25120c30d00aa5b31ce275fbff4ccb06a0158bd9))
+* invalid toggleMode option in full mobile panel ([da20e32](https://github.com/lijinke666/react-music-player/commit/da20e32247659539e0238b2be9b93850458a1fd0))
+* reload audio when change current time by progress bar [#162](https://github.com/lijinke666/react-music-player/issues/162) ([19270ae](https://github.com/lijinke666/react-music-player/commit/19270ae3141918195fd0ace95fa0ca64c63d5f91))
+
 ## [4.18.2](https://github.com/lijinke666/react-music-player/compare/v4.18.1...v4.18.2) (2020-09-21)
 
 
