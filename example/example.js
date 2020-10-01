@@ -2,7 +2,6 @@
 import Switch from 'rc-switch'
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import swal from 'sweetalert'
 import { name, repository, version } from '../package.json'
 import ReactJkMusicPlayer from '../src'
 import Locale from '../src/config/locale'
@@ -464,7 +463,8 @@ class Demo extends React.PureComponent {
         <button
           type="button"
           onClick={() => {
-            swal("I'm extends content")
+            // eslint-disable-next-line no-alert
+            alert("I'm extends content")
           }}
         >
           button
