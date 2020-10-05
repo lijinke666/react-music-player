@@ -168,8 +168,8 @@ export interface ReactJkMusicPlayerProps {
     currentPlayId: string,
     audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo,
-    showDownload?: boolean
   ) => void,
+  showDownload?: boolean
   showPlay?: boolean,
   showReload?: boolean,
   showPlayMode?: boolean,
