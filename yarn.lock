@@ -1564,27 +1564,27 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
-"@jest/environment@^26.3.0":
-  version "26.3.0"
-  resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-26.3.0.tgz#e6953ab711ae3e44754a025f838bde1a7fd236a0"
-  integrity sha512-EW+MFEo0DGHahf83RAaiqQx688qpXgl99wdb8Fy67ybyzHwR1a58LHcO376xQJHfmoXTu89M09dH3J509cx2AA==
+"@jest/environment@^26.3.0", "@jest/environment@^26.5.0":
+  version "26.5.0"
+  resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-26.5.0.tgz#4381b6b2fc291dcff51e248780196bc035da7190"
+  integrity sha512-0F3G9EyZU2NAP0/c/5EqVx4DmldQtRxj0gMl3p3ciSCdyMiCyDmpdE7O0mKTSiFDyl1kU4TfgEVf0r0vMkmYcw==
   dependencies:
-    "@jest/fake-timers" "^26.3.0"
-    "@jest/types" "^26.3.0"
+    "@jest/fake-timers" "^26.5.0"
+    "@jest/types" "^26.5.0"
     "@types/node" "*"
-    jest-mock "^26.3.0"
+    jest-mock "^26.5.0"
 
-"@jest/fake-timers@^26.3.0":
-  version "26.3.0"
-  resolved "https://registry.yarnpkg.com/@jest/fake-timers/-/fake-timers-26.3.0.tgz#f515d4667a6770f60ae06ae050f4e001126c666a"
-  integrity sha512-ZL9ytUiRwVP8ujfRepffokBvD2KbxbqMhrXSBhSdAhISCw3gOkuntisiSFv+A6HN0n0fF4cxzICEKZENLmW+1A==
+"@jest/fake-timers@^26.3.0", "@jest/fake-timers@^26.5.0":
+  version "26.5.0"
+  resolved "https://registry.yarnpkg.com/@jest/fake-timers/-/fake-timers-26.5.0.tgz#107ceeb580bc42dd6e0843df5bbc92cb4fe9cb00"
+  integrity sha512-sQK6xUembaZ0qLnZpSjJJuJiKvyrjCJhaYjbmatFpj5+cM8h2D7YEkeEBC26BMzvF1O3tNM9OL7roqyBmom0KA==
   dependencies:
-    "@jest/types" "^26.3.0"
+    "@jest/types" "^26.5.0"
     "@sinonjs/fake-timers" "^6.0.1"
     "@types/node" "*"
-    jest-message-util "^26.3.0"
-    jest-mock "^26.3.0"
-    jest-util "^26.3.0"
+    jest-message-util "^26.5.0"
+    jest-mock "^26.5.0"
+    jest-util "^26.5.0"
 
 "@jest/globals@^26.4.2":
   version "26.4.2"
@@ -2080,12 +2080,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*":
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.2.tgz#3452a24edf9fea138b48fad4a0a028a683da1e40"
-  integrity sha512-5tabW/i+9mhrfEOUcLDu2xBPsHJ+X5Orqy9FKpale3SjDA17j5AEpYq5vfy3oAeAHGcvANRCO3NV3d2D6q3NiA==
-
-"@types/node@>= 8":
+"@types/node@*", "@types/node@>= 8":
   version "14.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.14.tgz#24a0b5959f16ac141aeb0c5b3cd7a15b7c64cbce"
   integrity sha512-syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ==
@@ -2144,6 +2139,11 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/stack-utils@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
+  integrity sha512-RJJrrySY7A8havqpGObOB4W92QXKJo63/jFLLgpvOtsGUqbQZ9Sbgl35KMm1DjC6j7AvmmU2bIno+3IyEaemaw==
 
 "@types/tapable@*":
   version "1.0.4"
@@ -7987,17 +7987,17 @@ jest-each@^26.4.2:
     pretty-format "^26.4.2"
 
 jest-environment-jsdom@^26.3.0:
-  version "26.3.0"
-  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-26.3.0.tgz#3b749ba0f3a78e92ba2c9ce519e16e5dd515220c"
-  integrity sha512-zra8He2btIMJkAzvLaiZ9QwEPGEetbxqmjEBQwhH3CA+Hhhu0jSiEJxnJMbX28TGUvPLxBt/zyaTLrOPF4yMJA==
+  version "26.5.0"
+  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-26.5.0.tgz#f9a6726402fde787632a69df5ff3390ab04337a3"
+  integrity sha512-Xuqh3bx8egymaJR566ECkiztIIVOIWWPGIxo++ziWyCOqQChUguRCH1hRXBbfINPbb/SRFe7GCD+SunaUgTmCw==
   dependencies:
-    "@jest/environment" "^26.3.0"
-    "@jest/fake-timers" "^26.3.0"
-    "@jest/types" "^26.3.0"
+    "@jest/environment" "^26.5.0"
+    "@jest/fake-timers" "^26.5.0"
+    "@jest/types" "^26.5.0"
     "@types/node" "*"
-    jest-mock "^26.3.0"
-    jest-util "^26.3.0"
-    jsdom "^16.2.2"
+    jest-mock "^26.5.0"
+    jest-util "^26.5.0"
+    jsdom "^16.4.0"
 
 jest-environment-node@^26.3.0:
   version "26.3.0"
@@ -8119,12 +8119,26 @@ jest-message-util@^26.3.0:
     slash "^3.0.0"
     stack-utils "^2.0.2"
 
-jest-mock@^26.3.0:
-  version "26.3.0"
-  resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-26.3.0.tgz#ee62207c3c5ebe5f35b760e1267fee19a1cfdeba"
-  integrity sha512-PeaRrg8Dc6mnS35gOo/CbZovoDPKAeB1FICZiuagAgGvbWdNNyjQjkOaGUa/3N3JtpQ/Mh9P4A2D4Fv51NnP8Q==
+jest-message-util@^26.5.0:
+  version "26.5.0"
+  resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-26.5.0.tgz#87f8c440dace55095d247442638c70b892836895"
+  integrity sha512-UEOqdoTfX0AFyReL4q5N3CfDBWt+AtQzeszZuuGapU39vwEk90rTSBghCA/3FFEZzvGfH2LE4+0NaBI81Cu2Ow==
   dependencies:
-    "@jest/types" "^26.3.0"
+    "@babel/code-frame" "^7.0.0"
+    "@jest/types" "^26.5.0"
+    "@types/stack-utils" "^2.0.0"
+    chalk "^4.0.0"
+    graceful-fs "^4.2.4"
+    micromatch "^4.0.2"
+    slash "^3.0.0"
+    stack-utils "^2.0.2"
+
+jest-mock@^26.3.0, jest-mock@^26.5.0:
+  version "26.5.0"
+  resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-26.5.0.tgz#56efcea2dfd550b77ceb5ef280cf8c6114ef32db"
+  integrity sha512-8D1UmbnmjdkvTdYygTW26KZr95Aw0/3gEmMZQWkxIEAgEESVDbwDG8ygRlXSY214x9hFjtKezvfQUp36Ogl75w==
+  dependencies:
+    "@jest/types" "^26.5.0"
     "@types/node" "*"
 
 jest-pnp-resolver@^1.2.2:
@@ -8255,12 +8269,12 @@ jest-snapshot@^26.4.2:
     pretty-format "^26.4.2"
     semver "^7.3.2"
 
-jest-util@^26.3.0:
-  version "26.3.0"
-  resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-26.3.0.tgz#a8974b191df30e2bf523ebbfdbaeb8efca535b3e"
-  integrity sha512-4zpn6bwV0+AMFN0IYhH/wnzIQzRaYVrz1A8sYnRnj4UXDXbOVtWmlaZkO9mipFqZ13okIfN87aDoJWB7VH6hcw==
+jest-util@^26.3.0, jest-util@^26.5.0:
+  version "26.5.0"
+  resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-26.5.0.tgz#f4e0fb80cf82db127d68c7c5b2749a427a80b450"
+  integrity sha512-CSQ0uzE7JdHDCQo3K8jlyWRIF2xNLdpu9nbjo8okGDanaNsF7WonhusFvjOg7QiWn1SThe7wFRh8Jx2ls1Gx4Q==
   dependencies:
-    "@jest/types" "^26.3.0"
+    "@jest/types" "^26.5.0"
     "@types/node" "*"
     chalk "^4.0.0"
     graceful-fs "^4.2.4"
@@ -8353,38 +8367,6 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
-
-jsdom@^16.2.2:
-  version "16.2.2"
-  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-16.2.2.tgz#76f2f7541646beb46a938f5dc476b88705bedf2b"
-  integrity sha512-pDFQbcYtKBHxRaP55zGXCJWgFHkDAYbKcsXEK/3Icu9nKYZkutUXfLBwbD+09XDutkYSHcgfQLZ0qvpAAm9mvg==
-  dependencies:
-    abab "^2.0.3"
-    acorn "^7.1.1"
-    acorn-globals "^6.0.0"
-    cssom "^0.4.4"
-    cssstyle "^2.2.0"
-    data-urls "^2.0.0"
-    decimal.js "^10.2.0"
-    domexception "^2.0.1"
-    escodegen "^1.14.1"
-    html-encoding-sniffer "^2.0.1"
-    is-potential-custom-element-name "^1.0.0"
-    nwsapi "^2.2.0"
-    parse5 "5.1.1"
-    request "^2.88.2"
-    request-promise-native "^1.0.8"
-    saxes "^5.0.0"
-    symbol-tree "^3.2.4"
-    tough-cookie "^3.0.1"
-    w3c-hr-time "^1.0.2"
-    w3c-xmlserializer "^2.0.0"
-    webidl-conversions "^6.0.0"
-    whatwg-encoding "^1.0.5"
-    whatwg-mimetype "^2.3.0"
-    whatwg-url "^8.0.0"
-    ws "^7.2.3"
-    xml-name-validator "^3.0.0"
 
 jsdom@^16.4.0:
   version "16.4.0"
@@ -14336,11 +14318,6 @@ webidl-conversions@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"
   integrity sha512-VlZwKPCkYKxQgeSbH5EyngOmRp7Ww7I9rQLERETtf5ofd9pGeswWiOtogpEO850jziPRarreGxn5QIiTqpb2wA==
-
-webidl-conversions@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-6.0.0.tgz#ff41d921371f43e772dba311b146ab6c0ef0ead4"
-  integrity sha512-jTZAeJnc6D+yAOjygbJOs33kVQIk5H6fj9SFDOhIKjsf9HiAzL/c+tAJsc8ASWafvhNkH+wJZms47pmajkhatA==
 
 webidl-conversions@^6.1.0:
   version "6.1.0"
