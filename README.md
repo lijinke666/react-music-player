@@ -201,7 +201,7 @@ ReactDOM.render(
 | customDownloader | `function(downloadInfo: TransformedDownloadAudioInfo)` | `-` | custom download handle |
 | onCoverClick | `function(mode,audioLists,audioInfo)` | `-` | audio cover clicked handle |
 | onPlayIndexChange | `function(playIndex)` | `-` | audio play index change handle |
-| quietUpdate | `boolean` | `false` | [Detail](#:bulb-quiet-update) |
+| quietUpdate | `boolean` | `false` | [Detail](#bulb-quiet-update) |
 
 ## :bulb: Custom operation ui
 
@@ -529,7 +529,7 @@ export interface ReactJkMusicPlayerIcon {
 
 ## :bulb: Quiet update
 
-```js
+```jsx
 /**
  * Don't interrupt current playing state when audio list updated
  * eg. (A) is current playing...
@@ -540,6 +540,20 @@ export interface ReactJkMusicPlayerIcon {
  * [A,B] => [C]
  * (C) is playing
  */
+ 
+ function App() {
+     const [audioLists, setAudioLists] = useState([{ musicSrc: 'A' }, { musicSrc: 'B' }])
+
+     useEffect(() => {
+        setTimeout(() => {
+          setAudioLists([{ musicSrc: 'A' }, { musicSrc: 'C' }, { musicSrc: 'B' }])
+        }, 1000)
+     }, [setAudioLists])
+
+     return (
+       <ReactJkMusicPlayer quietUpdate clearPriorAudioLists audioLists={audioLists} />
+     )
+ }
 ```
 
 ## :bulb: Import in browser
