@@ -219,7 +219,8 @@ export interface ReactJkMusicPlayerProps {
     audioInfo: ReactJkMusicPlayerAudioInfo,
   ) => void,
   onPlayIndexChange?: (playIndex: number) => void
-  renderAudioTitle?: (audioInfo: ReactJkMusicPlayerAudioInfo, isMobile: boolean) => React.ReactNode | string
+  renderAudioTitle?: (audioInfo: ReactJkMusicPlayerAudioInfo, isMobile: boolean) => React.ReactNode | string,
+  mobileMediaQuery?: string
 }
 
 export default class ReactJkMusicPlayer extends React.PureComponent<

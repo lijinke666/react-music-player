@@ -30,7 +30,8 @@
     animation: scaleFrom @common-animate-time forwards;
     display: none\9;
   }
-  @media @mobile {
+
+  &-mobile {
     width: 100% !important;
     top: 0;
     left: 0;
@@ -47,6 +48,20 @@
     &.hide {
       animation: fromOut @common-animate-time forwards;
       display: none\9;
+    }
+
+    .audio-item {
+        background-color: @lists-panel-item-bg-mobile !important;
+        &.playing {
+          background-color: @lists-panel-item-bg-playing-mobile !important;
+        }
+    }
+
+    .audio-lists-panel-content {
+      width: 100% !important;
+      height: calc(~'100vh - @{panel-header-height}') !important;
+      transform-origin: bottom center;
+      -webkit-overflow-scrolling: touch;
     }
   }
   &-header {
@@ -107,11 +122,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: @lists-panel-height - @panel-header-height - 1px;
-    @media @mobile {
-      width: 100% !important;
-      height: calc(~'100vh - @{panel-header-height}') !important;
-      transform-origin: bottom center;
-    }
+
     &.no-content {
       .center();
       > span {
@@ -146,13 +157,6 @@
 
       &.remove {
         animation: remove @common-animate-time forwards;
-      }
-
-      @media @mobile {
-        background-color: @lists-panel-item-bg-mobile !important;
-        &.playing {
-          background-color: @lists-panel-item-bg-playing-mobile !important;
-        }
       }
       .player-icons {
         display: inline-flex;

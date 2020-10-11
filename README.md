@@ -203,6 +203,7 @@ ReactDOM.render(
 | onPlayIndexChange | `function(playIndex)` | `-` | audio play index change handle |
 | quietUpdate | `boolean` | `false` | [Detail](#bulb-quiet-update) |
 | renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
+| mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | Custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
 
 ## :bulb: Custom operation ui
 
@@ -598,6 +599,15 @@ import dynamic from 'next/dynamic'
 const PlayerWithNoSSR = dynamic(() => import('../components/Player'), {
   ssr: false,
 })
+```
+
+## :bulb: Customize mobile media query
+
+> eg. Use mobile UI on a iPad device
+
+```jsx
+// Default '(max-width: 768px) and (orientation : portrait)'
+<ReactJkMusicPlayer mobileMediaQuery="(max-width: 1024px)" />
 ```
 
 ## :pencil: Development

@@ -249,12 +249,11 @@ const options = {
   responsive: true,
 
   /**
-   * @description Customer audio title [type `String | Function` default `${name} - ${singer}`]
-   * @example
-   * audioTitle: (audioInfo) => 'title'
+   * Custom mobile media query string, eg use the mobile version UI on iPad.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries
+   * [type `String` default '(max-width: 768px) and (orientation : portrait)']
    */
-
-  // audioTitle: 'xxxx',
+  mobileMediaQuery: '(max-width: 1024px)',
 
   // Music is downloaded handle
   onAudioDownload(audioInfo) {

@@ -39,7 +39,6 @@ const PlayerMobile = ({
       text={currentPlayModeName}
     />
     <div className={`${prefix}-header group`}>
-      <div className={`${prefix}-header-left`} />
       <div className={`${prefix}-header-title`} title={name}>
         {renderAudioTitle()}
       </div>

@@ -114,4 +114,5 @@ export default {
   responsive: PropTypes.bool,
   quietUpdate: PropTypes.bool,
   renderAudioTitle: PropTypes.func,
+  mobileMediaQuery: PropTypes.string,
 }

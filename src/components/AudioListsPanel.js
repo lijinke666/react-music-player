@@ -21,6 +21,7 @@ const AudioListsPanel = ({
 }) => (
   <div
     className={cls('audio-lists-panel', panelToggleAnimate, {
+      'audio-lists-panel-mobile': isMobile,
       'glass-bg': glassBg,
     })}
   >

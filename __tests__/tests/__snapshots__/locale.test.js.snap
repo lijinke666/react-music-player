@@ -66,6 +66,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
   }
   loadAudioErrorPlayNext={true}
   locale="en_US"
+  mobileMediaQuery="(max-width: 768px) and (orientation : portrait)"
   mode="mini"
   onBeforeAudioDownload={[Function]}
   once={false}
@@ -754,6 +755,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
   }
   loadAudioErrorPlayNext={true}
   locale="zh_CN"
+  mobileMediaQuery="(max-width: 768px) and (orientation : portrait)"
   mode="mini"
   onBeforeAudioDownload={[Function]}
   once={false}

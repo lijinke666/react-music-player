@@ -376,9 +376,6 @@ exports[`Player custom icon test should render custom icon in mobile mode 1`] = 
       class="react-jinke-music-player-mobile-header group"
     >
       <div
-        class="react-jinke-music-player-mobile-header-left"
-      />
-      <div
         class="react-jinke-music-player-mobile-header-title"
         title="audioName"
       >
@@ -560,7 +557,7 @@ exports[`Player custom icon test should render custom icon in mobile mode 1`] = 
     </div>
   </div>
   <div
-    class="audio-lists-panel"
+    class="audio-lists-panel audio-lists-panel-mobile"
   >
     <div
       class="audio-lists-panel-header"

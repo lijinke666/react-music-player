@@ -167,6 +167,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     responsive: true,
     icon: DEFAULT_ICON,
     quietUpdate: false, // 更新后的播放列表如果有当前正在播放的歌曲不打断当前播放状态
+    mobileMediaQuery: MEDIA_QUERY.MOBILE,
   }
 
   static propTypes = PROP_TYPES
@@ -1719,7 +1720,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   addMobileListener = () => {
     this.mobileMedia = this.addMatchMediaListener(
-      MEDIA_QUERY.MOBILE,
+      this.props.mobileMediaQuery,
       this.mobileMediaHandler,
     )
   }
