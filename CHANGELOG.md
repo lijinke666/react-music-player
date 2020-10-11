@@ -1,3 +1,16 @@
+# [4.19.0](https://github.com/lijinke666/react-music-player/compare/v4.18.3...v4.19.0) (2020-10-11)
+
+
+### Bug Fixes
+
+* showDownload error type define [#177](https://github.com/lijinke666/react-music-player/issues/177) ([982aae5](https://github.com/lijinke666/react-music-player/commit/982aae5160b666af9b1e268ad6d21eccd67f365b))
+
+
+### Features
+
+* add mobileMediaQuery api [#166](https://github.com/lijinke666/react-music-player/issues/166) ([12af4c8](https://github.com/lijinke666/react-music-player/commit/12af4c858aaed9052d3d3d09b4b63b98b893b231))
+* add renderAudioTitle api ([18fbe03](https://github.com/lijinke666/react-music-player/commit/18fbe037840374d6bf681cdb46f76e4588b997a6))
+
 ## [4.18.3](https://github.com/lijinke666/react-music-player/compare/v4.18.2...v4.18.3) (2020-09-28)
 
 
