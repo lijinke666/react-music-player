@@ -385,6 +385,11 @@ const options = {
     console.log('onCoverClick: ', mode, audioLists, audioInfo)
   },
 
+  // custom audio title
+  // renderAudioTitle(audioInfo) {
+  //   return <a href="#">{audioInfo.name}</a>
+  // },
+
   // onPlayIndexChange (playIndex) {
   //   console.log('onPlayIndexChange: ', playIndex);
   // }
@@ -594,6 +599,20 @@ class Demo extends React.PureComponent {
     this.updateParams({ playMode: e.target.value })
   }
 
+  renderCustomAudioTitle = () => {
+    this.updateParams({
+      renderAudioTitle: (audioInfo, isMobile) => {
+        console.log('audioInfo: ', audioInfo, isMobile)
+        return (
+          <>
+            <a href="#">{audioInfo.name}</a>
+            <span className="tag">Hot</span>
+          </>
+        )
+      },
+    })
+  }
+
   renderCustomUI = () => {
     return (
       <>
@@ -759,6 +778,9 @@ class Demo extends React.PureComponent {
           </select>
           <button type="button" onClick={this.unmountPlayer}>
             unmount player
+          </button>
+          <button type="button" onClick={this.renderCustomAudioTitle}>
+            render custom audio title
           </button>
           <br />
           <br />

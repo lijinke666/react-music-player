@@ -29,6 +29,7 @@ const PlayerMobile = ({
   icon,
   locale,
   toggleMode,
+  renderAudioTitle,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -40,7 +41,7 @@ const PlayerMobile = ({
     <div className={`${prefix}-header group`}>
       <div className={`${prefix}-header-left`} />
       <div className={`${prefix}-header-title`} title={name}>
-        {name}
+        {renderAudioTitle()}
       </div>
       {toggleMode && (
         <div className={`${prefix}-header-right`} onClick={onClose}>
@@ -123,6 +124,7 @@ const PlayerMobile = ({
 
 PlayerMobile.defaultProps = {
   icon: {},
+  renderAudioTitle: () => {},
 }
 
 export default memo(PlayerMobile)

@@ -20,9 +20,9 @@ exports[`Player custom icon test should render custom icon 1`] = `
       >
         <span
           class="audio-title"
-          title="audioName "
+          title="audioName"
         >
-          audioName 
+          audioName
         </span>
         <section
           class="audio-main"
@@ -338,7 +338,7 @@ exports[`Player custom icon test should render custom icon 1`] = `
   <audio
     class="music-player-audio"
     src="xx"
-    title="audioName "
+    title="audioName"
   />
 </div>
 `;
@@ -677,7 +677,7 @@ exports[`Player custom icon test should render custom icon in mobile mode 1`] = 
   <audio
     class="music-player-audio"
     src="xx"
-    title="audioName "
+    title="audioName"
   />
 </div>
 `;

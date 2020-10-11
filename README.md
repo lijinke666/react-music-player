@@ -202,6 +202,7 @@ ReactDOM.render(
 | onCoverClick | `function(mode,audioLists,audioInfo)` | `-` | audio cover clicked handle |
 | onPlayIndexChange | `function(playIndex)` | `-` | audio play index change handle |
 | quietUpdate | `boolean` | `false` | [Detail](#bulb-quiet-update) |
+| renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
 
 ## :bulb: Custom operation ui
 
@@ -540,7 +541,7 @@ export interface ReactJkMusicPlayerIcon {
  * [A,B] => [C]
  * (C) is playing
  */
- 
+
  function App() {
      const [audioLists, setAudioLists] = useState([{ musicSrc: 'A' }, { musicSrc: 'B' }])
 

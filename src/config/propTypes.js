@@ -113,4 +113,5 @@ export default {
   audioTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   responsive: PropTypes.bool,
   quietUpdate: PropTypes.bool,
+  renderAudioTitle: PropTypes.func,
 }

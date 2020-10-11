@@ -4,6 +4,6 @@ exports[`AudioInstance test should get audio instance 1`] = `
 <audio
   class="music-player-audio"
   src="a"
-  title=" "
+  title=""
 />
 `;

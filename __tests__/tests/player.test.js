@@ -1503,4 +1503,53 @@ describe('<ReactJkMusicPlayer/>', () => {
       wrapper.find('.react-jinke-music-player-mobile-header-right'),
     ).toHaveLength(0)
   })
+
+  it('should render default audio title', () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer mode="full" audioLists={[{ name: 'test' }]} />,
+    )
+    expect(wrapper.find('.audio-title').text()).toEqual('test')
+    expect(wrapper.find('.audio-title').prop('title')).toEqual('test')
+    wrapper.setState({ isMobile: true })
+    expect(
+      wrapper.find('.react-jinke-music-player-mobile-header-title').text(),
+    ).toEqual('test')
+    expect(
+      wrapper
+        .find('.react-jinke-music-player-mobile-header-title')
+        .prop('title'),
+    ).toEqual('test')
+  })
+
+  it('should support custom render audio title', () => {
+    const renderAudioTitle = (audioInfo) => (
+      <div className="custom-audio-title">{audioInfo.name}</div>
+    )
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        audioLists={[{ name: 'test' }]}
+        renderAudioTitle={renderAudioTitle}
+      />,
+    )
+    expect(wrapper.find('.audio-title .custom-audio-title')).toHaveLength(1)
+    expect(wrapper.find('.audio-title .custom-audio-title').text()).toEqual(
+      'test',
+    )
+
+    wrapper.setState({ isMobile: true })
+
+    expect(
+      wrapper.find(
+        '.react-jinke-music-player-mobile-header-title .custom-audio-title',
+      ),
+    ).toHaveLength(1)
+    expect(
+      wrapper
+        .find(
+          '.react-jinke-music-player-mobile-header-title .custom-audio-title',
+        )
+        .text(),
+    ).toEqual('test')
+  })
 })

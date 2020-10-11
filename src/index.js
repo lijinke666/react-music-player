@@ -486,6 +486,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             onCoverClick={this.onCoverClick}
             locale={locale}
             toggleMode={toggleMode}
+            renderAudioTitle={this.renderAudioTitle}
           />
         )}
 
@@ -521,7 +522,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               )}
               <div className="progress-bar-content">
                 <span className="audio-title" title={audioTitle}>
-                  {audioTitle}
+                  {this.renderAudioTitle()}
                 </span>
                 <section className="audio-main">
                   <span className="current-time" title={formattedCurrentTime}>
@@ -693,13 +694,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   getAudioTitle = () => {
-    // 暂时兼容
     const { audioTitle } = this.locale || {}
     const { name, singer } = this.state
     if (typeof audioTitle === 'function' && this.audio) {
       return audioTitle(this.getBaseAudioInfo())
     }
-    return audioTitle || `${name} ${singer ? `- ${singer}` : ''}`
+    return audioTitle || `${name}${singer ? ` - ${singer}` : ''}`
+  }
+
+  renderAudioTitle = () => {
+    const { isMobile, name } = this.state
+    if (this.props.renderAudioTitle) {
+      return this.props.renderAudioTitle(this.getBaseAudioInfo(), isMobile)
+    }
+    return isMobile ? name : this.getAudioTitle()
   }
 
   toggleAudioLyric = () => {

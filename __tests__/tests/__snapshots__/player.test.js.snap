@@ -145,7 +145,7 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
   <audio
     class="music-player-audio"
     src=""
-    title=" "
+    title=""
   />
 </div>
 `;

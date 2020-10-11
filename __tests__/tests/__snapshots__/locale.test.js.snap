@@ -258,7 +258,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
           <audio
             class="music-player-audio"
             src=""
-            title=" "
+            title=""
           />
         </div>
       </body>
@@ -681,7 +681,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
       <audio
         className="music-player-audio"
         src=""
-        title=" "
+        title=""
       />
     </div>
   </Portal>
@@ -946,7 +946,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
           <audio
             class="music-player-audio"
             src=""
-            title=" "
+            title=""
           />
         </div>
         <div
@@ -1112,7 +1112,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
           <audio
             class="music-player-audio"
             src=""
-            title=" "
+            title=""
           />
         </div>
       </body>
@@ -1535,7 +1535,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
       <audio
         className="music-player-audio"
         src=""
-        title=" "
+        title=""
       />
     </div>
   </Portal>
