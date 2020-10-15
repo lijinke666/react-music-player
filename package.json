@@ -158,7 +158,7 @@
     "power-assert": "^1.6.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.1.2",
-    "react": "16.13.1",
+    "react": "16.14.0",
     "react-dom": "16.13.1",
     "react-hot-loader": "^4.13.0",
     "react-loader": "^2.4.7",
