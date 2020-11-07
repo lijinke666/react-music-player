@@ -1,3 +1,10 @@
+## [4.19.1](https://github.com/lijinke666/react-music-player/compare/v4.19.0...v4.19.1) (2020-11-07)
+
+
+### Bug Fixes
+
+* don't disable media controls when audio loading [#197](https://github.com/lijinke666/react-music-player/issues/197) ([f8cc6e6](https://github.com/lijinke666/react-music-player/commit/f8cc6e69dc92b8e390c7afd5aaee9973540dc196))
+
 # [4.19.0](https://github.com/lijinke666/react-music-player/compare/v4.18.3...v4.19.0) (2020-10-11)
 
 
