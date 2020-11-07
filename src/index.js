@@ -536,9 +536,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 </section>
               </div>
               <div className="player-content">
-                {loading ? (
-                  this.iconMap.loading
-                ) : showPlay ? (
+                {!showPlay ? (
+                  loading && this.iconMap.loading
+                ) : (
                   <span className="group">
                     <span
                       className="group prev-audio"
@@ -547,17 +547,26 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     >
                       {this.iconMap.prev}
                     </span>
-                    <span
-                      className="group play-btn"
-                      onClick={this.onTogglePlay}
-                      title={
-                        playing
-                          ? locale.clickToPauseText
-                          : locale.clickToPlayText
-                      }
-                    >
-                      {playing ? this.iconMap.pause : this.iconMap.play}
-                    </span>
+                    {loading ? (
+                      <span
+                        className="group loading-icon"
+                        title={locale.loadingText}
+                      >
+                        {this.iconMap.loading}
+                      </span>
+                    ) : (
+                      <span
+                        className="group play-btn"
+                        onClick={this.onTogglePlay}
+                        title={
+                          playing
+                            ? locale.clickToPauseText
+                            : locale.clickToPlayText
+                        }
+                      >
+                        {playing ? this.iconMap.pause : this.iconMap.play}
+                      </span>
+                    )}
                     <span
                       className="group next-audio"
                       title={locale.nextTrackText}
@@ -566,7 +575,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                       {this.iconMap.next}
                     </span>
                   </span>
-                ) : undefined}
+                )}
 
                 {ReloadComponent}
                 {DownloadComponent}

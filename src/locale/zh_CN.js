@@ -29,4 +29,5 @@ export default {
   clickToDeleteText: (name) => `点击删除 ${name}`,
   controllerTitle: <FaHeadphonesIcon />,
   emptyLyricText: '暂无歌词',
+  loadingText: '加载中',
 }

@@ -1552,4 +1552,24 @@ describe('<ReactJkMusicPlayer/>', () => {
         .text(),
     ).toEqual('test')
   })
+
+  // https://github.com/lijinke666/react-music-player/issues/197
+  it("should don't hidden play and next icon when audio loading", () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer mode="full" audioLists={[{ name: 'test' }]} />,
+    )
+
+    const expectButtons = () => {
+      expect(wrapper.find('.prev-audio')).toHaveLength(1)
+      expect(wrapper.find('.next-audio')).toHaveLength(1)
+      expect(wrapper.find('.loading-icon')).toHaveLength(1)
+      expect(wrapper.find('.play-btn')).toHaveLength(0)
+    }
+
+    wrapper.setState({ loading: true })
+    expectButtons()
+
+    wrapper.setState({ isMobile: true })
+    expectButtons()
+  })
 })

@@ -29,4 +29,5 @@ export default {
   clickToDeleteText: (name) => `Click to delete ${name}`,
   controllerTitle: <FaHeadphonesIcon />,
   emptyLyricText: 'No lyric',
+  loadingText: 'Loading',
 }

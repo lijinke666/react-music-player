@@ -75,33 +75,31 @@ const PlayerMobile = ({
       <span className="duration text-right">{loading ? '--' : duration}</span>
     </div>
     <div className={`${prefix}-toggle text-center group`}>
+      <span
+        className="group prev-audio"
+        title={locale.previousTrackText}
+        onClick={audioPrevPlay}
+      >
+        {icon.prev}
+      </span>
       {loading ? (
-        icon.loading
+        <span className="group loading-icon">{icon.loading}</span>
       ) : (
-        <>
-          <span
-            className="group prev-audio"
-            title={locale.previousTrackText}
-            onClick={audioPrevPlay}
-          >
-            {icon.prev}
-          </span>
-          <span
-            className="group play-btn"
-            title={playing ? locale.clickToPauseText : locale.clickToPlayText}
-            onClick={onPlay}
-          >
-            {playing ? icon.pause : icon.play}
-          </span>
-          <span
-            className="group next-audio"
-            title={locale.nextTrackText}
-            onClick={audioNextPlay}
-          >
-            {icon.next}
-          </span>
-        </>
+        <span
+          className="group play-btn"
+          title={playing ? locale.clickToPauseText : locale.clickToPlayText}
+          onClick={onPlay}
+        >
+          {playing ? icon.pause : icon.play}
+        </span>
       )}
+      <span
+        className="group next-audio"
+        title={locale.nextTrackText}
+        onClick={audioNextPlay}
+      >
+        {icon.next}
+      </span>
     </div>
     <div className={`${prefix}-operation group`}>
       <ul className="items">
