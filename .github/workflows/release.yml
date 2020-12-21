@@ -29,10 +29,11 @@ jobs:
 
       - name: Get commit message
         run: |
-           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
+          COMMIT_MESSAGE=$(git log --format=%B -n 1)
+          echo "commitmsg=${COMMIT_MESSAGE}" >> $GITHUB_ENV
 
       - name: Show commit message
-        run : echo $commitmsg
+        run : echo "$commitmsg"
 
       - name: Get yarn cache
         id: yarn-cache
