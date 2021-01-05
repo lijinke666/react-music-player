@@ -115,4 +115,8 @@ export default {
   quietUpdate: PropTypes.bool,
   renderAudioTitle: PropTypes.func,
   mobileMediaQuery: PropTypes.string,
+  volumeFade: PropTypes.shape({
+    fadeIn: PropTypes.number,
+    fadeOut: PropTypes.number,
+  }),
 }

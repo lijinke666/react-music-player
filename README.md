@@ -103,6 +103,7 @@ npm install react-jinke-music-player --save
 - [x] [Customize audio duration](#bulb-customize-audio-duration) (v4.13.0)
 - [x] [Customize player icon](#bulb-customize-player-icon) (v4.17.0)
 - [x] [Follow the theme of the system](#bulb-follow-the-theme-of-the-system) (v4.16.0)
+- [x] [Audio volume fadeIn/fadeOut](#bulb-audio-volume-fade-in-and-fade-out) (v4.20.0)
 
 ## :eyes: Example
 
@@ -133,7 +134,7 @@ ReactDOM.render(
 ## :clipboard: API
 
 | Name | Type | Default | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | className | `string` | `-` | Additional CSS class for the root DOM node |
 | audioLists | [AudioListProps[]](#bulb-audiolistprops) | `-` | [Detail](#bulb-audiolistprops) |
 | theme | `light` \| `dark` \| `auto` | `dark` | color of the music player theme `dark`, `light`, `auto (follow system)` | `light` |
@@ -204,6 +205,7 @@ ReactDOM.render(
 | quietUpdate | `boolean` | `false` | [Detail](#bulb-quiet-update) |
 | renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
 | mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | Custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
+| volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | Audio fade in and out. |
 
 ## :bulb: Custom operation ui
 
@@ -543,19 +545,26 @@ export interface ReactJkMusicPlayerIcon {
  * (C) is playing
  */
 
- function App() {
-     const [audioLists, setAudioLists] = useState([{ musicSrc: 'A' }, { musicSrc: 'B' }])
+function App() {
+  const [audioLists, setAudioLists] = useState([
+    { musicSrc: 'A' },
+    { musicSrc: 'B' },
+  ])
 
-     useEffect(() => {
-        setTimeout(() => {
-          setAudioLists([{ musicSrc: 'A' }, { musicSrc: 'C' }, { musicSrc: 'B' }])
-        }, 1000)
-     }, [setAudioLists])
+  useEffect(() => {
+    setTimeout(() => {
+      setAudioLists([{ musicSrc: 'A' }, { musicSrc: 'C' }, { musicSrc: 'B' }])
+    }, 1000)
+  }, [setAudioLists])
 
-     return (
-       <ReactJkMusicPlayer quietUpdate clearPriorAudioLists audioLists={audioLists} />
-     )
- }
+  return (
+    <ReactJkMusicPlayer
+      quietUpdate
+      clearPriorAudioLists
+      audioLists={audioLists}
+    />
+  )
+}
 ```
 
 ## :bulb: Import in browser
@@ -608,6 +617,12 @@ const PlayerWithNoSSR = dynamic(() => import('../components/Player'), {
 ```jsx
 // Default '(max-width: 768px) and (orientation : portrait)'
 <ReactJkMusicPlayer mobileMediaQuery="(max-width: 1024px)" />
+```
+
+## :bulb: Audio volume fade in and fade out
+
+```jsx
+<ReactJkMusicPlayer volumeFade={{ fadeIn: 500, fadeOut: 500 }} />
 ```
 
 ## :pencil: Development

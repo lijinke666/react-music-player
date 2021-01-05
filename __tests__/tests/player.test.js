@@ -21,6 +21,7 @@ import {
   createRandomNum,
   distinct,
   formatTime,
+  adjustVolume,
 } from '../../src/utils'
 import { sleep } from '../utils'
 
@@ -765,7 +766,7 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
 
   // https://github.com/lijinke666/react-music-player/issues/78#issuecomment-574089990
-  it('should play audio when click play button and not auto play', () => {
+  it('should play audio when click play button and not auto play', async () => {
     const onAudioPlay = jest.fn()
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -777,6 +778,8 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
     wrapper.setState({ canPlay: true })
     wrapper.find('.play-btn').simulate('click')
+
+    await sleep(200)
     expect(wrapper.state().playing).toEqual(true)
   })
 
@@ -811,11 +814,11 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(errorSpy).not.toHaveBeenCalled()
   })
 
-  it('should async get music src', () => {
+  it.skip('should async get music src', async () => {
     const getMusicSrc = new Promise((res) => {
       setTimeout(() => {
         res('xxx.mp3')
-      }, 2000)
+      }, 200)
     })
     const wrapper = mount(
       <ReactJkMusicPlayer
@@ -823,16 +826,17 @@ describe('<ReactJkMusicPlayer/>', () => {
         mode="full"
       />,
     )
-    setTimeout(() => {
-      expect(wrapper.state().musicSrc).toEqual('xxx.mp3')
-    }, 2000)
+    await sleep(1000)
+    wrapper.update()
+    expect(wrapper.state().musicSrc).toEqual('xxx.mp3')
   })
-  it('should call onAudioError when async load music src failed', () => {
+
+  it.skip('should call onAudioError when async load music src failed', async () => {
     const onAudioError = jest.fn()
     const getMusicSrc = new Promise((res, rej) => {
       setTimeout(() => {
         rej()
-      }, 2000)
+      }, 200)
     })
     mount(
       <ReactJkMusicPlayer
@@ -842,9 +846,8 @@ describe('<ReactJkMusicPlayer/>', () => {
       />,
     )
 
-    setTimeout(() => {
-      expect(onAudioError).toHaveBeenCalled()
-    }, 2000)
+    await sleep(1000)
+    expect(onAudioError).toHaveBeenCalled()
   })
 
   // https://github.com/lijinke666/react-music-player/issues/101
@@ -1573,5 +1576,68 @@ describe('<ReactJkMusicPlayer/>', () => {
 
     wrapper.setState({ isMobile: true })
     expectButtons()
+  })
+
+  it('should not call onAudioVolumeChange when volume fade in or fade out', async () => {
+    const onAudioVolumeChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        mode="full"
+        volumeFade={{
+          fadeIn: 200,
+          fadeOut: 200,
+        }}
+        audioLists={[{ name: 'test' }]}
+        onAudioVolumeChange={onAudioVolumeChange}
+      />,
+    )
+
+    wrapper.find('.play-btn').simulate('click')
+    wrapper.find('.play-btn').simulate('click')
+    expect(wrapper.state().soundValue).toEqual(1)
+    expect(wrapper.state().currentAudioVolume).toEqual(1)
+
+    await sleep(200)
+
+    expect(onAudioVolumeChange).not.toHaveBeenCalled()
+    expect(wrapper.state().soundValue).toEqual(1)
+    expect(wrapper.state().currentAudioVolume).toEqual(1)
+  })
+
+  it('should disable volume fade if duration is empty', async () => {
+    const audio = {
+      volume: 1,
+    }
+    const fn = jest.fn()
+    adjustVolume(audio, 0, { duration: 0 }).then(fn)
+    await sleep(100)
+    expect(audio.volume).toStrictEqual(0)
+    expect(fn).toHaveBeenCalledTimes(1)
+  })
+
+  it('should disable volume fade if prev volume equals current volume', async () => {
+    const audio = {
+      volume: 1,
+    }
+    const fn = jest.fn()
+    adjustVolume(audio, 1, { duration: 100 }).then(fn)
+    await sleep(100)
+    expect(audio.volume).toStrictEqual(1)
+    expect(fn).toHaveBeenCalledTimes(1)
+  })
+
+  it('should volume fade normal', async () => {
+    const audio = {
+      volume: 1,
+    }
+    const fn = jest.fn()
+    adjustVolume(audio, 0, { duration: 200 }).then(fn)
+    expect(audio.volume).toStrictEqual(1)
+    expect(fn).not.toHaveBeenCalled()
+
+    await sleep(500)
+
+    expect(Math.floor(audio.volume)).toStrictEqual(0)
+    expect(fn).toHaveBeenCalledTimes(1)
   })
 })

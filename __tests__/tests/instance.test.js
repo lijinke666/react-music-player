@@ -130,7 +130,7 @@ describe('AudioInstance test', () => {
     expect(onAudioPlayTrackChange).toHaveBeenCalled()
   })
 
-  it('should togglePlay', () => {
+  it('should togglePlay', async () => {
     const onAudioPlay = jest.fn()
     const onAudioPause = jest.fn()
     window.HTMLMediaElement.prototype.play = () => {
@@ -144,10 +144,13 @@ describe('AudioInstance test', () => {
     wrapper.setState({ canPlay: true })
     wrapper.update()
     instance.togglePlay()
+
+    await sleep(200)
     expect(wrapper.state().playing).toEqual(true)
     expect(onAudioPlay).toHaveBeenCalled()
 
     instance.togglePlay()
+    await sleep(200)
     expect(onAudioPause).toHaveBeenCalled()
   })
 

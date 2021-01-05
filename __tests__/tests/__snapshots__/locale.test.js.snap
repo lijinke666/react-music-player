@@ -92,6 +92,12 @@ exports[`Locale test should render default locale with en_US 1`] = `
   spaceBar={false}
   theme="dark"
   toggleMode={true}
+  volumeFade={
+    Object {
+      "fadeIn": 0,
+      "fadeOut": 0,
+    }
+  }
 >
   <Portal
     containerInfo={
@@ -782,6 +788,12 @@ exports[`Locale test should render locale with zh_CN 1`] = `
   spaceBar={false}
   theme="dark"
   toggleMode={true}
+  volumeFade={
+    Object {
+      "fadeIn": 0,
+      "fadeOut": 0,
+    }
+  }
 >
   <Portal
     containerInfo={

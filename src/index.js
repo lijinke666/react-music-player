@@ -52,6 +52,7 @@ import { THEME } from './config/theme'
 import LOCALE_CONFIG from './locale'
 import Lyric from './lyric'
 import {
+  adjustVolume,
   arrayEqual,
   createRandomNum,
   formatTime,
@@ -122,6 +123,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     isAutoPlayWhenUserClicked: false,
     playIndex: this.props.playIndex || this.props.defaultPlayIndex || 0,
     canPlay: false,
+    isVolumeFadeChang: false,
   }
 
   static defaultProps = {
@@ -168,6 +170,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     icon: DEFAULT_ICON,
     quietUpdate: false, // 更新后的播放列表如果有当前正在播放的歌曲不打断当前播放状态
     mobileMediaQuery: MEDIA_QUERY.MOBILE,
+    // 音频暂停播放 淡入淡出
+    volumeFade: {
+      fadeIn: 0,
+      fadeOut: 0,
+    },
   }
 
   static propTypes = PROP_TYPES
@@ -596,7 +603,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                   <Slider
                     max={1}
                     value={soundValue}
-                    onChange={this.audioSoundChange}
+                    onChange={this.onAudioSoundChange}
                     className="sound-operation"
                     {...sliderBaseOptions}
                   />
@@ -1023,6 +1030,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({
       currentAudioVolume: value,
       soundValue: value,
+      isVolumeFadeChang: false,
     })
   }
 
@@ -1174,14 +1182,26 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   onTogglePlay = () => {
     if (this.state.audioLists.length >= 1) {
+      const { fadeIn, fadeOut } = this.props.volumeFade || {}
+      this.setState({ isVolumeFadeChang: fadeIn || fadeOut })
+
       if (this.state.playing) {
-        return this.audio.pause()
+        adjustVolume(this.audio, 0, {
+          duration: fadeOut,
+        }).then(() => {
+          this.audio.pause()
+        })
+        return
       }
-      this.setState(
-        // lgtm [js/react/inconsistent-state-update]
-        { isAutoPlayWhenUserClicked: true },
-        this.loadAndPlayAudio,
-      )
+
+      adjustVolume(this.audio, this.state.currentAudioVolume, {
+        duration: fadeIn,
+      }).then(() => {
+        this.setState(
+          { isAutoPlayWhenUserClicked: true },
+          this.loadAndPlayAudio,
+        )
+      })
     }
   }
 
@@ -1414,16 +1434,23 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.props.onAudioProgress(this.getBaseAudioInfo())
   }
 
-  audioSoundChange = (value) => {
+  onAudioSoundChange = (value) => {
     this.setAudioVolume(value)
   }
 
   onAudioVolumeChange = () => {
     const { volume } = this.audio
+    const { isVolumeFadeChang } = this.state
+    if (isVolumeFadeChang) {
+      return
+    }
     this.setState({
       soundValue: volume,
     })
-    this.props.onAudioVolumeChange && this.props.onAudioVolumeChange(volume)
+    if (this.props.onAudioVolumeChange) {
+      const formattedVolume = parseFloat(volume.toFixed(2))
+      this.props.onAudioVolumeChange(formattedVolume)
+    }
   }
 
   onProgressChange = (value) => {
