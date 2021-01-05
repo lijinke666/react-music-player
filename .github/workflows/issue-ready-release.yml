@@ -22,7 +22,7 @@ jobs:
       - name: Remove labels
         uses: actions-cool/issues-helper@v1.7
         with:
-          actions: 'remove-labels'
+          actions: 'remove-labels,close-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           labels: 'Progress,help wanted'
