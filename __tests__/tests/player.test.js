@@ -217,7 +217,9 @@ describe('<ReactJkMusicPlayer/>', () => {
   })
   it('should print second return format time', () => {
     assert(formatTime(30000) === '08:20:00')
-    assert(formatTime(60) === '00:60')
+    assert(formatTime(60) === '01:00')
+    assert(formatTime(120) === '02:00')
+    assert(formatTime(121) === '02:01')
     assert(formatTime(140) === '02:20')
     assert(formatTime(2 * 60 * 60) === '02:00:00')
     assert(formatTime(2 * 60 * 60 + 30) === '02:00:30')
