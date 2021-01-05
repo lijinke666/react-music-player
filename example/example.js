@@ -257,8 +257,8 @@ const options = {
 
   // Audio volume with fade in and fade out [type `{ fadeIn: number, fadeOut: number }` default `{ fadeIn: 0, fadeOut: 0 }`]
   volumeFade: {
-    fadeIn: 500,
-    fadeOut: 500,
+    fadeIn: 1000,
+    fadeOut: 1000,
   },
 
   // Music is downloaded handle

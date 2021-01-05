@@ -1196,12 +1196,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
       adjustVolume(this.audio, this.state.currentAudioVolume, {
         duration: fadeIn,
-      }).then(() => {
-        this.setState(
-          { isAutoPlayWhenUserClicked: true },
-          this.loadAndPlayAudio,
-        )
       })
+      this.setState({ isAutoPlayWhenUserClicked: true }, this.loadAndPlayAudio)
     }
   }
 
