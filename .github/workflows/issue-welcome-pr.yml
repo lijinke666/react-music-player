@@ -1,0 +1,20 @@
+name: Welcome Pull Request
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create-comment:
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'Welcome PR'
+    steps:
+      - name: Create comment
+        uses: actions-cool/issues-helper@v1.7
+        with:
+          actions: 'create-comment,close-issue'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hello @${{ github.event.issue.user.login }}, welcome your PR. or fork the project for Implement this functionality yourself
+            你好 @${{ github.event.issue.user.login }}，期待你的PR, 而不是要求我实现这功能, 当然你也可以自行fork本仓库自行实现。
