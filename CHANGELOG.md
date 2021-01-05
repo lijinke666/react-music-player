@@ -1,3 +1,16 @@
+# [4.20.0](https://github.com/lijinke666/react-music-player/compare/v4.19.1...v4.20.0) (2021-01-05)
+
+
+### Bug Fixes
+
+* error timestamp format [#242](https://github.com/lijinke666/react-music-player/issues/242) ([6ecbf73](https://github.com/lijinke666/react-music-player/commit/6ecbf737f6c5d8f3accdaca1f8542b2f20d4685e))
+* invalid audio volume fadeIn [#238](https://github.com/lijinke666/react-music-player/issues/238) ([1120e28](https://github.com/lijinke666/react-music-player/commit/1120e286c6ca4e645b07e293ce59dd004a941ddc))
+
+
+### Features
+
+* support audio volume fadeIn and fadeOut [#238](https://github.com/lijinke666/react-music-player/issues/238) ([dedd22c](https://github.com/lijinke666/react-music-player/commit/dedd22c73b1415e8c3f5fcedcd00e97637610652))
+
 ## [4.19.1](https://github.com/lijinke666/react-music-player/compare/v4.19.0...v4.19.1) (2020-11-07)
 
 
