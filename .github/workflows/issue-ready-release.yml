@@ -16,8 +16,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Hello @${{ github.event.issue.user.login }}, This bug has been fixed and will be released together with the next release.
-            你好 @${{ github.event.issue.user.login }}，这个bug已经修复, 会在下个版本一起发布。
+            Hello @${{ github.event.issue.user.login }}, This bug/feature has been fixed/done and will be released together with the next release.
+            你好 @${{ github.event.issue.user.login }}，这个bug/feature 已经修复/完成, 会在下个版本一起发布。
 
       - name: Remove labels
         uses: actions-cool/issues-helper@v1.7
