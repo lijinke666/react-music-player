@@ -90,7 +90,7 @@
     "rc-switch": "^3.2.2",
     "react-drag-listview": "^0.1.8",
     "react-draggable": "^4.4.3",
-    "react-icons": "^3.11.0"
+    "react-icons": "^4.1.0"
   },
   "bundlesize": [
     {
