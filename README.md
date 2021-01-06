@@ -134,7 +134,7 @@ ReactDOM.render(
 ## :clipboard: API
 
 | Name | Type | Default | Description |
-| --- | --- | --- | --- | --- | --- | --- |
+| ---  | ---  | ---     | ---         |
 | className | `string` | `-` | Additional CSS class for the root DOM node |
 | audioLists | [AudioListProps[]](#bulb-audiolistprops) | `-` | [Detail](#bulb-audiolistprops) |
 | theme | `light` \| `dark` \| `auto` | `dark` | color of the music player theme `dark`, `light`, `auto (follow system)` | `light` |
@@ -204,8 +204,8 @@ ReactDOM.render(
 | onPlayIndexChange | `function(playIndex)` | `-` | audio play index change handle |
 | quietUpdate | `boolean` | `false` | [Detail](#bulb-quiet-update) |
 | renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
-| mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | Custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
-| volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | Audio fade in and out. [Detail](#bulb-audio-volume-fade-in-and-fade-out) |
+| mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
+| volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | audio fade in and out. [Detail](#bulb-audio-volume-fade-in-and-fade-out) |
 
 ## :bulb: Custom operation ui
 
