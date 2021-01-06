@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/logo.png" width="100" max-width="100%">
+  <img alt="logo" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/logo.png?raw=true" width="100" max-width="100%">
 </p>
 
 <h1 align="center">
@@ -67,19 +67,19 @@ npm install react-jinke-music-player --save
 
 > mini mode <br/>
 
-![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png)
+![mini mode](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mini.png?raw=true)
 
 > Light Theme <br/>
 
-![light theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png)
+![light theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/light-theme.png?raw=true)
 
 > Dark Theme <br/>
 
-![dark theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png)
+![dark theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/dark-theme.png?raw=true)
 
 > mobile <br/>
 
-![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg)
+![mobile](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/mobile.jpg?raw=true)
 
 ## :sparkles: Feature list
 
@@ -205,7 +205,7 @@ ReactDOM.render(
 | quietUpdate | `boolean` | `false` | [Detail](#bulb-quiet-update) |
 | renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
 | mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | Custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
-| volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | Audio fade in and out. |
+| volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | Audio fade in and out. [Detail](#bulb-audio-volume-fade-in-and-fade-out) |
 
 ## :bulb: Custom operation ui
 
