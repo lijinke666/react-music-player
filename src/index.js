@@ -49,6 +49,7 @@ import PLAY_MODE from './config/playMode'
 import PROP_TYPES from './config/propTypes'
 import { sliderBaseOptions } from './config/slider'
 import { THEME } from './config/theme'
+import { VOLUME_FADE } from './config/volumeFade'
 import LOCALE_CONFIG from './locale'
 import Lyric from './lyric'
 import {
@@ -123,7 +124,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     isAutoPlayWhenUserClicked: false,
     playIndex: this.props.playIndex || this.props.defaultPlayIndex || 0,
     canPlay: false,
-    isVolumeFadeChang: false,
+    currentVolumeFade: VOLUME_FADE.NONE,
+    currentVolumeFadeInterval: undefined,
+    updateIntervalEndVolume: undefined,
   }
 
   static defaultProps = {
@@ -449,6 +452,20 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return null
     }
 
+    let actionButtonIcon
+
+    if (playing) {
+      if (this.state.currentVolumeFade === VOLUME_FADE.OUT) {
+        actionButtonIcon = this.iconMap.play
+      } else {
+        actionButtonIcon = this.iconMap.pause
+      }
+    } else if (this.state.currentVolumeFade === VOLUME_FADE.IN) {
+      actionButtonIcon = this.iconMap.pause
+    } else {
+      actionButtonIcon = this.iconMap.play
+    }
+
     return createPortal(
       <div
         className={cls(
@@ -571,7 +588,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                             : locale.clickToPlayText
                         }
                       >
-                        {playing ? this.iconMap.pause : this.iconMap.play}
+                        {actionButtonIcon}
                       </span>
                     )}
                     <span
@@ -1030,8 +1047,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({
       currentAudioVolume: value,
       soundValue: value,
-      isVolumeFadeChang: false,
     })
+
+    // Update fade-in interval to transition to new volume
+    if (this.state.currentVolumeFade === VOLUME_FADE.IN) {
+      this.state.updateIntervalEndVolume &&
+        this.state.updateIntervalEndVolume(value)
+    }
   }
 
   stopAll = (target) => {
@@ -1183,21 +1205,92 @@ export default class ReactJkMusicPlayer extends PureComponent {
   onTogglePlay = () => {
     if (this.state.audioLists.length >= 1) {
       const { fadeIn, fadeOut } = this.props.volumeFade || {}
-      this.setState({ isVolumeFadeChang: fadeIn || fadeOut })
+      const { currentVolumeFade, currentVolumeFadeInterval } = this.state
+      const isCurrentlyFading =
+        currentVolumeFade === VOLUME_FADE.IN ||
+        currentVolumeFade === VOLUME_FADE.OUT
 
-      if (this.state.playing) {
-        adjustVolume(this.audio, 0, {
-          duration: fadeOut,
-        }).then(() => {
-          this.audio.pause()
+      /**
+       * Currently in middle of fading in/out, so need to cancel the current interval and do the opposite action.
+       * E.g. if currently fading out, then we need to cancel the fade-out and do a fade-in starting at current volume.
+       */
+      if (isCurrentlyFading) {
+        // Clear current fade-in/out
+        clearInterval(currentVolumeFadeInterval)
+        this.setState({
+          currentVolumeFadeInterval: undefined,
+          updateIntervalEndVolume: undefined,
         })
-        return
       }
 
-      adjustVolume(this.audio, this.state.currentAudioVolume, {
-        duration: fadeIn,
-      })
-      this.setState({ isAutoPlayWhenUserClicked: true }, this.loadAndPlayAudio)
+      // Currently playing track or in the middle of fading in
+      if (
+        (!isCurrentlyFading && this.state.playing) ||
+        currentVolumeFade === VOLUME_FADE.IN
+      ) {
+        this.setState({ currentVolumeFade: VOLUME_FADE.OUT })
+        // Fade in from current volume to 0
+        const {
+          fadeInterval: fadeOutInterval,
+          updateIntervalEndVolume,
+        } = adjustVolume(
+          this.audio,
+          this.audio.volume,
+          0,
+          {
+            duration: fadeOut,
+          },
+          () => {
+            this.audio.pause()
+            this.setState({
+              currentVolumeFade: VOLUME_FADE.NONE,
+              currentVolumeFadeInterval: undefined,
+              updateIntervalEndVolume: undefined,
+            })
+            // It's possible that the volume level in the UI has changed since beginning of fade
+            this.audio.volume = this.state.soundValue
+          },
+        )
+
+        this.setState({
+          currentVolumeFadeInterval: fadeOutInterval,
+          updateIntervalEndVolume,
+        })
+      } else {
+        this.setState({ currentVolumeFade: VOLUME_FADE.IN })
+        const startVolume = isCurrentlyFading ? this.audio.volume : 0
+        const endVolume = this.state.soundValue
+        // Always fade in from 0 to current volume
+        const {
+          fadeInterval: fadeInInterval,
+          updateIntervalEndVolume,
+        } = adjustVolume(
+          this.audio,
+          startVolume,
+          endVolume,
+          {
+            // If starting track from beginning, start immediately without fade-in
+            duration: fadeIn,
+          },
+          () => {
+            this.setState({
+              currentVolumeFade: VOLUME_FADE.NONE,
+              currentVolumeFadeInterval: undefined,
+              updateIntervalEndVolume: undefined,
+            })
+            this.audio.volume = this.state.soundValue
+          },
+        )
+
+        this.setState(
+          {
+            currentVolumeFadeInterval: fadeInInterval,
+            updateIntervalEndVolume,
+            isAutoPlayWhenUserClicked: true,
+          },
+          this.loadAndPlayAudio,
+        )
+      }
     }
   }
 
@@ -1436,8 +1529,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   onAudioVolumeChange = () => {
     const { volume } = this.audio
-    const { isVolumeFadeChang } = this.state
-    if (isVolumeFadeChang) {
+    const { currentVolumeFade } = this.state
+    if (currentVolumeFade !== VOLUME_FADE.NONE) {
       return
     }
     this.setState({

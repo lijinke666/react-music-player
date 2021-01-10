@@ -54,24 +54,42 @@ export function swing(p) {
 
 export function adjustVolume(
   element,
-  newVolume,
+  startVolume,
+  endVolume,
   { duration = 1000, easing = swing, interval = 13 } = {},
+  callback,
 ) {
-  const originalVolume = element.volume
-  const delta = newVolume - originalVolume
+  let delta = endVolume - startVolume
   if (!delta || !duration || !easing || !interval) {
-    element.volume = newVolume
-    return Promise.resolve()
+    element.volume = endVolume
+    callback()
+    return { fadeInterval: undefined, updateIntervalEndVolume: undefined }
   }
+
   const ticks = Math.floor(duration / interval)
   let tick = 1
-  return new Promise((resolve) => {
-    const timer = setInterval(() => {
-      element.volume = originalVolume + easing(tick / ticks) * delta
-      if (++tick === ticks) {
-        clearInterval(timer)
-        resolve()
-      }
-    }, interval)
-  })
+
+  const updateIntervalEndVolume = (newVolume) => {
+    endVolume = newVolume
+  }
+
+  const timer = setInterval(() => {
+    // End volume may have changed in middle of fading
+    const newDelta = endVolume - startVolume
+    if (newDelta !== delta) {
+      delta = newDelta
+    }
+
+    element.volume = startVolume + easing(tick / ticks) * delta
+    if (++tick >= ticks) {
+      element.volume = endVolume
+      clearInterval(timer)
+      callback()
+    }
+  }, interval)
+
+  return {
+    fadeInterval: timer,
+    updateIntervalEndVolume,
+  }
 }
