@@ -1593,11 +1593,12 @@ describe('<ReactJkMusicPlayer/>', () => {
     )
 
     wrapper.find('.play-btn').simulate('click')
+    await sleep(300)
     wrapper.find('.play-btn').simulate('click')
     expect(wrapper.state().soundValue).toEqual(1)
     expect(wrapper.state().currentAudioVolume).toEqual(1)
 
-    await sleep(200)
+    await sleep(300)
 
     expect(onAudioVolumeChange).not.toHaveBeenCalled()
     expect(wrapper.state().soundValue).toEqual(1)
@@ -1609,8 +1610,16 @@ describe('<ReactJkMusicPlayer/>', () => {
       volume: 1,
     }
     const fn = jest.fn()
-    adjustVolume(audio, 0, { duration: 0 }).then(fn)
+    const { fadeInterval, updateIntervalEndVolume } = adjustVolume(
+      audio,
+      1,
+      0,
+      { duration: 0 },
+      fn,
+    )
     await sleep(100)
+    expect(fadeInterval).toBeUndefined()
+    expect(updateIntervalEndVolume).toBeUndefined()
     expect(audio.volume).toStrictEqual(0)
     expect(fn).toHaveBeenCalledTimes(1)
   })
@@ -1620,8 +1629,16 @@ describe('<ReactJkMusicPlayer/>', () => {
       volume: 1,
     }
     const fn = jest.fn()
-    adjustVolume(audio, 1, { duration: 100 }).then(fn)
+    const { fadeInterval, updateIntervalEndVolume } = adjustVolume(
+      audio,
+      1,
+      1,
+      { duration: 100 },
+      fn,
+    )
     await sleep(100)
+    expect(fadeInterval).toBeUndefined()
+    expect(updateIntervalEndVolume).toBeUndefined()
     expect(audio.volume).toStrictEqual(1)
     expect(fn).toHaveBeenCalledTimes(1)
   })
@@ -1631,13 +1648,45 @@ describe('<ReactJkMusicPlayer/>', () => {
       volume: 1,
     }
     const fn = jest.fn()
-    adjustVolume(audio, 0, { duration: 200 }).then(fn)
+    const { fadeInterval, updateIntervalEndVolume } = adjustVolume(
+      audio,
+      audio.volume,
+      0,
+      { duration: 200 },
+      fn,
+    )
+    expect(fadeInterval).not.toBeUndefined()
+    expect(updateIntervalEndVolume).not.toBeUndefined()
     expect(audio.volume).toStrictEqual(1)
     expect(fn).not.toHaveBeenCalled()
 
     await sleep(500)
 
     expect(Math.floor(audio.volume)).toStrictEqual(0)
+    expect(fn).toHaveBeenCalledTimes(1)
+  })
+
+  it('should respond to end volume changes for fade-ins', async () => {
+    const audio = {
+      volume: 0,
+    }
+    const fn = jest.fn()
+    const { fadeInterval, updateIntervalEndVolume } = adjustVolume(
+      audio,
+      audio.volume,
+      1,
+      { duration: 200 },
+      fn,
+    )
+    expect(fadeInterval).not.toBeUndefined()
+    expect(updateIntervalEndVolume).not.toBeUndefined()
+    updateIntervalEndVolume(0.5)
+    expect(audio.volume).toStrictEqual(0)
+    expect(fn).not.toHaveBeenCalled()
+
+    await sleep(500)
+
+    expect(audio.volume).toStrictEqual(0.5)
     expect(fn).toHaveBeenCalledTimes(1)
   })
 })
