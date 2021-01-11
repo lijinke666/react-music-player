@@ -1042,17 +1042,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setAudioVolume(currentAudioVolume || 0.1)
   }
 
-  setAudioVolume = (value) => {
-    this.audio.volume = value
+  setAudioVolume = (volumeBarValue) => {
+    this.audio.volume = this.getListeningVolume(volumeBarValue)
     this.setState({
-      currentAudioVolume: value,
-      soundValue: value,
+      currentAudioVolume: volumeBarValue,
+      soundValue: volumeBarValue,
     })
 
     // Update fade-in interval to transition to new volume
     if (this.state.currentVolumeFade === VOLUME_FADE.IN) {
       this.state.updateIntervalEndVolume &&
-        this.state.updateIntervalEndVolume(value)
+        this.state.updateIntervalEndVolume(volumeBarValue)
     }
   }
 
@@ -1067,6 +1067,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
       left,
       top,
     }
+  }
+
+  getListeningVolume = (volumeBarValue) => {
+    return volumeBarValue ** 2
+  }
+
+  getVolumeBarValue = (listeningVolume) => {
+    return Math.sqrt(listeningVolume)
   }
 
   onAudioReload = () => {
@@ -1248,7 +1256,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               updateIntervalEndVolume: undefined,
             })
             // It's possible that the volume level in the UI has changed since beginning of fade
-            this.audio.volume = this.state.soundValue
+            this.audio.volume = this.getListeningVolume(this.state.soundValue)
           },
         )
 
@@ -1259,7 +1267,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       } else {
         this.setState({ currentVolumeFade: VOLUME_FADE.IN })
         const startVolume = isCurrentlyFading ? this.audio.volume : 0
-        const endVolume = this.state.soundValue
+        const endVolume = this.getListeningVolume(this.state.soundValue)
         // Always fade in from 0 to current volume
         const {
           fadeInterval: fadeInInterval,
@@ -1269,7 +1277,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
           startVolume,
           endVolume,
           {
-            // If starting track from beginning, start immediately without fade-in
             duration: fadeIn,
           },
           () => {
@@ -1278,7 +1285,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               currentVolumeFadeInterval: undefined,
               updateIntervalEndVolume: undefined,
             })
-            this.audio.volume = this.state.soundValue
+            this.audio.volume = this.getListeningVolume(this.state.soundValue)
           },
         )
 
@@ -1533,11 +1540,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (currentVolumeFade !== VOLUME_FADE.NONE) {
       return
     }
+    const volumeBarValue = this.getVolumeBarValue(volume)
     this.setState({
-      soundValue: volume,
+      soundValue: volumeBarValue,
     })
     if (this.props.onAudioVolumeChange) {
-      const formattedVolume = parseFloat(volume.toFixed(2))
+      const formattedVolume = parseFloat(volume.toFixed(4))
       this.props.onAudioVolumeChange(formattedVolume)
     }
   }
