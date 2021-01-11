@@ -512,6 +512,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             locale={locale}
             toggleMode={toggleMode}
             renderAudioTitle={this.renderAudioTitle}
+            actionButtonIcon={actionButtonIcon}
           />
         )}
 
