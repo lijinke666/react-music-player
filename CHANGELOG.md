@@ -1,3 +1,10 @@
+## [4.20.1](https://github.com/lijinke666/react-music-player/compare/v4.20.0...v4.20.1) (2021-01-11)
+
+
+### Bug Fixes
+
+* volume fade-in and fade-out issues [#256](https://github.com/lijinke666/react-music-player/issues/256) ([9ab8b07](https://github.com/lijinke666/react-music-player/commit/9ab8b07b070fbd21dc4ee648eec54f0bf17c92ed))
+
 # [4.20.0](https://github.com/lijinke666/react-music-player/compare/v4.19.1...v4.20.0) (2021-01-05)
 
 
