@@ -1689,4 +1689,46 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(audio.volume).toStrictEqual(0.5)
     expect(fn).toHaveBeenCalledTimes(1)
   })
+
+  it('should set audio volume non-linearly', async () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' },
+        ]}
+        mode="full"
+      />,
+    )
+    expect(wrapper.state('currentAudioVolume')).toStrictEqual(1)
+    expect(wrapper.instance().audio.volume).toStrictEqual(1)
+
+    wrapper.instance().setAudioVolume(0.5)
+
+    expect(wrapper.state('currentAudioVolume')).toStrictEqual(0.5)
+    expect(wrapper.instance().audio.volume).toStrictEqual(0.25)
+  })
+
+  it('should set volume slider value non-linearly and invoke onAudioVolumeChange', async () => {
+    const fn = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[
+          { musicSrc: 'x', cover: '' },
+          { musicSrc: 'xx', cover: '' },
+        ]}
+        mode="full"
+        onAudioVolumeChange={fn}
+      />,
+    )
+    expect(wrapper.state('soundValue')).toStrictEqual(1)
+    expect(wrapper.instance().audio.volume).toStrictEqual(1)
+
+    wrapper.instance().audio.volume = 0.25
+    wrapper.instance().onAudioVolumeChange()
+
+    expect(fn).toHaveBeenCalledWith(0.25)
+    expect(wrapper.instance().audio.volume).toStrictEqual(0.25)
+    expect(wrapper.state('soundValue')).toStrictEqual(0.5)
+  })
 })
