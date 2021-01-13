@@ -1296,7 +1296,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
             updateIntervalEndVolume,
             isAutoPlayWhenUserClicked: true,
           },
-          this.loadAndPlayAudio,
+          () => {
+            this.audio.volume = startVolume
+            this.loadAndPlayAudio()
+          },
         )
       }
     }
