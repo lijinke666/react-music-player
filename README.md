@@ -680,6 +680,10 @@ interface ReactJkMusicPlayerAudioInfo {
 }
 ```
 
+## :two_men_holding_hands: Contributors
+
+![https://github.com/lijinke666/react-music-player/graphs/contributors](https://contrib.rocks/image?repo=lijinke666/react-music-player)
+
 ## :page_facing_up: License
 
 [MIT](https://github.com/lijinke666/react-music-player/blob/master/LICENCE)
