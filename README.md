@@ -629,8 +629,8 @@ const PlayerWithNoSSR = dynamic(() => import('../components/Player'), {
 
 ```bash
 git clone https://github.com/lijinke666/react-music-player.git
-yarn | npm install
-yarn start | npm start
+yarn # npm install
+yarn start # npm start
 open `http://localhost:8081/`
 ```
 
@@ -681,6 +681,8 @@ interface ReactJkMusicPlayerAudioInfo {
 ```
 
 ## :two_men_holding_hands: Contributors
+
+> Special thanks: @JeffreyCA
 
 ![https://github.com/lijinke666/react-music-player/graphs/contributors](https://contrib.rocks/image?repo=lijinke666/react-music-player)
 
