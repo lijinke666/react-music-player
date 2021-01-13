@@ -452,19 +452,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return null
     }
 
-    let actionButtonIcon
-
-    if (playing) {
-      if (this.state.currentVolumeFade === VOLUME_FADE.OUT) {
-        actionButtonIcon = this.iconMap.play
-      } else {
-        actionButtonIcon = this.iconMap.pause
-      }
-    } else if (this.state.currentVolumeFade === VOLUME_FADE.IN) {
-      actionButtonIcon = this.iconMap.pause
-    } else {
-      actionButtonIcon = this.iconMap.play
-    }
+    const shouldShowPlayIcon =
+      !playing || this.state.currentVolumeFade === VOLUME_FADE.OUT
 
     return createPortal(
       <div
@@ -512,7 +501,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             locale={locale}
             toggleMode={toggleMode}
             renderAudioTitle={this.renderAudioTitle}
-            actionButtonIcon={actionButtonIcon}
+            shouldShowPlayIcon={shouldShowPlayIcon}
           />
         )}
 
@@ -584,12 +573,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         className="group play-btn"
                         onClick={this.onTogglePlay}
                         title={
-                          playing
-                            ? locale.clickToPauseText
-                            : locale.clickToPlayText
+                          shouldShowPlayIcon
+                            ? locale.clickToPlayText
+                            : locale.clickToPauseText
                         }
                       >
-                        {actionButtonIcon}
+                        {shouldShowPlayIcon
+                          ? this.iconMap.play
+                          : this.iconMap.pause}
                       </span>
                     )}
                     <span
@@ -1254,9 +1245,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
             this.setState({
               currentVolumeFade: VOLUME_FADE.NONE,
               currentVolumeFadeInterval: undefined,
+              playing: false,
               updateIntervalEndVolume: undefined,
             })
-            // It's possible that the volume level in the UI has changed since beginning of fade
+            // Restore volume so slider does not reset to zero
             this.audio.volume = this.getListeningVolume(this.state.soundValue)
           },
         )
@@ -1267,9 +1259,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
         })
       } else {
         this.setState({ currentVolumeFade: VOLUME_FADE.IN })
+        // Start volume may not be 0 if interrupting a fade-out
         const startVolume = isCurrentlyFading ? this.audio.volume : 0
         const endVolume = this.getListeningVolume(this.state.soundValue)
-        // Always fade in from 0 to current volume
         const {
           fadeInterval: fadeInInterval,
           updateIntervalEndVolume,
@@ -1286,6 +1278,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               currentVolumeFadeInterval: undefined,
               updateIntervalEndVolume: undefined,
             })
+            // It's possible that the volume level in the UI has changed since beginning of fade
             this.audio.volume = this.getListeningVolume(this.state.soundValue)
           },
         )
@@ -1296,7 +1289,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
             updateIntervalEndVolume,
             isAutoPlayWhenUserClicked: true,
           },
-          this.loadAndPlayAudio,
+          () => {
+            this.audio.volume = startVolume
+            this.loadAndPlayAudio()
+          },
         )
       }
     }
