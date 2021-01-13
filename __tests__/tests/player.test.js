@@ -1731,4 +1731,22 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.instance().audio.volume).toStrictEqual(0.25)
     expect(wrapper.state('soundValue')).toStrictEqual(0.5)
   })
+
+  it("should don't play audio when audio seeked by slider bar if audio is paused", async () => {
+    const onAudioSeeked = jest.fn()
+    const onAudioPlay = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        audioLists={[{ musicSrc: 'x', cover: '' }]}
+        autoPlay={false}
+        mode="full"
+        onAudioSeeked={onAudioSeeked}
+        onAudioPlay={onAudioPlay}
+      />,
+    )
+    wrapper.instance().onAudioSeeked(100)
+
+    expect(onAudioPlay).not.toHaveBeenCalled()
+    expect(onAudioSeeked).toHaveBeenCalledTimes(1)
+  })
 })

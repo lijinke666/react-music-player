@@ -127,6 +127,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     currentVolumeFade: VOLUME_FADE.NONE,
     currentVolumeFadeInterval: undefined,
     updateIntervalEndVolume: undefined,
+    isAudioSeeking: false,
   }
 
   static defaultProps = {
@@ -1203,6 +1204,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onTogglePlay = () => {
+    this.setState({ isAudioSeeking: false })
     if (this.state.audioLists.length >= 1) {
       const { fadeIn, fadeOut } = this.props.volumeFade || {}
       const { currentVolumeFade, currentVolumeFadeInterval } = this.state
@@ -1323,6 +1325,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onAudioPlay = () => {
+    // Audio currentTime changed will be trigger audio playing event
+    if (this.state.isAudioSeeking) {
+      return
+    }
     this.setState({ playing: true, loading: false })
     this.props.onAudioPlay && this.props.onAudioPlay(this.getBaseAudioInfo())
     if (this.state.lyric && this.lyric) {
@@ -1361,7 +1367,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       })
     }
 
-    this.setState({ playing: false, loading: true })
+    this.setState({ playing: false, loading: true, isAudioSeeking: false })
 
     if (isLoaded || readyState >= AUDIO_READY_STATE.HAVE_FUTURE_DATA) {
       const { playing } = this.getLastPlayStatus()
@@ -1547,21 +1553,33 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
   }
 
-  onProgressChange = (value) => {
+  onProgressChange = (currentTime) => {
     if (this.audio) {
-      this.audio.currentTime = value
+      this.audio.currentTime = currentTime
     }
+    this.setState({ currentTime, isAudioSeeking: true })
   }
 
-  onAudioSeeked = () => {
-    if (this.state.audioLists.length >= 1) {
-      this.lyric && this.lyric.seek(this.audio.currentTime * 1000)
-      if (!this.state.playing) {
-        this.lyric && this.lyric.stop()
-      }
-      this.props.onAudioSeeked &&
-        this.props.onAudioSeeked(this.getBaseAudioInfo())
+  onAudioSeeked = (currentTime) => {
+    this.setState({ isAudioSeeking: true })
+    if (!this.state.audioLists.length) {
+      return
     }
+    this.lyric && this.lyric.seek(currentTime * 1000)
+
+    if (!this.state.playing) {
+      this.lyric && this.lyric.stop()
+    }
+    if (this.audio) {
+      this.audio.currentTime = currentTime
+    }
+
+    this.props.onAudioSeeked &&
+      this.props.onAudioSeeked(this.getBaseAudioInfo())
+
+    setTimeout(() => {
+      this.setState({ isAudioSeeking: false })
+    }, 500)
   }
 
   onAudioMute = () => {
@@ -2281,6 +2299,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onAudioCanPlay = () => {
+    if (this.state.isAudioSeeking) {
+      return
+    }
     this.setState({ canPlay: true }, () => {
       this.playAudio(true)
     })
