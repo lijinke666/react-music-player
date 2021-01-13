@@ -452,19 +452,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return null
     }
 
-    let actionButtonIcon
-
-    if (playing) {
-      if (this.state.currentVolumeFade === VOLUME_FADE.OUT) {
-        actionButtonIcon = this.iconMap.play
-      } else {
-        actionButtonIcon = this.iconMap.pause
-      }
-    } else if (this.state.currentVolumeFade === VOLUME_FADE.IN) {
-      actionButtonIcon = this.iconMap.pause
-    } else {
-      actionButtonIcon = this.iconMap.play
-    }
+    const shouldShowPlayIcon =
+      !playing || this.state.currentVolumeFade === VOLUME_FADE.OUT
 
     return createPortal(
       <div
@@ -512,7 +501,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             locale={locale}
             toggleMode={toggleMode}
             renderAudioTitle={this.renderAudioTitle}
-            actionButtonIcon={actionButtonIcon}
+            shouldShowPlayIcon={shouldShowPlayIcon}
           />
         )}
 
@@ -584,12 +573,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
                         className="group play-btn"
                         onClick={this.onTogglePlay}
                         title={
-                          playing
-                            ? locale.clickToPauseText
-                            : locale.clickToPlayText
+                          shouldShowPlayIcon
+                            ? locale.clickToPlayText
+                            : locale.clickToPauseText
                         }
                       >
-                        {actionButtonIcon}
+                        {shouldShowPlayIcon
+                          ? this.iconMap.play
+                          : this.iconMap.pause}
                       </span>
                     )}
                     <span

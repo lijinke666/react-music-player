@@ -30,7 +30,7 @@ const PlayerMobile = ({
   locale,
   toggleMode,
   renderAudioTitle,
-  actionButtonIcon,
+  shouldShowPlayIcon,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -88,10 +88,14 @@ const PlayerMobile = ({
       ) : (
         <span
           className="group play-btn"
-          title={playing ? locale.clickToPauseText : locale.clickToPlayText}
+          title={
+            shouldShowPlayIcon
+              ? locale.clickToPlayText
+              : locale.clickToPauseText
+          }
           onClick={onPlay}
         >
-          {actionButtonIcon}
+          {shouldShowPlayIcon ? icon.play : icon.pause}
         </span>
       )}
       <span
