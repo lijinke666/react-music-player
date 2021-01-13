@@ -1539,8 +1539,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   onAudioVolumeChange = () => {
     const { volume } = this.audio
-    const { currentVolumeFade } = this.state
-    if (currentVolumeFade !== VOLUME_FADE.NONE) {
+    const { currentVolumeFade, currentAudioVolume } = this.state
+    if (
+      currentVolumeFade !== VOLUME_FADE.NONE ||
+      currentAudioVolume === volume
+    ) {
       return
     }
     const volumeBarValue = this.getVolumeBarValue(volume)
