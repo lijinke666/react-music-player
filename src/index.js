@@ -1245,9 +1245,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
             this.setState({
               currentVolumeFade: VOLUME_FADE.NONE,
               currentVolumeFadeInterval: undefined,
+              playing: false,
               updateIntervalEndVolume: undefined,
             })
-            // It's possible that the volume level in the UI has changed since beginning of fade
+            // Restore volume so slider does not reset to zero
             this.audio.volume = this.getListeningVolume(this.state.soundValue)
           },
         )
@@ -1258,9 +1259,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
         })
       } else {
         this.setState({ currentVolumeFade: VOLUME_FADE.IN })
+        // Start volume may not be 0 if interrupting a fade-out
         const startVolume = isCurrentlyFading ? this.audio.volume : 0
         const endVolume = this.getListeningVolume(this.state.soundValue)
-        // Always fade in from 0 to current volume
         const {
           fadeInterval: fadeInInterval,
           updateIntervalEndVolume,
@@ -1277,6 +1278,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
               currentVolumeFadeInterval: undefined,
               updateIntervalEndVolume: undefined,
             })
+            // It's possible that the volume level in the UI has changed since beginning of fade
             this.audio.volume = this.getListeningVolume(this.state.soundValue)
           },
         )
