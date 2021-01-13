@@ -1,3 +1,19 @@
+# [4.21.0](https://github.com/lijinke666/react-music-player/compare/v4.20.1...v4.21.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* auto play when audio seeking by progress bar [#260](https://github.com/lijinke666/react-music-player/issues/260) ([016af3b](https://github.com/lijinke666/react-music-player/commit/016af3b7793b648fde7e3e8ed849dece39876c68))
+* avoid play/pause button re-render by setting playing to false earlier ([2568f31](https://github.com/lijinke666/react-music-player/commit/2568f31e325e139c65b4b92de1e206bcb2ebc26d))
+* can not trigger onAudioVolumeChange when play or pause audio with volume fade mode ([6b88d6c](https://github.com/lijinke666/react-music-player/commit/6b88d6c7ad3a113ee4bf62535558c46dd3ac23ef))
+* play button delay in mobile player ([5e8eccd](https://github.com/lijinke666/react-music-player/commit/5e8eccdf15eb89c086a051eb32903e9bccfba97b))
+* set audio volume to pre-fade volume before fading in ([63c6b6f](https://github.com/lijinke666/react-music-player/commit/63c6b6fe57575a288d44b2584fc7b1e64a8eb5c0))
+
+
+### Features
+
+* implement non-linear volume slider ([a7b9cec](https://github.com/lijinke666/react-music-player/commit/a7b9cec7168b4dec798d489aaa843207628e8c11))
+
 ## [4.20.1](https://github.com/lijinke666/react-music-player/compare/v4.20.0...v4.20.1) (2021-01-11)
 
 
