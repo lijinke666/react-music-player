@@ -1749,4 +1749,55 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onAudioPlay).not.toHaveBeenCalled()
     expect(onAudioSeeked).toHaveBeenCalledTimes(1)
   })
+
+  it('should never fade on iOS', async () => {
+    const platformGetter = jest.spyOn(window.navigator, 'platform', 'get')
+    platformGetter.mockReturnValue('iPhone')
+
+    const audio = {
+      volume: 0,
+    }
+    const fn = jest.fn()
+    const { fadeInterval, updateIntervalEndVolume } = adjustVolume(
+      audio,
+      audio.volume,
+      1,
+      { duration: 200 },
+      fn,
+    )
+
+    expect(fadeInterval).toBeUndefined()
+    expect(updateIntervalEndVolume).toBeUndefined()
+    expect(fn).toHaveBeenCalledTimes(1)
+    expect(audio.volume).toStrictEqual(1)
+
+    platformGetter.mockRestore()
+  })
+
+  it('should respect fade on non-iOS', async () => {
+    const platformGetter = jest.spyOn(window.navigator, 'platform', 'get')
+    platformGetter.mockReturnValue('MacIntel')
+
+    const audio = {
+      volume: 0,
+    }
+    const fn = jest.fn()
+    const { fadeInterval, updateIntervalEndVolume } = adjustVolume(
+      audio,
+      audio.volume,
+      1,
+      { duration: 200 },
+      fn,
+    )
+
+    expect(fadeInterval).not.toBeUndefined()
+    expect(updateIntervalEndVolume).not.toBeUndefined()
+
+    await sleep(500)
+
+    expect(fn).toHaveBeenCalledTimes(1)
+    expect(audio.volume).toStrictEqual(1)
+
+    platformGetter.mockRestore()
+  })
 })

@@ -47,6 +47,22 @@ export const isSafari = () => {
   )
 }
 
+// https://stackoverflow.com/a/9039885/2789451
+export function isIOS() {
+  return (
+    [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod',
+    ].includes(navigator.platform) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
+  )
+}
+
 // https://stackoverflow.com/questions/7451508/html5-audio-playback-with-fade-in-and-fade-out
 export function swing(p) {
   return 0.5 - Math.cos(p * Math.PI) / 2
@@ -60,7 +76,8 @@ export function adjustVolume(
   callback,
 ) {
   let delta = endVolume - startVolume
-  if (!delta || !duration || !easing || !interval) {
+
+  if (!delta || !duration || !easing || !interval || isIOS()) {
     element.volume = endVolume
     callback()
     return { fadeInterval: undefined, updateIntervalEndVolume: undefined }
