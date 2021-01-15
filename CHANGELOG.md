@@ -1,3 +1,11 @@
+## [4.21.1](https://github.com/lijinke666/react-music-player/compare/v4.21.0...v4.21.1) (2021-01-15)
+
+
+### Bug Fixes
+
+* do not fade on iOS devices ([767df65](https://github.com/lijinke666/react-music-player/commit/767df659d9f111e5097855f426d2a05b32f6f08e))
+* no longer mutes on play when fadeIn is 0 ([6cab882](https://github.com/lijinke666/react-music-player/commit/6cab8823db679cfdcb86572af1bce53af0ec38a4))
+
 # [4.21.0](https://github.com/lijinke666/react-music-player/compare/v4.20.1...v4.21.0) (2021-01-13)
 
 
