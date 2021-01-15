@@ -1292,7 +1292,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             isAutoPlayWhenUserClicked: true,
           },
           () => {
-            if (fadeIn) {
+            if (fadeInInterval) {
               this.audio.volume = startVolume
             }
             this.loadAndPlayAudio()
