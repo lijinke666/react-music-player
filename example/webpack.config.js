@@ -8,7 +8,11 @@ const HOST = '0.0.0.0'
 const PORT = 8081
 
 const getPublicPath = () => {
-  if (!!process.env.NETLIFY || process.env.NODE_ENV !== 'production') {
+  if (
+    process.env.NETLIFY ||
+    process.env.SURGE ||
+    process.env.NODE_ENV !== 'production'
+  ) {
     return '/'
   }
   return '/react-music-player'

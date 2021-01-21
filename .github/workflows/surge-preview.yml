@@ -15,6 +15,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           build: |
             yarn
-            yarn build:demo
+            yarn build:surge
           dist: example/dist
           teardown: 'true'
