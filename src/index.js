@@ -47,7 +47,10 @@ import { MODE } from './config/mode'
 import { AUDIO_NETWORK_STATE, AUDIO_READY_STATE } from './config/audioState'
 import PLAY_MODE from './config/playMode'
 import PROP_TYPES from './config/propTypes'
-import { sliderBaseOptions } from './config/slider'
+import {
+  PROGRESS_BAR_SLIDER_OPTIONS,
+  VOLUME_BAR_SLIDER_OPTIONS,
+} from './config/slider'
 import { THEME } from './config/theme'
 import { VOLUME_FADE } from './config/volumeFade'
 import {
@@ -340,7 +343,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           defaultValue={0}
           value={Math.ceil(currentTime)}
           {...progressHandler}
-          {...sliderBaseOptions}
+          {...PROGRESS_BAR_SLIDER_OPTIONS}
         />
       </>
     )
@@ -617,11 +620,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
                     </span>
                   )}
                   <Slider
-                    max={1}
                     value={soundValue}
                     onChange={this.onAudioSoundChange}
                     className="sound-operation"
-                    {...sliderBaseOptions}
+                    {...VOLUME_BAR_SLIDER_OPTIONS}
                   />
                 </span>
 
