@@ -1,3 +1,11 @@
+## [4.21.2](https://github.com/lijinke666/react-music-player/compare/v4.21.1...v4.21.2) (2021-01-27)
+
+
+### Bug Fixes
+
+* cannot reset play index when audioLists changed [#286](https://github.com/lijinke666/react-music-player/issues/286) ([e42177b](https://github.com/lijinke666/react-music-player/commit/e42177b187bd0a56914d0c59d0db2113fd694867))
+* optimize progress bar seek step [#283](https://github.com/lijinke666/react-music-player/issues/283) ([fbff1e3](https://github.com/lijinke666/react-music-player/commit/fbff1e35ace2695a102c3cdfa08a44a424119b7f))
+
 ## [4.21.1](https://github.com/lijinke666/react-music-player/compare/v4.21.0...v4.21.1) (2021-01-15)
 
 
