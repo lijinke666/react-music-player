@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: need reproduce
-        uses: actions-cool/issues-helper@v2.0
+        uses: actions-cool/issues-helper@v2.0.0
         with:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -20,7 +20,7 @@ jobs:
             由于该 issue 被标记为需要复现，却 7 天未收到回应。现关闭 issue，若有任何问题，可评论回复
 
       - name: needs more info
-        uses: actions-cool/issues-helper@v2.0
+        uses: actions-cool/issues-helper@v2.0.0
         with:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
