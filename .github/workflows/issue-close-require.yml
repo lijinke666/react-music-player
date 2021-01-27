@@ -9,20 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: need reproduce
-        uses: actions-cool/issues-helper@v1.7
+        uses: actions-cool/issues-helper@v2.0
         with:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'Need Reproduce'
           inactive-day: 7
+          body: |
+            Since the issue was labeled with `Need Reproduce`, but no response in 7 days. This issue will be closed. If you have any questions, you can comment and reply.
+            由于该 issue 被标记为需要复现，却 7 天未收到回应。现关闭 issue，若有任何问题，可评论回复
 
       - name: needs more info
-        uses: actions-cool/issues-helper@v1.7
+        uses: actions-cool/issues-helper@v2.0
         with:
           actions: 'close-issues'
           token: ${{ secrets.GITHUB_TOKEN }}
-          labels: 'needs-more-info'
+          labels: 'Need More Info'
           inactive-day: 7
           body: |
-            Since the issue was labeled with `needs-more-info`, but no response in 7 days. This issue will be closed. If you have any questions, you can comment and reply.
+            Since the issue was labeled with `Need More Info`, but no response in 7 days. This issue will be closed. If you have any questions, you can comment and reply.
             由于该 issue 被标记为需要更多信息，却 7 天未收到回应。现关闭 issue，若有任何问题，可评论回复
