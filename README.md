@@ -193,7 +193,7 @@ ReactDOM.render(
 | getAudioInstance | `(instance: HTMLAudioElement) => void` | `-` | get origin audio element instance , you can use it do everything |
 | autoHiddenCover | `boolean` | `false` | Auto hide the cover photo if no cover photo is available |
 | onBeforeAudioDownload | `(audioInfo: ReactJkMusicPlayerAudioInfo) => Promise<TransformedDownloadAudioInfo>` | `-` | transform download audio info before |
-| clearPriorAudioLists | `boolean` | `false` | Replace a new playlist with the first loaded playlist, |
+| clearPriorAudioLists | `boolean` | `false` | Replace a new playlist with the first loaded playlist and reset playIndex to 0 |
 | autoPlayInitLoadPlayList | `boolean` | `false` | Play your new play list right after your new play list is loaded turn false. |
 | spaceBar | `boolean` | `false` | Play and pause audio through space bar （Desktop effective）. |
 | showDestroy | `boolean` | `false` | Destroy player button display |

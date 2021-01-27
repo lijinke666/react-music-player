@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-const HOST = '0.0.0.0'
+const HOST = 'localhost'
 const PORT = 8081
 
 const getPublicPath = () => {
