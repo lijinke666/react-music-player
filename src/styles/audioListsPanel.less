@@ -51,10 +51,10 @@
     }
 
     .audio-item {
-        background-color: @lists-panel-item-bg-mobile !important;
-        &.playing {
-          background-color: @lists-panel-item-bg-playing-mobile !important;
-        }
+      background-color: @lists-panel-item-bg-mobile !important;
+      &.playing {
+        background-color: @lists-panel-item-bg-playing-mobile !important;
+      }
     }
 
     .audio-lists-panel-content {
@@ -165,13 +165,6 @@
           animation: @loading-animate;
         }
       }
-      .player-delete {
-        &:hover {
-          svg {
-            animation: imgRotate @common-animate-time;
-          }
-        }
-      }
       &:hover,
       &:active {
         background-color: @lists-panel-item-bg-active;
@@ -202,6 +195,12 @@
         width: 30px;
         text-align: right;
         justify-content: flex-end;
+
+        &:hover {
+          svg {
+            animation: imgRotate @common-animate-time;
+          }
+        }
       }
     }
   }

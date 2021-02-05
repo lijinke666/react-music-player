@@ -70,7 +70,6 @@ exports[`<ReactJkMusicPlayer/> should render a <ReactJkMusicPlayer/> components 
             <svg
               fill="currentColor"
               height="24"
-              size="24"
               stroke="currentColor"
               stroke-width="0"
               viewBox="0 0 24 24"

@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -27,15 +27,13 @@ module.exports = {
     ],
   },
   optimization: {
-    minimizer: [new OptimizeCssAssetsPlugin()],
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin()],
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       __DEBUG__: false,
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/index.css',

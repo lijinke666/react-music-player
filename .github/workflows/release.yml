@@ -1,4 +1,4 @@
-name: Node CI
+name: 📦 Auto Release
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
           echo "commitmsg=${COMMIT_MESSAGE}" >> $GITHUB_ENV
 
       - name: Show commit message
-        run : echo "$commitmsg"
+        run: echo "$commitmsg"
 
       - name: Get yarn cache
         id: yarn-cache
@@ -64,4 +64,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-

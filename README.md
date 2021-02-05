@@ -32,9 +32,6 @@ react-jinke-music-player
   <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/react-jinke-music-player?style=flat-square">
   <a href="https://david-dm.org/lijinke666/react-music-player" title="dependencies status"><img src="https://david-dm.org/lijinke666/react-music-player/status.svg"/></a>
   <a href="https://david-dm.org/lijinke666/react-music-player?type=dev" title="devDependencies status"><img src="https://david-dm.org/lijinke666/react-music-player/dev-status.svg"/></a>
-  <a href="https://app.netlify.com/sites/react-jinke-music-player/deploys" title="Netlify Status">
-    <img src="https://api.netlify.com/api/v1/badges/2a5d8639-9d2a-46ee-a504-10b7846a57e4/deploy-status" alt="netlify status"/>
-  </a>
   <a href="https://github.com/semantic-release/semantic-release" title="semantic-release">
     <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic release"/>
   </a>
@@ -111,8 +108,6 @@ npm install react-jinke-music-player --save
 
 - [https://lijinke666.github.io/react-music-player/](https://lijinke666.github.io/react-music-player/)
 
-- [https://react-jinke-music-player.netlify.com/](https://react-jinke-music-player.netlify.com/)
-
 > local example : [http://localhost:8081/](http://localhost:8081/)
 
 [Source Code](https://github.com/lijinke666/react-music-player/blob/master/example/example.js)
@@ -134,7 +129,7 @@ ReactDOM.render(
 ## :clipboard: API
 
 | Name | Type | Default | Description |
-| ---  | ---  | ---     | ---         |
+| --- | --- | --- | --- | --- | --- | --- |
 | className | `string` | `-` | Additional CSS class for the root DOM node |
 | audioLists | [AudioListProps[]](#bulb-audiolistprops) | `-` | [Detail](#bulb-audiolistprops) |
 | theme | `light` \| `dark` \| `auto` | `dark` | color of the music player theme `dark`, `light`, `auto (follow system)` | `light` |

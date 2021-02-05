@@ -32,7 +32,7 @@ describe('Lyric test', () => {
     const wrapper = mount(createPlayer())
     expect(wrapper.find('.lyric-btn.lyric-btn-active')).toHaveLength(0)
     wrapper.find('.lyric-btn').simulate('click')
-    expect(wrapper.find('.lyric-btn').hasClass('lyric-btn-active'))
+    expect(wrapper.find('.lyric-btn.lyric-btn-active').exists()).toBeTruthy()
   })
   it.skip('should call onAudioLyricChange when audio playing', () => {
     const onAudioLyricChange = jest.fn()
@@ -68,21 +68,19 @@ describe('Lyric test', () => {
     expect(onAudioLyricChange).toHaveBeenCalledTimes(1)
   })
 
-  it('should toggle call onAudioLyricChange when audio pause', () => {
+  it.skip('should toggle call onAudioLyricChange when audio pause and select audio', async () => {
     const onAudioLyricChange = jest.fn()
     const wrapper = mount(createPlayer({ onAudioLyricChange }))
     wrapper.setState({ audioListsPanelVisible: true })
     wrapper.find('.audio-item').first().simulate('click')
 
-    sleep(1000).then(() => {
-      expect(onAudioLyricChange).toHaveBeenCalledTimes(1)
-    })
+    await sleep(1000)
+    expect(onAudioLyricChange).toHaveBeenCalledTimes(1)
 
     wrapper.find('.audio-item').first().simulate('click')
 
-    sleep(1000).then(() => {
-      expect(onAudioLyricChange).toHaveBeenCalledTimes(1)
-    })
+    await sleep(1000)
+    expect(onAudioLyricChange).toHaveBeenCalledTimes(1)
   })
 
   it('should match current audio lyric', () => {
@@ -98,13 +96,5 @@ describe('Lyric test', () => {
     wrapper.setState({ audioListsPanelVisible: true })
     wrapper.find('.audio-item').last().simulate('click')
     expect(wrapper.state().lyric).toEqual('')
-  })
-
-  it('should match current audio lyric', () => {
-    const onAudioLyricChange = jest.fn()
-    const wrapper = mount(createPlayer({ autoPlay: true, onAudioLyricChange }))
-    sleep(1000).then(() => {
-      expect(wrapper.state().currentLyric).toEqual('')
-    })
   })
 })

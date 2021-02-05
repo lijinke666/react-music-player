@@ -1,11 +1,11 @@
 const path = require('path')
-const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const HOST = 'localhost'
-const PORT = 8081
+const PORT = 8084
 
 const getPublicPath = () => {
   if (
@@ -59,9 +59,6 @@ module.exports = () => {
               loader: 'less-loader',
               options: {
                 sourceMap: isDev,
-                // modifyVars: {
-                //   'primary-color': 'red',
-                // },
                 // javascriptEnabled: true,
               },
             },
@@ -90,15 +87,16 @@ module.exports = () => {
         },
       ],
     },
-    devtool: isDev ? 'nosources-source-map' : false,
+    target: 'web',
+    devtool: isDev ? 'eval-source-map' : false,
     resolve: {
       enforceExtension: false,
       extensions: ['.js', '.jsx', '.json'],
       modules: [path.resolve('src'), path.resolve('.'), 'node_modules'],
     },
-    externals: {
-      async: 'commonjs async',
-    },
+    // externals: {
+    //   async: 'commonjs async',
+    // },
     devServer: {
       contentBase: path.join(__dirname, '../example/'),
       host: HOST,
@@ -107,6 +105,7 @@ module.exports = () => {
       port: PORT,
       historyApiFallback: true,
       hot: true,
+      open: true,
       clientLogLevel: 'silent',
       stats: {
         color: true,
@@ -117,9 +116,6 @@ module.exports = () => {
       },
     },
     plugins: [
-      new OpenBrowserPlugin({
-        url: `http:${HOST}:${PORT}/`,
-      }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, '../example/index.html'),
@@ -127,7 +123,8 @@ module.exports = () => {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
-    ],
+      process.env.ANALYZER && new BundleAnalyzerPlugin(),
+    ].filter(Boolean),
   }
   return options
 }
