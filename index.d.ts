@@ -169,7 +169,11 @@ export interface ReactJkMusicPlayerProps {
   onPlayModeChange?: (playMode: ReactJkMusicPlayerPlayMode) => void
   onModeChange?: (mode: ReactJkMusicPlayerMode) => void
   onAudioListsPanelChange?: (panelVisible: boolean) => void
-  onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void
+  onAudioPlayTrackChange?: (
+    currentPlayId: string,
+    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
+    audioInfo: ReactJkMusicPlayerAudioInfo,
+  ) => void
   onAudioListsDragEnd?: (
     currentPlayId: string,
     audioLists: Array<ReactJkMusicPlayerAudioListProps>,
