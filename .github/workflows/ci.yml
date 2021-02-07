@@ -1,4 +1,4 @@
-name: Node CI
+name: 💡 Lint Test and Build
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
           echo "commitmsg=${COMMIT_MESSAGE}" >> $GITHUB_ENV
 
       - name: Show commit message
-        run : echo "$commitmsg"
+        run: echo "$commitmsg"
 
       - name: Get yarn cache
         id: yarn-cache
@@ -46,15 +46,19 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Lint scripts and styles
+        run: yarn lint
+
       - name: Build, and test
         run: |
-          yarn lint
           yarn build
+          yarn bundlesize
           yarn test
           yarn ci:coverage
         env:
           CI: true
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          BUNDLESIZE_GITHUB_TOKEN: ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}
 
       - name: Build example page
         if: github.event_name == 'push' && startsWith( env.commitmsg , 'chore(release):' ) || startsWith( env.commitmsg , 'docs:' )

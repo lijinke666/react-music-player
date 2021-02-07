@@ -16,5 +16,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Hello @${{ github.event.issue.user.login }}, Your suggestion is very good. If I have time, I will consider developing this function. Of course, you are also welcome to propose PR.
-            你好 @${{ github.event.issue.user.login }}，你的这个建议非常好, 如果有空的话, 我会考虑开发这个功能, 当然, 也欢迎你提PR。
+            Hello @${{ github.event.issue.user.login }}, I see your question, If I have time, I will consider developing this function. Of course, you are also welcome to propose PR.
+            你好 @${{ github.event.issue.user.login }}, 我已经了解你的问题, 如果有空的话, 我会考虑开发这个功能, 当然, 也欢迎你提PR。

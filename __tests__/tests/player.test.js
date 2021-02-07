@@ -30,7 +30,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     const wrapper = mount(<ReactJkMusicPlayer className="text-class-name" />)
     expect(wrapper.render()).toMatchSnapshot()
   })
-  it('should render a <ReactJkMusicPlayer/> components', () => {
+  it('should render base components', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer className="text-class-name" showMiniProcessBar />,
     )
@@ -79,7 +79,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     assert(wrapper.find('.dark-theme').length === 0)
     assert(wrapper.find('.light-theme').length === 1)
   })
-  it('should find audioLists and return Array, playlists show "no music" text ', async () => {
+  it('should find audioLists and return Array, playlists show "no music" text', async () => {
     const testProps = {
       audioLists: [
         {
@@ -257,7 +257,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     wrapper.setState({ toggle: true, isMobile: true })
     expect(wrapper.find(Content)).toHaveLength(1)
   })
-  it('should render music player in custom root node', () => {
+  it('should not render music player in custom root node if container not found', () => {
     const div = document.createElement('div')
     div.className = 'test'
     const wrapper = mount(<ReactJkMusicPlayer getContainer={() => div} />)
@@ -281,11 +281,13 @@ describe('<ReactJkMusicPlayer/>', () => {
 
   it('should cannot render player in invalid custom root node', () => {
     const div = 1
+    let errMsg = ''
     try {
       mount(<ReactJkMusicPlayer getContainer={() => div} />)
     } catch (error) {
-      expect(error.message).toContain('Target container is not a DOM element')
+      errMsg = error.message
     }
+    expect(errMsg).toContain('Target container is not a DOM element')
   })
   it('update state theme when option theme change', () => {
     const wrapper = mount(<ReactJkMusicPlayer theme="light" />)
@@ -347,7 +349,7 @@ describe('<ReactJkMusicPlayer/>', () => {
       wrapper.find('.react-jinke-music-player-mobile-operation .item'),
     ).toHaveLength(5)
   })
-  it('should only render audio list menu button when ', () => {
+  it('should only render audio list menu button when', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         audioLists={[]}
@@ -719,7 +721,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(onBeforeDestroy).toHaveBeenCalled()
   })
 
-  it('should trigger onBeforeDestroy when destroy button clicked', () => {
+  it('should trigger onBeforeDestroy when destroy button clicked with promise', () => {
     const onBeforeDestroyRes = jest.fn(() => Promise.resolve())
     const onBeforeDestroyRej = jest.fn(() => Promise.reject())
     const onDestroyed = jest.fn()
@@ -1032,7 +1034,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state().playMode).toEqual('order')
   })
 
-  it('should use playMode options if all with playMode and defaultPlayMode ', () => {
+  it('should use playMode options if all with playMode and defaultPlayMode', () => {
     const wrapper = mount(
       <ReactJkMusicPlayer
         playMode="orderLoop"

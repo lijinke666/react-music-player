@@ -105,8 +105,8 @@
       position: relative;
       font-size: 14px;
       transition: color @common-animate-time;
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         content: '';
         position: absolute;
         width: 16px;
@@ -116,10 +116,10 @@
         background-color: @base-color;
         transition: background-color @common-animate-time;
       }
-      &:after {
+      &::after {
         left: -25px;
       }
-      &:before {
+      &::before {
         right: -25px;
       }
     }
@@ -160,10 +160,8 @@
       margin-right: 5px;
     }
     .duration {
-      margin-left: 5px;
-    }
-    .duration {
       justify-content: flex-end;
+      margin-left: 5px;
     }
     .progress-bar {
       flex: 1 1 auto;

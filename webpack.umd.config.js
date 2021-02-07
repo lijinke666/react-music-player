@@ -1,13 +1,14 @@
 const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-const { version, name, description } = require('./package.json')
+const pkg = require('./package.json')
 
 module.exports = {
   mode: 'production',
   entry: {
-    [name]: path.resolve(__dirname, 'src/index'),
+    [pkg.name]: path.resolve(__dirname, 'src/index'),
   },
   output: {
     library: 'ReactJkMusicPlayer',
@@ -60,7 +61,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.BannerPlugin(` \n ${name} v${version} \n ${description}
+    new webpack.BannerPlugin(` \n ${pkg.name} v${pkg.version} \n ${
+      pkg.description
+    }
      \n ${fs.readFileSync(path.resolve(__dirname, './LICENCE'))}
   `),
     new webpack.DefinePlugin({
@@ -70,5 +73,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
-  ],
+    process.env.ANALYZER && new BundleAnalyzerPlugin(),
+  ].filter(Boolean),
 }

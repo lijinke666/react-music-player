@@ -2,7 +2,7 @@
 import Switch from 'rc-switch'
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { name, repository, version } from '../package.json'
+import pkg from '../package.json'
 import ReactJkMusicPlayer from '../src'
 import Locale from '../src/config/locale'
 import PLAY_MODE from '../src/config/playMode'
@@ -716,15 +716,15 @@ class Demo extends React.PureComponent {
         <h1 className="title">
           <span className="name">
             <a
-              href={repository.url}
+              href={pkg.repository.url}
               target="_blank"
               rel="noopener noreferrer"
               title="go to github"
             >
-              {name}
+              {pkg.name}
             </a>
           </span>
-          <span className="version">doc version: {version}</span>
+          <span className="version">doc version: {pkg.version}</span>
         </h1>
         <p className="version">
           <a

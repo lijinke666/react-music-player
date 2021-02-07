@@ -73,18 +73,6 @@ describe('AudioInstance test', () => {
     expect(onPlayIndexChange).toHaveBeenCalled()
   })
 
-  it('should updatePlayIndex', async () => {
-    const onPlayIndexChange = jest.fn()
-    const { instance, wrapper } = getApp({
-      onPlayIndexChange,
-    })
-    instance.updatePlayIndex(1)
-    wrapper.instance().onAudioCanPlay()
-    await sleep(300)
-    expect(wrapper.state().musicSrc).toEqual('b')
-    expect(onPlayIndexChange).toHaveBeenCalled()
-  })
-
   it('should playByIndex', async () => {
     const onPlayIndexChange = jest.fn()
     const { instance, wrapper } = getApp({
