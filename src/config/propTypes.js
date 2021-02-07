@@ -64,7 +64,7 @@ export default {
   onModeChange: PropTypes.func,
   onAudioListsPanelChange: PropTypes.func,
   onAudioPlayTrackChange: PropTypes.func,
-  onAudioListsDragEnd: PropTypes.func,
+  onAudioListsSortEnd: PropTypes.func,
   onAudioLyricChange: PropTypes.func,
   showDownload: PropTypes.bool,
   showPlay: PropTypes.bool,
@@ -119,4 +119,5 @@ export default {
     fadeIn: PropTypes.number,
     fadeOut: PropTypes.number,
   }),
+  sortableOptions: PropTypes.object,
 }
