@@ -16,5 +16,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Hello @${{ github.event.issue.user.login }},  please provide a online reproduction, and add some steps comment. Issues labeled by Need Reproduce will be closed if no activities in 7 days.
-            你好 @${{ github.event.issue.user.login }}，请提供一个可以在线访问的链接, 并详细说明复现步骤, 7天内未回复issue自动关闭。
+            Hello @${{ github.event.issue.user.login }}, please provide a online reproduction forking [codesandbox template](https://codesandbox.io/s/react-jinke-music-player-template-hp586), add some steps comment and paste some browser console log screenshots.
+            Issues labeled by Need Reproduce will be closed if no activities in 7 days.
+            你好 @${{ github.event.issue.user.login }}，请提供一个可以在线访问的链接, 或者使用[codesandbox](https://codesandbox.io/s/react-jinke-music-player-template-hp586) 或者 并详细说明复现步骤, 如果控制台有报错, 请截图说明, 7天内未回复issue自动关闭。
