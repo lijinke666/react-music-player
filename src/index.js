@@ -2342,6 +2342,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   initSortableAudioLists = () => {
+    if (process.env.NODE_ENV === 'test') {
+      return
+    }
+
     Sortable.mount(new Swap())
 
     const { sortableOptions } = this.props
