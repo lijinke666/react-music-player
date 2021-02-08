@@ -52,9 +52,11 @@
     }
 
     .audio-item {
-      background-color: @lists-panel-item-bg-mobile !important;
-      &.playing {
-        background-color: @lists-panel-item-bg-playing-mobile !important;
+      &:not(.audio-lists-panel-sortable-highlight-bg) {
+        background-color: @lists-panel-item-bg-mobile !important;
+        &.playing {
+          background-color: @lists-panel-item-bg-playing-mobile !important;
+        }
       }
     }
 
