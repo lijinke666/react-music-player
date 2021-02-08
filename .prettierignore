@@ -16,3 +16,5 @@ env
 Dockerfile
 *.conf
 .docz
+README.md
+readme.md
