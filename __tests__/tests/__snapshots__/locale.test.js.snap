@@ -89,6 +89,7 @@ exports[`Locale test should render default locale with en_US 1`] = `
   showProgressLoadBar={true}
   showReload={true}
   showThemeSwitch={true}
+  sortableOptions={Object {}}
   spaceBar={false}
   theme="dark"
   toggleMode={true}
@@ -427,7 +428,6 @@ exports[`Locale test should render default locale with en_US 1`] = `
       </Draggable>
       <Memo(AudioListsPanel)
         audioLists={Array []}
-        audioListsDragEnd={[Function]}
         cover=""
         glassBg={false}
         icon={
@@ -783,6 +783,7 @@ exports[`Locale test should render locale with zh_CN 1`] = `
   showProgressLoadBar={true}
   showReload={true}
   showThemeSwitch={true}
+  sortableOptions={Object {}}
   spaceBar={false}
   theme="dark"
   toggleMode={true}
@@ -1286,7 +1287,6 @@ exports[`Locale test should render locale with zh_CN 1`] = `
       </Draggable>
       <Memo(AudioListsPanel)
         audioLists={Array []}
-        audioListsDragEnd={[Function]}
         cover=""
         glassBg={false}
         icon={

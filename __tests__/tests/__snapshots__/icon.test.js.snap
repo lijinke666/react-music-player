@@ -260,74 +260,72 @@ exports[`Player custom icon test should render custom icon 1`] = `
     <div
       class="audio-lists-panel-content"
     >
-      <div
-        role="presentation"
+      <ul
+        class="audio-lists-panel-content-wrap"
       >
-        <ul>
-          <li
-            class="audio-item playing pause"
-            title="Click to play"
+        <li
+          class="audio-item playing pause"
+          title="Click to play"
+        >
+          <span
+            class="group player-status"
           >
             <span
-              class="group player-status"
-            >
-              <span
-                class="player-icons"
-              >
-                <div>
-                  1
-                </div>
-              </span>
-            </span>
-            <span
-              class="group player-name"
-              title="audioName"
-            >
-              audioName
-            </span>
-            <span
-              class="group player-singer"
-            />
-            <span
-              class="group player-delete"
-              title="Click to delete audioName"
+              class="player-icons"
             >
               <div>
                 1
               </div>
             </span>
-          </li>
-          <li
-            class="audio-item pause"
-            title="Click to play"
+          </span>
+          <span
+            class="group player-name"
+            title="audioName"
+          >
+            audioName
+          </span>
+          <span
+            class="group player-singer"
+          />
+          <span
+            class="group player-delete"
+            title="Click to delete audioName"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+        <li
+          class="audio-item pause"
+          title="Click to play"
+        >
+          <span
+            class="group player-status"
           >
             <span
-              class="group player-status"
-            >
-              <span
-                class="player-icons"
-              />
-            </span>
-            <span
-              class="group player-name"
-              title="audioName2"
-            >
-              audioName2
-            </span>
-            <span
-              class="group player-singer"
+              class="player-icons"
             />
-            <span
-              class="group player-delete"
-              title="Click to delete audioName2"
-            >
-              <div>
-                1
-              </div>
-            </span>
-          </li>
-        </ul>
-      </div>
+          </span>
+          <span
+            class="group player-name"
+            title="audioName2"
+          >
+            audioName2
+          </span>
+          <span
+            class="group player-singer"
+          />
+          <span
+            class="group player-delete"
+            title="Click to delete audioName2"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
   <div
@@ -601,74 +599,72 @@ exports[`Player custom icon test should render custom icon in mobile mode 1`] = 
     <div
       class="audio-lists-panel-content"
     >
-      <div
-        role="presentation"
+      <ul
+        class="audio-lists-panel-content-wrap"
       >
-        <ul>
-          <li
-            class="audio-item playing pause"
-            title="Click to play"
+        <li
+          class="audio-item playing pause"
+          title="Click to play"
+        >
+          <span
+            class="group player-status"
           >
             <span
-              class="group player-status"
-            >
-              <span
-                class="player-icons"
-              >
-                <div>
-                  1
-                </div>
-              </span>
-            </span>
-            <span
-              class="group player-name"
-              title="audioName"
-            >
-              audioName
-            </span>
-            <span
-              class="group player-singer"
-            />
-            <span
-              class="group player-delete"
-              title="Click to delete audioName"
+              class="player-icons"
             >
               <div>
                 1
               </div>
             </span>
-          </li>
-          <li
-            class="audio-item pause"
-            title="Click to play"
+          </span>
+          <span
+            class="group player-name"
+            title="audioName"
+          >
+            audioName
+          </span>
+          <span
+            class="group player-singer"
+          />
+          <span
+            class="group player-delete"
+            title="Click to delete audioName"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+        <li
+          class="audio-item pause"
+          title="Click to play"
+        >
+          <span
+            class="group player-status"
           >
             <span
-              class="group player-status"
-            >
-              <span
-                class="player-icons"
-              />
-            </span>
-            <span
-              class="group player-name"
-              title="audioName2"
-            >
-              audioName2
-            </span>
-            <span
-              class="group player-singer"
+              class="player-icons"
             />
-            <span
-              class="group player-delete"
-              title="Click to delete audioName2"
-            >
-              <div>
-                1
-              </div>
-            </span>
-          </li>
-        </ul>
-      </div>
+          </span>
+          <span
+            class="group player-name"
+            title="audioName2"
+          >
+            audioName2
+          </span>
+          <span
+            class="group player-singer"
+          />
+          <span
+            class="group player-delete"
+            title="Click to delete audioName2"
+          >
+            <div>
+              1
+            </div>
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
   <audio

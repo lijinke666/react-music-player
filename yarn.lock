@@ -2017,6 +2017,11 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
+"@types/sortablejs@^1.10.6":
+  version "1.10.6"
+  resolved "https://registry.npm.taobao.org/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz?cache=0&sync_timestamp=1605057223578&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fsortablejs%2Fdownload%2F%40types%2Fsortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
+  integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -2922,7 +2927,7 @@ babel-preset-jest@^26.6.2:
     babel-plugin-jest-hoist "^26.6.2"
     babel-preset-current-node-syntax "^1.0.0"
 
-babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.22.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -11246,14 +11251,6 @@ react-dom@16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-drag-listview@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/react-drag-listview/-/react-drag-listview-0.1.8.tgz#e04de326ecbe97d6ad84fb68664e405765e30d72"
-  integrity sha512-ZJnjFEz89RPZ1DzI8f6LngmtsmJbLry/pMz2tEqABxHA+d8cUFRmVPS1DxZdoz/htc+uri9fCdv4dqIiPz0xIA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    prop-types "^15.5.8"
-
 react-draggable@^4.4.3:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-4.4.3.tgz#0727f2cae5813e36b0e4962bf11b2f9ef2b406f3"
@@ -12324,6 +12321,11 @@ socks@~2.3.2:
   dependencies:
     ip "1.1.5"
     smart-buffer "^4.1.0"
+
+sortablejs@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.13.0.tgz#3ab2473f8c69ca63569e80b1cd1b5669b51269e9"
+  integrity sha1-OrJHP4xpymNWnoCxzRtWabUSaek=
 
 sorted-object@~2.0.1:
   version "2.0.1"

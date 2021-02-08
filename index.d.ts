@@ -174,11 +174,7 @@ export interface ReactJkMusicPlayerProps {
     audioLists: Array<ReactJkMusicPlayerAudioListProps>,
     audioInfo: ReactJkMusicPlayerAudioInfo,
   ) => void
-  onAudioListsDragEnd?: (
-    currentPlayId: string,
-    audioLists: Array<ReactJkMusicPlayerAudioListProps>,
-    audioInfo: ReactJkMusicPlayerAudioInfo,
-  ) => void
+  onAudioListsSortEnd?: (oldIndex: number, newIndex: number) => void
   showDownload?: boolean
   showPlay?: boolean
   showReload?: boolean
@@ -238,6 +234,7 @@ export interface ReactJkMusicPlayerProps {
     fadeIn?: number
     fadeOut?: number
   }
+  sortableOptions?: object
 }
 
 export default class ReactJkMusicPlayer extends React.PureComponent<

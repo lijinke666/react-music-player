@@ -342,8 +342,8 @@ const options = {
     console.log('audio lists panel visible:', panelVisible)
   },
 
-  onAudioListsDragEnd(fromIndex, endIndex) {
-    console.log('audio lists drag end:', fromIndex, endIndex)
+  onAudioListsSortEnd(oldIndex, newIndex) {
+    console.log('audio lists sort end:', oldIndex, newIndex)
   },
 
   onAudioLyricChange(lineNum, currentLyric) {

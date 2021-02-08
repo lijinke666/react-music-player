@@ -85,6 +85,7 @@ npm install react-jinke-music-player --save
 - [x] Support theme switch
 - [x] Support typescript (d.ts)
 - [x] Support lyric
+- [x] Support audio list sortable
 - [x] Play list
 - [x] Full player features
 - [x] [Server-Side Rendering](#bulb-server-side-rendering)
@@ -182,7 +183,7 @@ ReactDOM.render(
 | onAudioListsPanelChange | `function(panelVisible)` | `-` | audio lists panel change handle |
 | onThemeChange | `function(theme)` | `-` | theme change handle |
 | onModeChange | `function(mode)` | `-` | mode change handle |
-| onAudioListsDragEnd | `function(fromIndex,endIndex)` | `-` | audio lists drag end handle |
+| onAudioListsSortEnd | `function(oldIndex,newIndex)` | `-` | audio lists sort end handle, use [SortableJS](https://github.com/SortableJS/Sortable) |
 | onAudioLyricChange | `function(lineNum, currentLyric)` | `-` | audio lyric change handle |
 | getContainer | `() => HTMLElement` \| `Selectors` | `document.body` | Return the mount node for Music player |
 | getAudioInstance | `(instance: HTMLAudioElement) => void` | `-` | get origin audio element instance , you can use it do everything |
@@ -201,6 +202,7 @@ ReactDOM.render(
 | renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
 | mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
 | volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | audio fade in and out. [Detail](#bulb-audio-volume-fade-in-and-fade-out) |
+| sortableOptions | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `{swap: true, animation: 100, swapClass: 'audio-lists-panel-sortable-highlight-bg'}` | [SortableJs Options](https://github.com/SortableJS/Sortable#options) |
 
 ## :bulb: Custom operation ui
 

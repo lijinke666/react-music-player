@@ -13,6 +13,7 @@ import Switch from 'rc-switch'
 import React, { cloneElement, createRef, PureComponent } from 'react'
 import { createPortal } from 'react-dom'
 import Draggable from 'react-draggable'
+import Sortable, { Swap } from 'sortablejs'
 import AudioListsPanel from './components/AudioListsPanel'
 import CircleProcessBar from './components/CircleProcessBar'
 import {
@@ -58,6 +59,7 @@ import {
   DEFAULT_VOLUME,
   DEFAULT_REMOVE_ID,
 } from './config/player'
+import SORTABLE_CONFIG from './config/sortable'
 import LOCALE_CONFIG from './locale'
 import Lyric from './lyric'
 import {
@@ -188,6 +190,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       fadeIn: 0,
       fadeOut: 0,
     },
+    // https://github.com/SortableJS/Sortable#options
+    sortableOptions: {},
   }
 
   static propTypes = PROP_TYPES
@@ -674,7 +678,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
           remove={remove}
           onDelete={this.onDeleteAudioLists}
           removeId={removeId}
-          audioListsDragEnd={this.onAudioListsDragEnd}
           locale={locale}
         />
         {/* 播放模式提示框 */}
@@ -1629,19 +1632,23 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.setState({ theme })
   }
 
-  onAudioListsDragEnd = (fromIndex, toIndex) => {
+  onAudioListsSortEnd = ({ oldIndex, newIndex }) => {
+    if (oldIndex === newIndex) {
+      return
+    }
+
     const { playId, audioLists } = this.state
     const _audioLists = [...audioLists]
-    const item = _audioLists.splice(fromIndex, 1)[0]
-    _audioLists.splice(toIndex, 0, item)
+    const item = _audioLists.splice(oldIndex, 1)[0]
+    _audioLists.splice(newIndex, 0, item)
 
     // 如果拖动正在播放的歌曲 播放Id 等于 拖动后的index
-    const _playId = fromIndex === playId ? toIndex : playId
+    const _playId = oldIndex === playId ? newIndex : playId
 
     this.setState({ audioLists: _audioLists, playId: _playId })
 
-    this.props.onAudioListsDragEnd &&
-      this.props.onAudioListsDragEnd(fromIndex, toIndex)
+    this.props.onAudioListsSortEnd &&
+      this.props.onAudioListsSortEnd(oldIndex, newIndex)
 
     this.props.onAudioListsChange &&
       this.props.onAudioListsChange(
@@ -1649,6 +1656,15 @@ export default class ReactJkMusicPlayer extends PureComponent {
         _audioLists,
         this.getBaseAudioInfo(),
       )
+
+    // TODO: remove
+    if (this.props.onAudioListsDragEnd) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        '[Deprecated] onAudioListsDragEnd is deprecated. please use onAudioListsSortEnd(oldIndex, newIndex){}',
+      )
+      this.props.onAudioListsDragEnd(oldIndex, newIndex)
+    }
   }
 
   saveLastPlayStatus = () => {
@@ -2313,6 +2329,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.removeMobileListener()
     this.removeLyric()
     this._onDestroyed()
+    this.sortable && this.sortable.destroy()
   }
 
   onAudioCanPlay = () => {
@@ -2321,6 +2338,22 @@ export default class ReactJkMusicPlayer extends PureComponent {
     }
     this.setState({ canPlay: true }, () => {
       this.playAudio(true)
+    })
+  }
+
+  initSortableAudioLists = () => {
+    if (process.env.NODE_ENV === 'test') {
+      return
+    }
+
+    Sortable.mount(new Swap())
+
+    const { sortableOptions } = this.props
+    const { selector, ...defaultOptions } = SORTABLE_CONFIG
+    this.sortable = new Sortable(document.querySelector(`.${selector}`), {
+      onEnd: this.onAudioListsSortEnd,
+      ...defaultOptions,
+      ...sortableOptions,
     })
   }
 
@@ -2391,5 +2424,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.addSystemThemeListener()
     this.initPlayer()
     this.onGetAudioInstance()
+    this.initSortableAudioLists()
   }
 }

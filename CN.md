@@ -98,7 +98,7 @@ ReactDOM.render(
 > 中文版本文档可能不完整, 请以英文版为准, 维护两个版本太累了
 
 | 属性 | 类型 | 默认值 | 说明 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | className | `string` | `-` | 附加的 className |
 | audioLists | `object[]` | `-` | 播放列表 : {name: "YOUR_AUDIO_NAME",singer: "YOUR_AUDIO_SINGER_NAME",cover: "YOUR_AUDIO_COVER",musicSrc: "YOUR_AUDIO_SRC"} |
 | theme | `string` | `dark` | 播放器主题 可选 'light'(白天) 和 'dark'(黑夜) 两种 |
@@ -152,7 +152,7 @@ ReactDOM.render(
 | onAudioListsPanelChange | `function(panelVisible)` | `-` | 播放列表打开或关闭的 钩子函数 |
 | onThemeChange | `function(theme)` | `-` | 主题切换后的 钩子函数 |
 | onModeChange | `function(mode)` | `-` | 模式切换发生改变时的 钩子函数 |
-| onAudioListsDragEnd | `function(fromIndex,toIndex)` | `-` | 列表歌曲拖拽后 钩子函数 |
+| onAudioListsSortEnd | `function(fromIndex,toIndex)` | `-` | 列表歌曲拖拽后 钩子函数 |
 | onAudioLyricChange | `function(lineNum, currentLyric)` | `-` | 当前播放的歌词改变回调 |
 | getContainer | `() => HTMLElement` \| `Selectors` | `document.body` | 播放器挂载的节点 默认在 body |
 | getAudioInstance | `(instance: HTMLAudioElement) => void` | `-` | 获取原始的 audio 实例, 可以用它所有的 api 做你想做的事情 |
@@ -396,7 +396,7 @@ export interface ReactJkMusicPlayerProps {
   onModeChange?: (mode: ReactJkMusicPlayerMode) => void
   onAudioListsPanelChange?: (panelVisible: boolean) => void
   onAudioPlayTrackChange?: (fromIndex: number, endIndex: number) => void
-  onAudioListsDragEnd?: (
+  onAudioListsSortEnd?: (
     currentPlayId: string,
     audioLists: Array<ReactJkMusicPlayerAudioList>,
     audioInfo: ReactJkMusicPlayerAudioInfo,
