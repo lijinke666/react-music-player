@@ -50,6 +50,7 @@ export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
     fromIndex: number,
     audioLists: ReactJkMusicPlayerAudioListProps[],
   ) => void
+  sortable?: any
 }
 
 export interface ReactJkMusicPlayerIcon {

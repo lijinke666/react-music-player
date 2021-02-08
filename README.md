@@ -130,7 +130,7 @@ ReactDOM.render(
 ## :clipboard: API
 
 | Name | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
+| --- | --- | --- | --- | --- | --- | --- |
 | className | `string` | `-` | Additional CSS class for the root DOM node |
 | audioLists | [AudioListProps[]](#bulb-audiolistprops) | `-` | [Detail](#bulb-audiolistprops) |
 | theme | `light` \| `dark` \| `auto` | `dark` | color of the music player theme `dark`, `light`, `auto (follow system)` | `light` |
@@ -223,6 +223,7 @@ Support feature:
 - `play prev audio`
 - `play audio by custom play index`
 - `update play index`
+- [SortableJS methods](https://github.com/SortableJS/Sortable#methods)
 
 ```jsx
 class App extends React.Component {
@@ -280,8 +281,8 @@ class App extends React.Component {
 ```
 
 <p>
-<img alt="glass-1" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png" width="200" max-width="49%">
-<img alt="glass-2" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png" width="200" max-width="49%">
+<img alt="glass-1" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-1.png?raw=true" width="200" max-width="49%">
+<img alt="glass-2" src="https://github.com/lijinke666/react-music-player/blob/master/assetsImg/glass-2.png?raw=true" width="200" max-width="49%">
 </p>
 
 ## :bulb: Custom downloader
@@ -526,7 +527,7 @@ export interface ReactJkMusicPlayerIcon {
 <ReactJkMusicPlayer theme="auto" />
 ```
 
-![auto-theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/auto-theme.gif)
+![auto-theme](https://github.com/lijinke666/react-music-player/blob/master/assetsImg/auto-theme.gif?raw=true)
 
 ## :bulb: Quiet update
 

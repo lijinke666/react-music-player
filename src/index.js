@@ -2157,6 +2157,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
         name: 'appendAudio',
         value: this.appendAudio,
       },
+      {
+        name: 'sortable',
+        value: this.sortable,
+      },
     ].forEach(({ name, value }) => {
       Object.defineProperty(audio, name, {
         value,
@@ -2423,7 +2427,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.addMobileListener()
     this.addSystemThemeListener()
     this.initPlayer()
-    this.onGetAudioInstance()
     this.initSortableAudioLists()
+    this.onGetAudioInstance()
   }
 }
