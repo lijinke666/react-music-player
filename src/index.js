@@ -139,6 +139,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     currentVolumeFadeInterval: undefined,
     updateIntervalEndVolume: undefined,
     isAudioSeeking: false,
+    isResetCoverRotate: false,
   }
 
   static defaultProps = {
@@ -298,6 +299,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       currentLyric,
       audioLyricVisible,
       isPlayDestroyed,
+      isResetCoverRotate,
     } = this.state
 
     const preloadState =
@@ -516,6 +518,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
             toggleMode={toggleMode}
             renderAudioTitle={this.renderAudioTitle}
             shouldShowPlayIcon={shouldShowPlayIcon}
+            isResetCoverRotate={isResetCoverRotate}
           />
         )}
 
@@ -544,6 +547,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
                 <div
                   className={cls('img-content', 'img-rotate', {
                     'img-rotate-pause': !playing || !cover,
+                    'img-rotate-reset': isResetCoverRotate,
                   })}
                   style={{ backgroundImage: `url(${cover})` }}
                   onClick={() => this.onCoverClick()}
@@ -1385,7 +1389,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
       })
     }
 
-    this.setState({ playing: false, loading: true, isAudioSeeking: false })
+    this.setState({
+      playing: false,
+      loading: true,
+      isAudioSeeking: false,
+      isResetCoverRotate: false,
+    })
 
     if (isLoaded || readyState >= AUDIO_READY_STATE.HAVE_FUTURE_DATA) {
       const { playing } = this.getLastPlayStatus()
@@ -2372,6 +2381,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
       ...defaultOptions,
       ...sortableOptions,
     })
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.musicSrc !== this.state.musicSrc) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ isResetCoverRotate: true })
+    }
   }
 
   // eslint-disable-next-line camelcase

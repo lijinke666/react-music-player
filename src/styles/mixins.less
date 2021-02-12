@@ -105,6 +105,11 @@
       transform: rotateX(360deg);
     }
   }
+  @keyframes coverReset {
+    to {
+      transform: rotate(0deg);
+    }
+  }
   @keyframes audioLoading {
     from {
       transform: rotate(0deg);
@@ -202,5 +207,8 @@
   }
   .img-rotate-pause {
     animation-play-state: paused !important;
+  }
+  .img-rotate-reset {
+    animation: coverReset @common-animate-time forwards !important;
   }
 }

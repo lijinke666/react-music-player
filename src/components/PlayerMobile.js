@@ -31,6 +31,7 @@ const PlayerMobile = ({
   toggleMode,
   renderAudioTitle,
   shouldShowPlayIcon,
+  isResetCoverRotate,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -66,6 +67,7 @@ const PlayerMobile = ({
           alt="cover"
           className={cls('cover', {
             'img-rotate-pause': !playing || !cover,
+            'img-rotate-reset': isResetCoverRotate,
           })}
         />
       </div>

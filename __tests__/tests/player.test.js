@@ -1824,4 +1824,22 @@ describe('<ReactJkMusicPlayer/>', () => {
 
     wrapper.setProps({ audioLists })
   })
+
+  it('should reset current cover rotate deg when playing audio changed', async () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer audioLists={[{ musicSrc: 'x' }]} />,
+    )
+
+    expect(wrapper.state('isResetCoverRotate')).toBeFalsy()
+
+    wrapper.setProps({ audioLists: [{ musicSrc: 'y' }] }, async () => {
+      wrapper.update()
+      await sleep(100)
+      expect(wrapper.state('isResetCoverRotate')).toBeTruthy()
+
+      wrapper.update()
+      await sleep(100)
+      expect(wrapper.state('isResetCoverRotate')).toBeFalsy()
+    })
+  })
 })
