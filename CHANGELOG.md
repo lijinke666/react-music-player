@@ -1,3 +1,20 @@
+# [4.22.0](https://github.com/lijinke666/react-music-player/compare/v4.21.2...v4.22.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* not play list sort higlight on mobile ([52c3159](https://github.com/lijinke666/react-music-player/commit/52c31593d256a45f756a6377db10d4140127c5c3))
+* onAudioPlayTrackChange type ([14dddf4](https://github.com/lijinke666/react-music-player/commit/14dddf46ff58cf061a86eb72e30ad26ceb6b0b24))
+* play list sort support mobile [#223](https://github.com/lijinke666/react-music-player/issues/223) ([f7b6193](https://github.com/lijinke666/react-music-player/commit/f7b6193eb89ae28deaff422c0fc49ccc6a000d1a))
+* remove stalled event handler and use async .play() ([2c7c1eb](https://github.com/lijinke666/react-music-player/commit/2c7c1eb1a171da8988c93189ebd41daf3823c5dc))
+* reset current cover rotate deg if playing audio changed ([f5f76f9](https://github.com/lijinke666/react-music-player/commit/f5f76f9847905eef5688cc3cc3c979e652981ee6))
+
+
+### Features
+
+* custom operation support sortablejs method ([939d453](https://github.com/lijinke666/react-music-player/commit/939d4531b784c2d70f4e546bc28938d2ba5cede7))
+* react-drag-listview => sortablejs for support audio list sort on mobile [#223](https://github.com/lijinke666/react-music-player/issues/223) ([e173a26](https://github.com/lijinke666/react-music-player/commit/e173a26236a2039466ac272e49ac7908a8dc870f))
+
 ## [4.21.2](https://github.com/lijinke666/react-music-player/compare/v4.21.1...v4.21.2) (2021-01-27)
 
 
