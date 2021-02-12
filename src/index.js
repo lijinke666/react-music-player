@@ -864,7 +864,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       this.setState({ playing: !playing })
       if (!playing) {
         if (canPlay) {
-          return this.audio.play()
+          this.play()
+          return
         }
         return loadAudio(musicSrc)
       }
@@ -1397,7 +1398,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         },
         () => {
           if (canPlay) {
-            this.audio.play()
+            this.play()
           }
           this.setState({
             isInitAutoPlay: true,
@@ -1736,11 +1737,24 @@ export default class ReactJkMusicPlayer extends PureComponent {
     )
   }
 
+  play = () => {
+    // https://developers.google.com/web/updates/2017/06/play-request-was-interrupted
+    const playPromise = this.audio.play()
+    if (playPromise && playPromise.then) {
+      playPromise
+        .then(() => {
+          this.setState({ loading: false, playing: true })
+        })
+        .catch(() => {
+          this.setState({ loading: false, playing: false })
+        })
+    }
+  }
+
   mockAutoPlayForMobile = () => {
     if (this.props.autoPlay && !this.state.playing) {
       this.audio.load()
-      this.audio.pause()
-      this.audio.play()
+      this.play()
     }
   }
 
@@ -1786,7 +1800,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       play: this.onAudioPlay,
       timeupdate: this.audioTimeUpdate,
       volumechange: this.onAudioVolumeChange,
-      stalled: this.onAudioError, // 当浏览器尝试获取媒体数据，但数据不可用时
       abort: this.onAudioAbort,
       progress: this.onSetAudioLoadedProgress,
     },
