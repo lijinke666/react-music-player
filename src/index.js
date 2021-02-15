@@ -1051,7 +1051,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   onResetVolume = () => {
     const { currentAudioVolume } = this.state
-    this.setAudioVolume(currentAudioVolume || 0.1)
+    this.setAudioVolume(this.getVolumeBarValue(currentAudioVolume || 0.1))
   }
 
   setAudioVolume = (volumeBarValue) => {
