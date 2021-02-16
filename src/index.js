@@ -2406,8 +2406,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     } = nextProps
     const isEqualAudioLists = arrayEqual(audioLists)(this.props.audioLists)
     if (!isEqualAudioLists) {
-      this.initSortableAudioLists()
-
       if (clearPriorAudioLists) {
         this.changeAudioLists(nextProps)
       } else {
@@ -2416,6 +2414,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
         this.initPlayer(audioLists, false)
       }
+      setTimeout(() => this.initSortableAudioLists(), 200)
     }
     this.updatePlayIndex(
       !isEqualAudioLists && clearPriorAudioLists

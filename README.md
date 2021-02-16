@@ -18,7 +18,7 @@ react-jinke-music-player
     <img src="https://img.shields.io/npm/l/react-jinke-music-player.svg?style=flat-square" alt="npm"/>
   </a>
   <a href="https://github.com/lijinke666/react-music-player/actions">
-    <img src="https://github.com/lijinke666/react-music-player/workflows/Node%20CI/badge.svg" />
+    <img src="https://github.com/lijinke666/react-music-player/workflows/%F0%9F%92%A1%20Build/badge.svg" />
   </a>
    <a href="https://badge.fury.io/js/react-jinke-music-playerr" title="npm">
     <img src="https://img.shields.io/npm/v/react-jinke-music-player.svg?style=flat-square" alt="npm version"/>
