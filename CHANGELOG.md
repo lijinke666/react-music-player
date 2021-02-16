@@ -1,3 +1,13 @@
+## [4.22.1](https://github.com/lijinke666/react-music-player/compare/v4.22.0...v4.22.1) (2021-02-16)
+
+
+### Bug Fixes
+
+* cannot sort dynamic list ([3f670ac](https://github.com/lijinke666/react-music-player/commit/3f670ac91e17e3ad4581632b345efcc8462060a2))
+* miss style and className types ([e7cf19b](https://github.com/lijinke666/react-music-player/commit/e7cf19bfebfa6166e38337d6a56e1e08458d0fde))
+* restore volume to original after unmute ([fc1193c](https://github.com/lijinke666/react-music-player/commit/fc1193cc7c9553c6fde10974d72a13e567191ddb))
+* thorw error when audio lists is empty [#308](https://github.com/lijinke666/react-music-player/issues/308) ([f996cb2](https://github.com/lijinke666/react-music-player/commit/f996cb25f56d1b7d3c3e37f00802424e1780f644))
+
 # [4.22.0](https://github.com/lijinke666/react-music-player/compare/v4.21.2...v4.22.0) (2021-02-12)
 
 
