@@ -3,4 +3,5 @@ export default {
   swapClass: 'audio-lists-panel-sortable-highlight-bg',
   swap: true,
   animation: 100,
+  easing: 'cubic-bezier(0.43, -0.1, 0.16, 1.1)',
 }

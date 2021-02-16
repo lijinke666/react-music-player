@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const Enzyme = require('enzyme')
 const Adapter = require('enzyme-adapter-react-16')
+const sortablejs = require('sortablejs')
 const {
   AUDIO_READY_STATE,
   AUDIO_NETWORK_STATE,
@@ -61,3 +62,12 @@ if (typeof window !== 'undefined') {
 }
 
 Enzyme.configure({ adapter: new Adapter() })
+
+jest.mock('sortablejs', () => {
+  return jest.fn().mockImplementation(() => {
+    return { destroy: jest.fn() }
+  })
+})
+
+sortablejs.Swap = jest.fn()
+sortablejs.mount = jest.fn()

@@ -261,6 +261,9 @@ const options = {
     fadeOut: 1000,
   },
 
+  // https://github.com/SortableJS/Sortable#options
+  sortableOptions: {},
+
   // Music is downloaded handle
   onAudioDownload(audioInfo) {
     console.log('audio download', audioInfo)

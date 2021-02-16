@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import Sortable from 'sortablejs'
 import ReactJkMusicPlayer from '../../src'
 
 const createPlayer = (props) => {
@@ -51,5 +52,12 @@ describe('Audio lists Sort test', () => {
     expect(warnSpy).toHaveBeenCalledWith(
       '[Deprecated] onAudioListsDragEnd is deprecated. please use onAudioListsSortEnd(oldIndex, newIndex){}',
     )
+  })
+
+  it('should render correctly when audio lists is empty', () => {
+    Sortable.mockClear()
+    const errorSpy = jest.spyOn(console, 'error')
+    createPlayer({ audioLists: [] })
+    expect(errorSpy).not.toThrowError()
   })
 })

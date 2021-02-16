@@ -71,6 +71,8 @@ import {
   uuId,
 } from './utils'
 
+Sortable.mount(new Swap())
+
 const IS_MOBILE = getIsMobile()
 
 const DEFAULT_ICON = {
@@ -2368,15 +2370,17 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   initSortableAudioLists = () => {
-    if (process.env.NODE_ENV === 'test') {
+    const { audioLists, sortableOptions } = this.props
+    const { selector, ...defaultOptions } = SORTABLE_CONFIG
+    const container = document.querySelector(`.${selector}`)
+    if ((Array.isArray(audioLists) && !audioLists.length) || !container) {
       return
     }
 
-    Sortable.mount(new Swap())
-
-    const { sortableOptions } = this.props
-    const { selector, ...defaultOptions } = SORTABLE_CONFIG
-    this.sortable = new Sortable(document.querySelector(`.${selector}`), {
+    if (this.sortable) {
+      this.sortable.destroy()
+    }
+    this.sortable = new Sortable(container, {
       onEnd: this.onAudioListsSortEnd,
       ...defaultOptions,
       ...sortableOptions,
@@ -2402,6 +2406,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     } = nextProps
     const isEqualAudioLists = arrayEqual(audioLists)(this.props.audioLists)
     if (!isEqualAudioLists) {
+      this.initSortableAudioLists()
+
       if (clearPriorAudioLists) {
         this.changeAudioLists(nextProps)
       } else {
