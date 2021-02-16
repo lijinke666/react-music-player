@@ -29,9 +29,9 @@ export type ReactJkMusicPlayerPlayMode =
   | 'shufflePlay'
 
 export interface ReactJkMusicPlayerAudioListProps {
-  name: string | React.ReactNode
+  name: React.ReactNode
   musicSrc: (() => Promise<string>) | string
-  singer?: string | React.ReactNode
+  singer?: React.ReactNode
   cover?: string
   lyric?: string
   duration?: number
@@ -54,55 +54,55 @@ export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
 }
 
 export interface ReactJkMusicPlayerIcon {
-  pause?: React.ReactNode | string
-  play?: React.ReactNode | string
-  destroy?: React.ReactNode | string
-  close?: React.ReactNode | string
-  delete?: React.ReactNode | string
-  download?: React.ReactNode | string
-  toggle?: React.ReactNode | string
-  lyric?: React.ReactNode | string
-  volume?: React.ReactNode | string
-  mute?: React.ReactNode | string
-  next?: React.ReactNode | string
-  prev?: React.ReactNode | string
-  playLists?: React.ReactNode | string
-  reload?: React.ReactNode | string
-  loop?: React.ReactNode | string
-  order?: React.ReactNode | string
-  orderLoop?: React.ReactNode | string
-  shuffle?: React.ReactNode | string
-  loading?: React.ReactNode | string
+  pause?: React.ReactNode
+  play?: React.ReactNode
+  destroy?: React.ReactNode
+  close?: React.ReactNode
+  delete?: React.ReactNode
+  download?: React.ReactNode
+  toggle?: React.ReactNode
+  lyric?: React.ReactNode
+  volume?: React.ReactNode
+  mute?: React.ReactNode
+  next?: React.ReactNode
+  prev?: React.ReactNode
+  playLists?: React.ReactNode
+  reload?: React.ReactNode
+  loop?: React.ReactNode
+  order?: React.ReactNode
+  orderLoop?: React.ReactNode
+  shuffle?: React.ReactNode
+  loading?: React.ReactNode
 }
 
 export interface ReactJkMusicPlayerCustomLocale {
   playModeText: {
-    order: string | React.ReactNode
-    orderLoop: string | React.ReactNode
-    singleLoop: string | React.ReactNode
-    shufflePlay: string | React.ReactNode
+    order: React.ReactNode
+    orderLoop: React.ReactNode
+    singleLoop: React.ReactNode
+    shufflePlay: React.ReactNode
   }
-  openText: string | React.ReactNode
-  closeText: string | React.ReactNode
-  emptyText: string | React.ReactNode
-  clickToPlayText: string | React.ReactNode
-  clickToPauseText: string | React.ReactNode
-  nextTrackText: string | React.ReactNode
-  previousTrackText: string | React.ReactNode
-  reloadText: string | React.ReactNode
-  volumeText: string | React.ReactNode
-  playListsText: string | React.ReactNode
-  toggleLyricText: string | React.ReactNode
-  toggleMiniModeText: string | React.ReactNode
-  destroyText: string | React.ReactNode
-  downloadText: string | React.ReactNode
-  lightThemeText: string | React.ReactNode
-  darkThemeText: string | React.ReactNode
-  switchThemeText: string | React.ReactNode
-  removeAudioListsText: string | React.ReactNode
-  clickToDeleteText: (name: string) => string | React.ReactNode
-  controllerTitle: string | React.ReactNode
-  emptyLyricText: string | React.ReactNode
+  openText: React.ReactNode
+  closeText: React.ReactNode
+  emptyText: React.ReactNode
+  clickToPlayText: React.ReactNode
+  clickToPauseText: React.ReactNode
+  nextTrackText: React.ReactNode
+  previousTrackText: React.ReactNode
+  reloadText: React.ReactNode
+  volumeText: React.ReactNode
+  playListsText: React.ReactNode
+  toggleLyricText: React.ReactNode
+  toggleMiniModeText: React.ReactNode
+  destroyText: React.ReactNode
+  downloadText: React.ReactNode
+  lightThemeText: React.ReactNode
+  darkThemeText: React.ReactNode
+  switchThemeText: React.ReactNode
+  removeAudioListsText: React.ReactNode
+  clickToDeleteText: (name: string) => React.ReactNode
+  controllerTitle: React.ReactNode
+  emptyLyricText: React.ReactNode
 }
 
 export type ReactJkMusicPlayerLocale =
@@ -117,6 +117,8 @@ export interface TransformedDownloadAudioInfo {
 }
 
 export interface ReactJkMusicPlayerProps {
+  style?: React.CSSProperties
+  className?: string
   audioLists: Array<ReactJkMusicPlayerAudioListProps>
   locale?: ReactJkMusicPlayerLocale
   icon?: ReactJkMusicPlayerIcon
@@ -186,10 +188,10 @@ export interface ReactJkMusicPlayerProps {
   showMediaSession?: boolean
   toggleMode?: boolean
   once?: boolean
-  extendsContent?: string | React.ReactNode
+  extendsContent?: React.ReactNode
   defaultVolume?: number
   playModeShowTime?: number
-  bounds?: string | React.ReactNode
+  bounds?: React.ReactNode
   showMiniProcessBar?: boolean
   loadAudioErrorPlayNext?: boolean
   preload?: boolean | 'auto' | 'metadata' | 'none'
@@ -229,7 +231,7 @@ export interface ReactJkMusicPlayerProps {
   renderAudioTitle?: (
     audioInfo: ReactJkMusicPlayerAudioInfo,
     isMobile: boolean,
-  ) => React.ReactNode | string
+  ) => React.ReactNode
   mobileMediaQuery?: string
   volumeFade?: {
     fadeIn?: number
