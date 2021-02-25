@@ -6714,12 +6714,12 @@ html-escaper@^2.0.0:
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
 html-loader@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/html-loader/download/html-loader-2.0.0.tgz#32e98b39cf7ce8be6851fa5466abe06015425a46"
-  integrity sha1-MumLOc986L5oUfpUZqvgYBVCWkY=
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/html-loader/-/html-loader-2.1.1.tgz#61174d43a4fe97b2a79c3b6206736e6725e13b97"
+  integrity sha512-L6HUVgr2aeGMyiool2raoBQb8Lue2UTAhUsHvsMLyNxfBHMtOz1NJL1GyE4VbyAoYBK5PJp1I9Aw+FqS3d2eTA==
   dependencies:
     html-minifier-terser "^5.1.1"
-    parse5-sax-parser "^6.0.1"
+    parse5 "^6.0.1"
 
 html-minifier-terser@^5.0.1, html-minifier-terser@^5.1.1:
   version "5.1.1"
@@ -10322,13 +10322,6 @@ parse-passwd@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/parse-passwd/download/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
   integrity sha1-bVuTSkVpk7I9N/QKOC1vFmao5cY=
-
-parse5-sax-parser@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npm.taobao.org/parse5-sax-parser/download/parse5-sax-parser-6.0.1.tgz#98b4d366b5b266a7cd90b4b58906667af882daba"
-  integrity sha1-mLTTZrWyZqfNkLS1iQZmeviC2ro=
-  dependencies:
-    parse5 "^6.0.1"
 
 parse5@5.1.1:
   version "5.1.1"
