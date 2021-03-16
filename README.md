@@ -202,7 +202,7 @@ ReactDOM.render(
 | renderAudioTitle | `(audioInfo, isMobile) => ReactNode` | `-` | use `locale.audioTitle` to set `audio` tag title, the api can render custom jsx element for display |
 | mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
 | volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | audio fade in and out. [Detail](#bulb-audio-volume-fade-in-and-fade-out) |
-| sortableOptions | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `{swap: true, animation: 100, swapClass: 'audio-lists-panel-sortable-highlight-bg'}` | [SortableJs Options](https://github.com/SortableJS/Sortable#options) |
+| sortableOptions | `object` | `{swap: true, animation: 100, swapClass: 'audio-lists-panel-sortable-highlight-bg'}` | [SortableJs Options](https://github.com/SortableJS/Sortable#options) |
 
 ## :bulb: Custom operation ui
 
@@ -215,7 +215,6 @@ Support feature:
 - `change playback rate`
 - `change volume`
 - `destroy audio player`
-- `append some audio to current audio lists`
 - `toggle play`
 - `clear audio list`
 - `toggle play`
@@ -252,13 +251,6 @@ class App extends React.Component {
         </button>
         <button onClick={() => this.audioInstance.destroy()}>
           destroy player
-        </button>
-        <button
-          onClick={() =>
-            this.audio.appendAudio(1, [{ musicSrc: 'x', name: 'xx', singer: 'xx }])
-          }
-        >
-          append audio
         </button>
         <button onClick={this.audio.togglePlay}>toggle play</button>
         <button onClick={this.audio.clear}>clear audio lists</button>

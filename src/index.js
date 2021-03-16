@@ -2137,23 +2137,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
     this.updatePlayIndex(index)
   }
 
-  appendAudio = (fromIndex, audioLists = []) => {
-    if (!fromIndex && fromIndex !== 0) {
-      // eslint-disable-next-line no-console
-      console.error('Warning! function appendAudio(){} must have formIndex!')
-      return
-    }
-    const newAudioLists = [...this.state.audioLists]
-    const addedAudioLists = audioLists.map((audioInfo) => {
-      return {
-        [PLAYER_KEY]: uuId(),
-        ...audioInfo,
-      }
-    })
-    newAudioLists.splice(fromIndex, 0, ...addedAudioLists)
-    this.changeAudioLists({ ...this.props, audioLists: newAudioLists })
-  }
-
   getEnhanceAudio = () => {
     const { audio } = this
     ;[
@@ -2184,10 +2167,6 @@ export default class ReactJkMusicPlayer extends PureComponent {
       {
         name: 'clear',
         value: this.clearAudioLists,
-      },
-      {
-        name: 'appendAudio',
-        value: this.appendAudio,
       },
       {
         name: 'sortable',

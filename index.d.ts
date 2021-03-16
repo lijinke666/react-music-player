@@ -47,10 +47,6 @@ export interface ReactJkMusicPlayerInstance extends HTMLAudioElement {
   playPrev?: () => void
   togglePlay?: () => void
   clear?: () => void
-  appendAudio?: (
-    fromIndex: number,
-    audioLists: ReactJkMusicPlayerAudioListProps[],
-  ) => void
   sortable?: any
 }
 

@@ -43,8 +43,7 @@ describe('AudioInstance test', () => {
       'playPrev',
       'playNext',
       'togglePlay',
-      'clear',
-      'appendAudio'),
+      'clear'),
     ].forEach((key) => {
       expect(instance[key]).toBeInstanceOf(Function)
     })
@@ -153,82 +152,5 @@ describe('AudioInstance test', () => {
     expect(wrapper.state().cover).toEqual('')
     expect(wrapper.state().musicSrc).toEqual('')
     expect(wrapper.state().name).toEqual('')
-  })
-
-  it('should appendAudio', async () => {
-    const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
-    const onAudioListsChange = jest.fn()
-    const { instance, wrapper } = getApp({
-      onAudioListsChange,
-    })
-    instance.appendAudio()
-    expect(errorSpy).toHaveBeenCalledWith(
-      'Warning! function appendAudio(){} must have formIndex!',
-    )
-    errorSpy.mockClear()
-    instance.appendAudio(0, [
-      {
-        musicSrc: 'c',
-      },
-      {
-        musicSrc: 'd',
-      },
-    ])
-    await sleep(300)
-    expect(onAudioListsChange).toHaveBeenCalled()
-    expect(wrapper.state().audioLists.map(({ musicSrc }) => musicSrc)).toEqual([
-      'c',
-      'd',
-      'a',
-      'b',
-    ])
-  })
-
-  it('should set audio info when append audio list', async () => {
-    const { instance, wrapper } = getApp()
-    const audioInfo = {
-      name: 'a',
-      singer: 'a',
-      musicSrc: 'c',
-    }
-    instance.appendAudio(0, [audioInfo])
-    await sleep(300)
-    expect(wrapper.state().name).toEqual(audioInfo.name)
-    expect(wrapper.state().musicSrc).toEqual(audioInfo.musicSrc)
-    expect(wrapper.state().singer).toEqual(audioInfo.singer)
-  })
-
-  it('should init append audio info', async () => {
-    const onAudioPlay = jest.fn()
-    const { wrapper, instance } = getApp({
-      mode: 'full',
-      autoplayInitLoadPlayList: false,
-      onAudioPlay,
-    })
-    const audioInfo = {
-      name: 'name',
-      singer: 'singer',
-      musicSrc: 'c',
-    }
-    const prePlayId = wrapper.state().playId
-    instance.appendAudio(0, [audioInfo])
-    await sleep(1000)
-    wrapper.update()
-    expect(onAudioPlay).not.toHaveBeenCalled()
-    expect(wrapper.state().loading).toBeFalsy()
-    expect(wrapper.state().musicSrc).toEqual(audioInfo.musicSrc)
-    expect(wrapper.state().singer).toEqual(audioInfo.singer)
-    expect(wrapper.state().name).toEqual(audioInfo.name)
-    expect(prePlayId).not.toEqual(wrapper.state().audioLists[0].__PLAYER_KEY__)
-    expect(wrapper.state().playId).toEqual(
-      wrapper.state().audioLists[0].__PLAYER_KEY__,
-    )
-    wrapper.find('.audio-lists-btn').simulate('click')
-    expect(
-      wrapper
-        .find('.audio-lists-panel-content .audio-item')
-        .first()
-        .find(AnimatePlayIcon),
-    ).toHaveLength(1)
   })
 })

@@ -666,20 +666,6 @@ class Demo extends React.PureComponent {
         >
           destroy player
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.audio.appendAudio(0, [
-              {
-                name: 'test',
-                musicSrc:
-                  'http://podcasts.protocol-radio.com/podcast/protocol-radio-331.m4a',
-              },
-            ])
-          }}
-        >
-          append audio
-        </button>
         <button type="button" onClick={this.audio.togglePlay}>
           toggle play
         </button>
