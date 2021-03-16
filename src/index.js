@@ -58,6 +58,7 @@ import {
   DEFAULT_PLAY_INDEX,
   DEFAULT_VOLUME,
   DEFAULT_REMOVE_ID,
+  PLAYER_KEY,
 } from './config/player'
 import SORTABLE_CONFIG from './config/sortable'
 import LOCALE_CONFIG from './locale'
@@ -212,7 +213,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (!audioLists.length || !this.audio) {
       return 0
     }
-    const { duration } = audioLists.find((audio) => audio.id === playId) || {}
+    const { duration } =
+      audioLists.find((audio) => audio[PLAYER_KEY] === playId) || {}
 
     return Math.max(Number(duration) || this.audio.duration || 0, 0)
   }
@@ -834,7 +836,9 @@ export default class ReactJkMusicPlayer extends PureComponent {
     if (loading && playId === currentPlayId) {
       return
     }
-    const playIndex = audioLists.findIndex((audio) => audio.id === playId)
+    const playIndex = audioLists.findIndex(
+      (audio) => audio[PLAYER_KEY] === playId,
+    )
     const { name, cover, musicSrc, singer, lyric = '' } =
       audioLists[playIndex] || {}
 
@@ -925,7 +929,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       return
     }
     const newAudioLists = [...audioLists].filter(
-      (audio) => audio.id !== audioId,
+      (audio) => audio[PLAYER_KEY] !== audioId,
     )
     // 触发删除动画,等动画结束 删除列表
     this.setState({ removeId: audioId })
@@ -1156,7 +1160,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   getCurrentPlayIndex = () => {
     return this.state.audioLists.findIndex(
-      (audio) => audio.id === this.state.playId,
+      (audio) => audio[PLAYER_KEY] === this.state.playId,
     )
   }
 
@@ -1438,7 +1442,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       if (loadAudioErrorPlayNext && audioLists.length) {
         const isLastAudio =
           (playMode === PLAY_MODE.order || playMode === PLAY_MODE.orderLoop) &&
-          playId === audioLists[audioLists.length - 1].id
+          playId === audioLists[audioLists.length - 1][PLAYER_KEY]
         if (!isLastAudio) {
           this.handlePlay(currentPlayMode, true)
         }
@@ -1473,8 +1477,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         }
         this.audioListsPlay(
           isNext
-            ? audioLists[currentPlayIndex + 1].id
-            : audioLists[currentPlayIndex - 1].id,
+            ? audioLists[currentPlayIndex + 1][PLAYER_KEY]
+            : audioLists[currentPlayIndex - 1][PLAYER_KEY],
         )
         break
 
@@ -1482,14 +1486,16 @@ export default class ReactJkMusicPlayer extends PureComponent {
       case PLAY_MODE.orderLoop:
         if (isNext) {
           if (currentPlayIndex === audioListsLen - 1) {
-            return this.audioListsPlay(audioLists[0].id)
+            return this.audioListsPlay(audioLists[0][PLAYER_KEY])
           }
-          this.audioListsPlay(audioLists[currentPlayIndex + 1].id)
+          this.audioListsPlay(audioLists[currentPlayIndex + 1][PLAYER_KEY])
         } else {
           if (currentPlayIndex === 0) {
-            return this.audioListsPlay(audioLists[audioListsLen - 1].id)
+            return this.audioListsPlay(
+              audioLists[audioListsLen - 1][PLAYER_KEY],
+            )
           }
-          this.audioListsPlay(audioLists[currentPlayIndex - 1].id)
+          this.audioListsPlay(audioLists[currentPlayIndex - 1][PLAYER_KEY])
         }
         break
 
@@ -1506,7 +1512,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           if (randomIndex === this.getCurrentPlayIndex()) {
             randomIndex = this.getPlayIndex(randomIndex + 1)
           }
-          const randomPlayId = (audioLists[randomIndex] || {}).id
+          const randomPlayId = (audioLists[randomIndex] || {})[PLAYER_KEY]
           this.audioListsPlay(randomPlayId, true)
         }
         break
@@ -1743,7 +1749,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
       playId &&
       nextProps.audioLists.some(
         (newAudioInfo) =>
-          newAudioInfo.id === playId || newAudioInfo.musicSrc === musicSrc,
+          newAudioInfo[PLAYER_KEY] === playId ||
+          newAudioInfo.musicSrc === musicSrc,
       )
     )
   }
@@ -1832,7 +1839,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
   getPlayId = (audioLists = this.state.audioLists) => {
     const playIndex = this.getPlayIndex(undefined, audioLists)
     const playId =
-      this.state.playId || (audioLists[playIndex] && audioLists[playIndex].id)
+      this.state.playId ||
+      (audioLists[playIndex] && audioLists[playIndex][PLAYER_KEY])
     return playId
   }
 
@@ -1840,7 +1848,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const playId = this.getPlayId(audioLists)
 
     const { name = '', cover = '', singer = '', musicSrc = '', lyric = '' } =
-      audioLists.find(({ id }) => id === playId) || {}
+      audioLists.find((audio) => audio[PLAYER_KEY] === playId) || {}
 
     return {
       name,
@@ -1854,14 +1862,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   getPlayInfo = (audioLists = []) => {
-    const newAudioLists = audioLists.filter((audio) => !audio.id)
-    const lastAudioLists = audioLists.filter((audio) => audio.id)
+    const newAudioLists = audioLists.filter((audio) => !audio[PLAYER_KEY])
+    const lastAudioLists = audioLists.filter((audio) => audio[PLAYER_KEY])
     const mergedAudioLists = [
       ...lastAudioLists,
       ...newAudioLists.map((info) => {
         return {
           ...info,
-          id: uuId(),
+          [PLAYER_KEY]: uuId(),
         }
       }),
     ]
@@ -1881,7 +1889,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         {}
       return {
         ...info,
-        id: prevAudioBeforeUpdate.id || uuId(),
+        [PLAYER_KEY]: prevAudioBeforeUpdate[PLAYER_KEY] || uuId(),
       }
     })
 
@@ -1971,7 +1979,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   getDefaultPlayId = (audioLists = this.props.audioLists) => {
     const playIndex = this.getPlayIndex()
-    return audioLists[playIndex] && audioLists[playIndex].id
+    return audioLists[playIndex] && audioLists[playIndex][PLAYER_KEY]
   }
 
   initLyricParser = () => {
@@ -2118,8 +2126,8 @@ export default class ReactJkMusicPlayer extends PureComponent {
         const currentPlayAudio = this.state.audioLists[
           this.getPlayIndex(playIndex)
         ]
-        if (currentPlayAudio && currentPlayAudio.id) {
-          this.audioListsPlay(currentPlayAudio.id, true)
+        if (currentPlayAudio && currentPlayAudio[PLAYER_KEY]) {
+          this.audioListsPlay(currentPlayAudio[PLAYER_KEY], true)
         }
       })
     }
@@ -2138,7 +2146,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     const newAudioLists = [...this.state.audioLists]
     const addedAudioLists = audioLists.map((audioInfo) => {
       return {
-        id: uuId(),
+        [PLAYER_KEY]: uuId(),
         ...audioInfo,
       }
     })

@@ -1,5 +1,6 @@
 import cls from 'classnames'
 import React, { memo } from 'react'
+import { PLAYER_KEY } from '../config/player'
 import SORTABLE_CONFIG from '../config/sortable'
 
 const AudioListsPanel = ({
@@ -62,10 +63,11 @@ const AudioListsPanel = ({
         <ul className={SORTABLE_CONFIG.selector}>
           {audioLists.map((audio) => {
             const { name, singer } = audio
-            const isCurrentPlaying = playId === audio.id
+            const audioId = audio[PLAYER_KEY]
+            const isCurrentPlaying = playId === audioId
             return (
               <li
-                key={audio.id}
+                key={audioId}
                 title={
                   !playing
                     ? locale.clickToPlayText
@@ -77,9 +79,9 @@ const AudioListsPanel = ({
                   'audio-item',
                   { playing: isCurrentPlaying },
                   { pause: !playing },
-                  { remove: removeId === audio.id },
+                  { remove: removeId === audioId },
                 )}
-                onClick={() => onPlay(audio.id)}
+                onClick={() => onPlay(audioId)}
               >
                 <span className="group player-status">
                   <span className="player-icons">
@@ -102,7 +104,7 @@ const AudioListsPanel = ({
                   <span
                     className="group player-delete"
                     title={locale.clickToDeleteText(name)}
-                    onClick={onDelete(audio.id)}
+                    onClick={onDelete(audioId)}
                   >
                     {icon.close}
                   </span>

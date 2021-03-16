@@ -219,8 +219,10 @@ describe('AudioInstance test', () => {
     expect(wrapper.state().musicSrc).toEqual(audioInfo.musicSrc)
     expect(wrapper.state().singer).toEqual(audioInfo.singer)
     expect(wrapper.state().name).toEqual(audioInfo.name)
-    expect(prePlayId).not.toEqual(wrapper.state().audioLists[0].id)
-    expect(wrapper.state().playId).toEqual(wrapper.state().audioLists[0].id)
+    expect(prePlayId).not.toEqual(wrapper.state().audioLists[0].__PLAYER_KEY__)
+    expect(wrapper.state().playId).toEqual(
+      wrapper.state().audioLists[0].__PLAYER_KEY__,
+    )
     wrapper.find('.audio-lists-btn').simulate('click')
     expect(
       wrapper

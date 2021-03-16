@@ -562,7 +562,11 @@ describe('<ReactJkMusicPlayer/>', () => {
       ],
     })
 
-    expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
+    expect(
+      wrapper
+        .state()
+        .audioLists.map(({ musicSrc, name }) => ({ musicSrc, name })),
+    ).toEqual([
       { musicSrc: 'x', name: '1' },
       { musicSrc: 'xx', name: '11' },
       { musicSrc: 'xxx', name: '111' },
@@ -587,7 +591,11 @@ describe('<ReactJkMusicPlayer/>', () => {
 
     await sleep(300)
 
-    expect(wrapper.state().audioLists.map(({ id, ...attr }) => attr)).toEqual([
+    expect(
+      wrapper
+        .state()
+        .audioLists.map(({ musicSrc, name }) => ({ musicSrc, name })),
+    ).toEqual([
       { musicSrc: 'xx', name: '11' },
       { musicSrc: 'xxx', name: '111' },
     ])
@@ -1445,8 +1453,12 @@ describe('<ReactJkMusicPlayer/>', () => {
     await sleep(300)
     expect(onAudioAbort).not.toHaveBeenCalled()
     expect(onAudioListsChange).toHaveBeenCalledTimes(1)
-    expect(wrapper.state().audioLists[0].id).toEqual(prevAudioLists[0].id)
-    expect(wrapper.state().audioLists[1].id).not.toEqual(prevAudioLists[1].id)
+    expect(wrapper.state().audioLists[0].__PLAYER_KEY__).toEqual(
+      prevAudioLists[0].__PLAYER_KEY__,
+    )
+    expect(wrapper.state().audioLists[1].__PLAYER_KEY__).not.toEqual(
+      prevAudioLists[1].__PLAYER_KEY__,
+    )
 
     wrapper.setProps({
       audioLists: [
@@ -1457,8 +1469,12 @@ describe('<ReactJkMusicPlayer/>', () => {
 
     await sleep(300)
     expect(onAudioListsChange).toHaveBeenCalledTimes(2)
-    expect(wrapper.state().audioLists[0].id).not.toEqual(prevAudioLists[0].id)
-    expect(wrapper.state().audioLists[1].id).not.toEqual(prevAudioLists[1].id)
+    expect(wrapper.state().audioLists[0].__PLAYER_KEY__).not.toEqual(
+      prevAudioLists[0].__PLAYER_KEY__,
+    )
+    expect(wrapper.state().audioLists[1].__PLAYER_KEY__).not.toEqual(
+      prevAudioLists[1].__PLAYER_KEY__,
+    )
   })
 
   it('should not play if audio is loading', () => {
