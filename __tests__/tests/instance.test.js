@@ -1,7 +1,6 @@
 import { mount } from 'enzyme'
 import React from 'react'
 import ReactJkMusicPlayer from '../../src'
-import { AnimatePlayIcon } from '../../src/components/Icon'
 import { sleep } from '../utils'
 
 const getApp = (props) => {
