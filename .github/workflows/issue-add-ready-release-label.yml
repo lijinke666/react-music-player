@@ -1,0 +1,16 @@
+name: Auto add ready release label
+
+on:
+  pull_request:
+    types: [merged]
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-cool/pr-extract-issues@v1.1.0
+        with:
+          way: 'commit'
+          filter-label: 'bug'
+          issues-labels: 'ready release'
+          issues-close: true
