@@ -1,3 +1,15 @@
+# [4.23.0](https://github.com/lijinke666/react-music-player/compare/v4.22.1...v4.23.0) (2021-03-18)
+
+
+### Bug Fixes
+
+* remove id field, use private player key close [#328](https://github.com/lijinke666/react-music-player/issues/328) ([06fb15c](https://github.com/lijinke666/react-music-player/commit/06fb15cb08a554643de850cfcbeafadd1b86dd20))
+
+
+### Features
+
+* appendAudio method deprecated ([8009865](https://github.com/lijinke666/react-music-player/commit/80098650eb13dd4f2511b93ec85b1cb724ec928d))
+
 ## [4.22.1](https://github.com/lijinke666/react-music-player/compare/v4.22.0...v4.22.1) (2021-02-16)
 
 
