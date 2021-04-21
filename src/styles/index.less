@@ -73,10 +73,14 @@
     transform-origin: bottom center;
     z-index: @mode-tip-z-index;
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: all @common-animate-time;
 
     &.play-mode-title-visible {
       opacity: 1;
+      visibility: visible;
+      pointer-events: all;
       transform: translate3d(0, 0, 0);
     }
   }

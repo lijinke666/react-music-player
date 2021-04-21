@@ -621,7 +621,7 @@ const PlayerWithNoSSR = dynamic(() => import('../components/Player'), {
 git clone https://github.com/lijinke666/react-music-player.git
 yarn # npm install
 yarn start # npm start
-open `http://localhost:8081/`
+open `http://localhost:8084/`
 ```
 
 ## :hourglass: Test case
