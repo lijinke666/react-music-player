@@ -194,6 +194,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       fadeIn: 0,
       fadeOut: 0,
     },
+    restartCurrentOnPrev: false,
     // https://github.com/SortableJS/Sortable#options
     sortableOptions: {},
   }
@@ -1475,6 +1476,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
           this.audio.pause()
           return
         }
+
         this.audioListsPlay(
           isNext
             ? audioLists[currentPlayIndex + 1][PLAYER_KEY]
@@ -1551,6 +1553,12 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   onPlayPrevAudio = () => {
+    const { restartCurrentOnPrev } = this.props
+    if (restartCurrentOnPrev && this.audio.currentTime > 1) {
+      this.audio.currentTime = 0
+      return
+    }
+
     this.audioPrevAndNextBasePlayHandle(false)
   }
 
