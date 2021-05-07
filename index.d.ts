@@ -234,6 +234,7 @@ export interface ReactJkMusicPlayerProps {
     fadeIn?: number
     fadeOut?: number
   }
+  restartCurrentOnPrev?: boolean
   sortableOptions?: object
 }
 

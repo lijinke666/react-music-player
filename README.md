@@ -203,6 +203,7 @@ ReactDOM.render(
 | mobileMediaQuery | `string` | `(max-width: 768px) and (orientation : portrait)` | custom mobile media query string, eg use the mobile version UI on iPad. <https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries> |
 | volumeFade | `{ fadeIn: number(ms), fadeOut: number(ms) }` | `-` | audio fade in and out. [Detail](#bulb-audio-volume-fade-in-and-fade-out) |
 | sortableOptions | `object` | `{swap: true, animation: 100, swapClass: 'audio-lists-panel-sortable-highlight-bg'}` | [SortableJs Options](https://github.com/SortableJS/Sortable#options) |
+| restartCurrentOnPrev | `boolean` | `false` | Restarts the current track when trying to play previous song, if the current time of the song is more than 1 second |
 
 ## :bulb: Custom operation ui
 
@@ -222,6 +223,7 @@ Support feature:
 - `play prev audio`
 - `play audio by custom play index`
 - `update play index`
+- `restart current song on play prev audio`
 - [SortableJS methods](https://github.com/SortableJS/Sortable#methods)
 
 ```jsx
