@@ -1858,4 +1858,27 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(wrapper.state('isResetCoverRotate')).toBeFalsy()
     })
   })
+  it('should reset audio current time to zero if prev audio button clicked', async () => {
+    const onPlayIndexChange = jest.fn()
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        restartCurrentOnPrev
+        mode="full"
+        onPlayIndexChange={onPlayIndexChange}
+      />,
+    )
+    window.HTMLMediaElement.prototype.currentTime = 0
+    wrapper.find('.prev-audio').simulate('click')
+    await sleep(100)
+
+    expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
+
+    window.HTMLMediaElement.prototype.currentTime = 1
+    wrapper.find('.prev-audio').simulate('click')
+    await sleep(100)
+
+    expect(window.HTMLMediaElement.prototype.currentTime).toEqual(0)
+
+    expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
+  })
 })
