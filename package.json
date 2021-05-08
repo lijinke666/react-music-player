@@ -1,6 +1,6 @@
 {
   "name": "react-jinke-music-player",
-  "version": "4.23.0",
+  "version": "4.24.0",
   "description": "Maybe the best beautiful HTML5 responsive player component for react",
   "main": "lib/index.js",
   "module": "es/index.js",
