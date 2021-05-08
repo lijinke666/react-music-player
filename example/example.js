@@ -260,7 +260,7 @@ const options = {
     fadeIn: 1000,
     fadeOut: 1000,
   },
-  /** 
+  /**
    * Restarts the current track when trying to play previous song, if the current time of the song is more than 1 second
       Otherwise, plays the previous song in the list
       [type `Boolean` default `false`]
@@ -616,7 +616,6 @@ class Demo extends React.PureComponent {
   renderCustomAudioTitle = () => {
     this.updateParams({
       renderAudioTitle: (audioInfo, isMobile) => {
-        console.log('audioInfo: ', audioInfo, isMobile)
         return (
           <>
             <a href="#">{audioInfo.name}</a>

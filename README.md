@@ -223,7 +223,6 @@ Support feature:
 - `play prev audio`
 - `play audio by custom play index`
 - `update play index`
-- `restart current song on play prev audio`
 - [SortableJS methods](https://github.com/SortableJS/Sortable#methods)
 
 ```jsx

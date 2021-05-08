@@ -1750,6 +1750,40 @@ describe('<ReactJkMusicPlayer/>', () => {
     expect(wrapper.state('soundValue')).toStrictEqual(0.5)
   })
 
+  it('should reset audio current time to zero if prev audio button clicked', async () => {
+    const onPlayIndexChange = jest.fn()
+    const onAudioPlayTrackChange = jest.fn()
+    let audio
+    const wrapper = mount(
+      <ReactJkMusicPlayer
+        restartCurrentOnPrev
+        mode="full"
+        audioLists={[{ musicSrc: 'x' }, { musicSrc: 'y' }]}
+        onPlayIndexChange={onPlayIndexChange}
+        onAudioPlayTrackChange={onAudioPlayTrackChange}
+        getAudioInstance={(node) => (audio = node)}
+      />,
+    )
+    audio.currentTime = 0
+
+    wrapper.find('.prev-audio').simulate('click')
+    await sleep(300)
+
+    expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
+    expect(onAudioPlayTrackChange).toHaveBeenCalledTimes(1)
+
+    audio.currentTime = 20
+
+    wrapper.find('.prev-audio').simulate('click')
+    await sleep(300)
+
+    expect(audio.currentTime).toEqual(0)
+    expect(onPlayIndexChange).toHaveBeenCalledTimes(1)
+    expect(onAudioPlayTrackChange).toHaveBeenCalledTimes(1)
+
+    jest.clearAllMocks()
+  })
+
   it("should don't play audio when audio seeked by slider bar if audio is paused", async () => {
     const onAudioSeeked = jest.fn()
     const onAudioPlay = jest.fn()
