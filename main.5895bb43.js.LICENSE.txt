@@ -10,6 +10,12 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
 /**
  * @name react-jinke-music-player
  * @description Maybe the best beautiful HTML5 responsive player component for react :)
