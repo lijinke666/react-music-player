@@ -1,3 +1,17 @@
+# [4.24.0](https://github.com/lijinke666/react-music-player/compare/v4.23.0...v4.24.0) (2021-05-08)
+
+
+### Bug Fixes
+
+* disable play model container pointer event close [#351](https://github.com/lijinke666/react-music-player/issues/351) ([7f4e19e](https://github.com/lijinke666/react-music-player/commit/7f4e19ef60752f4f37718ea361068c33892e90cd))
+
+
+### Features
+
+* add restart on prev test ([924841a](https://github.com/lijinke666/react-music-player/commit/924841aefd55c0084dd441203cd9cd6dee954a41))
+* add test case for restart on prev feature ([ad54e66](https://github.com/lijinke666/react-music-player/commit/ad54e6688864e7edcb8ae4106ee5c074f1cf10f1))
+* added a boolean to modify the current previous song handler ([1b9fe0d](https://github.com/lijinke666/react-music-player/commit/1b9fe0d05ce2fed3ea6c12286283e2ac58f8ecb0))
+
 # [4.23.0](https://github.com/lijinke666/react-music-player/compare/v4.22.1...v4.23.0) (2021-03-18)
 
 
