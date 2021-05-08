@@ -1761,7 +1761,9 @@ describe('<ReactJkMusicPlayer/>', () => {
         audioLists={[{ musicSrc: 'x' }, { musicSrc: 'y' }]}
         onPlayIndexChange={onPlayIndexChange}
         onAudioPlayTrackChange={onAudioPlayTrackChange}
-        getAudioInstance={(node) => (audio = node)}
+        getAudioInstance={(node) => {
+          audio = node
+        }}
       />,
     )
     audio.currentTime = 0

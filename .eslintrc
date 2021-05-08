@@ -3,8 +3,7 @@
     "airbnb",
     "plugin:react/recommended",
     "plugin:jest/recommended",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "plugins": ["react", "babel", "prettier"],
   "parserOptions": {
