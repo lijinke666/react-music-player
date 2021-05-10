@@ -96,7 +96,7 @@
     "@react-icons/all-files": "^4.1.0",
     "classnames": "^2.3.1",
     "downloadjs": "^1.4.7",
-    "is-mobile": "^2.2.2",
+    "is-mobile": "^3.0.0",
     "prop-types": "^15.7.2",
     "rc-slider": "^9.7.2",
     "rc-switch": "^3.2.2",
