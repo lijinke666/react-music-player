@@ -1894,4 +1894,20 @@ describe('<ReactJkMusicPlayer/>', () => {
       expect(wrapper.state('isResetCoverRotate')).toBeFalsy()
     })
   })
+
+  it('should don\'t reset current audio volume when audio changed', async () => {
+    const wrapper = mount(
+      <ReactJkMusicPlayer audioLists={[{ musicSrc: 'x' }]} />,
+    )
+
+    expect(wrapper.state('currentAudioVolume')).toEqual(1)
+
+    wrapper.instance().setAudioVolume(0.5)
+
+    wrapper.setProps({ audioLists: [{ musicSrc: 'y' }] }, async () => {
+      wrapper.update()
+      await sleep(100)
+      expect(wrapper.state('currentAudioVolume')).toEqual(0.5)
+    })
+  })
 })

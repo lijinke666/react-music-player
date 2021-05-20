@@ -2317,11 +2317,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
   initPlayer = (
     audioLists = this.props.audioLists,
     isBindKeyDownEvents = true,
+    resetAudioVolume = true,
   ) => {
     if (!Array.isArray(audioLists) || !audioLists.length) {
       return
     }
-    this.setDefaultAudioVolume()
+    if (resetAudioVolume) {
+      this.setDefaultAudioVolume()
+    }
     this.bindUnhandledRejection()
     this.bindEvents(this.audio)
     this.initLyricParser()
@@ -2407,7 +2410,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
         this.updateAudioLists(audioLists)
       }
       if (!this.checkCurrentPlayingAudioIsInUpdatedAudioLists(nextProps)) {
-        this.initPlayer(audioLists, false)
+        this.initPlayer(audioLists, false, false)
       }
       setTimeout(() => this.initSortableAudioLists(), 200)
     }
