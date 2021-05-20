@@ -1895,7 +1895,7 @@ describe('<ReactJkMusicPlayer/>', () => {
     })
   })
 
-  it('should don\'t reset current audio volume when audio changed', async () => {
+  it("should don't reset current audio volume when audio changed", async () => {
     const wrapper = mount(
       <ReactJkMusicPlayer audioLists={[{ musicSrc: 'x' }]} />,
     )
