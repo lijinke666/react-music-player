@@ -1,3 +1,10 @@
+## [4.24.1](https://github.com/lijinke666/react-music-player/compare/v4.24.0...v4.24.1) (2021-05-21)
+
+
+### Bug Fixes
+
+* dont't reset current audio volume when audio list changed close [#379](https://github.com/lijinke666/react-music-player/issues/379) ([3619a6d](https://github.com/lijinke666/react-music-player/commit/3619a6ddd1a24b91c3a3de31032728762addff5d))
+
 # [4.24.0](https://github.com/lijinke666/react-music-player/compare/v4.23.0...v4.24.0) (2021-05-08)
 
 
