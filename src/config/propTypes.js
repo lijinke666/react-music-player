@@ -120,4 +120,5 @@ export default {
     fadeOut: PropTypes.number,
   }),
   sortableOptions: PropTypes.object,
+  audioListsPanelDisabled: PropTypes.bool,
 }

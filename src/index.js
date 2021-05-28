@@ -143,6 +143,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     updateIntervalEndVolume: undefined,
     isAudioSeeking: false,
     isResetCoverRotate: false,
+    audioListsPanelDisabled: false,
   }
 
   static defaultProps = {
@@ -197,6 +198,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     restartCurrentOnPrev: false,
     // https://github.com/SortableJS/Sortable#options
     sortableOptions: {},
+    audioListsPanelDisabled: false
   }
 
   static propTypes = PROP_TYPES
@@ -274,6 +276,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       autoHiddenCover,
       showDestroy,
       responsive,
+      audioListsPanelDisabled
     } = this.props
 
     const { locale } = this
@@ -304,7 +307,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
       currentLyric,
       audioLyricVisible,
       isPlayDestroyed,
-      isResetCoverRotate,
+      isResetCoverRotate
     } = this.state
 
     const preloadState =
@@ -644,16 +647,18 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
                 {LyricComponent}
 
-                <span
-                  className="group audio-lists-btn"
-                  title={locale.playListsText}
-                  onClick={this.openAudioListsPanel}
-                >
-                  <span className="audio-lists-icon">
-                    {this.iconMap.playLists}
+                {audioListsPanelDisabled ? null : (
+                  <span
+                    className="group audio-lists-btn"
+                    title={locale.playListsText}
+                    onClick={this.openAudioListsPanel}
+                  >
+                    <span className="audio-lists-icon">
+                      {this.iconMap.playLists}
+                    </span>
+                    <span className="audio-lists-num">{audioLists.length}</span>
                   </span>
-                  <span className="audio-lists-num">{audioLists.length}</span>
-                </span>
+                )}
 
                 {toggleMode && (
                   <span
@@ -671,24 +676,26 @@ export default class ReactJkMusicPlayer extends PureComponent {
           </div>
         )}
         {/* 播放列表面板 */}
-        <AudioListsPanel
-          playing={playing}
-          playId={playId}
-          loading={loading}
-          visible={audioListsPanelVisible}
-          audioLists={audioLists}
-          onPlay={this.audioListsPlay}
-          onCancel={this.closeAudioListsPanel}
-          icon={this.iconMap}
-          isMobile={isMobile}
-          panelToggleAnimate={panelToggleAnimate}
-          glassBg={glassBg}
-          cover={cover}
-          remove={remove}
-          onDelete={this.onDeleteAudioLists}
-          removeId={removeId}
-          locale={locale}
-        />
+        {audioListsPanelDisabled ? null : (
+          <AudioListsPanel
+            playing={playing}
+            playId={playId}
+            loading={loading}
+            visible={audioListsPanelVisible}
+            audioLists={audioLists}
+            onPlay={this.audioListsPlay}
+            onCancel={this.closeAudioListsPanel}
+            icon={this.iconMap}
+            isMobile={isMobile}
+            panelToggleAnimate={panelToggleAnimate}
+            glassBg={glassBg}
+            cover={cover}
+            remove={remove}
+            onDelete={this.onDeleteAudioLists}
+            removeId={removeId}
+            locale={locale}
+          />
+        )}
         {/* 播放模式提示框 */}
         {!isMobile && (
           <PlayModel
@@ -961,12 +968,14 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   openAudioListsPanel = () => {
-    this.setState(({ audioListsPanelVisible }) => ({
-      initAnimate: true,
-      audioListsPanelVisible: !audioListsPanelVisible,
-    }))
-    this.props.onAudioListsPanelChange &&
-      this.props.onAudioListsPanelChange(!this.state.audioListsPanelVisible)
+    if(!this.state.audioListsPanelDisabled) {
+      this.setState(({ audioListsPanelVisible }) => ({
+        initAnimate: true,
+        audioListsPanelVisible: !audioListsPanelVisible,
+      }))
+      this.props.onAudioListsPanelChange &&
+        this.props.onAudioListsPanelChange(!this.state.audioListsPanelVisible)
+    }
   }
 
   closeAudioListsPanel = (e) => {
@@ -975,11 +984,13 @@ export default class ReactJkMusicPlayer extends PureComponent {
   }
 
   _closeAudioListsPanel = () => {
-    const { audioListsPanelVisible } = this.state
-    this.setState({ audioListsPanelVisible: false })
-    if (audioListsPanelVisible) {
-      this.props.onAudioListsPanelChange &&
+    if(!this.state.audioListsPanelDisabled) {
+      const { audioListsPanelVisible } = this.state
+      this.setState({ audioListsPanelVisible: false })
+      if (audioListsPanelVisible) {
+        this.props.onAudioListsPanelChange &&
         this.props.onAudioListsPanelChange(false)
+      }
     }
   }
 

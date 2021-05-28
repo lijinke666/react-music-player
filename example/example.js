@@ -270,6 +270,10 @@ const options = {
   // https://github.com/SortableJS/Sortable#options
   sortableOptions: {},
 
+  // Disable the build in playlist panel
+  // if disabled, duplicated songs are supported
+  audioListsPanelDisabled: false,
+
   // Music is downloaded handle
   onAudioDownload(audioInfo) {
     console.log('audio download', audioInfo)
@@ -609,6 +613,10 @@ class Demo extends React.PureComponent {
     this.setState({ unmount: true })
   }
 
+  onTogglePlaylist = (e) => {
+    this.updateParams({ audioListsPanelDisabled: e.target.checked })
+  }
+
   onPlayModeChange = (e) => {
     this.updateParams({ playMode: e.target.value })
   }
@@ -795,6 +803,10 @@ class Demo extends React.PureComponent {
               onChange={this.onDrag}
             />
             drag
+          </label>
+          <label htmlFor="audioListsPanelDisabled">
+            <input type="checkbox" id="audioListsPanelDisabled" checked={params.audioListsPanelDisabled} onChange={this.onTogglePlaylist} />
+            audioListsPanelDisabled
           </label>
           <label htmlFor="seeked">
             <input
