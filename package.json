@@ -168,7 +168,7 @@
     "lint-staged": "^11.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "postcss": "^8.2.14",
-    "postcss-loader": "^5.2.0",
+    "postcss-loader": "^6.1.0",
     "power-assert": "^1.6.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
