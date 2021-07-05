@@ -230,7 +230,7 @@ const options = {
   // default volume of the audio player [type `Number` default `1` range `0-1`]
   defaultVolume: 1,
 
-  // playModeText show time [type `Number(ms)` default `700`]
+  // playModeText show time [type `Number(ms)` default `600`]
   playModeShowTime: 600,
 
   // Whether to try playing the next audio when the current audio playback fails [type `Boolean` default `true`]
