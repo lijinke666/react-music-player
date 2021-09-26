@@ -118,7 +118,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
     toggle: this.props.mode === MODE.FULL,
     playing: false,
     currentTime: 0,
-    soundValue: DEFAULT_VOLUME * 100,
+    soundValue: DEFAULT_VOLUME,
     moveX: 0,
     moveY: 0,
     loading: false,
@@ -2319,11 +2319,11 @@ export default class ReactJkMusicPlayer extends PureComponent {
     isBindKeyDownEvents = true,
     resetAudioVolume = true,
   ) => {
-    if (!Array.isArray(audioLists) || !audioLists.length) {
-      return
-    }
     if (resetAudioVolume) {
       this.setDefaultAudioVolume()
+    }
+    if (!Array.isArray(audioLists) || !audioLists.length) {
+      return
     }
     this.bindUnhandledRejection()
     this.bindEvents(this.audio)
