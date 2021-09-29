@@ -1,3 +1,10 @@
+## [4.24.2](https://github.com/lijinke666/react-music-player/compare/v4.24.1...v4.24.2) (2021-09-29)
+
+
+### Bug Fixes
+
+* always reset volume when initializing player ([c7a38f1](https://github.com/lijinke666/react-music-player/commit/c7a38f1221964b8268f13845757de6f345d6440f))
+
 ## [4.24.1](https://github.com/lijinke666/react-music-player/compare/v4.24.0...v4.24.1) (2021-05-21)
 
 
