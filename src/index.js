@@ -1906,16 +1906,7 @@ export default class ReactJkMusicPlayer extends PureComponent {
 
   initPlayInfo = (audioLists, cb) => {
     const info = this.getPlayInfo(audioLists)
-
-    switch (typeof info.musicSrc) {
-      case 'function':
-        info.musicSrc().then((originMusicSrc) => {
-          this.setState({ ...info, musicSrc: originMusicSrc }, cb)
-        }, this.onAudioError)
-        break
-      default:
-        this.setState(info, cb)
-    }
+    this.setState({ ...info, musicSrc: this.state.musicSrc }, cb)
   }
 
   addMatchMediaListener = (query, handler) => {
