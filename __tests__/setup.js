@@ -69,5 +69,5 @@ jest.mock('sortablejs', () => {
   })
 })
 
-sortablejs.Swap = jest.fn()
+/* sortablejs.Swap = jest.fn() */
 sortablejs.mount = jest.fn()
