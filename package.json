@@ -173,8 +173,8 @@
     "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-hot-loader": "^4.13.0",
     "react-loader": "^2.4.7",
     "rimraf": "^3.0.2",
@@ -190,7 +190,7 @@
     "webpack-dev-server": "3.11.2"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   }
 }
